@@ -9,7 +9,7 @@
         "name_en": "Ginza Line",
         "operator": "東京メトロ",
         "operator_slug": "tokyo-metro",
-        "start_date": NaN,
+        "start_date": null,
         "source_url": "https://geodo.earth/lines/tokyo-metro-ginza/"
       },
       "geometry": {
