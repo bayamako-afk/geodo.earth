@@ -1,0 +1,556 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7024447,
+          35.658999
+        ]
+      },
+      "properties": {
+        "name": "渋谷",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": "銀座線",
+        "station": "subway",
+        "railway": "station",
+        "station_order": 1,
+        "station_order_0": 0,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-01",
+        "station_slug": "tokyo-metro-ginza-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7125432,
+          35.6651609
+        ]
+      },
+      "properties": {
+        "name": "表参道",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": "銀座線;千代田線;半蔵門線",
+        "station": "subway",
+        "railway": "station",
+        "station_order": 2,
+        "station_order_0": 1,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-02",
+        "station_slug": "tokyo-metro-ginza-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7178823,
+          35.6704649
+        ]
+      },
+      "properties": {
+        "name": "外苑前",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 3,
+        "station_order_0": 2,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-03",
+        "station_slug": "tokyo-metro-ginza-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7240186,
+          35.6727797
+        ]
+      },
+      "properties": {
+        "name": "青山一丁目",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄;東京都交通局",
+        "network": "都営地下鉄",
+        "station": "subway",
+        "railway": "station",
+        "station_order": 4,
+        "station_order_0": 3,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-04",
+        "station_slug": "tokyo-metro-ginza-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7375253,
+          35.6763213
+        ]
+      },
+      "properties": {
+        "name": "赤坂見附",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": "東京メトロ丸ノ内線;銀座線",
+        "station": "subway",
+        "railway": "station",
+        "station_order": 5,
+        "station_order_0": 4,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-05",
+        "station_slug": "tokyo-metro-ginza-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.741961,
+          35.6715337
+        ]
+      },
+      "properties": {
+        "name": "溜池山王",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 6,
+        "station_order_0": 5,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-06",
+        "station_slug": "tokyo-metro-ginza-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.750056,
+          35.6701871
+        ]
+      },
+      "properties": {
+        "name": "虎ノ門",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": "ロ銀座線",
+        "station": "subway",
+        "railway": "station",
+        "station_order": 7,
+        "station_order_0": 6,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-07",
+        "station_slug": "tokyo-metro-ginza-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7588592,
+          35.6671895
+        ]
+      },
+      "properties": {
+        "name": "新橋",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": "ロ銀座線",
+        "station": "subway",
+        "railway": "station",
+        "station_order": 8,
+        "station_order_0": 7,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-08",
+        "station_slug": "tokyo-metro-ginza-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7652995,
+          35.6714622
+        ]
+      },
+      "properties": {
+        "name": "銀座",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 9,
+        "station_order_0": 8,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-09",
+        "station_slug": "tokyo-metro-ginza-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7700412,
+          35.676696
+        ]
+      },
+      "properties": {
+        "name": "京橋",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 10,
+        "station_order_0": 9,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-10",
+        "station_slug": "tokyo-metro-ginza-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7733976,
+          35.6820843
+        ]
+      },
+      "properties": {
+        "name": "日本橋",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 11,
+        "station_order_0": 10,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-11",
+        "station_slug": "tokyo-metro-ginza-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7736283,
+          35.687054
+        ]
+      },
+      "properties": {
+        "name": "三越前",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": "Tokyo Metro Ginza Line",
+        "station": "subway",
+        "railway": "station",
+        "station_order": 12,
+        "station_order_0": 11,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-12",
+        "station_slug": "tokyo-metro-ginza-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7708898,
+          35.6937148
+        ]
+      },
+      "properties": {
+        "name": "神田",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 13,
+        "station_order_0": 12,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-13",
+        "station_slug": "tokyo-metro-ginza-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7716793,
+          35.7029361
+        ]
+      },
+      "properties": {
+        "name": "末広町",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 14,
+        "station_order_0": 13,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-14",
+        "station_slug": "tokyo-metro-ginza-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7729909,
+          35.7078328
+        ]
+      },
+      "properties": {
+        "name": "上野広小路",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 15,
+        "station_order_0": 14,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-15",
+        "station_slug": "tokyo-metro-ginza-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7761542,
+          35.7117081
+        ]
+      },
+      "properties": {
+        "name": "上野",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 16,
+        "station_order_0": 15,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-16",
+        "station_slug": "tokyo-metro-ginza-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7826851,
+          35.7113867
+        ]
+      },
+      "properties": {
+        "name": "稲荷町",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 17,
+        "station_order_0": 16,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-17",
+        "station_slug": "tokyo-metro-ginza-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7907747,
+          35.709842
+        ]
+      },
+      "properties": {
+        "name": "田原町",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": "東京メトロ",
+        "station": "subway",
+        "railway": "station",
+        "station_order": 18,
+        "station_order_0": 17,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-18",
+        "station_slug": "tokyo-metro-ginza-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7978163,
+          35.7108423
+        ]
+      },
+      "properties": {
+        "name": "浅草",
+        "line": "Tokyo Metro Ginza Line",
+        "line_ja": "東京メトロ銀座線",
+        "ref_line": "G",
+        "operator": "東京地下鉄",
+        "network": null,
+        "station": "subway",
+        "railway": "station",
+        "station_order": 19,
+        "station_order_0": 18,
+        "route_id": "400",
+        "line_slug": "tokyo-metro-ginza",
+        "official_name": "銀座線",
+        "line_code": "G",
+        "operator_slug": "tokyo-metro",
+        "station_id": "tokyo-metro-ginza-19",
+        "station_slug": "tokyo-metro-ginza-19"
+      }
+    }
+  ]
+}

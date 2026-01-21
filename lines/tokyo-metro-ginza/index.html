@@ -38,6 +38,10 @@
       ※現在は中心線のみ（駅・時代分割は今後追加）。<br>
       line_slug: <code>tokyo-metro-ginza</code>
     </p>
+	<h2>駅一覧（渋谷 → 浅草）</h2>
+	<div id="station-list">
+	<p>読み込み中...</p>
+	</div>
 
     <!-- ========================= -->
     <!-- 鉄道史セクション -->
@@ -142,5 +146,50 @@
         alert("GeoJSONの読み込みに失敗しました: " + geojsonUrl);
       });
   </script>
+  <script>
+(async () => {
+  const GEOJSON_URL = "/assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
+  const container = document.getElementById("station-list");
+  if (!container) return;
+
+  try {
+    const res = await fetch(GEOJSON_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
+
+    const data = await res.json();
+    const feats = (data.features || [])
+      .filter(f => f && f.geometry && f.geometry.type === "Point" && f.properties)
+      .sort((a, b) => (a.properties.station_order ?? 9999) - (b.properties.station_order ?? 9999));
+
+    if (feats.length === 0) {
+      container.innerHTML = `<p>駅データが見つかりませんでした。</p>`;
+      return;
+    }
+
+    const ul = document.createElement("ol");
+    ul.style.lineHeight = "1.8";
+
+    feats.forEach(f => {
+      const p = f.properties || {};
+      const name = p.name || "(no name)";
+      const order = p.station_order ?? "";
+      const stationId = p.station_id || "";
+      const li = document.createElement("li");
+
+      // 将来、駅個別ページを作るならここをリンクに差し替え可能
+      // 例: `/stations/${p.station_slug}/` など
+      li.textContent = `${name}（#${order}${stationId ? " / " + stationId : ""}）`;
+      ul.appendChild(li);
+    });
+
+    container.innerHTML = "";
+    container.appendChild(ul);
+
+  } catch (e) {
+    container.innerHTML = `<p>駅一覧の読み込みに失敗しました：${String(e)}</p>`;
+  }
+})();
+</script>
+
 </body>
 </html>
