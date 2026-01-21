@@ -148,6 +148,42 @@
         alert("GeoJSONの読み込みに失敗しました: " + geojsonUrl);
       });
 	
+	 // 既にある定義を使う
+  // const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
+
+  // ===== Stations: add points on the map =====
+  fetch(STATIONS_GEOJSON_URL, { cache: "no-store" })
+    .then(r => {
+      if (!r.ok) throw new Error(`Stations fetch failed: ${r.status}`);
+      return r.json();
+    })
+    .then(stationData => {
+      const stationLayer = L.geoJSON(stationData, {
+        pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
+          radius: 6,
+          color: "#ff2d55",      // 枠線（ピンク系）
+          weight: 2,
+          fillColor: "#ffd1dc",  // 塗り
+          fillOpacity: 0.95
+        }),
+        onEachFeature: (feature, layer) => {
+          const p = feature.properties || {};
+          const name = p.name || "";
+          const order = p.station_order ?? "";
+          const id = p.station_id || "";
+          layer.bindPopup(
+            `<strong>${name}</strong><br>` +
+            `駅順: ${order}<br>` +
+            `ID: ${id}`
+          );
+        }
+      }).addTo(map);
+
+      // もし「点が線に隠れる」なら、点を前面へ
+      stationLayer.bringToFront();
+    })
+    .catch(err => console.error("Station layer error:", err));
+	
 	    // ===== Stations: add points on the map =====
     fetch(STATIONS_GEOJSON_URL, { cache: "no-store" })
       .then(r => {
@@ -211,9 +247,7 @@
   }
 })();
 	  
-  </script>
-  <script>
-(async () => {
+  (async () => {
   const GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
   const container = document.getElementById("station-list");
   if (!container) return;
