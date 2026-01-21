@@ -126,6 +126,8 @@
 
   <script>
     const geojsonUrl = "../../assets/geojson/lines/tokyo-metro-ginza.geojson";
+	const STATIONS_GEOJSON_URL =
+  "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
 
     const map = L.map("map", { zoomControl: true });
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -145,6 +147,48 @@
         console.error(err);
         alert("GeoJSONの読み込みに失敗しました: " + geojsonUrl);
       });
+	
+		(async () => {
+  const STATIONS_GEOJSON_URL =
+    "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
+
+  try {
+    const res = await fetch(STATIONS_GEOJSON_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to load station GeoJSON");
+
+    const stationData = await res.json();
+
+    const stationLayer = L.geoJSON(stationData, {
+      pointToLayer: (feature, latlng) => {
+        return L.circleMarker(latlng, {
+          radius: 6,
+          color: "#ff9900",
+          weight: 2,
+          fillColor: "#ffcc66",
+          fillOpacity: 0.9
+        });
+      },
+      onEachFeature: (feature, layer) => {
+        const p = feature.properties || {};
+        const name = p.name || "";
+        const order = p.station_order || "";
+        const id = p.station_id || "";
+
+        layer.bindPopup(
+          `<strong>${name}</strong><br>
+           駅順: ${order}<br>
+           ID: ${id}`
+        );
+      }
+    });
+
+    stationLayer.addTo(map);
+
+  } catch (e) {
+    console.error("Station layer error:", e);
+  }
+})();
+	  
   </script>
   <script>
 (async () => {
