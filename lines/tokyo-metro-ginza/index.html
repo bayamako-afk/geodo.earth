@@ -126,7 +126,9 @@
 
   <script>
     const geojsonUrl = "../../assets/geojson/lines/tokyo-metro-ginza.geojson";
-	
+	const STATIONS_GEOJSON_URL =
+  "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
+
     const map = L.map("map", { zoomControl: true });
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
