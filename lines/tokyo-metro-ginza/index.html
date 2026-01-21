@@ -126,9 +126,7 @@
 
   <script>
     const geojsonUrl = "../../assets/geojson/lines/tokyo-metro-ginza.geojson";
-	const STATIONS_GEOJSON_URL =
-  "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
-
+	
     const map = L.map("map", { zoomControl: true });
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
@@ -149,43 +147,37 @@
       });
 	
 		(async () => {
-  const STATIONS_GEOJSON_URL =
-    "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
+  const GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
+  const container = document.getElementById("station-list");
+  if (!container) return;
 
   try {
-    const res = await fetch(STATIONS_GEOJSON_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to load station GeoJSON");
+    const res = await fetch(GEOJSON_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
 
-    const stationData = await res.json();
+    const data = await res.json();
+    const feats = (data.features || [])
+      .filter(f => f && f.geometry && f.geometry.type === "Point" && f.properties)
+      .sort((a, b) => (a.properties.station_order ?? 9999) - (b.properties.station_order ?? 9999));
 
-    const stationLayer = L.geoJSON(stationData, {
-      pointToLayer: (feature, latlng) => {
-        return L.circleMarker(latlng, {
-          radius: 6,
-          color: "#ff9900",
-          weight: 2,
-          fillColor: "#ffcc66",
-          fillOpacity: 0.9
-        });
-      },
-      onEachFeature: (feature, layer) => {
-        const p = feature.properties || {};
-        const name = p.name || "";
-        const order = p.station_order || "";
-        const id = p.station_id || "";
+    const ol = document.createElement("ol");
+    ol.style.lineHeight = "1.8";
 
-        layer.bindPopup(
-          `<strong>${name}</strong><br>
-           駅順: ${order}<br>
-           ID: ${id}`
-        );
-      }
+    feats.forEach(f => {
+      const p = f.properties || {};
+      const name = p.name || "(no name)";
+      const order = p.station_order ?? "";
+      const stationId = p.station_id || "";
+      const li = document.createElement("li");
+      li.textContent = `${name}（#${order}${stationId ? " / " + stationId : ""}）`;
+      ol.appendChild(li);
     });
 
-    stationLayer.addTo(map);
+    container.innerHTML = "";
+    container.appendChild(ol);
 
   } catch (e) {
-    console.error("Station layer error:", e);
+    container.innerHTML = `<p>駅一覧の読み込みに失敗しました：${String(e)}</p>`;
   }
 })();
 	  
