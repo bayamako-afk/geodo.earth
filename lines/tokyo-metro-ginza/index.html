@@ -148,6 +148,34 @@
         alert("GeoJSONの読み込みに失敗しました: " + geojsonUrl);
       });
 	
+	    // ===== Stations: add points on the map =====
+    fetch(STATIONS_GEOJSON_URL, { cache: "no-store" })
+      .then(r => {
+        if (!r.ok) throw new Error(`Stations fetch failed: ${r.status}`);
+        return r.json();
+      })
+      .then(stationData => {
+        const stationLayer = L.geoJSON(stationData, {
+          pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
+            radius: 6,
+            weight: 2,
+            fillOpacity: 0.9
+          }),
+          onEachFeature: (feature, layer) => {
+            const p = feature.properties || {};
+            layer.bindPopup(
+              `<strong>${p.name || ""}</strong><br>` +
+              `駅順: ${p.station_order ?? ""}<br>` +
+              `ID: ${p.station_id || ""}`
+            );
+          }
+        }).addTo(map);
+
+        // 線と駅の両方が見える範囲に（任意）
+        // map.fitBounds(stationLayer.getBounds(), { padding: [20, 20] });
+      })
+      .catch(err => console.error("Station layer error:", err));
+
 		(async () => {
   const GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
   const container = document.getElementById("station-list");
