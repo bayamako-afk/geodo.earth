@@ -6,19 +6,51 @@
   <title>路線一覧｜ジオ道</title>
   <meta name="description" content="ジオ道で公開している鉄道路線（鉄道史テキスト＋GeoJSON）一覧。" />
   <style>
-    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.7; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.7; background:#fafafa; }
     main { max-width: 980px; margin: 32px auto; padding: 0 16px; }
     h1 { margin-bottom: 0.3em; }
+    h2 { margin-top: 1.6em; }
     .muted { color:#666; font-size:.95em; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 18px; }
-    .card { border: 1px solid #e6e6ea; border-radius: 14px; padding: 14px 14px; box-shadow: 0 6px 18px rgba(0,0,0,.06); background:#fff; }
-    .card a { text-decoration:none; color:inherit; display:block; }
-    .title { font-weight: 700; font-size: 1.05em; margin-bottom: 4px; }
-    .meta { color:#555; font-size:.95em; }
     code { background:#f4f4f6; padding:2px 6px; border-radius:6px; }
+
     .topnav { display:flex; gap:10px; align-items:center; margin-bottom: 14px; }
     .topnav a { color:#0a58ca; text-decoration:none; }
     .topnav a:hover { text-decoration:underline; }
+
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 18px; }
+    .card {
+      border: 1px solid #e6e6ea;
+      border-radius: 14px;
+      padding: 14px 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      background:#fff;
+      transition: transform .08s ease, box-shadow .08s ease;
+    }
+    .card:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(0,0,0,.10); }
+    .card a { text-decoration:none; color:inherit; display:block; }
+    .title { font-weight: 800; font-size: 1.08em; margin-bottom: 6px; letter-spacing: .2px; }
+    .meta { color:#555; font-size:.95em; margin-top: 6px; }
+
+    .badges { display:flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .badge {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border: 1px solid #e6e6ea;
+      background: #f7f7fb;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: .82em;
+      color: #333;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .badge.ok { border-color:#d9f2e3; background:#eefbf4; }
+    .badge.plan { border-color:#fde7c8; background:#fff7e9; }
+    .badge.data { border-color:#dbe8ff; background:#f1f6ff; }
+
+    .section-note { margin-top: 8px; }
+    ul { padding-left: 1.3em; }
   </style>
 </head>
 <body>
@@ -31,27 +63,66 @@
 
     <h1>路線一覧</h1>
     <p class="muted">
-      各路線ページには、鉄道史テキストと試作GeoJSON（中心線）を掲載しています。<br>
-      データは制作途中のアーカイブとして、更新過程も含めて公開しています。
+      各路線ページには、<strong>鉄道史テキスト</strong>と<strong>試作GeoJSON（中心線＋駅ポイント）</strong>を掲載しています。<br>
+      データは「制作途中のアーカイブ」として、<strong>更新過程も含めて公開</strong>しています。
     </p>
 
     <h2>東京圏：公開中</h2>
     <div class="grid">
+
+      <!-- Ginza -->
       <div class="card">
-        <a href="/geodo.earth/lines/tokyo-metro-ginza/">
+        <a href="/lines/tokyo-metro-ginza/">
           <div class="title">東京メトロ銀座線</div>
           <div class="meta">line_slug: <code>tokyo-metro-ginza</code></div>
-          <div class="meta">鉄道史＋地図（Leaflet）</div>
+
+          <div class="badges">
+            <span class="badge ok">Map</span>
+            <span class="badge ok">Stations</span>
+            <span class="badge ok">Popup</span>
+            <span class="badge ok">History</span>
+            <span class="badge ok">Timeline</span>
+            <span class="badge data">v0</span>
+          </div>
+
+          <div class="meta section-note">
+            まずは1路線を「地図＋文章」で書き切るための基準路線。
+          </div>
         </a>
       </div>
+
+      <!-- Marunouchi -->
+      <div class="card">
+        <a href="/lines/tokyo-metro-marunouchi/">
+          <div class="title">東京メトロ丸ノ内線</div>
+          <div class="meta">line_slug: <code>tokyo-metro-marunouchi</code></div>
+
+          <div class="badges">
+            <span class="badge ok">Map</span>
+            <span class="badge ok">Stations</span>
+            <span class="badge ok">Popup</span>
+            <span class="badge ok">History</span>
+            <span class="badge ok">Timeline</span>
+            <span class="badge data">v0</span>
+          </div>
+
+          <div class="meta section-note">
+            戦後東京の都心軸を形づくった「通勤動線」の路線として整理。
+          </div>
+        </a>
+      </div>
+
     </div>
 
     <h2>これから追加予定</h2>
+    <p class="muted">
+      次は「3路線揃って比較が始まる」状態を作るのが気持ちいいので、GUNO前提の路線を優先します。
+    </p>
     <ul>
+      <li>東西線（東京メトロ）</li>
       <li>山手線（JR）</li>
-      <li>丸ノ内線（東京メトロ）</li>
       <li>都営地下鉄 各路線</li>
-      <li>私鉄各社（関東87路線の順次公開）</li>
+      <li>私鉄各社（関東87路線を順次公開）</li>
     </ul>
 
     <p class="muted" style="margin-top:24px;">
