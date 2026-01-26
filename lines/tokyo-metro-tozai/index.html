@@ -2,189 +2,210 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>東京メトロ東西線 | ジオ道</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>東京メトロ東西線｜ジオ道</title>
+  <meta name="description" content="東京メトロ東西線の鉄道史（開業・延伸）と、OpenHistoricalMap向けデータ整理。" />
 
   <!-- Leaflet -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
-    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif; }
-    header { padding: 18px 16px 10px; border-bottom: 1px solid #eee; }
-    header h1 { margin: 0 0 6px; font-size: 22px; }
-    header .meta { color: #555; font-size: 13px; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px 28px; }
-    .nav { margin: 12px 0 0; }
-    .nav a { text-decoration: none; }
-    #map { height: 64vh; min-height: 420px; border-radius: 12px; overflow: hidden; margin: 14px 0 18px; border: 1px solid #eee; }
-    h2 { margin: 26px 0 10px; font-size: 18px; }
-    p { line-height: 1.7; }
-    ul { line-height: 1.8; }
-    .note { font-size: 13px; color: #666; }
-    .badge { display:inline-block; padding:2px 10px; border-radius: 999px; background:#f2f2f2; font-size: 12px; margin-left: 8px; vertical-align: middle; }
-    .grid { display:grid; grid-template-columns: 1fr; gap: 16px; }
-    @media (min-width: 980px){
-      .grid { grid-template-columns: 1.3fr 0.7fr; }
-      #map { height: 72vh; }
-    }
-    .card { border:1px solid #eee; border-radius:12px; padding:14px; }
-    .small { font-size: 13px; color:#555; }
-    code { background:#f7f7f7; padding:2px 6px; border-radius:6px; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.8; }
+    main { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+    #map { height: 520px; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,.10); margin-bottom: 24px; }
+    code { background:#f4f4f6; padding:2px 6px; border-radius:6px; }
+    .muted { color:#666; font-size:.95em; }
+    h1, h2, h3 { margin-top: 1.6em; }
+    ol { padding-left: 1.3em; }
+    .station-link { cursor: pointer; text-decoration: underline; }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap">
-      <div class="nav"><a href="/lines/">← 路線一覧へ</a></div>
-      <h1>東京メトロ東西線 <span class="badge">現代</span></h1>
-      <div class="meta">Geo道（geodo.earth） / LineString＋駅ポイント（station_order付き）</div>
+  <main>
+    <p><a href="../">← 路線一覧へ</a></p>
+
+    <h1>東京メトロ東西線</h1>
+
+    <p>
+      東京メトロ東西線は、都心を東西に貫く幹線として、都心業務地（大手町・日本橋周辺）と
+      江東区〜浦安方面の住宅地を結び、戦後〜高度成長期の通勤動線を支えてきた路線です。
+      ジオ道では、東西線を「都心横断＋郊外接続」を同時に成立させた通勤幹線として整理し、
+      史実に基づく時系列データへ拡張していきます。
+    </p>
+
+    <h2>路線（試作データ）</h2>
+    <div id="map"></div>
+    <p class="muted">
+      ※現在は中心線＋駅ポイント（本線）まで。時代分割は今後追加。<br>
+      line_slug: <code>tokyo-metro-tozai</code>
+    </p>
+
+    <h2>駅一覧（西船橋 → 中野）</h2>
+    <div id="station-list">
+      <p>読み込み中...</p>
     </div>
-  </header>
 
-  <main class="wrap">
-    <div class="grid">
-      <section>
-        <div id="map"></div>
-        <div class="note">
-          ※ 線路データはOSMの線路wayを反映しているため、区間によって複線（2本）や配線（最大4本）として表示されます（仕様）。
-        </div>
+    <h2>鉄道史</h2>
 
-        <h2>鉄道史</h2>
-        <p>
-          東西線は、戦後の都市拡大と通勤輸送の逼迫を背景に、都心を東西に貫く幹線として整備された路線です。
-          大手町・日本橋など都心業務地と、江東区・浦安方面の住宅地、さらにJR総武線方面との結節を担い、
-          「都心横断＋郊外接続」を同時に成立させる役割を担ってきました。
-          現在は東側でJR総武線（西船橋接続）と連携し、東京の東西移動の骨格の一つになっています。
-        </p>
+    <p>
+      東西線は、戦後の都市拡大と通勤需要の急増に対し、都心を東西に横断する地下鉄幹線として計画された。
+      大手町・日本橋などの都心業務地と、江東区・浦安方面の住宅地を直結し、東京の東西移動の骨格を形成してきた。
+    </p>
 
-        <h2>年表（概略）</h2>
-        <ul>
-          <li>計画：戦後の通勤輸送対策として、都心東西貫通の地下鉄整備が構想される</li>
-          <li>建設：都心（大手町周辺）〜東側（江東区方面）を段階的に延伸</li>
-          <li>接続：西船橋でJR線（総武線方面）との結節により、広域通勤動線として定着</li>
-          <li>現在：都心業務地と東部住宅地をつなぐ通勤幹線として高頻度運行</li>
-        </ul>
+    <p>
+      路線整備が進むにつれ、都心横断の役割に加えて、終点側でJR線と結節することで広域通勤路線としての性格が強まった。
+      とくに西船橋での結節は、都心横断と郊外接続を同時に成立させ、通勤動線の再構築に大きく寄与した。
+    </p>
 
-        <p class="small">
-          ※ 正確な開業年・延伸年表は、今後「歴史レイヤー（開業区間別GeoJSON）」を追加して精密化していきます。
-        </p>
-      </section>
+    <p>
+      現在も東西線は、都心部のオフィス集積と東部住宅地を結ぶ「基幹通勤路線」として高頻度運行を続け、
+      東京の平日朝夕のリズムを支える重要な動脈となっている。
+    </p>
 
-      <aside class="card">
-        <h2>表示内容</h2>
-        <ul class="small">
-          <li><b>路線</b>：<code>assets/geojson/lines/tokyo-metro-tozai.geojson</code></li>
-          <li><b>駅</b>：<code>assets/geojson/stations/tokyo-metro-tozai_stations.geojson</code></li>
-          <li><b>駅順</b>：西船橋→中野（<code>station_order</code>）</li>
-          <li><b>route_id</b>：403（<code>route_id</code>）</li>
-          <li><b>line_slug</b>：tokyo-metro-tozai</li>
-        </ul>
+    <h2>年表</h2>
+    <ul>
+      <li><strong>戦後</strong>：通勤輸送対策として都心東西貫通の地下鉄構想が具体化</li>
+      <li><strong>建設期</strong>：都心（大手町周辺）〜江東区方面へ段階的に延伸</li>
+      <li><strong>接続</strong>：西船橋でJR線と結節し、広域通勤動線として定着</li>
+      <li><strong>現在</strong>：都心業務地と東部住宅地を結ぶ基幹通勤路線として運行中</li>
+    </ul>
 
-        <h2>次の拡張</h2>
-        <ul class="small">
-          <li>歴史化：開業区間ごとの年次GeoJSON（例：1964/1966…）</li>
-          <li>駅：開業年・改称・乗換の注記（ポップアップ拡張）</li>
-          <li>GUNO：簡略中心線（盤面向け）と史実版（研究向け）の二系統</li>
-        </ul>
-      </aside>
-    </div>
+    <p class="muted" style="margin-top:28px;">
+      ※このページは制作途中のアーカイブです。更新の過程も含めて公開しています。
+    </p>
   </main>
 
   <script>
-    // ===== data URLs =====
+    // ===== GeoJSON URLs =====
     const LINE_GEOJSON_URL = "../../assets/geojson/lines/tokyo-metro-tozai.geojson";
     const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-tozai_stations.geojson";
 
-    // ===== map init =====
+    // ===== Map init =====
     const map = L.map("map", { zoomControl: true });
-
-    // OSM tile
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
-    const lineLayer = L.geoJSON(null, {
-      style: () => ({
-        // 色は一旦デフォルト（あなたの方針）
-        weight: 5,
-        opacity: 0.95
+    // 両方読み込めたらfitするための入れ物
+    const boundsLayers = L.featureGroup().addTo(map);
+
+    // 駅レイヤ参照（駅リストクリック用）
+    const stationMarkerById = new Map(); // station_id -> layer
+
+    // ===== Line layer =====
+    fetch(LINE_GEOJSON_URL, { cache: "no-store" })
+      .then(r => {
+        if (!r.ok) throw new Error(`Line fetch failed: ${r.status}`);
+        return r.json();
       })
-    }).addTo(map);
+      .then(gj => {
+        const lineLayer = L.geoJSON(gj, {
+          style: { weight: 5, opacity: 0.9 }
+        }).addTo(map);
 
-    const stationLayer = L.geoJSON(null, {
-      pointToLayer: (feature, latlng) => {
-        // 見やすさ優先で白縁
-        return L.circleMarker(latlng, {
-          radius: 6,
-          weight: 2,
-          opacity: 1,
-          fillOpacity: 0.95
-        });
-      },
-      onEachFeature: (feature, layer) => {
-        const p = feature.properties || {};
-        const name = p.name || p["name:ja"] || "(no name)";
-        const order = p.station_order ?? "";
-        const routeId = p.route_id ?? "";
-        const slug = p.line_slug ?? "";
+        boundsLayers.addLayer(lineLayer);
 
-        const rows = [
-          `<tr><th style="text-align:left;padding:2px 10px 2px 0;">駅名</th><td>${escapeHtml(name)}</td></tr>`,
-          `<tr><th style="text-align:left;padding:2px 10px 2px 0;">順序</th><td>${escapeHtml(String(order))}</td></tr>`,
-          `<tr><th style="text-align:left;padding:2px 10px 2px 0;">route_id</th><td>${escapeHtml(String(routeId))}</td></tr>`,
-          `<tr><th style="text-align:left;padding:2px 10px 2px 0;">line_slug</th><td>${escapeHtml(String(slug))}</td></tr>`
-        ].join("");
+        // 一旦 line で表示（駅が来たら再fitされる）
+        map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
+      })
+      .catch(err => {
+        console.error(err);
+        alert("GeoJSONの読み込みに失敗しました: " + LINE_GEOJSON_URL);
+      });
 
-        layer.bindPopup(`
-          <div style="min-width:220px">
-            <div style="font-weight:700;margin-bottom:6px;">${escapeHtml(name)}</div>
-            <table style="font-size:13px;line-height:1.4">${rows}</table>
-          </div>
-        `);
-      }
-    }).addTo(map);
+    // ===== Stations layer + list =====
+    fetch(STATIONS_GEOJSON_URL, { cache: "no-store" })
+      .then(r => {
+        if (!r.ok) throw new Error(`Stations fetch failed: ${r.status}`);
+        return r.json();
+      })
+      .then(stationData => {
+        const feats = (stationData.features || [])
+          .filter(f => f && f.geometry && f.geometry.type === "Point" && f.properties)
+          .sort((a, b) => (a.properties.station_order ?? 9999) - (b.properties.station_order ?? 9999));
 
-    // ===== load geojson =====
-    Promise.all([
-      fetch(LINE_GEOJSON_URL).then(r => r.json()),
-      fetch(STATIONS_GEOJSON_URL).then(r => r.json())
-    ]).then(([lineGj, stGj]) => {
-      lineLayer.addData(lineGj);
-      stationLayer.addData(stGj);
+        // --- map points ---
+        const stationLayer = L.geoJSON(
+          { type: "FeatureCollection", features: feats },
+          {
+            pointToLayer: (feature, latlng) => {
+              const marker = L.circleMarker(latlng, {
+                radius: 6,
+                color: "#ff2d55",      // 枠線（丸ノ内線と同じ）
+                weight: 2,
+                fillColor: "#ffd1dc",  // 塗り（丸ノ内線と同じ）
+                fillOpacity: 0.95
+              });
+              const p = feature.properties || {};
+              if (p.station_id) stationMarkerById.set(String(p.station_id), marker);
+              return marker;
+            },
+            onEachFeature: (feature, layer) => {
+              const p = feature.properties || {};
+              const name = p.name || "";
+              const order = (p.station_order ?? "");
+              const id = (p.station_id || "");
+              layer.bindPopup(
+                `<strong>${name}</strong><br>` +
+                `駅順: ${order}<br>` +
+                `ID: ${id}`
+              );
+            }
+          }
+        ).addTo(map);
 
-      // fit bounds to line (fallback to stations)
-      const b1 = lineLayer.getBounds();
-      if (b1 && b1.isValid()) {
-        map.fitBounds(b1.pad(0.12));
-      } else {
-        const b2 = stationLayer.getBounds();
-        if (b2 && b2.isValid()) map.fitBounds(b2.pad(0.2));
-      }
-    }).catch(err => {
-      console.error(err);
-      alert("GeoJSONの読み込みに失敗しました。パスとファイル配置を確認してください。");
-    });
+        stationLayer.bringToFront();
+        boundsLayers.addLayer(stationLayer);
 
-    function escapeHtml(s){
-      return String(s ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
-    }
+        // --- fit bounds (line + stations) ---
+        try {
+          const b = boundsLayers.getBounds();
+          if (b && b.isValid && b.isValid()) map.fitBounds(b, { padding: [20, 20] });
+        } catch (e) {}
+
+        // --- station list ---
+        const container = document.getElementById("station-list");
+        if (container) {
+          if (feats.length === 0) {
+            container.innerHTML = `<p>駅データが見つかりませんでした。</p>`;
+          } else {
+            const ol = document.createElement("ol");
+            ol.style.lineHeight = "1.8";
+
+            feats.forEach(f => {
+              const p = f.properties || {};
+              const name = p.name || "(no name)";
+              const order = p.station_order ?? "";
+              const stationId = p.station_id || "";
+
+              const li = document.createElement("li");
+              const a = document.createElement("span");
+              a.className = "station-link";
+              a.textContent = `${name}（#${order}${stationId ? " / " + stationId : ""}）`;
+              a.addEventListener("click", () => {
+                const marker = stationMarkerById.get(String(stationId));
+                if (!marker) return;
+                map.setView(marker.getLatLng(), Math.max(map.getZoom(), 15), { animate: true });
+                marker.openPopup();
+              });
+
+              li.appendChild(a);
+              ol.appendChild(li);
+            });
+
+            container.innerHTML = "";
+            container.appendChild(ol);
+          }
+        }
+      })
+      .catch(err => {
+        console.error("Station layer/list error:", err);
+        const container = document.getElementById("station-list");
+        if (container) container.innerHTML = `<p>駅一覧の読み込みに失敗しました：${String(err)}</p>`;
+      });
   </script>
 </body>
 </html>
