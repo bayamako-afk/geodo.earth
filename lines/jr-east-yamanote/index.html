@@ -89,8 +89,8 @@
     <div>
       <h2>データ</h2>
       <ul>
-        <li>本線構造（tracks相当）：<code>jr-east-yamanote.geojson</code></li>
-        <li>駅ポイント：<code>jr-east-yamanote_stations.geojson</code></li>
+        <li>本線構造（tracks相当）：<code>jr-east-yamanote_tracks.geojson</code></li>
+        <li>駅ポイント：<code>jr-east-yamanote_stations_*.geojson</code></li>
       </ul>
       <p class="note">
         ※ポップアップには station_id / station_order / name 等を表示します。
@@ -148,8 +148,8 @@
 
 <script>
   // ★ここだけ、あなたの配置に合わせて調整してください（銀座線等と同じ置き方に）
-  const LINE_GEOJSON = "/assets/geojson/lines/jr-east-yamanote.geojson";
-  const STATIONS_GEOJSON = "/assets/geojson/stations/jr-east-yamanote_stations.geojson";
+  const LINE_GEOJSON = "../../assets/geojson/lines/jr-east-yamanote.geojson";
+  const STATIONS_GEOJSON = "../../assets/geojson/stations/jr-east-yamanote_stations.geojson";
 
   const map = L.map("map", { scrollWheelZoom: true });
 
