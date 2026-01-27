@@ -1,0 +1,701 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "東京",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 1,
+        "station_id": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76660420743633,
+          35.68129860320726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "神田",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 2,
+        "station_id": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77109890511053,
+          35.692022809936006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "秋葉原",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 3,
+        "station_id": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77304804183942,
+          35.698472930919706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "御徒町",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 4,
+        "station_id": 4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77465348466342,
+          35.707078129342335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "上野",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 5,
+        "station_id": 5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77636866310598,
+          35.71395486578127
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "鶯谷",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 6,
+        "station_id": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7783235260101,
+          35.721288739193504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "日暮里",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 7,
+        "station_id": 7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77047406082323,
+          35.72793020365924
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "西日暮里",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 8,
+        "station_id": 8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7665264711957,
+          35.73240597395962
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "田端",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 9,
+        "station_id": 9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76187214859766,
+          35.7372319607008
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "駒込",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 10,
+        "station_id": 10
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.74692908269532,
+          35.73645857020567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "巣鴨",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 11,
+        "station_id": 11
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.73889174033016,
+          35.73317145350593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大塚",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 12,
+        "station_id": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.72854658827023,
+          35.73169605895219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "池袋",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 13,
+        "station_id": 13
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71069270953737,
+          35.72985950101142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "目白",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 14,
+        "station_id": 14
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70638930511137,
+          35.72099242550872
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "高田馬場",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 15,
+        "station_id": 15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70363559999998,
+          35.71268665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "新大久保",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 16,
+        "station_id": 16
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70025174243693,
+          35.701403713397085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "新宿",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 17,
+        "station_id": 17
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7001602306519,
+          35.68955953527241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "代々木",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 18,
+        "station_id": 18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70216854497252,
+          35.68334139067343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "原宿",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 19,
+        "station_id": 19
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70241368463928,
+          35.67017410578438
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "渋谷",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 20,
+        "station_id": 20
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70159304999999,
+          35.65818605
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "恵比寿",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 21,
+        "station_id": 21
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70984105406848,
+          35.64697002582831
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "目黒",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 22,
+        "station_id": 22
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7159812727157,
+          35.63311612655592
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "五反田",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 23,
+        "station_id": 23
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7237507778615,
+          35.62609218586349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大崎",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 24,
+        "station_id": 24
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7286071303409,
+          35.61949529306251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "品川",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 25,
+        "station_id": 25
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.73844533820778,
+          35.62825566145032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "高輪ゲートウェイ",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 26,
+        "station_id": 26
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.74047141268508,
+          35.635153566714656
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "田町",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 27,
+        "station_id": 27
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.74769638347405,
+          35.645742016679925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "浜松町",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 28,
+        "station_id": 28
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7570396789481,
+          35.65504551342977
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "新橋",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 29,
+        "station_id": 29
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7581730947224,
+          35.66586343539772
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "有楽町",
+        "route_id": 101,
+        "line_slug": "jr-east-yamanote",
+        "operator_slug": "jr-east",
+        "official_name": "山手線",
+        "name_en": "Yamanote Line",
+        "data_type": "stations",
+        "source": "geodo-data",
+        "source_url": "https://geodo.earth/lines/jr-east-yamanote/",
+        "station_order": 30,
+        "station_id": 30
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7626656343743,
+          35.67466170737484
+        ]
+      }
+    }
+  ]
+}
