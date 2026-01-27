@@ -4,213 +4,214 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>JR東日本 山手線｜ジオ道</title>
-  <meta name="description" content="JR東日本 山手線の鉄道史（概要＋年表）とGeoJSON（本線構造＋駅ポイント）を公開。" />
+  <meta name="description" content="JR東日本 山手線の鉄道史（成立・環状化・戦後復興）と、ジオ道の試作データ（本線構造＋駅ポイント）を公開。" />
 
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
-    :root{
-      --bg:#fafafa; --card:#fff; --text:#111; --muted:#666; --line:#e6e6e6;
-      --badge:#eef2ff; --badgeText:#1f2a56;
-      --ok:#e8fff0; --okText:#0b5d2a;
-    }
-    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.7;background:var(--bg);color:var(--text);}
-    main{max-width:980px;margin:28px auto;padding:0 16px;}
-    a{color:inherit;}
-    header{background:var(--card);border-bottom:1px solid var(--line);}
-    .header-inner{max-width:980px;margin:0 auto;padding:18px 16px;}
-    .crumb a{color:var(--muted);text-decoration:none;}
-    .crumb a:hover{text-decoration:underline;}
-    h1{margin:6px 0 0;font-size:28px;}
-    .sub{color:var(--muted);margin:6px 0 0;}
-    .badges{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;}
-    .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;background:var(--badge);color:var(--badgeText);border:1px solid #d9defa;}
-    .badge.ok{background:var(--ok);color:var(--okText);border:1px solid #bff0cf;}
-    section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px;margin:14px 0;}
-    h2{margin:0 0 8px;font-size:18px;}
-    p{margin:8px 0;}
-    .note{color:var(--muted);font-size:14px;}
-    #map{height:520px;border-radius:12px;border:1px solid var(--line);}
-    .grid{display:grid;grid-template-columns:1fr;gap:12px;}
-    @media (min-width:880px){ .grid{grid-template-columns: 1.2fr 1fr;} }
-    ul{margin:8px 0 0;padding-left:1.2em;}
-    table{border-collapse:collapse;width:100%;font-size:14px;}
-    th,td{border-top:1px solid var(--line);padding:10px 8px;vertical-align:top;}
-    th{width:92px;color:var(--muted);font-weight:600;}
-    code{background:#f3f3f3;border:1px solid #e9e9e9;padding:2px 6px;border-radius:6px;}
-    footer{color:var(--muted);text-align:center;padding:22px 12px;}
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.8; }
+    main { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+    #map { height: 520px; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,.10); margin-bottom: 24px; }
+    code { background:#f4f4f6; padding:2px 6px; border-radius:6px; }
+    .muted { color:#666; font-size:.95em; }
+    h1, h2, h3 { margin-top: 1.6em; }
+    ol { padding-left: 1.3em; }
+    .station-link { cursor: pointer; text-decoration: underline; }
   </style>
 </head>
 
 <body>
-<header>
-  <div class="header-inner">
-    <div class="crumb"><a href="/lines/">← 路線一覧へ</a></div>
+  <main>
+    <p><a href="../">← 路線一覧へ</a></p>
+
     <h1>JR東日本 山手線</h1>
-    <p class="sub">東京を一周する「都市の骨格」— ジオ道の基準線</p>
 
-    <div class="badges">
-      <span class="badge ok">Map</span>
-      <span class="badge ok">Stations</span>
-      <span class="badge ok">Popup</span>
-      <span class="badge ok">History</span>
-      <span class="badge ok">Timeline</span>
-      <span class="badge">Reference</span>
-      <span class="badge">v0</span>
-    </div>
-
-    <p class="note">
-      ※現在は本線構造（上下線を含む）と駅ポイントを先行公開しています。
-      時代別（駅増減・線形変化）などは今後追加します。
+    <p>
+      山手線は、東京の都心部を環状に結ぶ都市鉄道の中核であり、都市の拡張・復興・再編と同期して
+      成長してきた「東京の骨格」です。ジオ道では山手線を基準線として、他路線（地下鉄・私鉄）との関係や、
+      時代ごとの駅・線形の変化を地図として読み解ける形に整理していきます。
     </p>
-  </div>
-</header>
 
-<main>
-
-  <section class="grid">
-    <div>
-      <h2>概要</h2>
-      <p>
-        山手線は、東京の都心部を環状に結ぶ都市鉄道の中核です。
-        路線そのものが「都市の拡張・復興・再編」と同期して成長してきたため、
-        単なる交通インフラ以上に、東京の“かたち”を説明する基準線になります。
-      </p>
-      <p class="note">
-        ジオ道では、完成形だけでなく「いつ・どのように成立したか」を
-        地図データとして残すことを目的にしています。
-      </p>
-    </div>
-
-    <div>
-      <h2>データ</h2>
-      <ul>
-        <li>本線構造（tracks相当）：<code>jr-east-yamanote_tracks.geojson</code></li>
-        <li>駅ポイント：<code>jr-east-yamanote_stations_*.geojson</code></li>
-      </ul>
-      <p class="note">
-        ※ポップアップには station_id / station_order / name 等を表示します。
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <h2>路線マップ</h2>
+    <h2>路線（試作データ）</h2>
     <div id="map"></div>
-    <p class="note">
-      表示が崩れる場合は、GeoJSONのパス（下のJS定数）を確認してください。
+    <p class="muted">
+      ※現在は本線構造（上下線を含む）＋駅ポイントまで先行公開しています。時代分割は今後追加。<br>
+      line_slug: <code>jr-east-yamanote</code>
     </p>
-  </section>
 
-  <section>
+    <h2>駅一覧（外回り順：東京 → … → 東京）</h2>
+    <div id="station-list">
+      <p>読み込み中...</p>
+    </div>
+
     <h2>鉄道史</h2>
+
     <p>
-      山手線の原型は、1885年（明治18年）に開業した日本鉄道の品川線（品川〜赤羽）にさかのぼります。
-      当初は貨物輸送も重要な目的で、現在のような「環状運転」を前提とした路線ではありませんでした。
+      山手線の原型は、1885年（明治18年）に日本鉄道が開業した品川線（品川〜赤羽）にさかのぼる。
+      当初は貨物輸送も重要な目的で、現在のような「環状運転」を前提とした路線ではなかった。
     </p>
+
     <p>
-      その後、都心周縁の拡大とともに路線は延伸され、1925年（大正14年）に神田〜上野間が開通したことで、
-      いわゆる“環状としての成立”が実現します。
+      その後、都心周縁の発展とともに路線は延伸され、1925年（大正14年）に神田〜上野間が開通したことで、
+      環状としての連続性が成立し、都市鉄道としての性格が決定的に強まった。
     </p>
+
     <p>
-      戦災と復興、高度経済成長、そして国鉄分割民営化を経て、山手線は「東京の骨格」として定着しました。
-      近年も新駅の開業などを通じ、都市の変化とともに更新され続けています。
+      戦災による被害と戦後復旧、高度経済成長期の輸送力増強、国鉄分割民営化による運営体制の転換を経て、
+      山手線は「東京の通勤と都市活動のリズム」を支える路線として定着した。近年は新駅の開業などを通じて、
+      都市の変化に合わせて更新され続けている。
     </p>
-  </section>
 
-  <section>
-    <h2>年表（ダイジェスト）</h2>
-    <table>
-      <tbody>
-        <tr><th>1885</th><td>日本鉄道 品川線（品川〜赤羽）開業（山手線の原型）</td></tr>
-        <tr><th>1909</th><td>国有化により国鉄（山手線）としての運用へ（体制整備が進む）</td></tr>
-        <tr><th>1925</th><td>神田〜上野開通により環状運転が成立（環状路線として完成）</td></tr>
-        <tr><th>1945</th><td>戦災により大きな被害（戦後復旧・復興輸送へ）</td></tr>
-        <tr><th>1964</th><td>東京オリンピック期：都市改造・輸送力強化が加速</td></tr>
-        <tr><th>1987</th><td>国鉄分割民営化、JR東日本へ（運行・設備更新の基盤）</td></tr>
-        <tr><th>2020</th><td>高輪ゲートウェイ駅開業（30駅体制）</td></tr>
-      </tbody>
-    </table>
-    <p class="note">
-      ※今後、駅増減・線形変化を「年代レイヤー」として追加し、年表と地図を連動させます。
+    <h2>年表</h2>
+    <ul>
+      <li><strong>1885</strong>：日本鉄道 品川線（品川〜赤羽）開業（山手線の原型）</li>
+      <li><strong>1909</strong>：国有化（国鉄）により運用体制が整備される</li>
+      <li><strong>1925</strong>：神田〜上野開通、環状運転の成立（環状路線として完成）</li>
+      <li><strong>1945</strong>：戦災により大きな被害（戦後復旧へ）</li>
+      <li><strong>1964</strong>：東京五輪期、都市改造と輸送力強化が加速</li>
+      <li><strong>1987</strong>：国鉄分割民営化、JR東日本へ</li>
+      <li><strong>2020</strong>：高輪ゲートウェイ駅開業（30駅体制）</li>
+    </ul>
+
+    <p class="muted" style="margin-top:28px;">
+      ※このページは制作途中のアーカイブです。更新の過程も含めて公開しています。
     </p>
-  </section>
+  </main>
 
-</main>
+  <script>
+    // ===== GeoJSON URLs =====
+    // ★あなたの実ファイル名に合わせて調整してください（末尾だけ変えればOK）
+    const LINE_GEOJSON_URL = "../../assets/geojson/lines/jr-east-yamanote_tracks.geojson";
+    const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/jr-east-yamanote_stations_ordered_with_ids.geojson";
 
-<footer>
-  © ジオ道 / GeoDo Project
-</footer>
+    // ===== Map init =====
+    const map = L.map("map", { zoomControl: true });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
 
-<script>
-  // ★ここだけ、あなたの配置に合わせて調整してください（銀座線等と同じ置き方に）
-  const LINE_GEOJSON = "../../assets/geojson/lines/jr-east-yamanote.geojson";
-  const STATIONS_GEOJSON = "../../assets/geojson/stations/jr-east-yamanote_stations.geojson";
+    // 両方読み込めたらfitするための入れ物
+    const boundsLayers = L.featureGroup().addTo(map);
 
-  const map = L.map("map", { scrollWheelZoom: true });
+    // 駅レイヤ参照（駅リストクリック用）
+    const stationMarkerById = new Map(); // station_id -> layer
 
-  // ベース地図（銀座線等と同じ “軽い” タイル）
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
+    // ===== Line layer =====
+    fetch(LINE_GEOJSON_URL, { cache: "no-store" })
+      .then(r => {
+        if (!r.ok) throw new Error(`Line fetch failed: ${r.status}`);
+        return r.json();
+      })
+      .then(gj => {
+        const lineLayer = L.geoJSON(gj, {
+          style: { weight: 5, opacity: 0.9 }
+        }).addTo(map);
 
-  // 路線（色は既存と同様 “デフォルト” 運用）
-  const lineLayer = L.geoJSON(null, {
-    style: () => ({ weight: 4, opacity: 0.9 })
-  }).addTo(map);
+        boundsLayers.addLayer(lineLayer);
 
-  // 駅ポイント（丸ノ内/東西と同じノリ：クリックでproperties表示）
-  const stationLayer = L.geoJSON(null, {
-    pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
-      radius: 6,
-      weight: 2,
-      fillOpacity: 0.9
-    }),
-    onEachFeature: (feature, layer) => {
-      const p = feature.properties || {};
-      const name = p.name || p["name:ja"] || "(no name)";
-      const sid = (p.station_id ?? "");
-      const order = (p.station_order ?? "");
-      const html = `
-        <div style="min-width:220px">
-          <div style="font-weight:700">${name}</div>
-          <div style="color:#666;font-size:12px;margin-top:6px">
-            station_id: <code>${sid}</code><br/>
-            station_order: <code>${order}</code><br/>
-            line_slug: <code>${p.line_slug ?? ""}</code>
-          </div>
-        </div>`;
-      layer.bindPopup(html);
-    }
-  }).addTo(map);
+        // 一旦 line で表示（駅が来たら再fitされる）
+        map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
+      })
+      .catch(err => {
+        console.error(err);
+        alert("GeoJSONの読み込みに失敗しました: " + LINE_GEOJSON_URL);
+      });
 
-  async function loadGeoJSON(url) {
-    const res = await fetch(url, { cache: "no-cache" });
-    if (!res.ok) throw new Error(`fetch failed: ${url} (${res.status})`);
-    return res.json();
-  }
+    // ===== Stations layer + list =====
+    fetch(STATIONS_GEOJSON_URL, { cache: "no-store" })
+      .then(r => {
+        if (!r.ok) throw new Error(`Stations fetch failed: ${r.status}`);
+        return r.json();
+      })
+      .then(stationData => {
+        const feats = (stationData.features || [])
+          .filter(f => f && f.geometry && f.geometry.type === "Point" && f.properties)
+          .sort((a, b) => (a.properties.station_order ?? 9999) - (b.properties.station_order ?? 9999));
 
-  (async () => {
-    try {
-      const line = await loadGeoJSON(LINE_GEOJSON);
-      lineLayer.addData(line);
+        // --- map points ---
+        const stationLayer = L.geoJSON(
+          { type: "FeatureCollection", features: feats },
+          {
+            pointToLayer: (feature, latlng) => {
+              const marker = L.circleMarker(latlng, {
+                radius: 6,
+                color: "#ff2d55",      // 既存テンプレ準拠
+                weight: 2,
+                fillColor: "#ffd1dc",  // 既存テンプレ準拠
+                fillOpacity: 0.95
+              });
+              const p = feature.properties || {};
+              if (p.station_id !== undefined && p.station_id !== null) {
+                stationMarkerById.set(String(p.station_id), marker);
+              }
+              return marker;
+            },
+            onEachFeature: (feature, layer) => {
+              const p = feature.properties || {};
+              const name = p.name || "";
+              const order = (p.station_order ?? "");
+              const id = (p.station_id ?? "");
+              layer.bindPopup(
+                `<strong>${name}</strong><br>` +
+                `駅順: ${order}<br>` +
+                `ID: ${id}`
+              );
+            }
+          }
+        ).addTo(map);
 
-      const st = await loadGeoJSON(STATIONS_GEOJSON);
-      stationLayer.addData(st);
+        stationLayer.bringToFront();
+        boundsLayers.addLayer(stationLayer);
 
-      const g = L.featureGroup([lineLayer, stationLayer]);
-      map.fitBounds(g.getBounds().pad(0.12));
-    } catch (e) {
-      console.error(e);
-      alert("GeoJSONの読み込みに失敗しました。パス（LINE_GEOJSON / STATIONS_GEOJSON）を確認してください。");
-    }
-  })();
-</script>
+        // --- fit bounds (line + stations) ---
+        try {
+          const b = boundsLayers.getBounds();
+          if (b && b.isValid && b.isValid()) map.fitBounds(b, { padding: [20, 20] });
+        } catch (e) {}
 
+        // --- station list ---
+        const container = document.getElementById("station-list");
+        if (container) {
+          if (feats.length === 0) {
+            container.innerHTML = `<p>駅データが見つかりませんでした。</p>`;
+          } else {
+            const ol = document.createElement("ol");
+            ol.style.lineHeight = "1.8";
+
+            feats.forEach(f => {
+              const p = f.properties || {};
+              const name = p.name || "(no name)";
+              const order = p.station_order ?? "";
+              const stationId = (p.station_id ?? "");
+
+              const li = document.createElement("li");
+              const a = document.createElement("span");
+              a.className = "station-link";
+              a.textContent = `${name}（#${order}${stationId !== "" ? " / " + stationId : ""}）`;
+              a.addEventListener("click", () => {
+                const marker = stationMarkerById.get(String(stationId));
+                if (!marker) return;
+                map.setView(marker.getLatLng(), Math.max(map.getZoom(), 15), { animate: true });
+                marker.openPopup();
+              });
+
+              li.appendChild(a);
+              ol.appendChild(li);
+            });
+
+            container.innerHTML = "";
+            container.appendChild(ol);
+          }
+        }
+      })
+      .catch(err => {
+        console.error("Station layer/list error:", err);
+        const container = document.getElementById("station-list");
+        if (container) container.innerHTML = `<p>駅一覧の読み込みに失敗しました：${String(err)}</p>`;
+      });
+  </script>
 </body>
 </html>
