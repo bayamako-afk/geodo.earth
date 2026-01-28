@@ -1,10 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>譚ｱ莠ｬ繝｡繝医Ο譚ｱ隘ｿ邱夲ｽ懊ず繧ｪ驕・/title>
-  <meta name="description" content="譚ｱ莠ｬ繝｡繝医Ο譚ｱ隘ｿ邱壹・驩・％蜿ｲ・磯幕讌ｭ繝ｻ蟒ｶ莨ｸ・峨→縲＾penHistoricalMap蜷代￠繝・・繧ｿ謨ｴ逅・・ />
+  <title>東京メトロ東西線｜ジオ道</title>
+  <meta name="description" content="東京メトロ東西線の鉄道史（開業・延伸）と、OpenHistoricalMap向けデータ整理。" />
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -24,47 +24,57 @@
 
 <body>
   <main>
-    <p><a href="../">竊・霍ｯ邱壻ｸ隕ｧ縺ｸ</a></p>
+    <p><a href="../">← 路線一覧へ</a></p>
 
-    <h1>譚ｱ莠ｬ繝｡繝医Ο譚ｱ隘ｿ邱・/h1>
+    <h1>東京メトロ東西線</h1>
 
     <p>
-      譚ｱ莠ｬ繝｡繝医Ο譚ｱ隘ｿ邱壹・縲・・蠢・ｒ譚ｱ隘ｿ縺ｫ雋ｫ縺丞ｹｹ邱壹→縺励※縲・・蠢・･ｭ蜍吝慍・亥､ｧ謇狗伴繝ｻ譌･譛ｬ讖句捉霎ｺ・峨→
-      豎滓擲蛹ｺ縲懈ｵｦ螳画婿髱｢縺ｮ菴丞ｮ・慍繧堤ｵ舌・縲∵姶蠕後憺ｫ伜ｺｦ謌宣聞譛溘・騾壼共蜍慕ｷ壹ｒ謾ｯ縺医※縺阪◆霍ｯ邱壹〒縺吶・      繧ｸ繧ｪ驕薙〒縺ｯ縲∵擲隘ｿ邱壹ｒ縲碁・蠢・ｨｪ譁ｭ・矩リ螟匁磁邯壹阪ｒ蜷梧凾縺ｫ謌千ｫ九＆縺帙◆騾壼共蟷ｹ邱壹→縺励※謨ｴ逅・＠縲・      蜿ｲ螳溘↓蝓ｺ縺･縺乗凾邉ｻ蛻励ョ繝ｼ繧ｿ縺ｸ諡｡蠑ｵ縺励※縺・″縺ｾ縺吶・    </p>
+      東京メトロ東西線は、都心を東西に貫く幹線として、都心業務地（大手町・日本橋周辺）と
+      江東区〜浦安方面の住宅地を結び、戦後〜高度成長期の通勤動線を支えてきた路線です。
+      ジオ道では、東西線を「都心横断＋郊外接続」を同時に成立させた通勤幹線として整理し、
+      史実に基づく時系列データへ拡張していきます。
+    </p>
 
-    <h2>霍ｯ邱夲ｼ郁ｩｦ菴懊ョ繝ｼ繧ｿ・・/h2>
+    <h2>路線（試作データ）</h2>
     <div id="map"></div>
     <p class="muted">
-      窶ｻ迴ｾ蝨ｨ縺ｯ荳ｭ蠢・ｷ夲ｼ矩ｧ・・繧､繝ｳ繝茨ｼ域悽邱夲ｼ峨∪縺ｧ縲よ凾莉｣蛻・牡縺ｯ莉雁ｾ瑚ｿｽ蜉縲・br>
+      ※現在は中心線＋駅ポイント（本線）まで。時代分割は今後追加。<br>
       line_slug: <code>tokyo-metro-tozai</code>
     </p>
 
-    <h2>鬧・ｸ隕ｧ・郁･ｿ闊ｹ讖・竊・荳ｭ驥趣ｼ・/h2>
+    <h2>駅一覧（西船橋 → 中野）</h2>
     <div id="station-list">
-      <p>隱ｭ縺ｿ霎ｼ縺ｿ荳ｭ...</p>
+      <p>読み込み中...</p>
     </div>
 
-    <h2>驩・％蜿ｲ</h2>
+    <h2>鉄道史</h2>
 
     <p>
-      譚ｱ隘ｿ邱壹・縲∵姶蠕後・驛ｽ蟶よ僑螟ｧ縺ｨ騾壼共髴隕√・諤･蠅励↓蟇ｾ縺励・・蠢・ｒ譚ｱ隘ｿ縺ｫ讓ｪ譁ｭ縺吶ｋ蝨ｰ荳矩延蟷ｹ邱壹→縺励※險育判縺輔ｌ縺溘・      螟ｧ謇狗伴繝ｻ譌･譛ｬ讖九↑縺ｩ縺ｮ驛ｽ蠢・･ｭ蜍吝慍縺ｨ縲∵ｱ滓擲蛹ｺ繝ｻ豬ｦ螳画婿髱｢縺ｮ菴丞ｮ・慍繧堤峩邨舌＠縲∵擲莠ｬ縺ｮ譚ｱ隘ｿ遘ｻ蜍輔・鬪ｨ譬ｼ繧貞ｽ｢謌舌＠縺ｦ縺阪◆縲・    </p>
+      東西線は、戦後の都市拡大と通勤需要の急増に対し、都心を東西に横断する地下鉄幹線として計画された。
+      大手町・日本橋などの都心業務地と、江東区・浦安方面の住宅地を直結し、東京の東西移動の骨格を形成してきた。
+    </p>
 
     <p>
-      霍ｯ邱壽紛蛯吶′騾ｲ繧縺ｫ縺､繧後・・蠢・ｨｪ譁ｭ縺ｮ蠖ｹ蜑ｲ縺ｫ蜉縺医※縲∫ｵらせ蛛ｴ縺ｧJR邱壹→邨千ｯ縺吶ｋ縺薙→縺ｧ蠎・沺騾壼共霍ｯ邱壹→縺励※縺ｮ諤ｧ譬ｼ縺悟ｼｷ縺ｾ縺｣縺溘・      縺ｨ縺上↓隘ｿ闊ｹ讖九〒縺ｮ邨千ｯ縺ｯ縲・・蠢・ｨｪ譁ｭ縺ｨ驛雁､匁磁邯壹ｒ蜷梧凾縺ｫ謌千ｫ九＆縺帙・壼共蜍慕ｷ壹・蜀肴ｧ狗ｯ峨↓螟ｧ縺阪￥蟇・ｸ弱＠縺溘・    </p>
+      路線整備が進むにつれ、都心横断の役割に加えて、終点側でJR線と結節することで広域通勤路線としての性格が強まった。
+      とくに西船橋での結節は、都心横断と郊外接続を同時に成立させ、通勤動線の再構築に大きく寄与した。
+    </p>
 
     <p>
-      迴ｾ蝨ｨ繧よ擲隘ｿ邱壹・縲・・蠢・Κ縺ｮ繧ｪ繝輔ぅ繧ｹ髮・ｩ阪→譚ｱ驛ｨ菴丞ｮ・慍繧堤ｵ舌・縲悟渕蟷ｹ騾壼共霍ｯ邱壹阪→縺励※鬮倬ｻ蠎ｦ驕玖｡後ｒ邯壹￠縲・      譚ｱ莠ｬ縺ｮ蟷ｳ譌･譛晏､輔・繝ｪ繧ｺ繝繧呈髪縺医ｋ驥崎ｦ√↑蜍戊ц縺ｨ縺ｪ縺｣縺ｦ縺・ｋ縲・    </p>
+      現在も東西線は、都心部のオフィス集積と東部住宅地を結ぶ「基幹通勤路線」として高頻度運行を続け、
+      東京の平日朝夕のリズムを支える重要な動脈となっている。
+    </p>
 
-    <h2>蟷ｴ陦ｨ</h2>
+    <h2>年表</h2>
     <ul>
-      <li><strong>謌ｦ蠕・/strong>・夐壼共霈ｸ騾∝ｯｾ遲悶→縺励※驛ｽ蠢・擲隘ｿ雋ｫ騾壹・蝨ｰ荳矩延讒区Φ縺悟・菴灘喧</li>
-      <li><strong>蟒ｺ險ｭ譛・/strong>・夐・蠢・ｼ亥､ｧ謇狗伴蜻ｨ霎ｺ・峨懈ｱ滓擲蛹ｺ譁ｹ髱｢縺ｸ谿ｵ髫守噪縺ｫ蟒ｶ莨ｸ</li>
-      <li><strong>謗･邯・/strong>・夊･ｿ闊ｹ讖九〒JR邱壹→邨千ｯ縺励∝ｺ・沺騾壼共蜍慕ｷ壹→縺励※螳夂捩</li>
-      <li><strong>迴ｾ蝨ｨ</strong>・夐・蠢・･ｭ蜍吝慍縺ｨ譚ｱ驛ｨ菴丞ｮ・慍繧堤ｵ舌・蝓ｺ蟷ｹ騾壼共霍ｯ邱壹→縺励※驕玖｡御ｸｭ</li>
+      <li><strong>戦後</strong>：通勤輸送対策として都心東西貫通の地下鉄構想が具体化</li>
+      <li><strong>建設期</strong>：都心（大手町周辺）〜江東区方面へ段階的に延伸</li>
+      <li><strong>接続</strong>：西船橋でJR線と結節し、広域通勤動線として定着</li>
+      <li><strong>現在</strong>：都心業務地と東部住宅地を結ぶ基幹通勤路線として運行中</li>
     </ul>
 
     <p class="muted" style="margin-top:28px;">
-      窶ｻ縺薙・繝壹・繧ｸ縺ｯ蛻ｶ菴憺比ｸｭ縺ｮ繧｢繝ｼ繧ｫ繧､繝悶〒縺吶よ峩譁ｰ縺ｮ驕守ｨ九ｂ蜷ｫ繧√※蜈ｬ髢九＠縺ｦ縺・∪縺吶・    </p>
+      ※このページは制作途中のアーカイブです。更新の過程も含めて公開しています。
+    </p>
   </main>
 
   <script>
@@ -86,10 +96,11 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
-    // 荳｡譁ｹ隱ｭ縺ｿ霎ｼ繧√◆繧映it縺吶ｋ縺溘ａ縺ｮ蜈･繧檎黄
+    // 両方読み込めたらfitするための入れ物
     const boundsLayers = L.featureGroup().addTo(map);
 
-    // 鬧・Ξ繧､繝､蜿ら・・磯ｧ・Μ繧ｹ繝医け繝ｪ繝・け逕ｨ・・    const stationMarkerById = new Map(); // station_id -> layer
+    // 駅レイヤ参照（駅リストクリック用）
+    const stationMarkerById = new Map(); // station_id -> layer
 
     // ===== Line layer =====
     fetch(LINE_GEOJSON_URL, { cache: "no-store" })
@@ -108,11 +119,12 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
         boundsLayers.addLayer(lineLayer);
 
-        // 荳譌ｦ line 縺ｧ陦ｨ遉ｺ・磯ｧ・′譚･縺溘ｉ蜀糠it縺輔ｌ繧具ｼ・        map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
+        // 一旦 line で表示（駅が来たら再fitされる）
+        map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
       })
       .catch(err => {
         console.error(err);
-        alert("GeoJSON縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆: " + LINE_GEOJSON_URL);
+        alert("GeoJSONの読み込みに失敗しました: " + LINE_GEOJSON_URL);
       });
 
     // ===== Stations layer + list =====
@@ -133,8 +145,10 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             pointToLayer: (feature, latlng) => {
               const marker = L.circleMarker(latlng, {
                 radius: 6,
-                color: "#ff2d55",      // 譫邱夲ｼ井ｸｸ繝主・邱壹→蜷後§・・                weight: 2,
-                fillColor: "#ffd1dc",  // 蝪励ｊ・井ｸｸ繝主・邱壹→蜷後§・・                fillOpacity: 0.95
+                color: "#ff2d55",      // 枠線（丸ノ内線と同じ）
+                weight: 2,
+                fillColor: "#ffd1dc",  // 塗り（丸ノ内線と同じ）
+                fillOpacity: 0.95
               });
               const p = feature.properties || {};
               if (p.station_id) stationMarkerById.set(String(p.station_id), marker);
@@ -147,7 +161,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
               const id = (p.station_id || "");
               layer.bindPopup(
                 `<strong>${name}</strong><br>` +
-                `鬧・・ ${order}<br>` +
+                `駅順: ${order}<br>` +
                 `ID: ${id}`
               );
             }
@@ -167,7 +181,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         const container = document.getElementById("station-list");
         if (container) {
           if (feats.length === 0) {
-            container.innerHTML = `<p>鬧・ョ繝ｼ繧ｿ縺瑚ｦ九▽縺九ｊ縺ｾ縺帙ｓ縺ｧ縺励◆縲・/p>`;
+            container.innerHTML = `<p>駅データが見つかりませんでした。</p>`;
           } else {
             const ol = document.createElement("ol");
             ol.style.lineHeight = "1.8";
@@ -181,7 +195,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
               const li = document.createElement("li");
               const a = document.createElement("span");
               a.className = "station-link";
-              a.textContent = `${name}・・${order}${stationId ? " / " + stationId : ""}・荏;
+              a.textContent = `${name}（#${order}${stationId ? " / " + stationId : ""}）`;
               a.addEventListener("click", () => {
                 const marker = stationMarkerById.get(String(stationId));
                 if (!marker) return;
@@ -201,9 +215,8 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       .catch(err => {
         console.error("Station layer/list error:", err);
         const container = document.getElementById("station-list");
-        if (container) container.innerHTML = `<p>鬧・ｸ隕ｧ縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆・・{String(err)}</p>`;
+        if (container) container.innerHTML = `<p>駅一覧の読み込みに失敗しました：${String(err)}</p>`;
       });
   </script>
 </body>
 </html>
-

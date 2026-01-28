@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>�������g����������b�W�I��</title>
-  <meta name="description" content="�������g����������i�a�J?����j�̓S���j�ƘH���f�[�^�i�W�I���j�B" />
+  <title>東京メトロ半蔵門線｜ジオ道</title>
+  <meta name="description" content="東京メトロ半蔵門線（渋谷〜押上）の鉄道史と路線データ（ジオ道）。" />
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -24,24 +24,24 @@
 
 <body>
 <main>
-  <p><a href="../">�� �H���ꗗ��</a></p>
+  <p><a href="../">← 路線一覧へ</a></p>
 
-  <h1>�������g���������</h1>
+  <h1>東京メトロ半蔵門線</h1>
 
   <p>
-    �������g����������� <strong>�a�J?����</strong> ����ԓs�S���f�H���B
-    �\�Q���E�i�c���E��蒬�E�ю����Ȃǎ�v���ߓ_��ʉ߂���B
+    東京メトロ半蔵門線は <strong>渋谷〜押上</strong> を結ぶ都心横断路線。
+    表参道・永田町・大手町・錦糸町など主要結節点を通過する。
   </p>
 
-  <h2>�H���i����f�[�^�j</h2>
+  <h2>路線（試作データ）</h2>
   <div id="map"></div>
   <p class="muted">
-    ���S���i�㉺2���C���j�{�w�|�C���g�i1�w1�_�j��\���B
+    中心線（上下2ライン）＋駅ポイント（1駅1点）を表示。
     line_slug: <code>tokyo-metro-hanzomon</code>
   </p>
 
-  <h2>�w�ꗗ�i�a�J �� ����j</h2>
-  <div id="station-list"><p>�ǂݍ��ݒ�...</p></div>
+  <h2>駅一覧（渋谷 → 押上）</h2>
+  <div id="station-list"><p>読み込み中...</p></div>
 </main>
 
 <script>
@@ -52,7 +52,7 @@ const LINE_COLOR = "#8F76D6";
 // map init
 const map = L.map("map", { zoomControl: true });
 
-// panes (���d�v)
+// panes (★重要)
 map.createPane("linesPane");
 map.getPane("linesPane").style.zIndex = 400;
 
@@ -119,7 +119,7 @@ fetch(STATIONS_GEOJSON_URL, { cache:"no-store" })
           const p = feature.properties||{};
           layer.bindPopup(
             `<strong>${stationName(p)}</strong><br>` +
-            `�w��: ${stationOrder(p)}<br>` +
+            `駅順: ${stationOrder(p)}<br>` +
             (p.station_id ? `ID: ${p.station_id}` : "")
           );
         }
@@ -136,7 +136,7 @@ fetch(STATIONS_GEOJSON_URL, { cache:"no-store" })
       const li=document.createElement("li");
       const a=document.createElement("span");
       a.className="station-link";
-      a.textContent = `${stationName(p)}�i#${stationOrder(p)}�j`;
+      a.textContent = `${stationName(p)}（#${stationOrder(p)}）`;
       a.onclick=()=>{
         const m=stationMarkerById.get(stationId(p));
         if(m){ map.setView(m.getLatLng(), Math.max(map.getZoom(),15)); m.openPopup(); }

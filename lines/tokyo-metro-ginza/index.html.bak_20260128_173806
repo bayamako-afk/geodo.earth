@@ -131,14 +131,7 @@
 
   // ===== Map init =====
   const map = L.map("map", { zoomControl: true });
-  
-/* panes (auto) */
-map.createPane("linesPane");
-map.getPane("linesPane").style.zIndex = 400;
-
-map.createPane("stationsPane");
-map.getPane("stationsPane").style.zIndex = 650;
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: "&copy; OpenStreetMap contributors"
   }).addTo(map);

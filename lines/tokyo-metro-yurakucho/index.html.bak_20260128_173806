@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>東京メトロ南北線｜ジオ道</title>
-  <meta name="description" content="東京メトロ南北線の鉄道史（開業・延伸）と、OpenHistoricalMap向けデータ整理。" />
+  <title>東京メトロ有楽町線｜ジオ道</title>
+  <meta name="description" content="東京メトロ有楽町線の鉄道史（開業・延伸）と、OpenHistoricalMap向けデータ整理。" />
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -26,11 +26,11 @@
   <main>
     <p><a href="../">← 路線一覧へ</a></p>
 
-    <h1>東京メトロ南北線</h1>
+    <h1>東京メトロ有楽町線</h1>
 
     <p>
-      東京メトロ南北線は、目黒〜赤羽岩淵を南北に貫き、都心の結節点（永田町・溜池山王・飯田橋など）を串刺しにして
-      住宅地・業務地を接続する「縦軸」の地下鉄です。ジオ道では、南北線を<strong>都心縦貫＋相互直通</strong>の典型例として整理し、
+      東京メトロ有楽町線は、<strong>和光市〜新木場</strong>を結び、池袋・有楽町・豊洲などの主要拠点を横断して
+      都心〜湾岸をつなぐ路線です。ジオ道では、有楽町線を「都心横断＋湾岸連絡＋相互直通」の代表例として整理し、
       開業・延伸の段階を史実に基づく時系列データ（OpenHistoricalMap向け）へ拡張していきます。
     </p>
 
@@ -38,10 +38,10 @@
     <div id="map"></div>
     <p class="muted">
       ※現在は中心線（上下2ライン）＋駅ポイント（駅ごと1点）まで。時代分割は今後追加。<br>
-      line_slug: <code>tokyo-metro-namboku</code>
+      line_slug: <code>tokyo-metro-yurakucho</code>
     </p>
 
-    <h2>駅一覧（目黒 → 赤羽岩淵）</h2>
+    <h2>駅一覧（和光市 → 新木場）</h2>
     <div id="station-list">
       <p>読み込み中...</p>
     </div>
@@ -49,21 +49,21 @@
     <h2>鉄道史</h2>
 
     <p>
-      南北線は、都心の南北移動を補完する地下鉄として計画され、都心部の複数の結節点で他路線と接続しながら段階的に整備された。
-      その役割は「都心縦貫」にとどまらず、周辺路線との接続を通じて広域的な移動の選択肢を増やし、通勤・通学・乗換動線の再編に寄与してきた。
+      有楽町線は、都心部の東西・南北の結節点をまたぎながら、住宅地・業務地・湾岸部を接続する地下鉄として段階的に整備された。
+      池袋・永田町・有楽町・豊洲といったハブを経由し、乗換・直通によって広域的な移動を成立させる構造を持つ。
     </p>
 
     <p>
-      ジオ道では、開業区間・延伸区間を年代ごとに切り出し、駅・線路・接続関係を時系列に追える形で整備していく。
-      まずは現行形の幾何（上下線・駅）を安定させ、次に「いつ、どこまで開業したか」を正確に積み上げる。
+      ジオ道では、まず現行形（上下線・駅）を安定化し、その上で「どの区間がいつ開業したか」を正確に積み上げていく。
+      直通・乗換のネットワーク効果が大きい路線ほど、時系列化したときに都市構造の変化が見えやすい。
     </p>
 
     <h2>年表（叩き台）</h2>
     <ul>
-      <li><strong>計画</strong>：都心南北軸の強化を目的に構想が具体化</li>
-      <li><strong>開業</strong>：都心部を中心に段階的に開業</li>
-      <li><strong>延伸</strong>：南北両側へ延伸し、目黒〜赤羽岩淵の形へ</li>
-      <li><strong>現在</strong>：都心縦貫＋接続の要として運行中</li>
+      <li><strong>計画</strong>：都心横断・湾岸連絡の需要を見据え、段階的整備として構想</li>
+      <li><strong>開業</strong>：都心側から順次開業し、主要拠点で乗換網を形成</li>
+      <li><strong>延伸</strong>：郊外側・湾岸側へ延伸し、和光市〜新木場の形へ</li>
+      <li><strong>現在</strong>：都心〜湾岸の重要ルートとして運行中</li>
     </ul>
 
     <p class="muted" style="margin-top:28px;">
@@ -73,30 +73,20 @@
 
   <script>
     // ===== GeoJSON URLs =====
-    const LINE_GEOJSON_URL = "../../assets/geojson/lines/tokyo-metro-namboku.geojson";
-    const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-namboku_stations.geojson";
+    const LINE_GEOJSON_URL = "../../assets/geojson/lines/tokyo-metro-yurakucho.geojson";
+    const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-yurakucho_stations.geojson";
 
     // ===== Colors =====
-    const LINE_COLOR = "#00AC9B";
+    const LINE_COLOR = "#C1A470";
 
     // ===== Map init =====
     const map = L.map("map", { zoomControl: true });
-    
-/* panes (auto) */
-map.createPane("linesPane");
-map.getPane("linesPane").style.zIndex = 400;
-
-map.createPane("stationsPane");
-map.getPane("stationsPane").style.zIndex = 650;
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
-    // 両方読み込めたらfitするための入れ物
     const boundsLayers = L.featureGroup().addTo(map);
-
-    // 駅レイヤ参照（駅リストクリック用）
     const stationMarkerById = new Map(); // station_id -> layer
 
     function stationName(p) {
@@ -115,7 +105,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     }
 
     function stationOrder(p) {
-      // 4路線側の仕様に合わせて、存在するものを優先して使う
       const v = p.station_order ?? p.order ?? p.seq ?? p.station_seq;
       const n = Number(v);
       return Number.isFinite(n) ? n : 9999;
@@ -133,8 +122,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         }).addTo(map);
 
         boundsLayers.addLayer(lineLayer);
-
-        // 一旦 line で表示（駅が来たら再fitされる）
         map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
       })
       .catch(err => {
@@ -160,7 +147,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             return String(an).localeCompare(String(bn), "ja");
           });
 
-        // --- map points ---
         const stationLayer = L.geoJSON(
           { type: "FeatureCollection", features: feats },
           {
@@ -169,7 +155,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 radius: 6,
                 color: LINE_COLOR,
                 weight: 2,
-                fillColor: "#d7fff7",
+                fillColor: "#fff6e6",
                 fillOpacity: 0.95
               });
               const p = feature.properties || {};
@@ -197,13 +183,11 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         stationLayer.bringToFront();
         boundsLayers.addLayer(stationLayer);
 
-        // --- fit bounds (line + stations) ---
         try {
           const b = boundsLayers.getBounds();
           if (b && b.isValid && b.isValid()) map.fitBounds(b, { padding: [20, 20] });
         } catch (e) {}
 
-        // --- station list ---
         const container = document.getElementById("station-list");
         if (container) {
           if (feats.length === 0) {
@@ -240,7 +224,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             container.innerHTML = "";
             container.appendChild(ol);
 
-            // If no station_order exists, show a hint
             const hasOrder = feats.some(f => {
               const p = f.properties || {};
               return (p.station_order ?? p.order ?? p.seq ?? p.station_seq) !== undefined;

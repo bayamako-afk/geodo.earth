@@ -1,10 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>譚ｱ莠ｬ繝｡繝医Ο荳ｸ繝主・邱夲ｽ懊ず繧ｪ驕・/title>
-  <meta name="description" content="譚ｱ莠ｬ繝｡繝医Ο荳ｸ繝主・邱壹・驩・％蜿ｲ・磯幕讌ｭ繝ｻ蟒ｶ莨ｸ繝ｻ蛻・ｲ撰ｼ峨→縲＾penHistoricalMap蜷代￠繝・・繧ｿ謨ｴ逅・・ />
+  <title>東京メトロ丸ノ内線｜ジオ道</title>
+  <meta name="description" content="東京メトロ丸ノ内線の鉄道史（開業・延伸・分岐）と、OpenHistoricalMap向けデータ整理。" />
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -24,50 +24,62 @@
 
 <body>
   <main>
-    <p><a href="../">竊・霍ｯ邱壻ｸ隕ｧ縺ｸ</a></p>
+    <p><a href="../">← 路線一覧へ</a></p>
 
-    <h1>譚ｱ莠ｬ繝｡繝医Ο荳ｸ繝主・邱・/h1>
+    <h1>東京メトロ丸ノ内線</h1>
 
     <p>
-      譚ｱ莠ｬ繝｡繝医Ο荳ｸ繝主・邱壹・縲∵眠螳ｿ縲懈擲莠ｬ縲懈ｱ陲九・驛ｽ蠢・ｻｸ繧定ｲｫ縺丞慍荳矩延霍ｯ邱壹→縺励※縲・      謌ｦ蠕梧擲莠ｬ縺ｮ驛ｽ蟶よｧ矩・医が繝輔ぅ繧ｹ陦励・蜑ｯ驛ｽ蠢・・荵玲鋤邨千ｯ・峨ｒ蠖｢縺･縺上▲縺ｦ縺阪◆蝓ｺ蟷ｹ霍ｯ邱壹〒縺吶・      繧ｸ繧ｪ驕薙〒縺ｯ縲∽ｸｸ繝主・邱壹ｒ縲梧姶蠕悟ｾｩ闊医憺ｫ伜ｺｦ謌宣聞譛溘・譚ｱ莠ｬ繧帝ｧ・虚縺励◆蝨ｰ荳矩延縲阪→縺励※謨ｴ逅・＠縲・      蜿ｲ螳溘↓蝓ｺ縺･縺乗凾邉ｻ蛻励ョ繝ｼ繧ｿ縺ｸ諡｡蠑ｵ縺励※縺・″縺ｾ縺吶・    </p>
+      東京メトロ丸ノ内線は、新宿〜東京〜池袋の都心軸を貫く地下鉄路線として、
+      戦後東京の都市構造（オフィス街・副都心・乗換結節）を形づくってきた基幹路線です。
+      ジオ道では、丸ノ内線を「戦後復興〜高度成長期の東京を駆動した地下鉄」として整理し、
+      史実に基づく時系列データへ拡張していきます。
+    </p>
 
-    <h2>霍ｯ邱夲ｼ郁ｩｦ菴懊ョ繝ｼ繧ｿ・・/h2>
+    <h2>路線（試作データ）</h2>
     <div id="map"></div>
     <p class="muted">
-      窶ｻ迴ｾ蝨ｨ縺ｯ荳ｭ蠢・ｷ夲ｼ矩ｧ・・繧､繝ｳ繝茨ｼ域悽邱夲ｼ峨∪縺ｧ縲よ凾莉｣蛻・牡縺ｯ莉雁ｾ瑚ｿｽ蜉縲・br>
+      ※現在は中心線＋駅ポイント（本線）まで。時代分割は今後追加。<br>
       line_slug: <code>tokyo-metro-marunouchi</code>
     </p>
 
-    <h2>鬧・ｸ隕ｧ・郁砂遯ｪ 竊・豎陲具ｼ・/h2>
+    <h2>駅一覧（荻窪 → 池袋）</h2>
     <div id="station-list">
-      <p>隱ｭ縺ｿ霎ｼ縺ｿ荳ｭ...</p>
+      <p>読み込み中...</p>
     </div>
 
-    <h2>驩・％蜿ｲ</h2>
+    <h2>鉄道史</h2>
 
     <p>
-      荳ｸ繝主・邱壹・縲∵姶蠕梧擲莠ｬ縺ｮ縲碁・蠢・･ｭ蜍呵ｻｸ縲阪ｒ蠖｢謌舌☆繧九◆繧√↓險育判縺輔ｌ縺溘∵律譛ｬ蛻昴・譛ｬ譬ｼ逧・↑蝨ｰ荳矩延繝阪ャ繝医Ρ繝ｼ繧ｯ諡｡蠑ｵ霍ｯ邱壹〒縺ゅｋ縲・      驫蠎ｧ邱壹′縲悟膚讌ｭ縺ｨ螳伜ｺ√阪ｒ邨舌・霍ｯ邱壹□縺｣縺溘・縺ｫ蟇ｾ縺励∽ｸｸ繝主・邱壹・<strong>譁ｰ螳ｿ繝ｻ豎陲九→縺・≧蜑ｯ驛ｽ蠢・→螟ｧ謇狗伴繝ｻ譚ｱ莠ｬ鬧・捉霎ｺ繧堤峩邨・/strong>縺吶ｋ縺薙→繧堤岼逧・→縺励※讒区Φ縺輔ｌ縺溘・    </p>
+      丸ノ内線は、戦後東京の「都心業務軸」を形成するために計画された、日本初の本格的な地下鉄ネットワーク拡張路線である。
+      銀座線が「商業と官庁」を結ぶ路線だったのに対し、丸ノ内線は<strong>新宿・池袋という副都心と大手町・東京駅周辺を直結</strong>することを目的として構想された。
+    </p>
 
     <p>
-      謌ｦ轣ｽ蠕ｩ闊医→鬮伜ｺｦ邨梧ｸ域・髟ｷ繧定レ譎ｯ縺ｫ縲・・蟶ゆｺｺ蜿｣縺ｯ諤･蠅励＠縲・・蠢・Κ縺ｸ縺ｮ騾壼共髴隕√・髯千阜繧定ｿ弱∴縺ｦ縺・◆縲・      縺薙・隱ｲ鬘後↓蠢懊∴繧九◆繧√∝慍荳区ｷｱ縺上ｒ逶ｴ邱夂噪縺ｫ雋ｫ縺乗眠縺励＞蝨ｰ荳矩延縺ｨ縺励※荳ｸ繝主・邱壹・險ｭ險医＆繧後◆縲・      迚ｹ縺ｫ縲∝嵜驩・ｼ育樟JR・峨ｄ遘・延繧ｿ繝ｼ繝溘リ繝ｫ縺ｨ蝨ｰ荳矩延繧堤ｵ千ｯ縺輔○繧九％縺ｨ縺ｧ縲・strong>譚ｱ莠ｬ縺ｮ騾壼共蜍慕ｷ壹◎縺ｮ繧ゅ・繧貞・讒狗ｯ・/strong>縺吶ｋ蠖ｹ蜑ｲ繧呈球縺｣縺溘・    </p>
+      戦災復興と高度経済成長を背景に、都市人口は急増し、都心部への通勤需要は限界を迎えていた。
+      この課題に応えるため、地下深くを直線的に貫く新しい地下鉄として丸ノ内線は設計された。
+      特に、国鉄（現JR）や私鉄ターミナルと地下鉄を結節させることで、<strong>東京の通勤動線そのものを再構築</strong>する役割を担った。
+    </p>
 
     <p>
-      霍ｯ邱壹・襍､繧貞渕隱ｿ縺ｨ縺励◆繝ｩ繧､繝ｳ繧ｫ繝ｩ繝ｼ縺檎､ｺ縺吶ｈ縺・↓縲・・蟶ゅ・蜍戊ц縺ｨ縺励※譏守｢ｺ縺ｫ菴咲ｽｮ縺･縺代ｉ繧後・・蠢・Κ縺ｮ繧ｪ繝輔ぅ繧ｹ髮・ｩ阪∝ｮ伜ｺ∬｡励∝膚讌ｭ蝨ｰ縺ｮ蠖｢謌舌↓螟ｧ縺阪↑蠖ｱ髻ｿ繧剃ｸ弱∴縺溘・      迴ｾ蝨ｨ繧ゆｸｸ繝主・邱壹・縲∵擲莠ｬ縺ｮ蟷ｳ譌･譛晏､輔・繝ｪ繧ｺ繝繧貞ｽ｢縺･縺上ｋ縲悟渕蟷ｹ騾壼共霍ｯ邱壹阪→縺励※讖溯・縺礼ｶ壹￠縺ｦ縺・ｋ縲・    </p>
+      路線は赤を基調としたラインカラーが示すように、都市の動脈として明確に位置づけられ、都心部のオフィス集積、官庁街、商業地の形成に大きな影響を与えた。
+      現在も丸ノ内線は、東京の平日朝夕のリズムを形づくる「基幹通勤路線」として機能し続けている。
+    </p>
 
-    <h2>蟷ｴ陦ｨ</h2>
+    <h2>年表</h2>
     <ul>
-      <li><strong>1946蟷ｴ</strong>・壽姶蠕悟ｾｩ闊郁ｨ育判縺ｮ荳ｭ縺ｧ縲∵眠螳ｿ縲懈ｱ陲九憺・蠢・ｒ邨舌・蝨ｰ荳矩延讒区Φ縺悟・菴灘喧</li>
-      <li><strong>1951蟷ｴ</strong>・壻ｸｸ繝主・邱夲ｼ域ｱ陲九懷ｾ｡闌ｶ繝取ｰｴ髢難ｼ蛾幕讌ｭ</li>
-      <li><strong>1954蟷ｴ</strong>・壼ｾ｡闌ｶ繝取ｰｴ縲懈擲莠ｬ・育樟繝ｻ螟ｧ謇狗伴莉倩ｿ托ｼ牙ｻｶ莨ｸ</li>
-      <li><strong>1959蟷ｴ</strong>・壽眠螳ｿ譁ｹ髱｢縺ｸ縺ｮ蟒ｶ莨ｸ縺碁ｲ縺ｿ縲∝憶驛ｽ蠢・｣邨｡霍ｯ邱壹→縺励※縺ｮ諤ｧ譬ｼ縺梧・遒ｺ蛹・/li>
-      <li><strong>1962蟷ｴ</strong>・夊砂遯ｪ縺ｾ縺ｧ蜈ｨ邱夐幕讌ｭ・育樟蝨ｨ縺ｮ蝓ｺ譛ｬ霍ｯ邱壼ｽ｢縺悟ｮ梧・・・/li>
-      <li><strong>1972蟷ｴ</strong>・壼・蟯千ｷ夲ｼ域婿蜊礼伴謾ｯ邱夲ｼ蛾幕讌ｭ</li>
-      <li><strong>2004蟷ｴ</strong>・壼霧蝗｣蝨ｰ荳矩延縺九ｉ譚ｱ莠ｬ繝｡繝医Ο縺ｸ邯呎価</li>
-      <li><strong>迴ｾ蝨ｨ</strong>・夐・蠢・･ｭ蜍呵ｻｸ繧呈髪縺医ｋ蝓ｺ蟷ｹ蝨ｰ荳矩延霍ｯ邱壹→縺励※驕玖｡御ｸｭ</li>
+      <li><strong>1946年</strong>：戦後復興計画の中で、新宿〜池袋〜都心を結ぶ地下鉄構想が具体化</li>
+      <li><strong>1951年</strong>：丸ノ内線（池袋〜御茶ノ水間）開業</li>
+      <li><strong>1954年</strong>：御茶ノ水〜東京（現・大手町付近）延伸</li>
+      <li><strong>1959年</strong>：新宿方面への延伸が進み、副都心連絡路線としての性格が明確化</li>
+      <li><strong>1962年</strong>：荻窪まで全線開業（現在の基本路線形が完成）</li>
+      <li><strong>1972年</strong>：分岐線（方南町支線）開業</li>
+      <li><strong>2004年</strong>：営団地下鉄から東京メトロへ継承</li>
+      <li><strong>現在</strong>：都心業務軸を支える基幹地下鉄路線として運行中</li>
     </ul>
 
     <p class="muted" style="margin-top:28px;">
-      窶ｻ縺薙・繝壹・繧ｸ縺ｯ蛻ｶ菴憺比ｸｭ縺ｮ繧｢繝ｼ繧ｫ繧､繝悶〒縺吶よ峩譁ｰ縺ｮ驕守ｨ九ｂ蜷ｫ繧√※蜈ｬ髢九＠縺ｦ縺・∪縺吶・    </p>
+      ※このページは制作途中のアーカイブです。更新の過程も含めて公開しています。
+    </p>
   </main>
 
   <script>
@@ -89,10 +101,11 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
-    // 荳｡譁ｹ隱ｭ縺ｿ霎ｼ繧√◆繧映it縺吶ｋ縺溘ａ縺ｮ蜈･繧檎黄
+    // 両方読み込めたらfitするための入れ物
     const boundsLayers = L.featureGroup().addTo(map);
 
-    // 鬧・Ξ繧､繝､蜿ら・・磯ｧ・Μ繧ｹ繝医け繝ｪ繝・け逕ｨ・・    const stationMarkerById = new Map(); // station_id -> layer
+    // 駅レイヤ参照（駅リストクリック用）
+    const stationMarkerById = new Map(); // station_id -> layer
 
     // ===== Line layer =====
     fetch(LINE_GEOJSON_URL, { cache: "no-store" })
@@ -111,11 +124,12 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
         boundsLayers.addLayer(lineLayer);
 
-        // 荳譌ｦ line 縺ｧ陦ｨ遉ｺ・磯ｧ・′譚･縺溘ｉ蜀糠it縺輔ｌ繧具ｼ・        map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
+        // 一旦 line で表示（駅が来たら再fitされる）
+        map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
       })
       .catch(err => {
         console.error(err);
-        alert("GeoJSON縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆: " + LINE_GEOJSON_URL);
+        alert("GeoJSONの読み込みに失敗しました: " + LINE_GEOJSON_URL);
       });
 
     // ===== Stations layer + list =====
@@ -136,8 +150,9 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             pointToLayer: (feature, latlng) => {
               const marker = L.circleMarker(latlng, {
                 radius: 6,
-                color: "#ff2d55",      // 譫邱・                weight: 2,
-                fillColor: "#ffd1dc",  // 蝪励ｊ
+                color: "#ff2d55",      // 枠線
+                weight: 2,
+                fillColor: "#ffd1dc",  // 塗り
                 fillOpacity: 0.95
               });
               const p = feature.properties || {};
@@ -151,7 +166,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
               const id = (p.station_id || "");
               layer.bindPopup(
                 `<strong>${name}</strong><br>` +
-                `鬧・・ ${order}<br>` +
+                `駅順: ${order}<br>` +
                 `ID: ${id}`
               );
             }
@@ -166,13 +181,14 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           const b = boundsLayers.getBounds();
           if (b && b.isValid && b.isValid()) map.fitBounds(b, { padding: [20, 20] });
         } catch (e) {
-          // 螟ｱ謨励＠縺ｦ繧り・蜻ｽ逧・〒縺ｯ縺ｪ縺・        }
+          // 失敗しても致命的ではない
+        }
 
         // --- station list ---
         const container = document.getElementById("station-list");
         if (container) {
           if (feats.length === 0) {
-            container.innerHTML = `<p>鬧・ョ繝ｼ繧ｿ縺瑚ｦ九▽縺九ｊ縺ｾ縺帙ｓ縺ｧ縺励◆縲・/p>`;
+            container.innerHTML = `<p>駅データが見つかりませんでした。</p>`;
           } else {
             const ol = document.createElement("ol");
             ol.style.lineHeight = "1.8";
@@ -186,7 +202,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
               const li = document.createElement("li");
               const a = document.createElement("span");
               a.className = "station-link";
-              a.textContent = `${name}・・${order}${stationId ? " / " + stationId : ""}・荏;
+              a.textContent = `${name}（#${order}${stationId ? " / " + stationId : ""}）`;
               a.addEventListener("click", () => {
                 const marker = stationMarkerById.get(String(stationId));
                 if (!marker) return;
@@ -206,9 +222,8 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       .catch(err => {
         console.error("Station layer/list error:", err);
         const container = document.getElementById("station-list");
-        if (container) container.innerHTML = `<p>鬧・ｸ隕ｧ縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆・・{String(err)}</p>`;
+        if (container) container.innerHTML = `<p>駅一覧の読み込みに失敗しました：${String(err)}</p>`;
       });
   </script>
 </body>
 </html>
-

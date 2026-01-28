@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>東京メトロ南北線｜ジオ道</title>
-  <meta name="description" content="東京メトロ南北線の鉄道史（開業・延伸）と、OpenHistoricalMap向けデータ整理。" />
+  <title>JR東日本 山手線｜ジオ道</title>
+  <meta name="description" content="JR東日本 山手線の鉄道史（成立・環状化・戦後復興）と、ジオ道の試作データ（本線構造＋駅ポイント）を公開。" />
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -26,22 +26,22 @@
   <main>
     <p><a href="../">← 路線一覧へ</a></p>
 
-    <h1>東京メトロ南北線</h1>
+    <h1>JR東日本 山手線</h1>
 
     <p>
-      東京メトロ南北線は、目黒〜赤羽岩淵を南北に貫き、都心の結節点（永田町・溜池山王・飯田橋など）を串刺しにして
-      住宅地・業務地を接続する「縦軸」の地下鉄です。ジオ道では、南北線を<strong>都心縦貫＋相互直通</strong>の典型例として整理し、
-      開業・延伸の段階を史実に基づく時系列データ（OpenHistoricalMap向け）へ拡張していきます。
+      山手線は、東京の都心部を環状に結ぶ都市鉄道の中核であり、都市の拡張・復興・再編と同期して
+      成長してきた「東京の骨格」です。ジオ道では山手線を基準線として、他路線（地下鉄・私鉄）との関係や、
+      時代ごとの駅・線形の変化を地図として読み解ける形に整理していきます。
     </p>
 
     <h2>路線（試作データ）</h2>
     <div id="map"></div>
     <p class="muted">
-      ※現在は中心線（上下2ライン）＋駅ポイント（駅ごと1点）まで。時代分割は今後追加。<br>
-      line_slug: <code>tokyo-metro-namboku</code>
+      ※現在は本線構造（上下線を含む）＋駅ポイントまで先行公開しています。時代分割は今後追加。<br>
+      line_slug: <code>jr-east-yamanote</code>
     </p>
 
-    <h2>駅一覧（目黒 → 赤羽岩淵）</h2>
+    <h2>駅一覧（外回り順：東京 → … → 東京）</h2>
     <div id="station-list">
       <p>読み込み中...</p>
     </div>
@@ -49,21 +49,30 @@
     <h2>鉄道史</h2>
 
     <p>
-      南北線は、都心の南北移動を補完する地下鉄として計画され、都心部の複数の結節点で他路線と接続しながら段階的に整備された。
-      その役割は「都心縦貫」にとどまらず、周辺路線との接続を通じて広域的な移動の選択肢を増やし、通勤・通学・乗換動線の再編に寄与してきた。
+      山手線の原型は、1885年（明治18年）に日本鉄道が開業した品川線（品川〜赤羽）にさかのぼる。
+      当初は貨物輸送も重要な目的で、現在のような「環状運転」を前提とした路線ではなかった。
     </p>
 
     <p>
-      ジオ道では、開業区間・延伸区間を年代ごとに切り出し、駅・線路・接続関係を時系列に追える形で整備していく。
-      まずは現行形の幾何（上下線・駅）を安定させ、次に「いつ、どこまで開業したか」を正確に積み上げる。
+      その後、都心周縁の発展とともに路線は延伸され、1925年（大正14年）に神田〜上野間が開通したことで、
+      環状としての連続性が成立し、都市鉄道としての性格が決定的に強まった。
     </p>
 
-    <h2>年表（叩き台）</h2>
+    <p>
+      戦災による被害と戦後復旧、高度経済成長期の輸送力増強、国鉄分割民営化による運営体制の転換を経て、
+      山手線は「東京の通勤と都市活動のリズム」を支える路線として定着した。近年は新駅の開業などを通じて、
+      都市の変化に合わせて更新され続けている。
+    </p>
+
+    <h2>年表</h2>
     <ul>
-      <li><strong>計画</strong>：都心南北軸の強化を目的に構想が具体化</li>
-      <li><strong>開業</strong>：都心部を中心に段階的に開業</li>
-      <li><strong>延伸</strong>：南北両側へ延伸し、目黒〜赤羽岩淵の形へ</li>
-      <li><strong>現在</strong>：都心縦貫＋接続の要として運行中</li>
+      <li><strong>1885</strong>：日本鉄道 品川線（品川〜赤羽）開業（山手線の原型）</li>
+      <li><strong>1909</strong>：国有化（国鉄）により運用体制が整備される</li>
+      <li><strong>1925</strong>：神田〜上野開通、環状運転の成立（環状路線として完成）</li>
+      <li><strong>1945</strong>：戦災により大きな被害（戦後復旧へ）</li>
+      <li><strong>1964</strong>：東京五輪期、都市改造と輸送力強化が加速</li>
+      <li><strong>1987</strong>：国鉄分割民営化、JR東日本へ</li>
+      <li><strong>2020</strong>：高輪ゲートウェイ駅開業（30駅体制）</li>
     </ul>
 
     <p class="muted" style="margin-top:28px;">
@@ -73,22 +82,13 @@
 
   <script>
     // ===== GeoJSON URLs =====
-    const LINE_GEOJSON_URL = "../../assets/geojson/lines/tokyo-metro-namboku.geojson";
-    const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-namboku_stations.geojson";
-
-    // ===== Colors =====
-    const LINE_COLOR = "#00AC9B";
+    // ★あなたの実ファイル名に合わせて調整してください（末尾だけ変えればOK）
+    const LINE_GEOJSON_URL = "../../assets/geojson/lines/jr-east-yamanote.geojson";
+    const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/jr-east-yamanote_stations.geojson";
 
     // ===== Map init =====
     const map = L.map("map", { zoomControl: true });
-    
-/* panes (auto) */
-map.createPane("linesPane");
-map.getPane("linesPane").style.zIndex = 400;
-
-map.createPane("stationsPane");
-map.getPane("stationsPane").style.zIndex = 650;
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
@@ -99,28 +99,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     // 駅レイヤ参照（駅リストクリック用）
     const stationMarkerById = new Map(); // station_id -> layer
 
-    function stationName(p) {
-      return (
-        p.station_name_ja ||
-        p.name_ja ||
-        p["name:ja"] ||
-        p.name ||
-        p.name_en ||
-        "(no name)"
-      );
-    }
-
-    function stationId(p) {
-      return String(p.station_id || p.id || "");
-    }
-
-    function stationOrder(p) {
-      // 4路線側の仕様に合わせて、存在するものを優先して使う
-      const v = p.station_order ?? p.order ?? p.seq ?? p.station_seq;
-      const n = Number(v);
-      return Number.isFinite(n) ? n : 9999;
-    }
-
     // ===== Line layer =====
     fetch(LINE_GEOJSON_URL, { cache: "no-store" })
       .then(r => {
@@ -129,8 +107,12 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       })
       .then(gj => {
         const lineLayer = L.geoJSON(gj, {
-          style: { color: LINE_COLOR, weight: 5, opacity: 0.92 }
-        }).addTo(map);
+  style: (feature) => ({
+    color: (feature?.properties?.color || feature?.properties?.colour || "#1f77b4"),
+    weight: 5,
+    opacity: 0.9
+  })
+}).addTo(map);
 
         boundsLayers.addLayer(lineLayer);
 
@@ -151,14 +133,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       .then(stationData => {
         const feats = (stationData.features || [])
           .filter(f => f && f.geometry && f.geometry.type === "Point" && f.properties)
-          .sort((a, b) => {
-            const ao = stationOrder(a.properties || {});
-            const bo = stationOrder(b.properties || {});
-            if (ao !== bo) return ao - bo;
-            const an = stationName(a.properties || "");
-            const bn = stationName(b.properties || "");
-            return String(an).localeCompare(String(bn), "ja");
-          });
+          .sort((a, b) => (a.properties.station_order ?? 9999) - (b.properties.station_order ?? 9999));
 
         // --- map points ---
         const stationLayer = L.geoJSON(
@@ -167,28 +142,26 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             pointToLayer: (feature, latlng) => {
               const marker = L.circleMarker(latlng, {
                 radius: 6,
-                color: LINE_COLOR,
+                color: "#ff2d55",      // 既存テンプレ準拠
                 weight: 2,
-                fillColor: "#d7fff7",
+                fillColor: "#ffd1dc",  // 既存テンプレ準拠
                 fillOpacity: 0.95
               });
               const p = feature.properties || {};
-              const sid = stationId(p);
-              if (sid) stationMarkerById.set(sid, marker);
+              if (p.station_id !== undefined && p.station_id !== null) {
+                stationMarkerById.set(String(p.station_id), marker);
+              }
               return marker;
             },
             onEachFeature: (feature, layer) => {
               const p = feature.properties || {};
-              const name = stationName(p);
-              const order = stationOrder(p);
-              const sid = stationId(p);
-
-              const orderText = (order !== 9999) ? order : "—";
+              const name = p.name || "";
+              const order = (p.station_order ?? "");
+              const id = (p.station_id ?? "");
               layer.bindPopup(
                 `<strong>${name}</strong><br>` +
-                `駅順: ${orderText}<br>` +
-                (sid ? `ID: ${sid}<br>` : "") +
-                (p.line_code ? `line_code: ${p.line_code}` : "")
+                `駅順: ${order}<br>` +
+                `ID: ${id}`
               );
             }
           }
@@ -214,20 +187,16 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
             feats.forEach(f => {
               const p = f.properties || {};
-              const name = stationName(p);
-              const order = stationOrder(p);
-              const sid = stationId(p);
+              const name = p.name || "(no name)";
+              const order = p.station_order ?? "";
+              const stationId = (p.station_id ?? "");
 
               const li = document.createElement("li");
               const a = document.createElement("span");
               a.className = "station-link";
-
-              const orderText = (order !== 9999) ? `#${order}` : "#—";
-              a.textContent = `${name}（${orderText}${sid ? " / " + sid : ""}）`;
-
+              a.textContent = `${name}（#${order}${stationId !== "" ? " / " + stationId : ""}）`;
               a.addEventListener("click", () => {
-                if (!sid) return;
-                const marker = stationMarkerById.get(String(sid));
+                const marker = stationMarkerById.get(String(stationId));
                 if (!marker) return;
                 map.setView(marker.getLatLng(), Math.max(map.getZoom(), 15), { animate: true });
                 marker.openPopup();
@@ -239,19 +208,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
             container.innerHTML = "";
             container.appendChild(ol);
-
-            // If no station_order exists, show a hint
-            const hasOrder = feats.some(f => {
-              const p = f.properties || {};
-              return (p.station_order ?? p.order ?? p.seq ?? p.station_seq) !== undefined;
-            });
-            if (!hasOrder) {
-              const hint = document.createElement("p");
-              hint.className = "muted";
-              hint.style.marginTop = "10px";
-              hint.textContent = "※駅順（station_order）が未設定のため、現状は駅名順で表示しています。";
-              container.appendChild(hint);
-            }
           }
         }
       })

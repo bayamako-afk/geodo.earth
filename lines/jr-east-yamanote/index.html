@@ -1,10 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>JR譚ｱ譌･譛ｬ 螻ｱ謇狗ｷ夲ｽ懊ず繧ｪ驕・/title>
-  <meta name="description" content="JR譚ｱ譌･譛ｬ 螻ｱ謇狗ｷ壹・驩・％蜿ｲ・域・遶九・迺ｰ迥ｶ蛹悶・謌ｦ蠕悟ｾｩ闊茨ｼ峨→縲√ず繧ｪ驕薙・隧ｦ菴懊ョ繝ｼ繧ｿ・域悽邱壽ｧ矩・矩ｧ・・繧､繝ｳ繝茨ｼ峨ｒ蜈ｬ髢九・ />
+  <title>JR東日本 山手線｜ジオ道</title>
+  <meta name="description" content="JR東日本 山手線の鉄道史（成立・環状化・戦後復興）と、ジオ道の試作データ（本線構造＋駅ポイント）を公開。" />
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -24,65 +24,65 @@
 
 <body>
   <main>
-    <p><a href="../">竊・霍ｯ邱壻ｸ隕ｧ縺ｸ</a></p>
+    <p><a href="../">← 路線一覧へ</a></p>
 
-    <h1>JR譚ｱ譌･譛ｬ 螻ｱ謇狗ｷ・/h1>
+    <h1>JR東日本 山手線</h1>
 
     <p>
-      螻ｱ謇狗ｷ壹・縲∵擲莠ｬ縺ｮ驛ｽ蠢・Κ繧堤腸迥ｶ縺ｫ邨舌・驛ｽ蟶る延驕薙・荳ｭ譬ｸ縺ｧ縺ゅｊ縲・・蟶ゅ・諡｡蠑ｵ繝ｻ蠕ｩ闊医・蜀咲ｷｨ縺ｨ蜷梧悄縺励※
-      謌宣聞縺励※縺阪◆縲梧擲莠ｬ縺ｮ鬪ｨ譬ｼ縲阪〒縺吶ゅず繧ｪ驕薙〒縺ｯ螻ｱ謇狗ｷ壹ｒ蝓ｺ貅也ｷ壹→縺励※縲∽ｻ冶ｷｯ邱夲ｼ亥慍荳矩延繝ｻ遘・延・峨→縺ｮ髢｢菫ゅｄ縲・
-      譎ゆｻ｣縺斐→縺ｮ鬧・・邱壼ｽ｢縺ｮ螟牙喧繧貞慍蝗ｳ縺ｨ縺励※隱ｭ縺ｿ隗｣縺代ｋ蠖｢縺ｫ謨ｴ逅・＠縺ｦ縺・″縺ｾ縺吶・
+      山手線は、東京の都心部を環状に結ぶ都市鉄道の中核であり、都市の拡張・復興・再編と同期して
+      成長してきた「東京の骨格」です。ジオ道では山手線を基準線として、他路線（地下鉄・私鉄）との関係や、
+      時代ごとの駅・線形の変化を地図として読み解ける形に整理していきます。
     </p>
 
-    <h2>霍ｯ邱夲ｼ郁ｩｦ菴懊ョ繝ｼ繧ｿ・・/h2>
+    <h2>路線（試作データ）</h2>
     <div id="map"></div>
     <p class="muted">
-      窶ｻ迴ｾ蝨ｨ縺ｯ譛ｬ邱壽ｧ矩・井ｸ贋ｸ狗ｷ壹ｒ蜷ｫ繧・会ｼ矩ｧ・・繧､繝ｳ繝医∪縺ｧ蜈郁｡悟・髢九＠縺ｦ縺・∪縺吶よ凾莉｣蛻・牡縺ｯ莉雁ｾ瑚ｿｽ蜉縲・br>
+      ※現在は本線構造（上下線を含む）＋駅ポイントまで先行公開しています。時代分割は今後追加。<br>
       line_slug: <code>jr-east-yamanote</code>
     </p>
 
-    <h2>鬧・ｸ隕ｧ・亥､門屓繧企・ｼ壽擲莠ｬ 竊・窶ｦ 竊・譚ｱ莠ｬ・・/h2>
+    <h2>駅一覧（外回り順：東京 → … → 東京）</h2>
     <div id="station-list">
-      <p>隱ｭ縺ｿ霎ｼ縺ｿ荳ｭ...</p>
+      <p>読み込み中...</p>
     </div>
 
-    <h2>驩・％蜿ｲ</h2>
+    <h2>鉄道史</h2>
 
     <p>
-      螻ｱ謇狗ｷ壹・蜴溷梛縺ｯ縲・885蟷ｴ・域・豐ｻ18蟷ｴ・峨↓譌･譛ｬ驩・％縺碁幕讌ｭ縺励◆蜩∝ｷ晉ｷ夲ｼ亥刀蟾昴懆ｵ､鄒ｽ・峨↓縺輔°縺ｮ縺ｼ繧九・
-      蠖灘・縺ｯ雋ｨ迚ｩ霈ｸ騾√ｂ驥崎ｦ√↑逶ｮ逧・〒縲∫樟蝨ｨ縺ｮ繧医≧縺ｪ縲檎腸迥ｶ驕玖ｻ｢縲阪ｒ蜑肴署縺ｨ縺励◆霍ｯ邱壹〒縺ｯ縺ｪ縺九▲縺溘・
+      山手線の原型は、1885年（明治18年）に日本鉄道が開業した品川線（品川〜赤羽）にさかのぼる。
+      当初は貨物輸送も重要な目的で、現在のような「環状運転」を前提とした路線ではなかった。
     </p>
 
     <p>
-      縺昴・蠕後・・蠢・捉邵√・逋ｺ螻輔→縺ｨ繧ゅ↓霍ｯ邱壹・蟒ｶ莨ｸ縺輔ｌ縲・925蟷ｴ・亥､ｧ豁｣14蟷ｴ・峨↓逾樒伐縲應ｸ企㍽髢薙′髢矩壹＠縺溘％縺ｨ縺ｧ縲・
-      迺ｰ迥ｶ縺ｨ縺励※縺ｮ騾｣邯壽ｧ縺梧・遶九＠縲・・蟶る延驕薙→縺励※縺ｮ諤ｧ譬ｼ縺梧ｱｺ螳夂噪縺ｫ蠑ｷ縺ｾ縺｣縺溘・
+      その後、都心周縁の発展とともに路線は延伸され、1925年（大正14年）に神田〜上野間が開通したことで、
+      環状としての連続性が成立し、都市鉄道としての性格が決定的に強まった。
     </p>
 
     <p>
-      謌ｦ轣ｽ縺ｫ繧医ｋ陲ｫ螳ｳ縺ｨ謌ｦ蠕悟ｾｩ譌ｧ縲・ｫ伜ｺｦ邨梧ｸ域・髟ｷ譛溘・霈ｸ騾∝鴨蠅怜ｼｷ縲∝嵜驩・・蜑ｲ豌大霧蛹悶↓繧医ｋ驕句霧菴灘宛縺ｮ霆｢謠帙ｒ邨後※縲・
-      螻ｱ謇狗ｷ壹・縲梧擲莠ｬ縺ｮ騾壼共縺ｨ驛ｽ蟶よｴｻ蜍輔・繝ｪ繧ｺ繝縲阪ｒ謾ｯ縺医ｋ霍ｯ邱壹→縺励※螳夂捩縺励◆縲りｿ大ｹｴ縺ｯ譁ｰ鬧・・髢区･ｭ縺ｪ縺ｩ繧帝壹§縺ｦ縲・
-      驛ｽ蟶ゅ・螟牙喧縺ｫ蜷医ｏ縺帙※譖ｴ譁ｰ縺輔ｌ邯壹￠縺ｦ縺・ｋ縲・
+      戦災による被害と戦後復旧、高度経済成長期の輸送力増強、国鉄分割民営化による運営体制の転換を経て、
+      山手線は「東京の通勤と都市活動のリズム」を支える路線として定着した。近年は新駅の開業などを通じて、
+      都市の変化に合わせて更新され続けている。
     </p>
 
-    <h2>蟷ｴ陦ｨ</h2>
+    <h2>年表</h2>
     <ul>
-      <li><strong>1885</strong>・壽律譛ｬ驩・％ 蜩∝ｷ晉ｷ夲ｼ亥刀蟾昴懆ｵ､鄒ｽ・蛾幕讌ｭ・亥ｱｱ謇狗ｷ壹・蜴溷梛・・/li>
-      <li><strong>1909</strong>・壼嵜譛牙喧・亥嵜驩・ｼ峨↓繧医ｊ驕狗畑菴灘宛縺梧紛蛯吶＆繧後ｋ</li>
-      <li><strong>1925</strong>・夂･樒伐縲應ｸ企㍽髢矩壹∫腸迥ｶ驕玖ｻ｢縺ｮ謌千ｫ具ｼ育腸迥ｶ霍ｯ邱壹→縺励※螳梧・・・/li>
-      <li><strong>1945</strong>・壽姶轣ｽ縺ｫ繧医ｊ螟ｧ縺阪↑陲ｫ螳ｳ・域姶蠕悟ｾｩ譌ｧ縺ｸ・・/li>
-      <li><strong>1964</strong>・壽擲莠ｬ莠碑ｼｪ譛溘・・蟶よ隼騾縺ｨ霈ｸ騾∝鴨蠑ｷ蛹悶′蜉騾・/li>
-      <li><strong>1987</strong>・壼嵜驩・・蜑ｲ豌大霧蛹悶゛R譚ｱ譌･譛ｬ縺ｸ</li>
-      <li><strong>2020</strong>・夐ｫ倩ｼｪ繧ｲ繝ｼ繝医え繧ｧ繧､鬧・幕讌ｭ・・0鬧・ｽ灘宛・・/li>
+      <li><strong>1885</strong>：日本鉄道 品川線（品川〜赤羽）開業（山手線の原型）</li>
+      <li><strong>1909</strong>：国有化（国鉄）により運用体制が整備される</li>
+      <li><strong>1925</strong>：神田〜上野開通、環状運転の成立（環状路線として完成）</li>
+      <li><strong>1945</strong>：戦災により大きな被害（戦後復旧へ）</li>
+      <li><strong>1964</strong>：東京五輪期、都市改造と輸送力強化が加速</li>
+      <li><strong>1987</strong>：国鉄分割民営化、JR東日本へ</li>
+      <li><strong>2020</strong>：高輪ゲートウェイ駅開業（30駅体制）</li>
     </ul>
 
     <p class="muted" style="margin-top:28px;">
-      窶ｻ縺薙・繝壹・繧ｸ縺ｯ蛻ｶ菴憺比ｸｭ縺ｮ繧｢繝ｼ繧ｫ繧､繝悶〒縺吶よ峩譁ｰ縺ｮ驕守ｨ九ｂ蜷ｫ繧√※蜈ｬ髢九＠縺ｦ縺・∪縺吶・
+      ※このページは制作途中のアーカイブです。更新の過程も含めて公開しています。
     </p>
   </main>
 
   <script>
     // ===== GeoJSON URLs =====
-    // 笘・≠縺ｪ縺溘・螳溘ヵ繧｡繧､繝ｫ蜷阪↓蜷医ｏ縺帙※隱ｿ謨ｴ縺励※縺上□縺輔＞・域忰蟆ｾ縺縺大､峨∴繧後・OK・・
+    // ★あなたの実ファイル名に合わせて調整してください（末尾だけ変えればOK）
     const LINE_GEOJSON_URL = "../../assets/geojson/lines/jr-east-yamanote.geojson";
     const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/jr-east-yamanote_stations.geojson";
 
@@ -100,10 +100,10 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
-    // 荳｡譁ｹ隱ｭ縺ｿ霎ｼ繧√◆繧映it縺吶ｋ縺溘ａ縺ｮ蜈･繧檎黄
+    // 両方読み込めたらfitするための入れ物
     const boundsLayers = L.featureGroup().addTo(map);
 
-    // 鬧・Ξ繧､繝､蜿ら・・磯ｧ・Μ繧ｹ繝医け繝ｪ繝・け逕ｨ・・
+    // 駅レイヤ参照（駅リストクリック用）
     const stationMarkerById = new Map(); // station_id -> layer
 
     // ===== Line layer =====
@@ -123,12 +123,12 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
         boundsLayers.addLayer(lineLayer);
 
-        // 荳譌ｦ line 縺ｧ陦ｨ遉ｺ・磯ｧ・′譚･縺溘ｉ蜀糠it縺輔ｌ繧具ｼ・
+        // 一旦 line で表示（駅が来たら再fitされる）
         map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
       })
       .catch(err => {
         console.error(err);
-        alert("GeoJSON縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆: " + LINE_GEOJSON_URL);
+        alert("GeoJSONの読み込みに失敗しました: " + LINE_GEOJSON_URL);
       });
 
     // ===== Stations layer + list =====
@@ -149,9 +149,9 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             pointToLayer: (feature, latlng) => {
               const marker = L.circleMarker(latlng, {
                 radius: 6,
-                color: "#ff2d55",      // 譌｢蟄倥ユ繝ｳ繝励Ξ貅匁侠
+                color: "#ff2d55",      // 既存テンプレ準拠
                 weight: 2,
-                fillColor: "#ffd1dc",  // 譌｢蟄倥ユ繝ｳ繝励Ξ貅匁侠
+                fillColor: "#ffd1dc",  // 既存テンプレ準拠
                 fillOpacity: 0.95
               });
               const p = feature.properties || {};
@@ -167,7 +167,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
               const id = (p.station_id ?? "");
               layer.bindPopup(
                 `<strong>${name}</strong><br>` +
-                `鬧・・ ${order}<br>` +
+                `駅順: ${order}<br>` +
                 `ID: ${id}`
               );
             }
@@ -187,7 +187,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         const container = document.getElementById("station-list");
         if (container) {
           if (feats.length === 0) {
-            container.innerHTML = `<p>鬧・ョ繝ｼ繧ｿ縺瑚ｦ九▽縺九ｊ縺ｾ縺帙ｓ縺ｧ縺励◆縲・/p>`;
+            container.innerHTML = `<p>駅データが見つかりませんでした。</p>`;
           } else {
             const ol = document.createElement("ol");
             ol.style.lineHeight = "1.8";
@@ -201,7 +201,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
               const li = document.createElement("li");
               const a = document.createElement("span");
               a.className = "station-link";
-              a.textContent = `${name}・・${order}${stationId !== "" ? " / " + stationId : ""}・荏;
+              a.textContent = `${name}（#${order}${stationId !== "" ? " / " + stationId : ""}）`;
               a.addEventListener("click", () => {
                 const marker = stationMarkerById.get(String(stationId));
                 if (!marker) return;
@@ -221,9 +221,8 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       .catch(err => {
         console.error("Station layer/list error:", err);
         const container = document.getElementById("station-list");
-        if (container) container.innerHTML = `<p>鬧・ｸ隕ｧ縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆・・{String(err)}</p>`;
+        if (container) container.innerHTML = `<p>駅一覧の読み込みに失敗しました：${String(err)}</p>`;
       });
   </script>
 </body>
 </html>
-
