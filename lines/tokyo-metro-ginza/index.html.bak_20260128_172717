@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>東京メトロ銀座線｜ジオ道</title>
+  <meta name="description" content="東京メトロ銀座線の鉄道史（開業・延伸・改称）と、OpenHistoricalMap向けデータ整理。" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.8; }
+    main { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+    #map { height: 520px; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,.10); margin-bottom: 24px; }
+    code { background:#f4f4f6; padding:2px 6px; border-radius:6px; }
+    .muted { color:#666; font-size:.95em; }
+    h1, h2, h3 { margin-top: 1.6em; }
+  </style>
+</head>
+<body>
+  <main>
+    <p><a href="../">← 路線一覧へ</a></p>
+
+    <h1>東京メトロ銀座線</h1>
+
+    <p>
+      東京メトロ銀座線は、日本で最初に開業した地下鉄路線であり、
+      東京の都市構造そのものを形づくってきた基幹路線です。
+      ジオ道では、銀座線を「日本の地下鉄史の原点」として位置づけ、
+      史実に基づく時系列データとして整理・公開しています。
+    </p>
+
+    <h2>路線（試作データ）</h2>
+    <div id="map"></div>
+    <p class="muted">
+      ※現在は中心線のみ（駅・時代分割は今後追加）。<br>
+      line_slug: <code>tokyo-metro-ginza</code>
+    </p>
+	<h2>駅一覧（渋谷 → 浅草）</h2>
+	<div id="station-list">
+	<p>読み込み中...</p>
+	</div>
+
+    <!-- ========================= -->
+    <!-- 鉄道史セクション -->
+    <!-- ========================= -->
+    <h2>鉄道史</h2>
+
+    <p>
+      東京メトロ銀座線は、日本における都市地下鉄の原点とも言える路線である。
+      その歴史は、1927年（昭和2年）に開業した浅草―上野間に始まる。
+      これは東洋初の地下鉄営業路線であり、当時の東京において画期的な都市交通インフラであった。
+    </p>
+
+    <h3>創設期：日本初の地下鉄（1927年）</h3>
+    <p>
+      銀座線の前身は、東京地下鉄道株式会社によって建設された。
+      当初の路線は浅草から上野までの約2.2kmで、
+      地下を電車が走行するという発想自体が市民にとって未知のものであった。
+    </p>
+    <p>
+      しかし開業後、浅草・上野という当時から人の集積地を結ぶ路線は急速に利用者を増やし、
+      地下鉄が都市交通として有効であることを証明した。
+    </p>
+
+    <h3>延伸と都心回遊路線への成長（1930年代）</h3>
+    <p>
+      1930年代に入ると路線は段階的に延伸され、
+      神田、日本橋、銀座、新橋と、東京の商業・業務中枢を縫うように拡大していく。
+      1934年には新橋まで到達し、銀座線は都心を横断する回遊路線としての性格を強めた。
+    </p>
+
+    <h3>戦時・戦後復興期（1940年代）</h3>
+    <p>
+      第二次世界大戦中および戦後直後の混乱期においても、
+      銀座線は都心交通の生命線として機能し続けた。
+      地上交通が混乱する中、地下鉄は比較的早期に復旧し、
+      戦後復興期の都市活動を支えた。
+    </p>
+
+    <h3>路線完成と営団地下鉄時代（1950年代）</h3>
+    <p>
+      1950年代には渋谷まで延伸され、浅草―渋谷間の全線が完成する。
+      下町・都心・山手エリアを一本で貫く路線となり、
+      銀座線は東京の都市構造に決定的な影響を与えた。
+    </p>
+    <p>
+      運営主体は帝都高速度交通営団（営団地下鉄）へと移行し、
+      東京地下鉄網の基幹路線として安定した運行が続けられた。
+    </p>
+
+    <h3>東京メトロへの移行と現在（2004年以降）</h3>
+    <p>
+      2004年、営団地下鉄の民営化により東京地下鉄株式会社（東京メトロ）が発足し、
+      銀座線もその一路線として継承された。
+      現在も日本最古の地下鉄路線として、極めて高い現役性を保っている。
+    </p>
+	
+<h3>年表で見る銀座線の歴史</h3>
+<ul>
+  <li><strong>1927年（昭和2年）</strong>：浅草―上野間が開業。東洋初の地下鉄営業路線として日本の地下鉄史が始まる。</li>
+  <li><strong>1930年（昭和5年）</strong>：上野―神田間が延伸開業。</li>
+  <li><strong>1931年（昭和6年）</strong>：神田―日本橋間が延伸開業。</li>
+  <li><strong>1932年（昭和7年）</strong>：日本橋―銀座間が延伸開業。</li>
+  <li><strong>1934年（昭和9年）</strong>：銀座―新橋間が延伸開業。都心回遊路線としての性格を確立。</li>
+  <li><strong>1938年（昭和13年）</strong>：新橋―渋谷間が全通し、浅草―渋谷間の路線が完成。</li>
+  <li><strong>1941年（昭和16年）</strong>：東京地下鉄道が東京高速鉄道と統合され、帝都高速度交通営団（営団地下鉄）の前身体制へ。</li>
+  <li><strong>1945年（昭和20年）</strong>：終戦。戦災を受けながらも、戦後復興期の都心交通を支える。</li>
+  <li><strong>1950年代</strong>：営団地下鉄の基幹路線として安定運行期に入る。</li>
+  <li><strong>2004年（平成16年）</strong>：営団地下鉄の民営化により、東京地下鉄株式会社（東京メトロ）が発足。銀座線は東京メトロの一路線となる。</li>
+</ul>
+
+    <h3>ジオ道における位置づけ</h3>
+    <p>
+      ジオ道では、銀座線を「日本の地下鉄史が始まった原点路線」と位置づけ、
+      開業・延伸・運営主体の変遷を時系列データとして整理している。
+      今後はOpenHistoricalMap（OHM）で再利用可能な形へと拡張していく予定である。
+    </p>
+
+    <p class="muted" style="margin-top:28px;">
+      ※このページは制作途中のアーカイブです。更新の過程も含めて公開しています。
+    </p>
+  </main>
+
+<script>
+  const LINE_GEOJSON_URL = "../../assets/geojson/lines/tokyo-metro-ginza.geojson";
+  const STATIONS_GEOJSON_URL =
+    "../../assets/geojson/stations/tokyo-metro-ginza_stations.geojson";
+
+  // ===== Map init =====
+  const map = L.map("map", { zoomControl: true });
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(map);
+
+  const boundsLayers = L.featureGroup().addTo(map);
+  const stationMarkerById = new Map();
+
+  // ===== Line =====
+  fetch(LINE_GEOJSON_URL, { cache: "no-store" })
+    .then(r => r.json())
+    .then(gj => {
+      const lineLayer = L.geoJSON(gj, {
+  style: (feature) => ({
+    color: (feature?.properties?.color || feature?.properties?.colour || "#1f77b4"),
+    weight: 5,
+    opacity: 0.9
+  })
+}).addTo(map);
+
+      boundsLayers.addLayer(lineLayer);
+      map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
+    });
+
+  // ===== Stations + list =====
+  fetch(STATIONS_GEOJSON_URL, { cache: "no-store" })
+    .then(r => r.json())
+    .then(data => {
+      const feats = (data.features || [])
+        .filter(f => f.geometry?.type === "Point")
+        .sort((a, b) => (a.properties.station_order ?? 9999) - (b.properties.station_order ?? 9999));
+
+      // --- map points ---
+      const stationLayer = L.geoJSON(
+        { type: "FeatureCollection", features: feats },
+        {
+          pointToLayer: (f, latlng) => {
+            const m = L.circleMarker(latlng, {
+              radius: 6,
+              color: "#ff2d55",
+              weight: 2,
+              fillColor: "#ffd1dc",
+              fillOpacity: 0.95
+            });
+            if (f.properties.station_id) {
+              stationMarkerById.set(String(f.properties.station_id), m);
+            }
+            return m;
+          },
+          onEachFeature: (f, layer) => {
+            const p = f.properties || {};
+            layer.bindPopup(
+              `<strong>${p.name || ""}</strong><br>` +
+              `駅順: ${p.station_order ?? ""}<br>` +
+              `ID: ${p.station_id || ""}`
+            );
+          }
+        }
+      ).addTo(map);
+
+      stationLayer.bringToFront();
+      boundsLayers.addLayer(stationLayer);
+      map.fitBounds(boundsLayers.getBounds(), { padding: [20, 20] });
+
+      // --- station list ---
+      const container = document.getElementById("station-list");
+      if (!container) return;
+
+      const ol = document.createElement("ol");
+      ol.style.lineHeight = "1.8";
+
+      feats.forEach(f => {
+        const p = f.properties || {};
+        const li = document.createElement("li");
+        li.textContent = `${p.name}（#${p.station_order} / ${p.station_id}）`;
+        ol.appendChild(li);
+      });
+
+      container.innerHTML = "";
+      container.appendChild(ol);
+    });
+</script>
+
+
+</body>
+</html>
