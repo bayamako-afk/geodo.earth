@@ -108,8 +108,12 @@
       })
       .then(gj => {
         const lineLayer = L.geoJSON(gj, {
-          style: { weight: 5, opacity: 0.9 }
-        }).addTo(map);
+  style: (feature) => ({
+    color: (feature?.properties?.color || feature?.properties?.colour || "#1f77b4"),
+    weight: 5,
+    opacity: 0.9
+  })
+}).addTo(map);
 
         boundsLayers.addLayer(lineLayer);
 
