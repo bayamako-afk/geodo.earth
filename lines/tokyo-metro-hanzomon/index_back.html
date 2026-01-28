@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>東京メトロ半蔵門線｜ジオ道</title>
+  <meta name="description" content="東京メトロ半蔵門線（渋谷〜押上）の鉄道史（開業・延伸）と、OpenHistoricalMap向けデータ整理。" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.8; }
+    main { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+    #map { height: 520px; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,.10); margin-bottom: 24px; }
+    code { background:#f4f4f6; padding:2px 6px; border-radius:6px; }
+    .muted { color:#666; font-size:.95em; }
+    h1, h2 { margin-top: 1.6em; }
+    ol { padding-left: 1.3em; }
+    .station-link { cursor: pointer; text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <main>
+    <p><a href="../">← 路線一覧へ</a></p>
+
+    <h1>東京メトロ半蔵門線</h1>
+
+    <p>
+      東京メトロ半蔵門線は、<strong>渋谷〜押上</strong>を結び、表参道・永田町・大手町・錦糸町などを経由して
+      都心と東側エリアを貫く路線です。ジオ道では半蔵門線を「都心の結節＋東側接続」の代表例として整理し、
+      開業・延伸を史実に基づく時系列データ（OpenHistoricalMap向け）へ拡張していきます。
+    </p>
+
+    <h2>路線（試作データ）</h2>
+    <div id="map"></div>
+    <p class="muted">
+      ※現在は中心線（上下2ライン）＋駅ポイント（駅ごと1点）まで。時代分割は今後追加。<br>
+      line_slug: <code>tokyo-metro-hanzomon</code>
+    </p>
+
+    <h2>駅一覧（渋谷 → 押上）</h2>
+    <div id="station-list">
+      <p>読み込み中...</p>
+    </div>
+
+    <h2>鉄道史</h2>
+    <p>
+      半蔵門線は、都心の主要結節点を貫きつつ東側へ伸びる地下鉄として段階的に整備された。
+      渋谷・表参道・永田町・大手町といった乗換拠点を通るため、時系列で区間を追加していくと、
+      都市の回遊性や結節構造の変化が見えやすい。
+    </p>
+
+    <h2>年表（叩き台）</h2>
+    <ul>
+      <li><strong>計画</strong>：都心横断・東側連絡の需要を見据えた段階整備として構想</li>
+      <li><strong>開業</strong>：都心側から順次開業し、主要結節点で乗換網を形成</li>
+      <li><strong>延伸</strong>：東側へ延伸し、渋谷〜押上の形へ</li>
+      <li><strong>現在</strong>：都心〜東側の重要ルートとして運行中</li>
+    </ul>
+
+    <p class="muted" style="margin-top:28px;">
+      ※このページは制作途中のアーカイブです。更新の過程も含めて公開しています。
+    </p>
+  </main>
+
+  <script>
+    const LINE_GEOJSON_URL = "../../assets/geojson/lines/tokyo-metro-hanzomon.geojson";
+    const STATIONS_GEOJSON_URL = "../../assets/geojson/stations/tokyo-metro-hanzomon_stations.geojson";
+    const LINE_COLOR = "#8F76D6";
+
+    const map = L.map("map", { zoomControl: true });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    const boundsLayers = L.featureGroup().addTo(map);
+    const stationMarkerById = new Map();
+
+    function stationName(p) {
+      return p.station_name_ja || p.name_ja || p["name:ja"] || p.name || p.name_en || "(no name)";
+    }
+    function stationId(p) { return String(p.station_id || p.id || ""); }
+    function stationOrder(p) {
+      const v = p.station_order ?? p.order ?? p.seq ?? p.station_seq;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : 9999;
+    }
+
+    fetch(LINE_GEOJSON_URL, { cache: "no-store" })
+      .then(r => { if (!r.ok) throw new Error(`Line fetch failed: ${r.status}`); return r.json(); })
+      .then(gj => {
+        const lineLayer = L.geoJSON(gj, { style: { color: LINE_COLOR, weight: 5, opacity: 0.92 } }).addTo(map);
+        boundsLayers.addLayer(lineLayer);
+        map.fitBounds(lineLayer.getBounds(), { padding: [20, 20] });
+      })
+      .catch(err => { console.error(err); alert("GeoJSONの読み込みに失敗しました: " + LINE_GEOJSON_URL); });
+
+    fetch(STATIONS_GEOJSON_URL, { cache: "no-store" })
+      .then(r => { if (!r.ok) throw new Error(`Stations fetch failed: ${r.status}`); return r.json(); })
+      .then(stationData => {
+        const feats = (stationData.features || [])
+          .filter(f => f && f.geometry && f.geometry.type === "Point" && f.properties)
+          .sort((a, b) => {
+            const ao = stationOrder(a.properties || {});
+            const bo = stationOrder(b.properties || {});
+            if (ao !== bo) return ao - bo;
+            return String(stationName(a.properties || "")).localeCompare(String(stationName(b.properties || "")), "ja");
+          });
+
+        const stationLayer = L.geoJSON({ type: "FeatureCollection", features: feats }, {
+          pointToLayer: (feature, latlng) => {
+            const marker = L.circleMarker(latlng, { radius: 6, color: LINE_COLOR, weight: 2, fillColor: "#f6f2ff", fillOpacity: 0.95 });
+            const sid = stationId(feature.properties || {});
+            if (sid) stationMarkerById.set(sid, marker);
+            return marker;
+          },
+          onEachFeature: (feature, layer) => {
+            const p = feature.properties || {};
+            const name = stationName(p);
+            const order = stationOrder(p);
+            const sid = stationId(p);
+            const orderText = (order !== 9999) ? order : "—";
+            layer.bindPopup(
+              `<strong>${name}</strong><br>` +
+              `駅順: ${orderText}<br>` +
+              (sid ? `ID: ${sid}<br>` : "") +
+              (p.line_code ? `line_code: ${p.line_code}` : "")
+            );
+          }
+        }).addTo(map);
+
+        stationLayer.bringToFront();
+        boundsLayers.addLayer(stationLayer);
+
+        try {
+          const b = boundsLayers.getBounds();
+          if (b && b.isValid && b.isValid()) map.fitBounds(b, { padding: [20, 20] });
+        } catch (e) {}
+
+        const container = document.getElementById("station-list");
+        if (!container) return;
+
+        if (feats.length === 0) {
+          container.innerHTML = "<p>駅データが見つかりませんでした。</p>";
+          return;
+        }
+
+        const ol = document.createElement("ol");
+        feats.forEach(f => {
+          const p = f.properties || {};
+          const name = stationName(p);
+          const order = stationOrder(p);
+          const sid = stationId(p);
+          const li = document.createElement("li");
+          const a = document.createElement("span");
+          a.className = "station-link";
+          const orderText = (order !== 9999) ? `#${order}` : "#—";
+          a.textContent = `${name}（${orderText}${sid ? " / " + sid : ""}）`;
+          a.addEventListener("click", () => {
+            if (!sid) return;
+            const marker = stationMarkerById.get(String(sid));
+            if (!marker) return;
+            map.setView(marker.getLatLng(), Math.max(map.getZoom(), 15), { animate: true });
+            marker.openPopup();
+          });
+          li.appendChild(a);
+          ol.appendChild(li);
+        });
+
+        container.innerHTML = "";
+        container.appendChild(ol);
+      })
+      .catch(err => {
+        console.error("Station layer/list error:", err);
+        const container = document.getElementById("station-list");
+        if (container) container.innerHTML = `<p>駅一覧の読み込みに失敗しました：${String(err)}</p>`;
+      });
+  </script>
+</body>
+</html>
