@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "endpoints_tokyo-metro-tozai",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32654" } },
+"features": [
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 378798.0, 3952117.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 379279.0, 3952140.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 405820.0, 3951985.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 405818.0, 3951982.0 ] } }
+]
+}

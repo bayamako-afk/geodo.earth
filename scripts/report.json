@@ -1,0 +1,58 @@
+{
+  "input": "..\\assets\\geojson\\lines\\tokyo-metro-ginza.geojson",
+  "crs": "EPSG:4326",
+  "feature_count": 1,
+  "geom_type_counts": {
+    "MultiLineString": 1
+  },
+  "empty_geom_count": 0,
+  "null_geom_count": 0,
+  "exact_duplicate_geom_count": 0,
+  "validity": {
+    "invalid_count": 0,
+    "invalid_examples": []
+  },
+  "line_feature_count": 1,
+  "non_line_feature_count": 0,
+  "metric_crs": "EPSG:32654",
+  "length_stats": {
+    "count": 92,
+    "total_length_m": 29470.28952525368,
+    "length_describe_m": {
+      "count": 92.0,
+      "mean": 320.3292339701487,
+      "std": 445.8469318432712,
+      "min": 18.398682787052124,
+      "1%": 19.353240740696048,
+      "5%": 34.200064352555614,
+      "10%": 63.14478124214125,
+      "50%": 142.07359116530924,
+      "90%": 866.9802568785302,
+      "95%": 1598.1271563334628,
+      "99%": 1994.475390468842,
+      "max": 2010.8762993895243
+    },
+    "short_segments_lt_m": 10.0,
+    "short_segments_count": 0,
+    "short_segments_ratio": 0.0
+  },
+  "node_degree": {
+    "node_tol_m": 1.0,
+    "degree_histogram": {
+      "1": 15,
+      "2": 83,
+      "3": 1
+    },
+    "junction_degree_ge_3_count": 1,
+    "junction_top_samples": [
+      {
+        "x": 389463.0,
+        "y": 3952721.0,
+        "degree": 3
+      }
+    ]
+  },
+  "risk_flags": [
+    "JUNCTIONS_DEGREE>=3_PRESENT (分岐/構内の可能性)"
+  ]
+}

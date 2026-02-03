@@ -1,0 +1,8 @@
+﻿route,status,stations,gaps,metric_crs,out_file
+jr-east-yamanote,OK,30,0,EPSG:32654,C:\GISWORK\geodo.earth\assets\geojson\guno_v4_1\guno_lines\jr-east-yamanote_guno_line.geojson
+tokyo-metro-ginza,OK,19,0,EPSG:32654,C:\GISWORK\geodo.earth\assets\geojson\guno_v4_1\guno_lines\tokyo-metro-ginza_guno_line.geojson
+tokyo-metro-hanzomon,OK,14,0,EPSG:32654,C:\GISWORK\geodo.earth\assets\geojson\guno_v4_1\guno_lines\tokyo-metro-hanzomon_guno_line.geojson
+tokyo-metro-marunouchi,OK,25,0,EPSG:32654,C:\GISWORK\geodo.earth\assets\geojson\guno_v4_1\guno_lines\tokyo-metro-marunouchi_guno_line.geojson
+tokyo-metro-namboku,OK,19,0,EPSG:32654,C:\GISWORK\geodo.earth\assets\geojson\guno_v4_1\guno_lines\tokyo-metro-namboku_guno_line.geojson
+tokyo-metro-tozai,OK,23,0,EPSG:32654,C:\GISWORK\geodo.earth\assets\geojson\guno_v4_1\guno_lines\tokyo-metro-tozai_guno_line.geojson
+tokyo-metro-yurakucho,OK,29,0,EPSG:32654,C:\GISWORK\geodo.earth\assets\geojson\guno_v4_1\guno_lines\tokyo-metro-yurakucho_guno_line.geojson

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<josm-session version="0.1">
+    <viewport>
+        <center lat="35.701142419032685" lon="139.66173261042718"/>
+        <scale meter-per-pixel="22.119205"/>
+    </viewport>
+    <projection>
+        <projection-choice>
+            <id>core:wgs84</id>
+            <parameters/>
+        </projection-choice>
+        <code>EPSG:4326</code>
+    </projection>
+    <layers active="4">
+        <layer index="1" name="tokyo-metro-yurakucho_stations.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/stations/tokyo-metro-yurakucho_stations.geojson</file>
+        </layer>
+        <layer index="2" name="tokyo-metro-tozai_stations.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/stations/tokyo-metro-tozai_stations.geojson</file>
+        </layer>
+        <layer index="3" name="tokyo-metro-namboku_stations.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/stations/tokyo-metro-namboku_stations.geojson</file>
+        </layer>
+        <layer index="4" name="tokyo-metro-marunouchi_stations.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/stations/tokyo-metro-marunouchi_stations.geojson</file>
+        </layer>
+        <layer index="5" name="tokyo-metro-hanzomon_stations.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/stations/tokyo-metro-hanzomon_stations.geojson</file>
+        </layer>
+        <layer index="6" name="tokyo-metro-ginza_stations.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/stations/tokyo-metro-ginza_stations.geojson</file>
+        </layer>
+        <layer index="7" name="tokyo-metro-ginza_stations.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/stations/tokyo-metro-ginza_stations.geojson</file>
+        </layer>
+        <layer index="8" name="jr-east-yamanote_stations.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/stations/jr-east-yamanote_stations.geojson</file>
+        </layer>
+        <layer index="9" name="tokyo-metro-yurakucho.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/lines/tokyo-metro-yurakucho.geojson</file>
+        </layer>
+        <layer index="10" name="tokyo-metro-tozai.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/lines/tokyo-metro-tozai.geojson</file>
+        </layer>
+        <layer index="11" name="tokyo-metro-namboku.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/lines/tokyo-metro-namboku.geojson</file>
+        </layer>
+        <layer index="12" name="tokyo-metro-marunouchi.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/lines/tokyo-metro-marunouchi.geojson</file>
+        </layer>
+        <layer index="13" name="tokyo-metro-hanzomon.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/lines/tokyo-metro-hanzomon.geojson</file>
+        </layer>
+        <layer index="14" name="tokyo-metro-ginza.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/lines/tokyo-metro-ginza.geojson</file>
+        </layer>
+        <layer index="15" name="jr-east-yamanote.geojson" type="osm-data" version="0.1" visible="true">
+            <file>file:/C:/GISWORK/geodo.earth/assets/geojson/lines/jr-east-yamanote.geojson</file>
+        </layer>
+    </layers>
+</josm-session>

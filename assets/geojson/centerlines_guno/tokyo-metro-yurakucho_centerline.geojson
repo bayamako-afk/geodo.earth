@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "tokyo-metro-yurakucho_centerline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "route": "tokyo-metro-yurakucho", "derived": "guno_centerline", "stations_mode": "exact_suffix", "station_buffer_m": 20.0 }, "geometry": { "type": "LineString", "coordinates": [ [ 139.631114121019891, 35.776755403526217 ], [ 139.629571020167248, 35.777535090894176 ], [ 139.629007511409498, 35.778031646832076 ], [ 139.628693610934988, 35.778662003402232 ], [ 139.628485629928718, 35.780131746136263 ], [ 139.628058678672659, 35.780735987886203 ], [ 139.623900687746982, 35.783613865519172 ], [ 139.62270895827919, 35.784297284709709 ], [ 139.621555303840012, 35.784844547134533 ], [ 139.612745378469441, 35.788376849364802 ] ] } }
+]
+}

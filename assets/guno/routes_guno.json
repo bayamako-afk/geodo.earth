@@ -1,0 +1,16 @@
+[
+  {
+    "id": "tokyo-metro-ginza",
+    "name": "銀座線",
+    "color": "#F39700",
+    "centerline": "/assets/geojson/centerlines_guno/tokyo-metro-ginza_centerline.geojson",
+    "stations": "/assets/geojson/stations/tokyo-metro-ginza_stations.geojson"
+  },
+  {
+    "id": "tokyo-metro-marunouchi",
+    "name": "丸ノ内線",
+    "color": "#E60012",
+    "centerline": "/assets/geojson/centerlines_guno/tokyo-metro-marunouchi_centerline.geojson",
+    "stations": "/assets/geojson/stations/tokyo-metro-marunouchi_stations.geojson"
+  }
+]

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "junctions_tokyo-metro-ginza",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32654" } },
+"features": [
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 389463.0, 3952721.0 ] } }
+]
+}

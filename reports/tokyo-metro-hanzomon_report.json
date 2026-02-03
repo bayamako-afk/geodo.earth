@@ -1,0 +1,45 @@
+{
+  "input": "C:\\GISWORK\\geodo.earth\\assets\\geojson\\lines\\tokyo-metro-hanzomon.geojson",
+  "crs": "EPSG:4326",
+  "feature_count": 74,
+  "geom_type_counts": {
+    "Polygon": 12,
+    "LineString": 62
+  },
+  "empty_geom_count": 0,
+  "null_geom_count": 0,
+  "exact_duplicate_geom_count": 1,
+  "validity": {
+    "invalid_count": 0,
+    "invalid_examples": []
+  },
+  "line_feature_count": 62,
+  "non_line_feature_count": 12,
+  "metric_crs": "EPSG:32654",
+  "length": {
+    "segments": 62,
+    "total_length_m": 36588.235031205804,
+    "min_m": 141.41091669865403,
+    "p50_m": 245.00805532840064,
+    "p90_m": 1374.121258687286,
+    "max_m": 2069.275267074205,
+    "short_m_threshold": 10.0,
+    "short_count": 0,
+    "short_ratio": 0.0
+  },
+  "node_degree": {
+    "node_tol_m": 1.0,
+    "degree_histogram": {
+      "1": 8,
+      "2": 54,
+      "4": 2
+    },
+    "junction_degree_ge_3_count": 2,
+    "endpoints_degree_eq_1_count": 8
+  },
+  "risk_flags": [
+    "NON_LINE_GEOMETRY_PRESENT",
+    "DUPLICATE_GEOMETRY_PRESENT",
+    "JUNCTIONS_DEGREE>=3_PRESENT"
+  ]
+}

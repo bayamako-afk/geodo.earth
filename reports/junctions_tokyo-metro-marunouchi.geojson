@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "junctions_tokyo-metro-marunouchi",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32654" } },
+"features": [
+{ "type": "Feature", "properties": { "degree": 4 }, "geometry": { "type": "Point", "coordinates": [ 380118.0, 3951220.0 ] } },
+{ "type": "Feature", "properties": { "degree": 4 }, "geometry": { "type": "Point", "coordinates": [ 380139.0, 3951220.0 ] } },
+{ "type": "Feature", "properties": { "degree": 4 }, "geometry": { "type": "Point", "coordinates": [ 387815.0, 3952132.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 380606.0, 3951175.0 ] } }
+]
+}

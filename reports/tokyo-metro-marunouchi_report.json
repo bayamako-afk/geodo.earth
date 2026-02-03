@@ -1,0 +1,43 @@
+{
+  "input": "C:\\GISWORK\\geodo.earth\\assets\\geojson\\lines\\tokyo-metro-marunouchi.geojson",
+  "crs": "EPSG:4326",
+  "feature_count": 1,
+  "geom_type_counts": {
+    "MultiLineString": 1
+  },
+  "empty_geom_count": 0,
+  "null_geom_count": 0,
+  "exact_duplicate_geom_count": 0,
+  "validity": {
+    "invalid_count": 0,
+    "invalid_examples": []
+  },
+  "line_feature_count": 1,
+  "non_line_feature_count": 0,
+  "metric_crs": "EPSG:32654",
+  "length": {
+    "segments": 30,
+    "total_length_m": 57312.79162478531,
+    "min_m": 9.950414135815532,
+    "p50_m": 130.62857760407337,
+    "p90_m": 5196.057609155644,
+    "max_m": 24228.622782827126,
+    "short_m_threshold": 10.0,
+    "short_count": 1,
+    "short_ratio": 0.03333333333333333
+  },
+  "node_degree": {
+    "node_tol_m": 1.0,
+    "degree_histogram": {
+      "1": 39,
+      "2": 3,
+      "3": 1,
+      "4": 3
+    },
+    "junction_degree_ge_3_count": 4,
+    "endpoints_degree_eq_1_count": 39
+  },
+  "risk_flags": [
+    "JUNCTIONS_DEGREE>=3_PRESENT"
+  ]
+}

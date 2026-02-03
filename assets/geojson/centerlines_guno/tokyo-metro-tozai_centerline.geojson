@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "tokyo-metro-tozai_centerline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "route": "tokyo-metro-tozai", "derived": "guno_centerline", "stations_mode": "exact_suffix", "station_buffer_m": 20.0 }, "geometry": { "type": "LineString", "coordinates": [ [ 139.85909852526575, 35.664597116312407 ], [ 139.843063858570673, 35.665931215190874 ], [ 139.839379582491688, 35.66634123978244 ], [ 139.83722716832159, 35.666710603031866 ], [ 139.832066038596111, 35.668280168733226 ] ] } }
+]
+}

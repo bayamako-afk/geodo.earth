@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GUNO Map</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #wrap { display: grid; grid-template-columns: 360px 1fr; height: 100%; }
+    #sidebar { padding: 12px; border-right: 1px solid #ddd; overflow: auto; }
+    #map { height: 100%; }
+    .row { margin: 10px 0; }
+    .btn { display: inline-block; padding: 8px 10px; border: 1px solid #ccc; border-radius: 8px; background: #fff; cursor: pointer; }
+    .btn:active { transform: translateY(1px); }
+    .pill { display:inline-block; padding:2px 8px; border-radius:999px; background:#f2f2f2; margin-left:6px; font-size:12px; }
+    select, input { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #ccc; }
+    .small { font-size: 12px; color: #666; }
+    .legend-item { display:flex; align-items:center; gap:8px; margin: 6px 0; }
+    .swatch { width:14px; height:14px; border-radius:4px; border:1px solid rgba(0,0,0,.15); }
+    .hr { height:1px; background:#eee; margin:12px 0; }
+  </style>
+</head>
+
+<body>
+<div id="wrap">
+  <div id="sidebar">
+    <h2 style="margin:0 0 8px 0;">GUNO Map</h2>
+    <div class="small">中心線（GUNO用）＋駅ポイントを表示します</div>
+
+    <div class="row">
+      <label>路線</label>
+      <select id="routeSelect"></select>
+      <div class="small" id="routeMeta"></div>
+    </div>
+
+    <div class="row">
+      <label>駅検索</label>
+      <input id="stationSearch" placeholder="例：渋谷 / 銀座 / 上野 など" />
+      <div class="small">Enterで候補へズーム</div>
+    </div>
+
+    <div class="row">
+      <button class="btn" id="btnFit">路線全体にフィット</button>
+      <span class="pill" id="statPill">--</span>
+    </div>
+
+    <div class="hr"></div>
+
+    <div>
+      <h3 style="margin:0 0 8px 0;">表示中</h3>
+      <div id="legend"></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="small">
+      ヒント：駅をクリックするとポップアップ。<br/>
+      GitHub Pagesで動かす場合は同一ドメイン配下にGeoJSONを置けばOKです。
+    </div>
+  </div>
+
+  <div id="map"></div>
+</div>
+
+<script>
+  // -------- settings --------
+  const ROUTES_JSON = "/assets/guno/routes_guno.json"; // 上で作ったJSON
+  const DEFAULT_VIEW = { center: [35.681, 139.767], zoom: 11 }; // 東京駅付近
+
+  // -------- map init --------
+  const map = L.map('map', { zoomControl: true }).setView(DEFAULT_VIEW.center, DEFAULT_VIEW.zoom);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  let routes = [];
+  let activeRoute = null;
+
+  let centerlineLayer = null;
+  let stationsLayer = null;
+
+  // for search
+  let stationIndex = []; // {name, latlng, props}
+
+  function setStatus(text) {
+    document.getElementById('statPill').textContent = text;
+  }
+
+  async function fetchJson(url) {
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) throw new Error(`fetch failed: ${url} (${res.status})`);
+    return res.json();
+  }
+
+  function clearLayers() {
+    if (centerlineLayer) { map.removeLayer(centerlineLayer); centerlineLayer = null; }
+    if (stationsLayer) { map.removeLayer(stationsLayer); stationsLayer = null; }
+    stationIndex = [];
+  }
+
+  function makeLegend(route) {
+    const el = document.getElementById('legend');
+    el.innerHTML = '';
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = `<span class="swatch" style="background:${route.color}"></span><div>${route.name}</div>`;
+    el.appendChild(item);
+  }
+
+  function updateRouteMeta(route) {
+    document.getElementById('routeMeta').textContent = `${route.id}`;
+  }
+
+  function guessStationName(props) {
+    // いろんな駅GeoJSONに対応するための「ゆるい」名前抽出
+    const keys = ["name", "station_name", "name_ja", "name:ja", "title"];
+    for (const k of keys) if (props && props[k]) return String(props[k]);
+    // OSM由来っぽい場合
+    if (props && props["@id"]) return String(props["@id"]);
+    return "station";
+  }
+
+  function buildStationsIndex(geojson) {
+    stationIndex = [];
+    for (const f of geojson.features || []) {
+      if (!f.geometry) continue;
+      const t = f.geometry.type;
+      if (t !== "Point") continue;
+      const [lng, lat] = f.geometry.coordinates;
+      stationIndex.push({
+        name: guessStationName(f.properties),
+        latlng: L.latLng(lat, lng),
+        props: f.properties || {}
+      });
+    }
+  }
+
+  async function loadRoute(route) {
+    setStatus("Loading...");
+    clearLayers();
+    activeRoute = route;
+    makeLegend(route);
+    updateRouteMeta(route);
+
+    // 1) centerline
+    const centerline = await fetchJson(route.centerline);
+    centerlineLayer = L.geoJSON(centerline, {
+      style: () => ({
+        color: route.color,
+        weight: 6,
+        opacity: 0.9
+      })
+    }).addTo(map);
+
+    // 2) stations
+    const stations = await fetchJson(route.stations);
+    buildStationsIndex(stations);
+
+    stationsLayer = L.geoJSON(stations, {
+      pointToLayer: (feature, latlng) => {
+        return L.circleMarker(latlng, {
+          radius: 6,
+          weight: 2,
+          fillOpacity: 0.9
+        });
+      },
+      onEachFeature: (feature, layer) => {
+        const props = feature.properties || {};
+        const name = guessStationName(props);
+
+        // ポップアップ内容（必要ならキー追加）
+        const html = `
+          <div style="font-size:14px;">
+            <div style="font-weight:700; margin-bottom:4px;">${name}</div>
+            <div style="font-size:12px; color:#666;">${route.name}</div>
+          </div>
+        `;
+        layer.bindPopup(html);
+      }
+    }).addTo(map);
+
+    // fit bounds
+    try {
+      const group = L.featureGroup([centerlineLayer, stationsLayer]);
+      map.fitBounds(group.getBounds().pad(0.15));
+    } catch (e) {}
+
+    setStatus(`Stations: ${stationIndex.length}`);
+  }
+
+  function setupUI() {
+    const sel = document.getElementById('routeSelect');
+    sel.innerHTML = '';
+
+    for (const r of routes) {
+      const opt = document.createElement('option');
+      opt.value = r.id;
+      opt.textContent = r.name;
+      sel.appendChild(opt);
+    }
+
+    sel.addEventListener('change', () => {
+      const id = sel.value;
+      const r = routes.find(x => x.id === id);
+      if (r) loadRoute(r).catch(err => alert(err.message));
+    });
+
+    document.getElementById('btnFit').addEventListener('click', () => {
+      if (!centerlineLayer && !stationsLayer) return;
+      const layers = [];
+      if (centerlineLayer) layers.push(centerlineLayer);
+      if (stationsLayer) layers.push(stationsLayer);
+      const group = L.featureGroup(layers);
+      map.fitBounds(group.getBounds().pad(0.15));
+    });
+
+    const search = document.getElementById('stationSearch');
+    search.addEventListener('keydown', (ev) => {
+      if (ev.key !== 'Enter') return;
+      const q = (search.value || "").trim();
+      if (!q) return;
+
+      const hit = stationIndex.find(s => s.name.includes(q)) ||
+                  stationIndex.find(s => s.name.toLowerCase().includes(q.toLowerCase()));
+      if (!hit) {
+        alert("見つかりませんでした");
+        return;
+      }
+      map.setView(hit.latlng, Math.max(map.getZoom(), 14));
+    });
+  }
+
+  async function main() {
+    routes = await fetchJson(ROUTES_JSON);
+    if (!Array.isArray(routes) || routes.length === 0) {
+      throw new Error("routes_guno.json が空です");
+    }
+    setupUI();
+    // 初期表示は先頭
+    document.getElementById('routeSelect').value = routes[0].id;
+    await loadRoute(routes[0]);
+  }
+
+  main().catch(err => {
+    console.error(err);
+    alert("起動エラー: " + err.message);
+  });
+</script>
+</body>
+</html>

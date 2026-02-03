@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "endpoints_tokyo-metro-namboku",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32654" } },
+"features": [
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 383710.0, 3943947.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 384491.0, 3960677.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 383724.0, 3943950.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 384493.0, 3960688.0 ] } }
+]
+}

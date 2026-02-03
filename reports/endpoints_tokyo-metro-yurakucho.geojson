@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "endpoints_tokyo-metro-yurakucho",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32654" } },
+"features": [
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 374616.0, 3961375.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 393880.0, 3945327.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 374614.0, 3961372.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 393775.0, 3945301.0 ] } }
+]
+}

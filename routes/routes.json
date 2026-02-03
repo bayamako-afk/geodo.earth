@@ -1,0 +1,14 @@
+[
+  {
+    "line_slug": "tokyo-metro-hanzomon",
+    "title_ja": "東京メトロ半蔵門線",
+    "description_meta": "東京メトロ半蔵門線（渋谷〜押上）の鉄道史（開業・延伸）と、OpenHistoricalMap向けデータ整理。",
+    "intro_html": "東京メトロ半蔵門線は、<strong>渋谷〜押上</strong>を結び、表参道・永田町・大手町・錦糸町などを経由して都心と東側エリアを貫く路線です。",
+    "direction_ja": "渋谷 → 押上",
+    "history_html": "半蔵門線は、都心の主要結節点を貫きつつ東側へ伸びる地下鉄として段階的に整備された。渋谷・表参道・永田町・大手町といった乗換拠点を通るため、時系列で区間を追加していくと都市の回遊性や結節構造の変化が見えやすい。",
+    "timeline_html": "<ul><li><strong>計画</strong>：都心横断・東側連絡の需要を見据えた段階整備として構想</li><li><strong>開業</strong>：都心側から順次開業し、主要結節点で乗換網を形成</li><li><strong>延伸</strong>：東側へ延伸し、渋谷〜押上の形へ</li><li><strong>現在</strong>：都心〜東側の重要ルートとして運行中</li></ul>",
+    "line_color": "#8F76D6",
+    "line_geojson_url": "../../assets/geojson/lines/tokyo-metro-hanzomon.geojson",
+    "stations_geojson_url": "../../assets/geojson/stations/tokyo-metro-hanzomon_stations.geojson"
+  }
+]

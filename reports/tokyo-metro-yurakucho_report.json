@@ -1,0 +1,39 @@
+{
+  "input": "C:\\GISWORK\\geodo.earth\\assets\\geojson\\lines\\tokyo-metro-yurakucho.geojson",
+  "crs": "EPSG:4326",
+  "feature_count": 67,
+  "geom_type_counts": {
+    "LineString": 67
+  },
+  "empty_geom_count": 0,
+  "null_geom_count": 0,
+  "exact_duplicate_geom_count": 0,
+  "validity": {
+    "invalid_count": 0,
+    "invalid_examples": []
+  },
+  "line_feature_count": 67,
+  "non_line_feature_count": 0,
+  "metric_crs": "EPSG:32654",
+  "length": {
+    "segments": 67,
+    "total_length_m": 56878.38642658566,
+    "min_m": 40.78428668845189,
+    "p50_m": 372.5902733301683,
+    "p90_m": 1711.7148987748928,
+    "max_m": 6312.076616456032,
+    "short_m_threshold": 10.0,
+    "short_count": 0,
+    "short_ratio": 0.0
+  },
+  "node_degree": {
+    "node_tol_m": 1.0,
+    "degree_histogram": {
+      "1": 4,
+      "2": 65
+    },
+    "junction_degree_ge_3_count": 0,
+    "endpoints_degree_eq_1_count": 4
+  },
+  "risk_flags": []
+}

@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "flags",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32654" } },
+"features": [
+{ "type": "Feature", "properties": { "file": "tokyo-metro-ginza.geojson", "kind": "junction", "degree": 3, "risk_flags": "JUNCTIONS_DEGREE>=3_PRESENT" }, "geometry": { "type": "Point", "coordinates": [ 389463.0, 3952721.0 ] } },
+{ "type": "Feature", "properties": { "file": "tokyo-metro-hanzomon.geojson", "kind": "junction", "degree": 4, "risk_flags": "NON_LINE_GEOMETRY_PRESENT|DUPLICATE_GEOMETRY_PRESENT|JUNCTIONS_DEGREE>=3_PRESENT" }, "geometry": { "type": "Point", "coordinates": [ 392848.0, 3949925.0 ] } },
+{ "type": "Feature", "properties": { "file": "tokyo-metro-marunouchi.geojson", "kind": "junction", "degree": 4, "risk_flags": "JUNCTIONS_DEGREE>=3_PRESENT" }, "geometry": { "type": "Point", "coordinates": [ 380118.0, 3951220.0 ] } },
+{ "type": "Feature", "properties": { "file": "tokyo-metro-namboku.geojson", "kind": "endpoint", "degree": 1, "risk_flags": "" }, "geometry": { "type": "Point", "coordinates": [ 383710.0, 3943947.0 ] } },
+{ "type": "Feature", "properties": { "file": "tokyo-metro-tozai.geojson", "kind": "junction", "degree": 3, "risk_flags": "JUNCTIONS_DEGREE>=3_PRESENT" }, "geometry": { "type": "Point", "coordinates": [ 384908.0, 3951942.0 ] } },
+{ "type": "Feature", "properties": { "file": "tokyo-metro-yurakucho.geojson", "kind": "endpoint", "degree": 1, "risk_flags": "" }, "geometry": { "type": "Point", "coordinates": [ 374616.0, 3961375.0 ] } }
+]
+}

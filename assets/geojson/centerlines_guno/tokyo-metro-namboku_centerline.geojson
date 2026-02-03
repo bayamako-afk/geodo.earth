@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "tokyo-metro-namboku_centerline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "route": "tokyo-metro-namboku", "derived": "guno_centerline", "stations_mode": "exact_suffix", "station_buffer_m": 20.0 }, "geometry": { "type": "LineString", "coordinates": [ [ 139.732632304351313, 35.777751743830514 ], [ 139.733150605124138, 35.776886267107479 ], [ 139.733287979914593, 35.776320471045629 ], [ 139.733060052117963, 35.773547806099032 ], [ 139.73314625592073, 35.772644607041087 ], [ 139.735669141536903, 35.76522706933455 ] ] } }
+]
+}

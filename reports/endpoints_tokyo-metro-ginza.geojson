@@ -1,0 +1,22 @@
+{
+"type": "FeatureCollection",
+"name": "endpoints_tokyo-metro-ginza",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32654" } },
+"features": [
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 382333.0, 3946862.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 391321.0, 3952642.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 389644.0, 3952893.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 382512.0, 3946881.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 386344.0, 3948151.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 386209.0, 3948197.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 386212.0, 3948199.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 386345.0, 3948156.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 391318.0, 3952644.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 389363.0, 3952698.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 389345.0, 3952693.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 389361.0, 3952702.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 389347.0, 3952688.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 382362.0, 3946863.0 ] } },
+{ "type": "Feature", "properties": { "degree": 1 }, "geometry": { "type": "Point", "coordinates": [ 382334.0, 3946859.0 ] } }
+]
+}

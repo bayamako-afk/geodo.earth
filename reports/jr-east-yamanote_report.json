@@ -1,0 +1,21 @@
+{
+  "input": "C:\\GISWORK\\geodo.earth\\assets\\geojson\\lines\\jr-east-yamanote.geojson",
+  "crs": "EPSG:4326",
+  "feature_count": 1,
+  "geom_type_counts": {
+    "GeometryCollection": 1
+  },
+  "empty_geom_count": 0,
+  "null_geom_count": 0,
+  "exact_duplicate_geom_count": 0,
+  "validity": {
+    "invalid_count": 0,
+    "invalid_examples": []
+  },
+  "line_feature_count": 0,
+  "non_line_feature_count": 1,
+  "risk_flags": [
+    "NON_LINE_GEOMETRY_PRESENT",
+    "NO_LINES_FOUND"
+  ]
+}

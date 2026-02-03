@@ -1,0 +1,19 @@
+{
+"type": "FeatureCollection",
+"name": "junctions_tokyo-metro-tozai",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32654" } },
+"features": [
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 384908.0, 3951942.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 385288.0, 3951892.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 385807.0, 3951772.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 386056.0, 3951787.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 397735.0, 3947241.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 397736.0, 3947245.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 398214.0, 3947205.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 398215.0, 3947208.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 404126.0, 3951391.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 404123.0, 3951393.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 404432.0, 3951741.0 ] } },
+{ "type": "Feature", "properties": { "degree": 3 }, "geometry": { "type": "Point", "coordinates": [ 404434.0, 3951738.0 ] } }
+]
+}

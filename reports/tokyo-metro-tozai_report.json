@@ -1,0 +1,41 @@
+{
+  "input": "C:\\GISWORK\\geodo.earth\\assets\\geojson\\lines\\tokyo-metro-tozai.geojson",
+  "crs": "EPSG:4326",
+  "feature_count": 1,
+  "geom_type_counts": {
+    "MultiLineString": 1
+  },
+  "empty_geom_count": 0,
+  "null_geom_count": 0,
+  "exact_duplicate_geom_count": 0,
+  "validity": {
+    "invalid_count": 0,
+    "invalid_examples": []
+  },
+  "line_feature_count": 1,
+  "non_line_feature_count": 0,
+  "metric_crs": "EPSG:32654",
+  "length": {
+    "segments": 20,
+    "total_length_m": 63311.06123407856,
+    "min_m": 251.01824938755576,
+    "p50_m": 507.1586088492475,
+    "p90_m": 8091.224512724734,
+    "max_m": 13320.06127106835,
+    "short_m_threshold": 10.0,
+    "short_count": 0,
+    "short_ratio": 0.0
+  },
+  "node_degree": {
+    "node_tol_m": 1.0,
+    "degree_histogram": {
+      "1": 4,
+      "3": 12
+    },
+    "junction_degree_ge_3_count": 12,
+    "endpoints_degree_eq_1_count": 4
+  },
+  "risk_flags": [
+    "JUNCTIONS_DEGREE>=3_PRESENT"
+  ]
+}
