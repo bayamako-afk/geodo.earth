@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GUNO v1.0 (PNG Cards + Shared Map)</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121a33; --ink:#e9edf7; --muted:#9db0d6;
+    --ok:#7CFF7A; --warn:#ffd36a;
+  }
+  body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans JP",sans-serif; background:var(--bg); color:var(--ink);}
+  header{padding:12px 14px; background:#0a0f1f; position:sticky; top:0; z-index:10; border-bottom:1px solid rgba(255,255,255,.06);}
+  .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  button{background:#253055; color:var(--ink); border:1px solid rgba(255,255,255,.14); padding:8px 10px; border-radius:10px; cursor:pointer;}
+  button:hover{filter:brightness(1.1);}
+  button:disabled{opacity:.45; cursor:not-allowed; filter:none;}
+  .pill{padding:5px 10px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:var(--muted); font-size:12px;}
+  main{padding:14px; max-width:1280px; margin:0 auto;}
+
+  .grid{display:grid; grid-template-columns: 410px 1fr; gap:14px;}
+  @media (max-width: 980px){ .grid{grid-template-columns:1fr;} }
+  .panel{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px;}
+  .h{font-weight:800; margin:0 0 8px 0;}
+  .sub{color:var(--muted); font-size:12px; margin-top:-6px; margin-bottom:10px;}
+
+  .topwrap{display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap;}
+  .stack{
+    width: 160px; height: 215px; border-radius:16px;
+    background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.18);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+
+  img.card{
+    width:113px; height:153px; /* 226x307 の 1/2 */
+    border-radius:12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    transition: transform .12s ease, outline-color .12s ease, filter .12s ease;
+    user-select:none;
+  }
+  img.card.big{width:140px; height:190px;}
+  img.card.playable{outline:3px solid var(--ok); outline-offset:2px;}
+  img.card:hover{transform: translateY(-6px) scale(1.06); z-index:5;}
+
+  /* deck draw animation */
+  @keyframes pop {
+    0%{transform:scale(1) translateY(0);}
+    50%{transform:scale(1.05) translateY(-4px);}
+    100%{transform:scale(1) translateY(0);}
+  }
+  .pop{animation: pop .18s ease-in-out 1;}
+
+  .hands{display:flex; flex-direction:column; gap:10px;}
+  .handRow{padding:10px; border-radius:14px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03);}
+  .handHead{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
+  .cards{display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+  .turn{color:var(--warn); font-weight:900;}
+
+  .log{height:260px; overflow:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12px; background:rgba(0,0,0,.25); padding:10px; border-radius:14px; border:1px solid rgba(255,255,255,.08);}
+  .log div{margin:0 0 4px 0; color:#d7def3;}
+  .log .muted{color:rgba(233,237,247,.65);}
+
+  /* Shared Map */
+  .mapWrap{display:flex; flex-direction:column; gap:10px;}
+  .mapRow{display:grid; grid-template-columns: 54px 1fr; gap:10px; align-items:center;}
+  .lineBadge{
+    display:flex; align-items:center; justify-content:center;
+    width:54px; height:30px; border-radius:12px;
+    border:1px solid rgba(255,255,255,.14);
+    font-weight:900; letter-spacing:.5px; font-size:12px;
+  }
+  .slots{display:flex; gap:7px; flex-wrap:wrap;}
+
+  /* v30寄せ：番号＋駅名 */
+  .slot{
+    width:70px; height:40px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.28);
+    background:rgba(0,0,0,.18);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    line-height:1.05;
+    gap:2px;
+    color:rgba(233,237,247,.95);
+    user-select:none;
+  }
+  .slot.locked{opacity:.55; filter:saturate(.8);}
+  .station-no{
+    font-size:10px;
+    font-weight:900;
+    opacity:.92;
+  }
+  .station-name{
+    font-size:10px;
+    font-weight:800;
+    white-space:nowrap;
+  }
+
+  .legend{display:flex; gap:10px; flex-wrap:wrap;}
+  .legItem{display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted);}
+  .dot{width:10px; height:10px; border-radius:50%;}
+</style>
+</head>
+<body>
+<header>
+  <div class="row">
+    <button id="btnNew">🎲 New Game</button>
+    <button id="btnStep">▶ Step</button>
+    <button id="btnAuto">⏯ Auto: OFF</button>
+    <span class="pill" id="pillState">turn=0 / dir=→</span>
+    <span class="pill" id="pillDeck">deck=0</span>
+    <span class="pill" id="pillTop">top= -</span>
+    <span class="pill" id="pillWin">win= -</span>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+
+    <!-- Left -->
+    <section class="panel">
+      <p class="h">山札 / 場札（Top）</p>
+      <p class="sub">TURNのプレイヤーは「光ってるカード」をクリックで出せます（停電は常に出せる扱い）。</p>
+
+      <div class="topwrap">
+        <div class="stack" title="Deck">
+          <img id="imgDeck" class="card big" alt="deck" />
+        </div>
+
+        <div class="stack" title="Top">
+          <img id="imgTop" class="card big" alt="top" />
+        </div>
+
+        <div style="flex:1; min-width:240px">
+          <div class="legend" id="legend"></div>
+          <div style="height:10px"></div>
+          <div class="pill">マッチ条件：同色(line) / 同番号(order) / 同駅名(station)</div>
+          <div style="height:8px"></div>
+          <div class="pill">停電：自分以外 全員1枚ドロー + 方向反転</div>
+          <div style="height:8px"></div>
+          <div class="pill">共有マップ：4路線×10（最後に埋めた人が路線獲得）</div>
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <p class="h">共有マップ</p>
+      <p class="sub">埋まったスロットは「最後に置いたプレイヤー色」で点灯。路線10/10でそのプレイヤーが1GUNO。</p>
+
+      <div class="mapWrap" id="mapWrap"></div>
+    </section>
+
+    <!-- Right -->
+    <section class="panel">
+      <p class="h">手札</p>
+      <div class="hands" id="hands"></div>
+    </section>
+
+    <!-- Log -->
+    <section class="panel" style="grid-column:1/-1">
+      <p class="h">ログ</p>
+      <div class="log" id="log"></div>
+    </section>
+  </div>
+</main>
+
+<script>
+/** ============
+ *  駅名はここだけ（表示・判定・画像参照が全部この配列に追随）
+ *  ============ */
+const STATIONS = {
+  JY: ["Tokyo","Yurakucho","Shimbashi","Shinagawa","Shibuya","Shinjuku","Takadanobaba","Ikebukuro","Ueno","Akihabara"],
+  G:  ["Shibuya","Omotesando","Aoyama-itchome","Akasaka-mitsuke","Tameike-sanno","Shimbashi","Ginza","Ueno","Inaricho","Asakusa"],
+  M:  ["Ikebukuro","Myogadani","Korakuen","Ochanomizu","Tokyo","Ginza","Akasaka-mitsuke","Yotsuya","Shinjuku","Nakano-sakaue"],
+  T:  ["Nakano","Ochiai","Takadanobaba","Waseda","Iidabashi","Otemachi","Nihombashi","Kayabacho","Monzen-nakacho","Toyocho"],
+};
+
+const CFG = {
+  players: 4,
+  startingHand: 7,
+  copiesPerStation: 2,
+  teidenPerLine: 2,
+  autoDelayMs: 320,
+  cardsDir: "cards",
+  backName: "GUNO_BACK.png",
+};
+
+// プレイヤー色（共有マップ点灯用）
+const PCLR = ["#FF5C5C","#FFD36A","#7CFF7A","#66B3FF"];
+// 路線色（見出し用）
+const LCLR = { JY:"#00AA00", G:"#FF9500", M:"#F62E36", T:"#009BBF" };
+
+let state = null;
+let autoTimer = null;
+
+function pad2(n){ return String(n).padStart(2,"0"); }
+
+function cardId(c){
+  if(c.type==="TEIDEN") return `${c.line}_TEIDEN${c.copy===2? "_2":""}`;
+  return `${c.line}_${pad2(c.order)}_${c.station}${c.copy===2? "_2":""}`;
+}
+function cardImgPath(c){
+  const dir = CFG.cardsDir;
+  if(c.type==="TEIDEN"){
+    const p2 = `${dir}/${c.line}_TEIDEN_2.png`;
+    const p1 = `${dir}/${c.line}_TEIDEN.png`;
+    return (c.copy===2) ? p2 : p1;
+  }
+  return `${dir}/${c.line}_${pad2(c.order)}_${c.station}${c.copy===2? "_2":""}.png`;
+}
+function backPath(){ return `${CFG.cardsDir}/${CFG.backName}`; }
+
+function log(msg, muted=false){
+  const el = document.getElementById("log");
+  const d = document.createElement("div");
+  if(muted) d.className = "muted";
+  d.textContent = msg;
+  el.appendChild(d);
+  el.scrollTop = el.scrollHeight;
+}
+function clearLog(){ document.getElementById("log").innerHTML=""; }
+
+function buildDeck(){
+  const deck = [];
+  for(const line of Object.keys(STATIONS)){
+    const list = STATIONS[line];
+    for(let i=0;i<list.length;i++){
+      const order = i+1;
+      const station = list[i];
+      for(let k=1;k<=CFG.copiesPerStation;k++){
+        deck.push({type:"STATION", line, order, station, copy:k});
+      }
+    }
+    for(let k=1;k<=CFG.teidenPerLine;k++){
+      deck.push({type:"TEIDEN", line, copy:k});
+    }
+  }
+  return deck;
+}
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+}
+function deal(s){
+  for(let t=0;t<CFG.startingHand;t++){
+    for(let p=0;p<CFG.players;p++){
+      s.hands[p].push(s.deck.pop());
+    }
+  }
+  s.top = s.deck.pop();
+}
+
+function playable(card, top){
+  if(card.type==="TEIDEN") return true;
+  if(top.type==="TEIDEN") return true;
+  return (card.line===top.line) || (card.order===top.order) || (card.station===top.station);
+}
+
+function deckPopAnim(){
+  const img = document.getElementById("imgDeck");
+  img.classList.remove("pop");
+  void img.offsetWidth;
+  img.classList.add("pop");
+}
+
+function applyTeiden(s, byPlayer){
+  // 勝利後は何もしない（停止の厳格化）
+  if(s.winner!==null) return;
+
+  for(let p=0;p<CFG.players;p++){
+    if(p===byPlayer) continue;
+    if(s.deck.length){
+      s.hands[p].push(s.deck.pop());
+      deckPopAnim();
+    }
+  }
+  s.dir *= -1;
+  log(`⚡ TEIDEN by P${byPlayer+1}: others draw + reverse`);
+}
+
+function nextPlayer(s){
+  const n = CFG.players;
+  s.cur = (s.cur + s.dir + n) % n;
+}
+
+/** 路線完成→GUNO付与→4GUNO勝利なら true を返す（以降の進行を止める） */
+function awardAndMap(s, p, card){
+  if(card.type!=="STATION") return false;
+
+  s.mapOwner[card.line][card.order] = p;
+
+  if(!s.lockedLines.has(card.line)){
+    const owners = s.mapOwner[card.line];
+    let filled = 0;
+    for(let i=1;i<=10;i++){
+      if(owners[i] !== null) filled++;
+    }
+    if(filled === 10){
+      s.lockedLines.add(card.line);
+      s.guno[p] += 1;
+      log(`🏁 Line completed: ${card.line} -> P${p+1} gains 1 GUNO (total=${s.guno[p]})`);
+
+      if(s.guno[p] >= 4){
+        s.winner = p;
+        log(`🎉 4GUNO! P${p+1} wins!`);
+        stopAuto();
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function renderLegend(){
+  const el = document.getElementById("legend");
+  el.innerHTML = "";
+  for(let i=0;i<CFG.players;i++){
+    const item = document.createElement("div");
+    item.className = "legItem";
+    const dot = document.createElement("div");
+    dot.className = "dot";
+    dot.style.background = PCLR[i];
+    item.appendChild(dot);
+    item.appendChild(document.createTextNode(`P${i+1}`));
+    el.appendChild(item);
+  }
+}
+
+function renderMap(){
+  const wrap = document.getElementById("mapWrap");
+  wrap.innerHTML = "";
+
+  const lines = ["JY","G","M","T"];
+  for(const line of lines){
+    const row = document.createElement("div");
+    row.className = "mapRow";
+
+    const badge = document.createElement("div");
+    badge.className = "lineBadge";
+    badge.textContent = line;
+    badge.style.background = `${LCLR[line]}22`;
+    badge.style.borderColor = `${LCLR[line]}66`;
+    row.appendChild(badge);
+
+    const slots = document.createElement("div");
+    slots.className = "slots";
+
+    for(let i=1;i<=10;i++){
+      const slot = document.createElement("div");
+      slot.className = "slot";
+
+      const owner = state.mapOwner[line][i];
+      if(owner !== null){
+        slot.style.background = PCLR[owner];
+        slot.style.borderColor = "rgba(255,255,255,.55)";
+      }else{
+        slot.style.background = "rgba(0,0,0,.12)";
+      }
+      if(state.lockedLines.has(line)) slot.classList.add("locked");
+
+      const st = STATIONS[line][i-1];
+      slot.title = `${line}-${i} ${st}`;
+
+      // v30寄せ：番号＋駅名
+      const no = document.createElement("div");
+      no.className = "station-no";
+      no.textContent = i;
+
+      const nm = document.createElement("div");
+      nm.className = "station-name";
+      nm.textContent = st;
+
+      slot.appendChild(no);
+      slot.appendChild(nm);
+      slots.appendChild(slot);
+    }
+
+    row.appendChild(slots);
+    wrap.appendChild(row);
+  }
+}
+
+function render(){
+  document.getElementById("pillDeck").textContent = `deck=${state.deck.length}`;
+  document.getElementById("pillState").textContent = `turn=${state.turn} / dir=${state.dir===1?"→":"←"} / P${state.cur+1}`;
+  document.getElementById("pillTop").textContent = `top=${cardId(state.top)}`;
+  document.getElementById("pillWin").textContent = `win=${state.winner===null? "-": "P"+(state.winner+1)}`;
+
+  const btnStep = document.getElementById("btnStep");
+  btnStep.disabled = (state.winner!==null);
+
+  const imgDeck = document.getElementById("imgDeck");
+  imgDeck.src = backPath();
+  imgDeck.onerror = ()=>{ imgDeck.removeAttribute("src"); imgDeck.alt="(GUNO_BACK.png not found)"; };
+
+  const imgTop = document.getElementById("imgTop");
+  imgTop.src = cardImgPath(state.top);
+  imgTop.onerror = ()=>{ imgTop.removeAttribute("src"); imgTop.alt="(top image not found)"; };
+
+  renderMap();
+
+  const handsEl = document.getElementById("hands");
+  handsEl.innerHTML = "";
+
+  for(let p=0;p<CFG.players;p++){
+    const row = document.createElement("div");
+    row.className = "handRow";
+
+    const head = document.createElement("div");
+    head.className = "handHead";
+    head.innerHTML = `
+      <div>Player ${p+1} ${p===state.cur && state.winner===null? `<span class="turn">← TURN</span>`:""}</div>
+      <div class="pill">hand=${state.hands[p].length} / guno=${state.guno[p]}</div>
+    `;
+    row.appendChild(head);
+
+    const cards = document.createElement("div");
+    cards.className = "cards";
+
+    for(let i=0;i<state.hands[p].length;i++){
+      const c = state.hands[p][i];
+      const im = document.createElement("img");
+      im.className = "card";
+      im.src = cardImgPath(c);
+      im.title = cardId(c);
+
+      if(p===state.cur && state.winner===null && playable(c, state.top)) im.classList.add("playable");
+      im.onerror = ()=>{ im.style.filter="grayscale(1)"; im.title += " (image missing)"; };
+
+      im.addEventListener("click", ()=>{
+        if(state.winner!==null) return;
+        if(p!==state.cur) return;
+        if(!playable(c, state.top)) return;
+
+        // play
+        state.hands[p].splice(i,1);
+        state.top = c;
+        log(`P${p+1} PLAY ${cardId(c)}`);
+
+        let ended = false;
+
+        if(c.type==="TEIDEN"){
+          applyTeiden(state, p);
+        }else{
+          ended = awardAndMap(state, p, c);
+        }
+
+        // ★勝利確定ならここで止める（以降の進行・配布を見せない）
+        if(ended){
+          render();
+          return;
+        }
+
+        state.turn++;
+        nextPlayer(state);
+        render();
+      });
+
+      cards.appendChild(im);
+    }
+
+    row.appendChild(cards);
+    handsEl.appendChild(row);
+  }
+}
+
+function stepAI(){
+  if(state.winner!==null) return;
+
+  const p = state.cur;
+  const hand = state.hands[p];
+
+  let idx = hand.findIndex(c => playable(c, state.top));
+  let ended = false;
+
+  if(idx>=0){
+    const c = hand.splice(idx,1)[0];
+    state.top = c;
+    log(`P${p+1} PLAY ${cardId(c)}`);
+
+    if(c.type==="TEIDEN"){
+      applyTeiden(state, p);
+    }else{
+      ended = awardAndMap(state, p, c);
+    }
+
+    if(ended){
+      render();
+      return;
+    }
+  }else{
+    if(state.deck.length){
+      hand.push(state.deck.pop());
+      deckPopAnim();
+      log(`P${p+1} DRAW`);
+    }else{
+      log(`(deck empty)`, true);
+      stopAuto();
+      return;
+    }
+  }
+
+  state.turn++;
+  nextPlayer(state);
+  render();
+}
+
+function newGame(){
+  stopAuto();
+  clearLog();
+
+  const deck = buildDeck();
+  shuffle(deck);
+
+  state = {
+    deck,
+    hands: Array.from({length:CFG.players}, ()=>[]),
+    top: null,
+    cur: 0,
+    dir: 1,
+    turn: 0,
+    winner: null,
+    guno: Array.from({length:CFG.players}, ()=>0),
+    lockedLines: new Set(),
+    mapOwner: {
+      JY: Array.from({length:11}, ()=>null),
+      G:  Array.from({length:11}, ()=>null),
+      M:  Array.from({length:11}, ()=>null),
+      T:  Array.from({length:11}, ()=>null),
+    }
+  };
+
+  deal(state);
+  log("=== NEW GAME ===", true);
+  log(`TOP = ${cardId(state.top)}`, true);
+  render();
+}
+
+function toggleAuto(){
+  if(state.winner!==null) return;
+
+  if(autoTimer){
+    stopAuto();
+  }else{
+    document.getElementById("btnAuto").textContent = "⏯ Auto: ON";
+    autoTimer = setInterval(stepAI, CFG.autoDelayMs);
+  }
+}
+function stopAuto(){
+  if(autoTimer){
+    clearInterval(autoTimer);
+    autoTimer = null;
+  }
+  document.getElementById("btnAuto").textContent = "⏯ Auto: OFF";
+}
+
+document.getElementById("btnNew").addEventListener("click", newGame);
+document.getElementById("btnStep").addEventListener("click", stepAI);
+document.getElementById("btnAuto").addEventListener("click", toggleAuto);
+
+renderLegend();
+newGame();
+</script>
+</body>
+</html>

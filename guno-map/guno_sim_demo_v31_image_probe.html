@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GUNO シミュレーション デモ v30（4GUNO=即終了 / Auto×100）</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif; margin:0; background:#0b1020; color:#e9edf7;}
+  header{padding:16px 18px; background:rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.08);}
+  h1{font-size:18px; margin:0 0 6px 0;}
+  .sub{opacity:.8; font-size:12px; line-height:1.45;}
+  main{padding:16px 18px; display:grid; grid-template-columns: 380px 1fr; gap:14px;}
+  @media (max-width: 1100px){ main{grid-template-columns:1fr;} }
+  .panel{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px; box-shadow:0 10px 30px rgba(0,0,0,.25);}
+  .controls button{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:#e9edf7; padding:8px 10px; border-radius:10px; cursor:pointer;}
+  .controls button:hover{background:rgba(255,255,255,.12);}
+  .row{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .kpi{display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; margin-top:10px;}
+  .kpi .box{background:rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.10); border-radius:12px; padding:10px;}
+  .label{font-size:11px; opacity:.75;}
+  .value{font-size:18px; font-weight:650; margin-top:4px;}
+  .card{background:rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:12px;}
+  .card h2{font-size:14px; margin:0 0 8px 0;}
+  .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);}
+  .swatch{width:12px; height:12px; border-radius:3px; display:inline-block;}
+  .players{display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;}
+  @media (max-width: 1100px){ .players{grid-template-columns:1fr;} }
+  .phead{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px;}
+  .bar{height:10px; background:rgba(255,255,255,.06); border-radius:999px; overflow:hidden; border:1px solid rgba(255,255,255,.10);}
+  .bar > div{height:100%; width:0%; background:rgba(255,255,255,.35);}
+  .log{height:300px; overflow:auto; background:rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.10); border-radius:12px; padding:10px; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; font-size:12px;}
+  input[type="range"]{width:180px;}
+  select, input[type="number"]{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:#e9edf7; padding:8px 10px; border-radius:10px;}
+  .dead{opacity:.45; filter:grayscale(60%);}
+  .routeSvg{width:100%; height:78px; margin-top:6px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:12px;}
+  .miniMap{width:100%; height:420px; margin-top:8px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:12px;}
+  .matrix{margin-top:10px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:10px;}
+  .grid{display:grid; grid-template-columns: 34px repeat(10, 1fr); gap:4px; align-items:center;}
+  .cell{height:18px; border-radius:5px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.18); display:flex; align-items:center; justify-content:center; font-size:10px;}
+  .rlabel{justify-content:flex-start; padding-left:6px;}
+  .legend{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;}
+  .legItem{display:flex; gap:6px; align-items:center; font-size:12px; opacity:.85;}
+  .sq{width:12px; height:12px; border-radius:3px; border:1px solid rgba(255,255,255,.18);}
+  .tag{padding:3px 8px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); font-size:11px; opacity:.9}
+
+  .sharedLayout{display:grid; grid-template-columns: 1fr 520px; gap:12px; align-items:stretch; margin-top:8px;}
+  .sharedLeft{min-width:0;}
+  .sharedRight{min-width:0; display:flex;}
+  @media (max-width: 1100px){ .sharedLayout{grid-template-columns:1fr;} }
+
+
+  .sharedRight .miniMap{height:420px;}
+
+/* === Shared 3-column visualization (v18) === */
+.sharedGrid{
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr 0.9fr;
+  gap:16px;
+  align-items:stretch;
+}
+@media (max-width:1200px){
+  .sharedGrid{grid-template-columns:1fr;}
+}
+.sharedCol{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:12px;
+}
+.playerViz{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:360px;
+}
+.playerViz svg{width:100%; max-width:420px;}
+.playerViz .dirLabel{
+  position:absolute;
+  right:16px;
+  top:12px;
+  font-size:12px;
+  opacity:0.75;
+}
+
+/* === v20: Eliminated emphasis + order display === */
+.playerOrderPanel{
+  margin-top:10px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:12.5px;
+  color:rgba(255,255,255,0.85);
+}
+.playerOrderRow{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.playerOrderLabel{
+  opacity:0.7;
+  margin-right:4px;
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+}
+.pill .dot{ width:8px;height:8px;border-radius:50%; background:rgba(255,255,255,0.75); }
+.pill.elim{ opacity:0.45; filter:grayscale(1); }
+.pill.current{ border-color:rgba(255,255,255,0.35); background:rgba(255,255,255,0.07); }
+.pill.current .dot{ background:#fff; }
+
+/* === v24: GUNO completed line highlight in shared matrix === */
+.matrix .rlabel.gunoDone{
+  background: rgba(255, 215, 74, 0.18);
+  border-color: rgba(255, 215, 74, 0.35);
+}
+.matrix .rlabel.gunoDone span.code{
+  color: rgba(255, 215, 74, 0.95);
+  font-weight: 900;
+  letter-spacing: .6px;
+}
+.matrix .rlabel.gunoDone .swatch{
+  box-shadow: 0 0 0 2px rgba(255,215,74,0.35), 0 0 14px rgba(255,215,74,0.25);
+}
+
+
+  .titlebar{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  .titleNote{font-size:12px; font-weight:800; color:rgba(255,215,74,.95); letter-spacing:.3px;}
+  .titleNote .meta{font-weight:650; color:rgba(233,237,247,.85); margin-left:10px;}
+  .titleNote .meta b{color:rgba(233,237,247,.95);}
+  .autoStatus{font-size:12px; opacity:.9; margin-left:10px;}
+  .autoStatus.running{color:rgba(255,215,74,.95); font-weight:750;}
+</style>
+
+<style>
+/* v31 image probe */
+.card-image { width: 40px; height: auto; opacity: 0.9; }
+.hand-card { display: inline-block; margin: 4px; text-align: center; }
+.hand-text, .card-text { font-size: 10px; line-height: 1.1; }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="titlebar"><h1>GUNO シミュレーション デモ v25（Auto×100 / 4GUNO停止）</h1><div id="titleNote" class="titleNote"></div></div>
+  <div class="sub">
+    ✅ 「🎲 ランダム新規ゲーム」を押すと、<b>シードが変わって別ゲーム</b>になります（何度でも回せる）。<br/>
+    ✅ 共有マップは <b>場に出たカード（PLAY / PLAY_DRAWN）</b> が“点灯”として蓄積します（全員で1枚の地図）。
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="row controls">
+      <button id="btnNew">🎲 ランダム新規ゲーム</button>
+      <span class="label">Seed</span>
+      <input id="seed" type="number" value="20260122" style="width:140px"/>
+      <button id="btnSeedStart">このSeedで開始</button>
+      <button id="btnAuto100" title="ランダムSeedで最大100ゲーム自動実行。4GUNOが出たら即停止します。">🤖 Auto ×100</button>
+      <span class="label" style="margin-left:10px;">Auto delay</span>
+      <select id="autoDelay" title="1ゲームごとの待ち時間（見やすさ調整）">
+        <option value="0">0ms (fast)</option>
+        <option value="30">30ms</option>
+        <option value="80" selected>80ms</option>
+        <option value="150">150ms</option>
+        <option value="300">300ms</option>
+      </select>
+      <span id="autoStatus" class="autoStatus"></span>
+    </div>
+
+    <div class="row controls" style="margin-top:10px;">
+      <button id="btnStart">⏮ 最初</button>
+      <button id="btnPrev">◀ 1手</button>
+      <button id="btnPlay">▶ 再生</button>
+      <button id="btnNext">1手 ▶</button>
+      <button id="btnEnd">最後 ⏭</button>
+    </div>
+
+    <div class="row" style="margin-top:10px;">
+      <span class="label">速度</span>
+      <input id="speed" type="range" min="1" max="20" value="6"/>
+      <span id="speedVal" class="label">6</span>
+      <span style="flex:1"></span>
+      <span class="label">ジャンプ</span>
+      <select id="jump">
+        <option value="1">1手</option>
+        <option value="5">5手</option>
+        <option value="10">10手</option>
+        <option value="25">25手</option>
+      </select>
+    </div>
+
+    <div class="kpi">
+      <div class="box"><div class="label">ターン</div><div class="value" id="turn">-</div></div>
+      <div class="box"><div class="label">手番プレイヤー</div><div class="value" id="player">-</div></div>
+      <div class="box"><div class="label">山札</div><div class="value" id="deck">-</div></div>
+      <div class="box"><div class="label">アクション</div><div class="value" id="action">-</div></div>
+    </div>
+
+    <div style="margin-top:12px;">
+      <div class="label">ログ</div>
+      <div class="log" id="log"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="card">
+      <h2>場札（Top）</h2>
+      <div class="row">
+        <div class="pill"><span class="swatch" id="topSw"></span><span id="topTxt">-</span></div>
+        <span class="tag" id="sharedCount">共有点灯: -/40</span>
+      </div>
+      <div class="sub" style="margin-top:8px;" id="topHint"></div>
+    </div>
+
+    <div style="height:12px;"></div>
+
+    <div class="card">
+      <h2>共有マップ（全員で埋める）</h2>
+      <div class="legend">
+        <div class="legItem"><span class="sq" style="background:rgba(255,255,255,.10)"></span>未点灯</div>
+        <div class="legItem"><span class="sq" style="background:rgba(255,255,255,.85)"></span>点灯（場に出た）</div>
+      </div>
+
+      <!-- Shared 3-column layout: routes / minimap / player-circle -->
+<div class="sharedGrid">
+  <div class="sharedCol">
+    <div id="sharedRoutes"></div>
+  </div>
+  <div class="sharedCol">
+    <div id="sharedMini"></div>
+  </div>
+  <div class="sharedCol playerViz">
+    <div id="sharedPlayers"></div>
+  </div>
+</div>
+
+<div id="sharedMatrix"></div>
+    </div>
+
+    <div style="height:12px;"></div>
+    <div class="card">
+      <h2>各プレイヤー（手札の駅名表示）</h2>
+      <div class="sub">※ここは各自の手札がどう集まっているかを見る用（共有ではない）。</div>
+    </div>
+
+    <div style="height:12px;"></div>
+    <div class="players" id="players"></div>
+  </section>
+</main>
+
+<script>
+const DATA = {"cfg": {"players": 4, "colors_active": 4, "color_pool": ["Y", "G", "M", "T"], "ranks": 10, "copies_per_card": 2, "starting_hand": 7, "draw_if_cannot_play": 1, "allow_play_drawn": true, "route_k": 6, "end_mode": "last_player_standing", "max_turns": 8000}, "station_names": {"Y": ["東京", "有楽町", "新橋", "品川", "渋谷", "新宿", "池袋", "上野", "秋葉原", "神田"], "G": ["浅草", "上野", "神田", "日本橋", "銀座", "新橋", "虎ノ門", "赤坂見附", "青山一丁目", "渋谷"], "M": ["池袋", "後楽園", "御茶ノ水", "東京", "銀座", "霞ケ関", "国会議事堂前", "赤坂見附", "新宿", "荻窪"], "T": ["中野", "高田馬場", "早稲田", "神楽坂", "飯田橋", "九段下", "大手町", "日本橋", "茅場町", "西船橋"]}};
+const CFG = DATA.cfg;
+const ST = DATA.station_names;
+
+const ROUTE_LABEL = {
+  "Y":"山手線",
+  "G":"銀座線",
+  "M":"丸ノ内線",
+  "T":"東西線"
+};
+
+const colorMap = {
+  "Y":"#9ACD32",  // Yamanote
+  "G":"#F39700",  // Ginza
+  "M":"#E60012",  // Marunouchi
+  "T":"#009BBF"   // Tozai
+};
+const activeColors = CFG.color_pool.slice(0, CFG.colors_active);
+
+function swatchStyle(c) {
+  const col = colorMap[c] || "#ffffff";
+  return `background:${col}; box-shadow:0 0 0 2px rgba(0,0,0,.25) inset;`;
+}
+function fmtCard(card) { return `${card[0]}-${card[1]}`; }
+
+// deterministic PRNG (Mulberry32)
+function mulberry32(seed) {
+  let a = seed >>> 0;
+  return function() {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  }
+}
+function randint(rng, n) { return Math.floor(rng() * n); }
+function shuffle(rng, arr) {
+  for (let i=arr.length-1;i>0;i--) {
+    const j = randint(rng, i+1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+function countsBy(cards, keyFn) {
+  const m = new Map();
+  for (const c of cards) {
+    const k = keyFn(c);
+    m.set(k, (m.get(k)||0)+1);
+  }
+  return m;
+}
+function playable(card, top) { return card[0]===top[0] || card[1]===top[1]; }
+
+function choosePlay(rng, hand, top) {
+  const candidates = [];
+  for (let i=0;i<hand.length;i++) if (playable(hand[i], top)) candidates.push(i);
+  if (!candidates.length) return null;
+
+  const colorCounts = countsBy(hand, c=>c[0]);
+  const rankCounts = countsBy(hand, c=>c[1]);
+
+  // prefer higher colorCount (keep that color?), and lower rankCount? mimic python-ish
+  let best = candidates[0], bestScore = null;
+  for (const i of candidates) {
+    const c = hand[i];
+    const score = [
+      -(colorCounts.get(c[0])||0),
+      (rankCounts.get(c[1])||0),
+      rng(),
+      i
+    ];
+    if (!bestScore || lexCompare(score, bestScore) > 0) {
+      bestScore = score;
+      best = i;
+    }
+  }
+  return best;
+}
+function lexCompare(a,b){
+  for (let i=0;i<a.length;i++) {
+    if (a[i]===b[i]) continue;
+    return a[i] > b[i] ? 1 : -1;
+  }
+  return 0;
+}
+
+function routeCompletionColor(hand) {
+  const cc = countsBy(hand, c=>c[0]);
+  for (const [col, n] of cc.entries()) {
+    if (n >= CFG.route_k) return col;
+  }
+  return null;
+}
+
+function matrixCounts(cards) {
+  const out = {};
+  for (const c of cards) {
+    if (!out[c[0]]) out[c[0]] = {};
+    out[c[0]][c[1]] = (out[c[0]][c[1]]||0) + 1;
+  }
+  return out;
+}
+function matrixFromSet(setArr) {
+  const out = {};
+  for (const key of setArr) {
+    const [col, r] = key.split("-");
+    if (!out[col]) out[col] = {};
+    out[col][parseInt(r,10)] = 1;
+  }
+  return out;
+}
+
+function simulate(seed) {
+  const rng = mulberry32(seed);
+  const colors = CFG.color_pool.slice(0, CFG.colors_active);
+
+  // build deck
+  const deck = [];
+  for (const col of colors) {
+    for (let r=1;r<=CFG.ranks;r++) {
+      for (let k=0;k<CFG.copies_per_card;k++) deck.push([col, r]);
+    }
+  }
+  shuffle(rng, deck);
+
+  const hands = Array.from({length:CFG.players}, ()=>[]);
+  const completed = Array.from({length:CFG.players}, ()=>[]);
+  const alive = Array.from({length:CFG.players}, ()=>true);
+
+  // deal
+  for (let t=0;t<CFG.starting_hand;t++) {
+    for (let p=0;p<CFG.players;p++) hands[p].push(deck.pop());
+  }
+  let top = deck.pop();
+
+  const order = Array.from({length:CFG.players}, (_,i)=>i);
+  let idx=0;
+  let turns=0;
+  let ended_by=null;
+  let noPlayStreak=0; // consecutive turns without a PLAY (for stalemate when deck is empty)
+
+  // shared map (played)
+  const played = new Set();
+  played.add(`${top[0]}-${top[1]}`);
+
+  // v30: 4GUNO official end condition (shared map completion ends the game)
+  function sharedGunoCountFromPlayed(){
+    let g=0;
+    for (const col of colors){
+      let done=true;
+      for (let k=1;k<=CFG.ranks;k++){
+        if(!played.has(`${col}-${k}`)){ done=false; break; }
+      }
+      if(done) g++;
+    }
+    return g;
+  }
+
+  const history = [];
+  function snapshot(action, p, detail) {
+    history.push({
+      turn: turns,
+      player: p,
+      deck: deck.length,
+      top: top,
+      hands: hands.map(h=>h.length),
+      completed: completed.map(c=>c.length),
+      alive: alive.slice(),
+      order: order.slice(),
+      hand_matrix: hands.map(h=>matrixCounts(h)),
+      completed_matrix: completed.map(c=>matrixCounts(c)),
+      shared_played_matrix: matrixFromSet(Array.from(played)),
+      action,
+      detail: detail||{}
+    });
+  }
+
+  snapshot("START", 0, {seed});
+
+  while (turns < CFG.max_turns && order.length) {
+    const p = order[idx];
+    let playedThisTurn = false;
+
+    if (hands[p].length === 0) {
+      alive[p]=false;
+      snapshot("ELIMINATED", p, {});
+      order.splice(idx, 1);
+      if (!order.length) { ended_by="all_eliminated"; break; }
+      if (idx >= order.length) idx=0;
+      if (order.length === 1) { ended_by="last_player_standing"; break; }
+      continue;
+    }
+
+    turns += 1;
+
+    const rc = routeCompletionColor(hands[p]);
+    if (rc) {
+      // lock route_k cards of that color
+      const idxs=[];
+      for (let i=0;i<hands[p].length;i++) if (hands[p][i][0]===rc) idxs.push(i);
+      shuffle(rng, idxs);
+      const take = idxs.slice(0, CFG.route_k).sort((a,b)=>b-a);
+      const moved=[];
+      for (const i2 of take) moved.push(hands[p].splice(i2,1)[0]);
+      moved.reverse();
+      for (const c of moved) completed[p].push(c);
+      snapshot("GUNO", p, {color: rc, mode:"lock", moved});
+    }
+
+    const playIdx = choosePlay(rng, hands[p], top);
+    if (playIdx !== null) {
+      const c = hands[p].splice(playIdx,1)[0];
+      top = c;
+      played.add(`${c[0]}-${c[1]}`);
+      snapshot("PLAY", p, {card:c});
+
+      // v30 PATCH: if shared map reaches 4GUNO, end immediately
+      if (sharedGunoCountFromPlayed() === colors.length) {
+        ended_by = "4GUNO";
+        snapshot("END_4GUNO", p, {ended_by, by:"shared_map"});
+        break;
+      }
+      playedThisTurn = true;
+      noPlayStreak = 0;
+    } else {
+      const drew=[];
+      for (let t=0;t<CFG.draw_if_cannot_play;t++) {
+        if (!deck.length) { ended_by="deck_empty_while_drawing"; break; }
+        const d = deck.pop();
+        hands[p].push(d);
+        drew.push(d);
+      }
+      snapshot("DRAW", p, {cards:drew, deck_emptied: !!ended_by});
+      if (ended_by) break;
+
+      if (CFG.allow_play_drawn && drew.length) {
+        const c = hands[p][hands[p].length-1];
+        if (playable(c, top)) {
+          top = hands[p].pop();
+          played.add(`${top[0]}-${top[1]}`);
+
+  // v30: 4GUNO official end condition (shared map completion ends the game)
+  function sharedGunoCountFromPlayed(){
+    let g=0;
+    for (const col of colors){
+      let done=true;
+      for (let k=1;k<=CFG.ranks;k++){
+        if(!played.has(`${col}-${k}`)){ done=false; break; }
+      }
+      if(done) g++;
+    }
+    return g;
+  }
+          snapshot("PLAY_DRAWN", p, {card:top});
+
+      // v30 PATCH: if shared map reaches 4GUNO, end immediately
+      if (sharedGunoCountFromPlayed() === colors.length) {
+        ended_by = "4GUNO";
+        snapshot("END_4GUNO", p, {ended_by, by:"shared_map"});
+        break;
+      }
+          playedThisTurn = true;
+          noPlayStreak = 0;
+        }
+      }
+    }
+
+    // Stalemate detection (deck empty + no plays for a full round)
+    if (!playedThisTurn) noPlayStreak++;
+    else noPlayStreak = 0;
+
+    if (CFG.end_mode === "last_player_standing" && !deck.length && noPlayStreak >= order.length) {
+      ended_by = "stalemate_deck_empty";
+      snapshot("END_STALEMATE", p, {noPlayStreak});
+      break;
+    }
+
+    if (CFG.end_mode === "deck_empty_end" && !deck.length) {
+      ended_by="deck_empty_end";
+      snapshot("END_DECK_EMPTY", p, {});
+      break;
+    }
+
+    idx = (idx+1) % order.length;
+  }
+
+  const winner = order.length ? order[0] : 0;
+  snapshot("RESULT", winner, {winner, ended_by});
+  return history;
+}
+
+// ---- UI rendering (same style as v4) ----
+let H = [];
+let i = 0;
+let timer = null;
+
+const el = (id)=>document.getElementById(id);
+const logEl = el("log");
+
+function appendLog(line) {
+  const div = document.createElement("div");
+  div.textContent = line;
+  logEl.appendChild(div);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+function clearLog() { logEl.innerHTML = ""; }
+
+function setsFromMatrix(mat) {
+  const out = {};
+  activeColors.forEach(c=>{
+    const s = new Set();
+    const m = mat[c] || {};
+    Object.keys(m).forEach(k=> s.add(parseInt(k,10)));
+    out[c]=s;
+  });
+  return out;
+}
+
+function routeSVG(color, onSet, label, stations) {
+  const n = CFG.ranks;
+  const w = 420, h = 78;
+  const left = 18, right = 14, yLine = 26;
+  const dotGap = (w - left - right) / (n-1);
+  const dotR = 5;
+  const col = colorMap[color];
+
+  let svg = `<svg class="routeSvg" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">`;
+  svg += `<text x="10" y="16" font-size="12" fill="rgba(233,237,247,.9)">${label}</text>`;
+  svg += `<line x1="${left}" y1="${yLine}" x2="${w-right}" y2="${yLine}" stroke="${col}" stroke-width="4" opacity=".55" stroke-linecap="round"/>`;
+  for (let k=1;k<=n;k++) {
+    const x = left + (k-1)*dotGap;
+    const on = onSet.has(k);
+    const fill = on ? "rgba(255,255,255,.85)" : "rgba(255,255,255,.10)";
+    svg += `<circle cx="${x}" cy="${yLine}" r="${dotR}" fill="${fill}" stroke="rgba(0,0,0,.35)" stroke-width="1"/>`;
+    svg += `<text x="${x}" y="${yLine+16}" text-anchor="middle" font-size="10" fill="rgba(233,237,247,.85)">${k}</text>`;
+    const name = (stations && stations[k-1]) ? stations[k-1] : `${color}${k}`;
+    svg += `<text x="${x}" y="${yLine+32}" text-anchor="middle" font-size="9" fill="rgba(233,237,247,.72)">${name}</text>`;
+  }
+  svg += `</svg>`;
+  return svg;
+}
+
+function miniMapSVG(setByColor) {
+  const w=520, h=420, cx=w/2, cy=h/2+10;
+  const baseR=55, gap=32;
+  const nodes=CFG.ranks;
+
+  let svg = `<svg class="miniMap" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">`;
+  svg += `<text x="10" y="18" font-size="12" fill="rgba(233,237,247,.9)">共有ミニ地図（点灯）</text>`;
+
+  // Rings + dots (no ring labels)
+  activeColors.forEach((c, idx)=>{
+    const r = baseR + idx*gap;
+    const col = colorMap[c];
+    svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="4" opacity=".35"/>`;
+    for (let k=1;k<=nodes;k++) {
+      const ang = (-Math.PI/2) + (2*Math.PI*(k-1)/nodes);
+      const x = cx + r*Math.cos(ang);
+      const y = cy + r*Math.sin(ang);
+      const on = (setByColor[c]||new Set()).has(k);
+      const fill = on ? "rgba(255,255,255,.85)" : "rgba(255,255,255,.10)";
+      svg += `<circle cx="${x}" cy="${y}" r="4.6" fill="${fill}" stroke="rgba(0,0,0,.35)" stroke-width="1"/>`;
+    }
+  });
+
+  // Numbers (1..10) around the outer ring only
+  const maxR = baseR + gap*(activeColors.length-1);
+  for(let i=0;i<nodes;i++){
+    const ang = -Math.PI/2 + i*(Math.PI*2/nodes);
+    const nx = cx + (maxR+22)*Math.cos(ang);
+    const ny = cy + (maxR+22)*Math.sin(ang);
+    svg += `<text x="${nx}" y="${ny}" font-size="11" font-weight="650" text-anchor="middle" dominant-baseline="middle" fill="rgba(233,237,247,.70)">${i+1}</text>`;
+  }
+
+  svg += `</svg>`;
+  return svg;
+}
+
+
+function playerCircleSVG(state){
+  // Visualize ALL players in fixed seats (P0 top, clockwise).
+  // Robust against partial "state" objects passed by the renderer.
+  let alive = (state && Array.isArray(state.alive)) ? state.alive.slice() : [];
+  const n = (state && state.players && Array.isArray(state.players) && state.players.length)
+    ? state.players.length
+    : (alive.length ? alive.length : 4);
+
+  if(!alive.length) alive = Array.from({length:n}, ()=>true);
+  // order = alive-only ids (fallback: all alive in numeric order)
+  const order = (state && state.order && Array.isArray(state.order))
+    ? state.order.slice()
+    : Array.from({length:n}, (_,i)=>i).filter(i=>alive[i]);
+
+  const cur = (state && typeof state.cur === 'number') ? state.cur : 0;
+  const dir = (state && (state.dir===1 || state.dir===-1)) ? state.dir : 1;
+
+  const size = 360;
+  const cx=180, cy=180;
+  const ringR = 130;
+
+  // compute "next" among alive players (for arrow)
+  let next = null;
+  if(order.length >= 2){
+    const idx = order.indexOf(cur);
+    if(idx !== -1){
+      const step = (dir === 1) ? 1 : -1;
+      next = order[(idx + step + order.length) % order.length];
+    }
+  }
+
+  let svg = `<div style="display:flex;flex-direction:column;align-items:center;width:100%">
+    <svg class="playerCircleSvg" viewBox="0 0 ${size} ${size}">
+      <circle cx="${cx}" cy="${cy}" r="${ringR}" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="4"/>
+      <defs>
+        <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#ff3b3b"></path>
+        </marker>
+      </defs>
+  `;
+
+  // players
+  for(let pid=0; pid<n; pid++){
+    const ang = -Math.PI/2 + pid*(2*Math.PI/n);
+    const x = cx + ringR*Math.cos(ang);
+    const y = cy + ringR*Math.sin(ang);
+    const isAlive = !!alive[pid];
+    const isCur = (pid === cur);
+
+    const fill = isAlive ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0.18)";
+    const stroke = isAlive ? (isCur ? "#ff3b3b" : "rgba(255,255,255,0.96)") : "rgba(255,255,255,0.22)";
+    const sw = isCur ? 6 : 4;
+    const labelFill = isAlive ? (isCur ? "#ff3b3b" : "rgba(255,255,255,0.95)") : "rgba(255,255,255,0.35)";
+
+    svg += `
+      <circle cx="${x}" cy="${y}" r="14" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>
+      <text x="${x}" y="${y-22}" fill="${labelFill}" font-size="16" text-anchor="middle" font-weight="800">P${pid}</text>
+    `;
+    if(!isAlive){
+      svg += `<text x="${x}" y="${y+30}" fill="rgba(255,255,255,0.35)" font-size="11" text-anchor="middle">脱落</text>`;
+    }
+  }
+
+  // arrow
+  if(next !== null){
+    const angCur = -Math.PI/2 + cur*(2*Math.PI/n);
+    const angNext = -Math.PI/2 + next*(2*Math.PI/n);
+    const r2 = ringR - 8;
+    const x1 = cx + r2*Math.cos(angCur);
+    const y1 = cy + r2*Math.sin(angCur);
+    const x2 = cx + r2*Math.cos(angNext);
+    const y2 = cy + r2*Math.sin(angNext);
+    svg += `
+      <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"
+            stroke="#ff3b3b" stroke-width="4"
+            marker-end="url(#arrowHead)"/>
+      <text x="${cx}" y="${cy}" fill="#ff3b3b" font-size="12" text-anchor="middle" font-weight="800">
+        進行: ${dir===1 ? '時計回り' : '反時計回り'}
+      </text>
+    `;
+  } else {
+    svg += `<text x="${cx}" y="${cy}" fill="rgba(255,255,255,0.6)" font-size="12" text-anchor="middle" font-weight="800">残り1人</text>`;
+  }
+
+  svg += `</svg>`;
+
+  // order panel (alive + eliminated)
+  const pillsAlive = order.map(pid=>{
+    const cls = `pill ${pid===cur?'current':''}`.trim();
+    return `<span class="${cls}"><span class="dot"></span>P${pid}</span>`;
+  }).join('');
+
+  const elim = [];
+  for(let pid=0; pid<n; pid++){ if(!alive[pid]) elim.push(pid); }
+  const pillsElim = (elim.length)
+    ? elim.map(pid=>`<span class="pill elim"><span class="dot"></span>P${pid}</span>`).join('')
+    : `<span style="opacity:.7">なし</span>`;
+
+  svg += `
+    <div class="playerOrderPanel">
+      <div class="playerOrderRow"><span class="playerOrderLabel">順路</span>${pillsAlive}</div>
+      <div class="playerOrderRow"><span class="playerOrderLabel">脱落</span>${pillsElim}</div>
+    </div>
+  `;
+
+  svg += `</div>`;
+  return svg;
+}
+
+
+
+
+
+function sharedMatrixHTML(sharedM) {
+  let html = `<div class="matrix"><div class="label">共有：R/B/G/Y × 1..10（点灯状況）</div>`;
+  html += `<div class="grid" style="margin-top:8px;">`;
+  html += `<div class="cell rlabel label"> </div>`;
+  for (let k=1;k<=CFG.ranks;k++) html += `<div class="cell label">${k}</div>`;
+
+  activeColors.forEach(c=>{
+    // completed (=GUNO line done) if all 1..ranks are ON
+    let done = true;
+    for (let k=1;k<=CFG.ranks;k++){
+      if(!(sharedM[c] && sharedM[c][k])) { done = false; break; }
+    }
+    const rlabelCls = `cell rlabel ${done ? 'gunoDone' : ''}`.trim();
+    html += `<div class="${rlabelCls}"><span class="swatch" style="${swatchStyle(c)}"></span><span class="code" style="margin-left:6px">${c}</span></div>`;
+
+    for (let k=1;k<=CFG.ranks;k++) {
+      const on = (sharedM[c] && sharedM[c][k]) ? true : false;
+      const bg = on ? (done ? "rgba(255,215,74,.85)" : "rgba(255,255,255,.85)") : "rgba(255,255,255,.10)";
+      html += `<div class="cell" style="background:${bg}"></div>`;
+    }
+  });
+
+  html += `</div></div>`;
+  return html;
+}
+
+
+function rebuildPlayers() {
+  const root = el("players");
+  root.innerHTML = "";
+  for (let p=0;p<CFG.players;p++) {
+    const wrap = document.createElement("div");
+    wrap.className = "card";
+    wrap.id = `P${p}`;
+    wrap.innerHTML = `
+      <div class="phead">
+        <h2 style="margin:0;">P${p}</h2>
+        <div class="pill"><span class="label">手札</span><span class="value" style="font-size:16px;" id="h${p}">-</span></div>
+      </div>
+      <div class="bar"><div id="b${p}"></div></div>
+      <div class="label" style="margin-top:8px;">手札の駅名（各自）</div>
+      <div id="routes${p}"></div>
+    `;
+    root.appendChild(wrap);
+  }
+}
+
+function renderSingle(idx) {
+  const s = H[idx];
+
+  el("turn").textContent = s.turn;
+  el("player").textContent = `P${s.player}`;
+  el("deck").textContent = s.deck;
+  el("action").textContent = s.action;
+
+  el("topTxt").textContent = fmtCard(s.top);
+  el("topSw").setAttribute("style", swatchStyle(s.top[0]));
+  el("topHint").textContent = `出せる条件：色一致（${s.top[0]}）または数字一致（${s.top[1]}）`;
+
+  // shared
+  const sharedM = s.shared_played_matrix || {};
+  const sharedSetByColor = setsFromMatrix(sharedM);
+  let sharedRoutesHTML = "";
+  activeColors.forEach(c=>{
+    sharedRoutesHTML += routeSVG(c, sharedSetByColor[c], `共有：${c} 路線（点灯）`, ST[c]);
+  });
+  el("sharedRoutes").innerHTML = sharedRoutesHTML;
+  el("sharedMini").innerHTML = miniMapSVG(sharedSetByColor);
+  el("sharedPlayers").innerHTML = playerCircleSVG(Object.assign({cur:s.player}, s));
+  el("sharedMatrix").innerHTML = sharedMatrixHTML(sharedM);
+
+  let lit = 0;
+  activeColors.forEach(c=> lit += Object.keys(sharedM[c]||{}).length );
+  el("sharedCount").textContent = `共有点灯: ${lit}/${CFG.colors_active * CFG.ranks}`;
+
+  if (!el("h0")) rebuildPlayers();
+
+  const hands = s.hands;
+  const maxHand = Math.max(...hands, 1);
+  for (let p=0;p<hands.length;p++) {
+    el(`h${p}`).textContent = hands[p];
+    el(`b${p}`).style.width = `${Math.round((hands[p]/maxHand)*100)}%`;
+
+    const box = el(`P${p}`);
+    if (!s.alive[p]) box.classList.add("dead"); else box.classList.remove("dead");
+
+    const handM = s.hand_matrix[p] || {};
+    const inHandSetByColor = setsFromMatrix(handM);
+    let routesHTML = "";
+    activeColors.forEach(c=>{
+      routesHTML += routeSVG(c, inHandSetByColor[c], `P${p}：${c}（手札）`, ST[c]);
+    });
+    el(`routes${p}`).innerHTML = routesHTML;
+  }
+
+  const d = s.detail || {};
+  let line = `T${s.turn} P${s.player} ${s.action}`;
+  if (s.action==="PLAY"||s.action==="PLAY_DRAWN") line += ` card=${fmtCard(d.card)}`;
+  if (s.action==="DRAW") line += ` drew=${(d.cards||[]).length}`;
+  if (s.action==="GUNO") line += ` color=${d.color} (lock ${CFG.route_k})`;
+  if (s.action==="ELIMINATED") line += ` (P${s.player} 脱落)`;
+  if (s.action==="RESULT") line += ` winner=P${d.winner} ended_by=${d.ended_by}`;
+  appendLog(line);
+}
+
+function go(idx) {
+  i = Math.max(0, Math.min(H.length-1, idx));
+  clearLog();
+  const start = Math.max(0, i-25);
+  for (let j=start; j<=i; j++) renderSingle(j);
+}
+
+function step(dir) {
+  const jump = parseInt(el("jump").value, 10) || 1;
+  go(i + dir*jump);
+}
+
+function playToggle() {
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+    el("btnPlay").textContent = "▶ 再生";
+    return;
+  }
+  el("btnPlay").textContent = "⏸ 停止";
+  timer = setInterval(()=>{
+    if (i >= H.length-1) { playToggle(); return; }
+    go(i+1);
+  }, Math.max(60, 540 - (parseInt(el("speed").value,10)*22)));
+}
+
+function startNewGame(seed) {
+  // clear congrats / status when starting a manual game
+  setTitleNote("");
+  setAutoStatus("", false);
+
+  if(autoRunning){ stopAuto(); }
+  if (timer) playToggle();
+  H = simulate(seed);
+  i = 0;
+  clearLog();
+  rebuildPlayers();
+  go(0);
+}
+
+el("btnStart").onclick = ()=>go(0);
+el("btnEnd").onclick = ()=>go(H.length-1);
+el("btnPrev").onclick = ()=>step(-1);
+el("btnNext").onclick = ()=>step(1);
+el("btnPlay").onclick = playToggle;
+
+el("speed").oninput = (e)=>{
+  el("speedVal").textContent = e.target.value;
+  if (timer) { playToggle(); playToggle(); }
+};
+
+el("btnNew").onclick = ()=>{
+  const seed = (Date.now() % 2147483647) | 0;
+  el("seed").value = seed;
+  startNewGame(seed);
+};
+el("btnSeedStart").onclick = ()=>{
+  const seed = parseInt(el("seed").value, 10) || 1;
+  startNewGame(seed);
+};
+
+
+/* ===== Auto ×100 (stop on 4GUNO) ===== */
+let autoRunning = false;
+let autoAbort = false;
+
+function countSharedGuno(sharedM){
+  let g=0;
+  activeColors.forEach(c=>{
+    let done = true;
+    for(let k=1;k<=CFG.ranks;k++){
+      if(!(sharedM[c] && sharedM[c][k])) { done=false; break; }
+    }
+    if(done) g++;
+  });
+  return g;
+}
+
+function setTitleNote(html){
+  el("titleNote").innerHTML = html || "";
+}
+
+function setAutoStatus(txt, running=false){
+  const st = el("autoStatus");
+  st.textContent = txt || "";
+  st.classList.toggle("running", !!running);
+}
+
+function stopAuto(){
+  autoRunning = false;
+  autoAbort = true;
+  setAutoStatus("", false);
+  el("btnAuto100").textContent = "🤖 Auto ×100";
+}
+
+function sleep(ms){ return new Promise(res=>setTimeout(res, ms)); }
+
+// crypto-safe-ish random seed (31-bit positive int)
+function randomSeed31(){
+  try{
+    const a = new Uint32Array(1);
+    (crypto && crypto.getRandomValues) ? crypto.getRandomValues(a) : (a[0] = Math.floor(Math.random()*0xFFFFFFFF));
+    // keep in 1..2147483646 (avoid 0)
+    return (a[0] % 2147483646) + 1;
+  }catch(e){
+    return (Math.floor(Math.random()*2147483646) + 1) | 0;
+  }
+}
+
+async function autoRun100(maxGames=100){
+  if(autoRunning){
+    stopAuto();
+    return;
+  }
+  // reset flags
+  autoRunning = true;
+  autoAbort = false;
+  el("btnAuto100").textContent = "⏹ Stop Auto";
+  setTitleNote(""); // clear previous congrats
+
+  const delayMs = parseInt(el("autoDelay")?.value || "0", 10) || 0;
+
+  for(let n=1; n<=maxGames; n++){
+    if(autoAbort) break;
+
+    const seed = randomSeed31();
+    const hist = simulate(seed);
+    const last = hist[hist.length-1];
+    const sharedM = last.shared_played_matrix || {};
+    const gunoCount = countSharedGuno(sharedM);
+    const turns = last.turn;
+
+    // show progress (include seed soユーザが「同じSeed？」と誤解しない)
+    setAutoStatus(`Auto running… (${n}/${maxGames})  Seed: ${seed}`, true);
+
+    // If hit 4GUNO, stop + show that game (and auto-replay)
+    if(gunoCount === CFG.colors_active){
+      if (timer) playToggle();
+      H = hist;
+      i = 0;
+      clearLog();
+      rebuildPlayers();
+      go(0);
+
+      stopAuto();
+      setTitleNote(`CONGRATULATIONS! ${gunoCount}GUNO!! <span class="meta">Seed: <b>${seed}</b> / Turns: <b>${turns}</b> / Auto: <b>${n}/${maxGames}</b></span>`);
+
+      // start playback automatically so it becomes "自動再生" demo-friendly
+      try{ playToggle(); }catch(e){}
+      return;
+    }
+
+    // allow UI to breathe
+    await sleep(delayMs || (n % 5 === 0 ? 0 : 0));
+  }
+
+  // finished without 4GUNO
+  if(autoRunning){
+    stopAuto();
+    setTitleNote(`Auto finished. <span class="meta">No 4GUNO in <b>${maxGames}</b> games.</span>`);
+  }
+}
+
+el("btnAuto100").onclick = ()=>autoRun100(100);
+/* ===== /Auto ×100 ===== */
+// initial
+startNewGame(parseInt(el("seed").value,10) || 20260122);
+</script>
+
+<script>
+/* v31 image probe helpers */
+function cardToImage(card){
+  try{
+    if(card && card.type === "TEIDEN"){
+      return "cards/JY_TEIDEN.png";
+    }
+    if(card && card.line && card.index && card.name){
+      const idx = String(card.index).padStart(2,"0");
+      return `cards/${card.line}_${idx}_${card.name}.png`;
+    }
+  }catch(e){}
+  return "";
+}
+function renderWithImage(container, card){
+  const img = cardToImage(card);
+  if(!img) return;
+  const im = document.createElement("img");
+  im.className = "card-image";
+  im.src = img;
+  container.appendChild(im);
+}
+</script>
+
+
+<script>
+/* v31 auto-hook: dataset.card があれば画像を追加（差し替えなし） */
+document.addEventListener("DOMNodeInserted", function(e){
+  try{
+    const node = e.target;
+    if(node && node.dataset && node.dataset.card){
+      const card = JSON.parse(node.dataset.card);
+      renderWithImage(node, card);
+    }
+  }catch(err){}
+});
+</script>
+
+</body>
+</html>
