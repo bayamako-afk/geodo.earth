@@ -215,13 +215,52 @@ function resetLineStyle(slug) {
    ========================================= */
 // --- Master Data (Station List for Logic) ---
 const STATIONS_DB = [
-    // ※ ここにv44の STATIONS_DB の中身（10駅x4路線）が入ります。
-    // 長くなるので山手線1つだけ例示しますが、実際は元のコードから全路線コピーしてください。
-    {lc:'JY', name:'山手線', order:1, st_ja:'東京', color:'#00AA00', file:'JY_01_Tokyo'},
-    {lc:'JY', name:'山手線', order:2, st_ja:'有楽町', color:'#00AA00', file:'JY_02_Yurakucho'},
-    // ... (元のv44コードにある全データをここに貼る) ...
+    // JY
+    {lc:'JY', name:'山手線', order:1, st_ja:'東京', st_en:'Tokyo', color:'#00AA00', file:'JY_01_Tokyo'},
+    {lc:'JY', name:'山手線', order:2, st_ja:'有楽町', st_en:'Yurakucho', color:'#00AA00', file:'JY_02_Yurakucho'},
+    {lc:'JY', name:'山手線', order:3, st_ja:'新橋', st_en:'Shimbashi', color:'#00AA00', file:'JY_03_Shimbashi'},
+    {lc:'JY', name:'山手線', order:4, st_ja:'品川', st_en:'Shinagawa', color:'#00AA00', file:'JY_04_Shinagawa'},
+    {lc:'JY', name:'山手線', order:5, st_ja:'渋谷', st_en:'Shibuya', color:'#00AA00', file:'JY_05_Shibuya'}, 
+    {lc:'JY', name:'山手線', order:6, st_ja:'新宿', st_en:'Shinjuku', color:'#00AA00', file:'JY_06_Shinjuku'},
+    {lc:'JY', name:'山手線', order:7, st_ja:'高田馬場', st_en:'Takadanobaba', color:'#00AA00', file:'JY_07_Takadanobaba'}, 
+    {lc:'JY', name:'山手線', order:8, st_ja:'池袋', st_en:'Ikebukuro', color:'#00AA00', file:'JY_08_Ikebukuro'},
+    {lc:'JY', name:'山手線', order:9, st_ja:'上野', st_en:'Ueno', color:'#00AA00', file:'JY_09_Ueno'},
+    {lc:'JY', name:'山手線', order:10, st_ja:'秋葉原', st_en:'Akihabara', color:'#00AA00', file:'JY_10_Akihabara'},
+    // M
+    {lc:'M', name:'丸ノ内線', order:1, st_ja:'池袋', st_en:'Ikebukuro', color:'#F62E36', file:'M_01_Ikebukuro'},
+    {lc:'M', name:'丸ノ内線', order:2, st_ja:'茗荷谷', st_en:'Myogadani', color:'#F62E36', file:'M_02_Myogadani'},
+    {lc:'M', name:'丸ノ内線', order:3, st_ja:'後楽園', st_en:'Korakuen', color:'#F62E36', file:'M_03_Korakuen'},
+    {lc:'M', name:'丸ノ内線', order:4, st_ja:'御茶ノ水', st_en:'Ochanomizu', color:'#F62E36', file:'M_04_Ochanomizu'},
+    {lc:'M', name:'丸ノ内線', order:5, st_ja:'東京', st_en:'Tokyo', color:'#F62E36', file:'M_05_Tokyo'},
+    {lc:'M', name:'丸ノ内線', order:6, st_ja:'銀座', st_en:'Ginza', color:'#F62E36', file:'M_06_Ginza'},
+    {lc:'M', name:'丸ノ内線', order:7, st_ja:'赤坂見附', st_en:'Akasaka-mitsuke', color:'#F62E36', file:'M_07_Akasaka-mitsuke'},
+    {lc:'M', name:'丸ノ内線', order:8, st_ja:'四ツ谷', st_en:'Yotsuya', color:'#F62E36', file:'M_08_Yotsuya'},
+    {lc:'M', name:'丸ノ内線', order:9, st_ja:'新宿', st_en:'Shinjuku', color:'#F62E36', file:'M_09_Shinjuku'},
+    {lc:'M', name:'丸ノ内線', order:10, st_ja:'中野坂上', st_en:'Nakano-sakaue', color:'#F62E36', file:'M_10_Nakano-sakaue'},
+    // G
+    {lc:'G', name:'銀座線', order:1, st_ja:'渋谷', st_en:'Shibuya', color:'#FF9500', file:'G_01_Shibuya'},
+    {lc:'G', name:'銀座線', order:2, st_ja:'表参道', st_en:'Omotesando', color:'#FF9500', file:'G_02_Omotesando'},
+    {lc:'G', name:'銀座線', order:3, st_ja:'青山一丁目', st_en:'Aoyama-itchome', color:'#FF9500', file:'G_03_Aoyama-itchome'},
+    {lc:'G', name:'銀座線', order:4, st_ja:'赤坂見附', st_en:'Akasaka-mitsuke', color:'#FF9500', file:'G_04_Akasaka-mitsuke'},
+    {lc:'G', name:'銀座線', order:5, st_ja:'溜池山王', st_en:'Tameike-sanno', color:'#FF9500', file:'G_05_Tameike-sanno'},
+    {lc:'G', name:'銀座線', order:6, st_ja:'新橋', st_en:'Shimbashi', color:'#FF9500', file:'G_06_Shimbashi'},
+    {lc:'G', name:'銀座線', order:7, st_ja:'銀座', st_en:'Ginza', color:'#FF9500', file:'G_07_Ginza'},
+    {lc:'G', name:'銀座線', order:8, st_ja:'上野', st_en:'Ueno', color:'#FF9500', file:'G_08_Ueno'},
+    {lc:'G', name:'銀座線', order:9, st_ja:'稲荷町', st_en:'Inaricho', color:'#FF9500', file:'G_09_Inaricho'},
+    {lc:'G', name:'銀座線', order:10, st_ja:'浅草', st_en:'Asakusa', color:'#FF9500', file:'G_10_Asakusa'},
+    // T
+    {lc:'T', name:'東西線', order:1, st_ja:'中野', st_en:'Nakano', color:'#009BBF', file:'T_01_Nakano'},
+    {lc:'T', name:'東西線', order:2, st_ja:'落合', st_en:'Ochiai', color:'#009BBF', file:'T_02_Ochiai'},
+    {lc:'T', name:'東西線', order:3, st_ja:'高田馬場', st_en:'Takadanobaba', color:'#009BBF', file:'T_03_Takadanobaba'},
+    {lc:'T', name:'東西線', order:4, st_ja:'早稲田', st_en:'Waseda', color:'#009BBF', file:'T_04_Waseda'},
+    {lc:'T', name:'東西線', order:5, st_ja:'飯田橋', st_en:'Iidabashi', color:'#009BBF', file:'T_05_Iidabashi'},
+    {lc:'T', name:'東西線', order:6, st_ja:'大手町', st_en:'Otemachi', color:'#009BBF', file:'T_06_Otemachi'},
+    {lc:'T', name:'東西線', order:7, st_ja:'日本橋', st_en:'Nihombashi', color:'#009BBF', file:'T_07_Nihombashi'},
+    {lc:'T', name:'東西線', order:8, st_ja:'茅場町', st_en:'Kayabacho', color:'#009BBF', file:'T_08_Kayabacho'},
+    {lc:'T', name:'東西線', order:9, st_ja:'門前仲町', st_en:'Monzen-nakacho', color:'#009BBF', file:'T_09_Monzen-nakacho'},
+    {lc:'T', name:'東西線', order:10, st_ja:'東陽町', st_en:'Toyocho', color:'#009BBF', file:'T_10_Toyocho'}
 ];
-// ダミーデータ生成（テスト用）: 本番は元のSTATIONS_DBを使ってください
+
 const LINES = ['JY','M','G','T']; 
 let deck = [], players = [], discardPile = [];
 let mapState = {}, lastHits = {}, gameOver = false;
