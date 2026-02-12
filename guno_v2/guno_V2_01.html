@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>GUNO v2.0 (GIS Integration Alpha)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+    /* --- 1. v44 Original Styles (Base) --- */
+    :root { --bg-color: #222; --text-color: #eee; }
+    body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; font-size: 14px; overflow: hidden; }
+    .header { display: flex; justify-content: space-between; align-items: center; background: #333; padding: 10px; margin-bottom: 10px; }
+    .game-container { display: grid; grid-template-columns: 300px 1fr 300px; gap: 20px; height: calc(100vh - 100px); }
+    .panel { background: #333; padding: 10px; border-radius: 8px; overflow-y: auto; display: flex; flex-direction: column; }
+    
+    /* Map Container */
+    #map { flex-grow: 1; min-height: 400px; border-radius: 4px; background: #111; }
+
+    /* --- 2. NotebookLM Visual Effects [cite: 202] --- */
+    /* 停電モード：地図全体を暗くし、色相をずらす */
+    .teiden-mode .leaflet-tile-pane {
+        filter: brightness(30%) sepia(100%) hue-rotate(-50deg) saturate(500%);
+        transition: filter 0.5s ease;
+    }
+    /* 制圧路線の脈動アニメーション [cite: 203] */
+    @keyframes widthPulse {
+        0% { stroke-width: 6; stroke-opacity: 1; }
+        50% { stroke-width: 10; stroke-opacity: 0.7; }
+        100% { stroke-width: 6; stroke-opacity: 1; }
+    }
+    .pulse-animation path {
+        animation: widthPulse 2s infinite ease-in-out;
+        stroke-linecap: round;
+    }
+
+    /* --- 3. Card & UI Styles --- */
+    .card { width: 50px; height: 75px; background: #fff; border: 2px solid #ccc; display: inline-block; margin: 2px; background-size: contain; background-repeat: no-repeat; background-position: center; }
+    .card.jy { border-color: #00AA00; } .card.m { border-color: #F62E36; } 
+    .card.g { border-color: #FF9500; } .card.t { border-color: #009BBF; }
+    .card.teiden { border-color: #000; box-shadow: 0 0 5px #fff; }
+    
+    .player-box { padding: 5px; margin-bottom: 5px; border: 1px solid #555; }
+    .player-box.active-turn { background: #444; border-color: #fff; }
+    .log-turn { border-bottom: 1px solid #444; color: #aaa; margin-top: 5px; }
+    .log-play { color: #88ff88; } .log-teiden { color: #ffff00; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h2>GUNO v2.0 (GIS Alpha)</h2>
+        <small>v44 Logic + Leaflet Map Integration</small>
+    </div>
+    <div>
+        <span id="turn-direction">↻</span>
+        <button onclick="startGame()">🎲 New Game</button>
+        <button onclick="step()">Step</button>
+        <button onclick="toggleAuto()">▶ Auto</button>
+    </div>
+</div>
+
+<div class="game-container">
+    <div class="panel">
+        <h3>Game Log</h3>
+        <div id="status-display">Turn: 0</div>
+        <div id="log" style="flex-grow:1; overflow-y:auto;"></div>
+    </div>
+
+    <div class="panel">
+        <h3>Shared Map (Tokyo GIS)</h3>
+        <div style="display:flex; gap:20px; margin-bottom:10px; justify-content: center;">
+            <div>Deck: <span id="deck-count">84</span></div>
+            <div id="discard-pile"></div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <div class="panel">
+        <h3>Players</h3>
+        <div id="players-area"></div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+/* =========================================
+   1. GUNO CONFIGURATION (from NotebookLM) 
+   ========================================= */
+const GUNO_CONFIG = {
+    lines: {
+        "JY": { slug: "jr-east-yamanote", color: "#00AA00", status: "active" },
+        "M":  { slug: "tokyo-metro-marunouchi", color: "#F62E36", status: "active" },
+        "G":  { slug: "tokyo-metro-ginza", color: "#FF9500", status: "active" },
+        "T":  { slug: "tokyo-metro-tozai", color: "#009BBF", status: "active" },
+        // ストレッチゴール用（未解放）[cite: 175]
+        "Y":  { slug: "tokyo-metro-yurakucho", color: "#C1A470", status: "locked" },
+        "Z":  { slug: "tokyo-metro-hanzomon", color: "#8F76D6", status: "locked" },
+        "N":  { slug: "tokyo-metro-namboku", color: "#00AC9B", status: "locked" }
+    },
+    playerColors: ["#FF3333", "#3388FF", "#33FF33", "#FFFF33"] [cite: 176]
+};
+
+// Map Global Variables
+let map;
+let geoJsonLayers = {}; // Store layers by slug [cite: 195]
+
+/* =========================================
+   2. MAP INITIALIZATION & LOADING
+   ========================================= */
+function initMap() {
+    // 東京駅を中心に設定
+    map = L.map('map').setView([35.681236, 139.767125], 12);
+    
+    // 背景地図 (CartoDB DarkMatter)
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
+
+    // GeoJSON読み込み (Configにある全路線)
+    Object.values(GUNO_CONFIG.lines).forEach(lineConfig => {
+        loadLineData(lineConfig);
+    });
+}
+
+function loadLineData(config) {
+    const url = `./geojson/lines/${config.slug}.geojson`; // 相対パスで取得
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            const layer = L.geoJSON(data, {
+                style: { color: config.color, weight: 4, opacity: 0.5 }
+            }).addTo(map);
+            
+            // 後で操作できるようにslugで保存 [cite: 195]
+            geoJsonLayers[config.slug] = layer;
+            
+            // 初期状態の適用 (Lockedなら点線など)
+            resetLineStyle(config.slug);
+        })
+        .catch(err => console.error(`Failed to load ${config.slug}:`, err));
+}
+
+/* =========================================
+   3. ADAPTER FUNCTIONS (from NotebookLM) 
+   ========================================= */
+function updateMapFromLogic(gameState) {
+    // 1. 各路線のスタイル更新
+    Object.keys(GUNO_CONFIG.lines).forEach(logicId => {
+        const config = GUNO_CONFIG.lines[logicId];
+        const layer = geoJsonLayers[config.slug];
+        if (!layer) return;
+
+        let style = { color: config.color, weight: 4, opacity: 0.6, dashArray: null };
+
+        // A. 未解放 (Locked) [cite: 180]
+        if (config.status === "locked") {
+            style.color = "#444"; // 暗いグレー
+            style.weight = 2;
+            style.opacity = 0.3;
+            style.dashArray = "5, 10"; // 点線
+        } 
+        // B. 解放済み (Active)
+        else {
+            // 制圧済み (Completed) [cite: 185]
+            if (gameState.lastHits[logicId] !== undefined) {
+                const ownerIndex = gameState.lastHits[logicId];
+                style.color = GUNO_CONFIG.playerColors[ownerIndex];
+                style.weight = 8;
+                style.opacity = 1.0;
+                style.className = "pulse-animation"; // CSSアニメでピカピカさせる
+            }
+            // 進行中 (Touched) [cite: 188]
+            else if (gameState.touchedLines[logicId]) {
+                style.weight = 6;
+                style.opacity = 0.9;
+                style.className = "";
+            } else {
+                style.className = ""; // リセット
+            }
+        }
+
+        // スタイル適用
+        layer.setStyle(style);
+        
+        // CSSクラスの付け替え (Layer自体にはclassNameがない場合があるのでDOM操作)
+        if (layer.eachLayer) {
+            layer.eachLayer(l => {
+                if (l.getElement()) {
+                    l.getElement().classList.remove('pulse-animation');
+                    if (style.className) l.getElement().classList.add(style.className);
+                }
+            });
+        }
+    });
+
+    // 2. 停電エフェクト [cite: 192]
+    const mapContainer = document.getElementById('map');
+    if (gameState.isTeidenActive) {
+        mapContainer.classList.add('teiden-mode');
+    } else {
+        mapContainer.classList.remove('teiden-mode');
+    }
+}
+
+function resetLineStyle(slug) {
+    // 初期化用ダミーStateで一度更新
+    updateMapFromLogic({ lastHits: {}, touchedLines: {}, isTeidenActive: false });
+}
+
+/* =========================================
+   4. v44 GAME LOGIC (Simplified for Integration)
+   ========================================= */
+// --- Master Data (Station List for Logic) ---
+const STATIONS_DB = [
+    // ※ ここにv44の STATIONS_DB の中身（10駅x4路線）が入ります。
+    // 長くなるので山手線1つだけ例示しますが、実際は元のコードから全路線コピーしてください。
+    {lc:'JY', name:'山手線', order:1, st_ja:'東京', color:'#00AA00', file:'JY_01_Tokyo'},
+    {lc:'JY', name:'山手線', order:2, st_ja:'有楽町', color:'#00AA00', file:'JY_02_Yurakucho'},
+    // ... (元のv44コードにある全データをここに貼る) ...
+];
+// ダミーデータ生成（テスト用）: 本番は元のSTATIONS_DBを使ってください
+const LINES = ['JY','M','G','T']; 
+let deck = [], players = [], discardPile = [];
+let mapState = {}, lastHits = {}, gameOver = false;
+let turnIndex = 0, direction = 1, autoTimer = null;
+
+function initDeck() {
+    deck = [];
+    // 簡易デッキ生成
+    LINES.forEach(lc => {
+        for(let i=1; i<=10; i++) {
+            deck.push({type:'station', lc:lc, order:i, ja:'St'+i, color:GUNO_CONFIG.lines[lc].color});
+            deck.push({type:'station', lc:lc, order:i, ja:'St'+i, color:GUNO_CONFIG.lines[lc].color});
+        }
+        deck.push({type:'teiden', lc:lc, color:'#000'}); // Teiden
+    });
+    deck.sort(() => Math.random() - 0.5);
+}
+
+function startGame() {
+    players = [
+        {name:"P1", hand:[], guno:0}, {name:"P2", hand:[], guno:0},
+        {name:"P3", hand:[], guno:0}, {name:"P4", hand:[], guno:0}
+    ];
+    mapState = {}; lastHits = {}; discardPile = [];
+    initDeck();
+    
+    // 初期手札
+    players.forEach(p => { for(let i=0; i<5; i++) p.hand.push(deck.pop()); });
+    discardPile.push(deck.pop());
+
+    document.getElementById('log').innerHTML = "Game Start!";
+    renderAll();
+}
+
+function step() {
+    if(gameOver) return;
+    // 簡易AIロジック (ランダムプレイ)
+    const p = players[turnIndex];
+    const card = p.hand.pop(); // とりあえず出す
+    if(card) {
+        discardPile.push(card);
+        log(`${p.name} plays ${card.lc || 'TEIDEN'}`);
+        
+        // 地図ロジック更新
+        if(card.type === 'station') {
+            const key = `${card.lc}-${card.order}`;
+            mapState[key] = turnIndex;
+            // ラストヒット判定（簡易）
+            if(!lastHits[card.lc] && Math.random() > 0.8) { // 仮: ランダムで制圧
+                lastHits[card.lc] = turnIndex;
+                log(`🏆 ${p.name} completes ${card.lc}!`);
+            }
+        }
+    } else {
+        if(deck.length) p.hand.push(deck.pop());
+    }
+    
+    turnIndex = (turnIndex + 1) % 4;
+    renderAll();
+}
+
+function log(msg) {
+    const d = document.getElementById('log');
+    d.innerHTML += `<div>${msg}</div>`;
+    d.scrollTop = d.scrollHeight;
+}
+
+function toggleAuto() {
+    if(autoTimer) { clearInterval(autoTimer); autoTimer=null; }
+    else { autoTimer = setInterval(step, 200); }
+}
+
+/* =========================================
+   5. RENDER FUNCTIONS (Bridge)
+   ========================================= */
+function renderAll() {
+    document.getElementById('deck-count').innerText = deck.length;
+    
+    // Render Players
+    const pDiv = document.getElementById('players-area');
+    pDiv.innerHTML = players.map((p,i) => 
+        `<div class="player-box ${i===turnIndex?'active-turn':''}">
+            ${p.name} (Cards: ${p.hand.length})
+         </div>`
+    ).join('');
+
+    // Render Discard
+    const top = discardPile[discardPile.length-1];
+    document.getElementById('discard-pile').innerHTML = top 
+        ? `<div class="card ${top.lc?top.lc.toLowerCase():'teiden'}" style="border-color:${top.color}"></div>` 
+        : 'Empty';
+
+    // ★ CALL ADAPTER [cite: 201]
+    renderMapAdapter();
+}
+
+function renderMapAdapter() {
+    // 進行中の路線を特定
+    const touched = {};
+    Object.keys(mapState).forEach(key => {
+        touched[key.split('-')[0]] = true;
+    });
+
+    // 停電判定
+    const top = discardPile[discardPile.length-1];
+    const isTeiden = (top && top.type === 'teiden');
+
+    const currentState = {
+        lastHits: lastHits,
+        touchedLines: touched,
+        isTeidenActive: isTeiden
+    };
+    
+    updateMapFromLogic(currentState);
+}
+
+// 起動時
+window.onload = function() {
+    initMap();
+    startGame();
+};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>東京メトロ日比谷線｜ジオ道</title>
+  <meta name="description" content="東京メトロ日比谷線（鉄道史テキスト＋GeoJSON）｜ジオ道" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root{
+      --bg:#fafafa;
+      --card:#fff;
+      --border:#e6e6ea;
+      --text:#111;
+      --muted:#666;
+      --link:#0a58ca;
+    }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.7; background:var(--bg); color:var(--text); }
+    main { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+
+    .topnav { display:flex; gap:10px; align-items:center; margin-bottom: 14px; }
+    .topnav a { color:var(--link); text-decoration:none; }
+    .topnav a:hover { text-decoration:underline; }
+    .muted { color:var(--muted); font-size:.95em; }
+
+    h1 { margin: 6px 0 8px; letter-spacing: .2px; }
+    h2 { margin-top: 1.6em; }
+    h3 { margin-top: 1.2em; }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,06);
+      background:var(--card);
+    }
+
+    .badges { display:flex; flex-wrap:wrap; gap: 6px; margin: 10px 0 6px; }
+    .badge{
+      display:inline-flex; align-items:center; gap:6px;
+      border:1px solid var(--border);
+      background:#f7f7fb;
+      padding:4px 8px;
+      border-radius:999px;
+      font-size:.82em;
+      color:#333;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .badge.ok { border-color:#d9f2e3; background:#eefbf4; }
+    .badge.data { border-color:#dbe8ff; background:#f1f6ff; }
+
+    #map { height: 560px; width: 100%; border-radius: 14px; border: 1px solid var(--border); }
+    .row { display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
+    .row a { color: var(--link); text-decoration:none; }
+    .row a:hover { text-decoration:underline; }
+    code { background:#f4f4f6; padding:2px 6px; border-radius:6px; }
+    ul { padding-left: 1.25em; }
+    .note { margin-top:10px; }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="topnav">
+      <a href="/lines/">← 路線一覧へ</a>
+      <span class="muted">/</span>
+      <span class="muted">東京メトロ日比谷線</span>
+    </div>
+
+    <h1>東京メトロ日比谷線</h1>
+    <p class="muted">
+      ジオ道では「路線を、地図と文章で書き切る」ことを目標に、まず現代の基礎データ（ライン＋駅ポイント）を公開しています。<br>
+      ※現在は <strong>ライン（試作）＋駅ポイント（本線）</strong> まで。今後、年代別レイヤー（延伸・直通・改良）へ展開します。
+    </p>
+
+    <div class="badges">
+      <span class="badge ok">Map</span>
+      <span class="badge ok">Stations</span>
+      <span class="badge ok">Popup</span>
+      <span class="badge ok">History</span>
+      <span class="badge ok">Timeline</span>
+      <span class="badge data">v0</span>
+      <span class="badge data">line_slug: <code>tokyo-metro-hibiya</code></span>
+    </div>
+
+    <div class="card">
+      <div id="map"></div>
+
+      <div class="row">
+        <span class="muted">GeoJSON:</span>
+        <a href="../../assets/geojson/lines/tokyo-metro-hibiya.geojson" target="_blank" rel="noopener">line</a>
+        <span class="muted">/</span>
+        <a href="../../assets/geojson/stations/tokyo-metro-hibiya_stations.geojson" target="_blank" rel="noopener">stations</a>
+      </div>
+
+      <p class="muted note">
+        ポイントをクリックすると、駅名と <code>station_id</code> / <code>station_order</code>（あれば）などを表示します。
+      </p>
+    </div>
+
+    <h2>鉄道史</h2>
+    <p>
+      日比谷線は、戦後の東京で「都心を貫く通勤動線」を補強するために整備された路線です。
+      南西の中目黒〜北東の北千住を結び、六本木・霞ケ関・銀座東側・上野周辺など、
+      “働く街” と “暮らす街” を一直線につなげる設計思想が色濃く表れています。
+    </p>
+    <p>
+      1960年代前半に段階的に延伸して全通したことで、東京の職住分離が加速する時代の移動需要を吸収しました。
+      さらに東武線との相互直通により、都心と北東方面を一本でつなぐ「都市圏ネットワーク」の早期モデルにもなっています。
+      ジオ道では、この“都市の骨格が固まる瞬間”を、地図で追える形にしていきます。
+    </p>
+
+    <h2>年表（最初版）</h2>
+    <ul>
+      <li><strong>1950年代後半</strong>：都心縦断・直通運転を視野にした路線計画が具体化</li>
+      <li><strong>1959年</strong>：建設着手</li>
+      <li><strong>1961年3月</strong>：一部区間が先行開業（段階開業がスタート）</li>
+      <li><strong>1962〜1964年</strong>：北側・南側から順次延伸</li>
+      <li><strong>1964年8月</strong>：都心部の接続区間がつながり全通（オリンピック直前期）</li>
+      <li><strong>相互直通</strong>：東武線方面との直通で、郊外〜都心の輸送を一体化</li>
+      <li><strong>2004年</strong>：営団地下鉄の民営化により東京メトロへ移行</li>
+    </ul>
+
+    <h2>このページのデータ方針</h2>
+    <ul>
+      <li>ライン：OpenStreetMap由来のway群を整理し、試作GeoJSONとして公開</li>
+      <li>駅：候補点から本線駅を抽出し、<code>station_order</code> と <code>station_id</code> を付与</li>
+      <li>次段階：年代別（延伸・直通・改良）で“地図の上で歴史が読める”形に拡張</li>
+    </ul>
+
+    <p class="muted" style="margin-top:24px;">
+      ※ジオ道は「完成品だけ」ではなく、制作途中の更新過程も含めて公開しています。
+    </p>
+  </main>
+
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    // ---------------------------
+    // Config
+    // ---------------------------
+    const LINE_SLUG = "tokyo-metro-hibiya";
+    const LINE_GEOJSON_URL = "="../../assets/geojson/lines/tokyo-metro-hibiya.geojson";
+    const STATIONS_GEOJSON_URL = "="../../assets/geojson/stations/tokyo-metro-hibiya_stations.geojson";
+
+    // ---------------------------
+    // Map init
+    // ---------------------------
+    const map = L.map("map", { scrollWheelZoom: true });
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const lineLayer = L.geoJSON(null, {
+      style: () => ({
+        weight: 4,
+        opacity: 0.95
+        // 色はデフォルト（line側の見え方に任せる）
+      })
+    }).addTo(map);
+
+    const stationLayer = L.geoJSON(null, {
+      pointToLayer: (feature, latlng) => {
+        return L.circleMarker(latlng, {
+          radius: 5,
+          weight: 2,
+          opacity: 0.95,
+          fillOpacity: 0.9
+          // 色はデフォルト（必要ならここで統一）
+        });
+      },
+      onEachFeature: (feature, layer) => {
+        const p = feature.properties || {};
+        const name = p.station_name || p.name || p["name:ja"] || "(no name)";
+        const stationId = (p.station_id !== undefined && p.station_id !== null) ? p.station_id : "";
+        const order = (p.station_order !== undefined && p.station_order !== null) ? p.station_order : "";
+        const operator = p.operator_slug || "";
+        const html = `
+          <div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif; line-height:1.55;">
+            <div style="font-weight:800; margin-bottom:6px;">${escapeHtml(name)}</div>
+            <div style="font-size:.92em; color:#333;">
+              <div>station_id: <code>${escapeHtml(String(stationId))}</code></div>
+              <div>station_order: <code>${escapeHtml(String(order))}</code></div>
+              <div>operator_slug: <code>${escapeHtml(String(operator))}</code></div>
+              <div>line_slug: <code>${escapeHtml(String(p.line_slug || LINE_SLUG))}</code></div>
+            </div>
+          </div>
+        `;
+        layer.bindPopup(html, { maxWidth: 360 });
+      }
+    }).addTo(map);
+
+    function escapeHtml(str){
+      return (str ?? "").replace(/[&<>"']/g, s => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[s]));
+    }
+
+    // ---------------------------
+    // Load data
+    // ---------------------------
+    async function loadGeoJSON(url){
+      const res = await fetch(url, { cache: "no-cache" });
+      if(!res.ok) throw new Error(`${url} -> HTTP ${res.status}`);
+      return await res.json();
+    }
+
+    (async () => {
+      try {
+        const [line, stations] = await Promise.all([
+          loadGeoJSON(LINE_GEOJSON_URL),
+          loadGeoJSON(STATIONS_GEOJSON_URL)
+        ]);
+
+        lineLayer.addData(line);
+        stationLayer.addData(stations);
+
+        // Fit bounds by line first, fallback to stations
+        const lb = lineLayer.getBounds();
+        const sb = stationLayer.getBounds();
+        if (lb && lb.isValid()) map.fitBounds(lb.pad(0.12));
+        else if (sb && sb.isValid()) map.fitBounds(sb.pad(0.20));
+        else map.setView([35.681, 139.767], 12); // fallback (Tokyo)
+
+      } catch (e) {
+        console.error(e);
+        alert("GeoJSONの読み込みに失敗しました。\n" + e.message);
+        map.setView([35.681, 139.767], 12);
+      }
+    })();
+  </script>
+</body>
+</html>
