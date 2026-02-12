@@ -2,75 +2,89 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>GUNO v2.0 (GIS Integration Alpha)</title>
+<title>GUNO v2.1 (v44 Brain + GIS Map)</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
-    /* --- 1. v44 Original Styles (Base) --- */
-    :root { --bg-color: #222; --text-color: #eee; }
-    body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; font-size: 14px; overflow: hidden; }
-    .header { display: flex; justify-content: space-between; align-items: center; background: #333; padding: 10px; margin-bottom: 10px; }
-    .game-container { display: grid; grid-template-columns: 300px 1fr 300px; gap: 20px; height: calc(100vh - 100px); }
+    :root {
+        --jy-color: #00AA00; --m-color: #F62E36; --g-color: #FF9500; --t-color: #009BBF;
+        --bg-color: #222; --text-color: #eee;
+    }
+    body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-color); color: var(--text-color);
+        margin: 0; padding: 20px; font-size: 14px; overflow: hidden;
+    }
+    
+    /* Layout */
+    .header { display: flex; justify-content: space-between; align-items: center; background: #333; padding: 10px; border-radius: 8px; margin-bottom: 10px; }
+    .game-container { display: grid; grid-template-columns: 320px 1fr 300px; gap: 15px; height: calc(100vh - 100px); }
     .panel { background: #333; padding: 10px; border-radius: 8px; overflow-y: auto; display: flex; flex-direction: column; }
     
-    /* Map Container */
-    #map { flex-grow: 1; min-height: 400px; border-radius: 4px; background: #111; }
+    /* MAP & GIS Styles */
+    #map { flex-grow: 1; min-height: 400px; border-radius: 4px; background: #111; border: 1px solid #555; }
+    .teiden-mode .leaflet-tile-pane { filter: brightness(30%) sepia(100%) hue-rotate(-50deg) saturate(500%); transition: filter 0.5s ease; }
+    @keyframes widthPulse { 0% { stroke-width: 6; stroke-opacity: 1; } 50% { stroke-width: 10; stroke-opacity: 0.7; } 100% { stroke-width: 6; stroke-opacity: 1; } }
+    .pulse-animation path { animation: widthPulse 2s infinite ease-in-out; stroke-linecap: round; }
 
-    /* --- 2. NotebookLM Visual Effects --- */
-    /* 停電モード：地図全体を暗くし、色相をずらす */
-    .teiden-mode .leaflet-tile-pane {
-        filter: brightness(30%) sepia(100%) hue-rotate(-50deg) saturate(500%);
-        transition: filter 0.5s ease;
+    /* Card Styles (v44 Original) */
+    .card {
+        display: inline-block; width: 40px; height: 60px;
+        background-color: #fff; border-radius: 4px; margin: 2px; position: relative;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.5); background-size: contain; background-repeat: no-repeat; background-position: center; border: 2px solid #ccc;
     }
-    /* 制圧路線の脈動アニメーション */
-    @keyframes widthPulse {
-        0% { stroke-width: 6; stroke-opacity: 1; }
-        50% { stroke-width: 10; stroke-opacity: 0.7; }
-        100% { stroke-width: 6; stroke-opacity: 1; }
-    }
-    .pulse-animation path {
-        animation: widthPulse 2s infinite ease-in-out;
-        stroke-linecap: round;
-    }
-
-    /* --- 3. Card & UI Styles --- */
-    .card { width: 50px; height: 75px; background: #fff; border: 2px solid #ccc; display: inline-block; margin: 2px; background-size: contain; background-repeat: no-repeat; background-position: center; }
-    .card.jy { border-color: #00AA00; } .card.m { border-color: #F62E36; } 
-    .card.g { border-color: #FF9500; } .card.t { border-color: #009BBF; }
-    .card.teiden { border-color: #000; box-shadow: 0 0 5px #fff; }
+    .card.jy { border-color: var(--jy-color); } .card.m { border-color: var(--m-color); }
+    .card.g { border-color: var(--g-color); } .card.t { border-color: var(--t-color); }
+    .card.teiden { border-color: #000; box-shadow: 0 0 5px #ff0; }
     
-    .player-box { padding: 5px; margin-bottom: 5px; border: 1px solid #555; }
-    .player-box.active-turn { background: #444; border-color: #fff; }
-    .log-turn { border-bottom: 1px solid #444; color: #aaa; margin-top: 5px; }
-    .log-play { color: #88ff88; } .log-teiden { color: #ffff00; font-weight: bold; }
+    .player-box { border: 1px solid #555; padding: 5px; margin-bottom: 5px; border-radius: 4px; transition: all 0.3s; }
+    .player-box.active-turn { border-color: #fff; background: #444; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+    .player-box.eliminated { opacity: 0.4; filter: grayscale(100%); }
+    
+    .log-turn { color: #aaa; border-bottom: 1px solid #444; margin-top: 5px; }
+    .log-play { color: #88ff88; } .log-win { color: gold; font-weight: bold; }
+    .log-teiden { color: #ffff00; font-weight: bold; } .log-elim { color: #ff4444; font-weight: bold; }
+
+    /* Controls */
+    button { padding: 5px 10px; cursor: pointer; background: #555; color: #fff; border: none; border-radius: 4px; margin-right: 5px; }
+    button:hover { background: #777; } button.active { background: #00AA00; }
 </style>
 </head>
 <body>
 
 <div class="header">
     <div>
-        <h2>GUNO v2.0 (GIS Alpha)</h2>
-        <small>v44 Logic + Leaflet Map Integration</small>
+        <h2>GUNO v2.1 (v44 Brain + GIS Map)</h2>
+        <small>Logic: v44 Full | View: Leaflet GIS</small>
     </div>
-    <div>
-        <span id="turn-direction">↻</span>
+    <div class="controls">
+        <span id="turn-direction" style="font-size:20px; margin-right:10px;">↻</span>
         <button onclick="startGame()">🎲 New Game</button>
-        <button onclick="step()">Step</button>
-        <button onclick="toggleAuto()">▶ Auto</button>
+        <button onclick="toggleAuto()" id="btn-auto">▶ Auto</button>
+        <button onclick="step()" id="btn-step">Step</button>
+        <span>Speed: <input type="range" id="speed-range" min="50" max="1000" value="200" style="width:60px"></span>
     </div>
 </div>
 
 <div class="game-container">
     <div class="panel">
         <h3>Game Log</h3>
-        <div id="status-display">Turn: 0</div>
-        <div id="log" style="flex-grow:1; overflow-y:auto;"></div>
+        <div id="status-display" style="margin-bottom:5px;">Turn: 0</div>
+        <div id="log" style="flex-grow:1; overflow-y:auto; font-family:monospace; font-size:12px;"></div>
     </div>
 
     <div class="panel">
-        <h3>Shared Map (Tokyo GIS)</h3>
-        <div style="display:flex; gap:20px; margin-bottom:10px; justify-content: center;">
-            <div>Deck: <span id="deck-count">84</span></div>
-            <div id="discard-pile"></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:5px;">
+            <h3>Tokyo GIS Map</h3>
+            <div style="display:flex; gap:10px;">
+                <div style="text-align:center">
+                    <span style="font-size:10px; color:#aaa;">DECK</span>
+                    <div id="draw-pile-visual" style="font-weight:bold;">84</div>
+                </div>
+                <div style="text-align:center">
+                    <span style="font-size:10px; color:#aaa;">LAST PLAY</span>
+                    <div id="discard-pile" style="min-width:50px; height:70px;"></div>
+                </div>
+            </div>
         </div>
         <div id="map"></div>
     </div>
@@ -78,6 +92,10 @@
     <div class="panel">
         <h3>Players</h3>
         <div id="players-area"></div>
+        <div id="result-area" style="display:none; margin-top:10px; border-top:1px solid #555; padding-top:5px;">
+            <h4 style="color:gold;">🏆 Result</h4>
+            <div id="ranking-body"></div>
+        </div>
     </div>
 </div>
 
@@ -85,17 +103,16 @@
 
 <script>
 /* =========================================
-   1. GUNO CONFIGURATION
+   1. CONFIGURATION (GIS & PATHS)
    ========================================= */
-const IMAGE_BASE_URL = "https://geodo.earth/guno_v2/cards/";
-
+const IMAGE_BASE_URL = "https://geodo.earth/guno_v2/cards/"; // Path to card images
 const GUNO_CONFIG = {
     lines: {
         "JY": { slug: "jr-east-yamanote", color: "#00AA00", status: "active" },
         "M":  { slug: "tokyo-metro-marunouchi", color: "#F62E36", status: "active" },
         "G":  { slug: "tokyo-metro-ginza", color: "#FF9500", status: "active" },
         "T":  { slug: "tokyo-metro-tozai", color: "#009BBF", status: "active" },
-        // ストレッチゴール用（未解放）
+        // Stretch Goals (Locked)
         "Y":  { slug: "tokyo-metro-yurakucho", color: "#C1A470", status: "locked" },
         "Z":  { slug: "tokyo-metro-hanzomon", color: "#8F76D6", status: "locked" },
         "N":  { slug: "tokyo-metro-namboku", color: "#00AC9B", status: "locked" }
@@ -103,141 +120,15 @@ const GUNO_CONFIG = {
     playerColors: ["#FF3333", "#3388FF", "#33FF33", "#FFFF33"]
 };
 
-// Map Global Variables
+// Map Variables
 let map;
-let geoJsonLayers = {}; 
+let geoJsonLayers = {};
 
 /* =========================================
-   2. MAP INITIALIZATION & LOADING
+   2. v44 MASTER DATA (Full Logic)
    ========================================= */
-function initMap() {
-    // 東京駅を中心に設定
-    map = L.map('map').setView([35.681236, 139.767125], 12);
-    
-    // 背景地図 (CartoDB DarkMatter)
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
-        subdomains: 'abcd',
-        maxZoom: 19
-    }).addTo(map);
-
-    // GeoJSON読み込み (線と駅)
-    Object.values(GUNO_CONFIG.lines).forEach(lineConfig => {
-        loadLineData(lineConfig);
-        loadStationData(lineConfig); // 駅データも読み込む
-    });
-}
-
-function loadLineData(config) {
-    const url = `./geojson/lines/${config.slug}.geojson`; 
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            const layer = L.geoJSON(data, {
-                style: { color: config.color, weight: 4, opacity: 0.5 }
-            }).addTo(map);
-            geoJsonLayers[config.slug] = layer;
-            resetLineStyle(config.slug);
-        })
-        .catch(err => console.log(`Line data not found: ${config.slug}`));
-}
-
-function loadStationData(config) {
-    const url = `./geojson/stations/${config.slug}_stations.geojson`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            L.geoJSON(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        radius: 4,
-                        fillColor: "#ffffff",
-                        color: config.color,
-                        weight: 2,
-                        opacity: 1,
-                        fillOpacity: 1
-                    });
-                },
-                onEachFeature: function (feature, layer) {
-                    if (feature.properties && feature.properties.name) {
-                        layer.bindPopup(`<b>${feature.properties.name}</b><br>${config.slug}`);
-                    }
-                }
-            }).addTo(map);
-        })
-        .catch(err => console.log(`Station data skipped: ${config.slug}`));
-}
-
-/* =========================================
-   3. ADAPTER FUNCTIONS
-   ========================================= */
-function updateMapFromLogic(gameState) {
-    // 1. 各路線のスタイル更新
-    Object.keys(GUNO_CONFIG.lines).forEach(logicId => {
-        const config = GUNO_CONFIG.lines[logicId];
-        const layer = geoJsonLayers[config.slug];
-        if (!layer) return;
-
-        let style = { color: config.color, weight: 4, opacity: 0.6, dashArray: null };
-
-        // A. 未解放 (Locked)
-        if (config.status === "locked") {
-            style.color = "#444"; 
-            style.weight = 2;
-            style.opacity = 0.3;
-            style.dashArray = "5, 10"; 
-        } 
-        // B. 解放済み (Active)
-        else {
-            // 制圧済み (Completed)
-            if (gameState.lastHits[logicId] !== undefined) {
-                const ownerIndex = gameState.lastHits[logicId];
-                style.color = GUNO_CONFIG.playerColors[ownerIndex];
-                style.weight = 8;
-                style.opacity = 1.0;
-                style.className = "pulse-animation"; 
-            }
-            // 進行中 (Touched)
-            else if (gameState.touchedLines[logicId]) {
-                style.weight = 6;
-                style.opacity = 0.9;
-                style.className = "";
-            } else {
-                style.className = ""; 
-            }
-        }
-
-        layer.setStyle(style);
-        
-        if (layer.eachLayer) {
-            layer.eachLayer(l => {
-                if (l.getElement()) {
-                    l.getElement().classList.remove('pulse-animation');
-                    if (style.className) l.getElement().classList.add(style.className);
-                }
-            });
-        }
-    });
-
-    // 2. 停電エフェクト
-    const mapContainer = document.getElementById('map');
-    if (gameState.isTeidenActive) {
-        mapContainer.classList.add('teiden-mode');
-    } else {
-        mapContainer.classList.remove('teiden-mode');
-    }
-}
-
-function resetLineStyle(slug) {
-    updateMapFromLogic({ lastHits: {}, touchedLines: {}, isTeidenActive: false });
-}
-
-/* =========================================
-   4. GAME LOGIC & DATA
-   ========================================= */
-// --- Master Data (Station List) ---
 const STATIONS_DB = [
-    // --- JR Yamanote (JY) ---
+    // JY
     {lc:'JY', name:'山手線', order:1, st_ja:'東京', st_en:'Tokyo', color:'#00AA00', file:'JY_01_Tokyo'},
     {lc:'JY', name:'山手線', order:2, st_ja:'有楽町', st_en:'Yurakucho', color:'#00AA00', file:'JY_02_Yurakucho'},
     {lc:'JY', name:'山手線', order:3, st_ja:'新橋', st_en:'Shimbashi', color:'#00AA00', file:'JY_03_Shimbashi'},
@@ -248,8 +139,7 @@ const STATIONS_DB = [
     {lc:'JY', name:'山手線', order:8, st_ja:'池袋', st_en:'Ikebukuro', color:'#00AA00', file:'JY_08_Ikebukuro'},
     {lc:'JY', name:'山手線', order:9, st_ja:'上野', st_en:'Ueno', color:'#00AA00', file:'JY_09_Ueno'},
     {lc:'JY', name:'山手線', order:10, st_ja:'秋葉原', st_en:'Akihabara', color:'#00AA00', file:'JY_10_Akihabara'},
-
-    // --- Marunouchi (M) ---
+    // M
     {lc:'M', name:'丸ノ内線', order:1, st_ja:'池袋', st_en:'Ikebukuro', color:'#F62E36', file:'M_01_Ikebukuro'},
     {lc:'M', name:'丸ノ内線', order:2, st_ja:'茗荷谷', st_en:'Myogadani', color:'#F62E36', file:'M_02_Myogadani'},
     {lc:'M', name:'丸ノ内線', order:3, st_ja:'後楽園', st_en:'Korakuen', color:'#F62E36', file:'M_03_Korakuen'},
@@ -260,8 +150,7 @@ const STATIONS_DB = [
     {lc:'M', name:'丸ノ内線', order:8, st_ja:'四ツ谷', st_en:'Yotsuya', color:'#F62E36', file:'M_08_Yotsuya'},
     {lc:'M', name:'丸ノ内線', order:9, st_ja:'新宿', st_en:'Shinjuku', color:'#F62E36', file:'M_09_Shinjuku'},
     {lc:'M', name:'丸ノ内線', order:10, st_ja:'中野坂上', st_en:'Nakano-sakaue', color:'#F62E36', file:'M_10_Nakano-sakaue'},
-
-    // --- Ginza (G) ---
+    // G
     {lc:'G', name:'銀座線', order:1, st_ja:'渋谷', st_en:'Shibuya', color:'#FF9500', file:'G_01_Shibuya'},
     {lc:'G', name:'銀座線', order:2, st_ja:'表参道', st_en:'Omotesando', color:'#FF9500', file:'G_02_Omotesando'},
     {lc:'G', name:'銀座線', order:3, st_ja:'青山一丁目', st_en:'Aoyama-itchome', color:'#FF9500', file:'G_03_Aoyama-itchome'},
@@ -272,8 +161,7 @@ const STATIONS_DB = [
     {lc:'G', name:'銀座線', order:8, st_ja:'上野', st_en:'Ueno', color:'#FF9500', file:'G_08_Ueno'},
     {lc:'G', name:'銀座線', order:9, st_ja:'稲荷町', st_en:'Inaricho', color:'#FF9500', file:'G_09_Inaricho'},
     {lc:'G', name:'銀座線', order:10, st_ja:'浅草', st_en:'Asakusa', color:'#FF9500', file:'G_10_Asakusa'},
-
-    // --- Tozai (T) ---
+    // T
     {lc:'T', name:'東西線', order:1, st_ja:'中野', st_en:'Nakano', color:'#009BBF', file:'T_01_Nakano'},
     {lc:'T', name:'東西線', order:2, st_ja:'落合', st_en:'Ochiai', color:'#009BBF', file:'T_02_Ochiai'},
     {lc:'T', name:'東西線', order:3, st_ja:'高田馬場', st_en:'Takadanobaba', color:'#009BBF', file:'T_03_Takadanobaba'},
@@ -284,106 +172,385 @@ const STATIONS_DB = [
     {lc:'T', name:'東西線', order:8, st_ja:'茅場町', st_en:'Kayabacho', color:'#009BBF', file:'T_08_Kayabacho'},
     {lc:'T', name:'東西線', order:9, st_ja:'門前仲町', st_en:'Monzen-nakacho', color:'#009BBF', file:'T_09_Monzen-nakacho'},
     {lc:'T', name:'東西線', order:10, st_ja:'東陽町', st_en:'Toyocho', color:'#009BBF', file:'T_10_Toyocho'}
-]; // ★ここが重要です！
+];
+const TEIDEN_FILES = {'JY':'JY_TEIDEN', 'M':'M_TEIDEN', 'G':'G_TEIDEN', 'T':'T_TEIDEN'};
 
-// Game Variables
-let deck = [], players = [], discardPile = [];
-let mapState = {}, lastHits = {}, gameOver = false;
-let turnIndex = 0, autoTimer = null;
+// Game State (v44)
+let deck = [];
+let discardPile = [];
+let players = [];
+let turnIndex = 0;
+let direction = 1; 
+let turnCount = 0;
+let mapState = {};
+let lastHits = {}; 
+let gameOver = false;
+let autoPlay = false;
+let autoTimer = null;
+let teidenPlayed = {}; // Track played teiden cards {LC: true}
 
+/* =========================================
+   3. MAP FUNCTIONS (The Adapter)
+   ========================================= */
+function initMap() {
+    map = L.map('map').setView([35.681236, 139.767125], 12);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap, CartoDB', maxZoom: 19
+    }).addTo(map);
+
+    Object.values(GUNO_CONFIG.lines).forEach(config => {
+        // 1. Load Lines
+        fetch(`./geojson/lines/${config.slug}.geojson`).then(r=>r.json()).then(data => {
+            let layer = L.geoJSON(data, { style: { color:config.color, weight:4, opacity:0.5 } }).addTo(map);
+            geoJsonLayers[config.slug] = layer;
+            resetLineStyle(config.slug);
+        }).catch(()=>console.log(`Skipped line: ${config.slug}`));
+
+        // 2. Load Stations
+        fetch(`./geojson/stations/${config.slug}_stations.geojson`).then(r=>r.json()).then(data => {
+            L.geoJSON(data, {
+                pointToLayer: (f, ll) => L.circleMarker(ll, { radius:4, fillColor:'#fff', color:config.color, weight:1, opacity:1, fillOpacity:1 }),
+                onEachFeature: (f, l) => l.bindPopup(f.properties.name || config.slug)
+            }).addTo(map);
+        }).catch(()=>console.log(`Skipped stations: ${config.slug}`));
+    });
+}
+
+function updateMapFromLogic() {
+    // Convert v44 `mapState` to Map Logic
+    const touchedLines = {};
+    Object.keys(mapState).forEach(key => {
+        let lc = key.split('-')[0];
+        touchedLines[lc] = true;
+    });
+
+    const topCard = discardPile.length > 0 ? discardPile[discardPile.length-1] : null;
+    const isTeiden = (topCard && topCard.type === 'teiden');
+
+    // Update Styles
+    Object.keys(GUNO_CONFIG.lines).forEach(logicId => {
+        const config = GUNO_CONFIG.lines[logicId];
+        const layer = geoJsonLayers[config.slug];
+        if (!layer) return;
+
+        let style = { color: config.color, weight: 4, opacity: 0.6, dashArray: null };
+
+        if (config.status === "locked") {
+            style.color = "#444"; style.weight = 2; style.opacity = 0.3; style.dashArray = "5, 10";
+        } else {
+            // Completed?
+            if (lastHits[logicId] !== undefined) {
+                const owner = lastHits[logicId];
+                style.color = GUNO_CONFIG.playerColors[owner];
+                style.weight = 8; style.opacity = 1.0; style.className = "pulse-animation";
+            } 
+            // Touched?
+            else if (touchedLines[logicId]) {
+                style.weight = 6; style.opacity = 0.9; style.className = "";
+            } else {
+                style.className = "";
+            }
+        }
+
+        layer.setStyle(style);
+        
+        // Apply CSS class safely
+        if (layer.eachLayer) {
+            layer.eachLayer(l => {
+                if (typeof l.getElement === 'function' && l.getElement()) {
+                    l.getElement().classList.remove('pulse-animation');
+                    if (style.className) l.getElement().classList.add(style.className);
+                }
+            });
+        }
+    });
+
+    // Teiden Effect
+    const mapEl = document.getElementById('map');
+    if(isTeiden) mapEl.classList.add('teiden-mode');
+    else mapEl.classList.remove('teiden-mode');
+}
+
+function resetLineStyle(slug) { updateMapFromLogic(); }
+
+/* =========================================
+   4. GAME LOGIC (v44 FULL)
+   ========================================= */
 function initDeck() {
     deck = [];
     STATIONS_DB.forEach(s => {
-        deck.push({type:'station', ...s});
-        deck.push({type:'station', ...s}); // 2枚ずつ
+        for(let i=0; i<2; i++) {
+            deck.push({
+                type: 'station', lc: s.lc, order: s.order, ja: s.st_ja, en: s.st_en,
+                color: s.color, file: s.file, id: `card-${s.lc}-${s.order}-${i}`
+            });
+        }
     });
-    // Teiden
-    ['JY','M','G','T'].forEach(lc => deck.push({type:'teiden', lc:lc, color:'#000'}));
-    deck.sort(() => Math.random() - 0.5);
+    // Teiden x4
+    ['JY', 'M', 'G', 'T'].forEach(lc => {
+        deck.push({ type: 'teiden', lc: lc, order: 20, color: '#000', file: TEIDEN_FILES[lc], id: `teiden-${lc}-0` });
+    });
+    shuffle(deck);
+}
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
 function startGame() {
+    stopAuto();
+    gameOver = false; turnCount = 0; turnIndex = 0; direction = 1;
+    mapState = {}; lastHits = {}; teidenPlayed = {};
+    document.getElementById('result-area').style.display = "none";
+    document.getElementById('ranking-body').innerHTML = "";
+    document.getElementById('turn-direction').textContent = "↻";
+    document.getElementById('log').innerHTML = "";
+
     players = [
-        {name:"P1", hand:[], guno:0}, {name:"P2", hand:[], guno:0},
-        {name:"P3", hand:[], guno:0}, {name:"P4", hand:[], guno:0}
+        { name: "P1", hand: [], guno: 0, completed: [], status: 'active' },
+        { name: "P2", hand: [], guno: 0, completed: [], status: 'active' },
+        { name: "P3", hand: [], guno: 0, completed: [], status: 'active' },
+        { name: "P4", hand: [], guno: 0, completed: [], status: 'active' }
     ];
-    mapState = {}; lastHits = {}; discardPile = [];
+    
     initDeck();
     
-    players.forEach(p => { for(let i=0; i<5; i++) p.hand.push(deck.pop()); });
-    discardPile.push(deck.pop());
-
-    document.getElementById('log').innerHTML = "Game Start!";
+    // Deal 7 cards
+    for(let p of players) {
+        for(let i=0; i<7; i++) {
+            if(deck.length) p.hand.push(deck.pop());
+        }
+    }
+    
+    discardPile = [];
+    while(true) {
+        let c = deck.pop();
+        discardPile.push(c);
+        if(c.type === 'station') {
+            mapState[`${c.lc}-${c.order}`] = -1; 
+            break;
+        }
+    }
+    
+    updateStatusDisplay();
+    log("=== GAME START (v44 + GIS) ===");
     renderAll();
 }
 
 function step() {
     if(gameOver) return;
-    const p = players[turnIndex];
-    const card = p.hand.pop(); 
-    if(card) {
-        discardPile.push(card);
-        log(`${p.name} plays ${card.lc || 'TEIDEN'}`);
-        if(card.type === 'station') {
-            const key = `${card.lc}-${card.order}`;
-            mapState[key] = turnIndex;
-            if(!lastHits[card.lc] && Math.random() > 0.8) { 
-                lastHits[card.lc] = turnIndex;
-                log(`🏆 ${p.name} completes ${card.lc}!`);
-            }
-        }
-    } else {
-        if(deck.length) p.hand.push(deck.pop());
+    playTurn();
+    renderAll();
+    if(gameOver) stopAuto();
+}
+
+function playTurn() {
+    let activePlayers = players.filter(p => p.status === 'active');
+    if(activePlayers.length === 0) { endGameByScore(); return; }
+    
+    let attempts = 0;
+    while(players[turnIndex].status !== 'active' && attempts < 4) {
+        advanceTurn(); attempts++;
     }
     
-    turnIndex = (turnIndex + 1) % 4;
-    renderAll();
+    const pIndex = turnIndex;
+    const player = players[pIndex];
+    if(player.status !== 'active') { advanceTurn(); return; }
+
+    const top = discardPile[discardPile.length - 1];
+    logTurn(`Turn ${turnCount}: ${player.name}`);
+    
+    // AI Thinking
+    let playable = [];
+    player.hand.forEach((card, idx) => {
+        let isTeiden = (card.type === 'teiden');
+        if(isTeiden && player.hand.length === 1) return; // Don't play Teiden as last card
+
+        if(isTeiden) {
+            if(top.type === 'teiden') playable.push({ card, idx, reason: 'teiden_chain' });
+            else if (card.lc === top.lc) playable.push({ card, idx, reason: 'teiden' });
+        } else {
+            let match = false; let reason = "";
+            const topLc = top.lc; const topName = top.ja || ""; 
+            if (card.lc === topLc) { match = true; reason = "color"; }
+            if (card.ja === topName) { match = true; reason = "station"; }
+            if (card.type === 'station' && top.type === 'station') {
+                if (card.order === top.order) { match = true; reason = "number"; }
+            }
+            if(match) playable.push({ card, idx, reason });
+        }
+    });
+
+    if(playable.length === 0) {
+        // Draw
+        if(deck.length === 0) { endGameByScore(); return; }
+        player.hand.push(deck.pop());
+        log(`<span class="log-draw">${player.name} draws 1 card.</span>`);
+    } else {
+        // Play
+        let pick = playable[Math.floor(Math.random() * playable.length)];
+        player.hand.splice(pick.idx, 1);
+        discardPile.push(pick.card);
+        
+        let logMsg = `<span class="log-play" style="color:${GUNO_CONFIG.playerColors[pIndex]}">${player.name} plays ${cardStr(pick.card)}</span>`;
+        if(pick.reason) logMsg += ` <small>(${pick.reason})</small>`;
+        
+        if(pick.card.type === 'station') {
+            const key = `${pick.card.lc}-${pick.card.order}`;
+            if(mapState[key] === undefined) mapState[key] = pIndex;
+            checkLastHit(pick.card.lc, pIndex);
+            
+            if(top.type === 'station' && top.ja === pick.card.ja) {
+                direction *= -1;
+                logMsg += ` <span style="color:#ff88ff">REVERSE!</span>`;
+                updateDirectionIcon();
+            }
+        } else if (pick.card.type === 'teiden') {
+            logMsg += ` <span class="log-teiden">TEIDEN!⚡</span>`;
+            teidenPlayed[pick.card.lc] = true;
+            players.forEach((p, i) => {
+                if(i !== pIndex && p.status === 'active' && deck.length>0) p.hand.push(deck.pop());
+            });
+            direction *= -1;
+            updateDirectionIcon();
+        }
+        
+        log(logMsg);
+        if(gameOver) return;
+
+        // Check Win
+        if(player.hand.length === 0) {
+            player.status = 'eliminated';
+            log(`<span class="log-elim">🚫 ${player.name} DROPS OUT!</span>`);
+            let active = players.filter(p => p.status === 'active');
+            if(active.length === 1) {
+                let survivor = players.find(p => p.status === 'active');
+                log(`<span class="log-win">🏆 Only ${survivor.name} remains! WIN!</span>`);
+                gameOver = true;
+                showRanking(players.indexOf(survivor));
+                return;
+            }
+        }
+    }
+    
+    updateStatusDisplay();
+    if(!gameOver) advanceTurn();
 }
 
-function log(msg) {
-    const d = document.getElementById('log');
-    d.innerHTML += `<div>${msg}</div>`;
-    d.scrollTop = d.scrollHeight;
+function advanceTurn() {
+    turnCount++;
+    turnIndex = (turnIndex + direction) % 4;
+    if(turnIndex < 0) turnIndex += 4;
 }
 
+function checkLastHit(lc, pIndex) {
+    // v44 Logic: 10 stations needed
+    const total = 10;
+    let filled = 0;
+    for(let i=1; i<=10; i++) {
+        if(mapState[`${lc}-${i}`] !== undefined) filled++;
+    }
+    
+    if(filled === total && lastHits[lc] === undefined) {
+        lastHits[lc] = pIndex;
+        players[pIndex].guno++;
+        players[pIndex].completed.push(lc);
+        log(`<span class="log-win">🏆 ${players[pIndex].name} captures ${lc}! (1 GUNO)</span>`);
+        if(players[pIndex].guno >= 4) {
+            log(`<span class="log-win">🎉 ${players[pIndex].name} 4GUNO! WINNER! 🎉</span>`);
+            gameOver = true;
+            showRanking(pIndex);
+        }
+    }
+}
+
+function endGameByScore() {
+    gameOver = true;
+    log(`Game Over (Deck Empty).`);
+    showRanking(null);
+}
+
+function showRanking(winnerIndex) {
+    let rankingData = players.map((p, i) => {
+        let handSum = p.hand.reduce((acc, c) => acc + (c.order || 0), 0);
+        return { index: i, name: p.name, guno: p.guno, handSum: handSum, status: p.status, winner: (i===winnerIndex) };
+    });
+    rankingData.sort((a, b) => {
+        if(a.winner) return -1; if(b.winner) return 1;
+        if(a.status==='active' && b.status!=='active') return -1;
+        if(a.status!=='active' && b.status==='active') return 1;
+        if(b.guno !== a.guno) return b.guno - a.guno;
+        return a.handSum - b.handSum;
+    });
+    
+    let html = "<table style='width:100%; font-size:12px; border-collapse:collapse;'><tr><th>R</th><th>Name</th><th>GUNO</th><th>Hand</th></tr>";
+    rankingData.forEach((d, i) => {
+        html += `<tr style="color:${d.winner?'gold':'white'}"><td>${i+1}</td><td>${d.name}</td><td>${d.guno}</td><td>${d.handSum}</td></tr>`;
+    });
+    html += "</table>";
+    document.getElementById('ranking-body').innerHTML = html;
+    document.getElementById('result-area').style.display = "block";
+}
+
+// --- Utils ---
+function updateDirectionIcon() { document.getElementById('turn-direction').textContent = direction === 1 ? "↻" : "↺"; }
+function updateStatusDisplay() { document.getElementById('status-display').textContent = `Turn: ${turnCount} | Active: ${players.filter(p=>p.status==='active').length}`; }
+function cardStr(c) { return c.type==='teiden' ? `[⚡${c.lc}]` : `[${c.lc} ${c.ja}]`; }
+function log(msg) { const d = document.getElementById('log'); d.innerHTML += `<div>${msg}</div>`; d.scrollTop = d.scrollHeight; }
+function logTurn(msg) { document.getElementById('log').innerHTML += `<div class="log-turn">${msg}</div>`; }
+
+// Auto Play
 function toggleAuto() {
-    if(autoTimer) { clearInterval(autoTimer); autoTimer=null; }
-    else { autoTimer = setInterval(step, 200); }
+    autoPlay = !autoPlay;
+    document.getElementById('btn-auto').classList.toggle('active', autoPlay);
+    if(autoPlay) { if(gameOver) startGame(); autoLoop(); } else { stopAuto(); }
+}
+function stopAuto() { autoPlay = false; clearTimeout(autoTimer); document.getElementById('btn-auto').classList.remove('active'); }
+function autoLoop() {
+    if(!autoPlay || gameOver) return;
+    step();
+    let speed = document.getElementById('speed-range').value;
+    autoTimer = setTimeout(autoLoop, speed);
+}
+
+// --- RENDERING (Bridge) ---
+function createCardHTML(c, cls='') {
+    let url = c.file ? `${IMAGE_BASE_URL}${c.file}.png` : '';
+    let style = `background-image: url('${url}'); border-color:${c.color||'#000'}`;
+    return `<div class="card ${cls} ${c.lc?c.lc.toLowerCase():'teiden'}" style="${style}" title="${c.ja||'TEIDEN'}"></div>`;
 }
 
 function renderAll() {
-    document.getElementById('deck-count').innerText = deck.length;
-    const pDiv = document.getElementById('players-area');
-    pDiv.innerHTML = players.map((p,i) => 
-        `<div class="player-box ${i===turnIndex?'active-turn':''}">
-            ${p.name} (Cards: ${p.hand.length})
-         </div>`
-    ).join('');
-
-    const top = discardPile[discardPile.length-1];
-    const bg = top ? `url('${IMAGE_BASE_URL}${top.file || 'TEIDEN_CARD'}.png')` : 'none';
+    // 1. Deck & Discard
+    const deckDiv = document.getElementById('draw-pile-visual');
+    deckDiv.textContent = deck.length;
+    deckDiv.style.opacity = deck.length ? 1 : 0.3;
     
-    document.getElementById('discard-pile').innerHTML = top 
-        ? `<div class="card ${top.lc?top.lc.toLowerCase():'teiden'}" style="border-color:${top.color}; background-image:${bg}"></div>` 
-        : 'Empty';
-
-    renderMapAdapter();
-}
-
-function renderMapAdapter() {
-    const touched = {};
-    Object.keys(mapState).forEach(key => touched[key.split('-')[0]] = true);
     const top = discardPile[discardPile.length-1];
-    const isTeiden = (top && top.type === 'teiden');
+    document.getElementById('discard-pile').innerHTML = top ? createCardHTML(top, 'card-large') : 'Empty';
 
-    updateMapFromLogic({
-        lastHits: lastHits,
-        touchedLines: touched,
-        isTeidenActive: isTeiden
-    });
+    // 2. Players
+    const pDiv = document.getElementById('players-area');
+    pDiv.innerHTML = players.map((p, i) => {
+        let isTurn = (i === turnIndex && !gameOver && p.status === 'active');
+        let html = p.hand.map(c => createCardHTML(c)).join('');
+        return `<div class="player-box ${isTurn?'active-turn':''} ${p.status==='eliminated'?'eliminated':''}">
+            <div style="font-weight:bold; display:flex; justify-content:space-between;">
+                <span style="color:${GUNO_CONFIG.playerColors[i]}">${p.name} ${isTurn?'◀':''}</span>
+                <span>GUNO: ${p.guno}</span>
+            </div>
+            <div style="margin-top:2px;">${html}</div>
+        </div>`;
+    }).join('');
+
+    // 3. MAP UPDATE (The new part!)
+    updateMapFromLogic();
 }
 
-// 起動時
+// Start
 window.onload = function() {
     initMap();
     startGame();
