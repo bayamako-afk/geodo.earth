@@ -2,24 +2,22 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>GUNO v2.6 (Dashboard & Turn Monitor)</title>
+    <title>GUNO v2.7 (Station Realism)</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
             --jy-color: #00AA00; --m-color: #F62E36; --g-color: #FF9500; --t-color: #009BBF;
-            --bg-color: #e0e0e0;
-            --text-color: #333;
+            --bg-color: #333; --text-color: #eee;
         }
         body {
             font-family: "Helvetica Neue", Arial, sans-serif;
-            background-color: #333; color: #eee;
+            background-color: var(--bg-color); color: var(--text-color);
             margin: 0; padding: 20px; font-size: 14px; overflow: hidden;
         }
 
         /* Layout Grid */
         .header { display: flex; justify-content: space-between; align-items: center; background: #222; padding: 10px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #444; }
         
-        /* 3-Column Layout: Right column is now a wrapper for multiple panels */
         .game-container { 
             display: grid; 
             grid-template-columns: 300px 1fr 300px; 
@@ -36,7 +34,7 @@
         /* Right Column Wrapper */
         .right-column {
             display: flex; flex-direction: column; gap: 10px;
-            overflow: hidden; /* Inner panels handle scroll */
+            overflow: hidden; 
         }
 
         /* --- MAP Styles --- */
@@ -46,7 +44,7 @@
         }
         .teiden-mode .leaflet-tile-pane { filter: grayscale(100%) contrast(150%) brightness(50%); transition: filter 0.5s ease; }
         
-        /* Pulse Animation */
+        /* Pulse Animation (Slow Gold) */
         @keyframes widthPulse { 0% { stroke-width: 6; stroke-opacity: 0.9; } 50% { stroke-width: 9; stroke-opacity: 0.5; } 100% { stroke-width: 6; stroke-opacity: 0.9; } }
         .pulse-animation path { animation: widthPulse 4s infinite ease-in-out; stroke-linecap: round; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6)); }
 
@@ -61,7 +59,6 @@
         .card { display: inline-block; width: 36px; height: 54px; background-color: #fff; border-radius: 3px; margin: 1px; position: relative; box-shadow: 1px 1px 3px rgba(0,0,0,0.5); background-size: contain; background-repeat: no-repeat; background-position: center; border: 2px solid #ccc; }
         .card-large { width: 60px; height: 90px; }
         
-        /* Deck Visual */
         #draw-pile-visual {
             background-image: url('https://geodo.earth/guno-map/cards/GUNO_BACK.png');
             background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #444;
@@ -70,32 +67,13 @@
             border: 2px solid #666; border-radius: 4px; margin: 0 auto;
         }
 
-        /* --- NEW: Dashboard & Turn Monitor --- */
-        .dashboard-row {
-            display: flex; justify-content: space-around; align-items: center;
-            margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #444;
-        }
+        /* --- Dashboard & Turn Monitor --- */
+        .dashboard-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #444; }
         
-        /* Turn Monitor Object (v30 Style) */
-        #turn-monitor {
-            display: flex; justify-content: space-between; align-items: center;
-            background: #111; padding: 8px; border-radius: 6px; border: 1px solid #333;
-            margin-top: 5px;
-        }
-        .tm-player {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: #333; border: 2px solid #555;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: bold; color: #888; font-size: 12px;
-            position: relative; transition: all 0.3s;
-        }
-        .tm-player.active {
-            border-color: #fff; background: #000; color: #fff;
-            box-shadow: 0 0 8px rgba(255,255,255,0.5); transform: scale(1.1);
-        }
-        .tm-player.eliminated {
-            opacity: 0.3; border-style: dotted; background: #000;
-        }
+        #turn-monitor { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 8px; border-radius: 6px; border: 1px solid #333; margin-top: 5px; }
+        .tm-player { width: 40px; height: 40px; border-radius: 50%; background: #333; border: 2px solid #555; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #888; font-size: 12px; position: relative; transition: all 0.3s; }
+        .tm-player.active { border-color: #fff; background: #000; color: #fff; box-shadow: 0 0 8px rgba(255,255,255,0.5); transform: scale(1.1); }
+        .tm-player.eliminated { opacity: 0.3; border-style: dotted; background: #000; }
         .tm-arrow { font-size: 16px; color: #555; transition: transform 0.3s; }
         .tm-arrow.active { color: #00AA00; text-shadow: 0 0 3px #00FF00; }
         .tm-arrow.reverse { transform: rotate(180deg); color: #FF00FF; text-shadow: 0 0 3px #FF00FF; }
@@ -120,8 +98,8 @@
 
 <div class="header">
     <div>
-        <h2>GUNO v2.6</h2>
-        <small style="color:#aaa">Dashboard & Turn Monitor Added</small>
+        <h2>GUNO v2.7</h2>
+        <small style="color:#aaa">Station Realism (Active/Unused) & Result on Top</small>
     </div>
     <div class="controls">
         <button onclick="startGame()">🎲 New Game</button>
@@ -156,8 +134,8 @@
 
     <!-- RIGHT: Result (Top), Dashboard, Players -->
     <div class="right-column">
-
-        <!-- 1. RESULT PANEL (最上部に移動・強調表示) -->
+        
+        <!-- 1. RESULT PANEL (Top for better visibility) -->
         <div class="panel" id="result-area" style="display:none; flex: 0 0 auto; border: 2px solid gold; background: #331111; box-shadow: 0 0 10px gold;">
             <h4 style="color:gold; text-align:center; font-size:18px; margin:5px 0 10px 0;">🏆 Final Result 🏆</h4>
             <div id="ranking-body"></div>
@@ -165,35 +143,30 @@
                 <button onclick="startGame()" style="background:gold; color:black; font-weight:bold;">🎲 New Game</button>
             </div>
         </div>
-        
-        <!-- 2. DASHBOARD PANEL (Deck, Last, Monitor) -->
+
+        <!-- 2. DASHBOARD PANEL -->
         <div class="panel" style="flex: 0 0 auto;">
             <h3 style="color:#fff; border-bottom:1px solid #555; margin-bottom:10px;">Dashboard</h3>
-            
             <div class="dashboard-row">
                 <div style="text-align:center">
                     <span style="font-size:10px; color:#666;">DECK</span>
                     <div id="draw-pile-visual">84</div>
                 </div>
-                
                 <div style="font-size:24px; color:#666;" id="direction-arrow">↻</div>
-                
                 <div style="text-align:center">
                     <span style="font-size:10px; color:#666;">LAST</span>
                     <div id="discard-pile" style="height:90px; min-width:60px; display:flex; align-items:center; justify-content:center;"></div>
                 </div>
             </div>
-
             <!-- Turn Monitor -->
             <div id="turn-monitor"></div>
         </div>
 
-        <!-- 3. PLAYERS PANEL (Hand Cards) -->
+        <!-- 3. PLAYERS PANEL -->
         <div class="panel" style="flex: 1 1 auto; min-height: 0;">
             <h3 style="color:#fff; border-bottom:1px solid #555;">Players Hand</h3>
             <div id="players-area"></div>
         </div>
-
     </div>
 </div>
 
@@ -216,7 +189,7 @@ const GUNO_CONFIG = {
     playerColor: "#ffffff", playerBg: "#000000"
 };
 
-let map, geoJsonLayers = {};
+let map, geoJsonLayers = {}, stationLayers = {};
 
 /* =========================================
    2. v44 MASTER DATA
@@ -284,7 +257,11 @@ function initMap() {
         attribution: '&copy; OSM & CartoDB', maxZoom: 19
     }).addTo(map);
 
-    Object.values(GUNO_CONFIG.lines).forEach(config => {
+    stationLayers = {}; // Reset
+
+    Object.keys(GUNO_CONFIG.lines).forEach(logicId => {
+        const config = GUNO_CONFIG.lines[logicId];
+
         // Load Lines
         fetch(`./geojson/lines/${config.slug}.geojson`).then(r=>r.json()).then(data => {
             let layer = L.geoJSON(data, { style: { color:config.color, weight:4, opacity:0.4 } }).addTo(map);
@@ -292,11 +269,40 @@ function initMap() {
             resetLineStyle(config.slug);
         }).catch(()=>console.log(`Skipped line: ${config.slug}`));
 
-        // Load Stations
+        // Load Stations (Only Active Lines)
         if (config.status !== 'active') return;
+
         fetch(`./geojson/stations/${config.slug}_stations.geojson`).then(r=>r.json()).then(data => {
             L.geoJSON(data, {
-                pointToLayer: (f, ll) => L.circleMarker(ll, { radius:3, fillColor:'#fff', color:config.color, weight:1, opacity:0.8, fillOpacity:0.8 }),
+                pointToLayer: (f, latlng) => {
+                    const stName = f.properties.name;
+                    // Check if this station is Adopted (in DB)
+                    const dbStation = STATIONS_DB.find(s => s.lc === logicId && s.st_ja === stName);
+                    
+                    if (dbStation) {
+                        // [Adopted Station] (Active 10 stations) -> Initially White
+                        const marker = L.circleMarker(latlng, {
+                            radius: 4,
+                            fillColor: '#fff', 
+                            color: config.color,
+                            weight: 1,
+                            opacity: 1.0,
+                            fillOpacity: 1.0
+                        });
+                        stationLayers[`${logicId}-${dbStation.order}`] = marker;
+                        return marker;
+                    } else {
+                        // [Unused Station] -> Small Gray
+                        return L.circleMarker(latlng, {
+                            radius: 2,
+                            fillColor: '#444',
+                            color: '#666',
+                            weight: 1,
+                            opacity: 0.5,
+                            fillOpacity: 0.5
+                        });
+                    }
+                },
                 onEachFeature: (f, l) => l.bindPopup(f.properties.name || config.slug)
             }).addTo(map);
         }).catch(()=>console.log(`Skipped stations: ${config.slug}`));
@@ -306,25 +312,31 @@ function initMap() {
 function updateMapFromLogic() {
     const touchedLines = {};
     Object.keys(mapState).forEach(key => touchedLines[key.split('-')] = true);
+
     const topCard = discardPile.length > 0 ? discardPile[discardPile.length-1] : null;
     const isTeiden = (topCard && topCard.type === 'teiden');
 
+    // 1. Update Map Lines
     Object.keys(GUNO_CONFIG.lines).forEach(logicId => {
         const config = GUNO_CONFIG.lines[logicId];
         const layer = geoJsonLayers[config.slug];
         if (!layer) return;
 
         let style = { color: config.color, weight: 4, opacity: 0.4, dashArray: null };
+
         if (config.status === "locked") {
             style.color = "#444"; style.weight = 2; style.opacity = 0.2; style.dashArray = "5, 10";
         } else {
             if (lastHits[logicId] !== undefined) {
+                // Completed -> Gold Line
                 style.color = "#FFD700"; style.weight = 6; style.opacity = 1.0; style.className = "pulse-animation";
             } else if (touchedLines[logicId]) {
                 style.weight = 6; style.opacity = 0.8;
             }
         }
         layer.setStyle(style);
+
+        // Update Class (Animation)
         if (layer.eachLayer) {
             layer.eachLayer(l => {
                 if (typeof l.getElement === 'function' && l.getElement()) {
@@ -338,6 +350,34 @@ function updateMapFromLogic() {
     const mapEl = document.getElementById('map');
     if(isTeiden) mapEl.classList.add('teiden-mode');
     else mapEl.classList.remove('teiden-mode');
+
+    // 2. Update Stations (New in v2.7)
+    Object.keys(stationLayers).forEach(key => {
+        const marker = stationLayers[key];
+        const owner = mapState[key];
+        const [lc, order] = key.split('-');
+        const config = GUNO_CONFIG.lines[lc];
+
+        if (owner !== undefined && owner !== -1) {
+            // [Captured Station] -> Turn to Line Color
+            marker.setStyle({
+                fillColor: config.color,
+                color: '#fff',
+                weight: 2,
+                radius: 5 // Slightly bigger
+            });
+        } else {
+            // [Uncaptured Adopted Station] -> Keep White
+            marker.setStyle({
+                fillColor: '#fff',
+                color: config.color,
+                weight: 1,
+                radius: 4
+            });
+        }
+    });
+
+    // 3. Render Slots
     renderStationSlots();
 }
 
@@ -549,30 +589,20 @@ function createCardHTML(c, cls='') {
     return `<div class="card ${cls}" style="${style}" title="${c.ja||'TEIDEN'}"></div>`;
 }
 
-// NEW: Turn Monitor Render Function
+// Turn Monitor
 function renderTurnMonitor() {
     const el = document.getElementById('turn-monitor');
-    const arrowChar = (direction === 1) ? '▶' : '◀'; // Standard font arrow
-    // Direction logic for styling
-    const arrowClass = (direction === 1) ? 'active' : 'active reverse'; 
-    
+    const arrowClass = (direction === 1) ? 'active' : 'active reverse';
     let html = "";
     players.forEach((p, i) => {
         let isTurn = (i === turnIndex && !gameOver && p.status === 'active');
         let classes = "tm-player";
         if (isTurn) classes += " active";
         if (p.status === 'eliminated') classes += " eliminated";
-        
         html += `<div class="${classes}">${p.name}</div>`;
-        
-        // Add arrow between players, but wrap around? v30 used simple linear
-        if (i < 3) {
-            html += `<div class="tm-arrow ${isTurn ? arrowClass : ''}">▶</div>`;
-        }
+        if (i < 3) html += `<div class="tm-arrow ${isTurn ? arrowClass : ''}">▶</div>`;
     });
     el.innerHTML = html;
-    
-    // Update dashboard arrow too
     document.getElementById('direction-arrow').textContent = (direction===1) ? '↻' : '↺';
 }
 
@@ -580,7 +610,6 @@ function renderAll() {
     document.getElementById('draw-pile-visual').textContent = deck.length;
     const top = discardPile[discardPile.length-1];
     document.getElementById('discard-pile').innerHTML = top ? createCardHTML(top, 'card-large') : 'Empty';
-
     const pDiv = document.getElementById('players-area');
     pDiv.innerHTML = players.map((p, i) => {
         let isTurn = (i === turnIndex && !gameOver && p.status === 'active');
@@ -593,7 +622,6 @@ function renderAll() {
             <div style="margin-top:2px;">${html}</div>
         </div>`;
     }).join('');
-
     renderTurnMonitor();
     updateMapFromLogic();
 }
