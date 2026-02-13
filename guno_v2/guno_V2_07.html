@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>GUNO v2.6 (Dashboard & Turn Monitor)</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --jy-color: #00AA00; --m-color: #F62E36; --g-color: #FF9500; --t-color: #009BBF;
+            --bg-color: #e0e0e0;
+            --text-color: #333;
+        }
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #333; color: #eee;
+            margin: 0; padding: 20px; font-size: 14px; overflow: hidden;
+        }
+
+        /* Layout Grid */
+        .header { display: flex; justify-content: space-between; align-items: center; background: #222; padding: 10px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #444; }
+        
+        /* 3-Column Layout: Right column is now a wrapper for multiple panels */
+        .game-container { 
+            display: grid; 
+            grid-template-columns: 300px 1fr 300px; 
+            gap: 15px; 
+            height: calc(100vh - 100px); 
+        }
+
+        .panel { 
+            background: #222; padding: 10px; border-radius: 8px; 
+            overflow-y: auto; display: flex; flex-direction: column; 
+            border: 1px solid #444; 
+        }
+
+        /* Right Column Wrapper */
+        .right-column {
+            display: flex; flex-direction: column; gap: 10px;
+            overflow: hidden; /* Inner panels handle scroll */
+        }
+
+        /* --- MAP Styles --- */
+        #map { 
+            height: 550px; min-height: 550px; 
+            border-radius: 4px; background: #000; border: 1px solid #555; margin-bottom: 10px; 
+        }
+        .teiden-mode .leaflet-tile-pane { filter: grayscale(100%) contrast(150%) brightness(50%); transition: filter 0.5s ease; }
+        
+        /* Pulse Animation */
+        @keyframes widthPulse { 0% { stroke-width: 6; stroke-opacity: 0.9; } 50% { stroke-width: 9; stroke-opacity: 0.5; } 100% { stroke-width: 6; stroke-opacity: 0.9; } }
+        .pulse-animation path { animation: widthPulse 4s infinite ease-in-out; stroke-linecap: round; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6)); }
+
+        /* --- SLOTS --- */
+        .map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); gap: 4px; margin-bottom: 10px; }
+        .slot { background: #333; border: 1px solid #555; border-radius: 4px; min-height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; text-align: center; opacity: 0.5; color: #888; }
+        .slot.active { opacity: 1; border: 1px solid #fff; background: #000; font-weight: bold; box-shadow: 0 0 5px rgba(255,255,255,0.2); }
+        .slot.teiden-slot { border-style: dotted; }
+        h4 { margin: 5px 0 2px 0; font-size: 12px; color: #ccc; border-bottom: 1px solid #444; display: flex; justify-content: space-between; }
+
+        /* --- Cards --- */
+        .card { display: inline-block; width: 36px; height: 54px; background-color: #fff; border-radius: 3px; margin: 1px; position: relative; box-shadow: 1px 1px 3px rgba(0,0,0,0.5); background-size: contain; background-repeat: no-repeat; background-position: center; border: 2px solid #ccc; }
+        .card-large { width: 60px; height: 90px; }
+        
+        /* Deck Visual */
+        #draw-pile-visual {
+            background-image: url('https://geodo.earth/guno-map/cards/GUNO_BACK.png');
+            background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #444;
+            color: white; text-shadow: 1px 1px 2px #000; font-weight: bold; font-size: 16px;
+            width: 60px; height: 90px; display: flex; align-items: center; justify-content: center;
+            border: 2px solid #666; border-radius: 4px; margin: 0 auto;
+        }
+
+        /* --- NEW: Dashboard & Turn Monitor --- */
+        .dashboard-row {
+            display: flex; justify-content: space-around; align-items: center;
+            margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #444;
+        }
+        
+        /* Turn Monitor Object (v30 Style) */
+        #turn-monitor {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #111; padding: 8px; border-radius: 6px; border: 1px solid #333;
+            margin-top: 5px;
+        }
+        .tm-player {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: #333; border: 2px solid #555;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: #888; font-size: 12px;
+            position: relative; transition: all 0.3s;
+        }
+        .tm-player.active {
+            border-color: #fff; background: #000; color: #fff;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5); transform: scale(1.1);
+        }
+        .tm-player.eliminated {
+            opacity: 0.3; border-style: dotted; background: #000;
+        }
+        .tm-arrow { font-size: 16px; color: #555; transition: transform 0.3s; }
+        .tm-arrow.active { color: #00AA00; text-shadow: 0 0 3px #00FF00; }
+        .tm-arrow.reverse { transform: rotate(180deg); color: #FF00FF; text-shadow: 0 0 3px #FF00FF; }
+
+        /* --- Players --- */
+        .player-box { border: 1px solid #444; padding: 5px; margin-bottom: 5px; border-radius: 4px; transition: all 0.3s; background: #2a2a2a; }
+        .player-box.active-turn { border-color: #fff; background: #000; }
+        .player-box.eliminated { opacity: 0.3; background: #111; border-style: dashed; }
+
+        /* --- Log --- */
+        .log-turn { color: #888; border-bottom: 1px solid #333; margin-top: 5px; font-size: 0.85em; }
+        #log div { margin-bottom: 2px; line-height: 1.3; }
+        .log-play-text { color: #ccc; }
+        .card-name { font-weight: bold; }
+
+        /* Controls */
+        button { padding: 5px 10px; cursor: pointer; background: #444; color: #fff; border: 1px solid #666; border-radius: 4px; margin-right: 5px; }
+        button:hover { background: #666; } button.active { background: #fff; color: #000; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h2>GUNO v2.6</h2>
+        <small style="color:#aaa">Dashboard & Turn Monitor Added</small>
+    </div>
+    <div class="controls">
+        <button onclick="startGame()">🎲 New Game</button>
+        <button onclick="toggleAuto()" id="btn-auto">▶ Auto</button>
+        <button onclick="step()" id="btn-step">Step</button>
+        <input type="range" id="speed-range" min="50" max="1000" value="200" style="width:60px; vertical-align:middle;">
+    </div>
+</div>
+
+<div class="game-container">
+    <!-- LEFT: Log -->
+    <div class="panel">
+        <h3 style="color:#fff; border-bottom:1px solid #555;">Log</h3>
+        <div id="status-display" style="margin-bottom:5px; color:#aaa;">Turn: 0</div>
+        <div id="log" style="flex-grow:1; overflow-y:auto; font-family:'Menlo', monospace; font-size:11px;"></div>
+    </div>
+
+    <!-- CENTER: Map & Slots -->
+    <div class="panel">
+        <div id="map"></div>
+        <div id="slots-area">
+            <h4 style="color:var(--jy-color)">JR Yamanote (JY) <span id="count-jy">0/10</span></h4>
+            <div id="map-jy" class="map-grid"></div>
+            <h4 style="color:var(--m-color)">Marunouchi (M) <span id="count-m">0/10</span></h4>
+            <div id="map-m" class="map-grid"></div>
+            <h4 style="color:var(--g-color)">Ginza (G) <span id="count-g">0/10</span></h4>
+            <div id="map-g" class="map-grid"></div>
+            <h4 style="color:var(--t-color)">Tozai (T) <span id="count-t">0/10</span></h4>
+            <div id="map-t" class="map-grid"></div>
+        </div>
+    </div>
+
+    <!-- RIGHT: Result (Top), Dashboard, Players -->
+    <div class="right-column">
+
+        <!-- 1. RESULT PANEL (最上部に移動・強調表示) -->
+        <div class="panel" id="result-area" style="display:none; flex: 0 0 auto; border: 2px solid gold; background: #331111; box-shadow: 0 0 10px gold;">
+            <h4 style="color:gold; text-align:center; font-size:18px; margin:5px 0 10px 0;">🏆 Final Result 🏆</h4>
+            <div id="ranking-body"></div>
+            <div style="text-align:center; margin-top:5px;">
+                <button onclick="startGame()" style="background:gold; color:black; font-weight:bold;">🎲 New Game</button>
+            </div>
+        </div>
+        
+        <!-- 2. DASHBOARD PANEL (Deck, Last, Monitor) -->
+        <div class="panel" style="flex: 0 0 auto;">
+            <h3 style="color:#fff; border-bottom:1px solid #555; margin-bottom:10px;">Dashboard</h3>
+            
+            <div class="dashboard-row">
+                <div style="text-align:center">
+                    <span style="font-size:10px; color:#666;">DECK</span>
+                    <div id="draw-pile-visual">84</div>
+                </div>
+                
+                <div style="font-size:24px; color:#666;" id="direction-arrow">↻</div>
+                
+                <div style="text-align:center">
+                    <span style="font-size:10px; color:#666;">LAST</span>
+                    <div id="discard-pile" style="height:90px; min-width:60px; display:flex; align-items:center; justify-content:center;"></div>
+                </div>
+            </div>
+
+            <!-- Turn Monitor -->
+            <div id="turn-monitor"></div>
+        </div>
+
+        <!-- 3. PLAYERS PANEL (Hand Cards) -->
+        <div class="panel" style="flex: 1 1 auto; min-height: 0;">
+            <h3 style="color:#fff; border-bottom:1px solid #555;">Players Hand</h3>
+            <div id="players-area"></div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* =========================================
+   1. CONFIGURATION
+========================================= */
+const IMAGE_BASE_URL = "https://geodo.earth/guno_v2/cards/";
+const GUNO_CONFIG = {
+    lines: {
+        "JY": { slug: "jr-east-yamanote", color: "#00AA00", status: "active" },
+        "M":  { slug: "tokyo-metro-marunouchi", color: "#F62E36", status: "active" },
+        "G":  { slug: "tokyo-metro-ginza", color: "#FF9500", status: "active" },
+        "T":  { slug: "tokyo-metro-tozai", color: "#009BBF", status: "active" },
+        "Y":  { slug: "tokyo-metro-yurakucho", color: "#C1A470", status: "locked" },
+        "Z":  { slug: "tokyo-metro-hanzomon", color: "#8F76D6", status: "locked" },
+        "N":  { slug: "tokyo-metro-namboku", color: "#00AC9B", status: "locked" }
+    },
+    playerColor: "#ffffff", playerBg: "#000000"
+};
+
+let map, geoJsonLayers = {};
+
+/* =========================================
+   2. v44 MASTER DATA
+========================================= */
+const STATIONS_DB = [
+    // JY
+    {lc:'JY', name:'山手線', order:1, st_ja:'東京', color:'#00AA00', file:'JY_01_Tokyo'},
+    {lc:'JY', name:'山手線', order:2, st_ja:'有楽町', color:'#00AA00', file:'JY_02_Yurakucho'},
+    {lc:'JY', name:'山手線', order:3, st_ja:'新橋', color:'#00AA00', file:'JY_03_Shimbashi'},
+    {lc:'JY', name:'山手線', order:4, st_ja:'品川', color:'#00AA00', file:'JY_04_Shinagawa'},
+    {lc:'JY', name:'山手線', order:5, st_ja:'渋谷', color:'#00AA00', file:'JY_05_Shibuya'},
+    {lc:'JY', name:'山手線', order:6, st_ja:'新宿', color:'#00AA00', file:'JY_06_Shinjuku'},
+    {lc:'JY', name:'山手線', order:7, st_ja:'高田馬場', color:'#00AA00', file:'JY_07_Takadanobaba'},
+    {lc:'JY', name:'山手線', order:8, st_ja:'池袋', color:'#00AA00', file:'JY_08_Ikebukuro'},
+    {lc:'JY', name:'山手線', order:9, st_ja:'上野', color:'#00AA00', file:'JY_09_Ueno'},
+    {lc:'JY', name:'山手線', order:10, st_ja:'秋葉原', color:'#00AA00', file:'JY_10_Akihabara'},
+    // M
+    {lc:'M', name:'丸ノ内線', order:1, st_ja:'池袋', color:'#F62E36', file:'M_01_Ikebukuro'},
+    {lc:'M', name:'丸ノ内線', order:2, st_ja:'茗荷谷', color:'#F62E36', file:'M_02_Myogadani'},
+    {lc:'M', name:'丸ノ内線', order:3, st_ja:'後楽園', color:'#F62E36', file:'M_03_Korakuen'},
+    {lc:'M', name:'丸ノ内線', order:4, st_ja:'御茶ノ水', color:'#F62E36', file:'M_04_Ochanomizu'},
+    {lc:'M', name:'丸ノ内線', order:5, st_ja:'東京', color:'#F62E36', file:'M_05_Tokyo'},
+    {lc:'M', name:'丸ノ内線', order:6, st_ja:'銀座', color:'#F62E36', file:'M_06_Ginza'},
+    {lc:'M', name:'丸ノ内線', order:7, st_ja:'赤坂見附', color:'#F62E36', file:'M_07_Akasaka-mitsuke'},
+    {lc:'M', name:'丸ノ内線', order:8, st_ja:'四ツ谷', color:'#F62E36', file:'M_08_Yotsuya'},
+    {lc:'M', name:'丸ノ内線', order:9, st_ja:'新宿', color:'#F62E36', file:'M_09_Shinjuku'},
+    {lc:'M', name:'丸ノ内線', order:10, st_ja:'中野坂上', color:'#F62E36', file:'M_10_Nakano-sakaue'},
+    // G
+    {lc:'G', name:'銀座線', order:1, st_ja:'渋谷', color:'#FF9500', file:'G_01_Shibuya'},
+    {lc:'G', name:'銀座線', order:2, st_ja:'表参道', color:'#FF9500', file:'G_02_Omotesando'},
+    {lc:'G', name:'銀座線', order:3, st_ja:'青山一丁目', color:'#FF9500', file:'G_03_Aoyama-itchome'},
+    {lc:'G', name:'銀座線', order:4, st_ja:'赤坂見附', color:'#FF9500', file:'G_04_Akasaka-mitsuke'},
+    {lc:'G', name:'銀座線', order:5, st_ja:'溜池山王', color:'#FF9500', file:'G_05_Tameike-sanno'},
+    {lc:'G', name:'銀座線', order:6, st_ja:'新橋', color:'#FF9500', file:'G_06_Shimbashi'},
+    {lc:'G', name:'銀座線', order:7, st_ja:'銀座', color:'#FF9500', file:'G_07_Ginza'},
+    {lc:'G', name:'銀座線', order:8, st_ja:'上野', color:'#FF9500', file:'G_08_Ueno'},
+    {lc:'G', name:'銀座線', order:9, st_ja:'稲荷町', color:'#FF9500', file:'G_09_Inaricho'},
+    {lc:'G', name:'銀座線', order:10, st_ja:'浅草', color:'#FF9500', file:'G_10_Asakusa'},
+    // T
+    {lc:'T', name:'東西線', order:1, st_ja:'中野', color:'#009BBF', file:'T_01_Nakano'},
+    {lc:'T', name:'東西線', order:2, st_ja:'落合', color:'#009BBF', file:'T_02_Ochiai'},
+    {lc:'T', name:'東西線', order:3, st_ja:'高田馬場', color:'#009BBF', file:'T_03_Takadanobaba'},
+    {lc:'T', name:'東西線', order:4, st_ja:'早稲田', color:'#009BBF', file:'T_04_Waseda'},
+    {lc:'T', name:'東西線', order:5, st_ja:'飯田橋', color:'#009BBF', file:'T_05_Iidabashi'},
+    {lc:'T', name:'東西線', order:6, st_ja:'大手町', color:'#009BBF', file:'T_06_Otemachi'},
+    {lc:'T', name:'東西線', order:7, st_ja:'日本橋', color:'#009BBF', file:'T_07_Nihombashi'},
+    {lc:'T', name:'東西線', order:8, st_ja:'茅場町', color:'#009BBF', file:'T_08_Kayabacho'},
+    {lc:'T', name:'東西線', order:9, st_ja:'門前仲町', color:'#009BBF', file:'T_09_Monzen-nakacho'},
+    {lc:'T', name:'東西線', order:10, st_ja:'東陽町', color:'#009BBF', file:'T_10_Toyocho'}
+];
+const TEIDEN_FILES = {'JY':'JY_TEIDEN', 'M':'M_TEIDEN', 'G':'G_TEIDEN', 'T':'T_TEIDEN'};
+
+// Game State
+let deck = [], discardPile = [], players = [];
+let turnIndex = 0, direction = 1, turnCount = 0;
+let mapState = {}, lastHits = {}, teidenPlayed = {};
+let gameOver = false, autoPlay = false, autoTimer = null;
+
+/* =========================================
+   3. MAP & SLOT FUNCTIONS
+========================================= */
+function initMap() {
+    map = L.map('map').setView([35.681236, 139.767125], 12);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OSM & CartoDB', maxZoom: 19
+    }).addTo(map);
+
+    Object.values(GUNO_CONFIG.lines).forEach(config => {
+        // Load Lines
+        fetch(`./geojson/lines/${config.slug}.geojson`).then(r=>r.json()).then(data => {
+            let layer = L.geoJSON(data, { style: { color:config.color, weight:4, opacity:0.4 } }).addTo(map);
+            geoJsonLayers[config.slug] = layer;
+            resetLineStyle(config.slug);
+        }).catch(()=>console.log(`Skipped line: ${config.slug}`));
+
+        // Load Stations
+        if (config.status !== 'active') return;
+        fetch(`./geojson/stations/${config.slug}_stations.geojson`).then(r=>r.json()).then(data => {
+            L.geoJSON(data, {
+                pointToLayer: (f, ll) => L.circleMarker(ll, { radius:3, fillColor:'#fff', color:config.color, weight:1, opacity:0.8, fillOpacity:0.8 }),
+                onEachFeature: (f, l) => l.bindPopup(f.properties.name || config.slug)
+            }).addTo(map);
+        }).catch(()=>console.log(`Skipped stations: ${config.slug}`));
+    });
+}
+
+function updateMapFromLogic() {
+    const touchedLines = {};
+    Object.keys(mapState).forEach(key => touchedLines[key.split('-')] = true);
+    const topCard = discardPile.length > 0 ? discardPile[discardPile.length-1] : null;
+    const isTeiden = (topCard && topCard.type === 'teiden');
+
+    Object.keys(GUNO_CONFIG.lines).forEach(logicId => {
+        const config = GUNO_CONFIG.lines[logicId];
+        const layer = geoJsonLayers[config.slug];
+        if (!layer) return;
+
+        let style = { color: config.color, weight: 4, opacity: 0.4, dashArray: null };
+        if (config.status === "locked") {
+            style.color = "#444"; style.weight = 2; style.opacity = 0.2; style.dashArray = "5, 10";
+        } else {
+            if (lastHits[logicId] !== undefined) {
+                style.color = "#FFD700"; style.weight = 6; style.opacity = 1.0; style.className = "pulse-animation";
+            } else if (touchedLines[logicId]) {
+                style.weight = 6; style.opacity = 0.8;
+            }
+        }
+        layer.setStyle(style);
+        if (layer.eachLayer) {
+            layer.eachLayer(l => {
+                if (typeof l.getElement === 'function' && l.getElement()) {
+                    l.getElement().classList.remove('pulse-animation');
+                    if (style.className) l.getElement().classList.add(style.className);
+                }
+            });
+        }
+    });
+
+    const mapEl = document.getElementById('map');
+    if(isTeiden) mapEl.classList.add('teiden-mode');
+    else mapEl.classList.remove('teiden-mode');
+    renderStationSlots();
+}
+
+function renderStationSlots() {
+    ['JY', 'M', 'G', 'T'].forEach(lc => {
+        const div = document.getElementById(`map-${lc.toLowerCase()}`);
+        if(!div) return;
+        let html = "";
+        const stations = STATIONS_DB.filter(s => s.lc === lc).sort((a,b)=>a.order-b.order);
+        let filledCount = 0;
+        stations.forEach(s => { if(mapState[`${lc}-${s.order}`] !== undefined) filledCount++; });
+        document.getElementById(`count-${lc.toLowerCase()}`).textContent = `${filledCount}/10`;
+
+        for(let i=1; i<=11; i++) {
+            if(i <= 10) {
+                const s = stations.find(st => st.order === i);
+                if(!s) continue;
+                const owner = mapState[`${lc}-${s.order}`];
+                let classes = "slot", content = `<div>${s.order}</div>`;
+                let style = `border-color:${s.color}; opacity:0.3;`;
+                if(owner !== undefined) {
+                    classes += " active";
+                    style = `background:#000; border:1px solid ${s.color}; color:${s.color}; box-shadow:0 0 5px ${s.color}; opacity:1; font-weight:bold;`;
+                    content = `<div>${s.st_ja}</div>`;
+                }
+                html += `<div class="${classes}" style="${style}">${content}</div>`;
+            } else {
+                let classes = "slot teiden-slot", content = `<div>⚡</div>`, style = "opacity:0.3";
+                if(teidenPlayed[lc]) {
+                    classes += " active";
+                    let f = TEIDEN_FILES[lc];
+                    style = `background-image: url('${IMAGE_BASE_URL}${f}.png'); background-size:contain; background-repeat:no-repeat; background-position:center; opacity:1; border:1px solid #fff;`;
+                    content = "";
+                }
+                html += `<div class="${classes}" style="${style}">${content}</div>`;
+            }
+        }
+        div.innerHTML = html;
+    });
+}
+function resetLineStyle(slug) { updateMapFromLogic(); }
+
+/* =========================================
+   4. GAME LOGIC
+========================================= */
+function initDeck() {
+    deck = [];
+    STATIONS_DB.forEach(s => {
+        for(let i=0; i<2; i++) deck.push({ type: 'station', lc: s.lc, order: s.order, ja: s.st_ja, en: s.st_en, color: s.color, file: s.file, id: `card-${s.lc}-${s.order}-${i}` });
+    });
+    ['JY', 'M', 'G', 'T'].forEach(lc => {
+        deck.push({ type: 'teiden', lc: lc, order: 20, color: '#000', file: TEIDEN_FILES[lc], id: `teiden-${lc}-0` });
+    });
+    shuffle(deck);
+}
+function shuffle(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } }
+
+function startGame() {
+    stopAuto();
+    gameOver = false; turnCount = 0; turnIndex = 0; direction = 1;
+    mapState = {}; lastHits = {}; teidenPlayed = {};
+    document.getElementById('result-area').style.display = "none";
+    document.getElementById('ranking-body').innerHTML = "";
+    document.getElementById('log').innerHTML = "";
+    players = [
+        { name: "P1", hand: [], guno: 0, completed: [], status: 'active' },
+        { name: "P2", hand: [], guno: 0, completed: [], status: 'active' },
+        { name: "P3", hand: [], guno: 0, completed: [], status: 'active' },
+        { name: "P4", hand: [], guno: 0, completed: [], status: 'active' }
+    ];
+    initDeck();
+    for(let p of players) { for(let i=0; i<7; i++) if(deck.length) p.hand.push(deck.pop()); }
+    discardPile = [];
+    while(true) {
+        let c = deck.pop(); discardPile.push(c);
+        if(c.type === 'station') { mapState[`${c.lc}-${c.order}`] = -1; break; }
+    }
+    updateStatusDisplay();
+    log("=== GAME START ===");
+    renderAll();
+}
+
+function step() { if(gameOver) return; playTurn(); renderAll(); if(gameOver) stopAuto(); }
+
+function playTurn() {
+    let activePlayers = players.filter(p => p.status === 'active');
+    if(activePlayers.length === 0) { endGameByScore(); return; }
+    let attempts = 0;
+    while(players[turnIndex].status !== 'active' && attempts < 4) { advanceTurn(); attempts++; }
+    const pIndex = turnIndex;
+    const player = players[pIndex];
+    if(player.status !== 'active') { advanceTurn(); return; }
+    const top = discardPile[discardPile.length - 1];
+    logTurn(`Turn ${turnCount}: ${player.name}`);
+    let playable = [];
+    player.hand.forEach((card, idx) => {
+        let isTeiden = (card.type === 'teiden');
+        if(isTeiden && player.hand.length === 1) return;
+        if(isTeiden) {
+            if(top.type === 'teiden') playable.push({ card, idx, reason: 'teiden_chain' });
+            else if (card.lc === top.lc) playable.push({ card, idx, reason: 'teiden' });
+        } else {
+            let match = false; let reason = "";
+            if (card.lc === top.lc) { match = true; reason = "color"; }
+            if (card.ja === (top.ja||"")) { match = true; reason = "station"; }
+            if (card.type === 'station' && top.type === 'station' && card.order === top.order) { match = true; reason = "number"; }
+            if(match) playable.push({ card, idx, reason });
+        }
+    });
+
+    if(playable.length === 0) {
+        if(deck.length === 0) { endGameByScore(); return; }
+        player.hand.push(deck.pop());
+        log(`<span class="log-play-text">${player.name} draws 1 card.</span>`);
+    } else {
+        let pick = playable[Math.floor(Math.random() * playable.length)];
+        player.hand.splice(pick.idx, 1);
+        discardPile.push(pick.card);
+        let cardColor = pick.card.color || "#fff";
+        let cardName = cardStr(pick.card);
+        let logMsg = `<span class="log-play-text">${player.name} plays</span> <span class="card-name" style="color:${cardColor}">${cardName}</span>`;
+        if(pick.reason) logMsg += ` <small style="color:#666">(${pick.reason})</small>`;
+        
+        if(pick.card.type === 'station') {
+            const key = `${pick.card.lc}-${pick.card.order}`;
+            if(mapState[key] === undefined) mapState[key] = pIndex;
+            checkLastHit(pick.card.lc, pIndex);
+            if(top.type === 'station' && top.ja === pick.card.ja) {
+                direction *= -1; logMsg += ` <span style="color:#ff00ff; font-weight:bold;">REVERSE!</span>`;
+            }
+        } else if (pick.card.type === 'teiden') {
+            logMsg += ` <span style="color:#ffff00; font-weight:bold;">TEIDEN!⚡</span>`;
+            teidenPlayed[pick.card.lc] = true;
+            players.forEach((p, i) => { if(i !== pIndex && p.status === 'active' && deck.length>0) p.hand.push(deck.pop()); });
+            direction *= -1;
+        }
+        log(logMsg);
+        if(player.hand.length === 0) {
+            player.status = 'eliminated';
+            log(`<span class="log-elim">🚫 ${player.name} DROPS OUT!</span>`);
+            let active = players.filter(p => p.status === 'active');
+            if(active.length === 1) {
+                let survivor = active;
+                log(`<span class="log-win">🏆 Only ${survivor.name} remains! WIN!</span>`);
+                gameOver = true; showRanking(players.indexOf(survivor)); return;
+            }
+        }
+    }
+    updateStatusDisplay();
+    if(!gameOver) advanceTurn();
+}
+
+function advanceTurn() {
+    turnCount++;
+    turnIndex = (turnIndex + direction) % 4;
+    if(turnIndex < 0) turnIndex += 4;
+}
+
+function checkLastHit(lc, pIndex) {
+    const total = 10; let filled = 0;
+    for(let i=1; i<=10; i++) { if(mapState[`${lc}-${i}`] !== undefined) filled++; }
+    if(filled === total && lastHits[lc] === undefined) {
+        lastHits[lc] = pIndex; players[pIndex].guno++; players[pIndex].completed.push(lc);
+        let lcColor = GUNO_CONFIG.lines[lc].color;
+        log(`<span style="color:${lcColor}; font-weight:bold;">🏆 ${players[pIndex].name} captures ${lc}! (1 GUNO)</span>`);
+        if(players[pIndex].guno >= 4) {
+            log(`<span style="color:gold; font-size:1.2em;">🎉 ${players[pIndex].name} 4GUNO! WINNER! 🎉</span>`);
+            gameOver = true; showRanking(pIndex);
+        }
+    }
+}
+
+function endGameByScore() { gameOver = true; log(`Game Over (Deck Empty).`); showRanking(null); }
+
+function showRanking(winnerIndex) {
+    let rankingData = players.map((p, i) => {
+        let handSum = p.hand.reduce((acc, c) => acc + (c.order || 0), 0);
+        return { index: i, name: p.name, guno: p.guno, handSum: handSum, status: p.status, winner: (i===winnerIndex) };
+    });
+    rankingData.sort((a, b) => {
+        if(a.winner) return -1; if(b.winner) return 1;
+        if(a.status==='active' && b.status!=='active') return -1;
+        if(a.status!=='active' && b.status==='active') return 1;
+        if(b.guno !== a.guno) return b.guno - a.guno;
+        return a.handSum - b.handSum;
+    });
+    let html = "<table style='width:100%; font-size:12px; border-collapse:collapse; color:#fff;'><tr><th>R</th><th>Name</th><th>GUNO</th><th>Hand</th></tr>";
+    rankingData.forEach((d, i) => {
+        html += `<tr style="color:${d.winner?'gold':'inherit'}; background:${d.status!=='active'?'#333':'transparent'}"><td>${i+1}</td><td>${d.name}</td><td>${d.guno}</td><td>${d.handSum}</td></tr>`;
+    });
+    html += "</table>";
+    document.getElementById('ranking-body').innerHTML = html;
+    document.getElementById('result-area').style.display = "block";
+}
+
+// Utils
+function updateStatusDisplay() { document.getElementById('status-display').textContent = `Turn: ${turnCount} | Active: ${players.filter(p=>p.status==='active').length}`; }
+function cardStr(c) { return c.type==='teiden' ? `⚡${c.lc}` : `${c.lc} ${c.ja}`; }
+function log(msg) { const d = document.getElementById('log'); d.innerHTML += `<div>${msg}</div>`; d.scrollTop = d.scrollHeight; }
+function logTurn(msg) { document.getElementById('log').innerHTML += `<div class="log-turn">${msg}</div>`; }
+function toggleAuto() { autoPlay = !autoPlay; document.getElementById('btn-auto').classList.toggle('active', autoPlay); if(autoPlay) { if(gameOver) startGame(); autoLoop(); } else { stopAuto(); } }
+function stopAuto() { autoPlay = false; clearTimeout(autoTimer); document.getElementById('btn-auto').classList.remove('active'); }
+function autoLoop() { if(!autoPlay || gameOver) return; step(); let speed = document.getElementById('speed-range').value; autoTimer = setTimeout(autoLoop, speed); }
+
+// RENDER
+function createCardHTML(c, cls='') {
+    let url = c.file ? `${IMAGE_BASE_URL}${c.file}.png` : '';
+    let style = `background-image: url('${url}'); border-color:${c.color||'#000'}`;
+    return `<div class="card ${cls}" style="${style}" title="${c.ja||'TEIDEN'}"></div>`;
+}
+
+// NEW: Turn Monitor Render Function
+function renderTurnMonitor() {
+    const el = document.getElementById('turn-monitor');
+    const arrowChar = (direction === 1) ? '▶' : '◀'; // Standard font arrow
+    // Direction logic for styling
+    const arrowClass = (direction === 1) ? 'active' : 'active reverse'; 
+    
+    let html = "";
+    players.forEach((p, i) => {
+        let isTurn = (i === turnIndex && !gameOver && p.status === 'active');
+        let classes = "tm-player";
+        if (isTurn) classes += " active";
+        if (p.status === 'eliminated') classes += " eliminated";
+        
+        html += `<div class="${classes}">${p.name}</div>`;
+        
+        // Add arrow between players, but wrap around? v30 used simple linear
+        if (i < 3) {
+            html += `<div class="tm-arrow ${isTurn ? arrowClass : ''}">▶</div>`;
+        }
+    });
+    el.innerHTML = html;
+    
+    // Update dashboard arrow too
+    document.getElementById('direction-arrow').textContent = (direction===1) ? '↻' : '↺';
+}
+
+function renderAll() {
+    document.getElementById('draw-pile-visual').textContent = deck.length;
+    const top = discardPile[discardPile.length-1];
+    document.getElementById('discard-pile').innerHTML = top ? createCardHTML(top, 'card-large') : 'Empty';
+
+    const pDiv = document.getElementById('players-area');
+    pDiv.innerHTML = players.map((p, i) => {
+        let isTurn = (i === turnIndex && !gameOver && p.status === 'active');
+        let html = p.hand.map(c => createCardHTML(c)).join('');
+        return `<div class="player-box ${isTurn?'active-turn':''} ${p.status==='eliminated'?'eliminated':''}">
+            <div style="font-weight:bold; display:flex; justify-content:space-between; color:#fff;">
+                <span>${p.name}</span>
+                <span>GUNO: ${p.guno}</span>
+            </div>
+            <div style="margin-top:2px;">${html}</div>
+        </div>`;
+    }).join('');
+
+    renderTurnMonitor();
+    updateMapFromLogic();
+}
+
+window.onload = function() { initMap(); startGame(); };
+</script>
+</body>
+</html>
