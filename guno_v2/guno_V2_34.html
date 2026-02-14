@@ -266,8 +266,9 @@ function initMap() {
                 pointToLayer: (f, latlng) => {
                     const stName = f.properties.name;
                     const dbStation = STATIONS_DB.find(s => s.lc === logicId && s.st_ja.replace('★','') === stName);
+                    
                     if (dbStation) {
-                        // 🔥 L.circleMarkerではなく、画像やCSSを入れられる L.marker に変更
+                        // 🔥 ゲーム対象の駅（家紋マーカーに切り替わる準備）
                         const marker = L.marker(latlng, { pane: 'stationsPane' });
                         stationLayers[`${logicId}-${dbStation.order}`] = marker;
 
@@ -280,11 +281,28 @@ function initMap() {
                             labeledNames.add(baseDbName);
                         }
                         return marker;
+                    } else {
+                        // 🛑【修正】ゲーム対象外の駅も「小さな点」として返す（これがないとクラッシュします）
+                        return L.circleMarker(latlng, { radius: 2, fillColor: '#444', color: '#666', weight: 1, opacity: 0.5, fillOpacity: 0.5, pane: 'stationsPane' });
                     }
+                },
+                // 🛑【修正】ポップアップの多言語処理も復活
+                onEachFeature: (f, l) => {
+                    let popupName = f.properties.name || config.slug;
+                    if (!isJapanese) {
+                        if (f.properties.name_en) {
+                            popupName = f.properties.name_en;
+                        } else {
+                            let matched = STATIONS_DB.find(st => st.st_ja.replace('★','') === popupName);
+                            if(matched && matched.st_en) popupName = matched.st_en.replace('★','');
+                        }
+                    }
+                    l.bindPopup(popupName);
                 }
             }).addTo(map);
         }).catch(()=>{});
     });
+    
     // 少し遅延させて初期アイコンを描画
     setTimeout(updateMapSizes, 500);
 }
