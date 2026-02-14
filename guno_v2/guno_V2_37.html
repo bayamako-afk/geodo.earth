@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>GUNO v2.36 (Complete Edition)</title>
+<title>GUNO v2.37 (Rules Refined Edition)</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
 :root {
@@ -111,8 +111,8 @@ button:hover { background: #666; } button.active { background: #fff; color: #000
 
 <div class="header">
     <div>
-        <h2 style="margin:0;">GUNO v2.36</h2>
-        <small style="color:#aaa">Kamon Markers & Steal System (Fail-Safe)</small>
+        <h2 style="margin:0;">GUNO v2.37</h2>
+        <small style="color:#aaa">Rules Refined (Strict Teiden, Robust Reverse, Crash Fix)</small>
     </div>
     <div class="controls">
         <button onclick="toggleLanguage()" id="btn-lang" style="background:#111; border-color:#888; font-weight:bold; color:gold;">🌐 JP ⇔ EN</button>
@@ -170,7 +170,7 @@ button:hover { background: #666; } button.active { background: #fff; color: #000
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 /* =========================================
-   1. CONFIGURATION (Safe Parsing)
+   1. CONFIGURATION
    ========================================= */
 const IMAGE_BASE_URL = "https://geodo.earth/guno_v2/cards/";
 
@@ -449,7 +449,7 @@ function toggleLanguage() {
 }
 
 /* =========================================
-   3. GAME LOGIC (Steal & Points)
+   3. GAME LOGIC (Strict Rules)
    ========================================= */
 function initDeck() {
     deck = [];
@@ -475,11 +475,12 @@ function startGame() {
     document.getElementById('direction-arrow').textContent = "↻";
     document.getElementById('log').innerHTML = "";
     
+    // 🔥 PATCH 3: completed配列を正しく初期化
     players = [
-        { name: "P1", hand: [], guno: 0, stations: 0, status: 'active', color: '#174a7c', icon: '🌊' },
-        { name: "P2", hand: [], guno: 0, stations: 0, status: 'active', color: '#b52942', icon: '🌸' },
-        { name: "P3", hand: [], guno: 0, stations: 0, status: 'active', color: '#e6b422', icon: '🌙' },
-        { name: "P4", hand: [], guno: 0, stations: 0, status: 'active', color: '#745399', icon: '🏯' }
+        { name: "P1", hand: [], guno: 0, stations: 0, status: 'active', color: '#174a7c', icon: '🌊', completed: [] },
+        { name: "P2", hand: [], guno: 0, stations: 0, status: 'active', color: '#b52942', icon: '🌸', completed: [] },
+        { name: "P3", hand: [], guno: 0, stations: 0, status: 'active', color: '#e6b422', icon: '🌙', completed: [] },
+        { name: "P4", hand: [], guno: 0, stations: 0, status: 'active', color: '#745399', icon: '🏯', completed: [] }
     ];
     initDeck();
     for(let p of players) { for(let i=0; i<7; i++) if(deck.length) p.hand.push(deck.pop()); }
@@ -509,14 +510,22 @@ function playTurn() {
     let playable = [];
     player.hand.forEach((card, idx) => {
         let isTeiden = (card.type === 'teiden');
+        
+        // 🔥 PATCH 4: 最終カードでの停電プレイ禁止
         if(isTeiden && player.hand.length === 1) return;
+        
         if(isTeiden) {
-            if(top.type === 'teiden') playable.push({ card, idx, reason: 'teiden_chain' });
-            else if (card.lc === top.lc) playable.push({ card, idx, reason: 'teiden' });
+            // 🔥 PATCH 2: 停電カードはワイルドではない（常に場札と同色のみ）
+            if (top && top.lc && card.lc === top.lc) {
+                playable.push({ card, idx, reason: 'teiden' });
+            }
         } else {
             let match = false; let reason = "";
             if (card.lc === top.lc) { match = true; reason = "color"; }
-            if (card.ja.replace('★','') === (top.ja?top.ja.replace('★',''):"")) { match = true; reason = "station"; }
+            
+            // ★無視マッチング用に正規化
+            const norm = (s)=> (s||"").replaceAll('★','');
+            if (norm(card.ja) === norm(top.ja)) { match = true; reason = "station"; }
             if (card.type === 'station' && top.type === 'station' && card.order === top.order) { match = true; reason = "number"; }
             if(match) playable.push({ card, idx, reason });
         }
@@ -538,14 +547,19 @@ function playTurn() {
             const key = `${pick.card.lc}-${pick.card.order}`;
             const prevOwner = mapState[key];
             
+            // 強奪（STEAL）ログの追加
             if (prevOwner !== undefined && prevOwner !== -1 && prevOwner !== pIndex) {
                 logMsg += ` <br><span class="log-steal">⚔️ STEAL from ${players[prevOwner].name}!</span>`;
             }
             mapState[key] = pIndex;
             
             checkLastHit(pick.card.lc, pIndex);
-            if(top.type === 'station' && top.ja === pick.card.ja) {
-                direction *= -1; logMsg += ` <span style="color:#ff00ff; font-weight:bold;">REVERSE!</span>`;
+            
+            // 🔥 PATCH 1: 同駅名リバース（★無視）の堅牢な判定
+            const norm = (s)=> (s||"").replaceAll('★','');
+            if (top.type === 'station' && pick.card.type === 'station' && norm(top.ja) === norm(pick.card.ja)) {
+                direction *= -1;
+                logMsg += ` <span style="color:#ff00ff; font-weight:bold;">REVERSE!</span>`;
             }
         } else if (pick.card.type === 'teiden') {
             logMsg += ` <span style="color:#ffff00; font-weight:bold;">TEIDEN!⚡</span>`;
