@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GUNO v2.30 (Mobile Card Size Fix)</title>
+    <title>GUNO v2.30 (Final Layout Fix)</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
@@ -17,20 +17,28 @@
             margin: 0; padding: 20px; font-size: 14px; overflow: hidden;
         }
 
-        /* PC Layout Rules */
+        /* =========================================
+           🎨 PC Layout Rules (Base)
+           ========================================= */
         .header { display: flex; justify-content: space-between; align-items: center; background: #222; padding: 10px 20px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #444; }
         .game-container { display: grid; grid-template-columns: 220px 1fr 350px; gap: 15px; height: calc(100vh - 100px); }
         .panel { background: #222; padding: 15px; border-radius: 8px; overflow-y: auto; display: flex; flex-direction: column; border: 1px solid #444; position: relative; }
         
-        /* Map PC Default */
+        /* Map (PC Default) */
         #map { height: 600px; min-height: 600px; border-radius: 4px; background: #000; border: 1px solid #555; margin-bottom: 10px; z-index: 1; }
         .teiden-mode .leaflet-tile-pane { filter: grayscale(100%) contrast(150%) brightness(50%); transition: filter 0.5s ease; }
 
-        /* PC Slots: 2 Columns */
+        /* Slots Area (PC: 2 Columns, No Titles) */
         #slots-area { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+        .line-wrapper { margin-bottom: 5px; }
 
-        /* Cards Default (PC) */
-        .card { display: inline-block; width: 36px; height: 54px; background-color: #fff; border-radius: 3px; margin: 1px; position: relative; box-shadow: 1px 1px 3px rgba(0,0,0,0.5); background-size: contain; background-repeat: no-repeat; background-position: center; border: 2px solid #ccc; }
+        /* Cards (PC Default: 36px) */
+        .card { 
+            display: inline-block; width: 36px; height: 54px; 
+            background-color: #fff; border-radius: 3px; margin: 1px; position: relative; 
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.5); background-size: contain; background-repeat: no-repeat; background-position: center; 
+            border: 2px solid #ccc; 
+        }
         .card-large { width: 60px; height: 90px; }
 
         /* =========================================
@@ -40,31 +48,45 @@
             body { overflow-y: auto; padding: 10px; }
             .header { flex-direction: column; gap: 10px; text-align: center; }
             .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-            .game-container { grid-template-columns: 1fr; height: auto; gap: 20px; }
+            
+            /* Vertical Stack Layout */
+            .game-container { 
+                grid-template-columns: 1fr; 
+                height: auto; 
+                gap: 20px; 
+            }
             
             /* Reorder Panels */
             .panel:nth-child(3) { order: 1; } /* Hand Top */
             .panel:nth-child(2) { order: 2; overflow-y: visible; } /* Map Middle */
             .panel:nth-child(1) { order: 3; max-height: 300px; } /* Log Bottom */
-            
-            #map { height: 550px; min-height: 550px; }
-            #slots-area { grid-template-columns: 1fr; }
 
-            /* 🔥 FIX: Mobile Card Size Increase */
+            /* Map Height for Mobile */
+            #map { 
+                height: 550px; 
+                min-height: 550px; 
+            }
+
+            /* Reset Slots to 1 Column for Mobile */
+            #slots-area { 
+                grid-template-columns: 1fr; 
+            }
+
+            /* 🔥 Mobile Card Size Increase (50px) */
             .card { 
                 width: 50px; 
                 height: 75px; 
-                margin: 3px;
+                margin: 2px;
                 border-radius: 4px;
             }
-            /* LAST card remains larger */
+            /* LAST card stays large */
             .card-large {
                 width: 60px; 
                 height: 90px;
             }
         }
 
-        /* Components */
+        /* --- Components --- */
         .station-label {
             background: transparent; border: none; box-shadow: none; color: #fff;
             font-size: var(--label-size); font-weight: bold;
@@ -132,7 +154,7 @@
 <div class="header">
     <div>
         <h2>GUNO v2.30</h2>
-        <small style="color:#aaa">Mobile Card Size Optimized (50px)</small>
+        <small style="color:#aaa">Mobile Optimized: Card Size 50px & Clean Slots</small>
     </div>
     <div class="controls">
         <span id="turn-direction" style="font-size:20px; margin-right:10px; color:#fff;">↻</span>
@@ -165,19 +187,11 @@
         </div>
 
         <div id="slots-area">
-            <div class="line-wrapper">
-                <!-- Removed Subtitles -->
-                <div id="map-jy" class="map-grid"></div>
-            </div>
-            <div class="line-wrapper">
-                <div id="map-m" class="map-grid"></div>
-            </div>
-            <div class="line-wrapper">
-                <div id="map-g" class="map-grid"></div>
-            </div>
-            <div class="line-wrapper">
-                <div id="map-t" class="map-grid"></div>
-            </div>
+            <!-- No Subtitles Here -->
+            <div class="line-wrapper"><div id="map-jy" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="map-m" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="map-g" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="map-t" class="map-grid"></div></div>
         </div>
     </div>
 
@@ -220,7 +234,7 @@ const GUNO_CONFIG = {
     playerColor: "#ffffff", playerBg: "#000000"
 };
 
-// Hub Stations (15 Major Interchanges)
+// Hub Stations (15 Major Interchanges, Added Nihombashi)
 const HUBS = [
     '東京', '新宿', '池袋', 
     '高田馬場', '上野', '銀座', 
@@ -232,7 +246,7 @@ const HUBS = [
 let map, geoJsonLayers = {}, stationLayers = {};
 
 /* =========================================
-   2. v44 MASTER DATA (Updated v2.26 Spec)
+   2. v44 MASTER DATA (Updated)
 ========================================= */
 const STATIONS_DB = [
     // JY
@@ -246,7 +260,6 @@ const STATIONS_DB = [
     {lc:'JY', name:'山手線', order:8, st_ja:'目黒', color:'#00AA00', file:'JY_08_Meguro'},
     {lc:'JY', name:'山手線', order:9, st_ja:'品川', color:'#00AA00', file:'JY_09_Shinagawa'},
     {lc:'JY', name:'山手線', order:10, st_ja:'新橋', color:'#00AA00', file:'JY_10_Shimbashi'},
-    
     // M
     {lc:'M', name:'丸ノ内線', order:1, st_ja:'池袋', color:'#F62E36', file:'M_01_Ikebukuro'},
     {lc:'M', name:'丸ノ内線', order:2, st_ja:'後楽園', color:'#F62E36', file:'M_02_Korakuen'},
@@ -258,7 +271,6 @@ const STATIONS_DB = [
     {lc:'M', name:'丸ノ内線', order:8, st_ja:'四ツ谷', color:'#F62E36', file:'M_08_Yotsuya'},
     {lc:'M', name:'丸ノ内線', order:9, st_ja:'新宿', color:'#F62E36', file:'M_09_Shinjuku'},
     {lc:'M', name:'丸ノ内線', order:10, st_ja:'中野坂上', color:'#F62E36', file:'M_10_Nakano-sakaue'},
-
     // G
     {lc:'G', name:'銀座線', order:1, st_ja:'渋谷', color:'#FF9500', file:'G_01_Shibuya'},
     {lc:'G', name:'銀座線', order:2, st_ja:'表参道', color:'#FF9500', file:'G_02_Omotesando'},
@@ -335,7 +347,7 @@ function initMap() {
                         if (!labeledNames.has(stName)) {
                             const isHub = HUBS.includes(stName);
                             const labelText = isHub ? `★${stName}` : stName;
-                            // 🔥 FIX: offset に値を設定
+                            // Offset adjusted
                             marker.bindTooltip(labelText, {
                                 permanent: true, direction: 'top', className: isHub ? 'station-label hub-label' : 'station-label', offset: [0, -5]
                             });
@@ -439,7 +451,7 @@ function renderStationSlots() {
         let filledCount = 0;
         stations.forEach(s => { if(mapState[`${lc}-${s.order}`] !== undefined) filledCount++; });
         
-        // Removed H4 count update
+        // No title update as element removed
 
         for(let i=1; i<=11; i++) {
             if(i <= 10) {
