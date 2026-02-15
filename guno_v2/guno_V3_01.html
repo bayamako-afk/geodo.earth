@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>GUNO v3.00 (Sound Engine)</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
+<script src="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.js"></script>
 <style>
 :root {
     --jy-color: #00AA00; --m-color: #F62E36; --g-color: #FF9500; --t-color: #009BBF;
@@ -280,7 +282,18 @@ let map, geoJsonLayers = {}, stationLayers = {};
    2. MAP & SLOT FUNCTIONS
    ========================================= */
 function initMap() {
-    map = L.map('map').setView([35.681236, 139.767125], 12);
+    // 🔥 ここに gestureHandling の設定を追加
+    map = L.map('map', {
+        gestureHandling: true,
+        gestureHandlingOptions: {
+            text: {
+                touch: "地図を移動するには2本指でスワイプしてください",
+                scroll: "ズームするにはCtrlキーを押しながらスクロールしてください",
+                scrollMac: "ズームするには⌘キーを押しながらスクロールしてください"
+            }
+        }
+    }).setView([35.681236, 139.767125], 12);
+    
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OSM', maxZoom: 19 }).addTo(map);
     map.createPane('stationsPane'); map.getPane('stationsPane').style.zIndex = 600;
     map.on('zoomend', updateMapSizes);
