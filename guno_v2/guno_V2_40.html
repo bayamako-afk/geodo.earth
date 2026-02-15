@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GUNO v2.40 (Analog Card Slots)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+:root {
+    --jy-color: #00AA00; --m-color: #F62E36; --g-color: #FF9500; --t-color: #009BBF;
+    --bg-color: #e0e0e0; --text-color: #333;
+    --label-size: 10px;
+    --hub-size: 12px;
+}
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #333; color: #eee;
+    margin: 0; padding: 20px; font-size: 14px; overflow: hidden;
+}
+
+/* Layout Rules */
+.header { display: flex; justify-content: space-between; align-items: center; background: #222; padding: 10px 20px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #444; }
+.game-container { display: grid; grid-template-columns: 220px 1fr 350px; gap: 15px; height: calc(100vh - 100px); }
+.panel { background: #222; padding: 15px; border-radius: 8px; overflow-y: auto; display: flex; flex-direction: column; border: 1px solid #444; position: relative; }
+
+/* Map Default */
+#map { height: 600px; min-height: 600px; border-radius: 4px; background: #000; border: 1px solid #555; margin-bottom: 10px; z-index: 1; }
+.teiden-mode .leaflet-tile-pane { filter: grayscale(100%) contrast(150%) brightness(50%); transition: filter 0.5s ease; }
+
+/* Slots */
+#slots-area { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+
+/* Cards */
+.card { display: inline-block; width: 36px; height: 54px; background-color: #fff; border-radius: 3px; margin: 1px; position: relative; box-shadow: 1px 1px 3px rgba(0,0,0,0.5); background-size: contain; background-repeat: no-repeat; background-position: center; border: 2px solid #ccc; }
+.card-large { width: 60px; height: 90px; }
+
+/* Mobile Responsive */
+@media screen and (max-width: 1024px) {
+    body { overflow-y: auto; padding: 10px; }
+    .header { flex-direction: column; gap: 10px; text-align: center; }
+    .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .game-container { grid-template-columns: 1fr; height: auto; gap: 20px; }
+    .panel:nth-child(3) { order: 1; }
+    .panel:nth-child(2) { order: 2; overflow-y: visible; }
+    .panel:nth-child(1) { order: 3; max-height: 300px; }
+    #map { height: 550px; min-height: 550px; }
+    #slots-area { grid-template-columns: 1fr; }
+    .card { width: 50px; height: 75px; margin: 3px; border-radius: 4px; }
+    .card-large { width: 60px; height: 90px; }
+}
+
+/* Map Components */
+.station-label {
+    background: transparent; border: none; box-shadow: none; color: #fff;
+    font-size: var(--label-size); font-weight: bold;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px #000;
+    white-space: nowrap; transition: font-size 0.2s;
+}
+.station-label.hub-label { color: gold; font-size: var(--hub-size); z-index: 1000 !important; }
+
+/* Kamon Icon */
+.kamon-icon { background: transparent; border: none; }
+.kamon-inner { transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(0,0,0,0.8); text-shadow: 1px 1px 2px #000; color: #fff; }
+.kamon-icon:hover .kamon-inner { transform: scale(1.4); z-index: 9999; }
+.empty-icon { background: transparent; border: none; }
+
+@keyframes widthPulse { 0% { stroke-width: 6; stroke-opacity: 0.9; } 50% { stroke-width: 9; stroke-opacity: 0.5; } 100% { stroke-width: 6; stroke-opacity: 0.9; } }
+.pulse-animation path { animation: widthPulse 4s infinite ease-in-out; stroke-linecap: round; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6)); }
+
+.map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 4px; margin-bottom: 5px; }
+.slot { background: #2a2a2a; border: 1px solid #444; border-radius: 4px; min-height: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; text-align: center; color: #666; transition: all 0.3s; }
+.slot.empty-jy { border-color: rgba(0, 170, 0, 0.3); color: rgba(0, 170, 0, 0.5); }
+.slot.empty-m  { border-color: rgba(246, 46, 54, 0.3); color: rgba(246, 46, 54, 0.5); }
+.slot.empty-g  { border-color: rgba(255, 149, 0, 0.3); color: rgba(255, 149, 0, 0.5); }
+.slot.empty-t  { border-color: rgba(0, 155, 191, 0.3); color: rgba(0, 155, 191, 0.5); }
+.slot.active { opacity: 1; font-weight: bold; transform: scale(1.05); }
+.slot.teiden-slot { border-style: dotted; opacity: 0.3; }
+
+#draw-pile-visual { background-image: url('https://geodo.earth/guno-map/cards/GUNO_BACK.png'); background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #444; color: white; text-shadow: 1px 1px 2px #000; font-weight: bold; font-size: 16px; width: 60px; height: 90px; display: flex; align-items: center; justify-content: center; border: 2px solid #666; border-radius: 4px; margin: 0 auto; }
+
+.player-box { border: 1px solid #444; padding: 5px; margin-bottom: 5px; border-radius: 4px; transition: all 0.3s; background: #2a2a2a; }
+.player-box.active-turn { border-color: #fff; background: #000; box-shadow: 0 0 8px rgba(255,255,255,0.3); }
+.player-box.eliminated { opacity: 0.3; background: #111; border-style: dashed; }
+
+.log-turn { color: #888; border-bottom: 1px solid #333; margin-top: 5px; font-size: 0.85em; }
+#log div { margin-bottom: 2px; line-height: 1.3; }
+.log-play-text { color: #ccc; }
+.card-name { font-weight: bold; }
+.log-steal { color: #ff4444; font-weight: bold; font-style: italic; }
+
+#result-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; color: gold; text-align: center; }
+#result-overlay h1 { font-size: 3em; margin: 0 0 20px 0; text-shadow: 0 0 10px orange; }
+#result-table { width: 90%; color: #fff; border-collapse: collapse; font-size: 1.1em; }
+#result-table th, #result-table td { padding: 10px; border-bottom: 1px solid #555; }
+#result-table tr:first-child { color: gold; font-weight: bold; font-size: 1.2em; }
+
+button { padding: 5px 10px; cursor: pointer; background: #444; color: #fff; border: 1px solid #666; border-radius: 4px; margin-right: 5px; }
+button:hover { background: #666; } button.active { background: #fff; color: #000; }
+
+.dashboard-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #444; }
+#turn-monitor { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 8px; border-radius: 6px; border: 1px solid #333; margin-top: 5px; }
+.tm-player { width: 40px; height: 40px; border-radius: 50%; background: #333; border: 2px solid #555; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #888; font-size: 12px; position: relative; transition: all 0.3s; }
+.tm-player.active { border-color: #fff; background: #000; color: #fff; box-shadow: 0 0 8px rgba(255,255,255,0.5); transform: scale(1.1); }
+.tm-player.eliminated { opacity: 0.3; border-style: dotted; background: #000; }
+.tm-arrow { font-size: 16px; color: #555; transition: transform 0.3s; }
+.tm-arrow.active { color: #00AA00; text-shadow: 0 0 3px #00FF00; }
+.tm-arrow.reverse { transform: rotate(180deg); color: #FF00FF; text-shadow: 0 0 3px #FF00FF; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h2 style="margin:0;">GUNO v2.40</h2>
+        <small style="color:#aaa">Analog Card Slots & UI Polish</small>
+    </div>
+    <div class="controls">
+        <button onclick="toggleLanguage()" id="btn-lang" style="background:#111; border-color:#888; font-weight:bold; color:gold;">🌐 JP ⇔ EN</button>
+        <button onclick="startGame()">🎲 New Game</button>
+        <button onclick="toggleAuto()" id="btn-auto">▶ Auto</button>
+        <button onclick="step()" id="btn-step">Step</button>
+        <input type="range" id="speed-range" min="50" max="1000" value="200" style="width:60px; vertical-align:middle;">
+    </div>
+</div>
+
+<div class="game-container">
+    <div class="panel">
+        <h3 style="color:#fff; border-bottom:1px solid #555; margin-top:0;">Log</h3>
+        <div id="status-display" style="margin-bottom:5px; color:#aaa;">Turn: 0</div>
+        <div id="log" style="flex-grow:1; overflow-y:auto; font-family:'Menlo', monospace; font-size:11px;"></div>
+    </div>
+
+    <div class="panel" style="position:relative;">
+        <div id="map"></div>
+        <div id="result-overlay">
+            <h1>🏆 WINNER!</h1>
+            <table id="result-table"></table>
+            <div style="margin-top:20px;">
+                <button onclick="document.getElementById('result-overlay').style.display='none'; startGame();" style="font-size:1.2em; padding:10px 20px; background:gold; color:black; font-weight:bold; margin-right:10px;">🎲 New Game</button>
+                <button onclick="document.getElementById('result-overlay').style.display='none';" style="font-size:1.2em; padding:10px 20px; background:#555; color:white;">✖ 閉じる</button>
+            </div>
+        </div>
+        <div id="slots-area">
+            <div class="line-wrapper"><div id="map-jy" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="map-m" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="map-g" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="map-t" class="map-grid"></div></div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3 style="color:#fff; border-bottom:1px solid #555; margin-top:0;">Dashboard</h3>
+        <div class="dashboard-row">
+            <div style="text-align:center">
+                <span style="font-size:10px; color:#666;">DECK</span>
+                <div id="draw-pile-visual">84</div>
+            </div>
+            <div style="font-size:24px; color:#666;" id="direction-arrow">↻</div>
+            <div style="text-align:center">
+                <span style="font-size:10px; color:#666;">LAST</span>
+                <div id="discard-pile" style="height:90px; min-width:60px; display:flex; align-items:center; justify-content:center;"></div>
+            </div>
+        </div>
+        <div id="turn-monitor"></div>
+        <h3 style="color:#fff; border-bottom:1px solid #555; margin-top:20px;">Players</h3>
+        <div id="players-area"></div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* =========================================
+   1. CONFIGURATION
+   ========================================= */
+const IMAGE_BASE_URL = "https://geodo.earth/guno_v2/cards/";
+
+let isJapanese = true;
+try {
+    let lang = navigator.language || navigator.userLanguage || "";
+    if (lang) isJapanese = lang.toLowerCase().startsWith('ja');
+} catch(e) { console.error("Lang parse error", e); }
+
+const GUNO_CONFIG = {
+    lines: {
+        "JY": { slug: "jr-east-yamanote", color: "#00AA00", status: "active" },
+        "M":  { slug: "tokyo-metro-marunouchi", color: "#F62E36", status: "active" },
+        "G":  { slug: "tokyo-metro-ginza", color: "#FF9500", status: "active" },
+        "T":  { slug: "tokyo-metro-tozai", color: "#009BBF", status: "active" },
+        "Y":  { slug: "tokyo-metro-yurakucho", color: "#C1A470", status: "locked" },
+        "Z":  { slug: "tokyo-metro-hanzomon", color: "#8F76D6", status: "locked" },
+        "N":  { slug: "tokyo-metro-namboku", color: "#00AC9B", status: "locked" }
+    }
+};
+
+const STATIONS_DB = [
+    {lc:'JY', name:'山手線', order:1, st_ja:'★東京', st_en:'★Tokyo', color:'#00AA00', file:'JY_01_Tokyo'},
+    {lc:'JY', name:'山手線', order:2, st_ja:'★神田', st_en:'★Kanda', color:'#00AA00', file:'JY_02_Kanda'},
+    {lc:'JY', name:'山手線', order:3, st_ja:'★上野', st_en:'★Ueno', color:'#00AA00', file:'JY_03_Ueno'},
+    {lc:'JY', name:'山手線', order:4, st_ja:'★池袋', st_en:'★Ikebukuro', color:'#00AA00', file:'JY_04_Ikebukuro'},
+    {lc:'JY', name:'山手線', order:5, st_ja:'★高田馬場', st_en:'★Takadanobaba', color:'#00AA00', file:'JY_05_Takadanobaba'},
+    {lc:'JY', name:'山手線', order:6, st_ja:'★新宿', st_en:'★Shinjuku', color:'#00AA00', file:'JY_06_Shinjuku'},
+    {lc:'JY', name:'山手線', order:7, st_ja:'★渋谷', st_en:'★Shibuya', color:'#00AA00', file:'JY_07_Shibuya'},
+    {lc:'JY', name:'山手線', order:8, st_ja:'★目黒', st_en:'★Meguro', color:'#00AA00', file:'JY_08_Meguro'},
+    {lc:'JY', name:'山手線', order:9, st_ja:'品川', st_en:'Shinagawa', color:'#00AA00', file:'JY_09_Shinagawa'},
+    {lc:'JY', name:'山手線', order:10, st_ja:'★新橋', st_en:'★Shimbashi', color:'#00AA00', file:'JY_10_Shimbashi'},
+    {lc:'M', name:'丸ノ内線', order:1, st_ja:'★池袋', st_en:'★Ikebukuro', color:'#F62E36', file:'M_01_Ikebukuro'},
+    {lc:'M', name:'丸ノ内線', order:2, st_ja:'後楽園', st_en:'Korakuen', color:'#F62E36', file:'M_02_Korakuen'},
+    {lc:'M', name:'丸ノ内線', order:3, st_ja:'御茶ノ水', st_en:'Ochanomizu', color:'#F62E36', file:'M_03_Ochanomizu'},
+    {lc:'M', name:'丸ノ内線', order:4, st_ja:'★大手町', st_en:'★Otemachi', color:'#F62E36', file:'M_04_Otemachi'},
+    {lc:'M', name:'丸ノ内線', order:5, st_ja:'★東京', st_en:'★Tokyo', color:'#F62E36', file:'M_05_Tokyo'},
+    {lc:'M', name:'丸ノ内線', order:6, st_ja:'★銀座', st_en:'★Ginza', color:'#F62E36', file:'M_06_Ginza'},
+    {lc:'M', name:'丸ノ内線', order:7, st_ja:'★赤坂見附', st_en:'★Akasaka-mitsuke', color:'#F62E36', file:'M_07_Akasaka-mitsuke'},
+    {lc:'M', name:'丸ノ内線', order:8, st_ja:'四ツ谷', st_en:'Yotsuya', color:'#F62E36', file:'M_08_Yotsuya'},
+    {lc:'M', name:'丸ノ内線', order:9, st_ja:'★新宿', st_en:'★Shinjuku', color:'#F62E36', file:'M_09_Shinjuku'},
+    {lc:'M', name:'丸ノ内線', order:10, st_ja:'中野坂上', st_en:'Nakano-sakaue', color:'#F62E36', file:'M_10_Nakano-sakaue'},
+    {lc:'G', name:'銀座線', order:1, st_ja:'★渋谷', st_en:'★Shibuya', color:'#FF9500', file:'G_01_Shibuya'},
+    {lc:'G', name:'銀座線', order:2, st_ja:'表参道', st_en:'Omotesando', color:'#FF9500', file:'G_02_Omotesando'},
+    {lc:'G', name:'銀座線', order:3, st_ja:'★青山一丁目', st_en:'★Aoyama-itchome', color:'#FF9500', file:'G_03_Aoyama-itchome'},
+    {lc:'G', name:'銀座線', order:4, st_ja:'★赤坂見附', st_en:'★Akasaka-mitsuke', color:'#FF9500', file:'G_04_Akasaka-mitsuke'},
+    {lc:'G', name:'銀座線', order:5, st_ja:'★新橋', st_en:'★Shimbashi', color:'#FF9500', file:'G_05_Shimbashi'},
+    {lc:'G', name:'銀座線', order:6, st_ja:'★銀座', st_en:'★Ginza', color:'#FF9500', file:'G_06_Ginza'},
+    {lc:'G', name:'銀座線', order:7, st_ja:'★日本橋', st_en:'★Nihombashi', color:'#FF9500', file:'G_07_Nihombashi'},
+    {lc:'G', name:'銀座線', order:8, st_ja:'★神田', st_en:'★Kanda', color:'#FF9500', file:'G_08_Kanda'},
+    {lc:'G', name:'銀座線', order:9, st_ja:'★上野', st_en:'★Ueno', color:'#FF9500', file:'G_09_Ueno'},
+    {lc:'G', name:'銀座線', order:10, st_ja:'浅草', st_en:'Asakusa', color:'#FF9500', file:'G_10_Asakusa'},
+    {lc:'T', name:'東西線', order:1, st_ja:'中野', st_en:'Nakano', color:'#009BBF', file:'T_01_Nakano'},
+    {lc:'T', name:'東西線', order:2, st_ja:'落合', st_en:'Ochiai', color:'#009BBF', file:'T_02_Ochiai'},
+    {lc:'T', name:'東西線', order:3, st_ja:'★高田馬場', st_en:'★Takadanobaba', color:'#009BBF', file:'T_03_Takadanobaba'},
+    {lc:'T', name:'東西線', order:4, st_ja:'早稲田', st_en:'Waseda', color:'#009BBF', file:'T_04_Waseda'},
+    {lc:'T', name:'東西線', order:5, st_ja:'飯田橋', st_en:'Iidabashi', color:'#009BBF', file:'T_05_Iidabashi'},
+    {lc:'T', name:'東西線', order:6, st_ja:'★九段下', st_en:'★Kudanshita', color:'#009BBF', file:'T_06_Kudanshita'},
+    {lc:'T', name:'東西線', order:7, st_ja:'★大手町', st_en:'★Otemachi', color:'#009BBF', file:'T_07_Otemachi'},
+    {lc:'T', name:'東西線', order:8, st_ja:'★日本橋', st_en:'★Nihombashi', color:'#009BBF', file:'T_08_Nihombashi'},
+    {lc:'T', name:'東西線', order:9, st_ja:'門前仲町', st_en:'Monzen-nakacho', color:'#009BBF', file:'T_09_Monzen-nakacho'},
+    {lc:'T', name:'東西線', order:10, st_ja:'東陽町', st_en:'Toyocho', color:'#009BBF', file:'T_10_Toyocho'}
+];
+const TEIDEN_FILES = {'JY':'JY_TEIDEN', 'M':'M_TEIDEN', 'G':'G_TEIDEN', 'T':'T_TEIDEN'};
+
+let deck = [], discardPile = [], players = [];
+let turnIndex = 0, direction = 1, turnCount = 0;
+let mapState = {}, lastHits = {}, teidenPlayed = {};
+let gameOver = false, autoPlay = false, autoTimer = null;
+let map, geoJsonLayers = {}, stationLayers = {};
+
+/* =========================================
+   2. MAP & MARKER FUNCTIONS
+   ========================================= */
+function initMap() {
+    map = L.map('map').setView([35.681236, 139.767125], 12);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OSM', maxZoom: 19 }).addTo(map);
+    map.createPane('stationsPane'); map.getPane('stationsPane').style.zIndex = 600;
+    map.on('zoomend', updateMapSizes);
+
+    stationLayers = {};
+    const labeledNames = new Set();
+    const orderedLines = ['JY', 'G', 'M', 'T', 'Y', 'Z', 'N'];
+
+    orderedLines.forEach(logicId => {
+        if (!GUNO_CONFIG.lines[logicId]) return;
+        const config = GUNO_CONFIG.lines[logicId];
+
+        if (config.status !== 'active') return;
+
+        fetch(`./geojson/lines/${config.slug}.geojson`).then(r=>r.json()).then(data => {
+            let layer = L.geoJSON(data, { style: { color:config.color, weight:4, opacity:0.4 } }).addTo(map);
+            geoJsonLayers[config.slug] = layer;
+            resetLineStyle(config.slug);
+        }).catch(()=>{});
+
+        fetch(`./geojson/stations/${config.slug}_stations.geojson`).then(r=>r.json()).then(data => {
+            L.geoJSON(data, {
+                pointToLayer: (f, latlng) => {
+                    const stName = f.properties.name;
+                    const dbStation = STATIONS_DB.find(s => s.lc === logicId && s.st_ja.replace('★','') === stName);
+                    
+                    if (dbStation) {
+                        const marker = L.marker(latlng, { pane: 'stationsPane' });
+                        stationLayers[`${logicId}-${dbStation.order}`] = marker;
+
+                        const baseDbName = dbStation.st_ja.replace('★','');
+                        if (!labeledNames.has(baseDbName)) {
+                            marker.isMainLabel = true;
+                            let displayName = isJapanese ? dbStation.st_ja : (dbStation.st_en || dbStation.st_ja);
+                            const isHub = displayName.includes('★');
+                            marker.bindTooltip(displayName, { permanent: true, direction: 'top', className: isHub ? 'station-label hub-label' : 'station-label', offset: [0, -10] });
+                            labeledNames.add(baseDbName);
+                        }
+                        return marker;
+                    } else {
+                        return L.circleMarker(latlng, { radius: 2, fillColor: '#444', color: '#666', weight: 1, opacity: 0.5, fillOpacity: 0.5, pane: 'stationsPane' });
+                    }
+                },
+                onEachFeature: (f, l) => {
+                    let popupName = f.properties.name || config.slug;
+                    if (!isJapanese) {
+                        if (f.properties.name_en) {
+                            popupName = f.properties.name_en;
+                        } else {
+                            let matched = STATIONS_DB.find(st => st.st_ja.replace('★','') === popupName);
+                            if(matched && matched.st_en) popupName = matched.st_en.replace('★','');
+                        }
+                    }
+                    l.bindPopup(popupName);
+                }
+            }).addTo(map);
+        }).catch(()=>{});
+    });
+    
+    setTimeout(updateMapSizes, 500);
+}
+
+function getCurrentRadius() {
+    const z = map.getZoom();
+    if (z < 12) return 2;
+    if (z >= 12 && z < 14) return 4;
+    return 6;
+}
+
+function getStationIcon(key) {
+    const radius = getCurrentRadius();
+    const owner = mapState[key];
+    const [lc, order] = key.split('-');
+    const config = GUNO_CONFIG.lines[lc];
+
+    if (owner !== undefined && owner !== -1 && players[owner]) {
+        const p = players[owner];
+        const size = radius * 4;
+        return L.divIcon({
+            className: 'kamon-icon',
+            html: `<div class="kamon-inner" style="background:${p.color}; border:2px solid #fff; font-size:${size*0.55}px;">${p.icon}</div>`,
+            iconSize: [size, size],
+            iconAnchor: [size/2, size/2]
+        });
+    } else {
+        const size = radius * 2;
+        return L.divIcon({
+            className: 'empty-icon',
+            html: `<div style="width:${size}px; height:${size}px; background:#fff; border:2px solid ${config.color}; border-radius:50%;"></div>`,
+            iconSize: [size, size],
+            iconAnchor: [size/2, size/2]
+        });
+    }
+}
+
+function updateMapSizes() {
+    const z = map.getZoom();
+    let labelSize = z < 12 ? "0px" : (z >= 14 ? "13px" : "10px");
+    let hubSize = z < 12 ? "0px" : (z >= 14 ? "15px" : "12px");
+    document.documentElement.style.setProperty('--label-size', labelSize);
+    document.documentElement.style.setProperty('--hub-size', hubSize);
+
+    Object.keys(stationLayers).forEach(key => {
+        if(stationLayers[key] && stationLayers[key].setIcon) stationLayers[key].setIcon(getStationIcon(key));
+    });
+}
+
+function updateMapFromLogic() {
+    const touchedLines = {};
+    Object.keys(mapState).forEach(key => touchedLines[key.split('-')[0]] = true);
+    const topCard = discardPile.length > 0 ? discardPile[discardPile.length-1] : null;
+    const isTeiden = (topCard && topCard.type === 'teiden');
+
+    Object.keys(GUNO_CONFIG.lines).forEach(logicId => {
+        const config = GUNO_CONFIG.lines[logicId];
+        const layer = geoJsonLayers[config.slug];
+        if (!layer) return;
+
+        let style = { color: config.color, weight: 4, opacity: 0.4, dashArray: null };
+        if (lastHits && lastHits[logicId] !== undefined) {
+            style.color = "#FFD700"; style.weight = 6; style.opacity = 1.0; style.className = "pulse-animation";
+        } else if (touchedLines[logicId]) {
+            style.weight = 6; style.opacity = 0.8;
+        }
+        layer.setStyle(style);
+        if (layer.eachLayer) {
+            layer.eachLayer(l => {
+                if (typeof l.getElement === 'function' && l.getElement()) {
+                    l.getElement().classList.remove('pulse-animation');
+                    if (style.className) l.getElement().classList.add(style.className);
+                }
+            });
+        }
+    });
+
+    const mapEl = document.getElementById('map');
+    if(mapEl) {
+        if(isTeiden) mapEl.classList.add('teiden-mode'); else mapEl.classList.remove('teiden-mode');
+    }
+
+    Object.keys(stationLayers).forEach(key => {
+        if(stationLayers[key] && stationLayers[key].setIcon) stationLayers[key].setIcon(getStationIcon(key));
+    });
+    renderStationSlots();
+}
+
+/* 🔥 アナログカードスロットへの進化 */
+function renderStationSlots() {
+    ['JY', 'M', 'G', 'T'].forEach(lc => {
+        const div = document.getElementById(`map-${lc.toLowerCase()}`);
+        if(!div) return;
+        let html = "";
+        const stations = STATIONS_DB.filter(s => s.lc === lc).sort((a,b)=>a.order-b.order);
+
+        for(let i=1; i<=11; i++) {
+            if(i <= 10) {
+                const s = stations.find(st => st.order === i);
+                if(!s) continue;
+                const owner = mapState[`${lc}-${s.order}`];
+                let classes = "slot", content = "";
+                let style = "";
+                let stationName = isJapanese ? s.st_ja : (s.st_en || s.st_ja);
+                let formattedName = stationName.replace('★', '<span style="color:gold;">★</span>');
+
+                if(owner === undefined || owner === -1) {
+                    // 空枠：テキストだけ表示
+                    classes += ` empty-${lc.toLowerCase()}`;
+                    content = `<div>${s.order}</div><div style="margin-top:2px;">${formattedName}</div>`;
+                } else {
+                    // 獲得枠：本物のカード画像を描画し、右上にバッジで家紋をつける！
+                    classes += " active";
+                    const p = players[owner];
+                    const pColor = p ? p.color : s.color;
+                    const pIcon = p ? p.icon : "";
+                    
+                    style = `background-image: url('${IMAGE_BASE_URL}${s.file}.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center; border: 2px solid ${pColor}; box-shadow: 0 0 8px ${pColor}; position: relative;`;
+                    
+                    // 右上のスタンプバッジ
+                    content = `<div style="position: absolute; top: -8px; right: -8px; background: ${pColor}; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.6); z-index: 10;">${pIcon}</div>`;
+                }
+                html += `<div class="${classes}" style="${style}">${content}</div>`;
+            } else {
+                let classes = "slot teiden-slot", content = `<div>⚡</div>`, style = "";
+                if(teidenPlayed && teidenPlayed[lc]) {
+                    classes += " active"; 
+                    style = `background-image: url('${IMAGE_BASE_URL}${TEIDEN_FILES[lc]}.png'); background-size:100% 100%; background-repeat:no-repeat; background-position:center; opacity:1; border:2px solid #fff; position:relative;`; 
+                    content = "";
+                }
+                html += `<div class="${classes}" style="${style}">${content}</div>`;
+            }
+        }
+        div.innerHTML = html;
+    });
+}
+function resetLineStyle(slug) { updateMapFromLogic(); }
+
+function toggleLanguage() {
+    isJapanese = !isJapanese;
+    renderStationSlots();
+    Object.keys(stationLayers).forEach(key => {
+        const marker = stationLayers[key];
+        if (marker.isMainLabel) {
+            const [lc, order] = key.split('-');
+            const dbStation = STATIONS_DB.find(s => s.lc === lc && s.order == order);
+            if (dbStation) {
+                let displayName = isJapanese ? dbStation.st_ja : (dbStation.st_en || dbStation.st_ja);
+                const isHub = displayName.includes('★');
+                marker.unbindTooltip();
+                marker.bindTooltip(displayName, { permanent: true, direction: 'top', className: isHub ? 'station-label hub-label' : 'station-label', offset: [0, -10] });
+            }
+        }
+    });
+    log(`<span style="color:#00ffff; font-weight:bold;">[System] Language: ${isJapanese ? '日本語' : 'English'}</span>`);
+}
+
+/* =========================================
+   3. GAME LOGIC
+   ========================================= */
+function initDeck() {
+    deck = [];
+    STATIONS_DB.forEach(s => { for(let i=0; i<2; i++) deck.push({ type: 'station', lc: s.lc, order: s.order, ja: s.st_ja, en: s.st_en, color: s.color, file: s.file, id: `card-${s.lc}-${s.order}-${i}` }); });
+    ['JY', 'M', 'G', 'T'].forEach(lc => { deck.push({ type: 'teiden', lc: lc, order: 20, color: '#000', file: TEIDEN_FILES[lc], id: `teiden-${lc}-0` }); });
+    shuffle(deck);
+}
+function shuffle(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } }
+
+function calculateStations() {
+    if(!players || players.length === 0) return;
+    players.forEach(p => p.stations = 0);
+    Object.values(mapState).forEach(owner => {
+        if(owner !== undefined && owner !== -1 && players[owner]) players[owner].stations++;
+    });
+}
+
+function startGame() {
+    stopAuto();
+    gameOver = false; turnCount = 0; turnIndex = 0; direction = 1;
+    mapState = {}; lastHits = {}; teidenPlayed = {};
+    document.getElementById('result-overlay').style.display = "none";
+    document.getElementById('direction-arrow').textContent = "↻";
+    document.getElementById('log').innerHTML = "";
+    
+    players = [
+        { name: "P1", hand: [], guno: 0, stations: 0, status: 'active', color: '#174a7c', icon: '🌊', completed: [] },
+        { name: "P2", hand: [], guno: 0, stations: 0, status: 'active', color: '#b52942', icon: '🌸', completed: [] },
+        { name: "P3", hand: [], guno: 0, stations: 0, status: 'active', color: '#e6b422', icon: '🌙', completed: [] },
+        { name: "P4", hand: [], guno: 0, stations: 0, status: 'active', color: '#745399', icon: '🏯', completed: [] }
+    ];
+    initDeck();
+    for(let p of players) { for(let i=0; i<7; i++) if(deck.length) p.hand.push(deck.pop()); }
+    discardPile = [];
+    while(true) {
+        let c = deck.pop(); discardPile.push(c);
+        if(c.type === 'station') { mapState[`${c.lc}-${c.order}`] = -1; break; }
+    }
+    updateStatusDisplay();
+    log("=== GAME START ===");
+    renderAll();
+}
+
+function step() { if(gameOver) return; playTurn(); renderAll(); if(gameOver) stopAuto(); }
+
+function playTurn() {
+    let activePlayers = players.filter(p => p.status === 'active');
+    if(activePlayers.length === 0) { endGameByScore(); return; }
+    let attempts = 0;
+    while(players[turnIndex].status !== 'active' && attempts < 4) { advanceTurn(); attempts++; }
+    const pIndex = turnIndex;
+    const player = players[pIndex];
+    if(player.status !== 'active') { advanceTurn(); return; }
+    const top = discardPile[discardPile.length - 1];
+    logTurn(`Turn ${turnCount}: ${player.name} ${player.icon}`);
+
+    let playable = [];
+    player.hand.forEach((card, idx) => {
+        let isTeiden = (card.type === 'teiden');
+        if(isTeiden && player.hand.length === 1) return;
+        
+        if(isTeiden) {
+            if (top && top.lc && card.lc === top.lc) {
+                playable.push({ card, idx, reason: 'teiden' });
+            }
+        } else {
+            let match = false; let reason = "";
+            if (card.lc === top.lc) { match = true; reason = "color"; }
+            const norm = (s)=> (s||"").replaceAll('★','');
+            if (norm(card.ja) === norm(top.ja)) { match = true; reason = "station"; }
+            if (card.type === 'station' && top.type === 'station' && card.order === top.order) { match = true; reason = "number"; }
+            if(match) playable.push({ card, idx, reason });
+        }
+    });
+
+    if(playable.length === 0) {
+        if(deck.length === 0) { endGameByScore(); return; }
+        player.hand.push(deck.pop());
+        log(`<span class="log-play-text">${player.name} draws 1 card.</span>`);
+    } else {
+        let pick = playable[Math.floor(Math.random() * playable.length)];
+        player.hand.splice(pick.idx, 1);
+        discardPile.push(pick.card);
+        let cardColor = pick.card.color || "#fff";
+        let cardName = cardStr(pick.card);
+        let logMsg = `<span class="log-play-text">${player.name} plays</span> <span class="card-name" style="color:${cardColor}">${cardName}</span>`;
+
+        if(pick.card.type === 'station') {
+            const key = `${pick.card.lc}-${pick.card.order}`;
+            const prevOwner = mapState[key];
+            
+            if (prevOwner !== undefined && prevOwner !== -1 && prevOwner !== pIndex) {
+                logMsg += ` <br><span class="log-steal">⚔️ STEAL from ${players[prevOwner].name}!</span>`;
+            }
+            mapState[key] = pIndex;
+            
+            checkLastHit(pick.card.lc, pIndex);
+            
+            const norm = (s)=> (s||"").replaceAll('★','');
+            if (top.type === 'station' && pick.card.type === 'station' && norm(top.ja) === norm(pick.card.ja)) {
+                direction *= -1;
+                logMsg += ` <span style="color:#ff00ff; font-weight:bold;">REVERSE!</span>`;
+            }
+        } else if (pick.card.type === 'teiden') {
+            logMsg += ` <span style="color:#ffff00; font-weight:bold;">TEIDEN!⚡</span>`;
+            teidenPlayed[pick.card.lc] = true;
+            players.forEach((p, i) => {
+                if(i !== pIndex && p.status === 'active' && deck.length>0) {
+                    p.hand.push(deck.pop());
+                    log(`<span style="color:#888; font-size:10px;">&nbsp;&nbsp;➥ ⚡ ${p.name} draws 1 card</span>`);
+                }
+            });
+            direction *= -1;
+        }
+        log(logMsg);
+
+        if(player.hand.length === 0) {
+            player.status = 'eliminated';
+            log(`<span class="log-elim">🚫 ${player.name} DROPS OUT!</span>`);
+            let active = players.filter(p => p.status === 'active');
+            if(active.length === 1) {
+                log(`<span class="log-win">🏆 Only ${active[0].name} remains!</span>`);
+                gameOver = true; showRanking(players.indexOf(active[0])); return;
+            }
+        }
+    }
+    updateStatusDisplay();
+    if(!gameOver) advanceTurn();
+}
+
+function advanceTurn() {
+    turnCount++; turnIndex = (turnIndex + direction) % 4;
+    if(turnIndex < 0) turnIndex += 4;
+}
+
+function checkLastHit(lc, pIndex) {
+    let filled = 0;
+    for(let i=1; i<=10; i++) { if(mapState[`${lc}-${i}`] !== undefined && mapState[`${lc}-${i}`] !== -1) filled++; }
+    if(filled === 10 && lastHits[lc] === undefined) {
+        lastHits[lc] = pIndex; players[pIndex].guno++; players[pIndex].completed.push(lc);
+        log(`<span style="color:${GUNO_CONFIG.lines[lc].color}; font-weight:bold;">🏆 ${players[pIndex].name} captures ${lc}! (+10pts)</span>`);
+        if(typeof confetti === 'function') confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 }, zIndex: 10000 });
+        if(players[pIndex].guno >= 4) {
+            log(`<span style="color:gold; font-size:1.2em;">🎉 ${players[pIndex].name} 4GUNO! WINNER! 🎉</span>`);
+            gameOver = true; showRanking(pIndex);
+        }
+    }
+}
+
+function endGameByScore() { gameOver = true; log(`Game Over (Deck Empty).`); showRanking(null); }
+
+function showRanking(winnerIndex) {
+    calculateStations();
+    if(winnerIndex !== null && typeof confetti === 'function') {
+        let end = Date.now() + 3000;
+        (function frame() {
+            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, zIndex: 10000 });
+            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, zIndex: 10000 });
+            if (Date.now() < end) requestAnimationFrame(frame);
+        }());
+    }
+
+    let rankingData = players.map((p, i) => {
+        let handSum = p.hand.reduce((acc, c) => acc + (c.order || 0), 0);
+        let totalScore = (p.guno * 10) + p.stations;
+        return { index: i, name: p.name, icon: p.icon, guno: p.guno, stations: p.stations, totalScore: totalScore, handSum: handSum, status: p.status, winner: (i===winnerIndex) };
+    });
+    
+    rankingData.sort((a, b) => {
+        if(a.winner) return -1; if(b.winner) return 1;
+        if(a.status==='active' && b.status!=='active') return -1;
+        if(a.status!=='active' && b.status==='active') return 1;
+        if(b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
+        return a.handSum - b.handSum;
+    });
+
+    let html = "<thead><tr><th>Rank</th><th>Player</th><th>Score</th><th>GUNO(10pt)</th><th>ST(1pt)</th></tr></thead><tbody>";
+    rankingData.forEach((d, i) => {
+        html += `<tr style="color:${d.winner?'gold':'inherit'}; background:${d.status!=='active'?'#333':'transparent'}">
+        <td>${i+1}</td><td>${d.icon} ${d.name} ${d.winner?'👑':''}</td><td style="font-weight:bold; font-size:1.2em;">${d.totalScore}</td><td>${d.guno}</td><td>${d.stations}</td></tr>`;
+    });
+    html += "</tbody>";
+    document.getElementById('result-table').innerHTML = html;
+    document.getElementById('result-overlay').style.display = "flex";
+}
+
+function updateStatusDisplay() { document.getElementById('status-display').textContent = `Turn: ${turnCount} | Active: ${players.filter(p=>p.status==='active').length}`; }
+function cardStr(c) { let stName = isJapanese ? c.ja : (c.en || c.ja); return c.type==='teiden' ? `⚡${c.lc}` : `${c.lc} ${stName}`; }
+function log(msg) { const d = document.getElementById('log'); d.innerHTML += `<div>${msg}</div>`; d.scrollTop = d.scrollHeight; }
+function logTurn(msg) { document.getElementById('log').innerHTML += `<div class="log-turn">${msg}</div>`; }
+function toggleAuto() { autoPlay = !autoPlay; document.getElementById('btn-auto').classList.toggle('active', autoPlay); if(autoPlay) { if(gameOver) startGame(); autoLoop(); } else { stopAuto(); } }
+function stopAuto() { autoPlay = false; clearTimeout(autoTimer); document.getElementById('btn-auto').classList.remove('active'); }
+function autoLoop() { if(!autoPlay || gameOver) return; step(); let speed = document.getElementById('speed-range').value; autoTimer = setTimeout(autoLoop, speed); }
+
+function createCardHTML(c, cls='') {
+    let url = c.file ? `${IMAGE_BASE_URL}${c.file}.png` : '';
+    let style = `background-image: url('${url}'); border-color:${c.color||'#000'}`;
+    return `<div class="card ${cls}" style="${style}" title="${c.ja||'TEIDEN'}"></div>`;
+}
+
+function renderTurnMonitor() {
+    const el = document.getElementById('turn-monitor');
+    const arrowClass = (direction === 1) ? 'active' : 'active reverse';
+    let html = "";
+    players.forEach((p, i) => {
+        let isTurn = (i === turnIndex && !gameOver && p.status === 'active');
+        let classes = "tm-player";
+        if (isTurn) classes += " active";
+        if (p.status === 'eliminated') classes += " eliminated";
+        html += `<div class="${classes}" style="${isTurn ? `background:${p.color}; border-color:#fff;` : ''}">${p.icon}</div>`;
+        if (i < 3) html += `<div class="tm-arrow ${isTurn ? arrowClass : ''}">▶</div>`;
+    });
+    el.innerHTML = html;
+    document.getElementById('direction-arrow').textContent = (direction===1) ? '↻' : '↺';
+}
+
+function renderAll() {
+    calculateStations();
+    document.getElementById('draw-pile-visual').textContent = deck.length;
+    const top = discardPile[discardPile.length-1];
+    document.getElementById('discard-pile').innerHTML = top ? createCardHTML(top, 'card-large') : 'Empty';
+
+    const pDiv = document.getElementById('players-area');
+    pDiv.innerHTML = players.map((p, i) => {
+        let isTurn = (i === turnIndex && !gameOver && p.status === 'active');
+        let html = p.hand.map(c => createCardHTML(c)).join('');
+        return `<div class="player-box ${isTurn?'active-turn':''} ${p.status==='eliminated'?'eliminated':''}" style="${isTurn ? `border-color:${p.color}; box-shadow: 0 0 10px ${p.color};` : ''}">
+        <div style="font-weight:bold; display:flex; justify-content:space-between; color:#fff;">
+        <span>${p.icon} ${p.name} ${isTurn?'◀':''}</span>
+        <span>GUNO: ${p.guno} | 🚉: ${p.stations}</span>
+        </div><div style="margin-top:2px;">${html}</div></div>`;
+    }).join('');
+
+    renderTurnMonitor();
+    updateMapFromLogic();
+}
+
+window.onload = function() { initMap(); startGame(); };
+</script>
+</body>
+</html>
