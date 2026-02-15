@@ -363,7 +363,10 @@ function updateMapSizes() {
 
 function updateMapFromLogic() {
     const touchedLines = {};
-    Object.keys(mapState).forEach(key => touchedLines[key.split('-')[0]] = true);
+    // ↓ 所有者が「-1（初期状態）」以外の時だけ路線を光らせるリストに入れる
+    Object.keys(mapState).forEach(key => {
+        if (mapState[key] !== -1) touchedLines[key.split('-')[0]] = true;
+    });
     const topCard = discardPile.length > 0 ? discardPile[discardPile.length-1] : null;
     const isTeiden = (topCard && topCard.type === 'teiden');
 
