@@ -24,7 +24,16 @@ body {
 .panel { background: #222; padding: 15px; border-radius: 8px; overflow-y: auto; display: flex; flex-direction: column; border: 1px solid #444; position: relative; }
 
 /* Map Default */
-#map { height: 600px; min-height: 600px; border-radius: 4px; background: #000; border: 1px solid #555; margin-bottom: 10px; z-index: 1; }
+/* Map Default */
+#map { 
+    flex-grow: 1; /* 余った空間を自動で計算してピッタリ埋める */
+    min-height: 300px; /* 画面が狭くても最低300pxは死守する */
+    border-radius: 4px; 
+    background: #000; 
+    border: 1px solid #555; 
+    margin-bottom: 15px; 
+    z-index: 1; 
+}
 .teiden-mode .leaflet-tile-pane { filter: grayscale(100%) contrast(150%) brightness(50%); transition: filter 0.5s ease; }
 
 /* Slots Area */
@@ -56,7 +65,7 @@ body {
     .panel:nth-child(3) { order: 1; }
     .panel:nth-child(2) { order: 2; overflow-y: visible; }
     .panel:nth-child(1) { order: 3; max-height: 300px; }
-    #map { height: 500px; min-height: 500px; }
+    #map { height: 550px; min-height: 550px; }
     #slots-area { grid-template-columns: 1fr; }
     .card { width: 50px; height: 75px; margin: 3px; border-radius: 4px; }
     .card-large { width: 60px; height: 90px; }
