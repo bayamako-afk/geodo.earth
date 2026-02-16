@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GUNO v3.12 (Premium Result & UI)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
+<style>
+:root {
+    --jy-color: #00AA00; --m-color: #F62E36; --g-color: #FF9500; --t-color: #009BBF;
+    --label-size: 10px; --hub-size: 12px;
+}
+body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a1a; color: #eee; margin: 0; padding: 15px; font-size: 14px; overflow: hidden; }
+
+/* Header & Controls */
+.header { display: flex; justify-content: space-between; align-items: center; background: #222; padding: 12px 20px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #444; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.controls button { padding: 6px 15px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.2s; border: 1px solid #555; }
+.btn-manual { background: #2d5a27; color: #fff; border-color: #4CAF50 !important; }
+.btn-auto { background: #5a2d2d; color: #fff; border-color: #f44336 !important; }
+
+/* Layout */
+.game-container { display: grid; grid-template-columns: 240px 1fr 380px; gap: 15px; height: calc(100vh - 100px); }
+.panel { background: #222; padding: 15px; border-radius: 10px; overflow-y: auto; display: flex; flex-direction: column; border: 1px solid #333; }
+
+/* Map */
+#map { flex-grow: 1; min-height: 250px; border-radius: 8px; background: #000; border: 1px solid #444; margin-bottom: 15px; }
+
+/* Result Overlay (Premium Design) */
+#result-overlay { 
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.85); z-index: 10000; 
+    align-items: center; justify-content: center; backdrop-filter: blur(5px);
+}
+.result-card {
+    background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+    padding: 40px; border-radius: 20px; border: 2px solid gold;
+    text-align: center; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+    animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-width: 400px;
+}
+@keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.result-card h1 { font-size: 3em; color: gold; margin-top: 0; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+#result-table { width: 100%; margin: 20px 0; border-collapse: collapse; font-size: 1.2em; }
+#result-table tr { border-bottom: 1px solid #444; }
+#result-table th { color: #888; padding: 10px; }
+#result-table td { padding: 15px; }
+.rank-1 { color: gold; font-weight: bold; font-size: 1.4em; }
+
+/* Slots */
+#slots-area { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.line-header { font-weight: bold; font-size: 14px; margin-bottom: 6px; padding: 4px 10px; border-radius: 5px; color: #fff; display: inline-block; }
+.map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); gap: 5px; margin-bottom: 8px; }
+.slot { background: #2a2a2a; border: 1px solid #3d3d3d; border-radius: 5px; min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; color: #555; position: relative; }
+.slot.active { transform: scale(1.05); z-index: 5; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+
+/* Cards */
+.card { display: inline-block; width: 42px; height: 63px; background-color: #fff; border-radius: 4px; margin: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); background-size: contain; background-repeat: no-repeat; background-position: center; border: 2px solid #ccc; transition: 0.2s; }
+.card.playable { cursor: pointer; border-color: #4CAF50; box-shadow: 0 0 15px rgba(76, 175, 80, 0.6); transform: translateY(-8px); z-index: 10; }
+.card.unplayable { filter: grayscale(100%) brightness(0.4); opacity: 0.5; }
+.card-large { width: 75px; height: 110px; border-radius: 6px; }
+
+/* Map Labels */
+.station-label { background: transparent; border: none; color: #fff; font-size: var(--label-size); font-weight: bold; text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000; }
+.station-label::before, .station-label::after { display: none !important; }
+
+/* Players */
+.player-box { padding: 10px; margin-bottom: 10px; border-radius: 8px; background: #2a2a2a; border-left: 8px solid transparent; transition: 0.3s; }
+.player-box.active-turn { background: #111; box-shadow: inset 0 0 20px rgba(255,255,255,0.05); border-color: #fff; }
+
+@media screen and (max-width: 1024px) { .game-container { grid-template-columns: 1fr; height: auto; } #map { height: 400px; } }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <div><h2 style="margin:0; color:gold;">GUNO v3.12</h2><small>Premium Edition</small></div>
+    <div class="controls">
+        <button onclick="toggleLanguage()" style="background:#333; color:#fff;">🌐 言語切替</button>
+        <button onclick="startGame()" style="background:#444; color:#fff;">🎲 新規ゲーム</button>
+        <button id="btn-mode" onclick="toggleAuto()">👤 プレイ中</button>
+    </div>
+</div>
+
+<div class="game-container">
+    <div class="panel"><h3>📜 対局ログ</h3><div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; line-height:1.6;"></div></div>
+    
+    <div class="panel">
+        <div id="map"></div>
+        
+        <div id="result-overlay">
+            <div class="result-card">
+                <h1>🏆 VICTORY!</h1>
+                <table id="result-table"></table>
+                <button onclick="startGame()" style="padding:12px 40px; font-size:1.2em; background:gold; color:#000; border:none; border-radius:30px; font-weight:bold; cursor:pointer; box-shadow: 0 5px 15px rgba(255,215,0,0.4);">もう一度遊ぶ</button>
+            </div>
+        </div>
+
+        <div id="slots-area">
+            <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-g" class="line-header"></div><div id="map-g" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-t" class="line-header"></div><div id="map-t" class="map-grid"></div></div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>📊 状況</h3>
+        <div style="display:flex; justify-content:space-around; align-items:center; background:#111; padding:15px; border-radius:10px;">
+            <div id="draw-pile-visual" onclick="humanDraw()" style="position:relative;"></div>
+            <div id="direction-arrow" style="font-size:32px;">↻</div>
+            <div id="discard-pile"></div>
+        </div>
+        <h3 style="margin-top:20px;">👥 プレイヤー</h3>
+        <div id="players-area"></div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.js"></script>
+
+<script>
+// --- DB & Constants ---
+const STATIONS_DB = [
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:1, st_ja:'★東京', st_en:'★Tokyo', color:'#00AA00', file:'JY_01_Tokyo'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:2, st_ja:'★神田', st_en:'★Kanda', color:'#00AA00', file:'JY_02_Kanda'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:3, st_ja:'★上野', st_en:'★Ueno', color:'#00AA00', file:'JY_03_Ueno'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:4, st_ja:'★池袋', st_en:'★Ikebukuro', color:'#00AA00', file:'JY_04_Ikebukuro'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:5, st_ja:'★高田馬場', st_en:'★Takadanobaba', color:'#00AA00', file:'JY_05_Takadanobaba'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:6, st_ja:'★新宿', st_en:'★Shinjuku', color:'#00AA00', file:'JY_06_Shinjuku'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:7, st_ja:'★渋谷', st_en:'★Shibuya', color:'#00AA00', file:'JY_07_Shibuya'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:8, st_ja:'目黒', st_en:'Meguro', color:'#00AA00', file:'JY_08_Meguro'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:9, st_ja:'品川', st_en:'Shinagawa', color:'#00AA00', file:'JY_09_Shinagawa'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:10, st_ja:'★新橋', st_en:'★Shimbashi', color:'#00AA00', file:'JY_10_Shimbashi'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:1, st_ja:'★池袋', st_en:'★Ikebukuro', color:'#F62E36', file:'M_01_Ikebukuro'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:2, st_ja:'後楽園', st_en:'Korakuen', color:'#F62E36', file:'M_02_Korakuen'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:3, st_ja:'御茶ノ水', st_en:'Ochanomizu', color:'#F62E36', file:'M_03_Ochanomizu'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:4, st_ja:'★大手町', st_en:'★Otemachi', color:'#F62E36', file:'M_04_Otemachi'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:5, st_ja:'★東京', st_en:'★Tokyo', color:'#F62E36', file:'M_05_Tokyo'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:6, st_ja:'★銀座', st_en:'★Ginza', color:'#F62E36', file:'M_06_Ginza'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:7, st_ja:'★赤坂見附', st_en:'★Akasaka-mitsuke', color:'#F62E36', file:'M_07_Akasaka-mitsuke'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:8, st_ja:'四ツ谷', st_en:'Yotsuya', color:'#F62E36', file:'M_08_Yotsuya'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:9, st_ja:'★新宿', st_en:'★Shinjuku', color:'#F62E36', file:'M_09_Shinjuku'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:10, st_ja:'中野坂上', st_en:'Nakano-sakaue', color:'#F62E36', file:'M_10_Nakano-sakaue'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:1, st_ja:'★渋谷', st_en:'★Shibuya', color:'#FF9500', file:'G_01_Shibuya'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:2, st_ja:'表参道', st_en:'Omotesando', color:'#FF9500', file:'G_02_Omotesando'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:3, st_ja:'★青山一丁目', st_en:'★Aoyama-itchome', color:'#FF9500', file:'G_03_Aoyama-itchome'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:4, st_ja:'★赤坂見附', st_en:'★Akasaka-mitsuke', color:'#FF9500', file:'G_04_Akasaka-mitsuke'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:5, st_ja:'★新橋', st_en:'★Shimbashi', color:'#FF9500', file:'G_05_Shimbashi'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:6, st_ja:'★銀座', st_en:'★Ginza', color:'#FF9500', file:'G_06_Ginza'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:7, st_ja:'★日本橋', st_en:'★Nihombashi', color:'#FF9500', file:'G_07_Nihombashi'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:8, st_ja:'★神田', st_en:'★Kanda', color:'#FF9500', file:'G_08_Kanda'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:9, st_ja:'★上野', st_en:'★Ueno', color:'#FF9500', file:'G_09_Ueno'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:10, st_ja:'浅草', st_en:'Asakusa', color:'#FF9500', file:'G_10_Asakusa'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:1, st_ja:'中野', st_en:'Nakano', color:'#009BBF', file:'T_01_Nakano'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:2, st_ja:'落合', st_en:'Ochiai', color:'#009BBF', file:'T_02_Ochiai'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:3, st_ja:'★高田馬場', st_en:'★Takadanobaba', color:'#009BBF', file:'T_03_Takadanobaba'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:4, st_ja:'早稲田', st_en:'Waseda', color:'#009BBF', file:'T_04_Waseda'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:5, st_ja:'飯田橋', st_en:'Iidabashi', color:'#009BBF', file:'T_05_Iidabashi'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:6, st_ja:'★九段下', st_en:'★Kudanshita', color:'#009BBF', file:'T_06_Kudanshita'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:7, st_ja:'★大手町', st_en:'★Otemachi', color:'#009BBF', file:'T_07_Otemachi'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:8, st_ja:'★日本橋', st_en:'★Nihombashi', color:'#009BBF', file:'T_08_Nihombashi'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:9, st_ja:'門前仲町', st_en:'Monzen-nakacho', color:'#009BBF', file:'T_09_Monzen-nakacho'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:10, st_ja:'東陽町', st_en:'Toyocho', color:'#009BBF', file:'T_10_Toyocho'}
+];
+const TEIDEN_FILES = {'JY':'JY_TEIDEN', 'M':'M_TEIDEN', 'G':'G_TEIDEN', 'T':'T_TEIDEN'};
+const IMAGE_BASE_URL = "https://geodo.earth/guno_v2/cards/";
+
+let isJapanese = true, autoPlay = false, deck = [], discardPile = [], players = [], mapState = {};
+let turnIndex = 0, direction = 1, gameOver = false, isWaitingHuman = false, turnCount = 0;
+let map, geoJsonLayers = {}, stationLayers = {}, teidenPlayed = {}, lastHits = {};
+
+// --- Helper Functions ---
+function getCurrentRadius() {
+    const z = map.getZoom();
+    return (z < 12) ? 2 : (z < 14) ? 4 : 6;
+}
+
+function initMap() {
+    map = L.map('map', { gestureHandling: true }).setView([35.681236, 139.767125], 12);
+    const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+    const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+    L.control.layers({ "🌑 Dark": dark, "🛰️ Satellite": sat }).addTo(map);
+    map.createPane('stationsPane').style.zIndex = 600;
+    map.on('zoomend', renderAll);
+
+    ['JY','M','G','T'].forEach(lc => {
+        const slug = {JY:'jr-east-yamanote', M:'tokyo-metro-marunouchi', G:'tokyo-metro-ginza', T:'tokyo-metro-tozai'}[lc];
+        fetch(`./geojson/lines/${slug}.geojson`).then(r=>r.json()).then(data => {
+            geoJsonLayers[lc] = L.geoJSON(data, { style: { color:STATIONS_DB.find(s=>s.lc===lc).color, weight:4, opacity:0.2 } }).addTo(map);
+        });
+        fetch(`./geojson/stations/${slug}_stations.geojson`).then(r=>r.json()).then(data => {
+            L.geoJSON(data, {
+                pointToLayer: (f, latlng) => {
+                    const st = STATIONS_DB.find(s => s.lc === lc && s.st_ja.replace('★','') === f.properties.name);
+                    if(st) {
+                        const m = L.marker(latlng, { pane: 'stationsPane' });
+                        stationLayers[`${lc}-${st.order}`] = m;
+                        m.stData = st;
+                        m.bindTooltip(isJapanese ? st.st_ja : st.st_en, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] });
+                        return m;
+                    }
+                    return L.circleMarker(latlng, { radius: 2 });
+                }
+            }).addTo(map);
+        });
+    });
+}
+
+function startGame() {
+    gameOver = false; turnCount = 0; turnIndex = 0; direction = 1; isWaitingHuman = false; mapState = {}; lastHits = {}; teidenPlayed = {};
+    deck = []; STATIONS_DB.forEach(s => { for(let i=0; i<2; i++) deck.push({...s, type:'station', id:`s-${s.lc}-${s.order}-${i}`}); });
+    ['JY','M','G','T'].forEach(lc => deck.push({lc, type:'teiden', file:TEIDEN_FILES[lc], id:`t-${lc}`, color:'#000'}));
+    deck.sort(() => Math.random() - 0.5);
+    players = [
+        { name: "P1", isHuman: !autoPlay, hand: [], color: '#174a7c', icon: '🌊', status: 'active', guno: 0, stations: 0 },
+        { name: "P2", isHuman: false, hand: [], color: '#b52942', icon: '🌸', status: 'active', guno: 0, stations: 0 },
+        { name: "P3", isHuman: false, hand: [], color: '#e6b422', icon: '🌙', status: 'active', guno: 0, stations: 0 },
+        { name: "P4", isHuman: false, hand: [], color: '#745399', icon: '🏯', status: 'active', guno: 0, stations: 0 }
+    ];
+    players.forEach(p => { for(let i=0; i<7; i++) p.hand.push(deck.pop()); });
+    discardPile = []; while(true) { let c = deck.pop(); discardPile.push(c); if(c.type==='station'){ mapState[`${c.lc}-${c.order}`]=-1; break; } }
+    document.getElementById('log').innerHTML = ""; document.getElementById('result-overlay').style.display = 'none';
+    nextTurn();
+}
+
+function nextTurn() {
+    if(gameOver) return;
+    if(players.filter(p => p.status === 'active').length <= 1){ endGame(); return; }
+    renderAll();
+    const p = players[turnIndex]; 
+    if(p.status !== 'active') { advanceTurn(); nextTurn(); return; }
+    if(p.isHuman && !autoPlay) { isWaitingHuman = true; renderAll(); } 
+    else { isWaitingHuman = false; setTimeout(playCPUTurn, 400); }
+}
+
+function executePlay(pIdx, cardIdx) {
+    const p = players[pIdx], card = p.hand.splice(cardIdx, 1)[0], top = discardPile[discardPile.length - 1];
+    discardPile.push(card);
+    if(card.type === 'station') {
+        const key = `${card.lc}-${card.order}`, prev = mapState[key];
+        if(prev !== undefined && prev !== -1 && prev !== pIdx) log(`⚔️ <b>${players[prev].name}</b>の駅を強奪！`);
+        mapState[key] = pIdx;
+        if(top.type === 'station' && card.st_ja.replace('★','') === top.st_ja.replace('★','')) { direction *= -1; log("🔄 進行方向が逆転！"); }
+        checkGuno(card.lc, pIdx);
+    } else {
+        teidenPlayed[card.lc] = true; direction *= -1; log("⚡ 停電発生！逆転！");
+        players.forEach((o, i) => { if(i!==pIdx && o.status==='active' && deck.length) o.hand.push(deck.pop()); });
+    }
+    log(`[${p.icon}${p.name}] ${card.lc} ${isJapanese ? card.st_ja||'⚡' : card.st_en||'⚡'}`);
+    if(p.hand.length === 0) p.status = 'eliminated';
+    if(players.filter(x=>x.status==='active').length <= 1) endGame();
+}
+
+function humanDraw() { 
+    if(!isWaitingHuman || getPlayableIndices(players[0]).length > 0 || !deck.length) return; 
+    isWaitingHuman = false; players[0].hand.push(deck.pop()); advanceTurn(); nextTurn(); 
+}
+
+function humanPlay(idx) { 
+    if(!isWaitingHuman || turnIndex !== 0 || !getPlayableIndices(players[0]).includes(idx)) return; 
+    isWaitingHuman = false; executePlay(0, idx); advanceTurn(); nextTurn(); 
+}
+
+function playCPUTurn() { 
+    const p = players[turnIndex], pi = getPlayableIndices(p); 
+    if(pi.length) executePlay(turnIndex, pi[0]); 
+    else if(deck.length) p.hand.push(deck.pop());
+    else { endGame(); return; }
+    advanceTurn(); nextTurn(); 
+}
+
+function getPlayableIndices(p) {
+    const top = discardPile[discardPile.length - 1];
+    return p.hand.map((c, i) => {
+        if(c.type === 'teiden') return (p.hand.length > 1 && (top.type === 'teiden' || c.lc === top.lc)) ? i : -1;
+        const norm = s => (s||"").replace('★','');
+        if(c.lc === top.lc || norm(c.st_ja) === norm(top.st_ja) || (top.type==='station' && c.order === top.order)) return i;
+        return -1;
+    }).filter(i => i !== -1);
+}
+
+function advanceTurn() { turnCount++; turnIndex = (turnIndex + direction + 4) % 4; }
+
+function endGame() { 
+    gameOver = true; document.getElementById('result-overlay').style.display = 'flex'; showRanking(); 
+    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } }); 
+}
+
+function log(m) { const l = document.getElementById('log'); l.innerHTML += `<div>${m}</div>`; l.scrollTop = l.scrollHeight; }
+
+function toggleAuto() { 
+    autoPlay = !autoPlay; 
+    const btn = document.getElementById('btn-mode');
+    btn.textContent = autoPlay ? "🤖 オート進行" : "👤 プレイ中";
+    btn.className = autoPlay ? "btn-auto" : "btn-manual";
+    players[0].isHuman = !autoPlay; 
+    if(!gameOver) { isWaitingHuman = false; renderAll(); if(autoPlay) nextTurn(); }
+}
+
+function renderAll() {
+    const rad = getCurrentRadius();
+    const playable = (isWaitingHuman && turnIndex === 0) ? getPlayableIndices(players[0]) : [];
+    
+    // Players Area
+    document.getElementById('players-area').innerHTML = players.map((p, i) => {
+        const isTurn = (i === turnIndex && !gameOver);
+        const cards = p.hand.map((c, ci) => {
+            const cls = (p.isHuman && !autoPlay) ? (playable.includes(ci) ? 'card playable' : 'card unplayable') : 'card';
+            const img = (p.isHuman || autoPlay) ? `${IMAGE_BASE_URL}${c.file}.png` : 'https://geodo.earth/guno-map/cards/GUNO_BACK.png';
+            return `<div class="${cls}" style="background-image:url(${img})" onclick="humanPlay(${ci})"></div>`;
+        }).join('');
+        return `<div class="player-box ${isTurn?'active-turn':''}" style="border-left-color:${p.color}"><b>${p.icon} ${p.name}</b> <small>GUNO:${p.guno} / ST:${calculateStations(i)}</small><br>${cards}</div>`;
+    }).join('');
+
+    // Map Layers
+    Object.keys(geoJsonLayers).forEach(lc => {
+        const active = Object.keys(mapState).some(k => k.startsWith(lc) && mapState[k] !== -1);
+        geoJsonLayers[lc].setStyle({ opacity: active ? 0.8 : 0.2, weight: active ? 6 : 4 });
+    });
+    Object.keys(stationLayers).forEach(key => {
+        const owner = mapState[key], [lc, order] = key.split('-'), p = players[owner];
+        if (owner !== undefined && owner !== -1 && p) {
+            stationLayers[key].setIcon(L.divIcon({ className: 'kamon-icon', html: `<div class="kamon-inner" style="background:${p.color}; border:2px solid #fff; font-size:${rad*2}px;">${p.icon}</div>`, iconSize:[rad*4,rad*4], iconAnchor:[rad*2,rad*2] }));
+        } else {
+            stationLayers[key].setIcon(L.divIcon({ className: 'empty-icon', html: `<div style="width:${rad*2}px; height:${rad*2}px; background:#fff; border:2px solid ${STATIONS_DB.find(s=>s.lc===lc).color}; border-radius:50%;"></div>`, iconSize:[rad*2,rad*2], iconAnchor:[rad,rad] }));
+        }
+    });
+
+    const top = discardPile[discardPile.length-1];
+    document.getElementById('discard-pile').innerHTML = top ? `<div class="card card-large" style="background-image:url(${IMAGE_BASE_URL}${top.file}.png)"></div>` : '';
+    document.getElementById('draw-pile-visual').innerHTML = `<div style="color:white; font-size:1.5em;">${deck.length}</div>`;
+    document.getElementById('draw-pile-visual').className = (isWaitingHuman && !playable.length) ? 'can-draw' : '';
+    document.getElementById('direction-arrow').textContent = direction === 1 ? '↻' : '↺';
+    renderSlots();
+}
+
+function renderSlots() {
+    ['JY','M','G','T'].forEach(lc => {
+        const grid = document.getElementById(`map-${lc.toLowerCase()}`);
+        const header = document.getElementById(`header-${lc.toLowerCase()}`);
+        const line = STATIONS_DB.find(s=>s.lc===lc);
+        header.textContent = `[${lc}] ${isJapanese ? line.name_ja : line.name_en}`;
+        header.style.backgroundColor = line.color;
+        
+        let h = "";
+        for(let i=1; i<=11; i++) {
+            if(i <= 10) {
+                const o = mapState[`${lc}-${i}`], s = STATIONS_DB.find(x=>x.lc===lc && x.order===i);
+                if(o !== undefined && o !== -1) {
+                    h += `<div class="slot active" style="background-image:url(${IMAGE_BASE_URL}${s.file}.png); background-size:100% 100%; border:2px solid ${players[o].color}">
+                        <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); background:${players[o].color}; width:22px; height:22px; border-radius:50%; border:2px solid #fff; display:flex; align-items:center; justify-content:center; font-size:11px; z-index:10;">${players[o].icon}</div></div>`;
+                } else { 
+                    const stName = isJapanese ? s.st_ja : s.st_en;
+                    h += `<div class="slot empty-${lc.toLowerCase()}"><div>${i}</div><div style="font-size:9px; margin-top:3px;">${stName.replace('★','')}</div></div>`; 
+                }
+            } else {
+                let cls = "slot teiden-slot", content = "⚡", style = "";
+                if(teidenPlayed[lc]) { cls += " active"; style = `background-image:url(${IMAGE_BASE_URL}${TEIDEN_FILES[lc]}.png); background-size:100% 100%; border:2px solid #fff; opacity:1;`; content = ""; }
+                h += `<div class="${cls}" style="${style}">${content}</div>`;
+            }
+        }
+        grid.innerHTML = h;
+    });
+}
+
+function checkGuno(lc, pIdx){
+    let count = 0; for(let i=1; i<=10; i++) if(mapState[`${lc}-${i}`] === pIdx) count++;
+    if (count === 10 && lastHits[lc] === undefined){ lastHits[lc] = pIdx; players[pIdx].guno++; if(players[pIdx].guno >= 4) endGame(); }
+}
+function calculateStations(pIdx) { let c = 0; Object.values(mapState).forEach(o => { if(o === pIdx) c++; }); return c; }
+function toggleLanguage() { isJapanese = !isJapanese; Object.values(stationLayers).forEach(m => { if(m.stData) { m.unbindTooltip(); m.bindTooltip(isJapanese ? m.stData.st_ja : m.stData.st_en, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] }); } }); renderAll(); }
+
+function showRanking() {
+    let ranking = [...players].sort((a,b) => { let sA = (a.guno*10)+calculateStations(players.indexOf(a)), sB = (b.guno*10)+calculateStations(players.indexOf(b)); return sB-sA; });
+    let h = "<thead><tr><th>順位</th><th>プレイヤー</th><th>点数</th></tr></thead><tbody>";
+    ranking.forEach((p, i) => {
+        let s = (p.guno*10)+calculateStations(players.indexOf(p));
+        h += `<tr class="${i===0?'rank-1':''}"><td>${i+1}</td><td>${p.icon} ${p.name}</td><td>${s}pt</td></tr>`;
+    });
+    document.getElementById('result-table').innerHTML = h + "</tbody>";
+}
+window.onload = () => { initMap(); startGame(); };
+</script>
+</body>
+</html>
