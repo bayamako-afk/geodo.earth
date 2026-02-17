@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>GUNO v3.58 (Final Stable Layout)</title>
+<title>GUNO v3.58 (Resizable Columns)</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
 <style>
@@ -26,44 +26,46 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
 }
 body.show-log .panel-log { transform: translateY(0); }
 
+/* 🔥 パッチ：リサイザーCSS */
+.col-resizer { display: none; } /* デフォルト非表示 */
+
+@media (min-width: 1024px) {
+    .game-container { 
+        display: grid; 
+        /* 3列構成：左 / resizer / 右 */
+        grid-template-columns: var(--left-w, 460px) 14px 1fr;
+        grid-template-rows: minmax(260px, 40vh) minmax(0, 1fr);
+        height: calc(100vh - 90px);
+        max-height: calc(100vh - 90px);
+        gap: 0 5px; /* gapはresizerが担うため小さめに */
+    }
+    .panel-dashboard { grid-column: 1; grid-row: 1; overflow: hidden; min-height: 0; }
+    .panel-slots { grid-column: 1; grid-row: 2; overflow-y: auto; min-height: 0; }
+    
+    /* 仕切りバー設定 */
+    .col-resizer {
+        display: block;
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        cursor: col-resize;
+        border-radius: 8px;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.12);
+        align-self: stretch;
+        transition: background 0.2s;
+        z-index: 10;
+    }
+    .col-resizer:hover, .col-resizer.dragging { background: rgba(255,255,255,.2); border-color: gold; }
+    
+    .panel-map { grid-column: 3; grid-row: 1 / span 2; height: 100%; overflow: hidden; min-width: 0; min-height: 0; }
+    #players-area { overflow-y: auto; min-height: 0; flex: 1; }
+    #map { min-height: 0; }
+}
+
 /* 演出用 */
 .teiden-mode .leaflet-tile-pane { filter: grayscale(100%) contrast(150%) brightness(40%); transition: filter 0.8s ease; }
 @keyframes widthPulse { 0% { stroke-width: 5; stroke-opacity: 0.8; } 50% { stroke-width: 9; stroke-opacity: 0.4; } 100% { stroke-width: 5; stroke-opacity: 0.8; } }
 .pulse-animation path { animation: widthPulse 3s infinite ease-in-out; stroke-linecap: round; filter: drop-shadow(0 0 5px gold); }
-
-/* 🔥 パッチ：PCレイアウトの完全安定化（パッチ適用版） */
-.game-container { display: flex; flex-direction: column; gap: 15px; min-height: 0; }
-
-@media (min-width: 1024px) {
-    body { overflow: hidden; }
-    .game-container { 
-        display: grid; 
-        /* リサイザーの当たり判定を考慮した3カラム化 */
-        grid-template-columns: var(--left-w, 460px) 14px 1fr;
-        /* 上下2段分割：上段最大40vh */
-        grid-template-rows: minmax(260px, 40vh) minmax(0, 1fr);
-        height: calc(100vh - 90px);
-        max-height: calc(100vh - 90px);
-        gap: 0;
-    }
-    /* パネルごとのスクロール・高さ制御 */
-    .panel-dashboard { grid-column: 1; grid-row: 1; overflow: hidden; min-height: 0; }
-    #players-area { overflow-y: auto; flex: 1; min-height: 0; }
-    .panel-slots { grid-column: 1; grid-row: 2; overflow-y: auto; min-height: 0; margin-top: 15px; }
-    
-    /* リサイザー */
-    .col-resizer {
-        display: block; grid-column: 2; grid-row: 1 / span 2;
-        cursor: col-resize; width: 14px; align-self: stretch;
-        background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 8px;
-        z-index: 10; transition: background 0.2s;
-    }
-    .col-resizer:hover, .col-resizer.dragging { background: rgba(255,255,255,.2); border-color: gold; }
-
-    /* 地図パネルの余白削減 */
-    .panel-map { grid-column: 3; grid-row: 1 / span 2; height: 100%; overflow: hidden; min-width: 0; min-height: 0; padding: 10px; }
-    #map { min-height: 0; }
-}
 
 .panel { background: #222; padding: 15px; border-radius: 10px; display: flex; flex-direction: column; border: 1px solid #333; min-width: 0; }
 #map { height: 100%; width: 100%; border-radius: 8px; background: #000; border: 1px solid #444; z-index: 1; }
@@ -107,7 +109,7 @@ body.show-log .panel-log { transform: translateY(0); }
 }
 #draw-pile-visual.can-draw { cursor: pointer; border-color: #4CAF50; box-shadow: 0 0 20px rgba(76,175,80,0.85); transform: translateY(-1px); }
 
-#hint-area { background: rgba(76, 175, 80, 0.1); color: #4CAF50; border-radius: 6px; padding: 8px; margin-bottom: 10px; font-weight: bold; text-align: center; font-size: 13px; border: 1px dashed #4CAF50; min-height: 1.2em; }
+#hint-area { background: rgba(76, 175, 80, 0.1); color: #4CAF50; border-radius: 6px; padding: 8px; margin-bottom: 10px; font-weight: bold; text-align: center; font-size: 13px; border: 1px dashed #4CAF50; height: 18px; }
 
 .player-box { padding: 10px; margin-bottom: 10px; border-radius: 8px; background: #2a2a2a; border-left: 8px solid transparent; transition: 0.3s; }
 .player-box.active-turn { background: #111; border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.1); }
@@ -136,7 +138,7 @@ body.show-log .panel-log { transform: translateY(0); }
 <body>
 
 <div class="header">
-    <div><h2 style="margin:0; color:gold;">GUNO v3.58</h2><small>Dual adaptive Layout Refined</small></div>
+    <div><h2 style="margin:0; color:gold;">GUNO v3.58</h2><small>Resizable Panel Edition</small></div>
     <div class="controls">
         <button onclick="toggleLog()" id="btn-log">📜 ログ</button>
         <button onclick="toggleLanguage()">🌐 言語</button>
@@ -168,6 +170,7 @@ body.show-log .panel-log { transform: translateY(0); }
     </div>
 
     <div id="col-resizer" class="col-resizer" title="ドラッグで幅調整"></div>
+
     <div class="panel panel-map" id="map-container"><div id="map"></div></div>
 
     <div id="result-overlay"><div class="result-card"><h1 style="color:gold;">🏆 VICTORY!</h1><table id="result-table"></table><div style="display:flex; justify-content:center; gap:10px;"><button onclick="startGame()" style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">もう一度遊ぶ</button><button onclick="document.getElementById('result-overlay').style.display='none';" style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">✖ 閉じる</button></div></div></div>
@@ -185,7 +188,7 @@ body.show-log .panel-log { transform: translateY(0); }
 <script src="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.js"></script>
 
 <script>
-// --- Column Resize Logic ---
+// 🔥 パッチ：カラムリサイズ機能の初期化
 (function enableColumnResize(){
     const MIN = 340;  
     const MAX = 720;  
@@ -197,6 +200,7 @@ body.show-log .panel-log { transform: translateY(0); }
         const container = document.querySelector('.game-container');
         if(!resizer || !container) return;
 
+        // 前回値の復元
         const saved = localStorage.getItem('gunoLeftW');
         if(saved){ container.style.setProperty('--left-w', clamp(parseInt(saved,10)) + 'px'); }
 
@@ -428,6 +432,7 @@ function humanPlay(idx) { if(!isWaitingHuman || turnIndex !== 0 || !getPlayableI
 function humanPass(){ 
     if(!isWaitingHuman || turnIndex !== 0) return; 
     const playable = getPlayableIndices(players[0]);
+    // 🔥 パッチ：PASS不可条件の厳密化
     if(playable.length > 0 || deck.length > 0) return; 
     isWaitingHuman = false; 
     log('⏭️ PASS'); 
@@ -507,6 +512,7 @@ function renderAll() {
             const img = (p.isHuman || autoPlay) ? IMAGE_BASE_URL + c.file + ".png" : BACK_URL;
             return '<div class="card ' + (canPlay?'playable':(p.isHuman?'unplayable':'')) + '" style="background-image:url(' + img + ')" ' + (canPlay?'onclick="humanPlay(' + ci + ')"' : '') + '></div>';
         }).join('');
+        // ✅ 修正：閉じタグ連結修復
         return '<div class="player-box ' + (isTurn?'active-turn':'') + ' ' + (p.status==='eliminated'?'eliminated':'') + 
                '" style="border-left-color:' + p.color + '"><b>' + p.icon + ' ' + p.name + 
                '</b> <small>Score:' + calculateScore(i) + '</small><br>' + cardsHtml + '</div>';
