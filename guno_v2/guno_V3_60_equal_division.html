@@ -338,7 +338,7 @@ function initLayers() {
     ['JY','M','G','T'].forEach(lc => {
         const slug = {JY:'jr-east-yamanote', M:'tokyo-metro-marunouchi', G:'tokyo-metro-ginza', T:'tokyo-metro-tozai'}[lc];
         fetch(`./geojson/lines/${slug}.geojson`).then(r=>r.json()).then(data => {
-            geoJsonLayers[lc] = L.geoJSON(data, { style: { color:STATIONS_DB.find(s=>s.lc===lc).color, weight:4, opacity:0.2 } }).addTo(map);
+            geoJsonLayers[lc] = L.geoJSON(data, { style: { color:STATIONS_DB.find(s=>s.lc===lc).color, weight:4, opacity:0.4 } }).addTo(map);
         });
         fetch(`./geojson/stations/${slug}_stations.geojson`).then(r=>r.json()).then(data => {
             L.geoJSON(data, {
@@ -349,7 +349,7 @@ function initLayers() {
                     if(!stationNodes[normName]){
                         const m = L.marker(latlng, { pane: 'stationsPane' }).addTo(map);
                         stationNodes[normName] = { marker: m, latlng, lines: [] };
-                        const label = (isJapanese ? st.st_ja : st.st_en).replace('★','');
+                        const label = (isJapanese ? st.st_ja : st.st_en).replace('★', '<span style="color:gold;">★</span>');
                         m.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] });
                     }
                     stationNodes[normName].lines.push({ lc: st.lc, order: st.order, stData: st });
@@ -580,7 +580,7 @@ function renderSlots() {
                 if(o !== undefined && o !== -1) {
                     h += '<div class="slot active" style="background-image:url(' + IMAGE_BASE_URL + s.file + '.png); background-size:cover; border:2px solid ' + players[o].color + ';">' +
                          '<div style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); background:' + players[o].color + '; width:20px; height:20px; border-radius:50%; border:1px solid #fff; display:flex; align-items:center; justify-content:center; font-size:10px; color:white; z-index:10;">' + players[o].icon + '</div></div>';
-                } else { h += '<div class="slot"><div>' + i + '</div><div style="font-size:8px;">' + (isJapanese?s.st_ja:s.st_en).replace('★','') + '</div></div>'; }
+                } else { h += '<div class="slot"><div>' + i + '</div><div style="font-size:8px;">' + (isJapanese?s.st_ja:s.st_en).replace('★', '<span style="color:gold;">★</span>') + '</div></div>'; }
             } else {
                 let cls = "slot teiden-slot", content = "⚡", style = "";
                 if(teidenPlayed[lc]) { cls += " active"; style += 'background-image:url(' + IMAGE_BASE_URL + TEIDEN_FILES[lc] + '.png); background-size:cover; border:2px solid #fff; opacity:1;'; content = ""; }
@@ -590,7 +590,7 @@ function renderSlots() {
         grid.innerHTML = h;
     });
 }
-function toggleLanguage() { isJapanese = !isJapanese; Object.values(stationNodes).forEach(node => { const st = node.lines[0].stData; node.marker.unbindTooltip(); const label = (isJapanese ? st.st_ja : st.st_en).replace('★',''); node.marker.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] }); }); renderAll(); }
+function toggleLanguage() { isJapanese = !isJapanese; Object.values(stationNodes).forEach(node => { const st = node.lines[0].stData; node.marker.unbindTooltip(); const label = (isJapanese ? st.st_ja : st.st_en).replace('★', '<span style="color:gold;">★</span>'); node.marker.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] }); }); renderAll(); }
 window.onload = () => { 
     document.body.classList.remove('show-log'); 
     initMapComponent(); 
