@@ -429,7 +429,11 @@ function startGame() {
 function nextTurn() {
     if(gameOver) return;
     const activePlayers = players.filter(p => p.status === 'active');
-    if(activePlayers.length <= 1){ endGame(); return; }
+    if(activePlayers.length <= 1){ 
+        log('🏁 ゲーム終了！ 残りプレーヤー: ' + activePlayers.length + '人');
+        endGame(); 
+        return; 
+    }
     renderAll();
     const p = players[turnIndex]; 
     if(p.status !== 'active') { advanceTurn(); nextTurn(); return; }
@@ -456,8 +460,15 @@ function executePlay(pIdx, cardIdx) {
         players.forEach((o, i) => { if(i!==pIdx && o.status==='active' && deck.length) o.hand.push(deck.pop()); });
     }
     log('[' + p.icon + p.name + '] ' + card.lc + ' ' + (isJapanese ? (card.st_ja||'⚡') : (card.st_en||'⚡')));
-    if(p.hand.length === 0) p.status = 'eliminated';
-    if(players.filter(x=>x.status==='active').length <= 1) endGame();
+    if(p.hand.length === 0) {
+        p.status = 'eliminated';
+        log('❌ <b>' + p.name + '</b> が脱落しました（手札0）');
+    }
+    const activeCount = players.filter(x=>x.status==='active').length;
+    if(activeCount <= 1) {
+        log('🏁 ゲーム終了！ 残りプレーヤー: ' + activeCount + '人');
+        endGame();
+    }
 }
 
 function humanDraw() { if(!isWaitingHuman || turnIndex !== 0 || getPlayableIndices(players[0]).length > 0 || !deck.length) return; isWaitingHuman = false; players[0].hand.push(deck.pop()); advanceTurn(); nextTurn(); }
