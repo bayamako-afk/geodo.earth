@@ -58,7 +58,8 @@ body.show-log .panel-log { transform: translateY(0); }
 @keyframes widthPulse { 0% { stroke-width: 5; stroke-opacity: 0.8; } 50% { stroke-width: 9; stroke-opacity: 0.4; } 100% { stroke-width: 5; stroke-opacity: 0.8; } }
 .pulse-animation path { animation: widthPulse 3s infinite ease-in-out; stroke-linecap: round; filter: drop-shadow(0 0 5px gold); }
 
-.panel { background: #222; padding: 15px; border-radius: 10px; display: flex; flex-direction: column; border: 1px solid #333; min-width: 0; }
+.panel { background: #222; padding: 10px 15px 15px 15px; border-radius: 10px; display: flex; flex-direction: column; border: 1px solid #333; min-width: 0; }
+.panel h3 { margin-top: 0; margin-bottom: 10px; }
 #map { height: 100%; width: 100%; border-radius: 8px; background: #000; border: 1px solid #444; z-index: 1; }
 
 #slots-area { display: grid; grid-template-columns: 1fr; gap: 12px; min-width: 0; }
