@@ -74,7 +74,7 @@ body.show-log .panel-log { transform: translateY(0); }
 @supports (width: 1cqw) {
     .map-grid {
         --card-gap: clamp(4px, 1.2cqw, 8px);
-        --card-w: clamp(22.4px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols) * 0.8), 72px);
+        --card-w: clamp(22.4px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols)), 72px);
         --card-h: calc(var(--card-w) * 1.5);
     }
     @container (min-width: 380px) { .map-grid { --cols: 10; } }
@@ -219,7 +219,12 @@ body.show-log .panel-log { transform: translateY(0); }
             <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-g" class="line-header"></div><div id="map-g" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-t" class="line-header"></div><div id="map-t" class="map-grid"></div></div>
-            <div class="line-wrapper"><div id="header-blackout" class="line-header" style="background:#222; color:#ff6b00;">⚡ 停電</div><div id="map-blackout" class="map-grid" style="--cols:4;"></div></div>
+            <div class="line-wrapper" style="background:#fff; border-radius:8px; padding:8px; margin-top:8px;">
+                <div id="header-blackout" class="line-header" style="background:#fff; color:#ff6b00; margin-bottom:8px;">⚡ 停電</div>
+                <div style="background:#1a1a1a; border-radius:6px; padding:12px;">
+                    <div id="map-blackout" class="map-grid" style="--cols:4;"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -649,9 +654,20 @@ function renderSlots() {
     
     // 停電カード専用エリア
     const blackoutGrid = document.getElementById('map-blackout');
+    const lineInfo = {
+        'JY': {color: '#00AA00', name_ja: '山手線', name_en: 'Yamanote'},
+        'M': {color: '#F62E36', name_ja: '丸ノ内線', name_en: 'Marunouchi'},
+        'G': {color: '#FF9500', name_ja: '銀座線', name_en: 'Ginza'},
+        'T': {color: '#009BBF', name_ja: '東西線', name_en: 'Tozai'}
+    };
     let bh = "";
     ['JY','M','G','T'].forEach(lc => {
-        let cls = "slot teiden-slot", content = "⚡", style = "background:#1a1a1a;";
+        const info = lineInfo[lc];
+        const lineName = isJapanese ? info.name_ja : info.name_en;
+        let cls = "slot teiden-slot", style = "background:#1a1a1a;";
+        let content = '<div style="position:absolute; top:8px; left:50%; transform:translateX(-50%); font-weight:bold; font-size:14px; color:' + info.color + ';">[' + lc + ']</div>' +
+                      '<div style="position:absolute; top:28px; left:50%; transform:translateX(-50%); font-size:10px; color:' + info.color + '; white-space:nowrap;">' + lineName + '</div>' +
+                      '<div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); font-size:24px;">⚡</div>';
         if(teidenPlayed[lc]) { 
             cls += " active"; 
             style += 'background-image:url(' + IMAGE_BASE_URL + TEIDEN_FILES[lc] + '.png); background-size:cover; border:2px solid #fff; opacity:1;'; 
@@ -661,7 +677,7 @@ function renderSlots() {
     });
     blackoutGrid.innerHTML = bh;
 }
-function toggleLanguage() { isJapanese = !isJapanese; Object.values(stationNodes).forEach(node => { const st = node.lines[0].stData; node.marker.unbindTooltip(); const label = (isJapanese ? st.st_ja : st.st_en).replace('★', '<span style="color:gold;">★</span>'); node.marker.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] }); }); renderAll(); }
+function toggleLanguage() { isJapanese = !isJapanese; Object.values(stationNodes).forEach(node => { const st = node.lines[0].stData; node.marker.unbindTooltip(); const label = (isJapanese ? st.st_ja : st.st_en).replace('★', '<span style="color:gold;">★</span>'); node.marker.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] }); }); renderSlots(); renderAll(); }
 window.onload = () => { 
     document.body.classList.remove('show-log'); 
     initMapComponent(); 
