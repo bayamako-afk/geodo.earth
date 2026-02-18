@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>GUNO v3.58 (Resizable Columns)</title>
+<title>GUNO v3.60 (Resizable Columns)</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
 <style>
@@ -192,7 +192,7 @@ body.show-log .panel-log { transform: translateY(0); }
 <body>
 
 <div class="header">
-    <div><h2 style="margin:0; color:gold;">GUNO v3.58</h2><small>Resizable Panel Edition</small></div>
+    <div><h2 style="margin:0; color:gold;">GUNO v3.60</h2><small>Resizable Panel Edition</small></div>
     <div class="controls">
         <button onclick="toggleLog()" id="btn-log">📜 ログ</button>
         <button onclick="toggleLanguage()">🌐 言語</button>
@@ -393,7 +393,7 @@ function safeInvalidateMap(){ if(!map) return; setTimeout(()=>map.invalidateSize
 function initMapComponent() {
     if(map) map.remove();
     stationNodes = {};
-    map = L.map('map', { gestureHandling: true }).setView([35.681236, 139.767125], 12);
+    map = L.map('map', { gestureHandling: true }).setView([35.689, 139.700], 12);
     const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
     const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
     L.control.layers({ "🌑 ダーク": dark, "🛰️ 航空写真": sat }).addTo(map);
