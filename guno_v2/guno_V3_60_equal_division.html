@@ -77,9 +77,9 @@ body.show-log .panel-log { transform: translateY(0); }
         --card-w: clamp(22.4px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols) * 0.8), 57.6px);
         --card-h: calc(var(--card-w) * 1.5);
     }
-    @container (min-width: 380px) { .map-grid { --cols: 7; } }
-    @container (min-width: 280px) and (max-width: 379px) { .map-grid { --cols: 5; } }
-    @container (max-width: 279px) { .map-grid { --cols: 4; } }
+    @container (min-width: 380px) { .map-grid { --cols: 10; } }
+    @container (min-width: 280px) and (max-width: 379px) { .map-grid { --cols: 7; } }
+    @container (max-width: 279px) { .map-grid { --cols: 5; } }
 }
 
 .line-header { font-weight: bold; font-size: 13px; margin-bottom: 5px; padding: 3px 8px; border-radius: 4px; color: #fff; width: 100%; box-sizing: border-box; text-align: center; }
@@ -120,10 +120,71 @@ body.show-log .panel-log { transform: translateY(0); }
 #btn-mode.btn-auto-active { background: #c62828 !important; border-color: #f44336 !important; }
 .station-label { background: transparent; border: none; color: #fff; font-size: 10px; font-weight: bold; text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000; pointer-events: none; }
 
+/* スマホ全般 */
 @media screen and (max-width: 1023px) {
-    body { overflow-y: auto; height: auto; }
-    .game-container { display: flex; flex-direction: column; height: auto; }
-    #map { height: 45vh; min-height: 350px; }
+    body { overflow-y: auto; height: auto; font-size: 16px; padding: 10px; }
+    .game-container { display: flex; flex-direction: column; height: auto; gap: 10px; }
+    .panel { padding: 12px; }
+    
+    /* ヘッダーボタン */
+    .header-buttons button { font-size: 16px; padding: 10px 16px; min-height: 44px; }
+    
+    /* カードサイズ */
+    :root {
+        --card-w: clamp(50px, 12vw, 80px);
+        --card-h: calc(var(--card-w) * 1.5);
+    }
+    
+    /* DECK/LAST */
+    #draw-pile-visual, .card-large { width: var(--card-w); height: var(--card-h); }
+    
+    /* スロットグリッド */
+    @supports (width: 1cqw) {
+        .map-grid {
+            --card-w: clamp(45px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols) * 0.8), 72px);
+        }
+        @container (min-width: 500px) { .map-grid { --cols: 7; } }
+        @container (min-width: 350px) and (max-width: 499px) { .map-grid { --cols: 6; } }
+        @container (max-width: 349px) { .map-grid { --cols: 5; } }
+    }
+    
+    /* 地図 */
+    #map { height: 30vh; min-height: 250px; }
+    
+    /* プレーヤーボックス */
+    .player-box { padding: 10px; margin-bottom: 10px; }
+    
+    /* カードホバー効果を無効化（タッチデバイス） */
+    .card:hover { transform: none; z-index: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+    .slot.active:hover { transform: none; z-index: 5; }
+}
+
+/* スマホ横向き */
+@media screen and (max-width: 1023px) and (orientation: landscape) {
+    .game-container { 
+        display: grid; 
+        grid-template-columns: 1fr 1.5fr;
+        grid-template-rows: auto auto;
+        height: calc(100vh - 70px);
+    }
+    .panel-dashboard { grid-column: 1; grid-row: 1 / 3; overflow-y: auto; }
+    .panel-slots { grid-column: 2; grid-row: 1; overflow-y: auto; }
+    .panel-map { grid-column: 2; grid-row: 2; height: 100%; min-height: 200px; }
+    #map { height: 100%; min-height: 200px; }
+    
+    :root {
+        --card-w: clamp(40px, 8vw, 60px);
+    }
+}
+
+/* 小型スマホ */
+@media screen and (max-width: 480px) {
+    body { font-size: 14px; padding: 5px; }
+    .header-buttons button { font-size: 14px; padding: 8px 12px; }
+    .panel { padding: 8px; }
+    :root {
+        --card-w: clamp(45px, 14vw, 70px);
+    }
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -148,7 +209,7 @@ body.show-log .panel-log { transform: translateY(0); }
             <div id="direction-arrow" style="font-size:32px; color:gold;">↻</div>
             <div style="text-align:center;"><small style="color:#666;">LAST</small><div id="discard-pile"></div></div>
         </div>
-        <button id="btn-pass" onclick="humanPass()" style="width:100%; display:none; background:#555; border-color:#888; margin-bottom:8px; color:white; padding:8px; border-radius:6px; cursor:pointer; flex-shrink: 0;">⏭️ PASS</button>
+
         <div id="players-area"></div>
     </div>
 
@@ -158,6 +219,7 @@ body.show-log .panel-log { transform: translateY(0); }
             <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-g" class="line-header"></div><div id="map-g" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-t" class="line-header"></div><div id="map-t" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-blackout" class="line-header" style="background:#222; color:#ff6b00;">⚡ 停電</div><div id="map-blackout" class="map-grid" style="--cols:4;"></div></div>
         </div>
     </div>
 
@@ -439,7 +501,6 @@ function nextTurn() {
     if(p.status !== 'active') { advanceTurn(); nextTurn(); return; }
     const pi = getPlayableIndices(p);
     if(pi.length === 0 && deck.length === 0){
-        log('⏭️ PASS (' + p.name + ')');
         advanceTurn(); setTimeout(nextTurn, 500); return;
     }
     if(p.isHuman && !autoPlay) { isWaitingHuman = true; renderAll(); } 
@@ -457,7 +518,7 @@ function executePlay(pIdx, cardIdx) {
         checkGuno(card.lc, pIdx);
     } else {
         teidenPlayed[card.lc] = true; direction *= -1; log("⚡ 停電！逆転！");
-        players.forEach((o, i) => { if(i!==pIdx && o.status==='active' && deck.length) o.hand.push(deck.pop()); });
+        players.forEach((o, i) => { if(i!==pIdx && o.status==='active' && deck.length) { o.hand.push(deck.pop()); log('🎴 <b>' + o.name + '</b> がカードを引きました'); } });
     }
     log('[' + p.icon + p.name + '] ' + card.lc + ' ' + (isJapanese ? (card.st_ja||'⚡') : (card.st_en||'⚡')));
     if(p.hand.length === 0) {
@@ -471,24 +532,15 @@ function executePlay(pIdx, cardIdx) {
     }
 }
 
-function humanDraw() { if(!isWaitingHuman || turnIndex !== 0 || getPlayableIndices(players[0]).length > 0 || !deck.length) return; isWaitingHuman = false; players[0].hand.push(deck.pop()); advanceTurn(); nextTurn(); }
+function humanDraw() { if(!isWaitingHuman || turnIndex !== 0 || getPlayableIndices(players[0]).length > 0 || !deck.length) return; isWaitingHuman = false; players[0].hand.push(deck.pop()); log('🎴 <b>' + players[0].name + '</b> がカードを引きました'); advanceTurn(); nextTurn(); }
 function humanPlay(idx) { if(!isWaitingHuman || turnIndex !== 0 || !getPlayableIndices(players[0]).includes(idx)) return; isWaitingHuman = false; executePlay(0, idx); advanceTurn(); nextTurn(); }
 
-function humanPass(){ 
-    if(!isWaitingHuman || turnIndex !== 0) return; 
-    const playable = getPlayableIndices(players[0]);
-    // 🔥 パッチ：PASS不可条件の厳密化
-    if(playable.length > 0 || deck.length > 0) return; 
-    isWaitingHuman = false; 
-    log('⏭️ PASS'); 
-    advanceTurn(); 
-    nextTurn(); 
-}
+
 
 function playCPUTurn() { 
     const p = players[turnIndex], pi = getPlayableIndices(p); 
     if(pi.length) executePlay(turnIndex, pi[0]); 
-    else if(deck.length) p.hand.push(deck.pop());
+    else if(deck.length) { p.hand.push(deck.pop()); log('🎴 <b>' + p.name + '</b> がカードを引きました'); }
     else { advanceTurn(); nextTurn(); return; }
     advanceTurn(); nextTurn(); 
 }
@@ -570,14 +622,14 @@ function renderAll() {
     document.getElementById('draw-pile-visual').className = (isWaitingHuman && playable.length === 0 && deck.length > 0) ? 'can-draw' : '';
     document.getElementById('direction-arrow').textContent = direction === 1 ? '↻' : '↺';
 
-    const passBtn = document.getElementById('btn-pass');
-    passBtn.style.display = (isWaitingHuman && turnIndex === 0 && playable.length === 0 && deck.length === 0) ? 'block' : 'none';
+
 
     updateMapVisuals();
     renderSlots();
 }
 
 function renderSlots() {
+    // 各路線の駅スロット（1-10）
     ['JY','M','G','T'].forEach(lc => {
         const grid = document.getElementById('map-' + lc.toLowerCase());
         const header = document.getElementById('header-' + lc.toLowerCase());
@@ -585,21 +637,29 @@ function renderSlots() {
         header.textContent = '[' + lc + '] ' + (isJapanese ? line.name_ja : line.name_en);
         header.style.backgroundColor = line.color;
         let h = "";
-        for(let i=1; i<=11; i++) {
-            if(i <= 10) {
-                const o = mapState[lc + "-" + i], s = STATIONS_DB.find(x=>x.lc===lc && x.order===i);
-                if(o !== undefined && o !== -1) {
-                    h += '<div class="slot active" style="background-image:url(' + IMAGE_BASE_URL + s.file + '.png); background-size:cover; border:2px solid ' + players[o].color + ';">' +
-                         '<div style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); background:' + players[o].color + '; width:20px; height:20px; border-radius:50%; border:1px solid #fff; display:flex; align-items:center; justify-content:center; font-size:10px; color:white; z-index:10;">' + players[o].icon + '</div></div>';
-                } else { h += '<div class="slot"><div>' + i + '</div><div style="font-size:8px;">' + (isJapanese?s.st_ja:s.st_en).replace('★', '<span style="color:gold;">★</span>') + '</div></div>'; }
-            } else {
-                let cls = "slot teiden-slot", content = "⚡", style = "";
-                if(teidenPlayed[lc]) { cls += " active"; style += 'background-image:url(' + IMAGE_BASE_URL + TEIDEN_FILES[lc] + '.png); background-size:cover; border:2px solid #fff; opacity:1;'; content = ""; }
-                h += '<div class="' + cls + '" style="' + style + '">' + content + '</div>';
-            }
+        for(let i=1; i<=10; i++) {
+            const o = mapState[lc + "-" + i], s = STATIONS_DB.find(x=>x.lc===lc && x.order===i);
+            if(o !== undefined && o !== -1) {
+                h += '<div class="slot active" style="background-image:url(' + IMAGE_BASE_URL + s.file + '.png); background-size:cover; border:2px solid ' + players[o].color + ';">' +
+                     '<div style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); background:' + players[o].color + '; width:20px; height:20px; border-radius:50%; border:1px solid #fff; display:flex; align-items:center; justify-content:center; font-size:10px; color:white; z-index:10;">' + players[o].icon + '</div></div>';
+            } else { h += '<div class="slot"><div>' + i + '</div><div style="font-size:8px;">' + (isJapanese?s.st_ja:s.st_en).replace('★', '<span style="color:gold;">★</span>') + '</div></div>'; }
         }
         grid.innerHTML = h;
     });
+    
+    // 停電カード専用エリア
+    const blackoutGrid = document.getElementById('map-blackout');
+    let bh = "";
+    ['JY','M','G','T'].forEach(lc => {
+        let cls = "slot teiden-slot", content = "⚡", style = "background:#1a1a1a;";
+        if(teidenPlayed[lc]) { 
+            cls += " active"; 
+            style += 'background-image:url(' + IMAGE_BASE_URL + TEIDEN_FILES[lc] + '.png); background-size:cover; border:2px solid #fff; opacity:1;'; 
+            content = ""; 
+        }
+        bh += '<div class="' + cls + '" style="' + style + '">' + content + '</div>';
+    });
+    blackoutGrid.innerHTML = bh;
 }
 function toggleLanguage() { isJapanese = !isJapanese; Object.values(stationNodes).forEach(node => { const st = node.lines[0].stData; node.marker.unbindTooltip(); const label = (isJapanese ? st.st_ja : st.st_en).replace('★', '<span style="color:gold;">★</span>'); node.marker.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] }); }); renderAll(); }
 window.onload = () => { 
