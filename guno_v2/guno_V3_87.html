@@ -1,0 +1,1103 @@
+<!-- GUNO v3.87: Larger Corner Numbers -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GUNO v3.87 (Larger Corner Numbers)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
+<style>
+:root {
+    --jy-color: #00AA00; --m-color: #F62E36; --g-color: #FF9500; --t-color: #009BBF;
+    --card-w: clamp(42px, 4.8vw, 72px);
+    --card-h: calc(var(--card-w) * 1.5);
+    --card-gap: 8px;
+}
+body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a1a; color: #eee; margin: 0; padding: 15px; font-size: 14px; overflow: hidden; min-height: 100dvh; box-sizing: border-box; }
+
+.hidden { display: none !important; }
+
+/* ボトムドロワー型ログ */
+.panel-log { 
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 35vh; 
+    background: #222; border-top: 2px solid gold; z-index: 9999; 
+    transition: transform 0.3s ease; transform: translateY(100%);
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5); padding: 15px; display: flex; flex-direction: column;
+}
+body.show-log .panel-log { transform: translateY(0); }
+
+
+
+/* PC: 均等3分割レイアウト（ダッシュボード | スロット | Map） */
+@media (min-width: 1024px) {
+    .game-container { 
+        display: grid; 
+        /* 等間隔（1:1:1）の3列構成 */
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        height: calc(100vh - 90px);
+        max-height: calc(100vh - 90px);
+        gap: 5px;
+    }
+    
+    .panel-dashboard { grid-column: 1; grid-row: 1; overflow: hidden; min-height: 0; }
+    .panel-slots { grid-column: 2; grid-row: 1; overflow: auto; min-height: 0; }
+    .panel-map { grid-column: 3; grid-row: 1; height: 100%; overflow: hidden; min-width: 0; min-height: 0; }
+    
+
+    
+    #players-area { overflow-y: auto; min-height: 0; flex: 1; }
+    #map { min-height: 0; }
+}
+
+/* 演出用 */
+.teiden-mode .leaflet-tile-pane { filter: grayscale(100%) contrast(150%) brightness(40%); transition: filter 0.8s ease; }
+@keyframes widthPulse { 0% { stroke-width: 5; stroke-opacity: 0.8; } 50% { stroke-width: 9; stroke-opacity: 0.4; } 100% { stroke-width: 5; stroke-opacity: 0.8; } }
+.pulse-animation path { animation: widthPulse 3s infinite ease-in-out; stroke-linecap: round; filter: drop-shadow(0 0 5px gold); }
+
+.panel { background: #222; padding: 10px 15px 10px 15px; border-radius: 10px; display: flex; flex-direction: column; border: 1px solid #333; min-width: 0; }
+.panel h3 { margin-top: 0; margin-bottom: 8px; }
+#map { height: 100%; width: 100%; border-radius: 8px; background: #000; border: 1px solid #444; z-index: 1; }
+
+#slots-area { display: grid; grid-template-columns: 1fr; gap: 12px; min-width: 0; }
+.line-wrapper { container-type: inline-size; min-width: 0; }
+.map-grid {
+    --cols: 6;
+    display: grid; gap: var(--card-gap); justify-content: center;
+    grid-template-columns: repeat(var(--cols), minmax(0, var(--card-w)));
+    grid-auto-rows: var(--card-h);
+}
+
+@supports (width: 1cqw) {
+    .map-grid {
+        --card-gap: clamp(4px, 1.2cqw, 8px);
+        --card-w: clamp(22.4px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols)), 72px);
+        --card-h: calc(var(--card-w) * 1.5);
+    }
+    @container (min-width: 380px) { .map-grid { --cols: 10; } }
+    @container (min-width: 280px) and (max-width: 379px) { .map-grid { --cols: 7; } }
+    @container (max-width: 279px) { .map-grid { --cols: 5; } }
+}
+
+.line-header { font-weight: bold; font-size: 13px; margin-bottom: 5px; padding: 3px 8px; border-radius: 4px; color: #fff; width: 100%; box-sizing: border-box; text-align: center; }
+.slot { background: #2a2a2a; border: 1px solid #3d3d3d; border-radius: 5px; aspect-ratio: 2 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 13px; color: #fff; position: relative; transition: transform 0.2s; transform-origin: center; overflow: visible; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 2px rgba(0,0,0,0.9), 1px -1px 2px rgba(0,0,0,0.9), -1px 1px 2px rgba(0,0,0,0.9); }
+.slot.active { z-index: 5; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
+@media (hover: hover) { .slot.active:hover { transform: scale(1.3); z-index: 100; } }
+
+.card { display: inline-block; width: var(--card-w); height: var(--card-h); background-color: #fff; border-radius: 4px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.3); background-size: contain; background-repeat: no-repeat; background-position: center; border: 2px solid #ccc; transition: all 0.2s; }
+@media (hover: hover) { .card:hover { transform: scale(1.6) translateY(-10px); z-index: 200; box-shadow: 0 12px 24px rgba(0,0,0,0.6); } }
+
+.card.playable { cursor: pointer; border: 2px solid #4CAF50; box-shadow: 0 0 12px rgba(76, 175, 80, 0.8); }
+.card.unplayable { filter: grayscale(100%) brightness(0.4); opacity: 0.5; }
+
+.card-large { width: var(--card-w); height: var(--card-h); border-radius: 4px; }
+#draw-pile-visual { 
+    width: var(--card-w); height: var(--card-h); background-image: url('https://geodo.earth/guno_v2/cards/GUNO_BACK.png'); 
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    background-color: #444; border: 2px solid #666; border-radius: 4px; 
+    display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; color: white; text-shadow: 1px 1px 3px #000;
+}
+#draw-pile-visual.can-draw { cursor: pointer; border-color: #4CAF50; box-shadow: 0 0 20px rgba(76,175,80,0.85); transform: translateY(-1px); }
+
+#hint-area { background: rgba(76, 175, 80, 0.1); color: #4CAF50; border-radius: 6px; padding: 6px 8px; margin-bottom: 8px; font-weight: bold; text-align: center; font-size: 13px; border: 1px dashed #4CAF50; height: 18px; }
+
+.player-box { padding: 8px; margin-bottom: 8px; border-radius: 8px; background: #2a2a2a; border-left: 8px solid transparent; transition: 0.3s; }
+.player-box.active-turn { background: #111; border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.1); }
+.player-box.eliminated { opacity: 0.35; filter: grayscale(100%); border-style: dashed; }
+
+#result-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+.result-card { background: linear-gradient(145deg, #2c2c2c, #1a1a1a); padding: 30px; border-radius: 20px; border: 2px solid gold; text-align: center; box-shadow: 0 0 50px rgba(255, 215, 0, 0.4); min-width: 300px; max-width: 90%; }
+#result-table { width: 100%; border-collapse: collapse; margin: 15px 0; color: white; }
+#result-table th, #result-table td { padding: 8px; border-bottom: 1px solid #444; text-align: center; font-size: 12px; }
+
+.header { display: flex; justify-content: space-between; align-items: center; background: #222; padding: 10px 20px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #444; }
+.controls { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.controls button { padding: 8px 12px; font-weight: bold; border-radius: 6px; cursor: pointer; border: 1px solid #555; transition: 0.3s; color: white; background: #333; white-space: nowrap; }
+#btn-mode.btn-manual { background: #2e7d32 !important; border-color: #4CAF50 !important; }
+#btn-mode.btn-auto-active { background: #c62828 !important; border-color: #f44336 !important; }
+.station-label { background: transparent; border: none; color: #fff; font-size: 10px; font-weight: bold; text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000; pointer-events: none; }
+.station-label span[style*="color:gold"] { font-size: 14px; color: #FFD700 !important; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000; }
+
+/* スマホ全般 */
+@media screen and (max-width: 1023px) {
+    body { overflow-y: auto; height: auto; font-size: 16px; padding: 10px; }
+    .game-container { display: flex; flex-direction: column; height: auto; gap: 10px; }
+    .panel { padding: 12px; }
+    
+    /* ヘッダーボタン */
+    .header-buttons button { font-size: 16px; padding: 10px 16px; min-height: 44px; }
+    
+    /* カードサイズ */
+    :root {
+        --card-w: clamp(50px, 12vw, 80px);
+        --card-h: calc(var(--card-w) * 1.5);
+    }
+    
+    /* DECK/LAST */
+    #draw-pile-visual, .card-large { width: var(--card-w); height: var(--card-h); }
+    
+    /* スロットグリッド */
+    @supports (width: 1cqw) {
+        .map-grid {
+            --card-w: clamp(45px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols) * 0.8), 72px);
+        }
+        @container (min-width: 500px) { .map-grid { --cols: 7; } }
+        @container (min-width: 350px) and (max-width: 499px) { .map-grid { --cols: 6; } }
+        @container (max-width: 349px) { .map-grid { --cols: 5; } }
+    }
+    
+    /* 地図 */
+    #map { height: 30vh; min-height: 250px; }
+    
+    /* プレーヤーボックス */
+    .player-box { padding: 10px; margin-bottom: 10px; }
+    
+    /* タッチデバイスでは @media (hover: hover) が自動的に適用されないため、ホバー効果は無効化される */
+}
+
+/* スマホ横向き */
+@media screen and (max-width: 1023px) and (orientation: landscape) {
+    .game-container { 
+        display: grid; 
+        grid-template-columns: 1fr 1.5fr;
+        grid-template-rows: auto auto;
+        height: calc(100vh - 70px);
+    }
+    .panel-dashboard { grid-column: 1; grid-row: 1 / 3; overflow-y: auto; }
+    .panel-slots { grid-column: 2; grid-row: 1; overflow-y: auto; }
+    .panel-map { grid-column: 2; grid-row: 2; height: 100%; min-height: 200px; }
+    #map { height: 100%; min-height: 200px; }
+    
+    :root {
+        --card-w: clamp(40px, 8vw, 60px);
+    }
+}
+
+/* 小型スマホ */
+@media screen and (max-width: 480px) {
+    body { font-size: 14px; padding: 5px; }
+    .header-buttons button { font-size: 14px; padding: 8px 12px; }
+    .panel { padding: 8px; }
+    :root {
+        --card-w: clamp(45px, 14vw, 70px);
+    }
+}
+
+/* ====== GUNO Card Overlay (Digital V1) ====== */
+.guno-card {
+  --w: 220px;                /* カード幅：ここを変えると全体スケール */
+  --h: calc(var(--w) * 88 / 63);
+
+  --line: #00AA00;           /* default */
+  --bg: url("bg_JY.png");    /* default */
+
+  --num-size: calc(var(--w) * 0.28);
+  --corner-w: calc(var(--w) * 0.35);
+  --corner-h: calc(var(--h) * 0.28);
+  --corner-r: calc(var(--w) * 0.06);
+
+  --jp-size: calc(var(--w) * 0.14);
+  --en-size: calc(var(--w) * 0.065);
+
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  border-radius: calc(var(--w) * 0.06);
+  overflow: hidden;
+
+  background-image: var(--bg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  font-family: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+  user-select: none;
+}
+
+/* 路線別 */
+.guno-card[data-line="JY"] { --line:#00AA00; --bg:url("bg_JY.png"); }
+.guno-card[data-line="M"]  { --line:#E60012; --bg:url("bg_M.png");  }
+.guno-card[data-line="G"]  { --line:#F39700; --bg:url("bg_G.png");  }
+.guno-card[data-line="T"]  { --line:#009BBF; --bg:url("bg_T.png");  }
+
+/* コーナー */
+.corner{
+  position:absolute;
+  width: var(--corner-w);
+  height: var(--corner-h);
+  display:flex;
+  pointer-events:none;
+}
+.corner-bg{
+  position:absolute;
+  inset:0;
+  background: var(--line);
+  border-radius: var(--corner-r);
+}
+.corner-num{
+  position:relative;
+  padding: calc(var(--w) * 0.03);
+  font-weight: 900;
+  font-size: var(--num-size);
+  line-height: 1;
+  color:#fff;
+
+  /* 擬似アウトライン */
+  text-shadow:
+    -2px -2px 0 #000,  0px -2px 0 #000,  2px -2px 0 #000,
+    -2px  0px 0 #000,                 2px  0px 0 #000,
+    -2px  2px 0 #000,  0px  2px 0 #000,  2px  2px 0 #000;
+}
+.corner--tl{ top: calc(var(--w) * 0.02); left: calc(var(--w) * 0.02); align-items:flex-start; justify-content:flex-start; }
+.corner--br{ bottom: calc(var(--w) * 0.02); right: calc(var(--w) * 0.02); align-items:flex-end; justify-content:flex-end; }
+.corner-num--rot{ transform: rotate(180deg); transform-origin:center; }
+
+/* 中央駅名 */
+.center{
+  position:absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  width: 82%;
+  text-align:center;
+  pointer-events:none;
+}
+.station-jp{
+  font-weight: 900;
+  font-size: var(--jp-size);
+  line-height: 1.05;
+  color:#000;
+  letter-spacing: 0.02em;
+  text-shadow:
+    -2px -2px 0 #fff, 0px -2px 0 #fff, 2px -2px 0 #fff,
+    -2px  0px 0 #fff,              2px  0px 0 #fff,
+    -2px  2px 0 #fff, 0px  2px 0 #fff, 2px  2px 0 #fff,
+    0 0 4px rgba(255,255,255,0.8);
+}
+.station-en{
+  margin-top: calc(var(--w) * 0.015);
+  font-weight: 800;
+  font-size: var(--en-size);
+  line-height: 1.1;
+  color:#000;
+  letter-spacing: 0.03em;
+  text-shadow:
+    -1.5px -1.5px 0 #fff, 0px -1.5px 0 #fff, 1.5px -1.5px 0 #fff,
+    -1.5px  0px 0 #fff,              1.5px  0px 0 #fff,
+    -1.5px  1.5px 0 #fff, 0px  1.5px 0 #fff, 1.5px  1.5px 0 #fff,
+    0 0 3px rgba(255,255,255,0.8);
+}
+
+/* ルートコード */
+.route-code{
+  position:absolute;
+  left: calc(var(--w) * 0.06);
+  bottom: calc(var(--w) * 0.06);
+  font-weight: 800;
+  font-size: calc(var(--w) * 0.07);
+  color:#fff;
+  opacity: 0.85;
+  text-shadow:
+    -2px -2px 0 #000, 0px -2px 0 #000, 2px -2px 0 #000,
+    -2px  0px 0 #000,              2px  0px 0 #000,
+    -2px  2px 0 #000, 0px  2px 0 #000, 2px  2px 0 #000;
+}
+
+/* デッキ表示用：カード一覧 */
+.guno-card-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 12px;
+  align-items:flex-start;
+}
+
+/* 小さめ表示（必要なら） */
+.guno-card.is-small{ --w: 170px; }
+
+/* 画面幅に合わせる */
+@media (max-width: 480px){ .guno-card{ --w: 180px; } }
+@media (max-width: 360px){ .guno-card{ --w: 160px; } }
+
+/* ====== 停電カード：背景は路線背景そのまま、上に雷を重ねる ====== */
+.guno-card--teiden .corner,
+.guno-card--teiden .center,
+.guno-card--teiden .route-code {
+  display: none; /* 数字、駅名、ルートコードを非表示 */
+}
+
+.guno-card--teiden .teiden-icon {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  font-size: calc(var(--w) * 0.42); /* 雷の大きさ */
+  line-height: 1;
+  color: #fff;
+  text-shadow:
+    -4px -4px 0 #000, 0px -4px 0 #000, 4px -4px 0 #000,
+    -4px  0px 0 #000,               4px  0px 0 #000,
+    -4px  4px 0 #000, 0px  4px 0 #000, 4px  4px 0 #000;
+  pointer-events: none;
+}
+
+.guno-card--teiden .teiden-sub {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--w) * 0.12);
+  transform: translateX(-50%);
+  font-size: calc(var(--w) * 0.08);
+  font-weight: 700;
+  color: #fff;
+  text-shadow:
+    -2px -2px 0 #000, 0px -2px 0 #000, 2px -2px 0 #000,
+    -2px  0px 0 #000,              2px  0px 0 #000,
+    -2px  2px 0 #000, 0px  2px 0 #000, 2px  2px 0 #000;
+  pointer-events: none;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <div><h2 style="margin:0; color:gold;">GUNO v3.87</h2><small>Larger Corner Numbers</small></div>
+    <div class="controls">
+        <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
+        <button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
+        <button onclick="startGame()">🎲 <span id="btn-new-text">新規</span></button>
+        <button id="btn-mode" onclick="toggleAuto()" class="btn-manual">▶️ AUTO: OFF</button>
+    </div>
+</div>
+
+<div class="game-container">
+    <div class="panel panel-dashboard" id="dashboard-container">
+        <div id="hint-area">準備中...</div>
+        <div style="display:flex; justify-content:space-around; align-items:center; background:#111; padding:5px 10px; border-radius:10px; margin-bottom:6px; flex-shrink: 0;">
+            <div style="text-align:center;"><small style="color:#666;">DECK</small><div id="draw-pile-visual" onclick="humanDraw()"></div></div>
+            <div id="direction-arrow" style="font-size:32px; color:gold;">↻</div>
+            <div style="text-align:center;"><small style="color:#666;">LAST</small><div id="discard-pile"></div></div>
+        </div>
+
+        <div id="players-area"></div>
+    </div>
+
+    <div class="panel panel-slots" id="slots-container">
+        <div id="slots-area">
+            <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-g" class="line-header"></div><div id="map-g" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-t" class="line-header"></div><div id="map-t" class="map-grid"></div></div>
+            <div class="line-wrapper" style="background:#fff; border-radius:8px; padding:8px; margin-top:8px;">
+                <div id="header-blackout" class="line-header" style="background:#fff; color:#ff6b00; margin-bottom:8px;">⚡ 停電</div>
+                <div style="background:#1a1a1a; border-radius:6px; padding:12px;">
+                    <div id="map-blackout" class="map-grid" style="--cols:4;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="panel panel-map" id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <div id="result-overlay"><div class="result-card"><h1 style="color:gold;">🏆 VICTORY!</h1><table id="result-table"></table><div style="display:flex; justify-content:center; gap:10px;"><button onclick="startGame()" style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">もう一度遊ぶ</button><button onclick="document.getElementById('result-overlay').style.display='none';" style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">✖ 閉じる</button></div></div></div>
+</div>
+
+<section style="margin:20px auto; padding:20px; background:#1a1a1a; border-radius:8px; max-width:1400px;">
+    <h3 style="margin:8px 0; color:gold;">GUNO Cards (Digital Overlay)</h3>
+    <div id="cardGrid" class="guno-card-grid"></div>
+</section>
+
+<div class="panel-log" id="log-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <h3 style="margin:0;" id="log-title">📜 ログ履歴</h3>
+        <button onclick="toggleLog()" style="background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:2px 10px; border-radius:4px;" id="btn-close-log">閉じる</button>
+    </div>
+    <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.js"></script>
+
+<script>
+
+
+// --- Logic Core ---
+const GUNO_POINT = 10;
+
+// 翻訳ヘルパー関数
+const t = (ja, en) => isJapanese ? ja : en;
+const IMAGE_BASE_URL = "https://geodo.earth/guno_v2/cards/";
+const BACK_URL = IMAGE_BASE_URL + "GUNO_BACK.png";
+const STATIONS_DB = [
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:1, st_ja:'★東京', st_en:'★Tokyo', color:'#00AA00', file:'JY_01_Tokyo'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:2, st_ja:'★神田', st_en:'★Kanda', color:'#00AA00', file:'JY_02_Kanda'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:3, st_ja:'★上野', st_en:'★Ueno', color:'#00AA00', file:'JY_03_Ueno'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:4, st_ja:'★池袋', st_en:'★Ikebukuro', color:'#00AA00', file:'JY_04_Ikebukuro'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:5, st_ja:'★高田馬場', st_en:'★Takadanobaba', color:'#00AA00', file:'JY_05_Takadanobaba'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:6, st_ja:'★新宿', st_en:'★Shinjuku', color:'#00AA00', file:'JY_06_Shinjuku'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:7, st_ja:'★渋谷', st_en:'★Shibuya', color:'#00AA00', file:'JY_07_Shibuya'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:8, st_ja:'目黒', st_en:'Meguro', color:'#00AA00', file:'JY_08_Meguro'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:9, st_ja:'品川', st_en:'Shinagawa', color:'#00AA00', file:'JY_09_Shinagawa'},
+    {lc:'JY', name_ja:'山手線', name_en:'Yamanote', order:10, st_ja:'★新橋', st_en:'★Shimbashi', color:'#00AA00', file:'JY_10_Shimbashi'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:1, st_ja:'★池袋', st_en:'★Ikebukuro', color:'#F62E36', file:'M_01_Ikebukuro'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:2, st_ja:'後楽園', st_en:'Korakuen', color:'#F62E36', file:'M_02_Korakuen'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:3, st_ja:'御茶ノ水', st_en:'Ochanomizu', color:'#F62E36', file:'M_03_Ochanomizu'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:4, st_ja:'★大手町', st_en:'★Otemachi', color:'#F62E36', file:'M_04_Otemachi'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:5, st_ja:'★東京', st_en:'★Tokyo', color:'#F62E36', file:'M_05_Tokyo'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:6, st_ja:'★銀座', st_en:'★Ginza', color:'#F62E36', file:'M_06_Ginza'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:7, st_ja:'★赤坂見附', st_en:'★Akasaka-mitsuke', color:'#F62E36', file:'M_07_Akasaka-mitsuke'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:8, st_ja:'四ツ谷', st_en:'Yotsuya', color:'#F62E36', file:'M_08_Yotsuya'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:9, st_ja:'★新宿', st_en:'★Shinjuku', color:'#F62E36', file:'M_09_Shinjuku'},
+    {lc:'M', name_ja:'丸ノ内線', name_en:'Marunouchi', order:10, st_ja:'中野坂上', st_en:'Nakano-sakaue', color:'#F62E36', file:'M_10_Nakano-sakaue'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:1, st_ja:'★渋谷', st_en:'★Shibuya', color:'#FF9500', file:'G_01_Shibuya'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:2, st_ja:'表参道', st_en:'Omotesando', color:'#FF9500', file:'G_02_Omotesando'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:3, st_ja:'青山一丁目', st_en:'Aoyama-itchome', color:'#FF9500', file:'G_03_Aoyama-itchome'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:4, st_ja:'★赤坂見附', st_en:'★Akasaka-mitsuke', color:'#FF9500', file:'G_04_Akasaka-mitsuke'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:5, st_ja:'★新橋', st_en:'★Shimbashi', color:'#FF9500', file:'G_05_Shimbashi'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:6, st_ja:'★銀座', st_en:'★Ginza', color:'#FF9500', file:'G_06_Ginza'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:7, st_ja:'★日本橋', st_en:'★Nihombashi', color:'#FF9500', file:'G_07_Nihombashi'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:8, st_ja:'★神田', st_en:'★Kanda', color:'#FF9500', file:'G_08_Kanda'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:9, st_ja:'★上野', st_en:'★Ueno', color:'#FF9500', file:'G_09_Ueno'},
+    {lc:'G', name_ja:'銀座線', name_en:'Ginza', order:10, st_ja:'浅草', st_en:'Asakusa', color:'#FF9500', file:'G_10_Asakusa'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:1, st_ja:'中野', st_en:'Nakano', color:'#009BBF', file:'T_01_Nakano'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:2, st_ja:'落合', st_en:'Ochiai', color:'#009BBF', file:'T_02_Ochiai'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:3, st_ja:'★高田馬場', st_en:'★Takadanobaba', color:'#009BBF', file:'T_03_Takadanobaba'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:4, st_ja:'早稲田', st_en:'Waseda', color:'#009BBF', file:'T_04_Waseda'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:5, st_ja:'飯田橋', st_en:'Iidabashi', color:'#009BBF', file:'T_05_Iidabashi'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:6, st_ja:'九段下', st_en:'Kudanshita', color:'#009BBF', file:'T_06_Kudanshita'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:7, st_ja:'★大手町', st_en:'★Otemachi', color:'#009BBF', file:'T_07_Otemachi'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:8, st_ja:'★日本橋', st_en:'★Nihombashi', color:'#009BBF', file:'T_08_Nihombashi'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:9, st_ja:'門前仲町', st_en:'Monzen-nakacho', color:'#009BBF', file:'T_09_Monzen-nakacho'},
+    {lc:'T', name_ja:'東西線', name_en:'Tozai', order:10, st_ja:'東陽町', st_en:'Toyocho', color:'#009BBF', file:'T_10_Toyocho'}
+];
+const TEIDEN_FILES = {'JY':'JY_TEIDEN', 'M':'M_TEIDEN', 'G':'G_TEIDEN', 'T':'T_TEIDEN'};
+
+let isJapanese = true, autoPlay = false, deck = [], discardPile = [], players = [], mapState = {};
+let turnIndex = 0, direction = 1, gameOver = false, isWaitingHuman = false, turnCount = 0;
+let map, geoJsonLayers = {}, stationNodes = {}, lastHits = {}, teidenPlayed = {};
+let autoTimer = null;
+let consecutivePasses = 0;
+
+// --- Map Functions ---
+function safeInvalidateMap(){ if(!map) return; setTimeout(()=>map.invalidateSize(true), 100); }
+function initMapComponent() {
+    if(map) map.remove();
+    stationNodes = {};
+    map = L.map('map', { gestureHandling: true }).setView([35.680, 139.740], 12);
+    const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+    const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+    L.control.layers({ "🌑 ダーク": dark, "🛰️ 航空写真": sat }).addTo(map);
+    map.createPane('stationsPane').style.zIndex = 600;
+    map.on('zoomend', renderAll);
+    initLayers();
+}
+function initLayers() {
+    ['JY','M','G','T'].forEach(lc => {
+        const slug = {JY:'jr-east-yamanote', M:'tokyo-metro-marunouchi', G:'tokyo-metro-ginza', T:'tokyo-metro-tozai'}[lc];
+        fetch(`./geojson/lines/${slug}.geojson`).then(r=>r.json()).then(data => {
+            geoJsonLayers[lc] = L.geoJSON(data, { style: { color:STATIONS_DB.find(s=>s.lc===lc).color, weight:4, opacity:0.4 } }).addTo(map);
+        });
+        fetch(`./geojson/stations/${slug}_stations.geojson`).then(r=>r.json()).then(data => {
+            L.geoJSON(data, {
+                pointToLayer: (f, latlng) => {
+                    const normName = (f.properties.name||'').replace('★','');
+                    const st = STATIONS_DB.find(s => s.lc === lc && s.st_ja.replace('★','') === normName);
+                    if(!st) return L.circleMarker(latlng, { radius: 0, opacity: 0 });
+                    if(!stationNodes[normName]){
+                        const m = L.marker(latlng, { pane: 'stationsPane' }).addTo(map);
+                        stationNodes[normName] = { marker: m, latlng, lines: [] };
+                        const stName = isJapanese ? st.st_ja : st.st_en;
+                        const label = stName.startsWith('★') 
+                            ? '<span style="color:gold; font-size:14px;">★</span>' + stName.substring(1)
+                            : stName;
+                        m.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] });
+                    }
+                    stationNodes[normName].lines.push({ lc: st.lc, order: st.order, stData: st });
+                    return L.circleMarker(latlng, { radius: 0, opacity: 0 });
+                }
+            }).addTo(map);
+        });
+    });
+}
+function updateStationNodeIcons(){
+    const rad = (map && map.getZoom) ? (map.getZoom() < 12 ? 2 : (map.getZoom() < 14 ? 4 : 6)) : 4;
+    Object.entries(stationNodes).forEach(([name, node]) => {
+        const owners = [];
+        node.lines.forEach(({lc, order}) => {
+            const owner = mapState[lc + "-" + order];
+            if(owner !== undefined && owner !== -1) owners.push(owner);
+        });
+        const uniq = [...new Set(owners)];
+        if(uniq.length === 0){
+            const lineCol = STATIONS_DB.find(s=>s.lc===node.lines[0].lc).color;
+            node.marker.setIcon(L.divIcon({ className: 'empty-icon', html: '<div style="width:'+(rad*2)+'px; height:'+(rad*2)+'px; background:#fff; border:2px solid '+lineCol+'; border-radius:50%;"></div>', iconSize:[rad*2,rad*2], iconAnchor:[rad,rad] }));
+        } else if(uniq.length === 1){
+            const p = players[uniq[0]];
+            node.marker.setIcon(L.divIcon({ className: 'kamon-icon', html: '<div style="background:'+p.color+'; border:2px solid #fff; width:'+(rad*4)+'px; height:'+(rad*4)+'px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:'+(rad*2)+'px; color:white;">'+p.icon+'</div>', iconSize:[rad*4,rad*4], iconAnchor:[rad*2,rad*2] }));
+        } else {
+            const shown = uniq.slice(0,3).map(i=>players[i]);
+            const html = '<div style="display:flex; gap:2px; background:rgba(0,0,0,.35); padding:2px; border-radius:12px; border:1px solid rgba(255,255,255,.4);">' + 
+                shown.map(p=>'<div style="background:'+p.color+'; width:'+(rad*3)+'px; height:'+(rad*3)+'px; border-radius:50%; border:1px solid #fff; display:flex; align-items:center; justify-content:center; font-size:'+(rad*1.6)+'px; color:white;">'+p.icon+'</div>').join('') + 
+                '</div>';
+            node.marker.setIcon(L.divIcon({ className: 'multi-icon', html, iconSize:[rad*10,rad*4], iconAnchor:[rad*5,rad*2] }));
+        }
+    });
+}
+function updateMapVisuals() {
+    if(!map) return;
+    const top = discardPile[discardPile.length-1];
+    document.getElementById('map-container').classList.toggle('teiden-mode', top && top.type==='teiden');
+    ['JY','M','G','T'].forEach(lc => {
+        const layer = geoJsonLayers[lc];
+        if(!layer) return;
+        const hasOwner = Object.keys(mapState).some(k => k.startsWith(lc) && mapState[k] !== -1);
+        const isGuno = (lastHits[lc] !== undefined);
+        layer.setStyle({ weight: isGuno ? 8 : (hasOwner ? 6 : 4), opacity: isGuno ? 1.0 : (hasOwner ? 0.8 : 0.2), color: isGuno ? "gold" : STATIONS_DB.find(s=>s.lc===lc).color });
+    });
+}
+
+// --- Logic ---
+function calculateScore(pIdx) {
+    const p = players[pIdx];
+    let stCount = 0;
+    Object.values(mapState).forEach(owner => { if(owner === pIdx) stCount++; });
+    return (p.guno * GUNO_POINT) + stCount;
+}
+function advanceTurn() { turnCount++; const n = players.length; turnIndex = (turnIndex + direction + n) % n; }
+function log(m) { const l = document.getElementById('log'); l.innerHTML += '<div>' + m + '</div>'; l.scrollTop = l.scrollHeight; }
+
+function startGame() {
+    if(autoTimer) clearTimeout(autoTimer);
+    gameOver = false; turnCount = 0; turnIndex = 0; direction = 1; isWaitingHuman = false; mapState = {}; lastHits = {}; consecutivePasses = 0;
+    teidenPlayed = { JY:false, M:false, G:false, T:false };
+    deck = []; STATIONS_DB.forEach(s => { for(let i=0; i<2; i++) deck.push({...s, type:'station', id:'s-' + s.lc + '-' + s.order + '-' + i}); });
+    ['JY','M','G','T'].forEach(lc => deck.push({lc, type:'teiden', file:TEIDEN_FILES[lc], id:'t-' + lc, color:'#000'}));
+    deck.sort(() => Math.random() - 0.5);
+    players = [
+        { name: "P1", isHuman: !autoPlay, hand: [], color: '#174a7c', icon: '🌊', status: 'active', guno: 0 },
+        { name: "P2", isHuman: false, hand: [], color: '#b52942', icon: '🌸', status: 'active', guno: 0 },
+        { name: "P3", isHuman: false, hand: [], color: '#e6b422', icon: '🌙', status: 'active', guno: 0 },
+        { name: "P4", isHuman: false, hand: [], color: '#745399', icon: '🏯', status: 'active', guno: 0 }
+    ];
+    players.forEach(p => { for(let i=0; i<7; i++) p.hand.push(deck.pop()); });
+    discardPile = []; while(true) { let c = deck.pop(); discardPile.push(c); if(c.type==='station'){ mapState[c.lc + "-" + c.order]=-1; break; } }
+    document.getElementById('log').innerHTML = ""; document.getElementById('result-overlay').style.display = 'none';
+    updateModeButton();
+    nextTurn();
+}
+
+function nextTurn() {
+    if(gameOver) return;
+    const activePlayers = players.filter(p => p.status === 'active');
+    if(activePlayers.length <= 1){ 
+        log(t('🏁 ゲーム終了！ 残りプレーヤー: ', '🏁 Game Over! Remaining players: ') + activePlayers.length + t('人', ''));
+        endGame(); 
+        return; 
+    }
+    // 無限ループ防止：全員が出せるカードがない場合
+    if(consecutivePasses >= activePlayers.length * 2){
+        log(t('🏁 ゲーム終了！ 誰もプレイできるカードがありません', '🏁 Game Over! No playable cards'));
+        endGame();
+        return;
+    }
+    renderAll();
+    const p = players[turnIndex]; 
+    if(p.status !== 'active') { advanceTurn(); nextTurn(); return; }
+    const pi = getPlayableIndices(p);
+    if(pi.length === 0 && deck.length === 0){
+        consecutivePasses++;
+        console.log('[DEBUG] ' + p.name + ' パス (consecutivePasses=' + consecutivePasses + ')');
+        advanceTurn(); setTimeout(nextTurn, 500); return;
+    }
+    if(p.isHuman && !autoPlay) { isWaitingHuman = true; renderAll(); } 
+    else { isWaitingHuman = false; autoTimer = setTimeout(playCPUTurn, 500); }
+}
+
+function executePlay(pIdx, cardIdx) {
+    const p = players[pIdx], card = p.hand.splice(cardIdx, 1)[0], top = discardPile[discardPile.length - 1];
+    discardPile.push(card);
+    consecutivePasses = 0; // カードがプレイされたのでリセット
+    if(card.type === 'station') {
+        const key = card.lc + "-" + card.order, prev = mapState[key];
+        if(prev !== undefined && prev !== -1 && prev !== pIdx) log(t('⚔️ <b>' + players[prev].name + '</b>から奪取！', '⚔️ Captured from <b>' + players[prev].name + '</b>!'));
+        mapState[key] = pIdx;
+        if(top.type === 'station' && card.st_ja.replace('★','') === top.st_ja.replace('★','')) { direction *= -1; log("🔄 REVERSE!"); }
+        checkGuno(card.lc, pIdx);
+    } else {
+        teidenPlayed[card.lc] = true; direction *= -1; log(t("⚡ 停電！逆転！", "⚡ Blackout! Reverse!"));
+        players.forEach((o, i) => { if(i!==pIdx && o.status==='active' && deck.length) { o.hand.push(deck.pop()); log(t('🎴 <b>' + o.name + '</b> がカードを引きました', '🎴 <b>' + o.name + '</b> drew a card')); } });
+        checkGuno(card.lc, pIdx);
+    }
+    log('[' + p.icon + p.name + '] ' + card.lc + ' ' + (isJapanese ? (card.st_ja||'⚡') : (card.st_en||'⚡')));
+    if(p.hand.length === 0) {
+        p.status = 'eliminated';
+        log(t('❌ <b>' + p.name + '</b> が脱落しました（手条0）', '❌ <b>' + p.name + '</b> eliminated (0 cards)'));
+    }
+    const activeCount = players.filter(x=>x.status==='active').length;
+    if(activeCount <= 1) {
+        log(t('🏁 ゲーム終了！ 残りプレーヤー: ', '🏁 Game Over! Remaining players: ') + activeCount + t('人', ''));
+        endGame();
+    }
+}
+
+function humanDraw() { 
+    if(!isWaitingHuman || turnIndex !== 0 || getPlayableIndices(players[0]).length > 0 || !deck.length) return; 
+    players[0].hand.push(deck.pop()); 
+        log(t('🎴 <b>' + players[0].name + '</b> がカードを引きました', '🎴 <b>' + players[0].name + '</b> drew a card'));
+    renderAll();
+    // 引いたカードが出せるか再評価
+    const playable = getPlayableIndices(players[0]);
+    if(playable.length > 0) {
+        // 出せるカードがあるので続行
+        return;
+    }
+    // 出せるカードがないのでターン終了
+    isWaitingHuman = false; 
+    advanceTurn(); 
+    nextTurn(); 
+}
+function humanPlay(idx) { if(!isWaitingHuman || turnIndex !== 0 || !getPlayableIndices(players[0]).includes(idx)) return; isWaitingHuman = false; executePlay(0, idx); advanceTurn(); nextTurn(); }
+
+
+
+function playCPUTurn() { 
+    const p = players[turnIndex];
+    let pi = getPlayableIndices(p); 
+    if(pi.length) {
+        // 出せるカードがあるので出す
+        executePlay(turnIndex, pi[0]); 
+    } else if(deck.length) {
+        // 出せるカードがないので引く
+        p.hand.push(deck.pop()); 
+        log(t('🎴 <b>' + p.name + '</b> がカードを引きました', '🎴 <b>' + p.name + '</b> drew a card'));
+        // 引いたカードが出せるか再評価
+        pi = getPlayableIndices(p);
+        if(pi.length) {
+            // 引いたカードが出せるので出す
+            executePlay(turnIndex, pi[0]);
+        }
+    } else {
+        // デッキが空で出せるカードもない
+        advanceTurn(); 
+        nextTurn(); 
+        return; 
+    }
+    advanceTurn(); 
+    nextTurn(); 
+}
+
+function getPlayableIndices(p) {
+    if (!discardPile.length) return [];
+    const top = discardPile[discardPile.length - 1];
+    return p.hand.map((c, i) => {
+        if(c.type === 'teiden') return (p.hand.length > 1 && (top.type === 'teiden' || c.lc === top.lc)) ? i : -1;
+        const norm = s => (s||"").replace('★','');
+        if(c.lc === top.lc || norm(c.st_ja) === norm(top.st_ja) || (top.type==='station' && c.order === top.order)) return i;
+        return -1;
+    }).filter(i => i !== -1);
+}
+
+function checkGuno(lc, pIdx){
+    // その路線の10駅すべてが埋まっているかチェック
+    let filledCount = 0;
+    for(let i=1; i<=10; i++) {
+        const owner = mapState[lc + "-" + i];
+        if(owner !== undefined && owner !== -1) {
+            filledCount++;
+        }
+    }
+    // デバッグログ
+    console.log('[DEBUG] ' + players[pIdx].name + ' ' + lc + ' プレイ | 埋まった駅: ' + filledCount + '/10 | lastHits[' + lc + ']=' + (lastHits[lc] !== undefined ? players[lastHits[lc]].name : 'none'));
+    
+    // GUNO達成判定：10駅すべてが埋まったかつ、まだGUNOされていない場合
+    if (filledCount === 10 && lastHits[lc] === undefined){ 
+        lastHits[lc] = pIdx; 
+        players[pIdx].guno++; 
+        console.log('[GUNO!] ' + players[pIdx].name + ' が ' + lc + ' を完成！（10駅すべて埋まった）');
+        log(t('🎆 <b>' + players[pIdx].name + '</b> が ' + lc + ' を完成！(GUNO達成)', '🎆 <b>' + players[pIdx].name + '</b> completed ' + lc + '! (GUNO)'));
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); 
+        // 4路線すべてが完成したかチェック
+        const totalGuno = players.reduce((sum, p) => sum + p.guno, 0);
+        if(totalGuno >= 4) endGame(); 
+    }
+}
+function endGame() { gameOver = true; if(autoTimer) clearTimeout(autoTimer); renderAll(); document.getElementById('result-overlay').style.display = 'flex'; showRanking(); confetti({ particleCount: 200, spread: 100 }); }
+
+function showRanking() {
+    const data = players.map((p, idx) => {
+        let stCount = 0;
+        Object.values(mapState).forEach(owner => { if(owner === idx) stCount++; });
+        const gunoPts = p.guno * GUNO_POINT;
+        const isAlive = p.status !== 'eliminated';
+        return { p, stCount, gunoPts, total: gunoPts + stCount, isAlive };
+    });
+    // 最後まで生き残ったプレイヤーを最優先、次に得点でソート
+    const ranking = data.sort((a,b) => {
+        if(a.isAlive !== b.isAlive) return b.isAlive - a.isAlive;
+        return b.total - a.total;
+    });
+    let rows = "";
+    ranking.forEach((r, i) => { const style = (i === 0) ? 'style="color:gold; font-weight:bold;"' : ""; rows += '<tr ' + style + '><td>' + (i+1) + '</td><td>' + r.p.icon + ' ' + r.p.name + '</td><td>' + r.total + '</td><td>' + r.stCount + '</td><td>' + r.p.guno + '</td><td>' + r.gunoPts + '</td></tr>'; });
+    document.getElementById('result-table').innerHTML = '<thead><tr><th>' + t('順位', 'Rank') + '</th><th>Player</th><th>Total</th><th>Stations</th><th>GUNO</th><th>GUNO pts</th></tr></thead><tbody>' + rows + '</tbody>';
+}
+
+function toggleAuto() { 
+    autoPlay = !autoPlay; players[0].isHuman = !autoPlay; updateModeButton();
+    if (autoTimer) clearTimeout(autoTimer);
+    if(!gameOver) { isWaitingHuman = (turnIndex===0 && !autoPlay); renderAll(); if(autoPlay) nextTurn(); }
+}
+function updateModeButton() {
+    const btn = document.getElementById('btn-mode');
+    btn.textContent = autoPlay ? "⏸️ AUTO: ON" : "▶️ AUTO: OFF";
+    btn.className = autoPlay ? "btn-auto-active" : "btn-manual";
+}
+function toggleLog(){ document.body.classList.toggle('show-log'); safeInvalidateMap(); }
+function setHint(text){ document.getElementById('hint-area').textContent = text; }
+
+function renderAll() {
+    const rad = (map && map.getZoom) ? (map.getZoom() < 12 ? 2 : (map.getZoom() < 14 ? 4 : 6)) : 4;
+    const playable = (isWaitingHuman && turnIndex === 0) ? getPlayableIndices(players[0]) : [];
+    if(isWaitingHuman && turnIndex === 0){
+        if(playable.length) setHint(t('💡 出せるカードをタップ', '💡 Tap a playable card'));
+        else if(deck.length) setHint(t('💡 DECKをタップして1枚引く', '💡 Tap DECK to draw'));
+    } else { setHint(gameOver ? t('対局終了', 'Game Over') : t('待ち：', 'Waiting: ') + players[turnIndex].name + t('の番', '\'s turn')); }
+
+    document.getElementById('players-area').innerHTML = players.map((p, i) => {
+        const isTurn = (i === turnIndex && !gameOver && p.status === 'active');
+        const cardsHtml = p.hand.map((c, ci) => {
+            const canPlay = (p.isHuman && !autoPlay && isWaitingHuman && turnIndex === 0 && playable.includes(ci));
+            if (!p.isHuman && !autoPlay) {
+                // 相手の手札は裏面画像
+                return '<div class="card ' + (canPlay?'playable':(p.isHuman?'unplayable':'')) + '" style="background-image:url(' + BACK_URL + ')"></div>';
+            }
+            // 自分の手札またはAUTOモード時はオーバーレイカード
+            const className = canPlay ? 'playable' : (p.isHuman ? 'unplayable' : '');
+            const onclickAttr = canPlay ? 'onclick="humanPlay(' + ci + ')"' : '';
+            return createHandCardHTML(c, className, onclickAttr);
+        }).join('');
+        // ✅ 修正：閉じタグ連結修復
+        return '<div class="player-box ' + (isTurn?'active-turn':'') + ' ' + (p.status==='eliminated'?'eliminated':'') + 
+               '" style="border-left-color:' + p.color + '"><b>' + p.icon + ' ' + p.name + 
+               '</b> <small>Score:' + calculateScore(i) + '</small><br>' + cardsHtml + '</div>';
+    }).join('');
+
+    updateStationNodeIcons();
+    const top = discardPile[discardPile.length-1];
+    if (top) {
+        if (top.type === 'teiden') {
+            // 停電カードもオーバーレイで生成
+            document.getElementById('discard-pile').innerHTML = `
+                <div class="card card-large guno-card guno-card--teiden" data-line="${top.lc}" style="--w:72px; margin:0;">
+                    <div class="teiden-icon" aria-label="停電">⚡</div>
+                    <div class="teiden-sub">停電</div>
+                </div>
+            `;
+        } else {
+            // 駅カードはオーバーレイで生成
+            const st = STATIONS_DB.find(s => s.lc === top.lc && s.order === top.order);
+            if (st) {
+                document.getElementById('discard-pile').innerHTML = `
+                    <div class="card card-large guno-card" data-line="${top.lc}" style="--w:72px; margin:0;">
+                        <div class="corner corner--tl">
+                            <div class="corner-bg"></div>
+                            <div class="corner-num">${top.order}</div>
+                        </div>
+                        <div class="corner corner--br">
+                            <div class="corner-bg"></div>
+                            <div class="corner-num corner-num--rot">${top.order}</div>
+                        </div>
+                        <div class="center">
+                            <div class="station-jp">${st.st_ja}</div>
+                            <div class="station-en">${st.st_en}</div>
+                        </div>
+                        <div class="route-code">${top.lc}</div>
+                    </div>
+                `;
+            } else {
+                document.getElementById('discard-pile').innerHTML = `<div class="card card-large" style="background-image:url(${IMAGE_BASE_URL}${top.file}.png)"></div>`;
+            }
+        }
+    } else {
+        document.getElementById('discard-pile').innerHTML = '';
+    }
+    document.getElementById('draw-pile-visual').textContent = deck.length;
+    document.getElementById('draw-pile-visual').className = (isWaitingHuman && playable.length === 0 && deck.length > 0) ? 'can-draw' : '';
+    document.getElementById('direction-arrow').textContent = direction === 1 ? '↻' : '↺';
+
+
+
+    updateMapVisuals();
+    renderSlots();
+}
+
+/** 駅カードHTML生成（手札用） */
+function createHandCardHTML(card, className, onclick) {
+    if (card.type === 'teiden') {
+        // 停電カードもオーバーレイで生成
+        return `
+            <div class="card guno-card guno-card--teiden ${className}" data-line="${card.lc}" style="--w:var(--card-w); margin:0;" ${onclick}>
+                <div class="teiden-icon" aria-label="停電">⚡</div>
+                <div class="teiden-sub">停電</div>
+            </div>
+        `;
+    }
+    // 駅カードはオーバーレイで生成
+    const st = STATIONS_DB.find(s => s.lc === card.lc && s.order === card.order);
+    if (!st) return `<div class="card ${className}" style="background-image:url(${IMAGE_BASE_URL}${card.file}.png)" ${onclick}></div>`;
+    
+    return `
+        <div class="card guno-card ${className}" data-line="${card.lc}" style="--w:var(--card-w); margin:0;" ${onclick}>
+            <div class="corner corner--tl">
+                <div class="corner-bg"></div>
+                <div class="corner-num">${card.order}</div>
+            </div>
+            <div class="corner corner--br">
+                <div class="corner-bg"></div>
+                <div class="corner-num corner-num--rot">${card.order}</div>
+            </div>
+            <div class="center">
+                <div class="station-jp">${st.st_ja}</div>
+                <div class="station-en">${st.st_en}</div>
+            </div>
+            <div class="route-code">${card.lc}</div>
+        </div>
+    `;
+}
+
+/** 駅カードHTML生成（ゲーム中のスロット用） */
+function createStationCardHTML(line, num, jp, en, borderColor, playerIcon) {
+    return `
+        <div class="slot active guno-card" data-line="${line}" style="border:2px solid ${borderColor}; --w:var(--card-w); margin:0;">
+            <div class="corner corner--tl">
+                <div class="corner-bg"></div>
+                <div class="corner-num">${num}</div>
+            </div>
+            <div class="corner corner--br">
+                <div class="corner-bg"></div>
+                <div class="corner-num corner-num--rot">${num}</div>
+            </div>
+            <div class="center">
+                <div class="station-jp">${jp}</div>
+                <div class="station-en">${en}</div>
+            </div>
+            <div class="route-code">${line}</div>
+            <div style="position:absolute; bottom:2px; left:50%; transform:translateX(-50%); background:${borderColor}; width:20px; height:20px; border-radius:50%; border:1px solid #fff; display:flex; align-items:center; justify-content:center; font-size:10px; color:white; z-index:10;">${playerIcon}</div>
+        </div>
+    `;
+}
+
+function renderSlots() {
+    // 各路線の駅スロット（1-10）
+    ['JY','M','G','T'].forEach(lc => {
+        const grid = document.getElementById('map-' + lc.toLowerCase());
+        const header = document.getElementById('header-' + lc.toLowerCase());
+        const line = STATIONS_DB.find(s=>s.lc===lc);
+        header.textContent = '[' + lc + '] ' + (isJapanese ? line.name_ja : line.name_en);
+        header.style.backgroundColor = line.color;
+        let h = "";
+        for(let i=1; i<=10; i++) {
+            const o = mapState[lc + "-" + i], s = STATIONS_DB.find(x=>x.lc===lc && x.order===i);
+            if(o !== undefined && o !== -1) {
+                h += createStationCardHTML(lc, i, s.st_ja, s.st_en, players[o].color, players[o].icon);
+            } else { h += '<div class="slot"><div>' + i + '</div><div style="font-size:8px;">' + (isJapanese?s.st_ja:s.st_en).replace('★', '<span style="color:gold;">★</span>') + '</div></div>'; }
+        }
+        grid.innerHTML = h;
+    });
+    
+    // 停電カード専用エリア
+    const blackoutGrid = document.getElementById('map-blackout');
+    const lineInfo = {
+        'JY': {color: '#00AA00', name_ja: '山手線', name_en: 'Yamanote'},
+        'M': {color: '#F62E36', name_ja: '丸ノ内線', name_en: 'Marunouchi'},
+        'G': {color: '#FF9500', name_ja: '銀座線', name_en: 'Ginza'},
+        'T': {color: '#009BBF', name_ja: '東西線', name_en: 'Tozai'}
+    };
+    let bh = "";
+    ['JY','M','G','T'].forEach(lc => {
+        const info = lineInfo[lc];
+        const lineName = isJapanese ? info.name_ja : info.name_en;
+        if(teidenPlayed[lc]) { 
+            // 停電カードが出された場合：オーバーレイで表示
+            bh += `
+                <div class="slot active guno-card guno-card--teiden" data-line="${lc}" style="border:2px solid #fff; --w:var(--card-w); margin:0;">
+                    <div class="teiden-icon" aria-label="停電">⚡</div>
+                    <div class="teiden-sub">停電</div>
+                </div>
+            `;
+        } else {
+            // 停電カードがまだ出されていない場合：空スロット
+            bh += `
+                <div class="slot" style="background:#1a1a1a;">
+                    <div style="position:absolute; top:8px; left:50%; transform:translateX(-50%); font-weight:bold; font-size:14px; color:${info.color}; text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 2px rgba(0,0,0,0.9), 1px -1px 2px rgba(0,0,0,0.9), -1px 1px 2px rgba(0,0,0,0.9);">[${lc}]</div>
+                    <div style="position:absolute; top:28px; left:50%; transform:translateX(-50%); font-size:10px; color:${info.color}; white-space:nowrap; text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 2px rgba(0,0,0,0.9), 1px -1px 2px rgba(0,0,0,0.9), -1px 1px 2px rgba(0,0,0,0.9);">${lineName}</div>
+                    <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); font-size:24px; text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 2px rgba(0,0,0,0.9), 1px -1px 2px rgba(0,0,0,0.9), -1px 1px 2px rgba(0,0,0,0.9);">⚡</div>
+                </div>
+            `;
+        }
+    });
+    blackoutGrid.innerHTML = bh;
+}
+function toggleLanguage() { 
+    isJapanese = !isJapanese; 
+    // 駅名ラベル更新
+    Object.values(stationNodes).forEach(node => { 
+        const st = node.lines[0].stData; 
+        node.marker.unbindTooltip(); 
+        const stName = isJapanese ? st.st_ja : st.st_en; 
+        const label = stName.startsWith('★') ? '<span style="color:gold; font-size:14px;">★</span>' + stName.substring(1) : stName; 
+        node.marker.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] }); 
+    }); 
+    // UI要素更新
+    document.getElementById('btn-log-text').textContent = t('ログ', 'Log');
+    document.getElementById('btn-new-text').textContent = t('新規', 'New');
+    document.getElementById('log-title').textContent = t('📜 ログ履歴', '📜 Log History');
+    document.getElementById('btn-close-log').textContent = t('閉じる', 'Close');
+    renderSlots(); 
+    renderAll(); 
+}
+window.onload = () => { 
+    document.body.classList.remove('show-log'); 
+    initMapComponent(); 
+    startGame(); 
+};
+window.addEventListener('resize', safeInvalidateMap);
+</script>
+
+<script>
+/** ====== GUNO Card Overlay JS (40駅DB) ======
+ * line: "JY" | "M" | "G" | "T"
+ * num : 1-10（表示数字）
+ * jp  : 日本語駅名
+ * en  : 英語駅名
+ */
+const STATION_DB_CARDS = [
+  // --- JY ---
+  { line:"JY", num:1, jp:"東京", en:"Tokyo" },
+  { line:"JY", num:2, jp:"神田", en:"Kanda" },
+  { line:"JY", num:3, jp:"秋葉原", en:"Akihabara" },
+  { line:"JY", num:4, jp:"上野", en:"Ueno" },
+  { line:"JY", num:5, jp:"日暮里", en:"Nippori" },
+  { line:"JY", num:6, jp:"西日暮里", en:"Nishi-nippori" },
+  { line:"JY", num:7, jp:"池袋", en:"Ikebukuro" },
+  { line:"JY", num:8, jp:"新宿", en:"Shinjuku" },
+  { line:"JY", num:9, jp:"渋谷", en:"Shibuya" },
+  { line:"JY", num:10, jp:"品川", en:"Shinagawa" },
+
+  // --- M ---
+  { line:"M", num:1, jp:"池袋", en:"Ikebukuro" },
+  { line:"M", num:2, jp:"後楽園", en:"Korakuen" },
+  { line:"M", num:3, jp:"大手町", en:"Otemachi" },
+  { line:"M", num:4, jp:"東京", en:"Tokyo" },
+  { line:"M", num:5, jp:"銀座", en:"Ginza" },
+  { line:"M", num:6, jp:"赤坂見附", en:"Akasaka-mitsuke" },
+  { line:"M", num:7, jp:"四ツ谷", en:"Yotsuya" },
+  { line:"M", num:8, jp:"新宿御苑", en:"Shinjuku-gyoemmae" },
+  { line:"M", num:9, jp:"新宿", en:"Shinjuku" },
+  { line:"M", num:10, jp:"中野坂上", en:"Nakano-sakaue" },
+
+  // --- G ---
+  { line:"G", num:1, jp:"渋谷", en:"Shibuya" },
+  { line:"G", num:2, jp:"表参道", en:"Omotesando" },
+  { line:"G", num:3, jp:"青山一丁目", en:"Aoyama-itchome" },
+  { line:"G", num:4, jp:"赤坂見附", en:"Akasaka-mitsuke" },
+  { line:"G", num:5, jp:"新橋", en:"Shimbashi" },
+  { line:"G", num:6, jp:"銀座", en:"Ginza" },
+  { line:"G", num:7, jp:"日本橋", en:"Nihombashi" },
+  { line:"G", num:8, jp:"神田", en:"Kanda" },
+  { line:"G", num:9, jp:"上野", en:"Ueno" },
+  { line:"G", num:10, jp:"浅草", en:"Asakusa" },
+
+  // --- T ---
+  { line:"T", num:1, jp:"中野", en:"Nakano" },
+  { line:"T", num:2, jp:"落合", en:"Ochiai" },
+  { line:"T", num:3, jp:"高田馬場", en:"Takadanobaba" },
+  { line:"T", num:4, jp:"早稲田", en:"Waseda" },
+  { line:"T", num:5, jp:"飯田橋", en:"Iidabashi" },
+  { line:"T", num:6, jp:"九段下", en:"Kudanshita" },
+  { line:"T", num:7, jp:"大手町", en:"Otemachi" },
+  { line:"T", num:8, jp:"日本橋", en:"Nihombashi" },
+  { line:"T", num:9, jp:"門前仲町", en:"Monzen-nakacho" },
+  { line:"T", num:10, jp:"東陽町", en:"Toyocho" },
+];
+
+/** 長い駅名だけ少し縮小 */
+function adjustFontByLength(cardEl, jpText, enText){
+  const jpEl = cardEl.querySelector(".station-jp");
+  const enEl = cardEl.querySelector(".station-en");
+
+  const jpLen = (jpText || "").length;
+  const enLen = (enText || "").length;
+
+  // JP: 2-3文字は大きく、長いほど少し下げる
+  if (jpLen <= 3) {
+    jpEl.style.fontSize = "calc(var(--w) * 0.155)";
+  } else if (jpLen <= 5) {
+    jpEl.style.fontSize = "calc(var(--w) * 0.142)";
+  } else if (jpLen <= 8) {
+    jpEl.style.fontSize = "calc(var(--w) * 0.132)";
+  } else {
+    jpEl.style.fontSize = "calc(var(--w) * 0.120)";
+  }
+
+  // EN: 長い時だけ下げる
+  if (enLen <= 8) {
+    enEl.style.fontSize = "calc(var(--w) * 0.070)";
+  } else if (enLen <= 14) {
+    enEl.style.fontSize = "calc(var(--w) * 0.063)";
+  } else {
+    enEl.style.fontSize = "calc(var(--w) * 0.058)";
+  }
+}
+
+/** 1枚カードDOM作成 */
+function createCard({line, num, jp, en}, opts = {}){
+  const card = document.createElement("div");
+  card.className = "guno-card" + (opts.small ? " is-small" : "");
+  card.dataset.line = line;
+
+  card.innerHTML = `
+    <div class="corner corner--tl">
+      <div class="corner-bg"></div>
+      <div class="corner-num">${num}</div>
+    </div>
+
+    <div class="corner corner--br">
+      <div class="corner-bg"></div>
+      <div class="corner-num corner-num--rot">${num}</div>
+    </div>
+
+    <div class="center">
+      <div class="station-jp"></div>
+      <div class="station-en"></div>
+    </div>
+
+    <div class="route-code">${line}</div>
+  `;
+
+  card.querySelector(".station-jp").textContent = jp;
+  card.querySelector(".station-en").textContent = en;
+
+  adjustFontByLength(card, jp, en);
+
+  return card;
+}
+
+/** 一括描画 */
+function renderCards(){
+  const grid = document.getElementById("cardGrid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+  for (const row of STATION_DB_CARDS){
+    grid.appendChild(createCard(row));
+  }
+}
+
+/** 起動 */
+document.addEventListener("DOMContentLoaded", renderCards);
+</script>
+</body>
+</html>
