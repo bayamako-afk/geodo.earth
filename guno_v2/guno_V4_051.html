@@ -224,27 +224,54 @@ body.show-log .panel-log { transform: translateY(0); }
 .corner{
   position:absolute;
   width: var(--corner-size);
-  height: var(--corner-size);  /* 幅と同じにして正方形 */
-  display:flex;
+  height: var(--corner-size);
   pointer-events:none;
-  /* 追加 */
-  align-items:center;
-  justify-content:center;
 }
+
+/* 半円の元（円） */
 .corner-bg{
   position:absolute;
   inset:0;
   background: var(--line);
-  border-radius: 50%;  /* 完全な円形 */
+  border-radius: 50%;
 }
+
+/* 数字は “角ごとに” 絶対配置する */
 .corner-num{
-  position:relative;
+  position:absolute;
   font-weight: 900;
   font-size: var(--num-size);
   line-height: 1;
   color:#fff;
- /* 追加：数字をわずかにカード内側へ */
-  transform: translate(20%, 20%);
+
+  /* 擬似アウトライン */
+  text-shadow:
+    -2px -2px 0 #000,  0px -2px 0 #000,  2px -2px 0 #000,
+    -2px  0px 0 #000,                 2px  0px 0 #000,
+    -2px  2px 0 #000,  0px  2px 0 #000,  2px  2px 0 #000;
+}
+
+/* 角の配置（ここはcorner-size基準のままでOK） */
+.corner--tl{
+  top: calc(var(--corner-size) * -0.5);
+  left: calc(var(--corner-size) * -0.5);
+}
+.corner--br{
+  bottom: calc(var(--corner-size) * -0.5);
+  right: calc(var(--corner-size) * -0.5);
+}
+
+/* ★数字の位置：見えている半円の中心へ寄せる（ここが肝） */
+.corner--tl .corner-num{
+  left: 70%;
+  top: 70%;
+  transform: translate(-50%,-50%);
+}
+.corner--br .corner-num{
+  left: 30%;
+  top: 30%;
+  transform: translate(-50%,-50%) rotate(180deg);
+}
 
   /* 擬似アウトライン */
   text-shadow:
