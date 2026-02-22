@@ -244,7 +244,7 @@ body.show-log .panel-log { transform: translateY(0); }
   line-height: 1;
   color:#fff;
  /* 追加：数字をわずかにカード内側へ */
-  transform: translate(18%, 18%);
+  transform: translate(20%, 20%);
 
   /* 擬似アウトライン */
   text-shadow:
@@ -252,8 +252,19 @@ body.show-log .panel-log { transform: translateY(0); }
     -2px  0px 0 #000,                 2px  0px 0 #000,
     -2px  2px 0 #000,  0px  2px 0 #000,  2px  2px 0 #000;
 }
-.corner--tl{ top: calc(var(--w) * -0.35); left: calc(var(--w) * -0.35); align-items:center; justify-content:center; }
-.corner--br{ bottom: calc(var(--w) * -0.5); right: calc(var(--w) * -0.5); align-items:center; justify-content:center; }
+.corner--tl{
+  top: calc(var(--corner-size) * -0.5);
+  left: calc(var(--corner-size) * -0.5);
+  align-items:center;
+  justify-content:center;
+}
+
+.corner--br{
+  bottom: calc(var(--corner-size) * -0.5);
+  right: calc(var(--corner-size) * -0.5);
+  align-items:center;
+  justify-content:center;
+}
 .corner-num--rot{ transform: rotate(180deg); transform-origin:center; }
 
 /* 中央駅名 */
