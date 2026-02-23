@@ -529,7 +529,7 @@
       const line = GUNO.getLineMeta(lc);
       if (!grid || !header || !line) return;
 
-      header.textContent = "[" + lc + "] " + (isJapanese ? line.name_ja : line.name_en);
+      header.textContent = "[" + lc + "]";
       header.style.backgroundColor = line.color;
 
       let h = "";
