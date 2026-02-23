@@ -70,7 +70,7 @@ body{
   grid-template-columns: var(--left) var(--right);
   grid-template-rows: var(--right-top) var(--right-bottom);
   gap: var(--gap);
-  height: calc(100vh - 22px); /* body padding分のざっくり補正（必要なら微調整） */
+  height: calc(100dvh - 22px); /* body padding分のざっくり補正（必要なら微調整） */
   min-height:0;
 }
 
@@ -405,5 +405,108 @@ body{
 
     --card-w: clamp(34px, 6vw, 56px);
     --card-gap: 6px;
+  }
+}
+
+/* =========================
+   V5 World Slot Layout + Blackout Rail (top-right vertical)
+   - HTML変更不要
+   - #slots-area を 2カラム化（左=各路線、右=停電縦）
+   - #map-blackout を右カラムに固定
+   ========================= */
+
+/* safe area */
+:root{
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* 右上：停電縦カラム */
+  --blackout-col-w: 74px;
+
+  /* 停電カードだけ小さく（全カードは小さくしない） */
+  --blackout-card-w: 54px;
+  --blackout-card-h: calc(var(--blackout-card-w) * 1.5);
+}
+
+/* 全体高さ：dvh優先 + vhフォールバック（フル対応） */
+.game-container{
+  height: calc(100vh - 22px);
+  height: calc(100dvh - 22px - var(--safe-top) - var(--safe-bottom));
+}
+
+/* slots：2カラム（左：路線群 / 右：停電） */
+#slots-area{
+  display:grid;
+  grid-template-columns: 1fr var(--blackout-col-w);
+  column-gap: 8px;
+  row-gap: 6px;
+
+  min-height:0;
+  overflow:hidden;
+  align-content:start;
+}
+
+/* 既存の路線wrapperは左カラムへ */
+#slots-area .line-wrapper{
+  grid-column: 1;
+  min-width:0;
+}
+
+/* ---- 停電（右縦エリア） ----
+   #map-blackout が #slots-area の中に居る前提（現状そうなってます）
+*/
+#map-blackout{
+  grid-column: 2;
+  grid-row: 1 / -1; /* 右カラムを縦に貫通させる */
+  width: 100%;
+  min-width:0;
+
+  /* 右上縦エリアとして強制 */
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-auto-rows: var(--blackout-card-h) !important;
+  gap: 6px !important;
+  justify-items: center;
+  align-content: start;
+
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* 停電カードだけ縮小（slot/guno-card の --w を上書き） */
+#map-blackout .slot,
+#map-blackout .guno-card{
+  --w: var(--blackout-card-w);
+}
+
+/* 停電セクション見出し（もし存在するなら）を非表示で省スペース */
+#header-blackout{ display:none !important; }
+
+/* ---- Worldモード（任意）----
+   body に world-mode を付けると、路線を“1本だけ表示”にできる。
+   （JSで .is-active を付け替える運用が最もシンプル）
+*/
+body.world-mode #slots-area .line-wrapper{ display:none; }
+body.world-mode #slots-area .line-wrapper.is-active{
+  display:grid;
+  grid-column: 1;
+}
+
+/* 停電は world-mode でも常時表示 */
+body.world-mode #map-blackout{
+  display:grid !important;
+  grid-column: 2 !important;
+}
+
+/* スマホ横（世界版本命）で少し詰める */
+@media (max-width: 1023px) and (orientation: landscape){
+  :root{
+    --blackout-col-w: 64px;
+    --blackout-card-w: 46px;
+    --blackout-card-h: calc(var(--blackout-card-w) * 1.5);
+  }
+  #slots-area{
+    column-gap: 6px;
+    row-gap: 6px;
   }
 }
