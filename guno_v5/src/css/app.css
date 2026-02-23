@@ -1,26 +1,40 @@
 /* =========================
-   GUNO v5 Base Styles (必須)
+   GUNO v5 app.css (Base + Layout unified)
+   - カードが必ず見える
+   - 3面固定：左 dashboard / 右上 slots / 右下 map
+   - HTMLは変更不要（.left-col を display:contents で潰す）
    ========================= */
 
+/* ---------- Theme / Size tokens ---------- */
 :root{
+  /* line colors */
   --jy-color: #00AA00;
   --m-color:  #F62E36;
   --g-color:  #FF9500;
   --t-color:  #009BBF;
 
+  /* layout */
+  --gap: 8px;
+  --radius: 10px;
+  --left: 0.95fr;
+  --right: 1.05fr;
+  --right-top: 0.52fr;      /* slots */
+  --right-bottom: 0.48fr;   /* map */
+
+  /* cards */
   --card-w: clamp(42px, 4.8vw, 90px);
   --card-h: calc(var(--card-w) * 1.5);
   --card-gap: 8px;
 
-  /* 背景画像（置き場所：src/assets/cards/） */
+  /* backgrounds (css/app.css -> ../assets/...) */
   --bg-jy: url("../assets/cards/bg_JY.png");
   --bg-m:  url("../assets/cards/bg_M.png");
   --bg-g:  url("../assets/cards/bg_G.png");
   --bg-t:  url("../assets/cards/bg_T.png");
 }
 
-.hidden{ display:none !important; }
-
+/* ---------- Global ---------- */
+html, body { height: 100%; }
 body{
   font-family: "Helvetica Neue", Arial, sans-serif;
   background:#1a1a1a;
@@ -28,23 +42,82 @@ body{
   margin:0;
   padding:10px;
   box-sizing:border-box;
+  overflow:hidden; /* ページスクロール禁止 */
 }
+.hidden{ display:none !important; }
 
-/* panelの見た目（最低限） */
+/* ---------- Panels ---------- */
 .panel{
   background:#222;
   border:1px solid #333;
   padding:10px;
-  border-radius:10px;
+  border-radius: var(--radius);
+  min-width:0;
+  min-height:0;
+  overflow:hidden; /* 固定3面の方針 */
 }
 
-/* スロットの枠（最低限） */
+/* ---------- 3-pane layout ---------- */
+/* HTML:
+.game-container
+  ├ .left-col
+  │   ├ .panel-dashboard
+  │   └ .panel-slots
+  └ .panel-map
+*/
+.game-container{
+  display:grid;
+  grid-template-columns: var(--left) var(--right);
+  grid-template-rows: var(--right-top) var(--right-bottom);
+  gap: var(--gap);
+  height: calc(100dvh - 20px); /* body padding分のざっくり補正（必要なら微調整） */
+  min-height:0;
+}
+
+/* ★これで .left-col の存在をCSS的に消して再配置できる */
+.left-col{ display: contents; }
+
+/* left: dashboard (縦貫通) */
+.panel-dashboard{
+  grid-column: 1;
+  grid-row: 1 / 3;
+  display:flex;
+  flex-direction: column;
+  min-height:0;
+}
+#players-area{
+  flex:1;            /* ★空白を潰す */
+  min-height:0;
+  overflow:hidden;   /* スクロール出したくない方針 */
+}
+
+/* right-top: slots */
+.panel-slots{
+  grid-column: 2;
+  grid-row: 1;
+  min-height:0;
+}
 #slots-area{
   display:grid;
   grid-template-columns: 1fr;
   gap:12px;
+  min-height:0;
+  overflow:hidden;
 }
 
+/* right-bottom: map */
+.panel-map{
+  grid-column: 2;
+  grid-row: 2;
+  min-height:0;
+}
+#map{
+  width:100%;
+  height:100%;
+  min-height:200px;
+}
+
+/* ---------- Slots / grids ---------- */
 .line-header{
   font-weight:900;
   font-size:13px;
@@ -64,7 +137,7 @@ body{
   grid-auto-rows: var(--card-h);
 }
 
-/* 空スロット表示 */
+/* empty slot */
 .slot{
   background:#2a2a2a;
   border:1px solid #3d3d3d;
@@ -80,7 +153,7 @@ body{
   overflow:hidden;
 }
 
-/* ===== 手札カード（最低限これが無いと「見えない」） ===== */
+/* ---------- Card base (これが無いと“見えない”) ---------- */
 .card{
   display:inline-block;
   width: var(--card-w);
@@ -95,7 +168,6 @@ body{
   vertical-align: top;
 }
 
-/* playable 表現（最低限） */
 .card.playable{
   cursor:pointer;
   border-color:#4CAF50;
@@ -106,12 +178,12 @@ body{
   opacity: .55;
 }
 
-/* ===== オーバーレイカード（guno-card）最低限 ===== */
+/* ---------- Overlay card (minimum) ---------- */
 .guno-card{
   --w: var(--card-w);
   --h: calc(var(--w) * 88 / 63);
 
-  --line: #00AA00;
+  --line: var(--jy-color);
   --bg: var(--bg-jy);
 
   position:relative;
@@ -126,114 +198,22 @@ body{
   background-repeat:no-repeat;
 }
 
-/* 路線別背景 */
+/* line backgrounds */
 .guno-card[data-line="JY"]{ --line: var(--jy-color); --bg: var(--bg-jy); }
 .guno-card[data-line="M"] { --line: var(--m-color);  --bg: var(--bg-m); }
 .guno-card[data-line="G"] { --line: var(--g-color);  --bg: var(--bg-g); }
 .guno-card[data-line="T"] { --line: var(--t-color);  --bg: var(--bg-t); }
 
-/* （角や駅名などの細かい装飾は後で戻してOK。
-   まず「見える」状態を復旧するのが目的） */
-
-/* 地図 */
-#map{
-  width:100%;
-  height:100%;
-  min-height: 200px;
-}
-
-
-/* =========================
-   GUNO v5 FINAL LAYOUT
-   HTMLは変更不要
-   ========================= */
-
-:root{
-  --header-h: 82px;
-  --gap: 8px;
-  --radius: 10px;
-
-  --left: 0.95fr;
-  --right: 1.05fr;
-
-  --right-top: 0.52fr;
-  --right-bottom: 0.48fr;
-}
-
-html, body { height: 100%; }
-body{ overflow: hidden; }
-
-/* ===== 全体：左右2カラム ===== */
-.game-container{
-  display: grid;
-  grid-template-columns: var(--left) var(--right);
-  gap: var(--gap);
-
-  height: calc(100dvh - var(--header-h) - 24px);
-  min-height: 0;
-}
-
-/* ===== 左カラムは dashboard 専用にする ===== */
-.left-col{
-  display: contents; /* ← これが重要 */
-}
-
-/* dashboard を左カラムへ */
-.panel-dashboard{
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  overflow: hidden;
-}
-
-/* slots を右上へ再配置 */
-.panel-slots{
-  grid-column: 2;
-  grid-row: 1;
-  min-height: 0;
-  overflow: hidden;
-}
-
-/* map を右下へ */
-.panel-map{
-  grid-column: 2;
-  grid-row: 2;
-  min-height: 0;
-  overflow: hidden;
-}
-
-/* 右カラムを上下分割 */
-.game-container{
-  grid-template-rows: var(--right-top) var(--right-bottom);
-}
-
-/* 内部はスクロールさせない */
-#players-area,
-#slots-area{
-  overflow: hidden;
-  min-height: 0;
-}
-
-#map{
-  width: 100%;
-  height: 100%;
-  min-height: 200px;
-}
-
-/* スマホ微調整 */
+/* ---------- Mobile tweak ---------- */
 @media (max-width: 1023px){
   :root{
-    --header-h: 76px;
     --gap: 6px;
-
     --left: 1fr;
     --right: 1fr;
-
     --right-top: 0.50fr;
     --right-bottom: 0.50fr;
 
     --card-w: clamp(34px, 6vw, 56px);
+    --card-gap: 6px;
   }
 }
