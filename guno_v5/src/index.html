@@ -165,5 +165,15 @@
   <audio id="seGuno" src="sounds/guno.mp3" preload="auto"></audio>
   <audio id="seBlackout" src="sounds/blackout.mp3" preload="auto"></audio>
 
+<script>
+  function syncHeaderH(){
+    const header = document.querySelector('.header');
+    const h = header ? header.getBoundingClientRect().height : 82;
+    document.documentElement.style.setProperty('--header-h', Math.ceil(h) + 'px');
+  }
+  window.addEventListener('load', syncHeaderH);
+  window.addEventListener('resize', syncHeaderH);
+</script>
+
 </body>
 </html>
