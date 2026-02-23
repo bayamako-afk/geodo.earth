@@ -1,4 +1,149 @@
 /* =========================
+   GUNO v5 Base Styles (必須)
+   ========================= */
+
+:root{
+  --jy-color: #00AA00;
+  --m-color:  #F62E36;
+  --g-color:  #FF9500;
+  --t-color:  #009BBF;
+
+  --card-w: clamp(42px, 4.8vw, 90px);
+  --card-h: calc(var(--card-w) * 1.5);
+  --card-gap: 8px;
+
+  /* 背景画像（置き場所：src/assets/cards/） */
+  --bg-jy: url("../assets/cards/bg_JY.png");
+  --bg-m:  url("../assets/cards/bg_M.png");
+  --bg-g:  url("../assets/cards/bg_G.png");
+  --bg-t:  url("../assets/cards/bg_T.png");
+}
+
+.hidden{ display:none !important; }
+
+body{
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background:#1a1a1a;
+  color:#eee;
+  margin:0;
+  padding:10px;
+  box-sizing:border-box;
+}
+
+/* panelの見た目（最低限） */
+.panel{
+  background:#222;
+  border:1px solid #333;
+  padding:10px;
+  border-radius:10px;
+}
+
+/* スロットの枠（最低限） */
+#slots-area{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+}
+
+.line-header{
+  font-weight:900;
+  font-size:13px;
+  margin:0 0 6px;
+  padding:3px 8px;
+  border-radius:6px;
+  color:#fff;
+  text-align:center;
+}
+
+.map-grid{
+  --cols: 6;
+  display:grid;
+  gap: var(--card-gap);
+  justify-content:center;
+  grid-template-columns: repeat(var(--cols), minmax(0, var(--card-w)));
+  grid-auto-rows: var(--card-h);
+}
+
+/* 空スロット表示 */
+.slot{
+  background:#2a2a2a;
+  border:1px solid #3d3d3d;
+  border-radius:6px;
+  aspect-ratio: 2 / 3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:800;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ===== 手札カード（最低限これが無いと「見えない」） ===== */
+.card{
+  display:inline-block;
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius:6px;
+  background:#fff;
+  border:2px solid #666;
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position:center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  vertical-align: top;
+}
+
+/* playable 表現（最低限） */
+.card.playable{
+  cursor:pointer;
+  border-color:#4CAF50;
+  box-shadow: 0 0 14px rgba(76,175,80,.75);
+}
+.card.unplayable{
+  filter: grayscale(100%) brightness(0.5);
+  opacity: .55;
+}
+
+/* ===== オーバーレイカード（guno-card）最低限 ===== */
+.guno-card{
+  --w: var(--card-w);
+  --h: calc(var(--w) * 88 / 63);
+
+  --line: #00AA00;
+  --bg: var(--bg-jy);
+
+  position:relative;
+  width: var(--w);
+  height: var(--h);
+  border-radius: calc(var(--w) * 0.06);
+  overflow:hidden;
+
+  background-image: var(--bg);
+  background-size: cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+/* 路線別背景 */
+.guno-card[data-line="JY"]{ --line: var(--jy-color); --bg: var(--bg-jy); }
+.guno-card[data-line="M"] { --line: var(--m-color);  --bg: var(--bg-m); }
+.guno-card[data-line="G"] { --line: var(--g-color);  --bg: var(--bg-g); }
+.guno-card[data-line="T"] { --line: var(--t-color);  --bg: var(--bg-t); }
+
+/* （角や駅名などの細かい装飾は後で戻してOK。
+   まず「見える」状態を復旧するのが目的） */
+
+/* 地図 */
+#map{
+  width:100%;
+  height:100%;
+  min-height: 200px;
+}
+
+
+/* =========================
    GUNO v5 FINAL LAYOUT
    HTMLは変更不要
    ========================= */

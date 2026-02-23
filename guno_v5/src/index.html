@@ -22,19 +22,7 @@
 
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <div>
-      <h2 style="margin:0; color:gold;">GUNO v5.0</h2>
-      <small>Split-ready (CSS/JS/DB externalized)</small>
-    </div>
-    <div class="controls">
-      <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
-      <button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
-      <button onclick="startGame()" id="btn-new">🎲 <span id="btn-new-text">新規</span></button>
-      <button id="btn-mode" onclick="toggleAuto()" class="btn-manual">▶️ AUTO: OFF</button>
-    </div>
-  </div>
+
 
   <!-- Main -->
   <div class="game-container">
@@ -43,6 +31,19 @@
     <div class="left-col">
       <!-- Dashboard -->
       <div class="panel panel-dashboard" id="dashboard-container">
+	      <!-- Header -->
+      <div class="header">
+      <div>
+      <h2 style="margin:0; color:gold;">GUNO v5.0</h2>
+      <small>Split-ready (CSS/JS/DB externalized)</small>
+      </div>
+    <div class="controls">
+      <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
+      <button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
+      <button onclick="startGame()" id="btn-new">🎲 <span id="btn-new-text">新規</span></button>
+      <button id="btn-mode" onclick="toggleAuto()" class="btn-manual">▶️ AUTO: OFF</button>
+    </div>
+  </div>
         <div id="hint-area">準備中...</div>
 
         <div
