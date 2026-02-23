@@ -1,10 +1,6 @@
 /* =========================
-   GUNO v5 Layout (HTML構造対応版)
-   .game-container
-      ├─ .left-col
-      │     ├─ dashboard
-      │     └─ slots
-      └─ .panel-map
+   GUNO v5 FINAL LAYOUT
+   HTMLは変更不要
    ========================= */
 
 :root{
@@ -12,89 +8,87 @@
   --gap: 8px;
   --radius: 10px;
 
-  --left: 1.05fr;
-  --right: 1fr;
+  --left: 0.95fr;
+  --right: 1.05fr;
 
   --right-top: 0.52fr;
   --right-bottom: 0.48fr;
 }
 
 html, body { height: 100%; }
-body{
-  overflow: hidden;
-}
+body{ overflow: hidden; }
 
-/* ===== 全体2カラム ===== */
+/* ===== 全体：左右2カラム ===== */
 .game-container{
   display: grid;
   grid-template-columns: var(--left) var(--right);
   gap: var(--gap);
 
   height: calc(100dvh - var(--header-h) - 24px);
-  max-height: calc(100dvh - var(--header-h) - 24px);
+  min-height: 0;
 }
 
-/* ===== 左カラム ===== */
+/* ===== 左カラムは dashboard 専用にする ===== */
 .left-col{
-  display: grid;
-  grid-template-rows: var(--right-top) var(--right-bottom);
-  gap: var(--gap);
-  min-height: 0;
+  display: contents; /* ← これが重要 */
 }
 
-/* ===== 各パネル ===== */
-.panel{
-  min-width: 0;
-  min-height: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-/* 左上：dashboard */
+/* dashboard を左カラムへ */
 .panel-dashboard{
-  overflow: hidden;
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
-}
-#players-area{
-  overflow: hidden;
   min-height: 0;
+  overflow: hidden;
 }
 
-/* 左下：slots */
+/* slots を右上へ再配置 */
 .panel-slots{
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 0;
   overflow: hidden;
 }
+
+/* map を右下へ */
+.panel-map{
+  grid-column: 2;
+  grid-row: 2;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 右カラムを上下分割 */
+.game-container{
+  grid-template-rows: var(--right-top) var(--right-bottom);
+}
+
+/* 内部はスクロールさせない */
+#players-area,
 #slots-area{
   overflow: hidden;
   min-height: 0;
 }
 
-/* ===== 右：地図 ===== */
-.panel-map{
-  min-height: 0;
-}
 #map{
   width: 100%;
   height: 100%;
   min-height: 200px;
 }
 
-/* =========================
-   スマホ調整
-   ========================= */
+/* スマホ微調整 */
 @media (max-width: 1023px){
   :root{
     --header-h: 76px;
     --gap: 6px;
 
     --left: 1fr;
-    --right: 1.05fr;
+    --right: 1fr;
 
-    --right-top: 0.48fr;
-    --right-bottom: 0.52fr;
+    --right-top: 0.50fr;
+    --right-bottom: 0.50fr;
 
     --card-w: clamp(34px, 6vw, 56px);
-    --card-h: calc(var(--card-w) * 1.5);
   }
 }
