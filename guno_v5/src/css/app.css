@@ -129,7 +129,7 @@ body{
 }
 
 .map-grid{
-  --cols: 6;
+  --cols: 10;
   display:grid;
   gap: var(--card-gap);
   justify-content:center;
