@@ -176,13 +176,38 @@ body{
     min-height: 0;
   }
 
-  /* mapは縦いっぱい */
+  .panel-map{
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+  }
   #map{
-    flex: 1 1 auto;
-    min-height: 0;
-    height: 100% !important;
+    flex: 1 1 auto !important;
+    height: auto !important;   /* 100%固定より安定することが多い */
+    min-height: 0 !important;
   }
 }
 
 /* ===== Optional: hide dev overlay by default (if you use it) ===== */
 .hidden{ display:none !important; }
+
+/* ===== Mobile: header always on top even if it lives inside slots ===== */
+@media (max-width:1023px){
+
+  /* スロット内に居るヘッダー（今の構造）を画面上部に固定 */
+  .panel-slots .header,
+  .panel-slots .header-in-slots{
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 99999 !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* ヘッダー分だけ全体を下げる（被り防止） */
+  body{
+    padding-top: var(--mobile-header-h, 72px) !important;
+  }
+}
