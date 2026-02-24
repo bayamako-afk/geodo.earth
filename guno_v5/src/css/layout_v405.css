@@ -197,3 +197,24 @@ body.map-only #map{
   width: 100% !important;
   height: 100% !important;
 }
+
+/* === Mobile fix: header must be at top of page === */
+@media (max-width: 1023px){
+  /* headerを常に画面最上部へ */
+  body > .header{
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    margin: 0 0 8px 0;
+  }
+
+  /* もしPC用の sticky指定が残っていてもスマホでは無効化 */
+  .panel-slots .header-in-slots{
+    position: static !important;
+  }
+
+  /* header分だけコンテンツが隠れないように */
+  .game-container{
+    padding-top: 0; /* 基本は0 */
+  }
+}
