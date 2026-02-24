@@ -12,16 +12,6 @@
 </head>
 <body>
 
-<div class="header">
-    <div><h2 style="margin:0; color:gold;">GUNO v4.05</h2><small>Larger Corner Circles</small></div>
-    <div class="controls">
-        <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
-        <button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
-        <button onclick="startGame()">🎲 <span id="btn-new-text">新規</span></button>
-        <button id="btn-mode" onclick="toggleAuto()" class="btn-manual">▶️ AUTO: OFF</button>
-    </div>
-</div>
-
 <div class="game-container">
     <div class="panel panel-dashboard" id="dashboard-container">
         <div id="hint-area">準備中...</div>
@@ -35,6 +25,16 @@
     </div>
 
     <div class="panel panel-slots" id="slots-container">
+	    <div class="header">
+        <div><h2 style="margin:0; color:gold;">GUNO v4.05</h2><small>Larger Corner Circles</small></div>
+			<div class="controls">
+			<button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
+			<button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
+			<button onclick="startGame()">🎲 <span id="btn-new-text">新規</span></button>
+			<button id="btn-mode" onclick="toggleAuto()" class="btn-manual">▶️ AUTO: OFF</button>
+			</div>
+        </div>
+	
         <div id="slots-area">
             <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
