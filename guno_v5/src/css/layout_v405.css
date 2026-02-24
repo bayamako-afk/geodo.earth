@@ -134,3 +134,36 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
     margin: 0 0 8px 0;
   }
 }
+
+@media (min-width: 1024px){
+
+  /* 3列エリアを画面いっぱいにする */
+  .game-container{
+    height: calc(100dvh - 16px);   /* 余白は好みで調整 */
+    align-items: stretch;          /* 子panelを縦に伸ばす */
+  }
+
+  /* 3列の各パネルも“縦いっぱい”に揃える */
+  .game-container > .panel{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;                 /* これがないと内部スクロールが詰む */
+  }
+
+  /* dashboard/slots は中身だけスクロールさせる */
+  #players-area,
+  #slots-area{
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  /* mapは親に合わせて縦いっぱい */
+  .panel-map{ flex: 1 1 auto; }
+  #map{
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100% !important;       /* Leaflet安定化 */
+  }
+}
