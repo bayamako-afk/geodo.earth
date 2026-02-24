@@ -195,7 +195,7 @@ function checkGuno(lc, pIdx){
         if(totalGuno >= 4) endGame(); 
     }
 }
-function endGame() { gameOver = true; if(autoTimer) clearTimeout(autoTimer); renderAll(); document.getElementById('result-overlay').style.display = 'flex'; showRanking(); confetti({ particleCount: 200, spread: 100 }); }
+function endGame() { gameOver = true; if(autoTimer) clearTimeout(autoTimer); renderAll(); document.getElementById('result-overlay').style.display = 'flex'; showRanking(); playSE('seEnd', 1.0);confetti({ particleCount: 200, spread: 100 }); }
 
 function showRanking() {
     const data = players.map((p, idx) => {
