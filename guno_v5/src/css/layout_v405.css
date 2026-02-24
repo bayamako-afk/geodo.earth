@@ -72,7 +72,10 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
     }
     
     /* DECK/LAST */
-    #draw-pile-visual, .card-large { width: 72px; height: calc(72px * 1.5); }
+    #draw-pile-visual {
+     width: var(--card-w);
+     height: var(--card-h);
+    }
     
     /* スロットグリッド */
     @supports (width: 1cqw) {

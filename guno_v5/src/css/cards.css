@@ -29,7 +29,11 @@
 .card.playable { cursor: pointer; border: 2px solid #4CAF50; box-shadow: 0 0 12px rgba(76, 175, 80, 0.8); }
 .card.unplayable { filter: grayscale(100%) brightness(0.4); opacity: 0.5; }
 
-.card-large { width: 72px; height: calc(72px * 1.5); border-radius: 4px; }
+.card-large {
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: 4px;
+}
 #draw-pile-visual { 
     width: var(--card-w); height: var(--card-h); background-image: url('../assets/cards/GUNO_BACK.png'); 
     background-size: contain; background-repeat: no-repeat; background-position: center;
