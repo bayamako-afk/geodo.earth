@@ -220,4 +220,8 @@ body.map-only #map{
     padding-top: 0 !important;
     transform: none !important;
   }
+  
+  @media (max-width: 1023px){
+  .header{ top: 0 !important; }
+  }
 }
