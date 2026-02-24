@@ -13,6 +13,41 @@ function initMapComponent() {
     map.createPane('stationsPane').style.zIndex = 600;
     map.on('zoomend', renderAll);
     initLayers();
+	// フルスクリーンボタン（左下）
+    const FullscreenControl = L.Control.extend({
+    options: { position: 'bottomleft' },
+
+    onAdd: function () {
+    const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control leaflet-control-custom');
+    btn.innerHTML = '⛶';
+    btn.title = 'Fullscreen';
+
+    btn.style.backgroundColor = '#111';
+    btn.style.color = '#fff';
+    btn.style.border = '1px solid #666';
+    btn.style.width = '34px';
+    btn.style.height = '34px';
+    btn.style.cursor = 'pointer';
+
+    L.DomEvent.disableClickPropagation(btn);
+
+    btn.onclick = function () {
+      const mapPanel = document.querySelector('.panel-map');
+
+      if (!document.fullscreenElement) {
+        mapPanel.requestFullscreen().then(() => {
+          setTimeout(() => map.invalidateSize(), 300);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    };
+
+    return btn;
+  }
+});
+
+map.addControl(new FullscreenControl());
 }
 function initLayers() {
     ['JY','M','G','T'].forEach(lc => {
@@ -78,3 +113,7 @@ function updateMapVisuals() {
         layer.setStyle({ weight: isGuno ? 8 : (hasOwner ? 6 : 4), opacity: isGuno ? 1.0 : (hasOwner ? 0.8 : 0.2), color: isGuno ? "gold" : STATIONS_DB.find(s=>s.lc===lc).color });
     });
 }
+
+document.addEventListener("fullscreenchange", () => {
+  setTimeout(() => map.invalidateSize(), 300);
+});
