@@ -1,0 +1,79 @@
+:root{
+  --jy-color:#00AA00; --m-color:#F62E36; --g-color:#FF9500; --t-color:#009BBF;
+  --card-w: clamp(42px, 4.2vw, 78px);
+  --card-h: calc(var(--card-w) * 1.5);
+  --card-gap: 8px;
+
+  --bg-jy: url("../assets/cards/bg_JY.png");
+  --bg-m:  url("../assets/cards/bg_M.png");
+  --bg-g:  url("../assets/cards/bg_G.png");
+  --bg-t:  url("../assets/cards/bg_T.png");
+}
+
+.card{
+  width:var(--card-w); height:var(--card-h);
+  border-radius:8px;
+  background:#fff;
+  border:2px solid #666;
+  background-size:cover;
+  background-position:center;
+  box-shadow:0 2px 10px rgba(0,0,0,.35);
+  display:inline-block;
+  vertical-align:top;
+}
+
+.card.playable{
+  cursor:pointer;
+  border-color:#4CAF50;
+  box-shadow:0 0 14px rgba(76,175,80,.75);
+}
+.card.unplayable{ filter:grayscale(100%) brightness(.55); opacity:.6; }
+
+.guno-card{
+  --line:#00AA00;
+  --bg: var(--bg-jy);
+  width:var(--card-w);
+  height:calc(var(--card-w) * 88 / 63);
+  border-radius:calc(var(--card-w) * .07);
+  overflow:hidden;
+  background-image:var(--bg);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  border:2px solid rgba(255,255,255,.08);
+  box-shadow:0 2px 10px rgba(0,0,0,.35);
+  position:relative;
+}
+
+.guno-card[data-line="JY"]{ --line:var(--jy-color); --bg:var(--bg-jy); }
+.guno-card[data-line="M"] { --line:var(--m-color);  --bg:var(--bg-m);  }
+.guno-card[data-line="G"] { --line:var(--g-color);  --bg:var(--bg-g);  }
+.guno-card[data-line="T"] { --line:var(--t-color);  --bg:var(--bg-t);  }
+
+/* 角の番号（最低限） */
+.guno-card .corner{
+  position:absolute; top:6px; left:6px;
+  width:28px; height:28px;
+  border-radius:50%;
+  background:var(--line);
+  color:#fff;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.guno-card .name{
+  position:absolute; left:8px; right:8px; bottom:6px;
+  font-size:11px;
+  font-weight:900;
+  color:#111;
+  background:rgba(255,255,255,.86);
+  border-radius:6px;
+  padding:3px 6px;
+  text-align:center;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

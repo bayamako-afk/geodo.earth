@@ -1,180 +1,110 @@
-<!-- GUNO v5.0 (Split-ready): index.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  />
-  <title>GUNO v5.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GUNO v5 (UI=v4.05)</title>
+
+  <link rel="icon" href="data:,"><!-- favicon 404抑止（任意） -->
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
 
-  <!-- V5 CSS (all styles moved from v4 <style> into this file) -->
+  <!-- CSS（外だし） -->
+  <link rel="stylesheet" href="css/cards.css" />
+  <link rel="stylesheet" href="css/layout_v405.css" />
   <link rel="stylesheet" href="css/app.css" />
 
-  <!-- Effects -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
-
-
-
-  <!-- Main -->
-  <div class="game-container">
-
-    <!-- Left column (dashboard + slots) -->
-    <div class="left-col">
-      <!-- Dashboard -->
-      <div class="panel panel-dashboard" id="dashboard-container">
-	      <!-- Header -->
-      <div class="header">
-      <div>
-      <h2 style="margin:0; color:gold;">GUNO v5.0</h2>
-      <small>Split-ready (CSS/JS/DB externalized)</small>
-      </div>
+  <!-- header（v4.05のまま） -->
+  <div class="header">
+    <div><h2 style="margin:0; color:gold;">GUNO</h2><small>UI: v4.05 / Core: v5</small></div>
     <div class="controls">
-      <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
-      <button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
-      <button onclick="startGame()" id="btn-new">🎲 <span id="btn-new-text">新規</span></button>
-      <button id="btn-mode" onclick="toggleAuto()" class="btn-manual">▶️ AUTO: OFF</button>
+      <button id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
+      <button id="btn-lang">JP/EN</button>
+      <button id="btn-new">🎲 <span id="btn-new-text">新規</span></button>
+      <button id="btn-mode" class="btn-manual">▶️ AUTO: OFF</button>
     </div>
   </div>
-        <div id="hint-area">準備中...</div>
 
-        <div
-          style="display:flex; justify-content:space-around; align-items:center; background:#111; padding:5px 10px; border-radius:10px; margin-bottom:6px; flex-shrink: 0;"
-        >
-          <div style="text-align:center;">
-            <small style="color:#666;">DECK</small>
-            <div id="draw-pile-visual" onclick="humanDraw()"></div>
-          </div>
+  <div class="game-container">
+    <div class="panel panel-dashboard" id="dashboard-container">
+      <div id="hint-area">準備中...</div>
 
-          <div id="direction-arrow" style="font-size:32px; color:gold;">↻</div>
-
-          <div style="text-align:center;">
-            <small style="color:#666;">LAST</small>
-            <div id="discard-pile"></div>
-          </div>
+      <div class="dash-top">
+        <div class="dash-box">
+          <small class="dash-label">DECK</small>
+          <div id="draw-pile-visual"></div>
         </div>
-
-        <div id="players-area"></div>
+        <div id="direction-arrow" class="dir-arrow">↻</div>
+        <div class="dash-box">
+          <small class="dash-label">LAST</small>
+          <div id="discard-pile"></div>
+        </div>
       </div>
 
-      <!-- Slots -->
-      <div class="panel panel-slots" id="slots-container">
-        <div id="slots-area">
-          <div class="line-wrapper">
-            <div id="header-jy" class="line-header"></div>
-            <div id="map-jy" class="map-grid"></div>
-          </div>
+      <div id="players-area"></div>
+    </div>
 
-          <div class="line-wrapper">
-            <div id="header-m" class="line-header"></div>
-            <div id="map-m" class="map-grid"></div>
-          </div>
+    <div class="panel panel-slots" id="slots-container">
+      <div id="slots-area">
+        <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
+        <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
+        <div class="line-wrapper"><div id="header-g" class="line-header"></div><div id="map-g" class="map-grid"></div></div>
+        <div class="line-wrapper"><div id="header-t" class="line-header"></div><div id="map-t" class="map-grid"></div></div>
 
-          <div class="line-wrapper">
-            <div id="header-g" class="line-header"></div>
-            <div id="map-g" class="map-grid"></div>
-          </div>
-
-          <div class="line-wrapper">
-            <div id="header-t" class="line-header"></div>
-            <div id="map-t" class="map-grid"></div>
-          </div>
-
-          <div class="line-wrapper" style="background:#fff; border-radius:8px; padding:8px; margin-top:8px;">
-            <div id="header-blackout" class="line-header" style="background:#fff; color:#ff6b00; margin-bottom:8px;">⚡ 停電</div>
-            <div style="background:#1a1a1a; border-radius:6px; padding:12px;">
-              <div id="map-blackout" class="map-grid" style="--cols:4;"></div>
-            </div>
-          </div>
-
+        <!-- 停電は v4.05 のままでもOK（後で世界版UIで置き換え可能） -->
+        <div class="line-wrapper blackout-wrapper">
+          <div id="header-blackout" class="line-header blackout-title">⚡ 停電</div>
+          <div id="map-blackout" class="map-grid blackout-grid"></div>
         </div>
       </div>
     </div>
 
-    <!-- Right: Map (PCと同じ思想で常に右側) -->
     <div class="panel panel-map" id="map-container">
       <div id="map"></div>
     </div>
 
-    <!-- Result Overlay -->
     <div id="result-overlay">
       <div class="result-card">
         <h1 style="color:gold;">🏆 VICTORY!</h1>
         <table id="result-table"></table>
-
-        <div style="display:flex; justify-content:center; gap:10px;">
-          <button
-            onclick="startGame()"
-            style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;"
-          >
-            もう一度遊ぶ
-          </button>
-          <button
-            onclick="document.getElementById('result-overlay').style.display='none';"
-            style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;"
-          >
-            ✖ 閉じる
-          </button>
+        <div class="result-buttons">
+          <button id="btn-restart" class="btn-gold">もう一度遊ぶ</button>
+          <button id="btn-close-result" class="btn-gray">✖ 閉じる</button>
         </div>
-
       </div>
     </div>
-
   </div>
 
-  <!-- Card Gallery -->
-  <section style="margin:20px auto; padding:20px; background:#1a1a1a; border-radius:8px; max-width:1400px;">
-    <h3 style="margin:8px 0; color:gold;">GUNO Cards (Digital Overlay)</h3>
-    <div id="cardGrid" class="guno-card-grid"></div>
-  </section>
-
-  <!-- Log Drawer -->
+  <!-- Log drawer -->
   <div class="panel-log" id="log-container">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+    <div class="log-header">
       <h3 style="margin:0;" id="log-title">📜 ログ履歴</h3>
-      <button
-        onclick="toggleLog()"
-        style="background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:2px 10px; border-radius:4px;"
-        id="btn-close-log"
-      >
-        閉じる
-      </button>
+      <button id="btn-close-log" class="btn-close-log">閉じる</button>
     </div>
-    <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
+    <div id="log" class="log-body"></div>
   </div>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.js"></script>
 
-  <!-- V5 JS (split-ready) -->
-  <script src="js/stationDB.js"></script>
-  <script src="js/guno_v5.js"></script>
-  <script src="js/cards_gallery.js"></script>
+  <!-- JS（外だし） -->
+  <script src="js/stations_tokyo_4lines.js"></script>
+  <script src="js/guno_core.js"></script>
+  <script src="js/ui_v405.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/main.js"></script>ipt>
 
-  <!-- Sound Effects -->
-  <audio id="sePlay" src="sounds/play.mp3" preload="auto"></audio>
-  <audio id="seDraw" src="sounds/draw.mp3" preload="auto"></audio>
-  <audio id="seGuno" src="sounds/guno.mp3" preload="auto"></audio>
-  <audio id="seBlackout" src="sounds/blackout.mp3" preload="auto"></audio>
-
-<script>
-  function syncHeaderH(){
-    const header = document.querySelector('.header');
-    const h = header ? header.getBoundingClientRect().height : 82;
-    document.documentElement.style.setProperty('--header-h', Math.ceil(h) + 'px');
-  }
-  window.addEventListener('load', syncHeaderH);
-  window.addEventListener('resize', syncHeaderH);
-</script>
-
+  <!-- sounds -->
+  <audio id="sePlay" src="assets/sounds/play.mp3" preload="auto"></audio>
+  <audio id="seDraw" src="assets/sounds/draw.mp3" preload="auto"></audio>
+  <audio id="seGuno" src="assets/sounds/guno.mp3" preload="auto"></audio>
+  <audio id="seBlackout" src="assets/sounds/blackout.mp3" preload="auto"></audio>
 </body>
 </html>

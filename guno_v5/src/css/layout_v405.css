@@ -1,0 +1,15 @@
+/* v4.05互換：ベースだけ */
+.hidden{ display:none !important; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:#1a1a1a;
+  color:#eee;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+.panel{
+  background:#222;
+  border:1px solid #333;
+  border-radius:12px;
+  padding:10px;
+}
