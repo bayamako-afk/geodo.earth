@@ -297,3 +297,10 @@
   pointer-events: none;
   z-index: 2;  /* 暗幕の上に表示 */
 }
+
+/* スロットの停電カードはプレイヤーカード比率に合わせる */
+.slot.guno-card{
+  aspect-ratio: auto;      /* 2/3 を無効化 */
+  width: var(--card-w);
+  height: calc(var(--card-w) * 88 / 63);
+}
