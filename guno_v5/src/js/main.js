@@ -1,17 +1,15 @@
-window.startGame = function(){
-  initState();
-  dealInitial();
-  renderAll();
-  updateMapFromState();
-};
+// main.js (boot & wiring)
+// Generated from guno_V4_051.html (v4.05) for V5 split
 
-window.toggleLog = function(){
-  const el = document.getElementById("log-container");
-  if (!el) return;
-  el.classList.toggle("hidden");
-};
-
-window.addEventListener("DOMContentLoaded", () => {
-  initMap();
+// Boot the main game
+window.onload = () => {
+  document.body.classList.remove('show-log');
+  initMapComponent();
   startGame();
-});
+};
+
+// Keep Leaflet sized correctly
+window.addEventListener('resize', safeInvalidateMap);
+
+// Render the demo card grid section (optional)
+document.addEventListener('DOMContentLoaded', renderCards);

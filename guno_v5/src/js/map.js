@@ -1,36 +1,80 @@
-let _map, _layer;
+// map.js (Leaflet only)
+// Generated from guno_V4_051.html (v4.05) for V5 split
 
-function initMap(){
-  _map = L.map("map", { gestureHandling: true }).setView([35.6812, 139.7671], 12);
-
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-    attribution: "&copy; OpenStreetMap &copy; CARTO"
-  }).addTo(_map);
-
-  _layer = L.layerGroup().addTo(_map);
+// --- Map Functions ---
+function safeInvalidateMap(){ if(!map) return; setTimeout(()=>map.invalidateSize(true), 100); }
+function initMapComponent() {
+    if(map) map.remove();
+    stationNodes = {};
+    map = L.map('map', { gestureHandling: true }).setView([35.680, 139.740], 12);
+    const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+    const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+    L.control.layers({ "🌑 ダーク": dark, "🛰️ 航空写真": sat }).addTo(map);
+    map.createPane('stationsPane').style.zIndex = 600;
+    map.on('zoomend', renderAll);
+    initLayers();
 }
-
-function updateMapFromState(){
-  if (!_map || !_layer) return;
-  _layer.clearLayers();
-
-  const S = window.GUNO;
-  for (const line of window.GUNO_LINES){
-    const lc = line.line_code;
-    const color = line.color;
-
-    const pts = [];
-    for (let n=1; n<=10; n++){
-      const c = S.slots[lc][n];
-      if (c){
-        pts.push([c.lat, c.lon]);
-        L.circleMarker([c.lat, c.lon], { radius:5, color, weight:2, fillOpacity:.9 })
-          .bindTooltip(window.GUNO.isJapanese ? c.ja : c.en, { direction:"top" })
-          .addTo(_layer);
-      }
-    }
-    if (pts.length >= 2){
-      L.polyline(pts, { color, weight:3, opacity:.8 }).addTo(_layer);
-    }
-  }
+function initLayers() {
+    ['JY','M','G','T'].forEach(lc => {
+        const slug = {JY:'jr-east-yamanote', M:'tokyo-metro-marunouchi', G:'tokyo-metro-ginza', T:'tokyo-metro-tozai'}[lc];
+        fetch(`./geojson/lines/${slug}.geojson`).then(r=>r.json()).then(data => {
+            geoJsonLayers[lc] = L.geoJSON(data, { style: { color:STATIONS_DB.find(s=>s.lc===lc).color, weight:4, opacity:0.4 } }).addTo(map);
+        });
+        fetch(`./geojson/stations/${slug}_stations.geojson`).then(r=>r.json()).then(data => {
+            L.geoJSON(data, {
+                pointToLayer: (f, latlng) => {
+                    const normName = (f.properties.name||'').replace('★','');
+                    const st = STATIONS_DB.find(s => s.lc === lc && s.st_ja.replace('★','') === normName);
+                    if(!st) return L.circleMarker(latlng, { radius: 0, opacity: 0 });
+                    if(!stationNodes[normName]){
+                        const m = L.marker(latlng, { pane: 'stationsPane' }).addTo(map);
+                        stationNodes[normName] = { marker: m, latlng, lines: [] };
+                        const stName = isJapanese ? st.st_ja : st.st_en;
+                        const label = stName.startsWith('★') 
+                            ? '<span style="color:gold; font-size:14px;">★</span>' + stName.substring(1)
+                            : stName;
+                        m.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] });
+                    }
+                    stationNodes[normName].lines.push({ lc: st.lc, order: st.order, stData: st });
+                    return L.circleMarker(latlng, { radius: 0, opacity: 0 });
+                }
+            }).addTo(map);
+        });
+    });
+}
+function updateStationNodeIcons(){
+    const rad = (map && map.getZoom) ? (map.getZoom() < 12 ? 2 : (map.getZoom() < 14 ? 4 : 6)) : 4;
+    Object.entries(stationNodes).forEach(([name, node]) => {
+        const owners = [];
+        node.lines.forEach(({lc, order}) => {
+            const owner = mapState[lc + "-" + order];
+            if(owner !== undefined && owner !== -1) owners.push(owner);
+        });
+        const uniq = [...new Set(owners)];
+        if(uniq.length === 0){
+            const lineCol = STATIONS_DB.find(s=>s.lc===node.lines[0].lc).color;
+            node.marker.setIcon(L.divIcon({ className: 'empty-icon', html: '<div style="width:'+(rad*2)+'px; height:'+(rad*2)+'px; background:#fff; border:2px solid '+lineCol+'; border-radius:50%;"></div>', iconSize:[rad*2,rad*2], iconAnchor:[rad,rad] }));
+        } else if(uniq.length === 1){
+            const p = players[uniq[0]];
+            node.marker.setIcon(L.divIcon({ className: 'kamon-icon', html: '<div style="background:'+p.color+'; border:2px solid #fff; width:'+(rad*4)+'px; height:'+(rad*4)+'px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:'+(rad*2)+'px; color:white;">'+p.icon+'</div>', iconSize:[rad*4,rad*4], iconAnchor:[rad*2,rad*2] }));
+        } else {
+            const shown = uniq.slice(0,3).map(i=>players[i]);
+            const html = '<div style="display:flex; gap:2px; background:rgba(0,0,0,.35); padding:2px; border-radius:12px; border:1px solid rgba(255,255,255,.4);">' + 
+                shown.map(p=>'<div style="background:'+p.color+'; width:'+(rad*3)+'px; height:'+(rad*3)+'px; border-radius:50%; border:1px solid #fff; display:flex; align-items:center; justify-content:center; font-size:'+(rad*1.6)+'px; color:white;">'+p.icon+'</div>').join('') + 
+                '</div>';
+            node.marker.setIcon(L.divIcon({ className: 'multi-icon', html, iconSize:[rad*10,rad*4], iconAnchor:[rad*5,rad*2] }));
+        }
+    });
+}
+function updateMapVisuals() {
+    if(!map) return;
+    const top = discardPile[discardPile.length-1];
+    document.getElementById('map-container').classList.toggle('teiden-mode', top && top.type==='teiden');
+    ['JY','M','G','T'].forEach(lc => {
+        const layer = geoJsonLayers[lc];
+        if(!layer) return;
+        const hasOwner = Object.keys(mapState).some(k => k.startsWith(lc) && mapState[k] !== -1);
+        const isGuno = (lastHits[lc] !== undefined);
+        layer.setStyle({ weight: isGuno ? 8 : (hasOwner ? 6 : 4), opacity: isGuno ? 1.0 : (hasOwner ? 0.8 : 0.2), color: isGuno ? "gold" : STATIONS_DB.find(s=>s.lc===lc).color });
+    });
 }

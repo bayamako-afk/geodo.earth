@@ -1,0 +1,8 @@
+/* ボトムドロワー型ログ */
+.panel-log { 
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 35vh; 
+    background: #222; border-top: 2px solid gold; z-index: 9999; 
+    transition: transform 0.3s ease; transform: translateY(100%);
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5); padding: 15px; display: flex; flex-direction: column;
+}
+body.show-log .panel-log { transform: translateY(0); }
