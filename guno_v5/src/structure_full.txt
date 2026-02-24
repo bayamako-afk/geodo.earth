@@ -1,0 +1,71 @@
+フォルダー パスの一覧:  ボリューム Windows
+ボリューム シリアル番号は EE65-F2C6 です
+C:.
+|   app.css
+|   index.html
+|   structure.txt
+|   structure_full.txt
+|   
++---assets
+|   +---cards
+|   |       bg_G.png
+|   |       bg_JY.png
+|   |       bg_M.png
+|   |       bg_T.png
+|   |       GUNO_BACK.png
+|   |       
+|   \---sounds
+|           blackout.mp3
+|           draw.mp3
+|           guno.mp3
+|           Motion-Swish07-1.mp3
+|           Motion-Swish07-3.mp3
+|           Motion-Swish07-4.mp3
+|           Motion-Swish07-5.mp3
+|           Motion-Swish07-6.mp3
+|           Motion-Swish07-7.mp3
+|           play.mp3
+|           play2.mp3
+|           ニュースタイトル表示4.mp3
+|           大勢で拍手.mp3
+|           対戦カード表示1.mp3
+|           打撃3 (1).mp3
+|           打撃3.mp3
+|           打撃6.mp3
+|           短い音-ホ゛ヨヨン.mp3
+|           電気バチバチ.mp3
+|           
++---css
+|       app.css
+|       cards.css
+|       layout_v405.css
+|       
++---geojson
+|   +---lines
+|   |       jr-east-yamanote.geojson
+|   |       tokyo-metro-ginza.geojson
+|   |       tokyo-metro-hanzomon.geojson
+|   |       tokyo-metro-marunouchi.geojson
+|   |       tokyo-metro-namboku.geojson
+|   |       tokyo-metro-tozai.geojson
+|   |       tokyo-metro-yurakucho.geojson
+|   |       
+|   \---stations
+|           jr-east-yamanote_stations.geojson
+|           tokyo-metro-ginza_stations.geojson
+|           tokyo-metro-hanzomon_stations.geojson
+|           tokyo-metro-marunouchi_stations.geojson
+|           tokyo-metro-namboku_stations.geojson
+|           tokyo-metro-tozai_stations.geojson
+|           tokyo-metro-yurakucho_stations.geojson
+|           
+\---js
+        cards_gallery.js
+        guno_core.js
+        guno_v5.js
+        main.js
+        map.js
+        stationDB.js
+        stations_tokyo_4lines.js
+        ui_v405.js
+        

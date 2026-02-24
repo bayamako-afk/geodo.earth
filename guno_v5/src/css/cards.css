@@ -36,12 +36,7 @@
 .panel-slots .map-grid{
   transform-origin: top center;
 }
-/* 右が足りない環境で自動で少し縮む（安全策） */
-@media (min-width:1024px){
-  .panel-slots .map-grid{
-    transform: scale(0.92);
-  }
-}
+
 
 .slot{
   background:#2a2a2a;
