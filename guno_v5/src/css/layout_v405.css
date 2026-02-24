@@ -58,42 +58,53 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
 
 /* スマホ全般 */
 @media screen and (max-width: 1023px) {
-    body { overflow-y: auto; height: auto; font-size: 16px; padding: 10px; }
-    .game-container { display: flex; flex-direction: column; height: auto; gap: 10px; }
+
+    /* ヘッダーを最上端にするため body padding を削除 */
+    body {
+        overflow-y: auto;
+        height: auto;
+        font-size: 16px;
+        padding: 0;   /* ← 重要 */
+    }
+
+    /* 余白はコンテンツ側へ移動 */
+    .game-container {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+        padding: 10px;  /* ← ここへ移動 */
+    }
+
     .panel { padding: 12px; }
-    
-    /* ヘッダーボタン */
-    .header-buttons button { font-size: 16px; padding: 10px 16px; min-height: 44px; }
-    
+
     /* カードサイズ */
     :root {
         --card-w: clamp(50px, 12vw, 80px);
         --card-h: calc(var(--card-w) * 1.5);
     }
-    
-    /* DECK/LAST */
+
     #draw-pile-visual {
-     width: var(--card-w);
-     height: var(--card-h);
+        width: var(--card-w);
+        height: var(--card-h);
     }
-    
-    /* スロットグリッド */
-    @supports (width: 1cqw) {
-        .map-grid {
-            --card-w: clamp(45px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols) * 0.8), 72px);
-        }
-        @container (min-width: 500px) { .map-grid { --cols: 7; } }
-        @container (min-width: 350px) and (max-width: 499px) { .map-grid { --cols: 6; } }
-        @container (max-width: 349px) { .map-grid { --cols: 5; } }
-    }
-    
+
     /* 地図 */
-    #map { height: 30vh; min-height: 250px; }
-    
-    /* プレーヤーボックス */
-    .player-box { padding: 10px; margin-bottom: 10px; }
-    
-    /* タッチデバイスでは @media (hover: hover) が自動的に適用されないため、ホバー効果は無効化される */
+    #map {
+        height: 30vh;
+        min-height: 250px;
+    }
+
+    .player-box {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* ヘッダーは上端ピタ */
+    body > .header {
+        margin: 0;
+        border-radius: 0;
+    }
 }
 
 /* スマホ横向き */
@@ -116,7 +127,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
 
 /* 小型スマホ */
 @media screen and (max-width: 480px) {
-    body { font-size: 14px; padding: 5px; }
+    body { font-size: 14px; }
     .header-buttons button { font-size: 14px; padding: 8px 12px; }
     .panel { padding: 8px; }
     :root {
