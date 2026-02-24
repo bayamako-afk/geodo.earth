@@ -265,7 +265,7 @@ function renderAll() {
         if (top.type === 'teiden') {
             // 停電カードもオーバーレイで生成
             document.getElementById('discard-pile').innerHTML = `
-                <div class="card card-large guno-card guno-card--teiden" data-line="${top.lc}" style="--w:72px; margin:0;">
+                <div class="card card-large guno-card guno-card--teiden" data-line="${top.lc}" style="--w:var(--card-w); margin:0;">
                     <div class="teiden-icon" aria-label="停電">⚡</div>
                     <div class="teiden-sub">停電</div>
                     <div class="teiden-en">Blackout</div>
@@ -279,7 +279,7 @@ function renderAll() {
                 const shortNameClass = st.st_ja.replace('★', '').length === 2 ? 'short-name' : '';
                 
                 document.getElementById('discard-pile').innerHTML = `
-                    <div class="card card-large guno-card" data-line="${top.lc}" style="--w:72px; margin:0;">
+                    <div class="card card-large guno-card" data-line="${top.lc}" style="--w:var(--card-w); margin:0;">
                         <div class="corner corner--tl">
                             <div class="corner-bg"></div>
                             <div class="corner-num">${top.order}</div>
