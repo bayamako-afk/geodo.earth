@@ -304,3 +304,19 @@
   width: var(--card-w);
   height: calc(var(--card-w) * 88 / 63);
 }
+
+/* === FIX: スロット内の実カード（停電/駅）を手札サイズに揃える === */
+.map-grid .slot.active.guno-card,
+#map-blackout .slot.active.guno-card{
+  /* 手札と同じ基準幅 */
+  --w: var(--card-w);
+
+  /* .slot の aspect-ratio(2/3) を無効化し、guno-card比率(88/63)に固定 */
+  aspect-ratio: auto !important;
+  width: var(--card-w) !important;
+  height: calc(var(--card-w) * 88 / 63) !important;
+
+  /* グリッドのセルに引き伸ばされないよう中央寄せ */
+  justify-self: center;
+  align-self: center;
+}
