@@ -167,3 +167,33 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
     height: 100% !important;       /* Leaflet安定化 */
   }
 }
+
+/* ===== Map pseudo fullscreen (mobile fallback) ===== */
+body.map-only .header,
+body.map-only #dashboard-container,
+body.map-only #slots-container,
+body.map-only section,
+body.map-only #log-container,
+body.map-only #result-overlay{
+  display: none !important;
+}
+
+body.map-only .game-container{
+  display: block !important;
+  height: 100dvh !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.map-only #map-container{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+  border-radius: 0 !important;
+}
+
+body.map-only #map{
+  width: 100% !important;
+  height: 100% !important;
+}

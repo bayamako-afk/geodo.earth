@@ -32,15 +32,54 @@ function initMapComponent() {
     L.DomEvent.disableClickPropagation(btn);
 
     btn.onclick = function () {
-      const mapPanel = document.querySelector('.panel-map');
+      function enterMapFullscreen(){
+		const mapPanel = document.querySelector('#map-container');
 
-      if (!document.fullscreenElement) {
-        mapPanel.requestFullscreen().then(() => {
-          setTimeout(() => map.invalidateSize(), 300);
-        });
-      } else {
-        document.exitFullscreen();
-      }
+		// まず擬似フルスクリーンをON（確実に効く）
+		document.body.classList.add('map-only');
+		setTimeout(() => map.invalidateSize(), 200);
+
+		// Fullscreen API が使える環境だけ“本物”も試す
+		const req = mapPanel.requestFullscreen
+		|| mapPanel.webkitRequestFullscreen
+		|| mapPanel.msRequestFullscreen;
+
+		if (req) {
+		try {
+		req.call(mapPanel);
+		} catch(e) {
+      // 失敗しても擬似FSがあるのでOK
+    }
+  }
+}
+
+function exitMapFullscreen(){
+  document.body.classList.remove('map-only');
+  setTimeout(() => map.invalidateSize(), 200);
+
+  const exit = document.exitFullscreen
+    || document.webkitExitFullscreen
+    || document.msExitFullscreen;
+
+  if (exit) {
+    try { exit.call(document); } catch(e) {}
+  }
+}
+
+// ボタン押下
+btn.onclick = function(){
+  const isPseudo = document.body.classList.contains('map-only');
+  if (!isPseudo) enterMapFullscreen();
+  else exitMapFullscreen();
+};
+
+// ESC/戻るなどでフルスクリーン解除された時も復帰
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) {
+    document.body.classList.remove('map-only');
+    setTimeout(() => map.invalidateSize(), 200);
+  }
+});
     };
 
     return btn;
