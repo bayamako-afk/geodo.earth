@@ -21,5 +21,10 @@ function applyMobileHeaderOffset(){
   if (!header || !gc) return;
   gc.style.marginTop = header.offsetHeight + 'px';
 }
+function applyMobileHeaderHeight(){
+  if (window.innerWidth > 1023) return;
+  const h = document.querySelector('body > .header')?.offsetHeight || 72;
+  document.documentElement.style.setProperty('--mobile-header-h', h + 'px');
+}
 window.addEventListener('load', applyMobileHeaderOffset);
 window.addEventListener('resize', applyMobileHeaderOffset);

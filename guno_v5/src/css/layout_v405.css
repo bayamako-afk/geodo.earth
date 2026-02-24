@@ -209,33 +209,7 @@ body.map-only #map{
   height: 100% !important;
 }
 
-/* === Mobile fix: header must be in normal flow at very top === */
-@media (max-width: 1023px){
 
-  /* ヘッダーを絶対に通常フローへ戻す（中段化の原因を潰す） */
-  body > .header{
-    position: static !important;
-    inset: auto !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    z-index: auto !important;
-    margin: 0 0 8px 0 !important;
-  }
-
-  /* 念のため、game-container が上に食い込む系を潰す */
-  .game-container{
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    transform: none !important;
-  }
-  
-  @media (max-width: 1023px){
-  .header{ top: 0 !important; }
-  }
-}
 
 /* ===== Mobile header absolute top fix (hard override) ===== */
 @media (max-width:1023px){
@@ -278,6 +252,38 @@ body.map-only #map{
   /* ヘッダーの高さ分だけ下げる（被り防止） */
   .game-container{
     margin-top: 76px !important; /* ←仮。後で自動化も可 */
+    padding: 10px !important;
+  }
+}
+
+/* ===== Mobile Header FINAL (Android含め確実に上段固定) ===== */
+@media (max-width:1023px){
+
+  /* bodyの余白はゼロ。余白はgame-container側へ */
+  html, body{
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ヘッダーを必ず最上段に固定 */
+  body > .header{
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 99999 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* ヘッダー高さ分だけ下に押し下げる（JSで自動計算する） */
+  body{
+    padding-top: var(--mobile-header-h, 72px) !important;
+  }
+
+  /* 画面内の余白はここで作る */
+  .game-container{
+    margin: 0 !important;
     padding: 10px !important;
   }
 }
