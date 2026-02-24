@@ -24,8 +24,6 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
     .panel-slots { grid-column: 2; grid-row: 1; overflow: auto; min-height: 0; }
     .panel-map { grid-column: 3; grid-row: 1; height: 100%; overflow: hidden; min-width: 0; min-height: 0; }
     
-
-    
     #players-area { overflow-y: auto; overflow-x: visible; min-height: 0; flex: 1; }
     #map { min-height: 0; }
 }
@@ -55,57 +53,6 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
 #btn-mode.btn-auto-active { background: #c62828 !important; border-color: #f44336 !important; }
 .station-label { background: transparent; border: none; color: #fff; font-size: 10px; font-weight: bold; text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000; pointer-events: none; }
 .station-label span[style*="color:gold"] { font-size: 14px; color: #FFD700 !important; text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000; }
-
-/* スマホ全般 */
-@media screen and (max-width: 1023px) {
-
-    /* ヘッダーを最上端にするため body padding を削除 */
-    body {
-        overflow-y: auto;
-        height: auto;
-        font-size: 16px;
-        padding: 0;   /* ← 重要 */
-    }
-
-    /* 余白はコンテンツ側へ移動 */
-    .game-container {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        gap: 10px;
-        padding: 10px;  /* ← ここへ移動 */
-    }
-
-    .panel { padding: 12px; }
-
-    /* カードサイズ */
-    :root {
-        --card-w: clamp(50px, 12vw, 80px);
-        --card-h: calc(var(--card-w) * 1.5);
-    }
-
-    #draw-pile-visual {
-        width: var(--card-w);
-        height: var(--card-h);
-    }
-
-    /* 地図 */
-    #map {
-        height: 30vh;
-        min-height: 250px;
-    }
-
-    .player-box {
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-
-    /* ヘッダーは上端ピタ */
-    body > .header {
-        margin: 0;
-        border-radius: 0;
-    }
-}
 
 /* スマホ横向き */
 @media screen and (max-width: 1023px) and (orientation: landscape) {
@@ -154,7 +101,7 @@ body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #1a1a
     align-items: stretch;          /* 子panelを縦に伸ばす */
   }
 
-  /* 3列の各パネルも“縦いっぱい”に揃える */
+  /* 3列の各パネルも"縦いっぱい"に揃える */
   .game-container > .panel{
     height: 100%;
     display: flex;
@@ -209,60 +156,22 @@ body.map-only #map{
   height: 100% !important;
 }
 
-
-
-/* ===== Mobile header absolute top fix (hard override) ===== */
-@media (max-width:1023px){
-
-  html, body{
-    margin:0 !important;
-    padding:0 !important;
-  }
-
-  body > .header{
-    margin:0 !important;
-    padding:10px 15px !important;
-    border-radius:0 !important;
-  }
-
-  .game-container{
-    margin:0 !important;
-    padding:10px !important;
-  }
-}
-
-/* ===== Android mobile: header always at top (fixed) ===== */
-@media (max-width:1023px){
-
+/* ===== スマホ全般：ヘッダーを最上段に固定 ===== */
+@media (max-width: 1023px){
+  
+  /* bodyの余白はゼロ */
   html, body{
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  body > .header{
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 99999 !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-  }
-
-  /* ヘッダーの高さ分だけ下げる（被り防止） */
-  .game-container{
-    margin-top: 76px !important; /* ←仮。後で自動化も可 */
-    padding: 10px !important;
-  }
-}
-
-/* ===== Mobile Header FINAL (Android含め確実に上段固定) ===== */
-@media (max-width:1023px){
-
-  /* bodyの余白はゼロ。余白はgame-container側へ */
-  html, body{
-    margin: 0 !important;
-    padding: 0 !important;
+  /* bodyの基本設定 */
+  body {
+    overflow-y: auto;
+    height: auto;
+    font-size: 16px;
+    /* ヘッダー高さ分だけ上部に余白を作る */
+    padding-top: 76px !important;
   }
 
   /* ヘッダーを必ず最上段に固定 */
@@ -273,17 +182,41 @@ body.map-only #map{
     right: 0 !important;
     z-index: 99999 !important;
     margin: 0 !important;
+    padding: 10px 15px !important;
     border-radius: 0 !important;
   }
 
-  /* ヘッダー高さ分だけ下に押し下げる（JSで自動計算する） */
-  body{
-    padding-top: var(--mobile-header-h, 72px) !important;
-  }
-
-  /* 画面内の余白はここで作る */
+  /* ゲームコンテナの余白 */
   .game-container{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 10px;
     margin: 0 !important;
     padding: 10px !important;
+  }
+
+  .panel { padding: 12px; }
+
+  /* カードサイズ */
+  :root {
+    --card-w: clamp(50px, 12vw, 80px);
+    --card-h: calc(var(--card-w) * 1.5);
+  }
+
+  #draw-pile-visual {
+    width: var(--card-w);
+    height: var(--card-h);
+  }
+
+  /* 地図 */
+  #map {
+    height: 30vh;
+    min-height: 250px;
+  }
+
+  .player-box {
+    padding: 10px;
+    margin-bottom: 10px;
   }
 }
