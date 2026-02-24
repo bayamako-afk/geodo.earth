@@ -1,79 +1,180 @@
 :root{
-  --jy-color:#00AA00; --m-color:#F62E36; --g-color:#FF9500; --t-color:#009BBF;
-  --card-w: clamp(42px, 4.2vw, 78px);
-  --card-h: calc(var(--card-w) * 1.5);
-  --card-gap: 8px;
-
+  /* 背景画像：src/assets/cards/ に置く */
   --bg-jy: url("../assets/cards/bg_JY.png");
   --bg-m:  url("../assets/cards/bg_M.png");
   --bg-g:  url("../assets/cards/bg_G.png");
   --bg-t:  url("../assets/cards/bg_T.png");
 }
 
-.card{
-  width:var(--card-w); height:var(--card-h);
-  border-radius:8px;
-  background:#fff;
-  border:2px solid #666;
-  background-size:cover;
-  background-position:center;
-  box-shadow:0 2px 10px rgba(0,0,0,.35);
-  display:inline-block;
-  vertical-align:top;
+/* slots area */
+#slots-area{ display:grid; grid-template-columns:1fr; gap:12px; }
+.line-wrapper{ min-width:0; }
+.line-header{
+  font-weight:900;
+  font-size:13px;
+  margin:0 0 6px;
+  padding:3px 8px;
+  border-radius:6px;
+  color:#fff;
+  text-align:center;
 }
 
+/* “10駅を横一列” を優先する（改行させない） */
+.map-grid{
+  --cols: 10;
+  display:grid;
+  gap: var(--card-gap);
+  justify-content:center;
+  grid-template-columns: repeat(var(--cols), minmax(0, var(--card-w)));
+  grid-auto-rows: var(--card-h);
+}
+
+/* 収まりきらない時だけ縮小する（右枠を削らない） */
+.panel-slots{
+  overflow:hidden; /* v4.05っぽく “枠内に収める” */
+}
+.panel-slots .map-grid{
+  transform-origin: top center;
+}
+/* 右が足りない環境で自動で少し縮む（安全策） */
+@media (min-width:1024px){
+  .panel-slots .map-grid{
+    transform: scale(0.92);
+  }
+}
+
+.slot{
+  background:#2a2a2a;
+  border:1px solid #3d3d3d;
+  border-radius:6px;
+  aspect-ratio: 2 / 3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:800;
+  position:relative;
+  overflow:hidden;
+  text-shadow: 2px 2px 4px rgba(0,0,0,.9);
+}
+
+/* hand card base */
+.card{
+  display:inline-block;
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius:6px;
+  background:#fff;
+  border:2px solid #666;
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position:center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  vertical-align: top;
+}
 .card.playable{
   cursor:pointer;
   border-color:#4CAF50;
-  box-shadow:0 0 14px rgba(76,175,80,.75);
+  box-shadow: 0 0 14px rgba(76,175,80,.75);
 }
-.card.unplayable{ filter:grayscale(100%) brightness(.55); opacity:.6; }
+.card.unplayable{
+  filter: grayscale(100%) brightness(0.5);
+  opacity: .55;
+}
 
+/* ===== Overlay Card (v4.05相当：最低限 “背景が出て、数字と駅名が載る” ) ===== */
 .guno-card{
-  --line:#00AA00;
+  --w: var(--card-w);
+  --h: calc(var(--w) * 88 / 63);
+  --line: var(--jy-color);
   --bg: var(--bg-jy);
-  width:var(--card-w);
-  height:calc(var(--card-w) * 88 / 63);
-  border-radius:calc(var(--card-w) * .07);
+
+  position:relative;
+  width: var(--w);
+  height: var(--h);
+  border-radius: calc(var(--w) * 0.06);
   overflow:hidden;
-  background-image:var(--bg);
-  background-size:cover;
+
+  background-image: var(--bg);
+  background-size: cover;
   background-position:center;
   background-repeat:no-repeat;
-  border:2px solid rgba(255,255,255,.08);
-  box-shadow:0 2px 10px rgba(0,0,0,.35);
-  position:relative;
 }
 
-.guno-card[data-line="JY"]{ --line:var(--jy-color); --bg:var(--bg-jy); }
-.guno-card[data-line="M"] { --line:var(--m-color);  --bg:var(--bg-m);  }
-.guno-card[data-line="G"] { --line:var(--g-color);  --bg:var(--bg-g);  }
-.guno-card[data-line="T"] { --line:var(--t-color);  --bg:var(--bg-t);  }
+.guno-card[data-line="JY"]{ --line: var(--jy-color); --bg: var(--bg-jy); }
+.guno-card[data-line="M"] { --line: var(--m-color);  --bg: var(--bg-m); }
+.guno-card[data-line="G"] { --line: var(--g-color);  --bg: var(--bg-g); }
+.guno-card[data-line="T"] { --line: var(--t-color);  --bg: var(--bg-t); }
 
-/* 角の番号（最低限） */
+/* corners (v4.05風の簡易版) */
 .guno-card .corner{
-  position:absolute; top:6px; left:6px;
-  width:28px; height:28px;
-  border-radius:50%;
-  background:var(--line);
-  color:#fff;
-  font-weight:900;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  position:absolute;
+  width: calc(var(--w) * 0.55);
+  height: calc(var(--w) * 0.55);
 }
-.guno-card .name{
-  position:absolute; left:8px; right:8px; bottom:6px;
-  font-size:11px;
+.guno-card .corner-bg{
+  position:absolute;
+  inset:0;
+  background: var(--line);
+  border-radius:50%;
+  opacity:.95;
+}
+.guno-card .corner-num{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
   font-weight:900;
-  color:#111;
-  background:rgba(255,255,255,.86);
-  border-radius:6px;
-  padding:3px 6px;
+  font-size: calc(var(--w) * 0.22);
+  color:#fff;
+  text-shadow:
+    -2px -2px 0 #000, 0 -2px 0 #000, 2px -2px 0 #000,
+    -2px 0 0 #000,                 2px 0 0 #000,
+    -2px 2px 0 #000,  0 2px 0 #000, 2px 2px 0 #000;
+}
+.guno-card .corner--tl{ top: calc(var(--w) * -0.18); left: calc(var(--w) * -0.18); }
+.guno-card .corner--br{ bottom: calc(var(--w) * -0.18); right: calc(var(--w) * -0.18); }
+.guno-card .corner--br .corner-num{ transform:translate(-50%,-50%) rotate(180deg); }
+
+/* center text */
+.guno-card .center{
+  position:absolute;
+  left:50%;
+  top:52%;
+  transform:translate(-50%,-50%);
+  width:86%;
   text-align:center;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  pointer-events:none;
+}
+.guno-card .station-jp{
+  font-weight:900;
+  font-size: calc(var(--w) * 0.14);
+  color:#000;
+  text-shadow:
+    -2px -2px 0 #fff, 0 -2px 0 #fff, 2px -2px 0 #fff,
+    -2px 0 0 #fff,               2px 0 0 #fff,
+    -2px 2px 0 #fff,  0 2px 0 #fff, 2px 2px 0 #fff;
+}
+.guno-card .station-en{
+  margin-top:2px;
+  font-weight:800;
+  font-size: calc(var(--w) * 0.06);
+  color:#000;
+  text-shadow:
+    -1.5px -1.5px 0 #fff, 0 -1.5px 0 #fff, 1.5px -1.5px 0 #fff,
+    -1.5px 0 0 #fff,                  1.5px 0 0 #fff,
+    -1.5px 1.5px 0 #fff,  0 1.5px 0 #fff, 1.5px 1.5px 0 #fff;
+}
+.guno-card .route-code{
+  position:absolute;
+  left: calc(var(--w) * 0.12);
+  bottom: calc(var(--w) * 0.08);
+  font-weight:900;
+  font-size: calc(var(--w) * 0.07);
+  color: var(--line);
+  text-shadow:
+    -1.5px -1.5px 0 #000, 0 -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 0 0 #000,                  1.5px 0 0 #000,
+    -1.5px 1.5px 0 #000,  0 1.5px 0 #000, 1.5px 1.5px 0 #000;
 }

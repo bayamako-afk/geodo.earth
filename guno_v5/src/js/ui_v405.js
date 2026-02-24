@@ -1,3 +1,8 @@
+// ========================================
+// GUNO v5 UI (v4.05互換)
+// 完全なオーバーレイカード生成対応版
+// ========================================
+
 function setHint(text){
   const el = document.getElementById("hint-area");
   if (el) el.textContent = text;
@@ -8,11 +13,12 @@ function renderDeck(){
   const deckEl = document.getElementById("draw-pile-visual");
   if (deckEl){
     deckEl.className = "card";
-    deckEl.style.backgroundImage = ""; // 裏面があればここに
+    deckEl.style.backgroundImage = "url('https://geodo.earth/guno_v2/cards/GUNO_BACK.png')";
+    deckEl.style.backgroundSize = "contain";
+    deckEl.style.backgroundRepeat = "no-repeat";
+    deckEl.style.backgroundPosition = "center";
     deckEl.textContent = "";
   }
-  // DECK数は小さく表示（v4.05風）
-  // （index.html側で small + div を持ってるので不要でもOK）
 }
 
 function renderDiscard(){
@@ -21,27 +27,65 @@ function renderDiscard(){
   if (!el) return;
   el.innerHTML = "";
   if (!S.discard) return;
-  el.appendChild(makeCardNode(S.discard, false));
+  
+  // LASTカードは72pxで表示
+  const cardNode = makeCardHTML(S.discard, false, 72);
+  el.innerHTML = cardNode;
 }
 
+/**
+ * カードHTML生成（完全版オーバーレイ対応）
+ * @param {Object} card - カードデータ
+ * @param {boolean} playable - プレイ可能かどうか
+ * @param {number} width - カード幅（px）、未指定の場合はCSS変数を使用
+ * @returns {string} カードのHTML文字列
+ */
+function makeCardHTML(card, playable, width = null){
+  const widthStyle = width ? `--w:${width}px;` : `--w:var(--card-w);`;
+  const playableClass = playable ? 'playable' : '';
+  
+  // 停電カード
+  if (card.type === 'teiden') {
+    return `
+      <div class="card guno-card guno-card--teiden ${playableClass}" data-line="${card.line}" style="${widthStyle} margin:0;">
+        <div class="teiden-icon" aria-label="停電">⚡</div>
+        <div class="teiden-sub">停電</div>
+        <div class="teiden-en">Blackout</div>
+      </div>
+    `;
+  }
+  
+  // 駅カード
+  // 2文字駅名の場合はshort-nameクラスを追加（★を除外して判定）
+  const shortNameClass = card.ja.replace('★', '').length === 2 ? 'short-name' : '';
+  
+  return `
+    <div class="card guno-card ${playableClass}" data-line="${card.line}" style="${widthStyle} margin:0;">
+      <div class="corner corner--tl">
+        <div class="corner-bg"></div>
+        <div class="corner-num">${card.n}</div>
+      </div>
+      <div class="corner corner--br">
+        <div class="corner-bg"></div>
+        <div class="corner-num corner-num--rot">${card.n}</div>
+      </div>
+      <div class="center">
+        <div class="station-jp ${shortNameClass}">${card.ja}</div>
+        <div class="station-en">${card.en}</div>
+      </div>
+      <div class="route-code">${card.line}</div>
+    </div>
+  `;
+}
+
+/**
+ * カードノード生成（DOM要素版）
+ * 互換性のために残しているが、内部ではHTMLを生成してinnerHTMLで挿入
+ */
 function makeCardNode(card, playable){
   const wrap = document.createElement("div");
-  wrap.className = "guno-card";
-  wrap.dataset.line = card.line;
-
-  const corner = document.createElement("div");
-  corner.className = "corner";
-  corner.textContent = String(card.n);
-
-  const name = document.createElement("div");
-  name.className = "name";
-  name.textContent = window.GUNO.isJapanese ? card.ja : card.en;
-
-  wrap.appendChild(corner);
-  wrap.appendChild(name);
-
-  if (playable) wrap.classList.add("playable");
-  return wrap;
+  wrap.innerHTML = makeCardHTML(card, playable);
+  return wrap.firstElementChild;
 }
 
 function renderPlayers(){
@@ -70,7 +114,7 @@ function renderPlayers(){
       const ok = (S.current===pi) && canPlay(c);
       const node = makeCardNode(c, ok);
       node.style.cursor = ok ? "pointer" : "default";
-      if (!ok) node.style.filter = "grayscale(100%) brightness(.55)";
+      if (!ok) node.classList.add("unplayable");
       node.onclick = () => {
         if (S.current!==pi) return;
         if (playCard(pi, hi)){
@@ -106,7 +150,7 @@ function renderSlots(){
     const lc = line.line_code;
     const h = document.getElementById(headerMap[lc]);
     const g = document.getElementById(gridMap[lc]);
-    if (h) h.textContent = `[${lc}]`; // ←長い路線名でズレる問題を根絶
+    if (h) h.textContent = `[${lc}]`; // 短い表記
     if (!g) continue;
 
     g.innerHTML = "";
@@ -115,10 +159,16 @@ function renderSlots(){
       slot.className = "slot";
       const placed = S.slots[lc][n];
       if (placed){
-        slot.appendChild(makeCardNode(placed, false));
+        // 配置されたカードを表示
+        const cardHTML = makeCardHTML(placed, false);
+        slot.innerHTML = cardHTML;
+        slot.classList.add("active");
       }else{
+        // 空スロット
+        const station = line.stations[n-1];
+        const stName = window.GUNO.isJapanese ? station.ja : station.en;
         slot.innerHTML = `<div style="font-size:16px;">${n}</div>
-          <div style="font-size:10px; opacity:.9;">★${window.GUNO.isJapanese ? line.stations[n-1].ja : line.stations[n-1].en}</div>`;
+          <div style="font-size:10px; opacity:.9;">★${stName}</div>`;
       }
       g.appendChild(slot);
     }
