@@ -13,3 +13,13 @@ window.addEventListener('resize', safeInvalidateMap);
 
 // Render the demo card grid section (optional)
 document.addEventListener('DOMContentLoaded', renderCards);
+
+function applyMobileHeaderOffset(){
+  if (window.innerWidth > 1023) return;
+  const header = document.querySelector('body > .header');
+  const gc = document.querySelector('.game-container');
+  if (!header || !gc) return;
+  gc.style.marginTop = header.offsetHeight + 'px';
+}
+window.addEventListener('load', applyMobileHeaderOffset);
+window.addEventListener('resize', applyMobileHeaderOffset);
