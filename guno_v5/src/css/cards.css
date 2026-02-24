@@ -35,7 +35,7 @@
   border-radius: 4px;
 }
 #draw-pile-visual { 
-    width: var(--card-w); height: var(--card-h); background-image: url('../assets/cards/GUNO_BACK.png'); 
+    width: var(--card-w); height: calc(var(--card-w) * 88 / 63);  background-image: url('../assets/cards/GUNO_BACK.png'); 
     background-size: contain; background-repeat: no-repeat; background-position: center;
     background-color: #444; border: 2px solid #666; border-radius: 4px; 
     display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; color: white; text-shadow: 1px 1px 3px #000;
