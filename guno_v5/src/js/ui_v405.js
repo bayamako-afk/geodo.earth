@@ -227,13 +227,26 @@ function updateModeButton() {
 }
 function toggleLog(){ document.body.classList.toggle('show-log'); safeInvalidateMap(); }
 function setHint(text, level){
+  const msg = text || "";
+
+  // 新：ヘッダー直下ステータスバー
   const bar = document.getElementById("statusBar");
-  if(bar){
-    bar.textContent = text || "";
+  if (bar){
+    bar.textContent = msg;
     bar.classList.remove("is-warning", "is-danger");
-    if(level === "warning") bar.classList.add("is-warning");
-    if(level === "danger")  bar.classList.add("is-danger");
+    if (level === "warning") bar.classList.add("is-warning");
+    if (level === "danger")  bar.classList.add("is-danger");
+    return;
   }
+
+  // 旧：従来ヒントエリア（残っている場合だけ）
+  const old = document.getElementById("hint-area");
+  if (old){
+    old.textContent = msg;
+    return;
+  }
+
+  // どちらも無い場合：何もしない（落とさない）
 }
 
 function renderAll() {
