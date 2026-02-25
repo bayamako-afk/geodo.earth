@@ -156,3 +156,7 @@ function updateMapVisuals() {
 document.addEventListener("fullscreenchange", () => {
   setTimeout(() => map.invalidateSize(), 300);
 });
+
+setTimeout(() => {
+  map.invalidateSize();
+}, 100);

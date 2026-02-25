@@ -151,24 +151,38 @@ function onResize() {
 function boot() {
   clearMapOnly();
 
-  // ログはデフォルト非表示
   document.body.classList.remove("show-log");
 
-  // Optional demo card grid
   if (typeof renderCards === "function") {
     try { renderCards(); } catch (e) {}
   }
 
-  // 先にトップバーを正しい場所へ
   relocateTopBarsForViewport();
-
-  // Init map then start
-  initMapComponent();
-  startGame();
-
-  // 初期レイアウト調整（mobile fixedバー高さ反映）
   applyMobileTopBars();
-  setTimeout(forceMapResize, 250);
+
+  // レイアウト確定後に map 初期化
+  setTimeout(() => {
+
+    initMapComponent();
+    startGame();
+
+    // さらに少し待ってから確実にサイズ再計算
+    setTimeout(() => {
+
+      if (window.map && typeof window.map.invalidateSize === "function") {
+        window.map.invalidateSize();
+      }
+
+      // 初期位置を再設定（重要）
+      if (window.map && typeof window.map.setView === "function") {
+        const center = window.map.getCenter();
+        const zoom = window.map.getZoom();
+        window.map.setView(center, zoom);
+      }
+
+    }, 120);
+
+  }, 80);
 }
 
 // DOM準備後に起動
