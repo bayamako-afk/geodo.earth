@@ -247,3 +247,20 @@ body{
     min-height: 0 !important;
   }
 }
+
+.status-bar{
+  margin: 6px 10px 8px 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #141a14;
+  border: 1px dashed #3ddc84;
+  color: #8cffb0;
+  font-weight: 600;
+}
+
+@media (min-width:1024px){
+  /* PCでは3列幅に合わせたいなら中央幅に寄せる */
+  .status-bar{
+    max-width: 100%;
+  }
+}
