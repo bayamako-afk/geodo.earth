@@ -150,7 +150,35 @@ function onResize() {
 
 function boot() {
   clearMapOnly();
+  function liftOverlayToBody() {
+  const overlay = document.getElementById("result-overlay");
+  if (!overlay) return;
 
+  // すでにbody直下なら何もしない
+  if (overlay.parentElement === document.body) return;
+
+  // bodyの末尾に移動（常に最前面の土台になる）
+  document.body.appendChild(overlay);
+}
+
+function boot() {
+  clearMapOnly();
+
+  // ★ 追加：勝利オーバーレイはbody直下に置く（fixed崩れ防止）
+  liftOverlayToBody();
+
+  document.body.classList.remove("show-log");
+
+  if (typeof renderCards === "function") {
+    try { renderCards(); } catch (e) {}
+  }
+
+  initMapComponent();
+  startGame();
+
+  applyMobileTopBars();
+  setTimeout(forceMapResize, 250);
+}
   document.body.classList.remove("show-log");
 
   if (typeof renderCards === "function") {

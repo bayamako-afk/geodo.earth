@@ -165,3 +165,49 @@ body{
 
 /* ===== Utility ===== */
 .hidden{ display:none !important; }
+
+/* ===== Result / Victory Overlay ===== */
+#result-overlay{
+  display: none;                 /* 非表示がデフォルト */
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 999999 !important;
+
+  /* 中央寄せ */
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+
+  /* 画面外へのはみ出し対策 */
+  padding: 18px;
+}
+
+/* モーダル本体 */
+#result-overlay .result-card{
+  width: min(880px, 96vw);
+  max-height: 86vh;
+  overflow: auto;
+
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 18px;
+  padding: 18px 18px 22px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+}
+
+/* テーブル見やすく */
+#result-table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px;
+  font-weight: 700;
+}
+#result-table td, #result-table th{
+  border-bottom: 1px solid #222;
+  padding: 8px 10px;
+  text-align: left;
+}
