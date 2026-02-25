@@ -368,3 +368,61 @@
   justify-self: center;
   align-self: center;
 }
+
+/* ====== PATCH: GUNOカードを画像なし + 内側白面 + 超薄い山手ループ ====== */
+.guno-card{
+  background: var(--line) !important; /* 外枠＝路線色 */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; /* 擬似要素の重なり事故を防ぐ */
+}
+
+/* 内側の白面＋模様 */
+.guno-card::before{
+  content:"";
+  position:absolute;
+  inset: calc(var(--w) * 0.04);
+  border-radius: calc(var(--w) * 0.05);
+  z-index: 0;
+
+  /* 白面＋超薄いループ模様（印刷想定で薄め） */
+  background:
+    /* うっすら回路っぽい線（好みでOFF可） */
+    linear-gradient(90deg, rgba(0,0,0,0.03) 0.8px, transparent 0.8px) 0 0 / 18% 18%,
+    linear-gradient(0deg,  rgba(0,0,0,0.03) 0.8px, transparent 0.8px) 0 0 / 18% 18%,
+
+    /* 中央リング（山手ループ風） */
+    radial-gradient(circle at 50% 54%,
+      rgba(0,0,0,0.05) 0%,
+      rgba(0,0,0,0.05) 33%,
+      transparent 34%,
+      transparent 46%,
+      rgba(0,0,0,0.035) 47%,
+      rgba(0,0,0,0.035) 52%,
+      transparent 53%),
+
+    /* 紙地 */
+    linear-gradient(#ffffff, #fbfbf8);
+  background-blend-mode: multiply;
+}
+
+/* 二重白ライン */
+.guno-card::after{
+  content:"";
+  position:absolute;
+  inset: calc(var(--w) * 0.058);
+  border-radius: calc(var(--w) * 0.045);
+  z-index: 1;
+
+  border: calc(var(--w) * 0.012) solid rgba(255,255,255,0.95);
+  box-shadow: 0 0 0 calc(var(--w) * 0.006) rgba(255,255,255,0.85) inset;
+  pointer-events:none;
+}
+
+/* 中身（数字/駅名/路線コード）を一番上に */
+.guno-card .corner,
+.guno-card .center,
+.guno-card .route-code{
+  z-index: 2;
+  position: absolute; /* すでにabsoluteならOK。上書きされても安全 */
+}
