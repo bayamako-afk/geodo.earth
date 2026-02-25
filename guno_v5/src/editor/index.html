@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>GOS Route Editor v0.1</title>
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">G</div>
+      <div class="titles">
+        <div class="title">GOS Route Editor</div>
+        <div class="subtitle">v0.1</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="btnNew" class="btn">New</button>
+      <button id="btnLoadSample" class="btn">Load Sample</button>
+      <button id="btnLoadLocal" class="btn">Load Local</button>
+      <button id="btnSaveLocal" class="btn">Save Local</button>
+      <button id="btnClearLocal" class="btn danger">Clear Local</button>
+      <label class="btn file">
+        Import JSON <input type="file" id="fileImport" accept=".json">
+      </label>
+      <<button id="btnExportPack" class="btn">Export Pack (GOS)</button>
+      <button id="btnExportRuntime" class="btn">Export Runtime</button>
+      <button id="btnPlay" class="btn primary">Play with this Pack</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- 左パネル：駅プール -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Entity Pool</div>
+        <div class="panel-tools">
+          <input type="text" id="q" class="input" placeholder="Search...">
+          <select id="filterType" class="select">
+            <option value="">All Types</option>
+            <option value="station">Station</option>
+          </select>
+          <select id="locale" class="select">
+            <option value="ja">JA</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+      </div>
+      <div id="pool" class="pool"></div>
+    </div>
+
+    <!-- 中央パネル：路線スロット -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Route Layout</div>
+        <div class="panel-tools">
+          <button id="btnAutoFill" class="btn">Auto Fill</button>
+          <button id="btnClearSelectedRoute" class="btn danger">Clear Route</button>
+        </div>
+      </div>
+      <div id="routes" class="routes"></div>
+    </div>
+
+    <!-- 右パネル：状態・課題 -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Issues <span id="issueBadge" class="badge">0</span></div>
+        <button id="btnValidate" class="btn">Validate</button>
+      </div>
+      <div id="issues" class="issues"></div>
+      
+      <div class="panel-head" style="margin-top:auto; border-top:1px solid var(--border)">
+        <div class="panel-title">Selection</div>
+      </div>
+      <div class="selection">
+        <div class="sel-row">
+          <span class="sel-label">Entity:</span>
+          <span id="selEntity" class="sel-value small">None</span>
+        </div>
+        <div class="sel-row">
+          <span class="sel-label">Route:</span>
+          <span id="selRoute" class="sel-value small">None</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div id="status" class="status">Ready.</div>
+  </div>
+
+  <script src="editor.js"></script>
+</body>
+</html>

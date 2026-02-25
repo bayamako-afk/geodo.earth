@@ -1,3 +1,19 @@
+function loadV5DataFromLocalStorage() {
+  const s = localStorage.getItem("guno_v5data_v1");
+  if (!s) return null;
+  try { return JSON.parse(s); } catch { return null; }
+}
+
+const dynamicV5 = loadV5DataFromLocalStorage();
+if (dynamicV5) {
+  // エディタからのデータで、既存のグローバル変数を上書き
+  window.STATIONS_DB = dynamicV5.STATIONS_DB;
+  window.STATION_DB_CARDS = dynamicV5.STATION_DB_CARDS;
+  window.TEIDEN_FILES = dynamicV5.TEIDEN_FILES;
+  console.log("Loaded GUNO v5 data dynamically from GOS Editor:", dynamicV5);
+}
+
+
 // main.js (boot & wiring)
 // Generated from guno_V4_051.html (v4.05) for V5 split
 
