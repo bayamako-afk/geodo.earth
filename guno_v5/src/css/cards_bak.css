@@ -65,70 +65,22 @@
   height: var(--h);
   border-radius: calc(var(--w) * 0.06);
   overflow: hidden;
-  background-size: cover;  /* 100% 100%からcoverに変更して角を隠す */
-  background-position: center;  /* 中央配置 */
 
-  background: var(--line);
+  background-image: var(--bg);
+  background-size: cover;  /* 100% 100%からcoverに変更して角を隠す */
+  background-repeat: no-repeat;
+  background-position: center;  /* 中央配置 */
 
   font-family: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
   user-select: none;
   transition: transform .12s cubic-bezier(.2,.8,.2,1), box-shadow .12s ease;
 }
 
-
 /* 路線別 */
-.guno-card[data-line="JY"] { --line:#00AA00; }
-.guno-card[data-line="M"]  { --line:#E60012; }
-.guno-card[data-line="G"]  { --line:#F39700; }
-.guno-card[data-line="T"]  { --line:#009BBF; }
-
-
-/* ====== CSS Frame + Inner (Yamanote loop subtle pattern) ====== */
-/* 外側は .guno-card の background(var(--line)) が担当 */
-/* 内側白面＋薄い山手ループ模様 */
-.guno-card::before{
-  content:"";
-  position:absolute;
-  inset: var(--frame-pad);
-  border-radius: var(--frame-radius);
-  background:
-    /* うっすら回路っぽいライン（画像に近い雰囲気） */
-    linear-gradient(90deg, rgba(0,0,0,0.03) 0.8px, transparent 0.8px) 0 0 / 18% 18%,
-    linear-gradient(0deg,  rgba(0,0,0,0.03) 0.8px, transparent 0.8px) 0 0 / 18% 18%,
-
-    /* 山手ループ：中央リング（超薄） */
-    radial-gradient(circle at 50% 54%,
-      rgba(0,0,0,var(--loop-alpha)) 0%,
-      rgba(0,0,0,var(--loop-alpha)) 33%,
-      transparent 34%,
-      transparent 46%,
-      rgba(0,0,0,calc(var(--loop-alpha) * 0.65)) 47%,
-      rgba(0,0,0,calc(var(--loop-alpha) * 0.65)) 52%,
-      transparent 53%),
-
-    /* 紙地 */
-    linear-gradient(#ffffff, #fbfbf8);
-  background-blend-mode: multiply;
-}
-
-/* 2本目の白ライン（画像の二重枠） */
-.guno-card::after{
-  content:"";
-  position:absolute;
-  inset: calc(var(--frame-pad) + var(--frame-gap));
-  border-radius: var(--inner-radius);
-  border: calc(var(--w) * 0.012) solid rgba(255,255,255,0.95);
-  box-shadow: 0 0 0 calc(var(--w) * 0.006) rgba(255,255,255,0.85) inset;
-  pointer-events:none;
-}
-
-/* 内側要素は白面の上に */
-.guno-card .corner,
-.guno-card .center,
-.guno-card .route-code{
-  z-index: 2;
-}
-
+.guno-card[data-line="JY"] { --line:#00AA00; --bg:url("../assets/cards/bg_JY.png"); }
+.guno-card[data-line="M"]  { --line:#E60012; --bg:url("../assets/cards/bg_M.png");  }
+.guno-card[data-line="G"]  { --line:#F39700; --bg:url("../assets/cards/bg_G.png");  }
+.guno-card[data-line="T"]  { --line:#009BBF; --bg:url("../assets/cards/bg_T.png");  }
 
 /* コーナー */
 .corner{
