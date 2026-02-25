@@ -2,8 +2,8 @@
 // Updated: label mode by zoom (no permanent bubbles), refresh label language, avoid zoomend renderAll
 
 // --- Label thresholds ---
-const LABEL_ZOOM_MAJOR = 13; // 主要駅だけラベル
-const LABEL_ZOOM_ALL   = 14; // 全駅ラベル
+const LABEL_ZOOM_MAJOR = 12; // 主要駅だけラベル
+const LABEL_ZOOM_ALL   = 13; // 全駅ラベル
 
 function isMajorStationName(nameJp){
   // まずは暫定（後でSTATIONS_DBにmajorフラグを足してもOK）
