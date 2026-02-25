@@ -211,3 +211,39 @@ body{
     padding-top: var(--mobile-header-h, 72px) !important;
   }
 }
+
+/* ===== PC: header title alignment fix ===== */
+@media (min-width:1024px){
+  .header{
+    align-items: flex-start; /* タイトルがズレにくい */
+  }
+  .header h2{
+    margin: 0 !important;
+    line-height: 1.05 !important;
+    display: block;
+  }
+  .header small{
+    display: block;
+    margin-top: 2px;
+    line-height: 1.05;
+    opacity: .85;
+  }
+  .controls{
+    align-items: center; /* ボタン側は中央揃え */
+    margin-top: 2px;     /* タイトルと見た目を揃える */
+  }
+}
+
+/* ===== PC: map fill the panel ===== */
+@media (min-width:1024px){
+  .panel-map{
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  #map{
+    flex: 1 1 auto !important;
+    height: auto !important;   /* 100%固定より安定することが多い */
+    min-height: 0 !important;
+  }
+}

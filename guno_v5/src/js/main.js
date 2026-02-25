@@ -44,3 +44,16 @@ function applyMobileHeaderHeight(){
 }
 window.addEventListener('load', applyMobileHeaderOffset);
 window.addEventListener('resize', applyMobileHeaderOffset);
+
+function forceMapResize(){
+  try{
+    if (window.map && typeof window.map.invalidateSize === "function"){
+      window.map.invalidateSize();
+    } else if (typeof safeInvalidateMap === "function"){
+      safeInvalidateMap();
+    }
+  }catch(e){}
+}
+
+window.addEventListener("load", () => setTimeout(forceMapResize, 250));
+window.addEventListener("resize", () => setTimeout(forceMapResize, 150));
