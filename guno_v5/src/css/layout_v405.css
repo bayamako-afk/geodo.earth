@@ -1,10 +1,10 @@
 /* =========================================
-   layout_v405.css (Clean & Stable)
-   - bodyのpadding/overflow固定を撤廃
-   - 余白はgame-container側へ集約
-   - Mobile: headerはstickyで最上段安定
-   - PC: 3列グリッド + 高さストレッチ
-   ========================================= */
+   layout_v405.css (FINAL CLEAN STABLE)
+   - bodyは触らない
+   - 余白はgame-containerへ
+   - Mobile: header + statusBarはfixed
+   - PC: 3列安定版
+========================================= */
 
 /* ===== Base ===== */
 :root{
@@ -13,280 +13,155 @@
   --line:#2a2a2a;
   --txt:#eaeaea;
 
-  /* Card size (基準) */
   --card-w: clamp(60px, 5vw, 92px);
   --card-h: calc(var(--card-w) * 1.5);
 }
 
 *{ box-sizing:border-box; }
 
-html, body{
+html,body{
   margin:0;
   padding:0;
 }
 
 body{
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: var(--bg);
-  color: var(--txt);
-
-  /* 重要：hiddenにしない（上が隠れる事故の根） */
-  overflow-x: hidden;
-  overflow-y: auto;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--txt);
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
-/* ===== Header / Controls ===== */
+/* ===== Header ===== */
 .header{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
-
-  background: #0f0f0f;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 10px 14px;
+  background:#0f0f0f;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 14px;
 }
 
-.controls{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
+/* ===== Status Bar ===== */
+.status-bar{
+  margin:6px 10px 8px 10px;
+  padding:8px 12px;
+  border-radius:10px;
+  background:#141a14;
+  border:1px dashed #3ddc84;
+  color:#8cffb0;
+  font-weight:600;
 }
-
-.controls button{
-  border:1px solid #333;
-  background:#1b1b1b;
-  color:#fff;
-  border-radius:8px;
-  padding:6px 10px;
-  cursor:pointer;
-}
-
-.controls button:hover{ filter:brightness(1.08); }
 
 /* ===== Panels ===== */
 .panel{
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 12px;
-  min-height: 0; /* 内部スクロールのため */
-}
-
-/* map container must be relative if we overlay buttons etc. */
-.panel-map{ position: relative; }
-
-/* ===== Game container (default = mobile first) ===== */
-.game-container{
-  display:flex;
-  flex-direction:column;
-  gap: 10px;
-
-  /* bodyではなくここで余白を作る */
-  padding: 10px;
-}
-
-/* Players / Slots area scroll handling */
-#players-area, #slots-area{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
   min-height:0;
 }
 
-/* Map size (mobile default) */
+.panel-map{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+}
+
+/* ===== Game container ===== */
+.game-container{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:10px;
+}
+
+/* ===== Map (mobile default) ===== */
 #map{
-  height: 34vh;
-  min-height: 240px;
-  width: 100%;
-  border-radius: 12px;
+  height:34vh;
+  min-height:240px;
+  width:100%;
+  border-radius:12px;
+  flex:1 1 auto;
+  min-height:0;
 }
 
-/* ===== Mobile header: always top ===== */
-@media (max-width:1023px){
-  /* ヘッダーはスマホでは最上段にsticky */
-  body > .header{
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-    border-radius: 0;
-    margin: 0;
-  }
-
-  /* ヘッダーを上端に貼るので、外側余白はgame-containerへ */
-  .game-container{
-    padding: 10px;
-  }
-
-  /* 小型端末のカードサイズ */
-  :root{
-    --card-w: clamp(48px, 12vw, 80px);
-    --card-h: calc(var(--card-w) * 1.5);
-  }
-
-  #map{
-    height: 30vh;
-    min-height: 240px;
-  }
-}
-
-/* Extra small phones */
-@media (max-width:480px){
-  .game-container{ padding: 8px; }
-  :root{
-    --card-w: clamp(44px, 14vw, 72px);
-    --card-h: calc(var(--card-w) * 1.5);
-  }
-}
-
-/* ===== PC layout (3 columns) ===== */
+/* ===== PC Layout ===== */
 @media (min-width:1024px){
-  /* PCはヘッダーを中央列の上に置く前提（あなたの現状のUIに合わせる）
-     ※headerをslots内に入れているなら、そのままでOK */
+
   body > .header{
-    position: static;
-    border-radius: 12px;
-    margin: 10px 10px 0 10px;
+    position:static;
+    margin:10px 10px 0 10px;
   }
 
   .game-container{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-
-    /* 画面を下まで使い切る */
-    height: calc(100dvh - 16px);
-    align-items: stretch;
-
-    padding: 10px;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+    height:calc(100dvh - 16px);
+    align-items:stretch;
+    padding:10px;
   }
 
-  /* 3列の各パネルを縦いっぱいに揃える */
   .game-container > .panel{
-    height: 100%;
     display:flex;
     flex-direction:column;
+    height:100%;
     min-height:0;
   }
 
-  /* dashboard / slots は中身のみスクロール */
   #players-area,
   #slots-area{
-    flex: 1 1 auto;
-    overflow: auto;
-    min-height: 0;
-  }
-
-  .panel-map{
-    display:flex;
-    flex-direction:column;
+    flex:1 1 auto;
+    overflow:auto;
     min-height:0;
   }
+
   #map{
-    flex: 1 1 auto !important;
-    height: auto !important;   /* 100%固定より安定することが多い */
-    min-height: 0 !important;
-  }
-}
-
-/* ===== Optional: hide dev overlay by default (if you use it) ===== */
-.hidden{ display:none !important; }
-
-/* ===== Mobile: header always on top even if it lives inside slots ===== */
-@media (max-width:1023px){
-
-  /* スロット内に居るヘッダー（今の構造）を画面上部に固定 */
-  .panel-slots .header,
-  .panel-slots .header-in-slots{
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 99999 !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
+    flex:1 1 auto !important;
+    height:auto !important;
+    min-height:0 !important;
   }
 
-  /* ヘッダー分だけ全体を下げる（被り防止） */
-  body{
-    padding-top: var(--mobile-header-h, 72px) !important;
-  }
-}
-
-/* ===== PC: header title alignment fix ===== */
-@media (min-width:1024px){
+  /* タイトルずれ対策 */
   .header{
-    align-items: flex-start; /* タイトルがズレにくい */
+    align-items:flex-start;
   }
   .header h2{
-    margin: 0 !important;
-    line-height: 1.05 !important;
-    display: block;
+    margin:0;
+    line-height:1.05;
   }
   .header small{
-    display: block;
-    margin-top: 2px;
-    line-height: 1.05;
-    opacity: .85;
-  }
-  .controls{
-    align-items: center; /* ボタン側は中央揃え */
-    margin-top: 2px;     /* タイトルと見た目を揃える */
+    display:block;
+    margin-top:2px;
+    line-height:1.05;
   }
 }
 
-/* ===== PC: map fill the panel ===== */
-@media (min-width:1024px){
-  .panel-map{
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-  }
-  #map{
-    flex: 1 1 auto !important;
-    height: auto !important;   /* 100%固定より安定することが多い */
-    min-height: 0 !important;
-  }
-}
-
-.status-bar{
-  margin: 6px 10px 8px 10px;
-  padding: 8px 12px;
-  border-radius: 10px;
-  background: #141a14;
-  border: 1px dashed #3ddc84;
-  color: #8cffb0;
-  font-weight: 600;
-}
-
-@media (min-width:1024px){
-  /* PCでは3列幅に合わせたいなら中央幅に寄せる */
-  .status-bar{
-    max-width: 100%;
-  }
-}
-
-/* ===== Mobile: header + statusBar fixed top ===== */
+/* ===== Mobile Top Bars ===== */
 @media (max-width:1023px){
 
   body > .header{
-    position: fixed !important;
-    top: 0 !important;
-    left: 0;
-    right: 0;
-    z-index: 10000;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:10000;
+    border-radius:0;
   }
 
   #statusBar{
-    position: fixed !important;
-    top: 60px;   /* header高さに合わせる（あとで自動化可） */
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    margin: 0;
-    border-radius: 0;
-  }
-
-  body{
-    padding-top: 110px !important; /* header + statusBar 分 */
+    position:fixed;
+    left:0;
+    right:0;
+    z-index:9999;
+    border-radius:0;
+    margin:0;
   }
 }
+
+/* ===== Utility ===== */
+.hidden{ display:none !important; }
