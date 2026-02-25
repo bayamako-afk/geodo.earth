@@ -503,3 +503,63 @@
   inset:0;
   pointer-events:none;
 }
+
+/* ===== PATCH: draw pile back animation (force-visible) ===== */
+#draw-pile-visual{
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* 回転リング（分かりやすい濃さに） */
+#draw-pile-visual::before{
+  content:"";
+  position:absolute;
+  inset:-25%;
+  pointer-events:none;
+  opacity:.75;
+  mix-blend-mode: screen;
+
+  background:
+    radial-gradient(circle at 50% 52%, rgba(120,255,200,.35) 0 18%, transparent 19%),
+    radial-gradient(circle at 50% 52%, rgba(120,255,200,.22) 0 26%, transparent 27%),
+    radial-gradient(circle at 50% 52%, rgba(120,255,200,.16) 0 34%, transparent 35%);
+
+  animation: gunoBackSpin 6s linear infinite;
+}
+
+/* スキャン光（必ず気づく） */
+#draw-pile-visual::after{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  pointer-events:none;
+  opacity:.55;
+  mix-blend-mode: screen;
+
+  background:
+    linear-gradient(120deg,
+      transparent 0%,
+      rgba(255,255,255,0) 35%,
+      rgba(255,255,255,.35) 45%,
+      rgba(255,255,255,0) 55%,
+      transparent 100%);
+
+  animation: gunoBackSweep 2.2s ease-in-out infinite;
+}
+
+@keyframes gunoBackSpin{
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes gunoBackSweep{
+  0%   { transform: translateX(-18%) translateY(12%); }
+  50%  { transform: translateX(18%)  translateY(-12%); }
+  100% { transform: translateX(-18%) translateY(12%); }
+}
+
+/* 動きを減らす設定の人向け */
+@media (prefers-reduced-motion: reduce){
+  #draw-pile-visual::before,
+  #draw-pile-visual::after{ animation:none !important; }
+}
