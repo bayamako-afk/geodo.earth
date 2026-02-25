@@ -226,7 +226,15 @@ function updateModeButton() {
     btn.className = autoPlay ? "btn-auto-active" : "btn-manual";
 }
 function toggleLog(){ document.body.classList.toggle('show-log'); safeInvalidateMap(); }
-function setHint(text){ document.getElementById('hint-area').textContent = text; }
+function setHint(text, level){
+  const bar = document.getElementById("statusBar");
+  if(bar){
+    bar.textContent = text || "";
+    bar.classList.remove("is-warning", "is-danger");
+    if(level === "warning") bar.classList.add("is-warning");
+    if(level === "danger")  bar.classList.add("is-danger");
+  }
+}
 
 function renderAll() {
     const rad = (map && map.getZoom) ? (map.getZoom() < 12 ? 2 : (map.getZoom() < 14 ? 4 : 6)) : 4;

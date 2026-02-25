@@ -14,7 +14,6 @@
 
 <div class="game-container">
     <div class="panel panel-dashboard" id="dashboard-container">
-        <div id="hint-area">準備中...</div>
         <div style="display:flex; justify-content:space-around; align-items:center; background:#111; padding:5px 10px; border-radius:10px; margin-bottom:6px; flex-shrink: 0;">
             <div style="text-align:center;"><small style="color:#666;">DECK</small><div id="draw-pile-visual" onclick="humanDraw()"></div></div>
             <div id="direction-arrow" style="font-size:32px; color:gold;">↻</div>
@@ -34,7 +33,7 @@
 			<button id="btn-mode" onclick="toggleAuto()" class="btn-manual">▶️ AUTO: OFF</button>
 			</div>
         </div>
-	
+		<div id="statusBar" class="status-bar">準備中...</div>
         <div id="slots-area">
             <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
