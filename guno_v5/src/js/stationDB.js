@@ -106,5 +106,6 @@ window.lineInfo = (lc) => window.STATIONS_DB.find(x => x.lc === lc);
     st.degree_real = degree;
     st.degree_bonus = Math.max(0, degree - 1);
   });
+ console.log("DEGREE CHECK:", window.STATIONS_DB);
 
 })();
