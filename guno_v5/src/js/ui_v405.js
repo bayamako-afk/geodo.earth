@@ -197,22 +197,98 @@ function checkGuno(lc, pIdx){
 }
 function endGame() { gameOver = true; if(autoTimer) clearTimeout(autoTimer); renderAll(); document.getElementById('result-overlay').style.display = 'flex'; showRanking(); playSE('seEnd', 1.0);confetti({ particleCount: 200, spread: 100 }); }
 
+function getOwnedStationsByPlayer(pIdx){
+  // STATIONS_DB が const の場合でも拾う
+  const db = (window.STATIONS_DB || (typeof STATIONS_DB !== "undefined" ? STATIONS_DB : []));
+  return db.filter(st => {
+    const key = `${st.lc}-${st.order}`;      // mapState のキー仕様に合わせる
+    return mapState[key] === pIdx;
+  });
+}
+
 function showRanking() {
-    const data = players.map((p, idx) => {
-        let stCount = 0;
-        Object.values(mapState).forEach(owner => { if(owner === idx) stCount++; });
-        const gunoPts = p.guno * GUNO_POINT;
-        const isAlive = p.status !== 'eliminated';
-        return { p, stCount, gunoPts, total: gunoPts + stCount, isAlive };
-    });
-    // 最後まで生き残ったプレイヤーを最優先、次に得点でソート
-    const ranking = data.sort((a,b) => {
-        if(a.isAlive !== b.isAlive) return b.isAlive - a.isAlive;
-        return b.total - a.total;
-    });
-    let rows = "";
-    ranking.forEach((r, i) => { const style = (i === 0) ? 'style="color:gold; font-weight:bold;"' : ""; rows += '<tr ' + style + '><td>' + (i+1) + '</td><td>' + r.p.icon + ' ' + r.p.name + '</td><td>' + r.total + '</td><td>' + r.stCount + '</td><td>' + r.p.guno + '</td><td>' + r.gunoPts + '</td></tr>'; });
-    document.getElementById('result-table').innerHTML = '<thead><tr><th>' + t('順位', 'Rank') + '</th><th>Player</th><th>Total</th><th>Stations</th><th>GUNO</th><th>GUNO pts</th></tr></thead><tbody>' + rows + '</tbody>';
+  const data = players.map((p, idx) => {
+    const ownedStations = getOwnedStationsByPlayer(idx);
+    const stCount = ownedStations.length;
+
+    const gunoPts = p.guno * GUNO_POINT;
+    const base = gunoPts + stCount;
+
+    const connBonus = calcConnectionBonus(ownedStations); // ★追加（degree-1合計）
+    const total = base + connBonus;
+
+    const isAlive = p.status !== 'eliminated';
+
+    return { p, stCount, gunoPts, base, connBonus, total, isAlive, ownedStations };
+  });
+
+  // 生存優先 → 合計点
+  const ranking = data.sort((a,b) => {
+    if(a.isAlive !== b.isAlive) return b.isAlive - a.isAlive;
+    return b.total - a.total;
+  });
+
+  // 表を作る（内訳列を追加）
+  let rows = "";
+  ranking.forEach((r, i) => {
+    const style = (i === 0) ? 'style="color:gold; font-weight:bold;"' : "";
+    rows +=
+      '<tr ' + style + '>' +
+        '<td>' + (i+1) + '</td>' +
+        '<td>' + r.p.icon + ' ' + r.p.name + '</td>' +
+        '<td>' + r.total + '</td>' +
+        '<td>' + r.base + '</td>' +
+        '<td>+' + r.connBonus + '</td>' +
+        '<td>' + r.stCount + '</td>' +
+        '<td>' + r.p.guno + '</td>' +
+      '</tr>';
+  });
+
+  document.getElementById('result-table').innerHTML =
+    '<thead><tr>' +
+      '<th>' + t('順位', 'Rank') + '</th>' +
+      '<th>Player</th>' +
+      '<th>Total</th>' +
+      '<th>Base</th>' +
+      '<th>Conn</th>' +
+      '<th>Stations</th>' +
+      '<th>GUNO</th>' +
+    '</tr></thead><tbody>' + rows + '</tbody>';
+
+  // ★ 取得駅一覧（接続数順）を追加表示（表の下に）
+  renderStationBreakdown(ranking);
+}
+
+function renderStationBreakdown(ranking){
+  // 置き場を用意（なければ作る）
+  let box = document.getElementById('result-stations');
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'result-stations';
+    box.style.marginTop = '12px';
+    box.style.maxHeight = '240px';
+    box.style.overflow = 'auto';
+    box.style.padding = '10px';
+    box.style.background = 'rgba(0,0,0,0.35)';
+    box.style.borderRadius = '12px';
+    document.getElementById('result-table').parentElement.appendChild(box);
+  }
+
+  const html = ranking.map(r => {
+    const list = [...(r.ownedStations || [])]
+      .sort((a,b) => (b.degree_real||1) - (a.degree_real||1))
+      .map(s => `${s.st_ja}（${s.degree_real||1}）`)
+      .join(' / ');
+
+    return `
+      <div style="margin-bottom:10px;">
+        <div style="font-weight:bold;">${r.p.icon} ${r.p.name}</div>
+        <div style="opacity:.9; font-size:12px;">${list || '(none)'}</div>
+      </div>
+    `;
+  }).join('');
+
+  box.innerHTML = html;
 }
 
 function toggleAuto() { 
