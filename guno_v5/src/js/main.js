@@ -1,4 +1,28 @@
-// main.js (boot & wiring) - FINAL CLEAN STABLE
+// main.js (boot & wiring) - CLEAN FIXED
+
+async function applyRealDegreeFromJson(){
+  const res = await fetch("./degree_map.json");
+  const degreeMap = await res.json(); // { "新宿": ["jr-east-yamanote", ...], ... }
+
+  // STATIONS_DB は const でも中身は書き換え可能
+  const db = (window.STATIONS_DB || (typeof STATIONS_DB !== "undefined" ? STATIONS_DB : []));
+  const norm = (s) => (s || "").replaceAll("★","").trim();
+
+  db.forEach(st => {
+    const name = norm(st.st_ja);
+    const routes = degreeMap[name] || [];
+    st.degree_routes = routes;                    // 内訳（linesページに使える）
+    st.degree_real = Math.max(1, routes.length);  // 0は1扱い（破綻防止）
+    st.degree_bonus = Math.max(0, st.degree_real - 1);
+  });
+
+  console.log("REAL DEGREE APPLIED (sample):",
+    db
+      .filter(s => (s.degree_real||1) >= 2)
+      .slice(0, 10)
+      .map(s => ({ st: s.st_ja, d: s.degree_real, routes: s.degree_routes }))
+  );
+}
 
 function loadV5DataFromLocalStorage() {
   const s = localStorage.getItem("guno_v5data_v1");
@@ -115,7 +139,6 @@ function applyMobileTopBars() {
   const headerH = header.offsetHeight || 72;
 
   if (bar) {
-    // CSSでは mobileで fixed。ここで位置と余白を確定
     bar.style.top = headerH + "px";
     const barH = bar.offsetHeight || 0;
     document.body.style.paddingTop = (headerH + barH) + "px";
@@ -145,50 +168,45 @@ function onResize() {
 }
 
 /* ---------------------------
-   Boot
+   Overlay (Result)
 --------------------------- */
 
-function boot() {
-  clearMapOnly();
-  function liftOverlayToBody() {
+function liftOverlayToBody() {
   const overlay = document.getElementById("result-overlay");
   if (!overlay) return;
-
-  // すでにbody直下なら何もしない
   if (overlay.parentElement === document.body) return;
-
-  // bodyの末尾に移動（常に最前面の土台になる）
   document.body.appendChild(overlay);
 }
 
-function boot() {
+/* ---------------------------
+   Boot
+--------------------------- */
+
+async function boot() {
   clearMapOnly();
 
-  // ★ 追加：勝利オーバーレイはbody直下に置く（fixed崩れ防止）
+  // 勝利オーバーレイはbody直下へ（fixed崩れ防止）
   liftOverlayToBody();
 
   document.body.classList.remove("show-log");
 
-  if (typeof renderCards === "function") {
-    try { renderCards(); } catch (e) {}
-  }
-
-  initMapComponent();
-  startGame();
-
-  applyMobileTopBars();
-  setTimeout(forceMapResize, 250);
-}
-  document.body.classList.remove("show-log");
-
-  if (typeof renderCards === "function") {
-    try { renderCards(); } catch (e) {}
-  }
-
+  // 先にトップバー位置を整える（モバイル対策）
   relocateTopBarsForViewport();
   applyMobileTopBars();
 
-  // レイアウト確定後に map 初期化
+  // カードDOMが必要なら先に描画（保険）
+  if (typeof renderCards === "function") {
+    try { renderCards(); } catch (e) {}
+  }
+
+  // ★重要：ゲーム開始前に degree を適用（7路線版）
+  try {
+    await applyRealDegreeFromJson();
+  } catch (e) {
+    console.warn("applyRealDegreeFromJson failed:", e);
+  }
+
+  // レイアウト確定後に map 初期化 → start
   setTimeout(() => {
 
     initMapComponent();

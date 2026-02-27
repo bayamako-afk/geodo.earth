@@ -81,31 +81,3 @@ window.LINE_SLUG = {
 window.normStar = (s) => (s || "").replaceAll("★", "");
 window.lineInfo = (lc) => window.STATIONS_DB.find(x => x.lc === lc);
 
-// ==============================
-// DEGREE REAL CALCULATION
-// ==============================
-
-(function applyDegreeReal(){
-
-  const degreeMap = {};
-
-  window.STATIONS_DB.forEach(st => {
-    const name = window.normStar(st.st_ja);
-
-    if (!degreeMap[name]) {
-      degreeMap[name] = new Set();
-    }
-
-    degreeMap[name].add(st.lc);
-  });
-
-  window.STATIONS_DB.forEach(st => {
-    const name = window.normStar(st.st_ja);
-    const degree = degreeMap[name].size;
-
-    st.degree_real = degree;
-    st.degree_bonus = Math.max(0, degree - 1);
-  });
- console.log("DEGREE CHECK:", window.STATIONS_DB);
-
-})();

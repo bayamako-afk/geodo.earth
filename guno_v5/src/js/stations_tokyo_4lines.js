@@ -109,33 +109,3 @@ window.STATIONS_DB = STATIONS_DB;
 window.TEIDEN_FILES = TEIDEN_FILES;
 window.STATION_DB_CARDS = STATION_DB_CARDS;
 
-// ==============================
-// DEGREE REAL (within current loaded station set)
-// ==============================
-(function applyDegreeReal(){
-  // もし normStar がグローバルに無い場合に備えて、★を外す関数を自前で持つ
-  const normStarLocal = (s) => (s || "").replace(/^★/,"").trim();
-
-  const degreeMap = {}; // name -> Set(lines)
-
-  STATIONS_DB.forEach(st => {
-    const name = normStarLocal(st.st_ja);
-    if (!degreeMap[name]) degreeMap[name] = new Set();
-    degreeMap[name].add(st.lc); // まずは路線コードで集計（JY/M/G/Tなど）
-  });
-
-  STATIONS_DB.forEach(st => {
-    const name = normStarLocal(st.st_ja);
-    const degree = degreeMap[name] ? degreeMap[name].size : 1;
-
-    st.degree_real = degree;
-    st.degree_bonus = Math.max(0, degree - 1);
-  });
-
-  console.log("DEGREE CHECK (sample):",
-    STATIONS_DB
-      .filter(s => (s.degree_real||1) >= 2)
-      .slice(0, 10)
-      .map(s => ({ st_ja: s.st_ja, lc: s.lc, degree: s.degree_real, bonus: s.degree_bonus }))
-  );
-})();
