@@ -1,6 +1,8 @@
 // ui_v405.js (DOM rendering only)
 // Generated from guno_V4_051.html (v4.05) for V5 split
 
+let winnerIdx = undefined;
+
 // 翻訳ヘルパー関数（v4互換）
 const t = (ja, en) => isJapanese ? ja : en;
 
@@ -30,21 +32,63 @@ function unlockSE(){
 document.addEventListener("pointerdown", unlockSE, { once:true });
 
 function startGame() {
+
+    // ★ 勝者リセット
+    winnerIdx = undefined;   // ←これだけでOK
+
+    clearPersistentResult();
+    hideResultLinesOnMainMap();
+
     if(autoTimer) clearTimeout(autoTimer);
-    gameOver = false; turnCount = 0; turnIndex = 0; direction = 1; isWaitingHuman = false; mapState = {}; lastHits = {}; consecutivePasses = 0;
+
+    gameOver = false;
+    turnCount = 0;
+    turnIndex = 0;
+    direction = 1;
+    isWaitingHuman = false;
+    mapState = {};
+    lastHits = {};
+    consecutivePasses = 0;
+
     teidenPlayed = { JY:false, M:false, G:false, T:false };
-    deck = []; STATIONS_DB.forEach(s => { for(let i=0; i<2; i++) deck.push({...s, type:'station', id:'s-' + s.lc + '-' + s.order + '-' + i}); });
-    ['JY','M','G','T'].forEach(lc => deck.push({lc, type:'teiden', file:TEIDEN_FILES[lc], id:'t-' + lc, color:'#000'}));
+
+    deck = [];
+    STATIONS_DB.forEach(s => {
+        for(let i=0; i<2; i++)
+            deck.push({...s, type:'station', id:'s-' + s.lc + '-' + s.order + '-' + i});
+    });
+
+    ['JY','M','G','T'].forEach(lc =>
+        deck.push({lc, type:'teiden', file:TEIDEN_FILES[lc], id:'t-' + lc, color:'#000'})
+    );
+
     deck.sort(() => Math.random() - 0.5);
+
     players = [
         { name: "P1", isHuman: !autoPlay, hand: [], color: '#174a7c', icon: '🌊', status: 'active', guno: 0 },
         { name: "P2", isHuman: false, hand: [], color: '#b52942', icon: '🌸', status: 'active', guno: 0 },
         { name: "P3", isHuman: false, hand: [], color: '#e6b422', icon: '🌙', status: 'active', guno: 0 },
         { name: "P4", isHuman: false, hand: [], color: '#745399', icon: '🏯', status: 'active', guno: 0 }
     ];
-    players.forEach(p => { for(let i=0; i<7; i++) p.hand.push(deck.pop()); });
-    discardPile = []; while(true) { let c = deck.pop(); discardPile.push(c); if(c.type==='station'){ mapState[c.lc + "-" + c.order]=-1; break; } }
-    document.getElementById('log').innerHTML = ""; document.getElementById('result-overlay').style.display = 'none';
+
+    players.forEach(p => {
+        for(let i=0; i<7; i++)
+            p.hand.push(deck.pop());
+    });
+
+    discardPile = [];
+    while(true) {
+        let c = deck.pop();
+        discardPile.push(c);
+        if(c.type==='station'){
+            mapState[c.lc + "-" + c.order]=-1;
+            break;
+        }
+    }
+
+    document.getElementById('log').innerHTML = "";
+    document.getElementById('result-overlay').style.display = 'none';
+
     updateModeButton();
     nextTurn();
 }
@@ -195,7 +239,28 @@ function checkGuno(lc, pIdx){
         if(totalGuno >= 4) endGame(); 
     }
 }
-function endGame() { gameOver = true; if(autoTimer) clearTimeout(autoTimer); renderAll(); document.getElementById('result-overlay').style.display = 'flex'; showRanking(); playSE('seEnd', 1.0);confetti({ particleCount: 200, spread: 100 }); }
+function endGame() {
+
+  gameOver = true;
+  if(autoTimer) clearTimeout(autoTimer);
+
+  renderAll();
+
+  document.getElementById('result-overlay').style.display = 'flex';
+
+  const ranking = showRanking();
+
+  // ★勝者保存
+  winnerIdx = players.indexOf(ranking[0].p);
+
+  renderAll();   // 発光反映
+
+  renderPersistentResult(ranking);
+  showResultLinesOnMainMap();
+
+  playSE('seEnd', 1.0);
+  confetti({ particleCount: 200, spread: 100 });
+}
 
 function getOwnedStationsByPlayer(pIdx){
   // STATIONS_DB が const の場合でも拾う
@@ -214,21 +279,21 @@ function showRanking() {
     const gunoPts = p.guno * GUNO_POINT;
     const base = gunoPts + stCount;
 
-    const connBonus = calcConnectionBonus(ownedStations); // ★追加（degree-1合計）
-    const total = base + connBonus;
+    const connPts = calcConnectionBonus(ownedStations); // degree_real 기반なら (d-1) 合計
+    const total = base + connPts;
 
     const isAlive = p.status !== 'eliminated';
 
-    return { p, stCount, gunoPts, base, connBonus, total, isAlive, ownedStations };
+    return { p, stCount, gunoPts, base, connPts, total, isAlive, ownedStations };
   });
 
   // 生存優先 → 合計点
   const ranking = data.sort((a,b) => {
-    if(a.isAlive !== b.isAlive) return b.isAlive - a.isAlive;
+    if (a.isAlive !== b.isAlive) return b.isAlive - a.isAlive;
     return b.total - a.total;
   });
 
-  // 表を作る（内訳列を追加）
+  // 表
   let rows = "";
   ranking.forEach((r, i) => {
     const style = (i === 0) ? 'style="color:gold; font-weight:bold;"' : "";
@@ -238,7 +303,7 @@ function showRanking() {
         '<td>' + r.p.icon + ' ' + r.p.name + '</td>' +
         '<td>' + r.total + '</td>' +
         '<td>' + r.base + '</td>' +
-        '<td>+' + r.connBonus + '</td>' +
+        '<td>+' + r.connPts + '</td>' +   // ★ connPts に統一
         '<td>' + r.stCount + '</td>' +
         '<td>' + r.p.guno + '</td>' +
       '</tr>';
@@ -255,8 +320,10 @@ function showRanking() {
       '<th>GUNO</th>' +
     '</tr></thead><tbody>' + rows + '</tbody>';
 
-  // ★ 取得駅一覧（接続数順）を追加表示（表の下に）
+  // ★駅詳細（ここが今まで死んでた）
   renderStationBreakdown(ranking);
+
+  return ranking; // ★必ず最後
 }
 
 function renderStationBreakdown(ranking){
@@ -473,57 +540,122 @@ function createStationCardHTML(line, num, jp, en, borderColor, playerIcon) {
 }
 
 function renderSlots() {
+
     // 各路線の駅スロット（1-10）
     ['JY','M','G','T'].forEach(lc => {
+
         const grid = document.getElementById('map-' + lc.toLowerCase());
         const header = document.getElementById('header-' + lc.toLowerCase());
         const line = STATIONS_DB.find(s=>s.lc===lc);
+
         header.textContent = '[' + lc + '] ' + (isJapanese ? line.name_ja : line.name_en);
         header.style.backgroundColor = line.color;
+
         let h = "";
+
         for(let i=1; i<=10; i++) {
-            const o = mapState[lc + "-" + i], s = STATIONS_DB.find(x=>x.lc===lc && x.order===i);
+
+            const o = mapState[lc + "-" + i];
+            const s = STATIONS_DB.find(x=>x.lc===lc && x.order===i);
+
             if(o !== undefined && o !== -1) {
-                h += createStationCardHTML(lc, i, s.st_ja, s.st_en, players[o].color, players[o].icon);
-            } else { h += '<div class="slot"><div>' + i + '</div><div style="font-size:8px;">' + (isJapanese?s.st_ja:s.st_en).replace('★', '<span style="color:gold;">★</span>') + '</div></div>'; }
+
+                // ★ 勝者判定
+                const isWinner =
+					winnerIdx !== undefined &&
+					o === winnerIdx;
+
+                // HTML生成
+                let cardHTML = createStationCardHTML(
+                    lc,
+                    i,
+                    s.st_ja,
+                    s.st_en,
+                    players[o].color,
+                    players[o].icon
+                );
+
+                // ★ class追加（slot active → slot active winner-glow）
+                if(isWinner){
+                    cardHTML = cardHTML.replace(
+                        'slot active',
+                        'slot active winner-glow'
+                    );
+                }
+
+                h += cardHTML;
+
+            } else {
+
+                h += `
+                    <div class="slot">
+                        <div>${i}</div>
+                        <div style="font-size:8px;">
+                            ${(isJapanese ? s.st_ja : s.st_en)
+                                .replace('★','<span style="color:gold;">★</span>')}
+                        </div>
+                    </div>
+                `;
+            }
         }
+
         grid.innerHTML = h;
     });
-    
-    // 停電カード専用エリア
+
+    // =============================
+    // 停電カード専用エリア（変更なし）
+    // =============================
+
     const blackoutGrid = document.getElementById('map-blackout');
+
     const lineInfo = {
         'JY': {color: '#00AA00', name_ja: '山手線', name_en: 'Yamanote'},
         'M': {color: '#F62E36', name_ja: '丸ノ内線', name_en: 'Marunouchi'},
         'G': {color: '#FF9500', name_ja: '銀座線', name_en: 'Ginza'},
         'T': {color: '#009BBF', name_ja: '東西線', name_en: 'Tozai'}
     };
+
     let bh = "";
+
     ['JY','M','G','T'].forEach(lc => {
+
         const info = lineInfo[lc];
         const lineName = isJapanese ? info.name_ja : info.name_en;
-        if(teidenPlayed[lc]) { 
-            // 停電カードが出された場合：オーバーレイで表示
+
+        if(teidenPlayed[lc]) {
+
             bh += `
-                <div class="slot active guno-card guno-card--teiden" data-line="${lc}" style="border:2px solid #fff; --w:var(--card-w); margin:0;">
-                    <div class="teiden-icon" aria-label="停電">⚡</div>
+                <div class="slot active guno-card guno-card--teiden"
+                     data-line="${lc}"
+                     style="border:2px solid #fff; --w:var(--card-w); margin:0;">
+                    <div class="teiden-icon">⚡</div>
                     <div class="teiden-sub">停電</div>
                     <div class="teiden-en">Blackout</div>
                 </div>
             `;
+
         } else {
-            // 停電カードがまだ出されていない場合：空スロット
+
             bh += `
                 <div class="slot" style="background:#1a1a1a;">
-                    <div style="position:absolute; top:8px; left:50%; transform:translateX(-50%); font-weight:bold; font-size:14px; color:${info.color}; text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 2px rgba(0,0,0,0.9), 1px -1px 2px rgba(0,0,0,0.9), -1px 1px 2px rgba(0,0,0,0.9);">[${lc}]</div>
-                    <div style="position:absolute; top:28px; left:50%; transform:translateX(-50%); font-size:10px; color:${info.color}; white-space:nowrap; text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 2px rgba(0,0,0,0.9), 1px -1px 2px rgba(0,0,0,0.9), -1px 1px 2px rgba(0,0,0,0.9);">${lineName}</div>
-                    <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); font-size:24px; text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 2px rgba(0,0,0,0.9), 1px -1px 2px rgba(0,0,0,0.9), -1px 1px 2px rgba(0,0,0,0.9);">⚡</div>
+                    <div style="position:absolute; top:8px; left:50%; transform:translateX(-50%);
+                                font-weight:bold; font-size:14px; color:${info.color};">
+                        [${lc}]
+                    </div>
+                    <div style="position:absolute; top:28px; left:50%; transform:translateX(-50%);
+                                font-size:10px; color:${info.color}; white-space:nowrap;">
+                        ${lineName}
+                    </div>
+                    <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
+                                font-size:24px;">⚡</div>
                 </div>
             `;
         }
     });
+
     blackoutGrid.innerHTML = bh;
 }
+
 function toggleLanguage() { 
     isJapanese = !isJapanese; 
     // 駅名ラベル更新

@@ -663,16 +663,39 @@
   }
 
   function endGame() {
-    state.gameOver = true;
-    if (state.autoTimer) clearTimeout(state.autoTimer);
-    renderAll();
+  state.gameOver = true;
+  if (state.autoTimer) clearTimeout(state.autoTimer);
 
-    const overlay = $("result-overlay");
-    if (overlay) overlay.style.display = "flex";
-    showRanking();
+  renderAll();
 
-    if (window.confetti) window.confetti({ particleCount: 200, spread: 100 });
+  const overlay = $("result-overlay");
+  if (overlay) overlay.style.display = "flex";
+
+  const ranking = showRanking();
+
+  if (ranking && ranking.length > 0) {
+    state.winnerIdx = players.indexOf(ranking[0].p);
   }
+
+  if (window.confetti) {
+    window.confetti({ particleCount: 200, spread: 100 });
+  }
+}
+
+function highlightWinnerStations(winner){
+  if (!winner) return;
+
+  const winnerIdx = players.indexOf(winner.p);
+
+  Object.entries(mapState).forEach(([key, owner])=>{
+    if(owner === winnerIdx){
+      const el = document.querySelector(`[data-key="${key}"]`);
+      if(el){
+        el.classList.add("winner-glow");
+      }
+    }
+  });
+}
 
   // ===== Public controls (called from HTML onclick) =====
   window.startGame = function startGame() {

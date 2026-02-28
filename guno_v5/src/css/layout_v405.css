@@ -222,3 +222,16 @@ body{
   box-shadow:none;
 }
 .leaflet-tooltip.station-label:before{ display:none !important; }
+
+/* 静かな勝者の輝き */
+.winner-glow {
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
+  border: 1px solid rgba(255, 215, 0, 0.8);
+  animation: winnerPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes winnerPulse {
+  0%   { box-shadow: 0 0 4px rgba(255,215,0,0.4); }
+  50%  { box-shadow: 0 0 10px rgba(255,215,0,0.9); }
+  100% { box-shadow: 0 0 4px rgba(255,215,0,0.4); }
+}
