@@ -223,15 +223,41 @@ body{
 }
 .leaflet-tooltip.station-label:before{ display:none !important; }
 
-/* 静かな勝者の輝き */
-.winner-glow {
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
-  border: 1px solid rgba(255, 215, 0, 0.8);
-  animation: winnerPulse 2.8s ease-in-out infinite;
+/* 静かで知的、でも確実に見える勝者の輝き */
+.winner-glow{
+  border: 3px solid #fff7c2;
+  box-shadow:
+    0 0 0 2px white,   /* ←ここが差別化 */
+    0 0 18px rgba(255,215,0,0.7);
+	
+animation: winnerPulse 2.6s ease-in-out infinite;
 }
 
-@keyframes winnerPulse {
-  0%   { box-shadow: 0 0 4px rgba(255,215,0,0.4); }
-  50%  { box-shadow: 0 0 10px rgba(255,215,0,0.9); }
-  100% { box-shadow: 0 0 4px rgba(255,215,0,0.4); }
+/* “上品なハイライト”を足す（派手にしない） */
+.winner-glow::after{
+  filter: brightness(1.06) saturate(1.04);
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  pointer-events:none;
+  background: radial-gradient(circle at 30% 25%,
+    rgba(255,215,0,0.18),
+    rgba(0,0,0,0) 60%);
+  mix-blend-mode: screen;
+}
+
+@keyframes winnerPulse{
+  0%{
+    outline-color: rgba(255,215,0,0.35);
+    box-shadow: 0 0 8px rgba(255,215,0,0.25);
+  }
+  50%{
+    outline-color: rgba(255,215,0,0.70);
+    box-shadow: 0 0 16px rgba(255,215,0,0.55);
+  }
+  100%{
+    outline-color: rgba(255,215,0,0.35);
+    box-shadow: 0 0 8px rgba(255,215,0,0.25);
+  }
 }
