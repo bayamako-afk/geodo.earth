@@ -91,6 +91,10 @@ function startGame() {
 
     updateModeButton();
     nextTurn();
+	
+	if (typeof showNetworkLinesOnMainMap === "function") {
+	showNetworkLinesOnMainMap("game");
+	}
 }
 
 function nextTurn() {
@@ -256,10 +260,19 @@ function endGame() {
   renderAll();   // 発光反映
 
   renderPersistentResult(ranking);
-  showResultLinesOnMainMap();
+
+  // ★ここを置き換え：結果モードで7路線を表示（追加3路線は少し濃く）
+  if (typeof showNetworkLinesOnMainMap === "function") {
+    showNetworkLinesOnMainMap("result");
+  } else {
+    // 互換：まだ新関数を入れてない場合は従来のまま
+    showResultLinesOnMainMap();
+  }
 
   playSE('seEnd', 1.0);
-  confetti({ particleCount: 200, spread: 100 });
+
+  // confetti が無い環境でも落ちないようにガード
+  if (window.confetti) window.confetti({ particleCount: 200, spread: 100 });
 }
 
 function getOwnedStationsByPlayer(pIdx){

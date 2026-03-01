@@ -229,6 +229,8 @@ async function boot() {
     }, 120);
 
   }, 80);
+  
+  showNetworkLinesOnMainMap("game");
 }
 
 // DOM準備後に起動
@@ -267,6 +269,79 @@ function getLeafletMapInstance(){
     }
   }
   return null;
+}
+
+function showNetworkLinesOnMainMap(mode = "game") {
+  if (!window.mainMap) return;
+
+  const baseIds = new Set([
+    "jr-east-yamanote",
+    "tokyo-metro-ginza",
+    "tokyo-metro-marunouchi",
+    "tokyo-metro-tozai",
+  ]);
+
+  const ids = [
+    "jr-east-yamanote",
+    "tokyo-metro-ginza",
+    "tokyo-metro-marunouchi",
+    "tokyo-metro-tozai",
+    "tokyo-metro-hanzomon",
+    "tokyo-metro-yurakucho",
+    "tokyo-metro-namboku",
+  ];
+
+  // 前回表示を消す
+  hideResultLinesOnMainMap();
+
+  const group = L.layerGroup().addTo(window.mainMap);
+  window.resultLineLayers = group;
+
+  const colorById = {
+    "jr-east-yamanote": "#00AA00",
+    "tokyo-metro-ginza": "#FF9500",
+    "tokyo-metro-marunouchi": "#F62E36",
+    "tokyo-metro-tozai": "#009BBF",
+    "tokyo-metro-hanzomon": "#8F76D6",
+    "tokyo-metro-yurakucho": "#C1A470",
+    "tokyo-metro-namboku": "#00AC9A",
+  };
+
+  ids.forEach(id => {
+    const file = `assets/geojson/lines/${id}.geojson`;
+
+    fetch(file).then(r => r.json()).then(geo => {
+      const layer = L.geoJSON(geo, {
+        style: () => {
+          const isBase = baseIds.has(id);
+
+          // mode: game (薄い補助) / result (少し強調)
+          const extraOpacity = (mode === "result") ? 0.55 : 0.22;
+
+          if (isBase) {
+            return {
+              color: colorById[id] || "#fff",
+              weight: 7,
+              opacity: 0.95,
+              lineCap: "round",
+              lineJoin: "round",
+            };
+          }
+
+          return {
+            color: colorById[id] || "#fff",
+            weight: 3,
+            opacity: extraOpacity,
+            dashArray: "10 10",
+            lineCap: "round",
+            lineJoin: "round",
+          };
+        }
+      });
+
+      layer.addTo(group);
+    }).catch(err => console.warn("Line load failed:", id, err));
+  });
 }
 
 async function showResultLinesOnMainMap() {
