@@ -272,7 +272,12 @@ function getLeafletMapInstance(){
 }
 
 function showNetworkLinesOnMainMap(mode = "game") {
-  if (!window.mainMap) return;
+
+  const m = getLeafletMapInstance();   // ★統一
+  if (!m) {
+    console.warn("Leaflet map instance not found.");
+    return;
+  }
 
   const baseIds = new Set([
     "jr-east-yamanote",
@@ -291,10 +296,9 @@ function showNetworkLinesOnMainMap(mode = "game") {
     "tokyo-metro-namboku",
   ];
 
-  // 前回表示を消す
   hideResultLinesOnMainMap();
 
-  const group = L.layerGroup().addTo(window.mainMap);
+  const group = L.layerGroup().addTo(m);
   window.resultLineLayers = group;
 
   const colorById = {
@@ -308,39 +312,31 @@ function showNetworkLinesOnMainMap(mode = "game") {
   };
 
   ids.forEach(id => {
-    const file = `assets/geojson/lines/${id}.geojson`;
 
-    fetch(file).then(r => r.json()).then(geo => {
-      const layer = L.geoJSON(geo, {
-        style: () => {
-          const isBase = baseIds.has(id);
+    const file = `geojson/lines/${id}.geojson`;
 
-          // mode: game (薄い補助) / result (少し強調)
-          const extraOpacity = (mode === "result") ? 0.55 : 0.22;
+    fetch(file)
+      .then(r => r.json())
+      .then(geo => {
 
-          if (isBase) {
-            return {
-              color: colorById[id] || "#fff",
-              weight: 7,
-              opacity: 0.95,
-              lineCap: "round",
-              lineJoin: "round",
-            };
-          }
+        const isBase = baseIds.has(id);
+        const extraOpacity = (mode === "result") ? 0.55 : 0.22;
 
-          return {
+        const layer = L.geoJSON(geo, {
+          style: {
             color: colorById[id] || "#fff",
-            weight: 3,
-            opacity: extraOpacity,
-            dashArray: "10 10",
+            weight: isBase ? 7 : 3,
+            opacity: isBase ? 0.95 : extraOpacity,
+            dashArray: isBase ? null : "10 10",
             lineCap: "round",
             lineJoin: "round",
-          };
-        }
-      });
+          }
+        });
 
-      layer.addTo(group);
-    }).catch(err => console.warn("Line load failed:", id, err));
+        layer.addTo(group);
+
+      })
+      .catch(err => console.warn("Line load failed:", id, err));
   });
 }
 
