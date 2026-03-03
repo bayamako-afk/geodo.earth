@@ -426,37 +426,37 @@ function renderPersistentResult(ranking){
   const isStar = (s) => ((s || "").trim().startsWith("★"));
 
   let html = `
-  <div class="last-result-panel">
-    <!-- ヘッダー -->
-    <div class="last-result-header">
-      <div class="last-result-title">🏆 LAST RESULT</div>
-      <button id="btn-clear-result" class="last-result-clear">クリア</button>
+  <div style="background:#111;border:1px solid #444;padding:14px;border-radius:12px;margin-top:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+      <div style="color:gold;font-weight:900;">📊 LAST RESULT</div>
+      <button id="btn-clear-result"
+        style="border:1px solid #555;background:#222;color:#ddd;border-radius:10px;padding:6px 10px;cursor:pointer;">
+        クリア
+      </button>
     </div>
 
-    <!-- 順位表 -->
-    <div class="last-result-table-wrap">
-      <table class="last-result-table">
+    <div style="margin-top:10px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead>
-          <tr>
-            <th>順位</th>
-            <th>Player</th>
-            <th>Total</th>
-            <th>Base</th>
-            <th>Conn</th>
+          <tr style="opacity:.9;">
+            <th style="text-align:left;padding:6px 4px;">順位</th>
+            <th style="text-align:left;padding:6px 4px;">Player</th>
+            <th style="text-align:right;padding:6px 4px;">Total</th>
+            <th style="text-align:right;padding:6px 4px;">Base</th>
+            <th style="text-align:right;padding:6px 4px;">Conn</th>
           </tr>
         </thead>
         <tbody>
   `;
 
   ranking.forEach((r,i)=>{
-    const medal = ['🥇','🥈','🥉'][i] || `${i+1}`;
     html += `
-      <tr class="${i===0?'last-result-rank1':''}">
-        <td>${medal}</td>
-        <td>${r.p.icon} ${r.p.name}</td>
-        <td class="num">${r.total}</td>
-        <td class="num">${r.base}</td>
-        <td class="num">+${r.connPts || 0}</td>
+      <tr style="${i===0?'color:gold;font-weight:900;':''}">
+        <td style="padding:6px 4px;">${i+1}</td>
+        <td style="padding:6px 4px;">${r.p.icon} ${r.p.name}</td>
+        <td style="padding:6px 4px;text-align:right;">${r.total}</td>
+        <td style="padding:6px 4px;text-align:right;">${r.base}</td>
+        <td style="padding:6px 4px;text-align:right;">+${r.connPts || 0}</td>
       </tr>
     `;
   });
@@ -465,36 +465,52 @@ function renderPersistentResult(ranking){
         </tbody>
       </table>
     </div>
-
-    <!-- 駅詳細 -->
-    <div class="last-result-stations">
   `;
 
-  ranking.forEach((r, i)=>{
+  // ▼ 駅詳細（駅名で集約して重複を ×n 表示）
+  html += `<div style="margin-top:10px;border-top:1px solid #333;padding-top:10px;">`;
+
+  ranking.forEach((r)=>{
     const owned = (r.ownedStations || []);
+
+    // name -> {name, star, degree, count}
     const agg = new Map();
+
     owned.forEach(st => {
       const name = normStarLocal(st.st_ja);
       if (!name) return;
-      if (!agg.has(name)) agg.set(name, { name, star: isStar(st.st_ja), degree: st.degree_real || 1, count: 0 });
+
+      if (!agg.has(name)) {
+        agg.set(name, {
+          name,
+          star: isStar(st.st_ja),
+          degree: st.degree_real || 1,
+          count: 0
+        });
+      }
       const obj = agg.get(name);
       obj.count += 1;
       obj.degree = Math.max(obj.degree, st.degree_real || 1);
       obj.star = obj.star || isStar(st.st_ja);
     });
+
     const list = Array.from(agg.values())
       .sort((a,b)=> (b.degree - a.degree) || (b.count - a.count) || a.name.localeCompare(b.name,'ja'))
-      .map(x => `<span class="st-tag${x.star?' st-star':''}">${ x.star?'★':''}${x.name}(${x.degree})${x.count>=2?`×${x.count}`:''}</span>`)
-      .join('');
+      .map(x => `${x.star ? "★" : ""}${x.name}（${x.degree}）${x.count >= 2 ? `×${x.count}` : ""}`)
+      .join(" / ");
+
+    // 参考：ユニーク駅数
     const uniqCount = agg.size;
-    const isWinner = (i === 0);
+
     html += `
-      <div class="last-result-player${isWinner?' last-result-player--winner':''}">
-        <div class="last-result-player-name">
+      <div style="margin-top:10px;">
+        <div style="font-weight:800;">
           ${r.p.icon} ${r.p.name}
-          <span class="last-result-player-stat">Unique ${uniqCount} / Slots ${owned.length}</span>
+          <span style="opacity:.7;font-weight:600;font-size:12px;">（Unique ${uniqCount} / Slots ${owned.length}）</span>
         </div>
-        <div class="last-result-station-list">${list || '<span style="opacity:.5">-</span>'}</div>
+        <div style="opacity:.92;font-size:12px;line-height:1.5;word-break:break-word;">
+          ${list || "-"}
+        </div>
       </div>
     `;
   });

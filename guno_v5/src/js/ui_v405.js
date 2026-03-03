@@ -260,8 +260,8 @@ function endGame() {
 
   playSE('seEnd', 1.0);
 
-  // ===== C案：3秒間スロットの勝者カードアニメーションを見せてからオーバーレイ表示 =====
-  _showVictoryCountdown(3);
+  // ===== トースト通知を表示（オーバーレイは廃止）=====
+  _showVictoryToast();
 }
 
 function getOwnedStationsByPlayer(pIdx){
@@ -272,53 +272,52 @@ function getOwnedStationsByPlayer(pIdx){
   });
 }
 
-// カウントダウンバナーを表示してからVICTORYオーバーレイを開く
-function _showVictoryCountdown(sec) {
-  // カウントダウン用バナーを作成（既存があれば再利用）
-  let banner = document.getElementById('victory-countdown-banner');
-  if (!banner) {
-    banner = document.createElement('div');
-    banner.id = 'victory-countdown-banner';
-    banner.style.cssText = [
-      'position:fixed',
-      'top:50%',
-      'left:50%',
-      'transform:translate(-50%,-50%)',
-      'background:rgba(0,0,0,0.82)',
-      'color:gold',
-      'font-size:clamp(28px,6vw,52px)',
-      'font-weight:bold',
-      'padding:18px 36px',
-      'border-radius:16px',
-      'border:3px solid gold',
-      'box-shadow:0 0 30px rgba(255,215,0,0.7)',
-      'z-index:9000',
-      'text-align:center',
-      'pointer-events:none',
-      'letter-spacing:2px',
-    ].join(';');
-    document.body.appendChild(banner);
-  }
-
-  let remaining = sec;
+// トースト通知を画面上部に表示（4秒後に自動消滅）
+function _showVictoryToast() {
   const winnerName = players[winnerIdx] ? (players[winnerIdx].name || `P${winnerIdx+1}`) : '???';
   const winnerIcon = players[winnerIdx] ? (players[winnerIdx].icon || '🏆') : '🏆';
 
-  function tick() {
-    if (remaining > 0) {
-      banner.innerHTML =
-        `🏆 ${winnerIcon} ${winnerName} WIN!<br>` +
-        `<span style="font-size:0.6em;color:#fff;">結果表示まで ${remaining}秒...</span>`;
-      remaining--;
-      setTimeout(tick, 1000);
-    } else {
-      // バナーを消してオーバーレイを表示
-      banner.remove();
-      document.getElementById('result-overlay').style.display = 'flex';
-      if (window.confetti) window.confetti({ particleCount: 200, spread: 100 });
-    }
-  }
-  tick();
+  // 既存のトーストがあれば削除
+  const old = document.getElementById('victory-toast');
+  if (old) old.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'victory-toast';
+  toast.innerHTML = `🏆 ${winnerIcon} <strong>${winnerName} WIN!</strong> &nbsp;<span style="font-size:0.75em;opacity:.85;">← 左メニューで結果を確認</span>`;
+  toast.style.cssText = [
+    'position:fixed',
+    'top:12px',
+    'left:50%',
+    'transform:translateX(-50%)',
+    'background:linear-gradient(135deg,#1a1a1a 60%,#2a1f00)',
+    'color:gold',
+    'font-size:clamp(14px,3.5vw,20px)',
+    'font-weight:bold',
+    'padding:10px 22px',
+    'border-radius:30px',
+    'border:2px solid gold',
+    'box-shadow:0 0 24px rgba(255,215,0,0.6),0 4px 16px rgba(0,0,0,0.7)',
+    'z-index:9500',
+    'white-space:nowrap',
+    'pointer-events:none',
+    'opacity:0',
+    'transition:opacity 0.4s ease',
+  ].join(';');
+  document.body.appendChild(toast);
+
+  // フェードイン
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { toast.style.opacity = '1'; });
+  });
+
+  // 紙吹雪
+  if (window.confetti) window.confetti({ particleCount: 200, spread: 100 });
+
+  // 4秒後にフェードアウト→削除
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 500);
+  }, 4000);
 }
 
 function showRanking() {
