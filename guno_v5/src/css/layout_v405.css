@@ -365,6 +365,7 @@ body{
 }
 .leaflet-tooltip.station-label:before{ display:none !important; }
 
+*/
 .winner-glow{
   border: 3px solid #fff7c2;
   box-shadow:
@@ -372,6 +373,8 @@ body{
     0 0 18px rgba(255,215,0,0.7);
   animation: winnerPulse 2.6s ease-in-out infinite;
 }
+*/
+
 .winner-glow::after{
   content:"";
   position:absolute;
