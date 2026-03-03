@@ -1,7 +1,10 @@
-// ui_v405.js (DOM rendering only)
+// ui_v405.js (IMPROVED: AUTO pause/resume + clearer button UI)
 // Generated from guno_V4_051.html (v4.05) for V5 split
 
 let winnerIdx = undefined;
+
+// ===== AUTO 一時停止フラグ =====
+let autoPaused = false;   // true = AUTOモードだが一時停止中
 
 // 翻訳ヘルパー関数（v4互換）
 const t = (ja, en) => isJapanese ? ja : en;
@@ -34,7 +37,7 @@ document.addEventListener("pointerdown", unlockSE, { once:true });
 function startGame() {
 
     // ★ 勝者リセット
-    winnerIdx = undefined;   // ←これだけでOK
+    winnerIdx = undefined;
 
     clearPersistentResult();
     hideResultLinesOnMainMap();
@@ -49,6 +52,7 @@ function startGame() {
     mapState = {};
     lastHits = {};
     consecutivePasses = 0;
+    autoPaused = false;   // ★ 一時停止リセット
 
     teidenPlayed = { JY:false, M:false, G:false, T:false };
 
@@ -91,14 +95,17 @@ function startGame() {
 
     updateModeButton();
     nextTurn();
-	
-	if (typeof showNetworkLinesOnMainMap === "function") {
-	showNetworkLinesOnMainMap("game");
-	}
+
+    if (typeof showNetworkLinesOnMainMap === "function") {
+        showNetworkLinesOnMainMap("game");
+    }
 }
 
 function nextTurn() {
     if(gameOver) return;
+    // ★ 一時停止中はCPUターンを進めない
+    if(autoPaused) return;
+
     const activePlayers = players.filter(p => p.status === 'active');
     if(activePlayers.length <= 1){ 
         log(t('🏁 ゲーム終了！ 残りプレーヤー: ', '🏁 Game Over! Remaining players: ') + activePlayers.length + t('人', ''));
@@ -162,43 +169,34 @@ function executePlay(pIdx, cardIdx) {
 function humanDraw() { 
     if(!isWaitingHuman || turnIndex !== 0 || getPlayableIndices(players[0]).length > 0 || !deck.length) return; 
     players[0].hand.push(deck.pop()); 
-    playSE('seDraw', 0.6);  // カード引く音
-        log(t('🎴 <b>' + players[0].name + '</b> がカードを引きました', '🎴 <b>' + players[0].name + '</b> drew a card'));
+    playSE('seDraw', 0.6);
+    log(t('🎴 <b>' + players[0].name + '</b> がカードを引きました', '🎴 <b>' + players[0].name + '</b> drew a card'));
     renderAll();
-    // 引いたカードが出せるか再評価
     const playable = getPlayableIndices(players[0]);
     if(playable.length > 0) {
-        // 出せるカードがあるので続行
         return;
     }
-    // 出せるカードがないのでターン終了
     isWaitingHuman = false; 
     advanceTurn(); 
     nextTurn(); 
 }
 function humanPlay(idx) { if(!isWaitingHuman || turnIndex !== 0 || !getPlayableIndices(players[0]).includes(idx)) return; isWaitingHuman = false; executePlay(0, idx); advanceTurn(); nextTurn(); }
 
-
-
 function playCPUTurn() { 
+    if(autoPaused) return;  // ★ 一時停止中はCPUターンをスキップ
     const p = players[turnIndex];
     let pi = getPlayableIndices(p); 
     if(pi.length) {
-        // 出せるカードがあるので出す
         executePlay(turnIndex, pi[0]); 
     } else if(deck.length) {
-        // 出せるカードがないので引く
         p.hand.push(deck.pop()); 
-        playSE('seDraw', 0.6);  // カード引く音
+        playSE('seDraw', 0.6);
         log(t('🎴 <b>' + p.name + '</b> がカードを引きました', '🎴 <b>' + p.name + '</b> drew a card'));
-        // 引いたカードが出せるか再評価
         pi = getPlayableIndices(p);
         if(pi.length) {
-            // 引いたカードが出せるので出す
             executePlay(turnIndex, pi[0]);
         }
     } else {
-        // デッキが空で出せるカードもない
         advanceTurn(); 
         nextTurn(); 
         return; 
@@ -219,7 +217,6 @@ function getPlayableIndices(p) {
 }
 
 function checkGuno(lc, pIdx){
-    // その路線の10駅すべてが埋まっているかチェック
     let filledCount = 0;
     for(let i=1; i<=10; i++) {
         const owner = mapState[lc + "-" + i];
@@ -227,59 +224,53 @@ function checkGuno(lc, pIdx){
             filledCount++;
         }
     }
-    // デバッグログ
     console.log('[DEBUG] ' + players[pIdx].name + ' ' + lc + ' プレイ | 埋まった駅: ' + filledCount + '/10 | lastHits[' + lc + ']=' + (lastHits[lc] !== undefined ? players[lastHits[lc]].name : 'none'));
     
-    // GUNO達成判定：10駅すべてが埋まったかつ、まだGUNOされていない場合
     if (filledCount === 10 && lastHits[lc] === undefined){ 
         lastHits[lc] = pIdx; 
         players[pIdx].guno++; 
         console.log('[GUNO!] ' + players[pIdx].name + ' が ' + lc + ' を完成！（10駅すべて埋まった）');
         log(t('🎆 <b>' + players[pIdx].name + '</b> が ' + lc + ' を完成！(GUNO達成)', '🎆 <b>' + players[pIdx].name + '</b> completed ' + lc + '! (GUNO)'));
-        playSE('seGuno', 1.0);  // GUNO成立音
+        playSE('seGuno', 1.0);
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); 
-        // 4路線すべてが完成したかチェック
         const totalGuno = players.reduce((sum, p) => sum + p.guno, 0);
         if(totalGuno >= 4) endGame(); 
     }
 }
-function endGame() {
 
+function endGame() {
   gameOver = true;
+  autoPaused = false;   // ★ 終了時は一時停止フラグをリセット
   if(autoTimer) clearTimeout(autoTimer);
 
   renderAll();
+  updateModeButton();   // ★ ゲーム終了後のボタン状態を更新
 
   document.getElementById('result-overlay').style.display = 'flex';
 
   const ranking = showRanking();
 
-  // ★勝者保存
   winnerIdx = players.indexOf(ranking[0].p);
 
-  renderAll();   // 発光反映
+  renderAll();
 
   renderPersistentResult(ranking);
 
-  // ★ここを置き換え：結果モードで7路線を表示（追加3路線は少し濃く）
   if (typeof showNetworkLinesOnMainMap === "function") {
     showNetworkLinesOnMainMap("result");
   } else {
-    // 互換：まだ新関数を入れてない場合は従来のまま
     showResultLinesOnMainMap();
   }
 
   playSE('seEnd', 1.0);
 
-  // confetti が無い環境でも落ちないようにガード
   if (window.confetti) window.confetti({ particleCount: 200, spread: 100 });
 }
 
 function getOwnedStationsByPlayer(pIdx){
-  // STATIONS_DB が const の場合でも拾う
   const db = (window.STATIONS_DB || (typeof STATIONS_DB !== "undefined" ? STATIONS_DB : []));
   return db.filter(st => {
-    const key = `${st.lc}-${st.order}`;      // mapState のキー仕様に合わせる
+    const key = `${st.lc}-${st.order}`;
     return mapState[key] === pIdx;
   });
 }
@@ -292,7 +283,7 @@ function showRanking() {
     const gunoPts = p.guno * GUNO_POINT;
     const base = gunoPts + stCount;
 
-    const connPts = calcConnectionBonus(ownedStations); // degree_real 기반なら (d-1) 合計
+    const connPts = calcConnectionBonus(ownedStations);
     const total = base + connPts;
 
     const isAlive = p.status !== 'eliminated';
@@ -300,23 +291,24 @@ function showRanking() {
     return { p, stCount, gunoPts, base, connPts, total, isAlive, ownedStations };
   });
 
-  // 生存優先 → 合計点
   const ranking = data.sort((a,b) => {
     if (a.isAlive !== b.isAlive) return b.isAlive - a.isAlive;
     return b.total - a.total;
   });
 
-  // 表
   let rows = "";
   ranking.forEach((r, i) => {
-    const style = (i === 0) ? 'style="color:gold; font-weight:bold;"' : "";
+    const isFirst = (i === 0);
+    const style = isFirst
+      ? 'style="color:gold; font-weight:bold; background:rgba(255,215,0,0.12);"'
+      : "";
     rows +=
       '<tr ' + style + '>' +
-        '<td>' + (i+1) + '</td>' +
+        '<td>' + (isFirst ? '🏆 ' : '') + (i+1) + '</td>' +
         '<td>' + r.p.icon + ' ' + r.p.name + '</td>' +
         '<td>' + r.total + '</td>' +
         '<td>' + r.base + '</td>' +
-        '<td>+' + r.connPts + '</td>' +   // ★ connPts に統一
+        '<td>+' + r.connPts + '</td>' +
         '<td>' + r.stCount + '</td>' +
         '<td>' + r.p.guno + '</td>' +
       '</tr>';
@@ -333,14 +325,12 @@ function showRanking() {
       '<th>GUNO</th>' +
     '</tr></thead><tbody>' + rows + '</tbody>';
 
-  // ★駅詳細（ここが今まで死んでた）
   renderStationBreakdown(ranking);
 
-  return ranking; // ★必ず最後
+  return ranking;
 }
 
 function renderStationBreakdown(ranking){
-  // 置き場を用意（なければ作る）
   let box = document.getElementById('result-stations');
   if(!box){
     box = document.createElement('div');
@@ -371,66 +361,149 @@ function renderStationBreakdown(ranking){
   box.innerHTML = html;
 }
 
-function toggleAuto() { 
-    autoPlay = !autoPlay; players[0].isHuman = !autoPlay; updateModeButton();
+// ===== AUTO制御（改良版） =====
+
+/**
+ * AUTOモードのON/OFFを切り替える
+ * OFF→ON: AUTOモードを開始（P1もCPU化）
+ * ON→OFF: AUTOモードを終了（P1を人間に戻す）
+ */
+function toggleAuto() {
+    autoPlay = !autoPlay;
+    players[0].isHuman = !autoPlay;
+    autoPaused = false;   // AUTO切替時は一時停止解除
     if (autoTimer) clearTimeout(autoTimer);
-    if(!gameOver) { isWaitingHuman = (turnIndex===0 && !autoPlay); renderAll(); if(autoPlay) nextTurn(); }
+    updateModeButton();
+    if(!gameOver) {
+        isWaitingHuman = (turnIndex===0 && !autoPlay);
+        renderAll();
+        if(autoPlay) nextTurn();
+    }
 }
+
+/**
+ * AUTOモード中の一時停止・再開
+ * 停止: タイマーをクリアし、autoPaused=true
+ * 再開: autoPaused=false にして nextTurn() を呼ぶ
+ */
+function togglePause() {
+    if(!autoPlay || gameOver) return;
+    autoPaused = !autoPaused;
+    if(autoPaused) {
+        // 停止
+        if(autoTimer) clearTimeout(autoTimer);
+        log(t('⏸ AUTO一時停止', '⏸ AUTO Paused'));
+    } else {
+        // 再開
+        log(t('▶ AUTO再開', '▶ AUTO Resumed'));
+        nextTurn();
+    }
+    updateModeButton();
+    renderAll();
+}
+
+/**
+ * ボタン表示を状態に合わせて更新
+ *
+ * 状態パターン：
+ *   gameOver           → 新規ボタンのみ強調、AUTOボタンはグレー
+ *   !autoPlay          → AUTO: OFF（グレー）
+ *   autoPlay && !paused → AUTO: ON（緑）+ ⏸ 停止ボタン表示
+ *   autoPlay && paused  → AUTO: 停止中（オレンジ）+ ▶ 再開ボタン表示
+ */
 function updateModeButton() {
-    const btn = document.getElementById('btn-mode');
-    btn.textContent = autoPlay ? "⏸️ AUTO: ON" : "▶️ AUTO: OFF";
-    btn.className = autoPlay ? "btn-auto-active" : "btn-manual";
+    const btnMode   = document.getElementById('btn-mode');
+    const btnPause  = document.getElementById('btn-pause');
+    const btnNew    = document.getElementById('btn-new');
+
+    if(!btnMode) return;
+
+    if(gameOver) {
+        // ゲーム終了後
+        btnMode.textContent = t('AUTO: OFF', 'AUTO: OFF');
+        btnMode.className = 'btn-auto-off';
+        btnMode.disabled = false;
+        if(btnPause) { btnPause.style.display = 'none'; }
+        if(btnNew) { btnNew.classList.add('btn-new-highlight'); }
+        return;
+    }
+
+    if(!autoPlay) {
+        // AUTOモードOFF（手動）
+        btnMode.textContent = t('▶ AUTO: OFF', '▶ AUTO: OFF');
+        btnMode.className = 'btn-auto-off';
+        if(btnPause) { btnPause.style.display = 'none'; }
+    } else if(!autoPaused) {
+        // AUTOモードON・実行中
+        btnMode.textContent = t('⏹ AUTO: ON', '⏹ AUTO: ON');
+        btnMode.className = 'btn-auto-on';
+        if(btnPause) {
+            btnPause.style.display = 'inline-flex';
+            btnPause.textContent = t('⏸ 停止', '⏸ Pause');
+            btnPause.className = 'btn-pause-active';
+        }
+    } else {
+        // AUTOモードON・一時停止中
+        btnMode.textContent = t('⏹ AUTO: ON', '⏹ AUTO: ON');
+        btnMode.className = 'btn-auto-on';
+        if(btnPause) {
+            btnPause.style.display = 'inline-flex';
+            btnPause.textContent = t('▶ 再開', '▶ Resume');
+            btnPause.className = 'btn-pause-resume';
+        }
+    }
+
+    if(btnNew) { btnNew.classList.remove('btn-new-highlight'); }
 }
+
 function toggleLog(){ document.body.classList.toggle('show-log'); safeInvalidateMap(); }
+
 function setHint(text, level){
   const msg = text || "";
 
-  // 新：ヘッダー直下ステータスバー
   const bar = document.getElementById("statusBar");
   if (bar){
     bar.textContent = msg;
-    bar.classList.remove("is-warning", "is-danger");
+    bar.classList.remove("is-warning", "is-danger", "is-paused");
     if (level === "warning") bar.classList.add("is-warning");
     if (level === "danger")  bar.classList.add("is-danger");
+    // ★ 一時停止中はステータスバーをオレンジに
+    if (autoPaused) bar.classList.add("is-paused");
     return;
   }
 
-  // 旧：従来ヒントエリア（残っている場合だけ）
   const old = document.getElementById("hint-area");
   if (old){
     old.textContent = msg;
     return;
   }
-
-  // どちらも無い場合：何もしない（落とさない）
 }
 
 function renderAll() {
     const rad = (map && map.getZoom) ? (map.getZoom() < 12 ? 2 : (map.getZoom() < 14 ? 4 : 6)) : 4;
     const playable = (isWaitingHuman && turnIndex === 0) ? getPlayableIndices(players[0]) : [];
-    if(isWaitingHuman && turnIndex === 0){
+    if(autoPaused) {
+        setHint(t('⏸ AUTO一時停止中 — 「▶ 再開」で続ける', '⏸ AUTO Paused — tap ▶ Resume'));
+    } else if(isWaitingHuman && turnIndex === 0){
         if(playable.length) setHint(t('💡 出せるカードをタップ', '💡 Tap a playable card'));
         else if(deck.length) setHint(t('💡 DECKをタップして1枚引く', '💡 Tap DECK to draw'));
-    } else { setHint(gameOver ? t('対局終了', 'Game Over') : t('待ち：', 'Waiting: ') + players[turnIndex].name + t('の番', '\'s turn')); }
+    } else {
+        setHint(gameOver ? t('対局終了', 'Game Over') : t('待ち：', 'Waiting: ') + players[turnIndex].name + t('の番', '\'s turn'));
+    }
 
     document.getElementById('players-area').innerHTML = players.map((p, i) => {
         const isTurn = (i === turnIndex && !gameOver && p.status === 'active');
         const cardsHtml = p.hand.map((c, ci) => {
             const canPlay = (p.isHuman && !autoPlay && isWaitingHuman && turnIndex === 0 && playable.includes(ci));
             if (!p.isHuman && !autoPlay) {
-                // 相手の手札は裏面画像
                 return '<div class="card ' + (canPlay?'playable':(p.isHuman?'unplayable':'')) + '" style="background-image:url(' + BACK_URL + ')"></div>';
             }
-            // 自分の手札またはAUTOモード時はオーバーレイカード
             const className = canPlay ? 'playable' : (p.isHuman ? 'unplayable' : '');
             const onclickAttr = canPlay ? 'onclick="humanPlay(' + ci + ')"' : '';
             return createHandCardHTML(c, className, onclickAttr);
         }).join('');
-        // ✅ 修正：閉じタグ連結修復
-        // Stations（獲得駅数）を計算
         let stCount = 0;
         Object.values(mapState).forEach(owner => { if(owner === i) stCount++; });
-        // 表示：Stations（獲得駅数） | GUNO（制覇路線数） | Score（合計）
         return '<div class="player-box ' + (isTurn?'active-turn':'') + ' ' + (p.status==='eliminated'?'eliminated':'') + 
                '" style="border-left-color:' + p.color + '"><b>' + p.icon + ' ' + p.name + 
                '</b> <small>Stations:' + stCount + ' | GUNO:' + p.guno + ' | Score:' + calculateScore(i) + '</small><br>' + cardsHtml + '</div>';
@@ -440,7 +513,6 @@ function renderAll() {
     const top = discardPile[discardPile.length-1];
     if (top) {
         if (top.type === 'teiden') {
-            // 停電カードもオーバーレイで生成
             document.getElementById('discard-pile').innerHTML = `
                 <div class="card card-large guno-card guno-card--teiden" data-line="${top.lc}" style="--w:var(--card-w); margin:0;">
                     <div class="teiden-icon" aria-label="停電">⚡</div>
@@ -449,12 +521,9 @@ function renderAll() {
                 </div>
             `;
         } else {
-            // 駅カードはオーバーレイで生成
             const st = STATIONS_DB.find(s => s.lc === top.lc && s.order === top.order);
             if (st) {
-                // 2文字駅名の場合はshort-nameクラスを追加（★を除外して判定）
                 const shortNameClass = st.st_ja.replace('★', '').length === 2 ? 'short-name' : '';
-                
                 document.getElementById('discard-pile').innerHTML = `
                     <div class="card card-large guno-card" data-line="${top.lc}" style="--w:var(--card-w); margin:0;">
                         <div class="corner corner--tl">
@@ -483,8 +552,6 @@ function renderAll() {
     document.getElementById('draw-pile-visual').className = (isWaitingHuman && playable.length === 0 && deck.length > 0) ? 'can-draw' : '';
     document.getElementById('direction-arrow').textContent = direction === 1 ? '↻' : '↺';
 
-
-
     updateMapVisuals();
     renderSlots();
 }
@@ -492,7 +559,6 @@ function renderAll() {
 /** 駅カードHTML生成（手札用） */
 function createHandCardHTML(card, className, onclick) {
     if (card.type === 'teiden') {
-        // 停電カードもオーバーレイで生成
         return `
             <div class="card guno-card guno-card--teiden ${className}" data-line="${card.lc}" style="--w:var(--card-w); margin:0;" ${onclick}>
                 <div class="teiden-icon" aria-label="停電">⚡</div>
@@ -501,11 +567,9 @@ function createHandCardHTML(card, className, onclick) {
             </div>
         `;
     }
-    // 駅カードはオーバーレイで生成
     const st = STATIONS_DB.find(s => s.lc === card.lc && s.order === card.order);
     if (!st) return `<div class="card ${className}" style="background-image:url(${IMAGE_BASE_URL}${card.file}.png)" ${onclick}></div>`;
     
-    // 2文字駅名の場合はshort-nameクラスを追加（★を除外して判定）
     const shortNameClass = st.st_ja.replace('★', '').length === 2 ? 'short-name' : '';
     
     return `
@@ -529,7 +593,6 @@ function createHandCardHTML(card, className, onclick) {
 
 /** 駅カードHTML生成（ゲーム中のスロット用） */
 function createStationCardHTML(line, num, jp, en, borderColor, playerIcon) {
-    // 2文字駅名の場合はshort-nameクラスを追加（★を除外して判定）
     const shortNameClass = jp.replace('★', '').length === 2 ? 'short-name' : '';
     
     return `
@@ -554,7 +617,6 @@ function createStationCardHTML(line, num, jp, en, borderColor, playerIcon) {
 
 function renderSlots() {
 
-    // 各路線の駅スロット（1-10）
     ['JY','M','G','T'].forEach(lc => {
 
         const grid = document.getElementById('map-' + lc.toLowerCase());
@@ -573,12 +635,10 @@ function renderSlots() {
 
             if(o !== undefined && o !== -1) {
 
-                // ★ 勝者判定
                 const isWinner =
-					winnerIdx !== undefined &&
-					o === winnerIdx;
+                    winnerIdx !== undefined &&
+                    o === winnerIdx;
 
-                // HTML生成
                 let cardHTML = createStationCardHTML(
                     lc,
                     i,
@@ -588,7 +648,6 @@ function renderSlots() {
                     players[o].icon
                 );
 
-                // ★ class追加（slot active → slot active winner-glow）
                 if(isWinner){
                     cardHTML = cardHTML.replace(
                         'slot active',
@@ -614,10 +673,6 @@ function renderSlots() {
 
         grid.innerHTML = h;
     });
-
-    // =============================
-    // 停電カード専用エリア（変更なし）
-    // =============================
 
     const blackoutGrid = document.getElementById('map-blackout');
 
@@ -671,7 +726,6 @@ function renderSlots() {
 
 function toggleLanguage() { 
     isJapanese = !isJapanese; 
-    // 駅名ラベル更新
     Object.values(stationNodes).forEach(node => { 
         const st = node.lines[0].stData; 
         node.marker.unbindTooltip(); 
@@ -679,11 +733,11 @@ function toggleLanguage() {
         const label = stName.startsWith('★') ? '<span style="color:gold; font-size:14px;">★</span>' + stName.substring(1) : stName; 
         node.marker.bindTooltip(label, { permanent: true, direction: 'top', className: 'station-label', offset:[0,-10] }); 
     }); 
-    // UI要素更新
     document.getElementById('btn-log-text').textContent = t('ログ', 'Log');
     document.getElementById('btn-new-text').textContent = t('新規', 'New');
     document.getElementById('log-title').textContent = t('📜 ログ履歴', '📜 Log History');
     document.getElementById('btn-close-log').textContent = t('閉じる', 'Close');
+    updateModeButton();
     renderSlots(); 
     renderAll(); 
 }
@@ -696,7 +750,6 @@ function adjustFontByLength(cardEl, jpText, enText){
   const jpLen = (jpText || "").length;
   const enLen = (enText || "").length;
 
-  // JP: 2-3文字は大きく、長いほど少し下げる
   if (jpLen <= 3) {
     jpEl.style.fontSize = "calc(var(--w) * 0.155)";
   } else if (jpLen <= 5) {
@@ -707,7 +760,6 @@ function adjustFontByLength(cardEl, jpText, enText){
     jpEl.style.fontSize = "calc(var(--w) * 0.120)";
   }
 
-  // EN: 長い時だけ下げる
   if (enLen <= 8) {
     enEl.style.fontSize = "calc(var(--w) * 0.070)";
   } else if (enLen <= 14) {

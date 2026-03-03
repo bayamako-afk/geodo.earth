@@ -246,14 +246,10 @@ function endGame() {
   renderAll();
   updateModeButton();   // ★ ゲーム終了後のボタン状態を更新
 
-  document.getElementById('result-overlay').style.display = 'flex';
-
+  // ランキング計算・スロット演出（winner-glow）を先に適用
   const ranking = showRanking();
-
   winnerIdx = players.indexOf(ranking[0].p);
-
   renderAll();
-
   renderPersistentResult(ranking);
 
   if (typeof showNetworkLinesOnMainMap === "function") {
@@ -264,7 +260,8 @@ function endGame() {
 
   playSE('seEnd', 1.0);
 
-  if (window.confetti) window.confetti({ particleCount: 200, spread: 100 });
+  // ===== C案：3秒間スロットの勝者カードアニメーションを見せてからオーバーレイ表示 =====
+  _showVictoryCountdown(3);
 }
 
 function getOwnedStationsByPlayer(pIdx){
@@ -273,6 +270,55 @@ function getOwnedStationsByPlayer(pIdx){
     const key = `${st.lc}-${st.order}`;
     return mapState[key] === pIdx;
   });
+}
+
+// カウントダウンバナーを表示してからVICTORYオーバーレイを開く
+function _showVictoryCountdown(sec) {
+  // カウントダウン用バナーを作成（既存があれば再利用）
+  let banner = document.getElementById('victory-countdown-banner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'victory-countdown-banner';
+    banner.style.cssText = [
+      'position:fixed',
+      'top:50%',
+      'left:50%',
+      'transform:translate(-50%,-50%)',
+      'background:rgba(0,0,0,0.82)',
+      'color:gold',
+      'font-size:clamp(28px,6vw,52px)',
+      'font-weight:bold',
+      'padding:18px 36px',
+      'border-radius:16px',
+      'border:3px solid gold',
+      'box-shadow:0 0 30px rgba(255,215,0,0.7)',
+      'z-index:9000',
+      'text-align:center',
+      'pointer-events:none',
+      'letter-spacing:2px',
+    ].join(';');
+    document.body.appendChild(banner);
+  }
+
+  let remaining = sec;
+  const winnerName = players[winnerIdx] ? (players[winnerIdx].name || `P${winnerIdx+1}`) : '???';
+  const winnerIcon = players[winnerIdx] ? (players[winnerIdx].icon || '🏆') : '🏆';
+
+  function tick() {
+    if (remaining > 0) {
+      banner.innerHTML =
+        `🏆 ${winnerIcon} ${winnerName} WIN!<br>` +
+        `<span style="font-size:0.6em;color:#fff;">結果表示まで ${remaining}秒...</span>`;
+      remaining--;
+      setTimeout(tick, 1000);
+    } else {
+      // バナーを消してオーバーレイを表示
+      banner.remove();
+      document.getElementById('result-overlay').style.display = 'flex';
+      if (window.confetti) window.confetti({ particleCount: 200, spread: 100 });
+    }
+  }
+  tick();
 }
 
 function showRanking() {
