@@ -8,35 +8,34 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
 <link rel="stylesheet" href="./css/app.css">
+<link rel="stylesheet" href="./css/layout_v405.css">
 <link rel="stylesheet" href="./css/cards.css">
 <link rel="icon" type="image/png" href="./assets/cards/GUNO_BACK.png">
-
 </head>
 <body>
 
 <div class="game-container">
+    <!-- 左列：ダッシュボード（DECK/LAST・手札・スコア） -->
     <div class="panel panel-dashboard" id="dashboard-container">
         <div style="display:flex; justify-content:space-around; align-items:center; background:#111; padding:5px 10px; border-radius:10px; margin-bottom:6px; flex-shrink: 0;">
-            <div style="text-align:center;"><small style="color:#666;">DECK</small><div id="draw-pile-visual"  class="guno-back" onclick="humanDraw()"></div></div>
+            <div style="text-align:center;"><small style="color:#666;">DECK</small><div id="draw-pile-visual" class="guno-back" onclick="humanDraw()"></div></div>
             <div id="direction-arrow" style="font-size:32px; color:gold;">↻</div>
             <div style="text-align:center;"><small style="color:#666;">LAST</small><div id="discard-pile"></div></div>
         </div>
-
         <div id="players-area"></div>
         <div id="persistent-result" style="margin-top:20px;"></div>
     </div>
 
+    <!-- 中央列：スロットエリア（ヘッダー＋路線・停電） -->
     <div class="panel panel-slots" id="slots-container">
-        <div class="header">
+        <!-- ヘッダー：PCでは中央列の上部、スマホでは画面上部に固定 -->
+        <div class="header" id="main-header">
             <div><h2 style="margin:0; color:gold;">GUNO v4.05</h2><small>Larger Corner Circles</small></div>
             <div class="controls">
                 <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
                 <button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
-                <!-- 新規ボタン：目立つ赤色 -->
                 <button id="btn-new" onclick="confirmNewGame()" class="btn-new">🎲 <span id="btn-new-text">新規</span></button>
-                <!-- AUTO ON/OFFボタン -->
                 <button id="btn-mode" onclick="toggleAuto()" class="btn-auto-off">▶ AUTO: OFF</button>
-                <!-- 停止・再開ボタン（AUTOモード中のみ表示） -->
                 <button id="btn-pause" onclick="togglePause()" class="btn-pause-active" style="display:none;">⏸ 停止</button>
             </div>
         </div>
@@ -55,20 +54,31 @@
         </div>
     </div>
 
-
-
+    <!-- 右列：地図 -->
     <div class="panel panel-map" id="map-container">
         <div id="map"></div>
     </div>
 
-    <div id="result-overlay"><div class="result-card"><h1 style="color:gold;">🏆 VICTORY!</h1><table id="result-table"></table><div style="display:flex; justify-content:center; gap:10px;"><button onclick="startGame()" style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">もう一度遊ぶ</button><button onclick="document.getElementById('result-overlay').style.display='none';" style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">✖ 閉じる</button></div></div></div>
+    <!-- 勝利オーバーレイ -->
+    <div id="result-overlay">
+        <div class="result-card">
+            <h1 style="color:gold;">🏆 VICTORY!</h1>
+            <table id="result-table"></table>
+            <div style="display:flex; justify-content:center; gap:10px;">
+                <button onclick="startGame()" style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">もう一度遊ぶ</button>
+                <button onclick="document.getElementById('result-overlay').style.display='none';" style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">✖ 閉じる</button>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- カードグリッド（開発用） -->
 <section id="dev-overlay" class="hidden" style="margin:20px auto; padding:20px; background:#1a1a1a; border-radius:8px; max-width:1400px;">
     <h3 style="margin:8px 0; color:gold;">GUNO Cards (Digital Overlay)</h3>
     <div id="cardGrid" class="guno-card-grid"></div>
 </section>
 
+<!-- ログパネル -->
 <div class="panel-log" id="log-container">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
         <h3 style="margin:0;" id="log-title">📜 ログ履歴</h3>
@@ -77,13 +87,12 @@
     <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
 </div>
 
-<!-- Sound Effects -->
+<!-- 効果音 -->
 <audio id="sePlay" src="sounds/play.mp3" preload="auto"></audio>
 <audio id="seDraw" src="sounds/draw.mp3" preload="auto"></audio>
 <audio id="seGuno" src="sounds/guno.mp3" preload="auto"></audio>
 <audio id="seBlackout" src="sounds/blackout.mp3" preload="auto"></audio>
 <audio id="seEnd" src="sounds/end.mp3" preload="auto"></audio>
-
 
 <!-- vendor -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -100,7 +109,6 @@
 <script>
 // 新規ゲーム確認ダイアログ（誤タップ防止）
 function confirmNewGame() {
-    // ゲーム中のみ確認（ゲーム終了後はそのまま開始）
     if (!gameOver && typeof players !== 'undefined' && players.length > 0 && typeof turnCount !== 'undefined' && turnCount > 0) {
         if (!confirm(isJapanese ? '新しいゲームを始めますか？\n現在のゲームは終了します。' : 'Start a new game?\nThe current game will end.')) {
             return;

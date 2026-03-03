@@ -1,10 +1,8 @@
 /* =========================================
-   layout_v405.css (IMPROVED: Button UI)
-   - bodyは触らない
-   - 余白はgame-containerへ
-   - Mobile: header + statusBarはfixed
-   - PC: 3列安定版
-   - ★ ボタンUI改良：新規/AUTO/停止/再開
+   layout_v405.css (v3: Header in panel-slots)
+   - PCは3列中央（panel-slots）にヘッダー
+   - スマホはヘッダーをfixedで画面上部に固定
+   - ボタンUI改良：新規/AUTO/停止/再開
 ========================================= */
 
 /* ===== Base ===== */
@@ -33,7 +31,7 @@ body{
   overflow-y:auto;
 }
 
-/* ===== Header ===== */
+/* ===== Header（panel-slots内に配置） ===== */
 .header{
   display:flex;
   align-items:center;
@@ -43,6 +41,8 @@ body{
   border:1px solid var(--line);
   border-radius:12px;
   padding:8px 12px;
+  margin-bottom:6px;
+  flex-shrink: 0;
 }
 
 /* ===== Controls（ボタン群） ===== */
@@ -100,7 +100,6 @@ body{
 .btn-new:hover {
   filter: brightness(1.15);
 }
-/* ゲーム終了後はさらに目立たせる */
 .btn-new-highlight {
   background: #e74c3c !important;
   box-shadow: 0 0 14px rgba(231, 76, 60, 0.7) !important;
@@ -149,13 +148,14 @@ body{
 
 /* ===== Status Bar ===== */
 .status-bar{
-  margin:6px 10px 8px 10px;
+  margin:0 0 8px 0;
   padding:8px 12px;
   border-radius:10px;
   background:#141a14;
   border:1px dashed #3ddc84;
   color:#8cffb0;
   font-weight:600;
+  flex-shrink: 0;
 }
 .status-bar.is-warning {
   background: #1a1400;
@@ -167,7 +167,6 @@ body{
   border-color: #ff4444;
   color: #ff4444;
 }
-/* ★ 一時停止中のステータスバー */
 .status-bar.is-paused {
   background: #1a0d00;
   border-color: #ff8c00;
@@ -196,7 +195,7 @@ body{
   min-height:0;
 }
 
-/* ===== Game container ===== */
+/* ===== Game container（モバイルデフォルト：縦並び） ===== */
 .game-container{
   display:flex;
   flex-direction:column;
@@ -204,29 +203,23 @@ body{
   padding:10px;
 }
 
-/* ===== Map (mobile default) ===== */
+/* ===== Map（モバイルデフォルト） ===== */
 #map{
   height:34vh;
   min-height:240px;
   width:100%;
   border-radius:12px;
   flex:1 1 auto;
-  min-height:0;
 }
 
-/* ===== PC Layout ===== */
+/* ===== PC Layout（1024px以上：3列グリッド） ===== */
 @media (min-width:1024px){
-
-  body > .header{
-    position:static;
-    margin:10px 10px 0 10px;
-  }
 
   .game-container{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
     gap:10px;
-    height:calc(100dvh - 16px);
+    height:100dvh;
     align-items:stretch;
     padding:10px;
   }
@@ -236,12 +229,24 @@ body{
     flex-direction:column;
     height:100%;
     min-height:0;
+    overflow:hidden;
   }
 
-  #players-area,
+  /* 中央列（panel-slots）：ヘッダー＋スロットを縦並びに */
+  .panel-slots{
+    display:flex;
+    flex-direction:column;
+  }
+
   #slots-area{
     flex:1 1 auto;
-    overflow:auto;
+    overflow-y:auto;
+    min-height:0;
+  }
+
+  #players-area{
+    flex:1 1 auto;
+    overflow-y:auto;
     min-height:0;
   }
 
@@ -251,7 +256,6 @@ body{
     min-height:0 !important;
   }
 
-  /* タイトルずれ対策 */
   .header{
     align-items:flex-start;
   }
@@ -266,25 +270,39 @@ body{
   }
 }
 
-/* ===== Mobile Top Bars ===== */
+/* ===== スマホ（1023px以下）：ヘッダーを画面上部にfixed ===== */
 @media (max-width:1023px){
 
-  body > .header{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:10000;
-    border-radius:0;
+  /* ヘッダーを画面最上部に固定 */
+  .header{
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10000 !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
   }
 
+  /* ヘッダーの高さ分だけgame-containerを下げる */
+  .game-container{
+    padding-top: 76px;
+  }
+
+  /* ステータスバーもヘッダー直下に固定 */
   #statusBar{
-    position:fixed;
-    left:0;
-    right:0;
-    z-index:9999;
-    border-radius:0;
-    margin:0;
+    position: fixed;
+    top: 60px;   /* ヘッダーの高さに合わせて調整 */
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  /* ステータスバー分もコンテンツを下げる */
+  .game-container{
+    padding-top: 110px;
   }
 
   /* スマホではボタンを少し小さく */
@@ -306,22 +324,17 @@ body{
   width: 100% !important;
   height: 100% !important;
   z-index: 999999 !important;
-
   align-items: center;
   justify-content: center;
-
   background: rgba(0,0,0,0.85);
   backdrop-filter: blur(4px);
-
   padding: 18px;
 }
 
-/* モーダル本体 */
 #result-overlay .result-card{
   width: min(880px, 96vw);
   max-height: 86vh;
   overflow: auto;
-
   background: #0f0f0f;
   border: 1px solid #333;
   border-radius: 18px;
@@ -329,7 +342,6 @@ body{
   box-shadow: 0 12px 40px rgba(0,0,0,0.55);
 }
 
-/* テーブル見やすく */
 #result-table{
   width: 100%;
   border-collapse: collapse;
@@ -353,18 +365,14 @@ body{
 }
 .leaflet-tooltip.station-label:before{ display:none !important; }
 
-/* 静かで知的、でも確実に見える勝者の輝き */
 .winner-glow{
   border: 3px solid #fff7c2;
   box-shadow:
     0 0 0 2px white,
     0 0 18px rgba(255,215,0,0.7);
-
   animation: winnerPulse 2.6s ease-in-out infinite;
 }
-
 .winner-glow::after{
-  filter: brightness(1.06) saturate(1.04);
   content:"";
   position:absolute;
   inset:0;
@@ -375,18 +383,8 @@ body{
     rgba(0,0,0,0) 60%);
   mix-blend-mode: screen;
 }
-
 @keyframes winnerPulse{
-  0%{
-    outline-color: rgba(255,215,0,0.35);
-    box-shadow: 0 0 8px rgba(255,215,0,0.25);
-  }
-  50%{
-    outline-color: rgba(255,215,0,0.70);
-    box-shadow: 0 0 16px rgba(255,215,0,0.55);
-  }
-  100%{
-    outline-color: rgba(255,215,0,0.35);
-    box-shadow: 0 0 8px rgba(255,215,0,0.25);
-  }
+  0%   { box-shadow: 0 0 8px rgba(255,215,0,0.25); }
+  50%  { box-shadow: 0 0 16px rgba(255,215,0,0.55); }
+  100% { box-shadow: 0 0 8px rgba(255,215,0,0.25); }
 }
