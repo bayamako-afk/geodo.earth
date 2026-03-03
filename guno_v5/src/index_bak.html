@@ -23,24 +23,21 @@
         </div>
 
         <div id="players-area"></div>
-        <div id="persistent-result" style="margin-top:20px;"></div>
+		<div id="persistent-result" style="margin-top:20px;"></div>
     </div>
 
     <div class="panel panel-slots" id="slots-container">
-        <div class="header">
-            <div><h2 style="margin:0; color:gold;">GUNO v4.05</h2><small>Larger Corner Circles</small></div>
-            <div class="controls">
-                <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
-                <button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
-                <!-- 新規ボタン：目立つ赤色 -->
-                <button id="btn-new" onclick="confirmNewGame()" class="btn-new">🎲 <span id="btn-new-text">新規</span></button>
-                <!-- AUTO ON/OFFボタン -->
-                <button id="btn-mode" onclick="toggleAuto()" class="btn-auto-off">▶ AUTO: OFF</button>
-                <!-- 停止・再開ボタン（AUTOモード中のみ表示） -->
-                <button id="btn-pause" onclick="togglePause()" class="btn-pause-active" style="display:none;">⏸ 停止</button>
-            </div>
+	    <div class="header">
+        <div><h2 style="margin:0; color:gold;">GUNO v4.05</h2><small>Larger Corner Circles</small></div>
+			<div class="controls">
+			<button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
+			<button onclick="toggleLanguage()" id="btn-lang">JP/EN</button>
+			<button onclick="startGame()">🎲 <span id="btn-new-text">新規</span></button>
+			<button id="btn-mode" onclick="toggleAuto()" class="btn-manual">▶️ AUTO: OFF</button>
+			</div>
+		
         </div>
-        <div id="statusBar" class="status-bar">準備中...</div>
+		<div id="statusBar" class="status-bar">準備中...</div>
         <div id="slots-area">
             <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
@@ -96,19 +93,6 @@
 <script src="./js/ui_v405.js"></script>
 <script src="./js/guno_core.js"></script>
 <script src="./js/main.js"></script>
-
-<script>
-// 新規ゲーム確認ダイアログ（誤タップ防止）
-function confirmNewGame() {
-    // ゲーム中のみ確認（ゲーム終了後はそのまま開始）
-    if (!gameOver && typeof players !== 'undefined' && players.length > 0 && typeof turnCount !== 'undefined' && turnCount > 0) {
-        if (!confirm(isJapanese ? '新しいゲームを始めますか？\n現在のゲームは終了します。' : 'Start a new game?\nThe current game will end.')) {
-            return;
-        }
-    }
-    startGame();
-}
-</script>
 
 </body>
 </html>
