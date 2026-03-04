@@ -134,16 +134,27 @@ function applyMobileTopBars() {
 
   const header = document.querySelector("body > .header") || document.querySelector(".header");
   const bar = document.getElementById("statusBar");
+  const gameContainer = document.querySelector(".game-container");
   if (!header) return;
 
-  const headerH = header.offsetHeight || 72;
+  const headerH = header.offsetHeight || 56;
 
   if (bar) {
     bar.style.top = headerH + "px";
     const barH = bar.offsetHeight || 0;
-    document.body.style.paddingTop = (headerH + barH) + "px";
+    const totalH = headerH + barH;
+    // body.paddingTopではなくgame-containerのpaddingTopを設定（二重適用を防ぐ）
+    if (gameContainer) {
+      gameContainer.style.paddingTop = totalH + "px";
+    } else {
+      document.body.style.paddingTop = totalH + "px";
+    }
   } else {
-    document.body.style.paddingTop = headerH + "px";
+    if (gameContainer) {
+      gameContainer.style.paddingTop = headerH + "px";
+    } else {
+      document.body.style.paddingTop = headerH + "px";
+    }
   }
 }
 
