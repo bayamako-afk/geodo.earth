@@ -166,8 +166,41 @@ function executePlay(pIdx, cardIdx) {
     }
 }
 
+function animateDeckDraw() {
+    const deckEl = document.getElementById('draw-pile-visual');
+    if (!deckEl) return;
+    // DECKカードのポップアニメーション
+    deckEl.classList.add('deck-draw-anim');
+    setTimeout(() => deckEl.classList.remove('deck-draw-anim'), 380);
+    // カードが手札エリアに飛んでいくアニメーション
+    const deckRect = deckEl.getBoundingClientRect();
+    const handEl = document.querySelector('#players-area .player-box') || document.querySelector('.player-box');
+    if (!handEl) return;
+    const handRect = handEl.getBoundingClientRect();
+    const fly = document.createElement('div');
+    fly.className = 'card-fly';
+    fly.style.cssText = `
+        left: ${deckRect.left}px;
+        top: ${deckRect.top}px;
+        width: ${deckRect.width}px;
+        height: ${deckRect.height}px;
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    `;
+    document.body.appendChild(fly);
+    const dx = (handRect.left + handRect.width / 2) - (deckRect.left + deckRect.width / 2);
+    const dy = (handRect.top + handRect.height / 2) - (deckRect.top + deckRect.height / 2);
+    requestAnimationFrame(() => {
+        fly.style.transition = 'transform 0.38s cubic-bezier(0.22,1,0.36,1), opacity 0.38s ease';
+        fly.style.transform = `translate(${dx}px, ${dy}px) scale(0.7) rotate(${Math.random()*20-10}deg)`;
+        fly.style.opacity = '0';
+    });
+    setTimeout(() => fly.remove(), 420);
+}
+
 function humanDraw() { 
-    if(!isWaitingHuman || turnIndex !== 0 || getPlayableIndices(players[0]).length > 0 || !deck.length) return; 
+    if(!isWaitingHuman || turnIndex !== 0 || getPlayableIndices(players[0]).length > 0 || !deck.length) return;
+    animateDeckDraw();
     players[0].hand.push(deck.pop()); 
     playSE('seDraw', 0.6);
     log(t('🎴 <b>' + players[0].name + '</b> がカードを引きました', '🎴 <b>' + players[0].name + '</b> drew a card'));
@@ -593,8 +626,12 @@ function renderAll() {
     } else {
         document.getElementById('discard-pile').innerHTML = '';
     }
-    document.getElementById('draw-pile-visual').textContent = deck.length;
-    document.getElementById('draw-pile-visual').className = (isWaitingHuman && playable.length === 0 && deck.length > 0) ? 'can-draw' : '';
+    const drawPileEl = document.getElementById('draw-pile-visual');
+    drawPileEl.textContent = deck.length;
+    let dpClass = 'guno-back';
+    if (isWaitingHuman && playable.length === 0 && deck.length > 0) dpClass += ' can-draw';
+    if (deck.length > 0 && deck.length <= 5) dpClass += ' deck-low';
+    drawPileEl.className = dpClass;
     document.getElementById('direction-arrow').textContent = direction === 1 ? '↻' : '↺';
 
     updateMapVisuals();

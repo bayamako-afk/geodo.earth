@@ -563,3 +563,92 @@
   #draw-pile-visual::before,
   #draw-pile-visual::after{ animation:none !important; }
 }
+
+/* ===== WINNER GLOW: 勝者取得カードの強調表示 ===== */
+
+/* 基本：金色の強いパルス枠 */
+.slot.winner-glow {
+  /* 金色の太い枠 */
+  border: 3px solid gold !important;
+  /* 外側に強い金色の輝き */
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 10px 4px rgba(255, 215, 0, 0.9),
+    0 0 24px 8px rgba(255, 215, 0, 0.6),
+    0 0 40px 12px rgba(255, 165, 0, 0.35) !important;
+  /* 少し浮かせる */
+  transform: scale(1.08) !important;
+  z-index: 20 !important;
+  /* アニメーション */
+  animation: winnerCardPulse 1.4s ease-in-out infinite !important;
+  /* 角丸を強調 */
+  border-radius: 6px !important;
+}
+
+/* パルスアニメーション：金色の輝きが強弱する */
+@keyframes winnerCardPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 10px 4px rgba(255, 215, 0, 0.9),
+      0 0 24px 8px rgba(255, 215, 0, 0.6),
+      0 0 40px 12px rgba(255, 165, 0, 0.35);
+    transform: scale(1.08);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px #fffde0,
+      0 0 16px 6px rgba(255, 215, 0, 1.0),
+      0 0 36px 14px rgba(255, 215, 0, 0.75),
+      0 0 60px 20px rgba(255, 165, 0, 0.5);
+    transform: scale(1.13);
+  }
+}
+
+/* 勝者カードの上に金色の王冠バッジを表示 */
+.slot.winner-glow::before {
+  content: "👑";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  z-index: 30;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.9));
+  animation: crownBounce 1.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes crownBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  50%       { transform: translateX(-50%) translateY(-3px); }
+}
+
+/* guno-cardクラスと組み合わせた場合も確実に適用 */
+.slot.active.winner-glow,
+.slot.active.guno-card.winner-glow {
+  border: 3px solid gold !important;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 10px 4px rgba(255, 215, 0, 0.9),
+    0 0 24px 8px rgba(255, 215, 0, 0.6),
+    0 0 40px 12px rgba(255, 165, 0, 0.35) !important;
+  transform: scale(1.08) !important;
+  z-index: 20 !important;
+  animation: winnerCardPulse 1.4s ease-in-out infinite !important;
+}
+
+/* 動きが苦手な人向け：アニメーションなしでも金枠は残す */
+@media (prefers-reduced-motion: reduce) {
+  .slot.winner-glow,
+  .slot.active.winner-glow {
+    animation: none !important;
+    transform: scale(1.08) !important;
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 16px 6px rgba(255, 215, 0, 0.9) !important;
+  }
+  .slot.winner-glow::before {
+    animation: none !important;
+  }
+}

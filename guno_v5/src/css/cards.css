@@ -40,7 +40,44 @@
     background-color: #444; border: 2px solid #666; border-radius: 4px; 
     display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; color: white; text-shadow: 1px 1px 3px #000;
 }
-#draw-pile-visual.can-draw { cursor: pointer; border-color: #4CAF50; box-shadow: 0 0 20px rgba(76,175,80,0.85); transform: translateY(-1px); }
+#draw-pile-visual.can-draw {
+  cursor: pointer;
+  border-color: #4CAF50;
+  box-shadow:
+    0 0 0 2px #4CAF50,
+    0 0 18px 6px rgba(76,175,80,0.7),
+    0 0 40px 12px rgba(76,175,80,0.35);
+  animation: deckFloat 1.6s ease-in-out infinite, deckPulseGreen 1.6s ease-in-out infinite;
+}
+#draw-pile-visual.deck-low {
+  border-color: #ff4444;
+  box-shadow:
+    0 0 0 2px #ff4444,
+    0 0 18px 6px rgba(255,68,68,0.7),
+    0 0 40px 12px rgba(255,68,68,0.35);
+  animation: deckPulseRed 0.9s ease-in-out infinite;
+}
+#draw-pile-visual.deck-draw-anim {
+  animation: deckDrawPop 0.35s cubic-bezier(0.22,1,0.36,1) forwards !important;
+}
+@keyframes deckFloat {
+  0%,100% { transform: translateY(0px) rotate(-1deg); }
+  50%      { transform: translateY(-6px) rotate(1deg); }
+}
+@keyframes deckPulseGreen {
+  0%,100% { box-shadow: 0 0 0 2px #4CAF50, 0 0 18px 6px rgba(76,175,80,0.7), 0 0 40px 12px rgba(76,175,80,0.35); }
+  50%     { box-shadow: 0 0 0 3px #4CAF50, 0 0 30px 10px rgba(76,175,80,0.9), 0 0 60px 20px rgba(76,175,80,0.5); }
+}
+@keyframes deckPulseRed {
+  0%,100% { box-shadow: 0 0 0 2px #ff4444, 0 0 18px 6px rgba(255,68,68,0.7), 0 0 40px 12px rgba(255,68,68,0.35); transform: scale(1); }
+  50%     { box-shadow: 0 0 0 3px #ff6666, 0 0 30px 10px rgba(255,68,68,0.9), 0 0 60px 20px rgba(255,68,68,0.5); transform: scale(1.04); }
+}
+@keyframes deckDrawPop {
+  0%   { transform: scale(1) translateY(0); }
+  30%  { transform: scale(0.88) translateY(4px); }
+  70%  { transform: scale(1.12) translateY(-8px); }
+  100% { transform: scale(1) translateY(0); }
+}
 
 #hint-area { background: rgba(76, 175, 80, 0.1); color: #4CAF50; border-radius: 6px; padding: 6px 8px; margin-bottom: 8px; font-weight: bold; text-align: center; font-size: 13px; border: 1px dashed #4CAF50; height: 18px; }
 
@@ -650,5 +687,36 @@
   }
   .slot.winner-glow::before {
     animation: none !important;
+  }
+}
+
+/* ===== DECK DRAW FLY: カードが手札に飛んでいくアニメーション ===== */
+.card-fly {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(76,175,80,0.8);
+  background-image: url('../assets/cards/GUNO_BACK.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #444;
+  border: 2px solid #4CAF50;
+  transition: none;
+  will-change: transform, opacity;
+}
+
+/* 動きが苦手な人向け */
+@media (prefers-reduced-motion: reduce) {
+  #draw-pile-visual.can-draw {
+    animation: none !important;
+    transform: none !important;
+  }
+  #draw-pile-visual.deck-low {
+    animation: none !important;
+  }
+  .card-fly {
+    display: none !important;
   }
 }
