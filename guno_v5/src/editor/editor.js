@@ -305,10 +305,19 @@ function renderRoutes() {
         <div class="route-progress">${filledCount}/10</div>
         <div class="route-edit">
           <label>コード <input type="text" class="input mini" value="${c.lc||cid}" data-field="lc"></label>
-          <label>日本語名 <input type="text" class="input mid" value="${c.name_ja||''}" data-field="name_ja"></label>
-          <label>色 <input type="color" class="input color" value="${c.color||'#ffffff'}" data-field="color"></label>
+          <label>日本語名 <input type="text" class="input mid" value="${c.name_ja||\'\'}" data-field="name_ja"></label>
+          <label>色 <input type="color" class="input color" value="${c.color||\'#ffffff\'}" data-field="color"></label>
         </div>
+        <button class="btn small danger route-clear-btn" data-cid="${cid}" title="この路線の駅配置をクリア">駅名クリア</button>
       </div>`;
+
+    head.querySelector(".route-clear-btn").onclick = (e) => {
+      e.stopPropagation();
+      const name = c.name_ja || cid;
+      state.model = gos.ops.clearCollection(state.model, cid);
+      updatePackFromModel(); render();
+      setStatus(`🗑 ${name} の駅配置をクリアしました`);
+    };
 
     head.querySelectorAll("input").forEach(inp => {
       inp.onchange = (e) => {
@@ -567,12 +576,15 @@ function wireUI() {
   $("locale").addEventListener("change", (ev) => { state.locale = ev.target.value || "ja"; render(); });
   $("btnValidate").addEventListener("click", () => { renderIssues(); setStatus("🔍 チェック完了"); });
 
-  $("btnClearSelectedRoute").addEventListener("click", () => {
-    if (!state.selectedRouteId) return setStatus("⚠ 先に路線を選択してください");
-    const c = state.pack.collections[state.selectedRouteId];
-    state.model = gos.ops.clearCollection(state.model, state.selectedRouteId);
+  $('btnClearSelectedRoute').addEventListener('click', () => {
+    const cids = Object.keys(state.pack.collections || {});
+    if (cids.length === 0) return setStatus('⚠ 路線がありません');
+    if (!confirm('全路線の駅配置をクリアしますか？')) return;
+    for (const cid of cids) {
+      state.model = gos.ops.clearCollection(state.model, cid);
+    }
     updatePackFromModel(); render();
-    setStatus(`🗑 ${c?.name_ja||state.selectedRouteId} をクリアしました`);
+    setStatus('🗑 全路線の駅配置をクリアしました');
   });
 
   // 路線追加ボタン
