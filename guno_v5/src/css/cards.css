@@ -740,34 +740,59 @@
   filter: grayscale(0.8);
 }
 
-/* ===== 座布団バナー（番の表示） ===== */
-.turn-banner {
+/* ===== プレイヤー情報行（座布団） ===== */
+.player-info-row {
+  padding: 4px 6px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background 0.3s;
+}
+
+/* 番のプレイヤーの情報行：緑の座布団背景 */
+.player-info-row--active {
+  background: rgba(61, 220, 132, 0.12);
+  border: 1px solid rgba(61, 220, 132, 0.35);
+  box-shadow: 0 0 8px rgba(61, 220, 132, 0.15);
+  animation: infoBgPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes infoBgPulse {
+  0%, 100% { background: rgba(61, 220, 132, 0.10); box-shadow: 0 0 6px rgba(61,220,132,0.15); }
+  50%       { background: rgba(61, 220, 132, 0.20); box-shadow: 0 0 14px rgba(61,220,132,0.35); }
+}
+
+.player-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+/* ===== 番ラベル（インライン） ===== */
+.turn-label {
   display: inline-block;
-  margin: 3px 0 2px 0;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 12px;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  vertical-align: middle;
 }
 
 /* P1（人間）の番：目立つ緑 */
-.turn-banner--human {
-  background: linear-gradient(90deg, #1a5c2a, #1e7a38);
+.turn-label--human {
+  background: rgba(61, 220, 132, 0.2);
   color: #3ddc84;
-  border: 1px solid #3ddc84;
-  box-shadow: 0 0 8px rgba(61,220,132,0.4);
-  animation: humanTurnPulse 1.4s ease-in-out infinite;
+  border: 1px solid rgba(61, 220, 132, 0.5);
 }
 
 @keyframes humanTurnPulse {
-  0%, 100% { box-shadow: 0 0 6px rgba(61,220,132,0.3); }
-  50%       { box-shadow: 0 0 14px rgba(61,220,132,0.7); }
+  0%, 100% { box-shadow: 0 0 4px rgba(61,220,132,0.2); }
+  50%       { box-shadow: 0 0 10px rgba(61,220,132,0.6); }
 }
 
 /* CPU の番：控えめなグレー */
-.turn-banner--cpu {
-  background: #1e1e1e;
-  color: #888;
+.turn-label--cpu {
+  background: #222;
+  color: #777;
   border: 1px solid #333;
 }
