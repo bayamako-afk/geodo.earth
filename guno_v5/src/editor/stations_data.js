@@ -1,15 +1,7 @@
 // Auto-generated from geojson — DO NOT EDIT MANUALLY
-// Generated: 2026-03-04T07:05:23
+// Generated: 2026-03-04T00:46:44
 
 export const GEO_LINES = [
-  {
-    "slug": "jr-east-chuo-rapid",
-    "line_code": "JC",
-    "name_ja": "中央線快速",
-    "color": "#FF6600",
-    "operator": "JR東日本",
-    "station_count": 24
-  },
   {
     "slug": "jr-east-yamanote",
     "line_code": "JY",
@@ -70,327 +62,6 @@ export const GEO_LINES = [
 
 export const GEO_STATIONS = [
   {
-    "id": "JC_01",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 1,
-    "name_ja": "神田",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.7706986,
-      35.6918462
-    ],
-    "cross_lines": [
-      "G",
-      "JY"
-    ]
-  },
-  {
-    "id": "JC_02",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 2,
-    "name_ja": "東京",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.7662304,
-      35.6813234
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_03",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 3,
-    "name_ja": "御茶ノ水",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.7649795,
-      35.6994836
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_04",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 4,
-    "name_ja": "四ツ谷",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.7305436,
-      35.6859092
-    ],
-    "cross_lines": [
-      "N"
-    ]
-  },
-  {
-    "id": "JC_05",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 5,
-    "name_ja": "新宿",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.7004596,
-      35.6890176
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_06",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 6,
-    "name_ja": "中野",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.6655298,
-      35.7059464
-    ],
-    "cross_lines": [
-      "T"
-    ]
-  },
-  {
-    "id": "JC_07",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 7,
-    "name_ja": "高円寺",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.6499534,
-      35.7053525
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_08",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 8,
-    "name_ja": "阿佐ケ谷",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.6353596,
-      35.7048985
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_09",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 9,
-    "name_ja": "荻窪",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.6202324,
-      35.7044988
-    ],
-    "cross_lines": [
-      "M"
-    ]
-  },
-  {
-    "id": "JC_10",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 10,
-    "name_ja": "西荻窪",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5995807,
-      35.7038106
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_11",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 11,
-    "name_ja": "吉祥寺",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5802192,
-      35.703155
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_12",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 12,
-    "name_ja": "三鷹",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5609316,
-      35.7026704
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_13",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 13,
-    "name_ja": "武蔵境",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5440806,
-      35.7021106
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_14",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 14,
-    "name_ja": "東小金井",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5240574,
-      35.7015223
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_15",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 15,
-    "name_ja": "武蔵小金井",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5067904,
-      35.7010071
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_16",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 16,
-    "name_ja": "国分寺",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.4803601,
-      35.700082
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_17",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 17,
-    "name_ja": "西国分寺",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.4657359,
-      35.6997146
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_18",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 18,
-    "name_ja": "国立",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.4465317,
-      35.6992218
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_19",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 19,
-    "name_ja": "立川",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.4135512,
-      35.6977712
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_20",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 20,
-    "name_ja": "日野",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3937051,
-      35.6789963
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_21",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 21,
-    "name_ja": "豊田",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.381522,
-      35.65952
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_22",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 22,
-    "name_ja": "八王子",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3394695,
-      35.655349
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_23",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 23,
-    "name_ja": "西八王子",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3124422,
-      35.6565139
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_24",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 24,
-    "name_ja": "高尾",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.2824497,
-      35.6422122
-    ],
-    "cross_lines": []
-  },
-  {
     "id": "JY_01",
     "lc": "JY",
     "slug": "jr-east-yamanote",
@@ -401,7 +72,9 @@ export const GEO_STATIONS = [
       139.76660420743633,
       35.68129860320726
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "M"
+    ]
   },
   {
     "id": "JY_02",
@@ -415,8 +88,7 @@ export const GEO_STATIONS = [
       35.692022809936006
     ],
     "cross_lines": [
-      "G",
-      "JC"
+      "G"
     ]
   },
   {
@@ -565,7 +237,8 @@ export const GEO_STATIONS = [
       35.72985950101142
     ],
     "cross_lines": [
-      "M"
+      "M",
+      "Y"
     ]
   },
   {
@@ -592,7 +265,9 @@ export const GEO_STATIONS = [
       139.70363559999998,
       35.71268665
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "T"
+    ]
   },
   {
     "id": "JY_16",
@@ -618,7 +293,9 @@ export const GEO_STATIONS = [
       139.7001602306519,
       35.68955953527241
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "M"
+    ]
   },
   {
     "id": "JY_18",
@@ -658,6 +335,7 @@ export const GEO_STATIONS = [
       35.65818605
     ],
     "cross_lines": [
+      "G",
       "Z"
     ]
   },
@@ -778,7 +456,9 @@ export const GEO_STATIONS = [
       139.7581730947224,
       35.66586343539772
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "G"
+    ]
   },
   {
     "id": "JY_30",
@@ -791,9 +471,7 @@ export const GEO_STATIONS = [
       139.7626656343743,
       35.67466170737484
     ],
-    "cross_lines": [
-      "M"
-    ]
+    "cross_lines": []
   },
   {
     "id": "G_01",
@@ -806,7 +484,10 @@ export const GEO_STATIONS = [
       139.7024447,
       35.658999
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "Z",
+      "JY"
+    ]
   },
   {
     "id": "G_02",
@@ -819,7 +500,9 @@ export const GEO_STATIONS = [
       139.7125432,
       35.6651609
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "Z"
+    ]
   },
   {
     "id": "G_03",
@@ -875,7 +558,9 @@ export const GEO_STATIONS = [
       139.741961,
       35.6715337
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "N"
+    ]
   },
   {
     "id": "G_07",
@@ -901,7 +586,9 @@ export const GEO_STATIONS = [
       139.7588592,
       35.6671895
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "JY"
+    ]
   },
   {
     "id": "G_09",
@@ -942,7 +629,9 @@ export const GEO_STATIONS = [
       139.7733976,
       35.6820843
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "T"
+    ]
   },
   {
     "id": "G_12",
@@ -955,7 +644,9 @@ export const GEO_STATIONS = [
       139.7736283,
       35.687054
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "Z"
+    ]
   },
   {
     "id": "G_13",
@@ -969,7 +660,6 @@ export const GEO_STATIONS = [
       35.6937148
     ],
     "cross_lines": [
-      "JC",
       "JY"
     ]
   },
@@ -1065,6 +755,7 @@ export const GEO_STATIONS = [
       35.659506450015485
     ],
     "cross_lines": [
+      "G",
       "JY"
     ]
   },
@@ -1079,7 +770,9 @@ export const GEO_STATIONS = [
       139.7124256,
       35.665061600036644
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "G"
+    ]
   },
   {
     "id": "Z_03",
@@ -1107,7 +800,10 @@ export const GEO_STATIONS = [
       139.73864019999996,
       35.678341300027625
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "Y",
+      "N"
+    ]
   },
   {
     "id": "Z_05",
@@ -1133,7 +829,9 @@ export const GEO_STATIONS = [
       139.75054670000003,
       35.69524075000257
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "T"
+    ]
   },
   {
     "id": "Z_07",
@@ -1159,7 +857,10 @@ export const GEO_STATIONS = [
       139.76502909999996,
       35.68669730002123
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "M",
+      "T"
+    ]
   },
   {
     "id": "Z_09",
@@ -1172,7 +873,9 @@ export const GEO_STATIONS = [
       139.77310105,
       35.68494455002025
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "G"
+    ]
   },
   {
     "id": "Z_10",
@@ -1251,6 +954,7 @@ export const GEO_STATIONS = [
       35.7302282
     ],
     "cross_lines": [
+      "Y",
       "JY"
     ]
   },
@@ -1291,7 +995,9 @@ export const GEO_STATIONS = [
       139.7512155,
       35.7073372
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "N"
+    ]
   },
   {
     "id": "M_05",
@@ -1344,7 +1050,8 @@ export const GEO_STATIONS = [
       35.6867882
     ],
     "cross_lines": [
-      "T"
+      "T",
+      "Z"
     ]
   },
   {
@@ -1358,7 +1065,9 @@ export const GEO_STATIONS = [
       139.7649584,
       35.6820173
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "JY"
+    ]
   },
   {
     "id": "M_10",
@@ -1372,8 +1081,7 @@ export const GEO_STATIONS = [
       35.6728411
     ],
     "cross_lines": [
-      "G",
-      "JY"
+      "G"
     ]
   },
   {
@@ -1428,7 +1136,9 @@ export const GEO_STATIONS = [
       139.7299237,
       35.6849915
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "N"
+    ]
   },
   {
     "id": "M_15",
@@ -1480,7 +1190,9 @@ export const GEO_STATIONS = [
       139.7006009,
       35.6922273
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "JY"
+    ]
   },
   {
     "id": "M_19",
@@ -1571,50 +1283,38 @@ export const GEO_STATIONS = [
       139.6200267,
       35.7042744
     ],
-    "cross_lines": [
-      "JC"
-    ]
-  },
-  {
-    "id": "N_05",
-    "lc": "N",
-    "slug": "tokyo-metro-namboku",
-    "order": "5",
-    "name_ja": "六本木一丁目",
-    "name_en": "Namboku Line",
-    "coords": [
-      139.73901315,
-      35.664940550002086
-    ],
     "cross_lines": []
   },
   {
-    "id": "N_08",
+    "id": "N_01",
     "lc": "N",
     "slug": "tokyo-metro-namboku",
-    "order": "8",
-    "name_ja": "四ツ谷",
+    "order": "1",
+    "name_ja": "目黒",
     "name_en": "Namboku Line",
     "coords": [
-      139.72948695,
-      35.68556510000151
+      139.7157636,
+      35.6325057000017
     ],
     "cross_lines": [
-      "JC"
+      "JY"
     ]
   },
   {
-    "id": "N_09",
+    "id": "N_10",
     "lc": "N",
     "slug": "tokyo-metro-namboku",
-    "order": "9",
-    "name_ja": "市ヶ谷駅",
+    "order": "10",
+    "name_ja": "飯田橋",
     "name_en": "Namboku Line",
     "coords": [
-      139.7367542,
-      35.693280600008215
+      139.74371409999998,
+      35.70149275000507
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "T",
+      "Y"
+    ]
   },
   {
     "id": "N_11",
@@ -1627,18 +1327,20 @@ export const GEO_STATIONS = [
       139.7518134,
       35.70821510000002
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "M"
+    ]
   },
   {
-    "id": "N_18",
+    "id": "N_12",
     "lc": "N",
     "slug": "tokyo-metro-namboku",
-    "order": "18",
-    "name_ja": "志茂",
+    "order": "12",
+    "name_ja": "東大前",
     "name_en": "Namboku Line",
     "coords": [
-      139.73252559999997,
-      35.77790450000412
+      139.75818409999997,
+      35.71732010000087
     ],
     "cross_lines": []
   },
@@ -1656,41 +1358,30 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
-    "id": "N_12",
+    "id": "N_14",
     "lc": "N",
     "slug": "tokyo-metro-namboku",
-    "order": "12",
-    "name_ja": "東大前",
+    "order": "14",
+    "name_ja": "駒込",
     "name_en": "Namboku Line",
     "coords": [
-      139.75818409999997,
-      35.71732010000087
+      139.7467609,
+      35.735987250002424
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "JY"
+    ]
   },
   {
-    "id": "N_07",
+    "id": "N_15",
     "lc": "N",
     "slug": "tokyo-metro-namboku",
-    "order": "7",
-    "name_ja": "永田町",
+    "order": "15",
+    "name_ja": "西ヶ原駅",
     "name_en": "Namboku Line",
     "coords": [
-      139.73918329999998,
-      35.67854895001639
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "N_06",
-    "lc": "N",
-    "slug": "tokyo-metro-namboku",
-    "order": "6",
-    "name_ja": "溜池山王",
-    "name_en": "Namboku Line",
-    "coords": [
-      139.74141935,
-      35.67300375000002
+      139.7421722,
+      35.74604960000656
     ],
     "cross_lines": []
   },
@@ -1721,6 +1412,32 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
+    "id": "N_18",
+    "lc": "N",
+    "slug": "tokyo-metro-namboku",
+    "order": "18",
+    "name_ja": "志茂",
+    "name_en": "Namboku Line",
+    "coords": [
+      139.73252559999997,
+      35.77790450000412
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "N_19",
+    "lc": "N",
+    "slug": "tokyo-metro-namboku",
+    "order": "19",
+    "name_ja": "赤羽岩淵",
+    "name_en": "Namboku Line",
+    "coords": [
+      139.72191655,
+      35.783440800015974
+    ],
+    "cross_lines": []
+  },
+  {
     "id": "N_02",
     "lc": "N",
     "slug": "tokyo-metro-namboku",
@@ -1747,75 +1464,6 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
-    "id": "N_01",
-    "lc": "N",
-    "slug": "tokyo-metro-namboku",
-    "order": "1",
-    "name_ja": "目黒",
-    "name_en": "Namboku Line",
-    "coords": [
-      139.7157636,
-      35.6325057000017
-    ],
-    "cross_lines": [
-      "JY"
-    ]
-  },
-  {
-    "id": "N_15",
-    "lc": "N",
-    "slug": "tokyo-metro-namboku",
-    "order": "15",
-    "name_ja": "西ヶ原駅",
-    "name_en": "Namboku Line",
-    "coords": [
-      139.7421722,
-      35.74604960000656
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "N_19",
-    "lc": "N",
-    "slug": "tokyo-metro-namboku",
-    "order": "19",
-    "name_ja": "赤羽岩淵",
-    "name_en": "Namboku Line",
-    "coords": [
-      139.72191655,
-      35.783440800015974
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "N_10",
-    "lc": "N",
-    "slug": "tokyo-metro-namboku",
-    "order": "10",
-    "name_ja": "飯田橋",
-    "name_en": "Namboku Line",
-    "coords": [
-      139.74371409999998,
-      35.70149275000507
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "N_14",
-    "lc": "N",
-    "slug": "tokyo-metro-namboku",
-    "order": "14",
-    "name_ja": "駒込",
-    "name_en": "Namboku Line",
-    "coords": [
-      139.7467609,
-      35.735987250002424
-    ],
-    "cross_lines": [
-      "JY"
-    ]
-  },
-  {
     "id": "N_04",
     "lc": "N",
     "slug": "tokyo-metro-namboku",
@@ -1825,6 +1473,78 @@ export const GEO_STATIONS = [
     "coords": [
       139.73713605,
       35.65517290000011
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "N_05",
+    "lc": "N",
+    "slug": "tokyo-metro-namboku",
+    "order": "5",
+    "name_ja": "六本木一丁目",
+    "name_en": "Namboku Line",
+    "coords": [
+      139.73901315,
+      35.664940550002086
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "N_06",
+    "lc": "N",
+    "slug": "tokyo-metro-namboku",
+    "order": "6",
+    "name_ja": "溜池山王",
+    "name_en": "Namboku Line",
+    "coords": [
+      139.74141935,
+      35.67300375000002
+    ],
+    "cross_lines": [
+      "G"
+    ]
+  },
+  {
+    "id": "N_07",
+    "lc": "N",
+    "slug": "tokyo-metro-namboku",
+    "order": "7",
+    "name_ja": "永田町",
+    "name_en": "Namboku Line",
+    "coords": [
+      139.73918329999998,
+      35.67854895001639
+    ],
+    "cross_lines": [
+      "Y",
+      "Z"
+    ]
+  },
+  {
+    "id": "N_08",
+    "lc": "N",
+    "slug": "tokyo-metro-namboku",
+    "order": "8",
+    "name_ja": "四ツ谷",
+    "name_en": "Namboku Line",
+    "coords": [
+      139.72948695,
+      35.68556510000151
+    ],
+    "cross_lines": [
+      "M"
+    ]
+  },
+  {
+    "id": "N_09",
+    "lc": "N",
+    "slug": "tokyo-metro-namboku",
+    "order": "9",
+    "name_ja": "市ヶ谷駅",
+    "name_en": "Namboku Line",
+    "coords": [
+      139.7367542,
+      35.693280600008215
     ],
     "cross_lines": []
   },
@@ -2008,7 +1728,9 @@ export const GEO_STATIONS = [
       139.7744933,
       35.6822079
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "G"
+    ]
   },
   {
     "id": "T_15",
@@ -2022,7 +1744,8 @@ export const GEO_STATIONS = [
       35.6846087
     ],
     "cross_lines": [
-      "M"
+      "M",
+      "Z"
     ]
   },
   {
@@ -2049,7 +1772,9 @@ export const GEO_STATIONS = [
       139.7512822,
       35.6959079
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "Z"
+    ]
   },
   {
     "id": "T_18",
@@ -2063,6 +1788,7 @@ export const GEO_STATIONS = [
       35.7017139
     ],
     "cross_lines": [
+      "N",
       "Y"
     ]
   },
@@ -2103,7 +1829,9 @@ export const GEO_STATIONS = [
       139.7050188,
       35.7133806
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "JY"
+    ]
   },
   {
     "id": "T_22",
@@ -2129,9 +1857,33 @@ export const GEO_STATIONS = [
       139.665633,
       35.7058302
     ],
-    "cross_lines": [
-      "JC"
-    ]
+    "cross_lines": []
+  },
+  {
+    "id": "Y_01",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "1",
+    "name_ja": "和光市",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.61254875,
+      35.78845775000125
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_10",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "10",
+    "name_ja": "小竹向原",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.6807045,
+      35.7429781
+    ],
+    "cross_lines": []
   },
   {
     "id": "Y_11",
@@ -2160,249 +1912,15 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
-    "id": "Y_01",
+    "id": "Y_13",
     "lc": "Y",
     "slug": "tokyo-metro-yurakucho",
-    "order": "1",
-    "name_ja": "和光市",
+    "order": "13",
+    "name_ja": "要町",
     "name_en": "Yurakucho Line",
     "coords": [
-      139.61254875,
-      35.78845775000125
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_02",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "2",
-    "name_ja": "地下鉄成増",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.6313339,
-      35.776704
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_03",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "3",
-    "name_ja": "地下鉄成増",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.6312688,
-      35.7766151
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_05",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "5",
-    "name_ja": "地下鉄赤塚",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.64416769999997,
-      35.769971
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_04",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "4",
-    "name_ja": "地下鉄赤塚",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.6440815,
-      35.7698772
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_10",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "10",
-    "name_ja": "小竹向原",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.6807045,
-      35.7429781
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_09",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "9",
-    "name_ja": "小竹向原",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.678925,
-      35.7435243
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_20",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "20",
-    "name_ja": "市ケ谷",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.73669759999999,
-      35.692393050005506
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_06",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "6",
-    "name_ja": "平和台",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.6542043,
-      35.757651950011216
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_25",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "25",
-    "name_ja": "新富町",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.7734197,
-      35.6706344000016
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_29",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "29",
-    "name_ja": "新木場",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.82664989999998,
-      35.64590050003418
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_26",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "26",
-    "name_ja": "月島",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.78471215,
-      35.66453550000732
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_16",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "16",
-    "name_ja": "東池袋",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.71955405,
-      35.725660700009996
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_23",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "23",
-    "name_ja": "桜田門",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.7516904,
-      35.67740265001933
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_07",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "7",
-    "name_ja": "氷川台",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.6650785,
-      35.7498601
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_08",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "8",
-    "name_ja": "氷川台",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.6650562,
-      35.7498203
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_22",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "22",
-    "name_ja": "永田町",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.741581,
-      35.67793455001851
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_18",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "18",
-    "name_ja": "江戸川橋",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.73356729999998,
-      35.70952250001392
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "Y_15",
-    "lc": "Y",
-    "slug": "tokyo-metro-yurakucho",
-    "order": "15",
-    "name_ja": "池袋",
-    "name_en": "Yurakucho Line",
-    "coords": [
-      139.70968874999997,
-      35.72965140002141
+      139.6986892,
+      35.7332269
     ],
     "cross_lines": []
   },
@@ -2420,15 +1938,31 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
-    "id": "Y_13",
+    "id": "Y_15",
     "lc": "Y",
     "slug": "tokyo-metro-yurakucho",
-    "order": "13",
-    "name_ja": "要町",
+    "order": "15",
+    "name_ja": "池袋",
     "name_en": "Yurakucho Line",
     "coords": [
-      139.6986892,
-      35.7332269
+      139.70968874999997,
+      35.72965140002141
+    ],
+    "cross_lines": [
+      "M",
+      "JY"
+    ]
+  },
+  {
+    "id": "Y_16",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "16",
+    "name_ja": "東池袋",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.71955405,
+      35.725660700009996
     ],
     "cross_lines": []
   },
@@ -2442,6 +1976,142 @@ export const GEO_STATIONS = [
     "coords": [
       139.72745435,
       35.719076350004585
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_18",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "18",
+    "name_ja": "江戸川橋",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.73356729999998,
+      35.70952250001392
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_19",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "19",
+    "name_ja": "飯田橋",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.74354964999998,
+      35.70159780000816
+    ],
+    "cross_lines": [
+      "N",
+      "T"
+    ]
+  },
+  {
+    "id": "Y_02",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "2",
+    "name_ja": "地下鉄成増",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.6313339,
+      35.776704
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_20",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "20",
+    "name_ja": "市ケ谷",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.73669759999999,
+      35.692393050005506
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_21",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "21",
+    "name_ja": "麹町",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.73765145,
+      35.68402440000021
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_22",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "22",
+    "name_ja": "永田町",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.741581,
+      35.67793455001851
+    ],
+    "cross_lines": [
+      "N",
+      "Z"
+    ]
+  },
+  {
+    "id": "Y_23",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "23",
+    "name_ja": "桜田門",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.7516904,
+      35.67740265001933
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_24",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "24",
+    "name_ja": "銀座一丁目",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.76704034999997,
+      35.67435500000349
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_25",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "25",
+    "name_ja": "新富町",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.7734197,
+      35.6706344000016
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_26",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "26",
+    "name_ja": "月島",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.78471215,
+      35.66453550000732
     ],
     "cross_lines": []
   },
@@ -2472,44 +2142,207 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
-    "id": "Y_24",
+    "id": "Y_29",
     "lc": "Y",
     "slug": "tokyo-metro-yurakucho",
-    "order": "24",
-    "name_ja": "銀座一丁目",
+    "order": "29",
+    "name_ja": "新木場",
     "name_en": "Yurakucho Line",
     "coords": [
-      139.76704034999997,
-      35.67435500000349
+      139.82664989999998,
+      35.64590050003418
     ],
     "cross_lines": []
   },
   {
-    "id": "Y_19",
+    "id": "Y_03",
     "lc": "Y",
     "slug": "tokyo-metro-yurakucho",
-    "order": "19",
-    "name_ja": "飯田橋",
+    "order": "3",
+    "name_ja": "地下鉄成増",
     "name_en": "Yurakucho Line",
     "coords": [
-      139.74354964999998,
-      35.70159780000816
+      139.6312688,
+      35.7766151
     ],
-    "cross_lines": [
-      "T"
-    ]
+    "cross_lines": []
   },
   {
-    "id": "Y_21",
+    "id": "Y_04",
     "lc": "Y",
     "slug": "tokyo-metro-yurakucho",
-    "order": "21",
-    "name_ja": "麹町",
+    "order": "4",
+    "name_ja": "地下鉄赤塚",
     "name_en": "Yurakucho Line",
     "coords": [
-      139.73765145,
-      35.68402440000021
+      139.6440815,
+      35.7698772
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_05",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "5",
+    "name_ja": "地下鉄赤塚",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.64416769999997,
+      35.769971
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_06",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "6",
+    "name_ja": "平和台",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.6542043,
+      35.757651950011216
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_07",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "7",
+    "name_ja": "氷川台",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.6650785,
+      35.7498601
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_08",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "8",
+    "name_ja": "氷川台",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.6650562,
+      35.7498203
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "Y_09",
+    "lc": "Y",
+    "slug": "tokyo-metro-yurakucho",
+    "order": "9",
+    "name_ja": "小竹向原",
+    "name_en": "Yurakucho Line",
+    "coords": [
+      139.678925,
+      35.7435243
     ],
     "cross_lines": []
   }
 ];
+
+export const CROSS_STATIONS = {
+  "東京": [
+    "M",
+    "JY"
+  ],
+  "神田": [
+    "G",
+    "JY"
+  ],
+  "上野": [
+    "G",
+    "JY"
+  ],
+  "駒込": [
+    "N",
+    "JY"
+  ],
+  "池袋": [
+    "M",
+    "Y",
+    "JY"
+  ],
+  "高田馬場": [
+    "T",
+    "JY"
+  ],
+  "新宿": [
+    "M",
+    "JY"
+  ],
+  "渋谷": [
+    "G",
+    "Z",
+    "JY"
+  ],
+  "目黒": [
+    "N",
+    "JY"
+  ],
+  "新橋": [
+    "G",
+    "JY"
+  ],
+  "表参道": [
+    "G",
+    "Z"
+  ],
+  "青山一丁目": [
+    "G",
+    "Z"
+  ],
+  "赤坂見附": [
+    "M",
+    "G"
+  ],
+  "溜池山王": [
+    "G",
+    "N"
+  ],
+  "銀座": [
+    "M",
+    "G"
+  ],
+  "日本橋": [
+    "G",
+    "T"
+  ],
+  "三越前": [
+    "G",
+    "Z"
+  ],
+  "永田町": [
+    "Y",
+    "N",
+    "Z"
+  ],
+  "九段下": [
+    "T",
+    "Z"
+  ],
+  "大手町": [
+    "M",
+    "T",
+    "Z"
+  ],
+  "後楽園": [
+    "M",
+    "N"
+  ],
+  "四ツ谷": [
+    "M",
+    "N"
+  ],
+  "飯田橋": [
+    "N",
+    "T",
+    "Y"
+  ]
+};
