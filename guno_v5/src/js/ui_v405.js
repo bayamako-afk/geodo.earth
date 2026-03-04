@@ -585,8 +585,8 @@ function renderAll() {
         const infoClass = isTurn ? 'player-info-row player-info-row--active' : 'player-info-row';
         const turnLabel = isTurn
             ? (p.isHuman && !autoPlay
-                ? ' <span class="turn-label turn-label--human">🎯 ' + t('あなたの番', 'Your turn') + '</span>'
-                : ' <span class="turn-label turn-label--cpu">⏳ ' + t('番', 'turn') + '</span>')
+                ? ' <span class="turn-label turn-label--human">⬅️</span>'
+                : ' <span class="turn-label turn-label--cpu">⬅️</span>')
             : '';
         return '<div class="player-box ' + (isTurn?'active-turn':'') + ' ' + (p.status==='eliminated'?'eliminated':'') + 
                '" style="border-left-color:' + p.color + '">'
