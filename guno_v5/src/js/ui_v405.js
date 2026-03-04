@@ -314,7 +314,8 @@ function _showVictoryToast() {
   const old = document.getElementById('victory-toast');
   if (old) old.remove();
 
-  const isMobileView = window.innerWidth <= 1023;
+  // タッチデバイス判定（画面幅ではなくタッチ対応かどうかで判定）
+  const isMobileView = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   const toast = document.createElement('div');
   toast.id = 'victory-toast';
   // スマホ時はシンプルな表示（左メニューがないため詳細記載不要）
