@@ -2,93 +2,121 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>GOS Route Editor v0.1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOS Route Editor v0.2</title>
   <link rel="stylesheet" href="editor.css">
 </head>
 <body>
+  <!-- トップバー -->
   <div class="topbar">
     <div class="brand">
       <div class="logo">G</div>
       <div class="titles">
         <div class="title">GOS Route Editor</div>
-        <div class="subtitle">v0.1</div>
+        <div class="subtitle">v0.2</div>
       </div>
     </div>
     <div class="actions">
-      <button id="btnNew" class="btn">New</button>
-      <button id="btnLoadSample" class="btn">Load Sample</button>
-      <button id="btnLoadLocal" class="btn">Load Local</button>
-      <button id="btnSaveLocal" class="btn">Save Local</button>
-      <button id="btnClearLocal" class="btn danger">Clear Local</button>
-      <label class="btn file">
-        Import JSON <input type="file" id="fileImport" accept=".json">
-      </label>
-      <<button id="btnExportPack" class="btn">Export Pack (GOS)</button>
-      <button id="btnExportRuntime" class="btn">Export Runtime</button>
-      <button id="btnPlay" class="btn primary">Play with this Pack</button>
+      <!-- グループ1: ファイル操作 -->
+      <div class="btn-group">
+        <button id="btnNew" class="btn" title="新しいコースを作成">🆕 新規</button>
+        <button id="btnLoadSample" class="btn" title="サンプルデータを読み込む">📋 サンプル</button>
+        <button id="btnLoadLocal" class="btn" title="ローカル保存から読み込む">📂 読込</button>
+        <button id="btnSaveLocal" class="btn" title="ローカルに保存">💾 保存</button>
+        <label class="btn file" title="JSONファイルをインポート">
+          📥 インポート <input type="file" id="fileImport" accept=".json">
+        </label>
+        <button id="btnExportPack" class="btn" title="GOS形式でエクスポート">📤 エクスポート</button>
+      </div>
+      <!-- グループ2: プレイ -->
+      <div class="btn-group">
+        <button id="btnPlay" class="btn primary" title="このコースでゲームを開始">▶ プレイ！</button>
+      </div>
     </div>
   </div>
 
+  <!-- 進捗バー -->
+  <div class="progress-bar-wrap">
+    <div class="progress-info">
+      <span id="progressText">0 / 40 駅配置済み</span>
+      <span id="progressPercent">0%</span>
+    </div>
+    <div class="progress-track">
+      <div id="progressFill" class="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- メインレイアウト -->
   <div class="layout">
-    <!-- 左パネル：駅プール -->
-    <div class="panel">
+    <!-- 左パネル：駅リスト -->
+    <div class="panel panel-pool">
       <div class="panel-head">
-        <div class="panel-title">Entity Pool</div>
+        <div class="panel-title">🗂 駅リスト</div>
         <div class="panel-tools">
-          <input type="text" id="q" class="input" placeholder="Search...">
-          <select id="filterType" class="select">
-            <option value="">All Types</option>
-            <option value="station">Station</option>
-          </select>
+          <input type="text" id="q" class="input" placeholder="駅名で検索...">
           <select id="locale" class="select">
-            <option value="ja">JA</option>
-            <option value="en">EN</option>
+            <option value="ja">日本語</option>
+            <option value="en">English</option>
           </select>
         </div>
       </div>
+      <div class="pool-hint">👆 駅をクリックして選択 → コース配置のスロットをクリックして配置</div>
       <div id="pool" class="pool"></div>
     </div>
 
-    <!-- 中央パネル：路線スロット -->
-    <div class="panel">
+    <!-- 中央パネル：コース配置 -->
+    <div class="panel panel-routes">
       <div class="panel-head">
-        <div class="panel-title">Route Layout</div>
+        <div class="panel-title">🗺 コース配置 <span class="panel-subtitle">（4路線 × 10駅）</span></div>
         <div class="panel-tools">
-          <button id="btnAutoFill" class="btn">Auto Fill</button>
-          <button id="btnClearSelectedRoute" class="btn danger">Clear Route</button>
+          <button id="btnAutoFill" class="btn" title="現在の駅リストから自動配置">⚡ 自動配置</button>
+          <button id="btnClearSelectedRoute" class="btn danger" title="選択中の路線をクリア">🗑 路線クリア</button>
         </div>
       </div>
       <div id="routes" class="routes"></div>
     </div>
 
-    <!-- 右パネル：状態・課題 -->
-    <div class="panel">
+    <!-- 右パネル：チェック結果 -->
+    <div class="panel panel-issues">
       <div class="panel-head">
-        <div class="panel-title">Issues <span id="issueBadge" class="badge">0</span></div>
-        <button id="btnValidate" class="btn">Validate</button>
+        <div class="panel-title">✅ チェック結果 <span id="issueBadge" class="badge">0</span></div>
+        <button id="btnValidate" class="btn" title="バリデーションを実行">🔍 チェック</button>
       </div>
       <div id="issues" class="issues"></div>
-      
-      <div class="panel-head" style="margin-top:auto; border-top:1px solid var(--border)">
-        <div class="panel-title">Selection</div>
+
+      <div class="panel-section-head">
+        <div class="panel-title">📌 選択中</div>
       </div>
       <div class="selection">
         <div class="sel-row">
-          <span class="sel-label">Entity:</span>
-          <span id="selEntity" class="sel-value small">None</span>
+          <span class="sel-label">駅：</span>
+          <span id="selEntity" class="sel-value small">未選択</span>
         </div>
         <div class="sel-row">
-          <span class="sel-label">Route:</span>
-          <span id="selRoute" class="sel-value small">None</span>
+          <span class="sel-label">路線：</span>
+          <span id="selRoute" class="sel-value small">未選択</span>
         </div>
+      </div>
+
+      <div class="panel-section-head">
+        <div class="panel-title">💡 操作ガイド</div>
+      </div>
+      <div class="guide">
+        <div class="guide-item">👆 <strong>駅を選択</strong>：左の駅リストをクリック</div>
+        <div class="guide-item">📍 <strong>駅を配置</strong>：コースのスロットをクリック</div>
+        <div class="guide-item">🗑 <strong>駅を削除</strong>：配置済みスロットを右クリック</div>
+        <div class="guide-item">⚡ <strong>自動配置</strong>：ランダムに40駅を配置</div>
+        <div class="guide-item">▶ <strong>プレイ</strong>：40駅揃ったらゲーム開始</div>
       </div>
     </div>
   </div>
 
+  <!-- フッター -->
   <div class="footer">
-    <div id="status" class="status">Ready.</div>
+    <div id="status" class="status">準備完了。</div>
+    <div class="footer-hint">右クリックでスロットから駅を削除できます</div>
   </div>
 
-  <script src="editor.js"></script>
+  <script type="module" src="editor.js"></script>
 </body>
 </html>
