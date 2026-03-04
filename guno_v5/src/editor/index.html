@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GOS Route Editor v0.2</title>
+  <title>GOS Route Editor v0.3</title>
   <link rel="stylesheet" href="editor.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
       <div class="logo">G</div>
       <div class="titles">
         <div class="title">GOS Route Editor</div>
-        <div class="subtitle">v0.2</div>
+        <div class="subtitle">v0.3</div>
       </div>
     </div>
     <div class="actions">
@@ -67,7 +67,7 @@
     <!-- 中央パネル：コース配置 -->
     <div class="panel panel-routes">
       <div class="panel-head">
-        <div class="panel-title">🗺 コース配置 <span class="panel-subtitle">（4路線 × 10駅）</span></div>
+        <div class="panel-title">🗺 コース配置 <span class="panel-subtitle" id="routeSubtitle">（4路線 × 10駅）</span></div>
         <div class="panel-tools">
           <button id="btnAutoFill" class="btn" title="現在の駅リストから自動配置">⚡ 自動配置</button>
           <button id="btnClearSelectedRoute" class="btn danger" title="選択中の路線をクリア">🗑 路線クリア</button>
@@ -76,14 +76,39 @@
       <div id="routes" class="routes"></div>
     </div>
 
-    <!-- 右パネル：チェック結果 -->
+    <!-- 右パネル：路線管理・チェック -->
     <div class="panel panel-issues">
+
+      <!-- 路線管理 -->
       <div class="panel-head">
+        <div class="panel-title">🛤 路線管理</div>
+        <button id="btnAddRoute" class="btn accent" title="路線マスターから路線を追加">＋ 路線追加</button>
+      </div>
+      <div id="routeList" class="route-list"></div>
+
+      <!-- 路線追加モーダル（インライン） -->
+      <div id="routePickerWrap" class="route-picker-wrap" style="display:none">
+        <div class="route-picker-head">
+          <span>路線を選択して追加</span>
+          <button id="btnRoutePickerClose" class="btn small">✕</button>
+        </div>
+        <input type="text" id="routePickerQ" class="input" placeholder="路線名・コードで検索...">
+        <div class="route-picker-group-filter">
+          <select id="routePickerOp" class="select">
+            <option value="">すべての事業者</option>
+          </select>
+        </div>
+        <div id="routePickerList" class="route-picker-list"></div>
+      </div>
+
+      <!-- チェック結果 -->
+      <div class="panel-section-head">
         <div class="panel-title">✅ チェック結果 <span id="issueBadge" class="badge">0</span></div>
         <button id="btnValidate" class="btn" title="バリデーションを実行">🔍 チェック</button>
       </div>
       <div id="issues" class="issues"></div>
 
+      <!-- 選択中 -->
       <div class="panel-section-head">
         <div class="panel-title">📌 選択中</div>
       </div>
@@ -98,15 +123,18 @@
         </div>
       </div>
 
+      <!-- 操作ガイド -->
       <div class="panel-section-head">
         <div class="panel-title">💡 操作ガイド</div>
       </div>
       <div class="guide">
+        <div class="guide-item">🛤 <strong>路線追加</strong>：「＋ 路線追加」で路線マスターから選択</div>
+        <div class="guide-item">🗑 <strong>路線削除</strong>：路線リストの「削除」ボタン</div>
         <div class="guide-item">👆 <strong>駅を選択</strong>：左の駅リストをクリック</div>
         <div class="guide-item">📍 <strong>駅を配置</strong>：コースのスロットをクリック</div>
         <div class="guide-item">🗑 <strong>駅を削除</strong>：配置済みスロットを右クリック</div>
-        <div class="guide-item">⚡ <strong>自動配置</strong>：ランダムに40駅を配置</div>
-        <div class="guide-item">▶ <strong>プレイ</strong>：40駅揃ったらゲーム開始</div>
+        <div class="guide-item">⚡ <strong>自動配置</strong>：路線コードが一致する駅を自動配置</div>
+        <div class="guide-item">▶ <strong>プレイ</strong>：全駅揃ったらゲーム開始</div>
       </div>
     </div>
   </div>
