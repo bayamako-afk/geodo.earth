@@ -582,9 +582,14 @@ function renderAll() {
         }).join('');
         let stCount = 0;
         Object.values(mapState).forEach(owner => { if(owner === i) stCount++; });
+        const turnBanner = isTurn
+            ? (p.isHuman && !autoPlay
+                ? '<div class="turn-banner turn-banner--human">🎯 ' + t('あなたの番です！', 'Your turn!') + '</div>'
+                : '<div class="turn-banner turn-banner--cpu">⏳ ' + p.icon + ' ' + p.name + t('の番', '\'s turn') + '</div>')
+            : '';
         return '<div class="player-box ' + (isTurn?'active-turn':'') + ' ' + (p.status==='eliminated'?'eliminated':'') + 
                '" style="border-left-color:' + p.color + '"><b>' + p.icon + ' ' + p.name + 
-               '</b> <small>Stations:' + stCount + ' | GUNO:' + p.guno + ' | Score:' + calculateScore(i) + '</small><br>' + cardsHtml + '</div>';
+               '</b> <small>Stations:' + stCount + ' | GUNO:' + p.guno + ' | Score:' + calculateScore(i) + '</small>' + turnBanner + '<br>' + cardsHtml + '</div>';
     }).join('');
 
     updateStationNodeIcons();
