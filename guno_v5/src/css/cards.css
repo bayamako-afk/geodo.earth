@@ -750,15 +750,15 @@
 
 /* 番のプレイヤーの情報行：緑の座布団背景 */
 .player-info-row--active {
-  background: rgba(61, 220, 132, 0.12);
-  border: 1px solid rgba(61, 220, 132, 0.35);
-  box-shadow: 0 0 8px rgba(61, 220, 132, 0.15);
+  background: rgba(61, 220, 132, 0.25);
+  border: 1px solid rgba(61, 220, 132, 0.6);
+  box-shadow: 0 0 10px rgba(61, 220, 132, 0.4);
   animation: infoBgPulse 1.4s ease-in-out infinite;
 }
 
 @keyframes infoBgPulse {
-  0%, 100% { background: rgba(61, 220, 132, 0.10); box-shadow: 0 0 6px rgba(61,220,132,0.15); }
-  50%       { background: rgba(61, 220, 132, 0.20); box-shadow: 0 0 14px rgba(61,220,132,0.35); }
+  0%, 100% { background: rgba(61, 220, 132, 0.20); box-shadow: 0 0 8px rgba(61,220,132,0.3); }
+  50%       { background: rgba(61, 220, 132, 0.35); box-shadow: 0 0 18px rgba(61,220,132,0.6); }
 }
 
 .player-cards-row {
