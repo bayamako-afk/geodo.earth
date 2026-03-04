@@ -317,9 +317,10 @@ function _showVictoryToast() {
   const toast = document.createElement('div');
   toast.id = 'victory-toast';
   toast.innerHTML = `🏆 ${winnerIcon} <strong>${winnerName} WIN!</strong> &nbsp;<span style="font-size:0.75em;opacity:.85;">← 左メニューで結果を確認</span>`;
-  // ヘッダー高さを動的に取得してトップ位置を決定
-  const headerEl = document.querySelector('header') || document.querySelector('.header');
-  const headerH = headerEl ? (headerEl.offsetHeight + 8) : 70;
+  // ヘッダー＋ステータスバーの高さを動的に取得してトップ位置を決定
+  const headerEl = document.querySelector('.header') || document.querySelector('header');
+  const statusBarEl = document.getElementById('statusBar');
+  const headerH = (headerEl ? headerEl.offsetHeight : 50) + (statusBarEl ? statusBarEl.offsetHeight : 36) + 10;
   toast.style.cssText = [
     'position:fixed',
     `top:${headerH}px`,
