@@ -1,5 +1,5 @@
 // Auto-generated from geojson — DO NOT EDIT MANUALLY
-// Generated: 2026-03-04T06:55:00
+// Generated: 2026-03-04T07:05:23
 
 export const GEO_LINES = [
   {
@@ -8,7 +8,7 @@ export const GEO_LINES = [
     "name_ja": "中央線快速",
     "color": "#FF6600",
     "operator": "JR東日本",
-    "station_count": 67
+    "station_count": 24
   },
   {
     "slug": "jr-east-yamanote",
@@ -74,216 +74,6 @@ export const GEO_STATIONS = [
     "lc": "JC",
     "slug": "jr-east-chuo-rapid",
     "order": 1,
-    "name_ja": "武蔵増戸",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.2562005,
-      35.7309564
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_02",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 2,
-    "name_ja": "武蔵引田",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.2700981,
-      35.7297171
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_03",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 3,
-    "name_ja": "熊川",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3354099,
-      35.7284669
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_04",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 4,
-    "name_ja": "武蔵五日市",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.2279385,
-      35.7322027
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_05",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 5,
-    "name_ja": "拝島",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3434109,
-      35.7211549
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_06",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 6,
-    "name_ja": "東秋留",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3111937,
-      35.7258724
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_07",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 7,
-    "name_ja": "秋川",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.2866849,
-      35.7280568
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_08",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 8,
-    "name_ja": "立川",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.4135512,
-      35.6977712
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_09",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 9,
-    "name_ja": "武蔵境",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5440806,
-      35.7021106
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_10",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 10,
-    "name_ja": "春日居町",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.6589842,
-      35.6734821
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_11",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 11,
-    "name_ja": "東山梨",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.702796,
-      35.6941703
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_12",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 12,
-    "name_ja": "勝沼ぶどう郷",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.7431716,
-      35.6723082
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_13",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 13,
-    "name_ja": "山梨市",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.6829887,
-      35.6848858
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_14",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 14,
-    "name_ja": "茅野",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.1522058,
-      35.9943837
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_15",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 15,
-    "name_ja": "御茶ノ水",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.7649795,
-      35.6994836
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_16",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 16,
-    "name_ja": "荻窪",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.6202324,
-      35.7044988
-    ],
-    "cross_lines": [
-      "M"
-    ]
-  },
-  {
-    "id": "JC_17",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 17,
     "name_ja": "神田",
     "name_en": "Chuo Rapid Line",
     "coords": [
@@ -296,127 +86,10 @@ export const GEO_STATIONS = [
     ]
   },
   {
-    "id": "JC_18",
+    "id": "JC_02",
     "lc": "JC",
     "slug": "jr-east-chuo-rapid",
-    "order": 18,
-    "name_ja": "三鷹",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5609316,
-      35.7026704
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_19",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 19,
-    "name_ja": "西荻窪",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5995807,
-      35.7038106
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_20",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 20,
-    "name_ja": "東小金井",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5240574,
-      35.7015223
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_21",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 21,
-    "name_ja": "国分寺",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.4803601,
-      35.700082
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_22",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 22,
-    "name_ja": "大月",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.942176,
-      35.613106
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_23",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 23,
-    "name_ja": "日野",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3937051,
-      35.6789963
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_24",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 24,
-    "name_ja": "石和温泉",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.635439,
-      35.6576737
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_25",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 25,
-    "name_ja": "塩山",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.7341542,
-      35.7053926
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_26",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 26,
-    "name_ja": "新宿",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.7004596,
-      35.6890176
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_27",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 27,
+    "order": 2,
     "name_ja": "東京",
     "name_en": "Chuo Rapid Line",
     "coords": [
@@ -426,506 +99,23 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
-    "id": "JC_28",
+    "id": "JC_03",
     "lc": "JC",
     "slug": "jr-east-chuo-rapid",
-    "order": 28,
-    "name_ja": "塩尻",
+    "order": 3,
+    "name_ja": "御茶ノ水",
     "name_en": "Chuo Rapid Line",
     "coords": [
-      137.9479059,
-      36.1144769
+      139.7649795,
+      35.6994836
     ],
     "cross_lines": []
   },
   {
-    "id": "JC_29",
+    "id": "JC_04",
     "lc": "JC",
     "slug": "jr-east-chuo-rapid",
-    "order": 29,
-    "name_ja": "下諏訪",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.0848092,
-      36.0719652
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_30",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 30,
-    "name_ja": "岡谷",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.0447463,
-      36.0565105
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_31",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 31,
-    "name_ja": "甲斐大和",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.780816,
-      35.6395353
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_32",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 32,
-    "name_ja": "甲府",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.5689911,
-      35.6671512
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_33",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 33,
-    "name_ja": "日野春",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.394833,
-      35.7900744
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_34",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 34,
-    "name_ja": "穴山",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.4137601,
-      35.7513949
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_35",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 35,
-    "name_ja": "韮崎",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.4508993,
-      35.7101703
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_36",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 36,
-    "name_ja": "新府",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.4333362,
-      35.73736
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_37",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 37,
-    "name_ja": "塩崎",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.4875664,
-      35.6878513
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_38",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 38,
-    "name_ja": "竜王",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.5193479,
-      35.6687403
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_39",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 39,
-    "name_ja": "富士見",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.2384415,
-      35.9120816
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_40",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 40,
-    "name_ja": "信濃境",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.2758328,
-      35.884705
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_41",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 41,
-    "name_ja": "小淵沢",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.3159325,
-      35.8638706
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_42",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 42,
-    "name_ja": "長坂",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.3666457,
-      35.8274759
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_43",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 43,
-    "name_ja": "すずらんの里",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.2117884,
-      35.9304599
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_44",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 44,
-    "name_ja": "青柳",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.1977564,
-      35.9423967
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_45",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 45,
-    "name_ja": "上諏訪",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.1163084,
-      36.0466256
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_46",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 46,
-    "name_ja": "笹子",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.8253638,
-      35.6038976
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_47",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 47,
-    "name_ja": "初狩",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.8843282,
-      35.5941859
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_48",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 48,
-    "name_ja": "鳥沢",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.0031151,
-      35.6081119
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_49",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 49,
-    "name_ja": "猿橋",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      138.968119,
-      35.6127359
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_50",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 50,
-    "name_ja": "梁川",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.0376499,
-      35.6059867
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_51",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 51,
-    "name_ja": "藤野",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.1524082,
-      35.6159161
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_52",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 52,
-    "name_ja": "上野原",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.1161112,
-      35.6188052
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_53",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 53,
-    "name_ja": "四方津",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.0734252,
-      35.6141107
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_54",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 54,
-    "name_ja": "相模湖",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.1884732,
-      35.6173438
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_55",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 55,
-    "name_ja": "高尾",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.2824497,
-      35.6422122
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_56",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 56,
-    "name_ja": "西八王子",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3124422,
-      35.6565139
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_57",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 57,
-    "name_ja": "八王子",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.3394695,
-      35.655349
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_58",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 58,
-    "name_ja": "豊田",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.381522,
-      35.65952
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_59",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 59,
-    "name_ja": "国立",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.4465317,
-      35.6992218
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_60",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 60,
-    "name_ja": "西国分寺",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.4657359,
-      35.6997146
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_61",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 61,
-    "name_ja": "武蔵小金井",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5067904,
-      35.7010071
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_62",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 62,
-    "name_ja": "吉祥寺",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.5802192,
-      35.703155
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_63",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 63,
-    "name_ja": "高円寺",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.6499534,
-      35.7053525
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_64",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 64,
-    "name_ja": "阿佐ケ谷",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.6353596,
-      35.7048985
-    ],
-    "cross_lines": []
-  },
-  {
-    "id": "JC_65",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 65,
-    "name_ja": "中野",
-    "name_en": "Chuo Rapid Line",
-    "coords": [
-      139.6655298,
-      35.7059464
-    ],
-    "cross_lines": [
-      "T"
-    ]
-  },
-  {
-    "id": "JC_66",
-    "lc": "JC",
-    "slug": "jr-east-chuo-rapid",
-    "order": 66,
+    "order": 4,
     "name_ja": "四ツ谷",
     "name_en": "Chuo Rapid Line",
     "coords": [
@@ -937,15 +127,266 @@ export const GEO_STATIONS = [
     ]
   },
   {
-    "id": "JC_67",
+    "id": "JC_05",
     "lc": "JC",
     "slug": "jr-east-chuo-rapid",
-    "order": 67,
-    "name_ja": "酒折",
+    "order": 5,
+    "name_ja": "新宿",
     "name_en": "Chuo Rapid Line",
     "coords": [
-      138.5994544,
-      35.65965
+      139.7004596,
+      35.6890176
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_06",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 6,
+    "name_ja": "中野",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.6655298,
+      35.7059464
+    ],
+    "cross_lines": [
+      "T"
+    ]
+  },
+  {
+    "id": "JC_07",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 7,
+    "name_ja": "高円寺",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.6499534,
+      35.7053525
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_08",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 8,
+    "name_ja": "阿佐ケ谷",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.6353596,
+      35.7048985
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_09",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 9,
+    "name_ja": "荻窪",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.6202324,
+      35.7044988
+    ],
+    "cross_lines": [
+      "M"
+    ]
+  },
+  {
+    "id": "JC_10",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 10,
+    "name_ja": "西荻窪",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.5995807,
+      35.7038106
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_11",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 11,
+    "name_ja": "吉祥寺",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.5802192,
+      35.703155
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_12",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 12,
+    "name_ja": "三鷹",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.5609316,
+      35.7026704
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_13",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 13,
+    "name_ja": "武蔵境",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.5440806,
+      35.7021106
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_14",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 14,
+    "name_ja": "東小金井",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.5240574,
+      35.7015223
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_15",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 15,
+    "name_ja": "武蔵小金井",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.5067904,
+      35.7010071
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_16",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 16,
+    "name_ja": "国分寺",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.4803601,
+      35.700082
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_17",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 17,
+    "name_ja": "西国分寺",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.4657359,
+      35.6997146
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_18",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 18,
+    "name_ja": "国立",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.4465317,
+      35.6992218
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_19",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 19,
+    "name_ja": "立川",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.4135512,
+      35.6977712
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_20",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 20,
+    "name_ja": "日野",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.3937051,
+      35.6789963
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_21",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 21,
+    "name_ja": "豊田",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.381522,
+      35.65952
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_22",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 22,
+    "name_ja": "八王子",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.3394695,
+      35.655349
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_23",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 23,
+    "name_ja": "西八王子",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.3124422,
+      35.6565139
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JC_24",
+    "lc": "JC",
+    "slug": "jr-east-chuo-rapid",
+    "order": 24,
+    "name_ja": "高尾",
+    "name_en": "Chuo Rapid Line",
+    "coords": [
+      139.2824497,
+      35.6422122
     ],
     "cross_lines": []
   },
