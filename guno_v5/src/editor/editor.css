@@ -10,7 +10,7 @@
   --radius: 16px;
   --muted: rgba(255, 255, 255, 0.6);
   --muted2: rgba(255, 255, 255, 0.4);
-  --slot: 72px;
+  --slot: 88px;
   --accent: rgba(94, 234, 212, 1);
   --accent-dim: rgba(94, 234, 212, 0.18);
   --accent-glow: rgba(94, 234, 212, 0.35);
@@ -350,28 +350,28 @@ body {
   top: 3px;
   left: 5px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   color: var(--muted2);
   line-height: 1;
 }
 .slot-thumb {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 4px;
   object-fit: cover;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 .slot-name {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.2;
   font-weight: 700;
   color: rgba(255,255,255,.9);
   word-break: break-all;
 }
 .slot-empty-hint {
-  font-size: 9px;
-  color: rgba(255,255,255,.20);
-  line-height: 1.2;
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  line-height: 1.3;
 }
 
 /* 路線カラーのスロット色 */
