@@ -3,7 +3,7 @@ import * as pack from "./pack.js";
 import * as model from "./model.js";
 import * as validate from "./validate.js";
 import * as query from "./query.js";
-import * as ops from "./ops.js";
+import * as ops from "./ops.js?v=fix1";
 import * as create from "./create.js";
 import * as adapters from "../adapters/index.js";
 

@@ -1,4 +1,4 @@
-import { createGOS } from "../gos/core/index.js";
+import { createGOS } from "../gos/core/index.js?v=fix1";
 
 const gos = createGOS();
 const LOCAL_KEY = "gos_pack_v0_1";
