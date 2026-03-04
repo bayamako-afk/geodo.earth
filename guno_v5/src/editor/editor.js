@@ -295,6 +295,9 @@ function renderRoutes() {
     const div = el("div", "route");
     if (cid === state.selectedRouteId) div.classList.add("selected");
 
+    const nameVal = (c.name_ja || '').replace(/"/g, '&quot;');
+    const colorVal = c.color || '#ffffff';
+    const lcVal = (c.lc || cid).replace(/"/g, '&quot;');
     const head = el("div", "route-head");
     head.innerHTML = `
       <div class="route-title">
@@ -304,9 +307,9 @@ function renderRoutes() {
       <div style="display:flex;align-items:center;gap:8px;">
         <div class="route-progress">${filledCount}/10</div>
         <div class="route-edit">
-          <label>コード <input type="text" class="input mini" value="${c.lc||cid}" data-field="lc"></label>
-          <label>日本語名 <input type="text" class="input mid" value="${c.name_ja||\'\'}" data-field="name_ja"></label>
-          <label>色 <input type="color" class="input color" value="${c.color||\'#ffffff\'}" data-field="color"></label>
+          <label>コード <input type="text" class="input mini" value="${lcVal}" data-field="lc"></label>
+          <label>日本語名 <input type="text" class="input mid" value="${nameVal}" data-field="name_ja"></label>
+          <label>色 <input type="color" class="input color" value="${colorVal}" data-field="color"></label>
         </div>
         <button class="btn small danger route-clear-btn" data-cid="${cid}" title="この路線の駅配置をクリア">駅名クリア</button>
       </div>`;
