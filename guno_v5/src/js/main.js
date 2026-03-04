@@ -288,6 +288,7 @@ function showNetworkLinesOnMainMap(mode = "game") {
 
   const ids = [
     "jr-east-yamanote",
+    "jr-east-chuo-rapid",
     "tokyo-metro-ginza",
     "tokyo-metro-marunouchi",
     "tokyo-metro-tozai",
@@ -303,6 +304,7 @@ function showNetworkLinesOnMainMap(mode = "game") {
 
   const colorById = {
     "jr-east-yamanote": "#00AA00",
+    "jr-east-chuo-rapid": "#FF6600",
     "tokyo-metro-ginza": "#FF9500",
     "tokyo-metro-marunouchi": "#F62E36",
     "tokyo-metro-tozai": "#009BBF",
@@ -355,6 +357,7 @@ async function showResultLinesOnMainMap() {
 
   const lineFiles = [
     "jr-east-yamanote.geojson",
+    "jr-east-chuo-rapid.geojson",
     "tokyo-metro-ginza.geojson",
     "tokyo-metro-marunouchi.geojson",
     "tokyo-metro-tozai.geojson",
@@ -365,6 +368,7 @@ async function showResultLinesOnMainMap() {
 
   const colorById = {
     "jr-east-yamanote": "#00AA00",
+    "jr-east-chuo-rapid": "#FF6600",
     "tokyo-metro-ginza": "#F39700",
     "tokyo-metro-marunouchi": "#E60012",
     "tokyo-metro-tozai": "#00A7DB",
