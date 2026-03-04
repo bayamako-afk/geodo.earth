@@ -125,12 +125,22 @@ def format_js(lines, all_stations):
           "coords": s["coords"], "cross_lines": s["cross_lines"]} for s in all_stations],
         ensure_ascii=False, indent=2
     )
+    # Build CROSS_STATIONS: { station_name: [lc, lc, ...] } for stations appearing in 2+ lines
+    from collections import defaultdict
+    name_to_lines = defaultdict(set)
+    for s in all_stations:
+        if s["name_ja"]:
+            name_to_lines[s["name_ja"]].add(s["lc"])
+    cross_stations = {name: sorted(lcs) for name, lcs in name_to_lines.items() if len(lcs) >= 2}
+    cross_js = json.dumps(cross_stations, ensure_ascii=False, indent=2)
     return f"""// Auto-generated from geojson — DO NOT EDIT MANUALLY
 // Generated: {now}
 
 export const GEO_LINES = {lines_js};
 
 export const GEO_STATIONS = {stations_js};
+
+export const CROSS_STATIONS = {cross_js};
 """
 
 def main():
