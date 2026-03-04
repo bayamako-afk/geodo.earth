@@ -284,15 +284,10 @@ body{
     margin-bottom: 0 !important;
   }
 
-  /* ヘッダーの高さ分だけgame-containerを下げる */
-  .game-container{
-    padding-top: 76px;
-  }
-
-  /* ステータスバーもヘッダー直下に固定 */
+  /* ステータスバーもヘッダー直下に固定（topはJSが動的計算） */
   #statusBar{
     position: fixed;
-    top: 60px;   /* ヘッダーの高さに合わせて調整 */
+    top: 56px;   /* JSが動的に上書きするのでフォールバック値 */
     left: 0;
     right: 0;
     z-index: 9999;
@@ -300,10 +295,7 @@ body{
     margin: 0;
   }
 
-  /* ステータスバー分もコンテンツを下げる */
-  .game-container{
-    padding-top: 110px;
-  }
+  /* padding-topはJSのapplyMobileTopBarsが動的に設定するためCSSでは指定しない */
 
   /* スマホではボタンを少し小さく */
   .controls button,
