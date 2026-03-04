@@ -314,13 +314,22 @@ function _showVictoryToast() {
   const old = document.getElementById('victory-toast');
   if (old) old.remove();
 
+  const isMobileView = window.innerWidth <= 1023;
   const toast = document.createElement('div');
   toast.id = 'victory-toast';
-  toast.innerHTML = `🏆 ${winnerIcon} <strong>${winnerName} WIN!</strong> &nbsp;<span style="font-size:0.75em;opacity:.85;">← 左メニューで結果を確認</span>`;
+  // スマホ時はシンプルな表示（左メニューがないため詳細記載不要）
+  if (isMobileView) {
+    toast.innerHTML = `🏆 ${winnerIcon} <strong>${winnerName} WIN!</strong>`;
+  } else {
+    toast.innerHTML = `🏆 ${winnerIcon} <strong>${winnerName} WIN!</strong> &nbsp;<span style="font-size:0.8em;opacity:.85;">← 左メニューで結果を確認</span>`;
+  }
   // ヘッダー＋ステータスバーの高さを動的に取得してトップ位置を決定
   const headerEl = document.querySelector('.header') || document.querySelector('header');
   const statusBarEl = document.getElementById('statusBar');
   const headerH = (headerEl ? headerEl.offsetHeight : 50) + (statusBarEl ? statusBarEl.offsetHeight : 36) + 10;
+  // スマホ時は文字を大きく、PC時は標準サイズ
+  const fontSize = isMobileView ? 'clamp(18px,5vw,28px)' : 'clamp(14px,2vw,22px)';
+  const padding = isMobileView ? '12px 24px' : '10px 18px';
   toast.style.cssText = [
     'position:fixed',
     `top:${headerH}px`,
@@ -328,15 +337,15 @@ function _showVictoryToast() {
     'transform:translateX(-50%)',
     'background:linear-gradient(135deg,#1a1a1a 60%,#2a1f00)',
     'color:gold',
-    'font-size:clamp(13px,3.5vw,20px)',
+    `font-size:${fontSize}`,
     'font-weight:bold',
-    'padding:10px 18px',
+    `padding:${padding}`,
     'border-radius:16px',
     'border:2px solid gold',
     'box-shadow:0 0 24px rgba(255,215,0,0.6),0 4px 16px rgba(0,0,0,0.7)',
     'z-index:9500',
-    'white-space:normal',
-    'max-width:90vw',
+    'white-space:nowrap',
+    'max-width:92vw',
     'text-align:center',
     'pointer-events:none',
     'opacity:0',
