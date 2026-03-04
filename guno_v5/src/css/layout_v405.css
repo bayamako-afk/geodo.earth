@@ -303,6 +303,16 @@ body{
     padding: 4px 8px;
     font-size: 11px;
   }
+
+  /* スマホではヘッダーのpaddingを削減してコンパクトに */
+  .header {
+    padding: 5px 10px;
+  }
+  .header h2 {
+    font-size: 1em;
+    line-height: 1;
+    margin: 0;
+  }
 }
 
 /* ===== Utility ===== */
