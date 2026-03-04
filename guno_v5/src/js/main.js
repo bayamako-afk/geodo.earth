@@ -440,9 +440,11 @@ function renderPersistentResult(ranking){
           <tr>
             <th>順位</th>
             <th>Player</th>
-            <th>Total</th>
-            <th>Base</th>
-            <th>Conn</th>
+            <th title="合計得点">合計</th>
+            <th title="駅取得点 + GUNO点">駅+GUNO</th>
+            <th title="乗換ボーナス点">乗換</th>
+            <th title="取得駅数">駅数</th>
+            <th title="GUNOコール回数">GUNO</th>
           </tr>
         </thead>
         <tbody>
@@ -457,6 +459,8 @@ function renderPersistentResult(ranking){
         <td class="num">${r.total}</td>
         <td class="num">${r.base}</td>
         <td class="num">+${r.connPts || 0}</td>
+        <td class="num">${r.stCount || 0}</td>
+        <td class="num">${r.p.guno || 0}</td>
       </tr>
     `;
   });
