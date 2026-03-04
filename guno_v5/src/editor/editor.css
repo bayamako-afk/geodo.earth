@@ -668,3 +668,35 @@ body {
   color: var(--muted);
   white-space: nowrap;
 }
+
+/* ===== 駅リスト 路線タブ ===== */
+.pool-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px 8px 4px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,.15);
+  flex-shrink: 0;
+}
+.pool-tab {
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.05);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .12s, color .12s, border-color .12s;
+  white-space: nowrap;
+}
+.pool-tab:hover {
+  background: rgba(255,255,255,.1);
+  color: var(--text);
+}
+.pool-tab.active {
+  background: color-mix(in srgb, var(--tab-color, var(--accent)) 18%, transparent);
+  border-color: color-mix(in srgb, var(--tab-color, var(--accent)) 50%, transparent);
+  color: var(--tab-color, var(--accent));
+}

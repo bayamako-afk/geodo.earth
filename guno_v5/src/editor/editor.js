@@ -118,6 +118,7 @@ const state = {
   routePickerQuery: "",
   routePickerOp: "",
   slotSize: 10,  // 各路線の駅数（10〜13）
+  poolTab: null,  // 駅リストのアクティブタブ（null=全路線, lc=路線コード）
 };
 
 // ===== ユーティリティ =====
@@ -195,6 +196,7 @@ function updatePlayButton() {
 
 // ===== 全体レンダリング =====
 function render() {
+  renderPoolTabs();
   renderPool();
   renderRoutes();
   renderRouteList();
@@ -211,6 +213,40 @@ function renderSelection() {
   const c = state.selectedRouteId ? state.pack.collections[state.selectedRouteId] : null;
   $("selEntity").textContent = e ? `${e.name_ja || e.name_en} (${state.selectedEntityId})` : "未選択";
   $("selRoute").textContent = c ? `${c.name_ja || c.name_en || state.selectedRouteId}` : "未選択";
+}
+
+// ===== 駅リストのタブを描画 =====
+function renderPoolTabs() {
+  const pack = state.pack;
+  const tabsEl = $("poolTabs");
+  if (!tabsEl) return;
+  tabsEl.innerHTML = "";
+
+  // 全路線タブ
+  const allTab = el("button", "pool-tab" + (state.poolTab === null ? " active" : ""));
+  allTab.textContent = "全路線";
+  allTab.onclick = () => { state.poolTab = null; renderPoolTabs(); renderPool(); };
+  tabsEl.appendChild(allTab);
+
+  // 各路線タブ
+  const lines = [];
+  const seen = new Set();
+  for (const e of Object.values(pack.entities || {})) {
+    if (e.lc && !seen.has(e.lc)) {
+      seen.add(e.lc);
+      lines.push({ lc: e.lc, name: getLineName(e.lc, e.lc), color: getLineColor(e.lc, e.color || "#888") });
+    }
+  }
+  lines.sort((a, b) => a.lc.localeCompare(b.lc));
+
+  for (const line of lines) {
+    const tab = el("button", "pool-tab" + (state.poolTab === line.lc ? " active" : ""));
+    tab.textContent = line.name;
+    tab.style.setProperty("--tab-color", line.color);
+    const lc = line.lc;
+    tab.onclick = () => { state.poolTab = lc; renderPoolTabs(); renderPool(); };
+    tabsEl.appendChild(tab);
+  }
 }
 
 // ===== 駅リストレンダリング =====
@@ -235,10 +271,13 @@ function renderPool() {
 
   let currentLc = null;
   for (const { id, e } of entries) {
+    // タブフィルター
+    if (state.poolTab !== null && e.lc !== state.poolTab) continue;
+
     const displayName = state.locale === "ja" ? (e.name_ja || e.name_en || id) : (e.name_en || e.name_ja || id);
     if (q && !displayName.toLowerCase().includes(q) && !id.toLowerCase().includes(q)) continue;
 
-    if (e.lc && e.lc !== currentLc) {
+    if (e.lc && e.lc !== currentLc && state.poolTab === null) {
       currentLc = e.lc;
       const lineColor = getLineColor(e.lc, e.color || "#888");
       const header = el("div");
