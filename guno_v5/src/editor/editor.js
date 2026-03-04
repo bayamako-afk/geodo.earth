@@ -1,16 +1,23 @@
-import { createGOS } from "../gos/core/index.js?v=fix1";
+import { createGOS } from "../gos/core/index.js?v=0.3";
 import { ROUTE_MASTER } from "./route_master.js";
+import { GEO_LINES, GEO_STATIONS, CROSS_STATIONS } from "./stations_data.js";
 
 const gos = createGOS();
-const LOCAL_KEY = "gos_pack_v0_1";
+const LOCAL_KEY = "gos_pack_v0_2";
 const IMAGE_BASE_URL = "https://geodo.earth/guno_v2/cards/";
 
 const $ = (id) => document.getElementById(id);
 const el = (tag, cls) => { const n = document.createElement(tag); if (cls) n.className = cls; return n; };
 function nowISO() { return new Date().toISOString(); }
 
+// ===== geojson整備済み路線のスラッグセット =====
+const GEO_LINE_CODES = new Set(GEO_LINES.map(l => l.line_code));
+
 // ===== 路線マスターからコードと色を引く =====
 function getMasterRoute(lineCode) {
+  // まずgeojsonデータを優先
+  const geo = GEO_LINES.find(l => l.line_code === lineCode);
+  if (geo) return { line_code: geo.line_code, name_ja: geo.name_ja, color: geo.color, operator: geo.operator };
   return ROUTE_MASTER.find(r => r.line_code === lineCode) || null;
 }
 function getLineColor(lineCode, fallback = "#888") {
@@ -32,96 +39,76 @@ function getCardImageUrl(entity) {
   return null;
 }
 
-// ===== ベース4路線の駅データ =====
-const BASE_STATIONS = [
-  // 山手線 (JY)
-  { id:"JY01", lc:"JY", order:1,  name_ja:"東京",     name_en:"Tokyo",           file:"JY_01_Tokyo" },
-  { id:"JY02", lc:"JY", order:2,  name_ja:"神田",     name_en:"Kanda",           file:"JY_02_Kanda" },
-  { id:"JY03", lc:"JY", order:3,  name_ja:"上野",     name_en:"Ueno",            file:"JY_03_Ueno" },
-  { id:"JY04", lc:"JY", order:4,  name_ja:"池袋",     name_en:"Ikebukuro",       file:"JY_04_Ikebukuro" },
-  { id:"JY05", lc:"JY", order:5,  name_ja:"高田馬場", name_en:"Takadanobaba",    file:"JY_05_Takadanobaba" },
-  { id:"JY06", lc:"JY", order:6,  name_ja:"新宿",     name_en:"Shinjuku",        file:"JY_06_Shinjuku" },
-  { id:"JY07", lc:"JY", order:7,  name_ja:"渋谷",     name_en:"Shibuya",         file:"JY_07_Shibuya" },
-  { id:"JY08", lc:"JY", order:8,  name_ja:"目黒",     name_en:"Meguro",          file:"JY_08_Meguro" },
-  { id:"JY09", lc:"JY", order:9,  name_ja:"品川",     name_en:"Shinagawa",       file:"JY_09_Shinagawa" },
-  { id:"JY10", lc:"JY", order:10, name_ja:"新橋",     name_en:"Shimbashi",       file:"JY_10_Shimbashi" },
-  // 丸ノ内線 (M)
-  { id:"M01",  lc:"M",  order:1,  name_ja:"池袋",     name_en:"Ikebukuro",       file:"M_01_Ikebukuro" },
-  { id:"M02",  lc:"M",  order:2,  name_ja:"後楽園",   name_en:"Korakuen",        file:"M_02_Korakuen" },
-  { id:"M03",  lc:"M",  order:3,  name_ja:"御茶ノ水", name_en:"Ochanomizu",      file:"M_03_Ochanomizu" },
-  { id:"M04",  lc:"M",  order:4,  name_ja:"大手町",   name_en:"Otemachi",        file:"M_04_Otemachi" },
-  { id:"M05",  lc:"M",  order:5,  name_ja:"東京",     name_en:"Tokyo",           file:"M_05_Tokyo" },
-  { id:"M06",  lc:"M",  order:6,  name_ja:"銀座",     name_en:"Ginza",           file:"M_06_Ginza" },
-  { id:"M07",  lc:"M",  order:7,  name_ja:"赤坂見附", name_en:"Akasaka-mitsuke", file:"M_07_Akasaka-mitsuke" },
-  { id:"M08",  lc:"M",  order:8,  name_ja:"四ツ谷",   name_en:"Yotsuya",         file:"M_08_Yotsuya" },
-  { id:"M09",  lc:"M",  order:9,  name_ja:"新宿",     name_en:"Shinjuku",        file:"M_09_Shinjuku" },
-  { id:"M10",  lc:"M",  order:10, name_ja:"中野坂上", name_en:"Nakano-sakaue",   file:"M_10_Nakano-sakaue" },
-  // 銀座線 (G)
-  { id:"G01",  lc:"G",  order:1,  name_ja:"渋谷",     name_en:"Shibuya",         file:"G_01_Shibuya" },
-  { id:"G02",  lc:"G",  order:2,  name_ja:"表参道",   name_en:"Omotesando",      file:"G_02_Omotesando" },
-  { id:"G03",  lc:"G",  order:3,  name_ja:"青山一丁目",name_en:"Aoyama-itchome", file:"G_03_Aoyama-itchome" },
-  { id:"G04",  lc:"G",  order:4,  name_ja:"赤坂見附", name_en:"Akasaka-mitsuke", file:"G_04_Akasaka-mitsuke" },
-  { id:"G05",  lc:"G",  order:5,  name_ja:"新橋",     name_en:"Shimbashi",       file:"G_05_Shimbashi" },
-  { id:"G06",  lc:"G",  order:6,  name_ja:"銀座",     name_en:"Ginza",           file:"G_06_Ginza" },
-  { id:"G07",  lc:"G",  order:7,  name_ja:"日本橋",   name_en:"Nihombashi",      file:"G_07_Nihombashi" },
-  { id:"G08",  lc:"G",  order:8,  name_ja:"神田",     name_en:"Kanda",           file:"G_08_Kanda" },
-  { id:"G09",  lc:"G",  order:9,  name_ja:"上野",     name_en:"Ueno",            file:"G_09_Ueno" },
-  { id:"G10",  lc:"G",  order:10, name_ja:"浅草",     name_en:"Asakusa",         file:"G_10_Asakusa" },
-  // 東西線 (T)
-  { id:"T01",  lc:"T",  order:1,  name_ja:"中野",     name_en:"Nakano",          file:"T_01_Nakano" },
-  { id:"T02",  lc:"T",  order:2,  name_ja:"落合",     name_en:"Ochiai",          file:"T_02_Ochiai" },
-  { id:"T03",  lc:"T",  order:3,  name_ja:"高田馬場", name_en:"Takadanobaba",    file:"T_03_Takadanobaba" },
-  { id:"T04",  lc:"T",  order:4,  name_ja:"早稲田",   name_en:"Waseda",          file:"T_04_Waseda" },
-  { id:"T05",  lc:"T",  order:5,  name_ja:"飯田橋",   name_en:"Iidabashi",       file:"T_05_Iidabashi" },
-  { id:"T06",  lc:"T",  order:6,  name_ja:"九段下",   name_en:"Kudanshita",      file:"T_06_Kudanshita" },
-  { id:"T07",  lc:"T",  order:7,  name_ja:"大手町",   name_en:"Otemachi",        file:"T_07_Otemachi" },
-  { id:"T08",  lc:"T",  order:8,  name_ja:"日本橋",   name_en:"Nihombashi",      file:"T_08_Nihombashi" },
-  { id:"T09",  lc:"T",  order:9,  name_ja:"門前仲町", name_en:"Monzen-nakacho",  file:"T_09_Monzen-nakacho" },
-  { id:"T10",  lc:"T",  order:10, name_ja:"東陽町",   name_en:"Toyocho",         file:"T_10_Toyocho" },
-];
-
-// ===== サンプルパック生成 =====
-function makeSamplePack() {
-  const iso = nowISO();
-  const entities = {};
-  for (const s of BASE_STATIONS) {
-    entities[s.id] = { type:"station", name_ja:s.name_ja, name_en:s.name_en, lc:s.lc, order:s.order, file:s.file };
+// ===== 選択路線の交差駅を計算 =====
+function computeCrossStations(selectedLineCodes) {
+  // 選択中の路線コードセット
+  const lcSet = new Set(selectedLineCodes);
+  // 交差駅：CROSS_STATIONSの中で、自分の路線以外に選択中の路線が含まれる駅
+  const result = {}; // stationName -> [交差している路線コードリスト]
+  for (const [name, lcs] of Object.entries(CROSS_STATIONS)) {
+    const crossInSelected = lcs.filter(lc => lcSet.has(lc));
+    if (crossInSelected.length >= 2) {
+      result[name] = crossInSelected;
+    }
   }
+  return result;
+}
+
+// ===== 路線の全駅をgeojsonから取得 =====
+function getStationsForLine(lineCode) {
+  return GEO_STATIONS
+    .filter(s => s.lc === lineCode)
+    .sort((a, b) => a.order - b.order);
+}
+
+// ===== サンプルパック生成（geojsonベース4路線） =====
+function makeSamplePack(slotSize = 10) {
+  const iso = nowISO();
+  const defaultLines = ["JY", "G", "M", "T"];
+  const entities = {};
+  const collections = {};
+  const layoutSlots = [];
+
+  for (let i = 0; i < defaultLines.length; i++) {
+    const lc = defaultLines[i];
+    const geoLine = GEO_LINES.find(l => l.line_code === lc);
+    if (!geoLine) continue;
+    const stations = getStationsForLine(lc);
+    // 全駅をentitiesに登録
+    for (const s of stations) {
+      entities[s.id] = {
+        type: "station", name_ja: s.name_ja, name_en: s.name_en,
+        lc: s.lc, order: s.order, cross_lines: s.cross_lines || []
+      };
+    }
+    const cid = `R${i + 1}`;
+    collections[cid] = {
+      kind: "route", lc, name_ja: geoLine.name_ja, name_en: geoLine.name_ja,
+      color: geoLine.color, size: slotSize, members: Array(slotSize).fill(null)
+    };
+    layoutSlots.push({ collection_id: cid, label_ja: geoLine.name_ja, label_en: geoLine.name_ja });
+  }
+
   return {
     pack_meta: {
-      pack_version: "0.1", pack_id: "tokyo_4lines_v1",
+      pack_version: "0.2", pack_id: "tokyo_4lines_v2",
       name: "東京4路線コース", locale_default: "ja",
       created_at: iso, updated_at: iso
     },
     entities,
-    collections: {
-      R1: { kind:"route", lc:"JY", name_ja:"山手線",   name_en:"Yamanote",   color:"#00AA00", size:10, members:Array(10).fill(null) },
-      R2: { kind:"route", lc:"M",  name_ja:"丸ノ内線", name_en:"Marunouchi", color:"#F62E36", size:10, members:Array(10).fill(null) },
-      R3: { kind:"route", lc:"G",  name_ja:"銀座線",   name_en:"Ginza",      color:"#FF9500", size:10, members:Array(10).fill(null) },
-      R4: { kind:"route", lc:"T",  name_ja:"東西線",   name_en:"Tozai",      color:"#009BBF", size:10, members:Array(10).fill(null) },
-    },
-    layouts: {
-      default: {
-        layout_kind: "editor_4x10",
-        slots: [
-          { collection_id:"R1", label_ja:"山手線",   label_en:"Yamanote" },
-          { collection_id:"R2", label_ja:"丸ノ内線", label_en:"Marunouchi" },
-          { collection_id:"R3", label_ja:"銀座線",   label_en:"Ginza" },
-          { collection_id:"R4", label_ja:"東西線",   label_en:"Tozai" },
-        ]
-      }
-    },
+    collections,
+    layouts: { default: { layout_kind: "editor_nx10", slots: layoutSlots } },
     rules: [
-      { rule:"collection_size_exact", scope:{kinds:["route"]}, value:10, level:"error" },
-      { rule:"unique_members_across_collections", scope:{kinds:["route"]}, level:"error" },
-      { rule:"member_type_allowed", scope:{kinds:["route"]}, allowed_types:["station"], level:"error" }
+      { rule: "collection_size_exact", scope: { kinds: ["route"] }, value: slotSize, level: "error" },
+      { rule: "unique_members_across_collections", scope: { kinds: ["route"] }, level: "error" },
+      { rule: "member_type_allowed", scope: { kinds: ["route"] }, allowed_types: ["station"], level: "error" }
     ]
   };
 }
 
 // ===== 状態 =====
 const state = {
-  pack: makeSamplePack(),
+  pack: makeSamplePack(10),
   model: null,
   locale: "ja",
   query: "",
@@ -130,6 +117,7 @@ const state = {
   routePickerOpen: false,
   routePickerQuery: "",
   routePickerOp: "",
+  slotSize: 10,  // 各路線の駅数（10〜13）
 };
 
 // ===== ユーティリティ =====
@@ -138,12 +126,10 @@ function rebuildModel() { state.model = gos.model.normalize(state.pack); }
 function updatePackFromModel() { state.pack = state.model.raw; state.pack.pack_meta.updated_at = nowISO(); }
 
 // ===== 路線数・駅数カウント =====
-function countRoutes() {
-  return Object.keys(state.pack.collections || {}).length;
-}
+function countRoutes() { return Object.keys(state.pack.collections || {}).length; }
 function countTotalSlots() {
   let n = 0;
-  for (const c of Object.values(state.pack.collections || {})) n += (c.size || 10);
+  for (const c of Object.values(state.pack.collections || {})) n += (c.size || state.slotSize);
   return n;
 }
 function countFilledSlots() {
@@ -154,19 +140,36 @@ function countFilledSlots() {
   return n;
 }
 
+// ===== 現在選択中の路線コードリスト =====
+function getSelectedLineCodes() {
+  return Object.values(state.pack.collections || {}).map(c => c.lc).filter(Boolean);
+}
+
+// ===== 交差駅（現在の路線構成で） =====
+function getCurrentCrossStations() {
+  return computeCrossStations(getSelectedLineCodes());
+}
+
+// ===== 交差駅かどうか（駅名で判定） =====
+function isCrossStation(stationName) {
+  const cross = getCurrentCrossStations();
+  return stationName in cross;
+}
+
 // ===== プレイ可能判定 =====
 function canPlayNow() {
-  const issues = gos.validate.model(state.model, state.pack.rules, state.pack.entities, state.locale);
-  if (issues.some(x => x.level === "error")) return { ok:false, reason:"エラーを修正してからプレイできます。" };
   const slotDefs = Array.isArray(state.pack.layouts?.default?.slots) ? state.pack.layouts.default.slots : [];
-  if (slotDefs.length === 0) return { ok:false, reason:"路線が設定されていません。" };
+  if (slotDefs.length === 0) return { ok: false, reason: "路線が設定されていません。" };
   for (const s of slotDefs) {
     const c = state.pack.collections?.[s.collection_id];
-    if (!c) return { ok:false, reason:`路線が見つかりません: ${s.collection_id}` };
+    if (!c) return { ok: false, reason: `路線が見つかりません: ${s.collection_id}` };
     const members = Array.isArray(c.members) ? c.members : [];
-    if (members.length < 10 || members.includes(null)) return { ok:false, reason:`${c.name_ja} の10駅を全て配置してください` };
+    const size = c.size || state.slotSize;
+    if (members.length < size || members.includes(null)) {
+      return { ok: false, reason: `${c.name_ja} の${size}駅を全て配置してください` };
+    }
   }
-  return { ok:true, reason:"OK" };
+  return { ok: true, reason: "OK" };
 }
 
 // ===== 進捗バー更新 =====
@@ -178,7 +181,7 @@ function updateProgress() {
   $("progressPercent").textContent = `${pct}%`;
   $("progressFill").style.width = `${pct}%`;
   const subtitle = $("routeSubtitle");
-  if (subtitle) subtitle.textContent = `（${countRoutes()}路線 × 10駅）`;
+  if (subtitle) subtitle.textContent = `（${countRoutes()}路線 × ${state.slotSize}駅）`;
 }
 
 // ===== プレイボタン更新 =====
@@ -195,6 +198,7 @@ function render() {
   renderPool();
   renderRoutes();
   renderRouteList();
+  renderCrossInfo();
   renderIssues();
   renderSelection();
   updatePlayButton();
@@ -215,6 +219,7 @@ function renderPool() {
   pool.innerHTML = "";
   const pack = state.pack;
   const q = state.query.trim().toLowerCase();
+  const crossNow = getCurrentCrossStations();
 
   const used = new Set();
   for (const c of Object.values(pack.collections || {})) {
@@ -246,6 +251,10 @@ function renderPool() {
     if (id === state.selectedEntityId) div.classList.add("selected");
     if (used.has(id)) div.classList.add("used");
 
+    // 交差駅かどうか
+    const isCross = e.name_ja in crossNow;
+    if (isCross) div.classList.add("cross-station");
+
     const imgUrl = getCardImageUrl(e);
     let thumbEl;
     if (imgUrl) {
@@ -260,13 +269,19 @@ function renderPool() {
     }
 
     const lineColor = getLineColor(e.lc, "#888");
+    const crossLcs = crossNow[e.name_ja] || [];
+    const crossBadge = isCross
+      ? `<span class="pill cross-badge" title="乗換: ${crossLcs.join(', ')}">🔀 ${crossLcs.length}路線</span>`
+      : "";
+
     const infoEl = el("div", "entity-info");
     infoEl.innerHTML = `
       <div class="name">${displayName}</div>
       <div class="meta">
         <span class="line-pill" style="background:${lineColor}22;border:1px solid ${lineColor}55;color:${lineColor}">${e.lc||""}</span>
         <span class="pill">${id}</span>
-        ${used.has(id) ? '<span class="pill" style="color:rgba(251,113,133,.7)">配置済</span>' : ""}
+        ${crossBadge}
+        ${used.has(id) ? '<span class="pill used-badge">配置済</span>' : ""}
       </div>`;
 
     div.appendChild(thumbEl);
@@ -281,6 +296,7 @@ function renderRoutes() {
   const routesEl = $("routes");
   routesEl.innerHTML = "";
   const slotDefs = Array.isArray(state.pack.layouts?.default?.slots) ? state.pack.layouts.default.slots : [];
+  const crossNow = getCurrentCrossStations();
 
   for (const s of slotDefs) {
     const cid = s.collection_id;
@@ -290,6 +306,7 @@ function renderRoutes() {
     const lineCode = c.lc || cid;
     const lineColor = c.color || getLineColor(lineCode, "#fff");
     const members = Array.isArray(c.members) ? c.members : [];
+    const size = c.size || state.slotSize;
     const filledCount = members.filter(Boolean).length;
 
     const div = el("div", "route");
@@ -304,8 +321,8 @@ function renderRoutes() {
         <div class="swatch" style="background:${lineColor};box-shadow:0 0 6px ${lineColor}55"></div>
         <div class="route-name">${c.name_ja || cid}</div>
       </div>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div class="route-progress">${filledCount}/10</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <div class="route-progress">${filledCount}/${size}</div>
         <div class="route-edit">
           <label>コード <input type="text" class="input mini" value="${lcVal}" data-field="lc"></label>
           <label>日本語名 <input type="text" class="input mid" value="${nameVal}" data-field="name_ja"></label>
@@ -326,8 +343,7 @@ function renderRoutes() {
       inp.onchange = (e) => {
         const field = e.target.getAttribute("data-field");
         state.model = gos.ops.updateCollection(state.model, cid, { [field]: e.target.value });
-        updatePackFromModel();
-        render();
+        updatePackFromModel(); render();
       };
       inp.onclick = (e) => e.stopPropagation();
     });
@@ -335,7 +351,7 @@ function renderRoutes() {
     div.appendChild(head);
 
     const grid = el("div", "route-grid");
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < size; i++) {
       const slot = el("div", `slot line-${lineCode}`);
       const eid = members[i];
 
@@ -343,6 +359,8 @@ function renderRoutes() {
         slot.classList.add("filled");
         const st = state.pack.entities[eid];
         const imgUrl = st ? getCardImageUrl(st) : null;
+        const isCross = st && (st.name_ja in crossNow);
+        if (isCross) slot.classList.add("cross-slot");
 
         const idxEl = el("div", "slot-index"); idxEl.textContent = String(i+1);
         slot.appendChild(idxEl);
@@ -357,7 +375,17 @@ function renderRoutes() {
         const nameEl = el("div", "slot-name");
         nameEl.textContent = st ? (state.locale==="ja" ? st.name_ja : st.name_en) : eid;
         slot.appendChild(nameEl);
-        slot.title = `${st?.name_ja||eid} (${eid}) — 右クリックで削除`;
+
+        // 交差駅バッジ
+        if (isCross) {
+          const crossLcs = crossNow[st.name_ja] || [];
+          const badge = el("div", "slot-cross-badge");
+          badge.textContent = `🔀`;
+          badge.title = `乗換: ${crossLcs.join(', ')}`;
+          slot.appendChild(badge);
+        }
+
+        slot.title = `${st?.name_ja||eid} — 右クリックで削除`;
       } else {
         const idxEl = el("div", "slot-index"); idxEl.textContent = String(i+1);
         slot.appendChild(idxEl);
@@ -409,17 +437,19 @@ function renderRouteList() {
     if (!c) continue;
     const lineColor = c.color || getLineColor(c.lc, "#888");
     const members = Array.isArray(c.members) ? c.members : [];
+    const size = c.size || state.slotSize;
     const filled = members.filter(Boolean).length;
+    const isGeo = GEO_LINE_CODES.has(c.lc);
 
     const row = el("div", "route-list-row");
     if (cid === state.selectedRouteId) row.classList.add("selected");
     row.innerHTML = `
       <div class="route-list-swatch" style="background:${lineColor}"></div>
       <div class="route-list-info">
-        <div class="route-list-name">${c.name_ja || cid}</div>
+        <div class="route-list-name">${c.name_ja || cid} ${isGeo ? '<span class="geo-badge" title="geojson整備済み">📍</span>' : ''}</div>
         <div class="route-list-meta">
           <span class="line-pill" style="background:${lineColor}22;border:1px solid ${lineColor}55;color:${lineColor}">${c.lc||cid}</span>
-          <span class="pill">${filled}/10</span>
+          <span class="pill">${filled}/${size}</span>
         </div>
       </div>
       <button class="btn small danger route-del-btn" data-cid="${cid}" title="この路線を削除">削除</button>`;
@@ -435,18 +465,66 @@ function renderRouteList() {
   }
 }
 
+// ===== 交差駅情報パネルレンダリング =====
+function renderCrossInfo() {
+  const el2 = $("crossInfo");
+  if (!el2) return;
+  const crossNow = getCurrentCrossStations();
+  const count = Object.keys(crossNow).length;
+  const badge = $("crossBadge");
+  if (badge) badge.textContent = String(count);
+
+  el2.innerHTML = "";
+  if (count === 0) {
+    el2.innerHTML = `<div style="color:rgba(255,255,255,.3);font-size:11px;padding:4px;">現在の路線構成に交差駅はありません</div>`;
+    return;
+  }
+
+  for (const [name, lcs] of Object.entries(crossNow).sort()) {
+    const row = el("div", "cross-row");
+    const dots = lcs.map(lc => {
+      const color = getLineColor(lc, "#888");
+      return `<span class="cross-dot" style="background:${color}" title="${getLineName(lc)}"></span>`;
+    }).join("");
+    row.innerHTML = `
+      <div class="cross-name">${name}</div>
+      <div class="cross-lines">${dots}
+        <span style="font-size:10px;color:rgba(255,255,255,.5)">${lcs.map(lc => getLineName(lc, lc)).join(' / ')}</span>
+      </div>`;
+    el2.appendChild(row);
+  }
+}
+
 // ===== 路線追加 =====
 function addRoute(masterRoute) {
   const lc = masterRoute.line_code;
   const color = masterRoute.color;
   const name_ja = masterRoute.name_ja;
-  const name_en = masterRoute.name_en;
 
   // 既に同じ路線コードが存在する場合は確認
   const existing = Object.values(state.pack.collections || {}).find(c => c.lc === lc);
   if (existing) {
     setStatus(`⚠ 路線コード「${lc}」は既に追加されています`);
     return;
+  }
+
+  // 路線数上限チェック（最大8路線）
+  if (countRoutes() >= 8) {
+    setStatus("⚠ 路線は最大8路線まで追加できます");
+    return;
+  }
+
+  // geojson整備済みの場合は全駅をentitiesに追加
+  if (GEO_LINE_CODES.has(lc)) {
+    const stations = getStationsForLine(lc);
+    for (const s of stations) {
+      if (!state.pack.entities[s.id]) {
+        state.pack.entities[s.id] = {
+          type: "station", name_ja: s.name_ja, name_en: s.name_en,
+          lc: s.lc, order: s.order, cross_lines: s.cross_lines || []
+        };
+      }
+    }
   }
 
   // 新しいコレクションIDを生成
@@ -459,25 +537,29 @@ function addRoute(masterRoute) {
 
   // コレクション追加
   state.pack.collections[newCid] = {
-    kind: "route", lc, name_ja, name_en, color, size: 10, members: Array(10).fill(null)
+    kind: "route", lc, name_ja, name_en: name_ja, color, size: state.slotSize,
+    members: Array(state.slotSize).fill(null)
   };
 
   // レイアウトのスロットに追加
   if (!Array.isArray(state.pack.layouts?.default?.slots)) {
     state.pack.layouts = { default: { layout_kind: "editor_nx10", slots: [] } };
   }
-  state.pack.layouts.default.slots.push({ collection_id: newCid, label_ja: name_ja, label_en: name_en });
+  state.pack.layouts.default.slots.push({ collection_id: newCid, label_ja: name_ja, label_en: name_ja });
 
-  // モデル再構築
   rebuildModel();
   render();
-  setStatus(`✅ 「${name_ja}」を追加しました`);
+  setStatus(`✅ 「${name_ja}」を追加しました${GEO_LINE_CODES.has(lc) ? `（${getStationsForLine(lc).length}駅）` : "（geojson未整備）"}`);
 }
 
 // ===== 路線削除 =====
 function removeRoute(cid) {
   const c = state.pack.collections?.[cid];
   const name = c?.name_ja || cid;
+  const lc = c?.lc;
+
+  // このコレクションの駅IDを収集
+  const memberIds = new Set((c?.members || []).filter(Boolean));
 
   // コレクション削除
   delete state.pack.collections[cid];
@@ -487,7 +569,18 @@ function removeRoute(cid) {
     state.pack.layouts.default.slots = state.pack.layouts.default.slots.filter(s => s.collection_id !== cid);
   }
 
-  // 選択中の路線がなくなった場合はリセット
+  // この路線のentitiesを削除（他の路線で使われていないものだけ）
+  const usedInOther = new Set();
+  for (const col of Object.values(state.pack.collections || {})) {
+    for (const eid of (col.members || [])) if (eid) usedInOther.add(eid);
+  }
+  // 同じ路線コードのentitiesも削除（他路線で使われていなければ）
+  for (const [eid, entity] of Object.entries(state.pack.entities || {})) {
+    if (entity.lc === lc && !usedInOther.has(eid)) {
+      delete state.pack.entities[eid];
+    }
+  }
+
   if (state.selectedRouteId === cid) state.selectedRouteId = null;
 
   rebuildModel();
@@ -503,14 +596,23 @@ function renderRoutePicker() {
 
   const q = state.routePickerQuery.trim().toLowerCase();
   const op = state.routePickerOp;
-
-  // 既に追加済みの路線コードのセット
   const addedLcs = new Set(Object.values(state.pack.collections || {}).map(c => c.lc));
 
-  // フィルタリング
-  let filtered = ROUTE_MASTER.filter(r => {
-    if (op && r.operator !== op) return false;
-    if (q && !r.name_ja.toLowerCase().includes(q) && !r.line_code.toLowerCase().includes(q) && !r.name_en.toLowerCase().includes(q)) return false;
+  // geojson整備済み路線を先頭に表示するため、GEO_LINESとROUTE_MASTERをマージ
+  const geoRoutes = GEO_LINES.map(l => ({
+    line_code: l.line_code, name_ja: l.name_ja, color: l.color,
+    operator: l.operator, geo: true, station_count: l.station_count
+  }));
+  const geoLcSet = new Set(geoRoutes.map(r => r.line_code));
+  const masterRoutes = ROUTE_MASTER
+    .filter(r => !geoLcSet.has(r.line_code))
+    .map(r => ({ ...r, geo: false }));
+  const allRoutes = [...geoRoutes, ...masterRoutes];
+
+  let filtered = allRoutes.filter(r => {
+    if (op === "geo" && !r.geo) return false;
+    if (op && op !== "geo" && r.operator !== op) return false;
+    if (q && !r.name_ja.toLowerCase().includes(q) && !r.line_code.toLowerCase().includes(q)) return false;
     return true;
   });
 
@@ -525,10 +627,11 @@ function renderRoutePicker() {
   for (const r of filtered) {
     const isAdded = addedLcs.has(r.line_code);
     const row = el("div", "picker-row" + (isAdded ? " added" : ""));
+    const geoBadge = r.geo ? `<span class="geo-badge" title="geojson整備済み・全${r.station_count}駅">📍${r.station_count}駅</span>` : "";
     row.innerHTML = `
       <div class="picker-swatch" style="background:${r.color}"></div>
       <div class="picker-info">
-        <div class="picker-name">${r.name_ja}</div>
+        <div class="picker-name">${r.name_ja} ${geoBadge}</div>
         <div class="picker-meta">
           <span class="line-pill" style="background:${r.color}22;border:1px solid ${r.color}55;color:${r.color}">${r.line_code}</span>
           <span class="pill" style="color:rgba(255,255,255,.4)">${r.operator}</span>
@@ -542,7 +645,7 @@ function renderRoutePicker() {
       row.querySelector("button").onclick = (e) => {
         e.stopPropagation();
         addRoute(r);
-        renderRoutePicker(); // ピッカーを更新
+        renderRoutePicker();
       };
     }
     listEl.appendChild(row);
@@ -573,22 +676,93 @@ function renderIssues() {
   }
 }
 
+// ===== 駅数変更（全路線に適用） =====
+function changeSlotSize(newSize) {
+  newSize = Math.max(10, Math.min(13, parseInt(newSize, 10)));
+  state.slotSize = newSize;
+  for (const cid of Object.keys(state.pack.collections || {})) {
+    const c = state.pack.collections[cid];
+    const oldMembers = Array.isArray(c.members) ? c.members : [];
+    // 縮小の場合は末尾を切り捨て、拡大の場合はnullを追加
+    const newMembers = Array.from({ length: newSize }, (_, i) => oldMembers[i] ?? null);
+    c.size = newSize;
+    c.members = newMembers;
+  }
+  // rulesのcollection_size_exactも更新
+  if (Array.isArray(state.pack.rules)) {
+    for (const rule of state.pack.rules) {
+      if (rule.rule === "collection_size_exact") rule.value = newSize;
+    }
+  }
+  rebuildModel();
+  render();
+  setStatus(`📐 駅数を${newSize}に変更しました`);
+}
+
+// ===== 自動配置（交差駅は必須固定） =====
+function autoFill() {
+  const slotDefs = Array.isArray(state.pack.layouts?.default?.slots) ? state.pack.layouts.default.slots : [];
+  const crossNow = getCurrentCrossStations();
+  const crossNames = new Set(Object.keys(crossNow));
+  let changed = false;
+
+  for (const s of slotDefs) {
+    const cid = s.collection_id;
+    const c = state.pack.collections?.[cid];
+    if (!c) continue;
+    const lc = c.lc;
+    const size = c.size || state.slotSize;
+
+    // この路線の全駅を順番に取得
+    const lineStations = Object.entries(state.pack.entities || {})
+      .filter(([, e]) => e.lc === lc)
+      .sort(([, a], [, b]) => (a.order || 0) - (b.order || 0));
+
+    // 交差駅を先頭に、その後残りの駅を順番に並べる
+    const crossStations = lineStations.filter(([, e]) => crossNames.has(e.name_ja));
+    const normalStations = lineStations.filter(([, e]) => !crossNames.has(e.name_ja));
+
+    // 交差駅をスロット先頭に配置、残りを埋める
+    const ordered = [...crossStations, ...normalStations];
+    for (let i = 0; i < size && i < ordered.length; i++) {
+      state.model = gos.ops.setMember(state.model, cid, i, ordered[i][0]);
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    updatePackFromModel(); render();
+    const crossCount = Object.keys(crossNow).length;
+    setStatus(`⚡ 自動配置しました（交差駅${crossCount}駅を先頭に固定）`);
+  } else {
+    setStatus("⚠ 配置できる駅がありません");
+  }
+}
+
 // ===== UI イベント配線 =====
 function wireUI() {
   $("q").addEventListener("input", (ev) => { state.query = ev.target.value || ""; renderPool(); });
   $("locale").addEventListener("change", (ev) => { state.locale = ev.target.value || "ja"; render(); });
   $("btnValidate").addEventListener("click", () => { renderIssues(); setStatus("🔍 チェック完了"); });
 
-  $('btnClearSelectedRoute').addEventListener('click', () => {
+  // 全線クリア
+  $("btnClearSelectedRoute").addEventListener("click", () => {
     const cids = Object.keys(state.pack.collections || {});
-    if (cids.length === 0) return setStatus('⚠ 路線がありません');
-    if (!confirm('全路線の駅配置をクリアしますか？')) return;
+    if (cids.length === 0) return setStatus("⚠ 路線がありません");
+    if (!confirm("全路線の駅配置をクリアしますか？")) return;
     for (const cid of cids) {
       state.model = gos.ops.clearCollection(state.model, cid);
     }
     updatePackFromModel(); render();
-    setStatus('🗑 全路線の駅配置をクリアしました');
+    setStatus("🗑 全路線の駅配置をクリアしました");
   });
+
+  // 駅数変更セレクタ
+  const slotSizeSel = $("slotSizeSelect");
+  if (slotSizeSel) {
+    slotSizeSel.value = String(state.slotSize);
+    slotSizeSel.addEventListener("change", (ev) => changeSlotSize(ev.target.value));
+  }
 
   // 路線追加ボタン
   $("btnAddRoute").addEventListener("click", () => {
@@ -610,7 +784,10 @@ function wireUI() {
 
   // ピッカー事業者フィルター
   const opSel = $("routePickerOp");
-  // 事業者リストを生成
+  // geojson整備済みオプションを先頭に追加
+  const geoOpt = document.createElement("option");
+  geoOpt.value = "geo"; geoOpt.textContent = "📍 geojson整備済み";
+  opSel.appendChild(geoOpt);
   const ops = [...new Set(ROUTE_MASTER.map(r => r.operator))];
   for (const op of ops) {
     const opt = document.createElement("option");
@@ -630,19 +807,21 @@ function wireUI() {
   $("btnLoadLocal").addEventListener("click", () => {
     const p = gos.io.loadFromLocalStorage(LOCAL_KEY);
     if (!p) return setStatus("⚠ 保存データが見つかりません");
-    state.pack = p; rebuildModel(); render();
+    state.pack = p;
+    state.slotSize = p.rules?.find(r => r.rule === "collection_size_exact")?.value || 10;
+    rebuildModel(); render();
     setStatus("📂 保存データを読み込みました");
   });
 
   $("btnNew").addEventListener("click", () => {
     if (!confirm("現在のコースをリセットして新規作成しますか？")) return;
-    state.pack = makeSamplePack(); rebuildModel(); render();
+    state.pack = makeSamplePack(state.slotSize); rebuildModel(); render();
     setStatus("🆕 新規コースを作成しました");
   });
 
   $("btnLoadSample").addEventListener("click", () => {
     if (!confirm("サンプルデータを読み込みますか？現在のデータは失われます。")) return;
-    state.pack = makeSamplePack(); rebuildModel(); render();
+    state.pack = makeSamplePack(state.slotSize); rebuildModel(); render();
     setStatus("📋 サンプルデータを読み込みました");
   });
 
@@ -658,6 +837,7 @@ function wireUI() {
     reader.onload = (e) => {
       try {
         state.pack = JSON.parse(e.target.result);
+        state.slotSize = state.pack.rules?.find(r => r.rule === "collection_size_exact")?.value || 10;
         rebuildModel(); render();
         setStatus(`📥 ${file.name} を読み込みました`);
       } catch (err) {
@@ -677,26 +857,7 @@ function wireUI() {
     setTimeout(() => { window.location.href = "../index.html"; }, 300);
   });
 
-  $("btnAutoFill").addEventListener("click", () => {
-    const slotDefs = Array.isArray(state.pack.layouts?.default?.slots) ? state.pack.layouts.default.slots : [];
-    const allIds = Object.keys(state.pack.entities || {});
-    let changed = false;
-    for (const s of slotDefs) {
-      const cid = s.collection_id;
-      const c = state.pack.collections?.[cid];
-      if (!c) continue;
-      const lc = c.lc;
-      const lineStations = allIds
-        .filter(id => state.pack.entities[id]?.lc === lc)
-        .sort((a, b) => (state.pack.entities[a]?.order||0) - (state.pack.entities[b]?.order||0));
-      for (let i = 0; i < 10 && i < lineStations.length; i++) {
-        state.model = gos.ops.setMember(state.model, cid, i, lineStations[i]);
-        changed = true;
-      }
-    }
-    if (changed) { updatePackFromModel(); render(); setStatus("⚡ 自動配置しました"); }
-    else setStatus("⚠ 配置できる駅がありません");
-  });
+  $("btnAutoFill").addEventListener("click", autoFill);
 }
 
 // ===== 起動 =====

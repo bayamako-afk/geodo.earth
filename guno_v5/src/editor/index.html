@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GOS Route Editor v0.3</title>
+  <title>GOS Route Editor v0.4</title>
   <link rel="stylesheet" href="editor.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
       <div class="logo">G</div>
       <div class="titles">
         <div class="title">GOS Route Editor</div>
-        <div class="subtitle">v0.3</div>
+        <div class="subtitle">v0.4</div>
       </div>
     </div>
     <div class="actions">
@@ -28,7 +28,17 @@
         </label>
         <button id="btnExportPack" class="btn" title="GOS形式でエクスポート">📤 エクスポート</button>
       </div>
-      <!-- グループ2: プレイ -->
+      <!-- グループ2: 駅数設定 -->
+      <div class="btn-group">
+        <label class="btn-label">駅数：</label>
+        <select id="slotSizeSelect" class="select" title="各路線の駅数（10〜13）">
+          <option value="10">10駅</option>
+          <option value="11">11駅</option>
+          <option value="12">12駅</option>
+          <option value="13">13駅（トランプ）</option>
+        </select>
+      </div>
+      <!-- グループ3: プレイ -->
       <div class="btn-group">
         <button id="btnPlay" class="btn primary" title="このコースでゲームを開始">▶ プレイ！</button>
       </div>
@@ -60,7 +70,9 @@
           </select>
         </div>
       </div>
-      <div class="pool-hint">👆 駅をクリックして選択 → コース配置のスロットをクリックして配置</div>
+      <div class="pool-hint">👆 駅をクリックして選択 → コース配置のスロットをクリックして配置<br>
+        <span class="cross-hint">🔀 乗換マーク付きは交差駅（選択中の路線構成による）</span>
+      </div>
       <div id="pool" class="pool"></div>
     </div>
 
@@ -69,7 +81,7 @@
       <div class="panel-head">
         <div class="panel-title">🗺 コース配置 <span class="panel-subtitle" id="routeSubtitle">（4路線 × 10駅）</span></div>
         <div class="panel-tools">
-          <button id="btnAutoFill" class="btn" title="現在の駅リストから自動配置">⚡ 自動配置</button>
+          <button id="btnAutoFill" class="btn" title="交差駅を先頭に固定して自動配置">⚡ 自動配置</button>
           <button id="btnClearSelectedRoute" class="btn danger" title="全路線の駅配置をクリア">🗑 全線クリア</button>
         </div>
       </div>
@@ -81,7 +93,7 @@
 
       <!-- 路線管理 -->
       <div class="panel-head">
-        <div class="panel-title">🛤 路線管理</div>
+        <div class="panel-title">🛤 路線管理 <span class="panel-subtitle">（最大8路線）</span></div>
         <button id="btnAddRoute" class="btn accent" title="路線マスターから路線を追加">＋ 路線追加</button>
       </div>
       <div id="routeList" class="route-list"></div>
@@ -100,6 +112,12 @@
         </div>
         <div id="routePickerList" class="route-picker-list"></div>
       </div>
+
+      <!-- 交差駅情報 -->
+      <div class="panel-section-head">
+        <div class="panel-title">🔀 交差駅 <span id="crossBadge" class="badge">0</span></div>
+      </div>
+      <div id="crossInfo" class="cross-info"></div>
 
       <!-- チェック結果 -->
       <div class="panel-section-head">
@@ -128,12 +146,14 @@
         <div class="panel-title">💡 操作ガイド</div>
       </div>
       <div class="guide">
-        <div class="guide-item">🛤 <strong>路線追加</strong>：「＋ 路線追加」で路線マスターから選択</div>
+        <div class="guide-item">🛤 <strong>路線追加</strong>：「＋ 路線追加」で路線マスターから選択（最大8路線）</div>
+        <div class="guide-item">📐 <strong>駅数変更</strong>：上部セレクタで10〜13駅に変更</div>
         <div class="guide-item">🗑 <strong>路線削除</strong>：路線リストの「削除」ボタン</div>
         <div class="guide-item">👆 <strong>駅を選択</strong>：左の駅リストをクリック</div>
         <div class="guide-item">📍 <strong>駅を配置</strong>：コースのスロットをクリック</div>
         <div class="guide-item">🗑 <strong>駅を削除</strong>：配置済みスロットを右クリック</div>
-        <div class="guide-item">⚡ <strong>自動配置</strong>：路線コードが一致する駅を自動配置</div>
+        <div class="guide-item">⚡ <strong>自動配置</strong>：交差駅を先頭に固定して自動配置</div>
+        <div class="guide-item">🔀 <strong>交差駅</strong>：選択路線に共通する駅（右パネルで確認）</div>
         <div class="guide-item">▶ <strong>プレイ</strong>：全駅揃ったらゲーム開始</div>
       </div>
     </div>
@@ -145,6 +165,6 @@
     <div class="footer-hint">右クリックでスロットから駅を削除できます</div>
   </div>
 
-  <script type="module" src="editor.js?v=0.3"></script>
+  <script type="module" src="editor.js?v=0.4"></script>
 </body>
 </html>
