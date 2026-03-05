@@ -146,52 +146,68 @@
 
   <script>
     // ==========================
-    // ① ここに路線リストを追加
+    // ① 路線リスト（geojsonデータはguno_v5/src/geojson/に一元化）
     // ==========================
-    // path / stationsPath は index.html からの相対パス
+    // パスはguno_v5/src/geojson/を共有（guno-mapからの相対パス）
+    const GEO_BASE = "../guno_v5/src/geojson";
     const LINES = [
-	  {
+      {
         slug: "jr-east-yamanote",
         name: "山手線",
         color: "#F39700",
-        path: "./geojson/lines/jr-east-yamanote.geojson",
-        stationsPath: "./geojson/stations/jr-east-yamanote_stations.geojson"
+        path: `${GEO_BASE}/lines/jr-east-yamanote.geojson`,
+        stationsPath: `${GEO_BASE}/stations/jr-east-yamanote_stations.geojson`
+      },
+      {
+        slug: "jr-east-chuo-rapid",
+        name: "中央線（快速）",
+        color: "#F15A22",
+        path: `${GEO_BASE}/lines/jr-east-chuo-rapid.geojson`,
+        stationsPath: `${GEO_BASE}/stations/jr-east-chuo-rapid_stations.geojson`
       },
       {
         slug: "tokyo-metro-ginza",
         name: "銀座線",
-        color: "#00AA00",
-        path: "./geojson/lines/tokyo-metro-ginza.geojson",
-        stationsPath: "./geojson/stations/tokyo-metro-ginza_stations.geojson"
+        color: "#F39700",
+        path: `${GEO_BASE}/lines/tokyo-metro-ginza.geojson`,
+        stationsPath: `${GEO_BASE}/stations/tokyo-metro-ginza_stations.geojson`
       },
       {
-        slug: "tokyo-metro-tozai",
-        name: "東西線",
-        color: "#009BBF",
-        path: "./geojson/lines/tokyo-metro-tozai.geojson",
-        stationsPath: "./geojson/stations/tokyo-metro-tozai_stations.geojson"
+        slug: "tokyo-metro-marunouchi",
+        name: "丸ノ内線",
+        color: "#E60012",
+        path: `${GEO_BASE}/lines/tokyo-metro-marunouchi.geojson`,
+        stationsPath: `${GEO_BASE}/stations/tokyo-metro-marunouchi_stations.geojson`
       },
       {
         slug: "tokyo-metro-hanzomon",
         name: "半蔵門線",
         color: "#8F76D6",
-        path: "./geojson/lines/tokyo-metro-hanzomon.geojson",
-        stationsPath: "./geojson/stations/tokyo-metro-hanzomon_stations.geojson"
+        path: `${GEO_BASE}/lines/tokyo-metro-hanzomon.geojson`,
+        stationsPath: `${GEO_BASE}/stations/tokyo-metro-hanzomon_stations.geojson`
       },
-	  {
+      {
+        slug: "tokyo-metro-namboku",
+        name: "南北線",
+        color: "#00AC9B",
+        path: `${GEO_BASE}/lines/tokyo-metro-namboku.geojson`,
+        stationsPath: `${GEO_BASE}/stations/tokyo-metro-namboku_stations.geojson`
+      },
+      {
+        slug: "tokyo-metro-tozai",
+        name: "東西線",
+        color: "#009BBF",
+        path: `${GEO_BASE}/lines/tokyo-metro-tozai.geojson`,
+        stationsPath: `${GEO_BASE}/stations/tokyo-metro-tozai_stations.geojson`
+      },
+      {
         slug: "tokyo-metro-yurakucho",
         name: "有楽町線",
         color: "#C1A470",
-        path: "./geojson/lines/tokyo-metro-yurakucho.geojson",
-        stationsPath: "./geojson/stations/tokyo-metro-yurakucho_stations.geojson"
+        path: `${GEO_BASE}/lines/tokyo-metro-yurakucho.geojson`,
+        stationsPath: `${GEO_BASE}/stations/tokyo-metro-yurakucho_stations.geojson`
       },
-       { 
-	    slug: "tokyo-metro-marunouchi", 
-		name: "丸ノ内線", 
-		color: "#E60012",
-        path: "./geojson/lines/tokyo-metro-marunouchi.geojson",
-        stationsPath:"./geojson/stations/tokyo-metro-marunouchi_stations.geojson" },
-    　];
+    ];
 
     // ==========================
     // ② Leaflet map 初期化
@@ -541,13 +557,67 @@
     // UI生成
     for (const line of LINES) buildItem(line);
 
-    // 初期ロード（路線は全部ON、駅は全部OFF）
+    // ==========================
+    // URLパラメータ対応
+    // ?lines=slug1,slug2  → 指定路線のみ表示（他はOFF）
+    // ?stations=slug1,slug2 → 指定路線の駅も表示
+    // ?fit=slug → 指定路線にズーム（省略時は全体表示）
+    // ==========================
+    function parseUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      const linesParam = params.get("lines");    // 表示路線のslugカンマ区切り
+      const stationsParam = params.get("stations"); // 駅表示路線のslugカンマ区切り
+      const fitParam = params.get("fit");        // ズーム対象のslug
+      return {
+        filterLines: linesParam ? linesParam.split(",").map(s => s.trim()).filter(Boolean) : null,
+        showStations: stationsParam ? stationsParam.split(",").map(s => s.trim()).filter(Boolean) : [],
+        fitSlug: fitParam ? fitParam.trim() : null,
+      };
+    }
+
+    // 初期ロード（URLパラメータ対応）
     (async () => {
-      setStatus("Loading all lines …");
-      await Promise.all(LINES.map(x => loadLine(x.slug)));
-      updateCount();
-      fitAllVisible();
-      setStatus("Ready (Lines ON / Stations OFF)");
+      const { filterLines, showStations, fitSlug } = parseUrlParams();
+
+      if (filterLines && filterLines.length > 0) {
+        // 指定路線のみ表示（他はOFF）
+        for (const line of LINES) {
+          const m = state.meta.get(line.slug);
+          const isTarget = filterLines.includes(line.slug);
+          m.visible = isTarget;
+          m.chkLine.checked = isTarget;
+        }
+        setStatus(`Loading ${filterLines.length} line(s) …`);
+        await Promise.all(
+          LINES.filter(l => filterLines.includes(l.slug)).map(l => loadLine(l.slug))
+        );
+        // 駅表示指定があれば駅もロード
+        for (const slug of showStations) {
+          const m = state.meta.get(slug);
+          if (m) {
+            m.stVisible = true;
+            m.chkSt.checked = true;
+            await loadStations(slug);
+            toggleStations(slug, true);
+          }
+        }
+        updateCount();
+        // fitSlugが指定されていればその路線にズーム、なければ対象路線全体にフィット
+        if (fitSlug && state.layers.get(fitSlug)) {
+          fitToLine(fitSlug);
+        } else {
+          fitAllVisible();
+        }
+        const names = filterLines.map(s => state.meta.get(s)?.name || s).join(", ");
+        setStatus(`表示中: ${names}`);
+      } else {
+        // パラメータなし：全路線表示
+        setStatus("Loading all lines …");
+        await Promise.all(LINES.map(x => loadLine(x.slug)));
+        updateCount();
+        fitAllVisible();
+        setStatus("Ready (Lines ON / Stations OFF)");
+      }
     })();
   </script>
 </body>

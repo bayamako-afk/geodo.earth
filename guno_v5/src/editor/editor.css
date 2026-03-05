@@ -482,6 +482,8 @@ body {
 }
 .btn.accent:hover { background: rgba(94,234,212,.22); box-shadow: 0 0 10px rgba(94,234,212,.2); }
 .btn.small { padding: 4px 8px; font-size: 11px; border-radius: 7px; }
+.btn.map-view-btn { border-color: rgba(100,180,255,.4); background: rgba(100,180,255,.12); color: #7dd3fc; }
+.btn.map-view-btn:hover { background: rgba(100,180,255,.22); box-shadow: 0 0 8px rgba(100,180,255,.2); }
 .btn.disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* ===== 路線リスト（右パネル） ===== */

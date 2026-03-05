@@ -368,7 +368,21 @@ function renderRoutes() {
           <label>色 <input type="color" class="input color" value="${colorVal}" data-field="color"></label>
         </div>
         <button class="btn small danger route-clear-btn" data-cid="${cid}" title="この路線の駅配置をクリア">駅名クリア</button>
+        <button class="btn small map-view-btn" data-cid="${cid}" title="guno-mapでこの路線を地図確認">🗺 地図確認</button>
       </div>`;
+
+    // 地図確認ボタン
+    head.querySelector(".map-view-btn").onclick = (e) => {
+      e.stopPropagation();
+      const geoLine = GEO_LINES.find(l => l.line_code === lineCode);
+      const slug = geoLine ? geoLine.slug : null;
+      if (!slug) {
+        setStatus(`⚠ ${c.name_ja || lineCode} はまだgeojsonデータがありません`);
+        return;
+      }
+      const url = `https://geodo.earth/guno-map/?lines=${slug}&stations=${slug}&fit=${slug}`;
+      window.open(url, '_blank');
+    };
 
     head.querySelector(".route-clear-btn").onclick = (e) => {
       e.stopPropagation();
