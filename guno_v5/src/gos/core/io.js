@@ -1,9 +1,13 @@
 const DEFAULT_LOCAL_KEY = "gos_pack_v0_1";
 
+const SUPPORTED_VERSIONS = ["0.1", "0.2"];
+
 export function parsePack(jsonText) {
   const obj = JSON.parse(jsonText);
   if (!obj?.pack_meta?.pack_version) throw new Error("Invalid pack: missing pack_meta.pack_version");
-  if (obj.pack_meta.pack_version !== "0.1") throw new Error(`Unsupported pack_version: ${obj.pack_meta.pack_version}`);
+  if (!SUPPORTED_VERSIONS.includes(obj.pack_meta.pack_version)) {
+    throw new Error(`Unsupported pack_version: ${obj.pack_meta.pack_version}`);
+  }
   if (!obj.entities || !obj.collections || !obj.layouts || !obj.rules) {
     throw new Error("Invalid pack: missing entities/collections/layouts/rules");
   }

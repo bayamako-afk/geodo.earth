@@ -17,16 +17,15 @@
       </div>
     </div>
     <div class="actions">
-      <!-- グループ1: ファイル操作 -->
+      <!-- グループ1: コース操作 -->
       <div class="btn-group">
-        <button id="btnNew" class="btn" title="新しいコースを作成">🆕 新規</button>
-        <button id="btnLoadSample" class="btn" title="サンプルデータを読み込む">📋 サンプル</button>
-        <button id="btnLoadLocal" class="btn" title="ローカル保存から読み込む">📂 読込</button>
-        <button id="btnSaveLocal" class="btn" title="ローカルに保存">💾 保存</button>
+        <button id="btnReset" class="btn" title="デフォルトの4路線構成にリセット">🔄 リセット</button>
+        <button id="btnSaveLocal" class="btn" title="ブラウザに保存（ページを閉じても残る）">💾 保存</button>
+        <button id="btnLoadLocal" class="btn" title="ブラウザの保存データを読み込む">📂 読込</button>
         <label class="btn file" title="JSONファイルをインポート">
           📥 インポート <input type="file" id="fileImport" accept=".json">
         </label>
-        <button id="btnExportPack" class="btn" title="GOS形式でエクスポート">📤 エクスポート</button>
+        <button id="btnExportPack" class="btn" title="現在のコースをJSONファイルで保存">📤 エクスポート</button>
       </div>
       <!-- グループ2: 駅数設定 -->
       <div class="btn-group">

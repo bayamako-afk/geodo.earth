@@ -851,49 +851,49 @@ function wireUI() {
     renderRoutePicker();
   });
 
-  $("btnSaveLocal").addEventListener("click", () => {
-    gos.io.saveToLocalStorage(state.pack, LOCAL_KEY);
-    setStatus("💾 ローカルに保存しました");
+  // 🔄 リセット（新規・サンプルを統合）
+  $("btnReset").addEventListener("click", () => {
+    if (!confirm("デフォルトの4路線構成にリセットしますか？\n現在のコースは失われます。")) return;
+    state.pack = makeSamplePack(state.slotSize); rebuildModel(); render();
+    setStatus("🔄 デフォルト4路線にリセットしました（山手・銀座・丸ノ内・東西）");
   });
 
+  // 💾 ブラウザ保存
+  $("btnSaveLocal").addEventListener("click", () => {
+    gos.io.saveToLocalStorage(state.pack, LOCAL_KEY);
+    setStatus("💾 ブラウザに保存しました（このブラウザ・デバイスで復元可能）");
+  });
+
+  // 📂 ブラウザ読込
   $("btnLoadLocal").addEventListener("click", () => {
     const p = gos.io.loadFromLocalStorage(LOCAL_KEY);
-    if (!p) return setStatus("⚠ 保存データが見つかりません");
+    if (!p) return setStatus("⚠ 保存データが見つかりません。先に「保存」してください");
     state.pack = p;
     state.slotSize = p.rules?.find(r => r.rule === "collection_size_exact")?.value || 10;
     rebuildModel(); render();
     setStatus("📂 保存データを読み込みました");
   });
 
-  $("btnNew").addEventListener("click", () => {
-    if (!confirm("現在のコースをリセットして新規作成しますか？")) return;
-    state.pack = makeSamplePack(state.slotSize); rebuildModel(); render();
-    setStatus("🆕 新規コースを作成しました");
-  });
-
-  $("btnLoadSample").addEventListener("click", () => {
-    if (!confirm("サンプルデータを読み込みますか？現在のデータは失われます。")) return;
-    state.pack = makeSamplePack(state.slotSize); rebuildModel(); render();
-    setStatus("📋 サンプルデータを読み込みました");
-  });
-
+  // 📤 JSONエクスポート
   $("btnExportPack").addEventListener("click", () => {
     gos.io.downloadPack(state.pack, `${state.pack.pack_meta?.pack_id||"gos-pack"}_pack.json`);
-    setStatus("📤 GOS Packをエクスポートしました");
+    setStatus("📤 コースをJSONファイルでエクスポートしました（インポートで復元可能）");
   });
 
+  // 📥 JSONインポート（v0.1・v0.2対応）
   $("fileImport").addEventListener("change", (ev) => {
     const file = ev.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
-        state.pack = JSON.parse(e.target.result);
-        state.slotSize = state.pack.rules?.find(r => r.rule === "collection_size_exact")?.value || 10;
+        const p = gos.io.parsePack(e.target.result);
+        state.pack = p;
+        state.slotSize = p.rules?.find(r => r.rule === "collection_size_exact")?.value || 10;
         rebuildModel(); render();
         setStatus(`📥 ${file.name} を読み込みました`);
       } catch (err) {
-        setStatus(`❌ JSONの読み込みに失敗しました: ${err.message}`);
+        setStatus(`❌ 読み込みに失敗しました: ${err.message}`);
       }
     };
     reader.readAsText(file);
