@@ -607,39 +607,32 @@ function addRoute(masterRoute) {
 }
 
 // ===== 路線削除 =====
-function removeRoute(cid) {
+function removeRoute(cid, silent = false) {
   const c = state.pack.collections?.[cid];
   const name = c?.name_ja || cid;
   const lc = c?.lc;
-
-  // このコレクションの駅IDを収集
-  const memberIds = new Set((c?.members || []).filter(Boolean));
-
   // コレクション削除
   delete state.pack.collections[cid];
-
   // レイアウトのスロットから削除
   if (Array.isArray(state.pack.layouts?.default?.slots)) {
     state.pack.layouts.default.slots = state.pack.layouts.default.slots.filter(s => s.collection_id !== cid);
   }
-
   // この路線のentitiesを削除（他の路線で使われていないものだけ）
   const usedInOther = new Set();
   for (const col of Object.values(state.pack.collections || {})) {
     for (const eid of (col.members || [])) if (eid) usedInOther.add(eid);
   }
-  // 同じ路線コードのentitiesも削除（他路線で使われていなければ）
   for (const [eid, entity] of Object.entries(state.pack.entities || {})) {
     if (entity.lc === lc && !usedInOther.has(eid)) {
       delete state.pack.entities[eid];
     }
   }
-
   if (state.selectedRouteId === cid) state.selectedRouteId = null;
-
-  rebuildModel();
-  render();
-  setStatus(`🗑 「${name}」を削除しました`);
+  if (!silent) {
+    rebuildModel();
+    render();
+    setStatus(`🗑 「${name}」を削除しました`);
+  }
 }
 
 // ===== 路線ピッカーレンダリング =====
@@ -799,16 +792,17 @@ function wireUI() {
   $("locale").addEventListener("change", (ev) => { state.locale = ev.target.value || "ja"; render(); });
   $("btnValidate").addEventListener("click", () => { renderIssues(); setStatus("🔍 チェック完了"); });
 
-  // 全線クリア
+  // 全路線削除
   $("btnClearSelectedRoute").addEventListener("click", () => {
     const cids = Object.keys(state.pack.collections || {});
     if (cids.length === 0) return setStatus("⚠ 路線がありません");
-    if (!confirm("全路線の駅配置をクリアしますか？")) return;
-    for (const cid of cids) {
-      state.model = gos.ops.clearCollection(state.model, cid);
+    if (!confirm("全路線を削除しますか？\n路線・駅配置がすべて削除されます。")) return;
+    for (const cid of [...cids]) {
+      removeRoute(cid, true); // silent=true: renderは最後に1回だけ呼ぶ
     }
-    updatePackFromModel(); render();
-    setStatus("🗑 全路線の駅配置をクリアしました");
+    rebuildModel();
+    render();
+    setStatus("🗑 全路線を削除しました");
   });
 
   // 駅数変更セレクタ
