@@ -325,17 +325,63 @@ out body;
     return []
 
 def extract_track_coords(data):
-    """Extract ordered way coordinates from relation geom response."""
-    coords = []
+    """
+    Extract ordered way coordinates from relation geom response.
+    Ways are chained in order: each way's end point connects to the next way's start.
+    If a way is reversed, its coordinates are flipped.
+    """
     for el in data.get("elements", []):
         if el.get("type") != "relation":
             continue
+        ways = []
         for member in el.get("members", []):
-            if member.get("type") == "way":
-                geom = member.get("geometry", [])
-                if geom:
-                    coords.extend([[pt["lon"], pt["lat"]] for pt in geom])
-    return coords
+            if member.get("type") != "way":
+                continue
+            role = member.get("role", "")
+            # Skip platform, stop_area, and other non-track roles
+            if role in ("platform", "platform_entry_only", "platform_exit_only",
+                        "stop_area", "hail_and_ride", "forward", "backward"):
+                continue
+            geom = member.get("geometry", [])
+            if geom:
+                pts = [[pt["lon"], pt["lat"]] for pt in geom]
+                ways.append(pts)
+        if not ways:
+            return []
+
+        # Chain ways by matching endpoints
+        def pt_eq(a, b, tol=1e-6):
+            return abs(a[0]-b[0]) < tol and abs(a[1]-b[1]) < tol
+
+        chained = [ways[0][:]]
+        remaining = ways[1:]
+        max_iter = len(remaining) * 2 + 1
+        itr = 0
+        while remaining and itr < max_iter:
+            itr += 1
+            tail = chained[-1][-1]
+            matched = False
+            for i, w in enumerate(remaining):
+                if pt_eq(tail, w[0]):
+                    chained.append(w[:])
+                    remaining.pop(i)
+                    matched = True
+                    break
+                elif pt_eq(tail, w[-1]):
+                    chained.append(list(reversed(w)))
+                    remaining.pop(i)
+                    matched = True
+                    break
+            if not matched:
+                # Gap in chain — just append remaining in order
+                chained.append(remaining.pop(0))
+
+        coords = []
+        for i, w in enumerate(chained):
+            start = 1 if i > 0 else 0  # skip duplicate junction point
+            coords.extend(w[start:])
+        return coords
+    return []
 
 def extract_stops_from_geom(data):
     """Extract stop nodes from geom response (may lack name tags)."""
@@ -372,6 +418,52 @@ def parse_stop_nodes(nodes):
         seen_names.add(name)
         stops.append({"name": name, "lon": node["lon"], "lat": node["lat"]})
     return stops
+
+def sort_stations_along_track(stations, track_coords):
+    """
+    Sort stations by projecting each station onto the nearest point on the track,
+    then ordering by cumulative distance along the track from the start.
+    This correctly handles diagonal and curved lines.
+    """
+    if not track_coords or not stations:
+        return stations
+
+    def dist2(ax, ay, bx, by):
+        dx = ax - bx; dy = ay - by
+        return dx*dx + dy*dy
+
+    def project_onto_track(lon, lat, track):
+        """Return cumulative distance along track to the nearest projected point."""
+        best_t = 0.0
+        best_dist2 = float('inf')
+        cum = 0.0
+        best_cum = 0.0
+        for i in range(len(track) - 1):
+            ax, ay = track[i][0], track[i][1]
+            bx, by = track[i+1][0], track[i+1][1]
+            seg_len2 = dist2(ax, ay, bx, by)
+            if seg_len2 == 0:
+                t = 0.0
+            else:
+                t = ((lon - ax) * (bx - ax) + (lat - ay) * (by - ay)) / seg_len2
+                t = max(0.0, min(1.0, t))
+            px = ax + t * (bx - ax)
+            py = ay + t * (by - ay)
+            d2 = dist2(lon, lat, px, py)
+            seg_len = seg_len2 ** 0.5
+            if d2 < best_dist2:
+                best_dist2 = d2
+                best_cum = cum + t * seg_len
+            cum += seg_len
+        return best_cum
+
+    for s in stations:
+        s["_track_pos"] = project_onto_track(s["lon"], s["lat"], track_coords)
+
+    stations.sort(key=lambda s: s["_track_pos"])
+    for s in stations:
+        s.pop("_track_pos", None)
+    return stations
 
 def build_line_geojson(row, coords_list):
     """
@@ -550,19 +642,12 @@ def main():
                 seen_stop_names.add(s["name"])
                 all_stops.append(s)
 
-    # Step 4: Sort stations by longitude (east→west for most Tokyo lines)
-    # Detect if line runs mostly E-W or N-S
-    if all_stops:
-        lons = [s["lon"] for s in all_stops]
-        lats = [s["lat"] for s in all_stops]
-        lon_range = max(lons) - min(lons)
-        lat_range = max(lats) - min(lats)
-        if lon_range >= lat_range:
-            # E-W line: sort east→west (descending lon)
-            all_stops.sort(key=lambda s: -s["lon"])
-        else:
-            # N-S line: sort north→south (descending lat)
-            all_stops.sort(key=lambda s: -s["lat"])
+    # Step 4: Sort stations by projecting onto the track geometry
+    # This handles diagonal/curved lines correctly (e.g. Hibiya line)
+    # Use coords_b (down direction) if available, otherwise coords_a
+    sort_track = coords_b if coords_b else coords_a
+    if all_stops and sort_track:
+        all_stops = sort_stations_along_track(all_stops, sort_track)
 
     # Step 5: Build GeoJSON
     coords_list = [c for c in [coords_a, coords_b] if c]

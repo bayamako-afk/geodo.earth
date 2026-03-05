@@ -1,5 +1,5 @@
 // Auto-generated from geojson — DO NOT EDIT MANUALLY
-// Generated: 2026-03-04T07:52:14
+// Generated: 2026-03-05T03:21:21
 
 export const GEO_LINES = [
   {
@@ -17,6 +17,14 @@ export const GEO_LINES = [
     "color": "#00AA00",
     "operator": "JR東日本",
     "station_count": 30
+  },
+  {
+    "slug": "tokyo-metro-chiyoda",
+    "line_code": "C",
+    "name_ja": "千代田線",
+    "color": "#00BB85",
+    "operator": "東京メトロ",
+    "station_count": 19
   },
   {
     "slug": "tokyo-metro-ginza",
@@ -109,7 +117,9 @@ export const GEO_STATIONS = [
       139.7649795,
       35.6994836
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "C"
+    ]
   },
   {
     "id": "JC_04",
@@ -796,6 +806,260 @@ export const GEO_STATIONS = [
     ]
   },
   {
+    "id": "C_01",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 1,
+    "name_ja": "綾瀬",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.8248629,
+      35.7621739
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_02",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 2,
+    "name_ja": "北千住",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.8044308,
+      35.7496771
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_03",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 3,
+    "name_ja": "町屋",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.780081,
+      35.7421821
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_04",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 4,
+    "name_ja": "西日暮里",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.7672213,
+      35.7325785
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_05",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 5,
+    "name_ja": "千駄木",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.7632712,
+      35.7255471
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_06",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 6,
+    "name_ja": "根津",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.765722,
+      35.7173532
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_07",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 7,
+    "name_ja": "湯島",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.7699318,
+      35.7073337
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_08",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 8,
+    "name_ja": "新御茶ノ水",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.765493,
+      35.6972103
+    ],
+    "cross_lines": [
+      "JC",
+      "M"
+    ]
+  },
+  {
+    "id": "C_09",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 9,
+    "name_ja": "大手町",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.763575,
+      35.6867813
+    ],
+    "cross_lines": [
+      "M"
+    ]
+  },
+  {
+    "id": "C_10",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 10,
+    "name_ja": "二重橋前〈丸の内〉",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.7616204,
+      35.6803364
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_11",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 11,
+    "name_ja": "日比谷",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.7583081,
+      35.6737764
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_12",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 12,
+    "name_ja": "霞ケ関",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.751661,
+      35.6725562
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_13",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 13,
+    "name_ja": "国会議事堂前",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.743424,
+      35.6737567
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_14",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 14,
+    "name_ja": "赤坂",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.7362799,
+      35.672188
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_15",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 15,
+    "name_ja": "乃木坂",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.726291,
+      35.6667086
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_16",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 16,
+    "name_ja": "表参道",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.7124388,
+      35.6652821
+    ],
+    "cross_lines": [
+      "Z"
+    ]
+  },
+  {
+    "id": "C_17",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 17,
+    "name_ja": "明治神宮前〈原宿〉",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.7043842,
+      35.6690037
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_18",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 18,
+    "name_ja": "代々木公園",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.6901201,
+      35.6690693
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "C_19",
+    "lc": "C",
+    "slug": "tokyo-metro-chiyoda",
+    "order": 19,
+    "name_ja": "代々木上原",
+    "name_en": "Chiyoda Line",
+    "coords": [
+      139.6797884,
+      35.6690082
+    ],
+    "cross_lines": []
+  },
+  {
     "id": "G_01",
     "lc": "G",
     "slug": "tokyo-metro-ginza",
@@ -1079,7 +1343,9 @@ export const GEO_STATIONS = [
       139.7124256,
       35.665061600036644
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "C"
+    ]
   },
   {
     "id": "Z_03",
@@ -1330,7 +1596,9 @@ export const GEO_STATIONS = [
       139.767473,
       35.6950614
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "C"
+    ]
   },
   {
     "id": "M_08",
@@ -1344,6 +1612,7 @@ export const GEO_STATIONS = [
       35.6867882
     ],
     "cross_lines": [
+      "C",
       "T"
     ]
   },
@@ -2551,6 +2820,10 @@ export const CROSS_STATIONS = {
     "G",
     "JY"
   ],
+  "西日暮里": [
+    "C",
+    "JY"
+  ],
   "駒込": [
     "JY",
     "N"
@@ -2577,7 +2850,22 @@ export const CROSS_STATIONS = {
     "G",
     "JY"
   ],
+  "大手町": [
+    "C",
+    "M",
+    "T",
+    "Z"
+  ],
+  "霞ケ関": [
+    "C",
+    "M"
+  ],
+  "国会議事堂前": [
+    "C",
+    "M"
+  ],
   "表参道": [
+    "C",
     "G",
     "Z"
   ],
@@ -2611,11 +2899,6 @@ export const CROSS_STATIONS = {
     "Z"
   ],
   "九段下": [
-    "T",
-    "Z"
-  ],
-  "大手町": [
-    "M",
     "T",
     "Z"
   ],
