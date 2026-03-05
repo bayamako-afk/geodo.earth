@@ -1,0 +1,834 @@
+{
+  "type": "FeatureCollection",
+  "generator": "JOSM",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "wikipedia": "ja:三ノ輪駅",
+        "ref": "H20",
+        "name:fr": "Minowa",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "@id": "node/1926355394",
+        "subway": "yes",
+        "wikidata": "Q1072979",
+        "name:ru": "Минова",
+        "name:ko": "미노와",
+        "colour": "gray",
+        "name:ja-Hira": "みのわ",
+        "name:ja": "三ノ輪",
+        "name:ja_rm": "Minowa",
+        "operator": "東京地下鉄",
+        "name:en": "Minowa",
+        "name": "三ノ輪",
+        "distance_to_line_m": "0.0",
+        "station_id": 402001,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "三ノ輪"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7913129,
+          35.7295349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikipedia": "ja:上野駅",
+        "name:ru": "Уэно",
+        "name:ja-Latn": "Ueno",
+        "name:es": "Ueno",
+        "name:fr": "Ueno",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "@id": "node/1926355395",
+        "name:it": "Ueno",
+        "subway": "yes",
+        "ref": "H18",
+        "name:ja-Hira": "うえの",
+        "name:en": "Ueno",
+        "name:ja": "上野",
+        "name:ko": "우에노",
+        "wikidata": "Q801551",
+        "operator": "東京地下鉄",
+        "distance_to_line_m": "0.0",
+        "name": "上野",
+        "station_id": 402002,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "上野"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7776069,
+          35.7118219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:en": "Naka-meguro",
+        "ref": "H01",
+        "wikipedia": "ja:中目黒駅",
+        "wikidata": "Q1132605",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "operator": "東京急行電鉄;東京地下鉄",
+        "@id": "node/3646448193",
+        "wheelchair": "yes",
+        "subway": "yes",
+        "name:ru": "Нака Мэгуро",
+        "name:ja": "中目黒",
+        "colour": "gray",
+        "name": "中目黒",
+        "name:ja_rm": "Naka Meguro",
+        "name:es": "Naka-meguro",
+        "distance_to_line_m": "0.0",
+        "station_id": 402003,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "中目黒"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.6987828,
+          35.6440782
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:ja": "人形町",
+        "level": "-2",
+        "name:en": "Ningyocho",
+        "public_transport": "stop_position",
+        "operator": "東京地下鉄",
+        "name": "人形町",
+        "railway": "stop",
+        "operator:ja": "東京地下鉄",
+        "name:es": "Ningyocho",
+        "subway": "yes",
+        "distance_to_line_m": "0.0",
+        "@id": "node/6178454120",
+        "ref": "H14",
+        "station_id": 402004,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "人形町"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7824477,
+          35.6861714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:ru": "Нака Окатимати",
+        "public_transport": "stop_position",
+        "name:en": "Naka-okachimachi",
+        "railway": "stop",
+        "name:ja_rm": "Naka Okachimachi",
+        "ref": "H17",
+        "subway": "yes",
+        "wikipedia": "ja:仲御徒町駅",
+        "name:ja": "仲御徒町",
+        "@id": "node/1926355397",
+        "colour": "gray",
+        "wikidata": "Q1072993",
+        "operator": "東京地下鉄",
+        "name:ja-Hira": "なかおかちまち",
+        "name": "仲御徒町",
+        "distance_to_line_m": "0.0",
+        "station_id": 402005,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "仲御徒町"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7762457,
+          35.7065607
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "public_transport": "stop_position",
+        "ref": "H19",
+        "railway": "stop",
+        "wikidata": "Q1073228",
+        "subway": "yes",
+        "wikipedia": "ja:入谷駅 (東京都)",
+        "@id": "node/1926355398",
+        "name:ja_rm": "Iriya",
+        "name": "入谷",
+        "colour": "gray",
+        "name:en": "Iriya",
+        "name:ja-Hira": "いりや",
+        "operator": "東京地下鉄",
+        "name:ru": "Ирия",
+        "distance_to_line_m": "0.0",
+        "name:ja": "入谷",
+        "name:ko": "이리야",
+        "station_id": 402006,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "入谷"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7846075,
+          35.7207075
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "H12",
+        "name:ja": "八丁堀",
+        "wheelchair": "limited",
+        "name:ko": "핫초보리",
+        "name:es": "Hatchobori",
+        "public_transport": "stop_position",
+        "train": "yes",
+        "railway": "stop",
+        "wikidata": "Q1073008",
+        "subway": "yes",
+        "name:fr": "Hatchobori",
+        "@id": "node/1926355399",
+        "name:ja-Hira": "はっちょうぼり",
+        "name:en": "Hatchobori",
+        "name:ru": "Хаттёбори",
+        "colour": "gray",
+        "wikipedia": "ja:八丁堀駅 (東京都)",
+        "operator": "東京地下鉄",
+        "name": "八丁堀",
+        "distance_to_line_m": "0.0",
+        "name:ja_rm": "Hatchōbori",
+        "station_id": 402007,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "八丁堀"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7771276,
+          35.6749754
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wheelchair": "limited",
+        "name:ja": "六本木",
+        "name:ja-Hira": "ろっぽんぎ",
+        "name": "六本木",
+        "public_transport": "stop_position",
+        "train": "yes",
+        "railway": "stop",
+        "name:ko": "롯폰기",
+        "subway": "yes",
+        "ref": "H04",
+        "wheelchair:description": "Exit 4B has a stair assist.",
+        "colour": "gray",
+        "@id": "node/1926355400",
+        "wikipedia": "ja:六本木駅",
+        "operator": "東京地下鉄",
+        "name:ru": "Роппонги",
+        "name:es": "Roppongi",
+        "name:ja_rm": "Roppongi",
+        "wikidata": "Q1326723",
+        "distance_to_line_m": "0.0",
+        "name:en": "Roppongi",
+        "name:fr": "Roppongi",
+        "station_id": 402008,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "六本木"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7313383,
+          35.662819
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "H22",
+        "name:en": "Kita-Senju",
+        "level": "3",
+        "name:th": "คิตะเซ็นจู",
+        "public_transport": "stop_position",
+        "name:es": "Kita-Senju",
+        "name": "北千住",
+        "train": "yes",
+        "railway": "stop",
+        "operator:ja": "東武鉄道;東京地下鉄",
+        "wheelchair": "yes",
+        "subway": "yes",
+        "operator:wikidata": "Q1321914;Q682894",
+        "local_ref": "7",
+        "name:ko": "키타센쥬",
+        "name:ja-Latn": "Kita Senju",
+        "@id": "node/6237889013",
+        "name:ja": "北千住",
+        "operator": "東武鉄道;東京地下鉄",
+        "name:de": "Kita-Senju",
+        "layer": "3",
+        "distance_to_line_m": "0.0",
+        "operator:en": "Tobu Railway;Tokyo Metro",
+        "name:ja-Hira": "きたせんじゅ",
+        "name:ru": "Кита Сэндзю",
+        "station_id": 402009,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "北千住"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.8055555,
+          35.7495176
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikipedia": "ja:南千住駅",
+        "ref": "H21",
+        "name": "南千住",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "wikidata": "Q80570",
+        "wheelchair": "yes",
+        "subway": "yes",
+        "name:ja-Hira": "みなみせんじゅ",
+        "name:en": "Minami-senju",
+        "colour": "gray",
+        "name:ja": "南千住",
+        "@id": "node/2180732990",
+        "operator:ja_rm": "Tōkyō Chikatetsu",
+        "operator": "東京地下鉄",
+        "name:es": "Minami-senju",
+        "operator:ja": "東京地下鉄",
+        "name:ja_rm": "Minami Senju",
+        "distance_to_line_m": "0.0",
+        "operator:en": "Tokyo Metro",
+        "station_id": 402010,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "南千住"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7987663,
+          35.7323388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:ja-Hira": "こでんまちょう",
+        "name": "小伝馬町",
+        "name:en": "Kodemmacho",
+        "public_transport": "stop_position",
+        "name:ru": "Кодэмматё",
+        "railway": "stop",
+        "name:ja": "小伝馬町",
+        "subway": "yes",
+        "wikipedia": "ja:小伝馬町駅",
+        "ref": "H15",
+        "colour": "gray",
+        "@id": "node/1926355401",
+        "name:ja_rm": "Kodemmachō",
+        "name:ko": "고덴마초",
+        "wikidata": "Q1072970",
+        "operator": "東京地下鉄",
+        "distance_to_line_m": "0.0",
+        "station_id": 402011,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "小伝馬町"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7784723,
+          35.6907596
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:ja": "広尾",
+        "public_transport": "stop_position",
+        "name:ja-Hira": "ひろお",
+        "name:es": "Hiro-o",
+        "train": "yes",
+        "railway": "stop",
+        "name:en": "Hiro-o",
+        "subway": "yes",
+        "wikipedia": "ja:広尾駅",
+        "ref": "H03",
+        "name:ru": "Хироо",
+        "colour": "gray",
+        "name": "広尾",
+        "operator": "東京地下鉄",
+        "name:ko": "히로오",
+        "name:ja_rm": "Hiroo",
+        "alt_name:en": "Hiroo",
+        "@id": "node/2011999937",
+        "wikidata": "Q1156428",
+        "distance_to_line_m": "0.0",
+        "station_id": 402012,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "広尾"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7222296,
+          35.6520771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6277597743",
+        "network": "日比谷線",
+        "name:ja-Hira": "えびす",
+        "name": "恵比寿",
+        "public_transport": "stop_position",
+        "name:ja_rm": "Ebisu",
+        "railway": "stop",
+        "subway": "yes",
+        "ref": "H02",
+        "wikipedia": "ja:恵比寿駅",
+        "name:es": "Ebisu",
+        "colour": "gray",
+        "name:en": "Ebisu",
+        "operator": "東京地下鉄",
+        "name:fr": "Ebisu",
+        "name:ko": "에비스",
+        "name:ja": "恵比寿",
+        "name:ru": "Эбису",
+        "distance_to_line_m": "0.0",
+        "wikidata": "Q800715",
+        "station_id": 402013,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "恵比寿"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7086658,
+          35.64696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:en": "Hibiya",
+        "network": "日比谷線",
+        "name:ja": "日比谷",
+        "public_transport": "stop_position",
+        "operator": "東京地下鉄",
+        "ref": "H08",
+        "railway": "stop",
+        "name": "日比谷",
+        "wheelchair": "yes",
+        "subway": "yes",
+        "@id": "node/5413560218",
+        "distance_to_line_m": "0.0",
+        "name:es": "Hibiya",
+        "station_id": 402014,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "日比谷"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7603293,
+          35.6744007
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:es": "Higashi-Ginza",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "ref": "H09",
+        "name:en": "Higashi-Ginza",
+        "name:ko": "히가시긴자",
+        "name:ja-Hira": "ひがしぎんざ",
+        "wheelchair": "yes",
+        "subway": "yes",
+        "name:ja": "東銀座",
+        "name:ja_rm": "Higashi-Ginza",
+        "operator": "東京地下鉄",
+        "@id": "node/6293444387",
+        "wikipedia": "ja:東銀座駅",
+        "name:ru": "Хигаси Гиндза",
+        "name": "東銀座",
+        "distance_to_line_m": "0.0",
+        "wikidata": "Q1078393",
+        "station_id": 402015,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "東銀座"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7669892,
+          35.6697512
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:ko": "가미야초",
+        "wikipedia": "ja:神谷町駅",
+        "wheelchair": "limited",
+        "name": "神谷町",
+        "name:es": "Kamiyacho",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "wikidata": "Q1072953",
+        "subway": "yes",
+        "name:en": "Kamiyacho",
+        "ref": "H05",
+        "@id": "node/1926355403",
+        "name:ru": "Камиятё",
+        "name:ja_rm": "Kamiyachō",
+        "name:ja-Hira": "かみやちょう",
+        "colour": "gray",
+        "operator": "東京地下鉄",
+        "distance_to_line_m": "0.0",
+        "name:ja": "神谷町",
+        "station_id": 402016,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "神谷町"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7450738,
+          35.6629753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "秋葉原",
+        "name:ko": "아키하바라",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "subway": "yes",
+        "ref": "H16",
+        "colour": "gray",
+        "wikipedia": "ja:秋葉原駅",
+        "wikidata": "Q800374",
+        "operator": "東京地下鉄",
+        "@id": "node/1926355404",
+        "name:es": "Akihabara",
+        "name:ja_rm": "Akihabara",
+        "name:ja-Hira": "あきはばら",
+        "distance_to_line_m": "0.0",
+        "name:en": "Akihabara",
+        "name:ru": "Акихабара",
+        "name:ja": "秋葉原",
+        "name:fr": "Akihabara",
+        "station_id": 402017,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "秋葉原"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7755248,
+          35.6985172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "H11",
+        "wikidata": "Q1072938",
+        "name:es": "Tsukiji",
+        "@id": "node/6279623175",
+        "public_transport": "stop_position",
+        "name:ja-Hira": "つきじ",
+        "wikipedia": "ja:築地駅",
+        "railway": "stop",
+        "name:en": "Tsukiji",
+        "network": "東京メトロ",
+        "wheelchair": "yes",
+        "subway": "yes",
+        "name:ru": "Цукидзи",
+        "name:ja_rm": "Tsukiji",
+        "colour": "gray",
+        "name": "築地",
+        "operator": "東京地下鉄",
+        "name:ja": "築地",
+        "distance_to_line_m": "0.0",
+        "station_id": 402018,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "築地"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7726178,
+          35.6680735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wheelchair": "limited",
+        "name:es": "Kayabacho",
+        "name:en": "Kayabacho",
+        "name:ja": "茅場町",
+        "public_transport": "stop_position",
+        "train": "yes",
+        "railway": "stop",
+        "subway": "yes",
+        "name:ko": "가야바초",
+        "ref": "H13",
+        "@id": "node/6184201325",
+        "name:ja_rm": "Kayabachō",
+        "name": "茅場町",
+        "wikipedia": "ja:茅場町駅",
+        "wikidata": "Q80566",
+        "operator": "東京地下鉄",
+        "name:ja-Hira": "かやばちょう",
+        "distance_to_line_m": "0.0",
+        "name:ru": "Кайабатё",
+        "station_id": 402019,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "茅場町"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7797596,
+          35.6792483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name:ja-Hira": "とらのもんヒルズえき",
+        "name:ja": "虎ノ門ヒルズ",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "wikidata": "Q59452622",
+        "network": "東京メトロ",
+        "name:zh": "虎之门之丘",
+        "ref": "H06",
+        "subway": "yes",
+        "name:en": "Toranomon Hills",
+        "colour": "silver",
+        "name:ja_rm": "Toranomon Hiruzu",
+        "@id": "node/6352856405",
+        "operator": "東京地下鉄",
+        "name:ko": "도라노몬 힐스",
+        "name:es": "Toranomon Hills",
+        "name:ru": "Тораномон хирудзу",
+        "wikipedia": "ja:虎ノ門ヒルズ駅",
+        "name": "虎ノ門ヒルズ",
+        "distance_to_line_m": "0.0",
+        "station_id": 402020,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "虎ノ門ヒルズ"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7478554,
+          35.6674666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikipedia": "ja:銀座駅",
+        "name:ja-Hira": "ぎんざ",
+        "@id": "node/2593233094",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "ref": "H09",
+        "subway": "yes",
+        "name:ru": "Гиндза",
+        "name": "銀座",
+        "colour": "gray",
+        "wikidata": "Q602372",
+        "name:es": "Ginza",
+        "name:ko": "긴자",
+        "operator": "東京地下鉄",
+        "name:ja": "銀座",
+        "name:fr": "Ginza",
+        "name:ja_rm": "Ginza",
+        "distance_to_line_m": "0.0",
+        "name:en": "Ginza",
+        "station_id": 402021,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "銀座"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7639439,
+          35.6721112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikipedia": "ja:霞ケ関駅 (東京都)",
+        "network": "日比谷線",
+        "name:ja-Hira": "かすみがせき",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "subway": "yes",
+        "ref": "H07",
+        "name:ja": "霞ケ関",
+        "colour": "gray",
+        "wikidata": "Q741614",
+        "operator": "東京地下鉄",
+        "name:en": "Kasumigaseki",
+        "note": "日比谷線",
+        "name:ja_rm": "Kasumigaseki",
+        "name": "霞ケ関",
+        "distance_to_line_m": "0.0",
+        "name:es": "Kasumigaseki",
+        "@id": "node/1926239476",
+        "name:ru": "Касумигасэки",
+        "station_id": 402022,
+        "route_id": 402,
+        "line_slug": "tokyo-metro-hibiya",
+        "operator_slug": "tokyo-metro",
+        "line_name_en": "Hibiya Line",
+        "source_url": "https://geodo.earth/lines/tokyo-metro-hibiya/",
+        "station_name": "霞ケ関"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7510003,
+          35.6738941
+        ]
+      }
+    }
+  ]
+}
