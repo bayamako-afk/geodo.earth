@@ -41,9 +41,11 @@ function getCardImageUrl(entity) {
 
 // ===== 選択路線の交差駅を計算 =====
 function computeCrossStations(selectedLineCodes) {
+  // 路線が2本未満の場合は交差駅なし
+  if (!selectedLineCodes || selectedLineCodes.length < 2) return {};
   // 選択中の路線コードセット
   const lcSet = new Set(selectedLineCodes);
-  // 交差駅：CROSS_STATIONSの中で、自分の路線以外に選択中の路線が含まれる駅
+  // 交差駅：CROSS_STATIONSの中で、選択中の路線が2つ以上含まれる駅
   const result = {}; // stationName -> [交差している路線コードリスト]
   for (const [name, lcs] of Object.entries(CROSS_STATIONS)) {
     const crossInSelected = lcs.filter(lc => lcSet.has(lc));
