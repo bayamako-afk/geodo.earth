@@ -221,8 +221,16 @@
     // ==========================
     const map = L.map("map", {
       zoomControl: true,
-      preferCanvas: true,
     }).setView([35.681, 139.767], 11); // 東京駅あたり
+
+    // カスタムpane：路線ラインより駅ポイントを前面に
+    map.createPane("linesPane");
+    map.createPane("stationsPane");
+    map.getPane("linesPane").style.zIndex = 400;
+    map.getPane("stationsPane").style.zIndex = 450;
+    // stationsPaneはポインターイベントを受け取れるようにする
+    map.getPane("stationsPane").style.pointerEvents = "auto";
+    map.getPane("linesPane").style.pointerEvents = "none";
 
     // --- ベースレイヤ（地図 & 航空写真） ---
     const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -400,6 +408,7 @@
 
         const layer = L.geoJSON(gj, {
           style: () => lineStyle(color, false),
+          pane: "linesPane",
           onEachFeature: (feature, lyr) => {
             lyr.on("click", () => {
               highlight(slug);
@@ -440,7 +449,8 @@
         const color = m.color || "#76b7ff";
 
         const layer = L.geoJSON(gj, {
-          pointToLayer: (feature, latlng) => L.circleMarker(latlng, stationMarkerStyle(color)),
+          pointToLayer: (feature, latlng) => L.circleMarker(latlng, { ...stationMarkerStyle(color), pane: "stationsPane" }),
+          pane: "stationsPane",
           onEachFeature: (feature, lyr) => {
             lyr.on("click", () => {
               const p = feature.properties || {};
