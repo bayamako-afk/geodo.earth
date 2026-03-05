@@ -537,13 +537,12 @@ function renderCrossInfo() {
     const row = el("div", "cross-row");
     const dots = lcs.map(lc => {
       const color = getLineColor(lc, "#888");
-      return `<span class="cross-dot" style="background:${color}" title="${getLineName(lc)}"></span>`;
+      const lineName = getLineName(lc, lc);
+      return `<span class="cross-dot" style="background:${color}" title="${lineName}"></span>`;
     }).join("");
     row.innerHTML = `
       <div class="cross-name">${name}</div>
-      <div class="cross-lines">${dots}
-        <span style="font-size:10px;color:rgba(255,255,255,.5)">${lcs.map(lc => getLineName(lc, lc)).join(' / ')}</span>
-      </div>`;
+      <div class="cross-lines">${dots}</div>`;
     el2.appendChild(row);
   }
 }

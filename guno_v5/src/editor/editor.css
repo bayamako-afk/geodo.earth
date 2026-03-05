@@ -161,7 +161,7 @@ body {
   border-bottom: 1px solid var(--border);
   background: rgba(255,255,255,.02);
   flex-shrink: 0;
-  margin-top: auto;
+  margin-top: 0;
 }
 
 /* ===== 入力フォーム ===== */
@@ -493,7 +493,7 @@ body {
   flex-direction: column;
   gap: 4px;
   overflow-y: auto;
-  max-height: 220px;
+  max-height: 160px;
   flex-shrink: 0;
 }
 .route-list-row {
@@ -622,32 +622,35 @@ body {
 
 /* ===== 交差駅情報パネル ===== */
 .cross-info {
-  padding: 4px 8px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  max-height: 180px;
-  overflow-y: auto;
-}
-.cross-row {
+  padding: 4px 8px 6px;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 5px 8px;
+  flex-shrink: 0;
+}
+.cross-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
   border: 1px solid rgba(251,191,36,.2);
-  border-radius: 8px;
+  border-radius: 6px;
   background: rgba(251,191,36,.05);
 }
 .cross-name {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: rgba(251,191,36,.9);
+  white-space: nowrap;
+  min-width: 72px;
 }
 .cross-lines {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   flex-wrap: wrap;
+  flex: 1;
 }
 .cross-dot {
   display: inline-block;
@@ -655,6 +658,18 @@ body {
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+/* ===== 右パネル下部スクロールエリア ===== */
+.panel-lower-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+.panel-lower-scroll .panel-section-head {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 0;
 }
 
 /* ===== geojson整備済みバッジ ===== */

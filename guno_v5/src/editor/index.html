@@ -114,48 +114,51 @@
         <div id="routePickerList" class="route-picker-list"></div>
       </div>
 
-      <!-- 交差駅情報 -->
+      <!-- 交差駅情報（路線管理の直下に配置） -->
       <div class="panel-section-head">
         <div class="panel-title">🔀 交差駅 <span id="crossBadge" class="badge">0</span></div>
       </div>
       <div id="crossInfo" class="cross-info"></div>
 
-      <!-- チェック結果 -->
-      <div class="panel-section-head">
-        <div class="panel-title">✅ チェック結果 <span id="issueBadge" class="badge">0</span></div>
-        <button id="btnValidate" class="btn" title="バリデーションを実行">🔍 チェック</button>
-      </div>
-      <div id="issues" class="issues"></div>
-
-      <!-- 選択中 -->
-      <div class="panel-section-head">
-        <div class="panel-title">📌 選択中</div>
-      </div>
-      <div class="selection">
-        <div class="sel-row">
-          <span class="sel-label">駅：</span>
-          <span id="selEntity" class="sel-value small">未選択</span>
+      <!-- 下部コンテンツ（スクロール可能） -->
+      <div class="panel-lower-scroll">
+        <!-- チェック結果 -->
+        <div class="panel-section-head">
+          <div class="panel-title">✅ チェック結果 <span id="issueBadge" class="badge">0</span></div>
+          <button id="btnValidate" class="btn" title="バリデーションを実行">🔍 チェック</button>
         </div>
-        <div class="sel-row">
-          <span class="sel-label">路線：</span>
-          <span id="selRoute" class="sel-value small">未選択</span>
-        </div>
-      </div>
+        <div id="issues" class="issues"></div>
 
-      <!-- 操作ガイド -->
-      <div class="panel-section-head">
-        <div class="panel-title">💡 操作ガイド</div>
-      </div>
-      <div class="guide">
-        <div class="guide-item">🛤 <strong>路線追加</strong>：「＋ 路線追加」で路線マスターから選択（最大8路線）</div>
-        <div class="guide-item">📐 <strong>駅数変更</strong>：上部セレクタで10〜13駅に変更</div>
-        <div class="guide-item">🗑 <strong>路線削除</strong>：路線リストの「削除」ボタン</div>
-        <div class="guide-item">👆 <strong>駅を選択</strong>：左の駅リストをクリック</div>
-        <div class="guide-item">📍 <strong>駅を配置</strong>：コースのスロットをクリック</div>
-        <div class="guide-item">🗑 <strong>駅を削除</strong>：配置済みスロットを右クリック</div>
-        <div class="guide-item">⚡ <strong>自動配置</strong>：交差駅を先頭に固定して自動配置</div>
-        <div class="guide-item">🔀 <strong>交差駅</strong>：選択路線に共通する駅（右パネルで確認）</div>
-        <div class="guide-item">▶ <strong>プレイ</strong>：全駅揃ったらゲーム開始</div>
+        <!-- 選択中 -->
+        <div class="panel-section-head">
+          <div class="panel-title">📌 選択中</div>
+        </div>
+        <div class="selection">
+          <div class="sel-row">
+            <span class="sel-label">駅：</span>
+            <span id="selEntity" class="sel-value small">未選択</span>
+          </div>
+          <div class="sel-row">
+            <span class="sel-label">路線：</span>
+            <span id="selRoute" class="sel-value small">未選択</span>
+          </div>
+        </div>
+
+        <!-- 操作ガイド -->
+        <div class="panel-section-head">
+          <div class="panel-title">💡 操作ガイド</div>
+        </div>
+        <div class="guide">
+          <div class="guide-item">🛤 <strong>路線追加</strong>：「＋ 路線追加」で路線マスターから選択（最大8路線）</div>
+          <div class="guide-item">📐 <strong>駅数変更</strong>：上部セレクタで１０～１３駅に変更</div>
+          <div class="guide-item">🗑 <strong>路線削除</strong>：路線リストの「削除」ボタン</div>
+          <div class="guide-item">👆 <strong>駅を選択</strong>：左の駅リストをクリック</div>
+          <div class="guide-item">📍 <strong>駅を配置</strong>：コースのスロットをクリック</div>
+          <div class="guide-item">🗑 <strong>駅を削除</strong>：配置済スロットを右クリック</div>
+          <div class="guide-item">⚡ <strong>自動配置</strong>：交差駅を先頭に固定して自動配置</div>
+          <div class="guide-item">🔀 <strong>交差駅</strong>：選択路線に共通する駅（右パネルで確認）</div>
+          <div class="guide-item">▶ <strong>プレイ</strong>：全駅揃ったらゲーム開始</div>
+        </div>
       </div>
     </div>
   </div>
