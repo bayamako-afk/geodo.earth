@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GUNO V6</title>
+  <link rel="icon" type="image/png" href="../guno_v5/src/assets/cards/GUNO_BACK.png">
+  <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== ヘッダー ===== -->
+  <div class="header" id="main-header">
+    <div><h2 style="margin:0; color:gold; font-size:1.1em; line-height:1;">GUNO v6</h2></div>
+    <div class="controls">
+      <button onclick="toggleLog()" id="btn-log">📜 ログ</button>
+      <button id="btn-new" onclick="confirmNewGame()" class="btn-new">🎲 新規</button>
+      <button id="btn-mode" onclick="toggleAuto()" class="btn-auto-off">▶ AUTO: OFF</button>
+      <button id="btn-pause" onclick="togglePause()" class="btn-pause-active">⏸ 停止</button>
+    </div>
+  </div>
+
+  <!-- ===== ステータスバー ===== -->
+  <div id="statusBar" class="status-bar">準備中...</div>
+
+  <!-- ===== ヒントエリア ===== -->
+  <div id="hint-area" class="hint-area hint-waiting">準備中...</div>
+
+  <!-- ===== メインコンテンツ（3列レイアウト） ===== -->
+  <div class="main-layout">
+
+    <!-- 左列：デッキ・捨て札 -->
+    <div class="panel panel-deck">
+      <div class="deck-area">
+        <div class="deck-label">DECK</div>
+        <div id="draw-pile-visual" class="draw-pile">?</div>
+        <div class="deck-label" style="margin-top:12px;">場</div>
+        <div id="discard-pile" class="discard-pile"></div>
+      </div>
+    </div>
+
+    <!-- 中央列：スロットエリア -->
+    <div class="panel panel-slots" id="slots-container">
+      <div id="slots-area">
+        <div class="line-wrapper">
+          <div id="header-jy" class="line-header" style="background:#00AA00;">JY 山手線</div>
+          <div id="map-jy" class="map-grid" style="--cols:10;"></div>
+        </div>
+        <div class="line-wrapper">
+          <div id="header-m" class="line-header" style="background:#E60012;">M 丸ノ内線</div>
+          <div id="map-m" class="map-grid" style="--cols:10;"></div>
+        </div>
+        <div class="line-wrapper">
+          <div id="header-g" class="line-header" style="background:#F39700;">G 銀座線</div>
+          <div id="map-g" class="map-grid" style="--cols:10;"></div>
+        </div>
+        <div class="line-wrapper">
+          <div id="header-t" class="line-header" style="background:#009BBF;">T 東西線</div>
+          <div id="map-t" class="map-grid" style="--cols:10;"></div>
+        </div>
+        <!-- 停電エリア -->
+        <div class="line-wrapper blackout-wrapper">
+          <div id="header-blackout" class="line-header blackout-header">⚡ 停電</div>
+          <div class="blackout-inner">
+            <div id="map-blackout" class="map-grid" style="--cols:4;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右列：プレイヤー手札 -->
+    <div class="panel panel-players">
+      <div id="players-area"></div>
+    </div>
+
+  </div><!-- /.main-layout -->
+
+  <!-- ===== 結果オーバーレイ ===== -->
+  <div id="result-overlay">
+    <div class="result-card">
+      <h1 style="color:gold; margin:0 0 16px;">🏆 VICTORY!</h1>
+      <table id="result-table"></table>
+      <div style="display:flex; justify-content:center; gap:10px; margin-top:16px;">
+        <button class="btn-restart"
+          style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">
+          もう一度遊ぶ
+        </button>
+        <button onclick="document.getElementById('result-overlay').style.display='none';"
+          style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">
+          ✖ 閉じる
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#app -->
+
+<!-- ===== ログパネル ===== -->
+<div class="panel-log" id="log-container">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+    <h3 style="margin:0;">📜 ログ履歴</h3>
+    <button onclick="toggleLog()"
+      style="background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:2px 10px; border-radius:4px;">
+      閉じる
+    </button>
+  </div>
+  <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
+</div>
+
+<!-- vendor -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!-- app（ESM） -->
+<script type="module" src="src/app/main.js"></script>
+</body>
+</html>
