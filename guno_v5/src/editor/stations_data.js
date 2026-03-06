@@ -1,5 +1,5 @@
 // Auto-generated from geojson — DO NOT EDIT MANUALLY
-// Generated: 2026-03-06T01:31:09
+// Generated: 2026-03-06T01:44:54
 
 export const GEO_LINES = [
   {
@@ -41,6 +41,14 @@ export const GEO_LINES = [
     "color": "#00BB85",
     "operator": "東京メトロ",
     "station_count": 19
+  },
+  {
+    "slug": "tokyo-metro-fukutoshin",
+    "line_code": "F",
+    "name_ja": "副都心線",
+    "color": "#9C5E31",
+    "operator": "東京地下鉄",
+    "station_count": 16
   },
   {
     "slug": "tokyo-metro-ginza",
@@ -1831,6 +1839,230 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
+    "id": "F_01",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 1,
+    "name_ja": "和光市",
+    "name_en": "",
+    "coords": [
+      139.6128678,
+      35.7883529
+    ],
+    "cross_lines": [
+      "Y"
+    ]
+  },
+  {
+    "id": "F_02",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 2,
+    "name_ja": "地下鉄成増",
+    "name_en": "",
+    "coords": [
+      139.6313339,
+      35.776704
+    ],
+    "cross_lines": [
+      "Y"
+    ]
+  },
+  {
+    "id": "F_03",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 3,
+    "name_ja": "地下鉄赤塚",
+    "name_en": "",
+    "coords": [
+      139.6441677,
+      35.769971
+    ],
+    "cross_lines": [
+      "Y"
+    ]
+  },
+  {
+    "id": "F_04",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 4,
+    "name_ja": "平和台",
+    "name_en": "",
+    "coords": [
+      139.6542458,
+      35.7576942
+    ],
+    "cross_lines": [
+      "Y"
+    ]
+  },
+  {
+    "id": "F_05",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 5,
+    "name_ja": "氷川台",
+    "name_en": "",
+    "coords": [
+      139.6650785,
+      35.7498601
+    ],
+    "cross_lines": [
+      "Y"
+    ]
+  },
+  {
+    "id": "F_06",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 6,
+    "name_ja": "小竹向原",
+    "name_en": "",
+    "coords": [
+      139.6806313,
+      35.7428773
+    ],
+    "cross_lines": [
+      "Y"
+    ]
+  },
+  {
+    "id": "F_07",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 7,
+    "name_ja": "千川",
+    "name_en": "",
+    "coords": [
+      139.689497,
+      35.7382898
+    ],
+    "cross_lines": [
+      "Y"
+    ]
+  },
+  {
+    "id": "F_08",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 8,
+    "name_ja": "要町",
+    "name_en": "",
+    "coords": [
+      139.6987138,
+      35.7332813
+    ],
+    "cross_lines": [
+      "Y"
+    ]
+  },
+  {
+    "id": "F_09",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 9,
+    "name_ja": "池袋",
+    "name_en": "",
+    "coords": [
+      139.7089976,
+      35.7312233
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "F_10",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 10,
+    "name_ja": "雑司が谷",
+    "name_en": "",
+    "coords": [
+      139.7147443,
+      35.7201652
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "F_11",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 11,
+    "name_ja": "西早稲田",
+    "name_en": "",
+    "coords": [
+      139.7090644,
+      35.7079175
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "F_12",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 12,
+    "name_ja": "東新宿",
+    "name_en": "",
+    "coords": [
+      139.7077279,
+      35.6989445
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "F_13",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 13,
+    "name_ja": "新宿三丁目",
+    "name_en": "",
+    "coords": [
+      139.7048163,
+      35.6906889
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "F_14",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 14,
+    "name_ja": "北参道",
+    "name_en": "",
+    "coords": [
+      139.7054958,
+      35.6784821
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "F_15",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 15,
+    "name_ja": "明治神宮前〈原宿〉",
+    "name_en": "",
+    "coords": [
+      139.7053934,
+      35.668396
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "F_16",
+    "lc": "F",
+    "slug": "tokyo-metro-fukutoshin",
+    "order": 16,
+    "name_ja": "渋谷",
+    "name_en": "",
+    "coords": [
+      139.7027508,
+      35.6586186
+    ],
+    "cross_lines": []
+  },
+  {
     "id": "G_01",
     "lc": "G",
     "slug": "tokyo-metro-ginza",
@@ -3487,7 +3719,9 @@ export const GEO_STATIONS = [
       139.6894971,
       35.7382902
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_12",
@@ -3500,7 +3734,9 @@ export const GEO_STATIONS = [
       139.6894195,
       35.738206
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_01",
@@ -3513,7 +3749,9 @@ export const GEO_STATIONS = [
       139.61254875,
       35.78845775000125
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_02",
@@ -3526,7 +3764,9 @@ export const GEO_STATIONS = [
       139.6313339,
       35.776704
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_03",
@@ -3539,7 +3779,9 @@ export const GEO_STATIONS = [
       139.6312688,
       35.7766151
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_05",
@@ -3552,7 +3794,9 @@ export const GEO_STATIONS = [
       139.64416769999997,
       35.769971
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_04",
@@ -3565,7 +3809,9 @@ export const GEO_STATIONS = [
       139.6440815,
       35.7698772
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_10",
@@ -3578,7 +3824,9 @@ export const GEO_STATIONS = [
       139.6807045,
       35.7429781
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_09",
@@ -3617,7 +3865,9 @@ export const GEO_STATIONS = [
       139.6542043,
       35.757651950011216
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_25",
@@ -3695,7 +3945,9 @@ export const GEO_STATIONS = [
       139.6650785,
       35.7498601
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_08",
@@ -3708,7 +3960,9 @@ export const GEO_STATIONS = [
       139.6650562,
       35.7498203
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_22",
@@ -3760,7 +4014,9 @@ export const GEO_STATIONS = [
       139.698716,
       35.73328
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_13",
@@ -3773,7 +4029,9 @@ export const GEO_STATIONS = [
       139.6986892,
       35.7332269
     ],
-    "cross_lines": []
+    "cross_lines": [
+      "F"
+    ]
   },
   {
     "id": "Y_17",
@@ -3893,12 +4151,14 @@ export const CROSS_STATIONS = {
     "M"
   ],
   "池袋": [
+    "F",
     "JA",
     "JY",
     "M",
     "Y"
   ],
   "渋谷": [
+    "F",
     "G",
     "JA",
     "JY",
@@ -3949,6 +4209,10 @@ export const CROSS_STATIONS = {
   "中野坂上": [
     "E",
     "M"
+  ],
+  "東新宿": [
+    "E",
+    "F"
   ],
   "飯田橋": [
     "E",
@@ -4012,6 +4276,46 @@ export const CROSS_STATIONS = {
     "C",
     "G",
     "Z"
+  ],
+  "明治神宮前〈原宿〉": [
+    "C",
+    "F"
+  ],
+  "和光市": [
+    "F",
+    "Y"
+  ],
+  "地下鉄成増": [
+    "F",
+    "Y"
+  ],
+  "地下鉄赤塚": [
+    "F",
+    "Y"
+  ],
+  "平和台": [
+    "F",
+    "Y"
+  ],
+  "氷川台": [
+    "F",
+    "Y"
+  ],
+  "小竹向原": [
+    "F",
+    "Y"
+  ],
+  "千川": [
+    "F",
+    "Y"
+  ],
+  "要町": [
+    "F",
+    "Y"
+  ],
+  "新宿三丁目": [
+    "F",
+    "M"
   ],
   "赤坂見附": [
     "G",
