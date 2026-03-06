@@ -306,6 +306,8 @@ function showNetworkLinesOnMainMap(mode = "game") {
     "tokyo-metro-hanzomon",
     "tokyo-metro-yurakucho",
     "tokyo-metro-namboku",
+    "toei-oedo",
+    "tokyo-metro-fukutoshin",
   ];
 
   hideResultLinesOnMainMap();
@@ -322,6 +324,8 @@ function showNetworkLinesOnMainMap(mode = "game") {
     "tokyo-metro-hanzomon": "#8F76D6",
     "tokyo-metro-yurakucho": "#C1A470",
     "tokyo-metro-namboku": "#00AC9A",
+    "toei-oedo": "#B6007A",
+    "tokyo-metro-fukutoshin": "#9C5E31",
   };
 
   ids.forEach(id => {
