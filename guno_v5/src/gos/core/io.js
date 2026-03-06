@@ -3,17 +3,8 @@ const DEFAULT_LOCAL_KEY = "gos_pack_v0_1";
 const SUPPORTED_VERSIONS = ["0.1", "0.2", "1.0"];
 
 // ─────────────────────────────────────────
-// Hub派生値計算（仕様 §7 / CLIと同等ロジック）
+// Hub Rank計算（共通）
 // ─────────────────────────────────────────
-
-function calcHubDegree(entity) {
-  const cross = entity.cross_lines || [];
-  return 1 + cross.length;
-}
-
-function calcHubBonus(hubDegree) {
-  return (hubDegree - 1) * 2;
-}
 
 function calcHubRank(hubDegree) {
   if (hubDegree >= 4) return "S";
@@ -22,21 +13,83 @@ function calcHubRank(hubDegree) {
   return "C";
 }
 
+// ─────────────────────────────────────────
+// Step1: Deck路線セット取得
+// ─────────────────────────────────────────
+
+function getDeckLines(packObj) {
+  const deckLines = new Set();
+  for (const col of Object.values(packObj.collections || {})) {
+    if (col.kind === "route" && col.lc) deckLines.add(col.lc);
+  }
+  return deckLines;
+}
+
+// ─────────────────────────────────────────
+// Step2: Global Hub計算
+// ─────────────────────────────────────────
+
+function calcGlobalHub(entity) {
+  const cross = entity.cross_lines || [];
+  const deg = 1 + cross.length;
+  return {
+    hub_degree_global: deg,
+    hub_bonus_global: (deg - 1) * 2,
+    hub_rank_global: calcHubRank(deg),
+  };
+}
+
+// ─────────────────────────────────────────
+// Step3: Deck Hub計算
+// ─────────────────────────────────────────
+
+function calcDeckHub(entity, deckLines) {
+  const cross = entity.cross_lines || [];
+  const deckCross = cross.filter(lc => deckLines.has(lc));
+  const deg = 1 + deckCross.length;
+  return {
+    hub_degree_deck: deg,
+    hub_bonus_deck: (deg - 1) * 2,
+    hub_rank_deck: calcHubRank(deg),
+  };
+}
+
+// ─────────────────────────────────────────
+// Step4: Hub値付与（global + deck + エイリアス）
+// ─────────────────────────────────────────
+
 /**
- * packのentities全駅にhub_degree/hub_bonus/hub_rankを付与して返す（破壊的変更なし）
+ * packのentities全駅にglobal/deck両方のhub値を付与して返す（ディープコピー）
  * @param {object} packObj
  * @returns {object} Hub付与済みのpack（新しいオブジェクト）
  */
 export function attachHubValues(packObj) {
   const pack = JSON.parse(JSON.stringify(packObj)); // ディープコピー
+  const deckLines = getDeckLines(pack);
+
   for (const [eid, entity] of Object.entries(pack.entities || {})) {
     if (entity.type !== "station") continue;
+
     // station_code補完（v0.2互換）
     if (!entity.station_code) entity.station_code = eid;
-    const deg = calcHubDegree(entity);
-    entity.hub_degree = deg;
-    entity.hub_bonus = calcHubBonus(deg);
-    entity.hub_rank = calcHubRank(deg);
+
+    const g = calcGlobalHub(entity);
+    const d = calcDeckHub(entity, deckLines);
+
+    // global hub
+    entity.hub_degree_global = g.hub_degree_global;
+    entity.hub_bonus_global  = g.hub_bonus_global;
+    entity.hub_rank_global   = g.hub_rank_global;
+
+    // deck hub
+    entity.hub_degree_deck = d.hub_degree_deck;
+    entity.hub_bonus_deck  = d.hub_bonus_deck;
+    entity.hub_rank_deck   = d.hub_rank_deck;
+
+    // エイリアス（global hubと同値）
+    entity.hub_degree = g.hub_degree_global;
+    entity.hub_bonus  = g.hub_bonus_global;
+    entity.hub_rank   = g.hub_rank_global;
   }
   return pack;
 }
@@ -64,11 +117,11 @@ export function stringifyPack(packObj, opts = {}) {
 
 /**
  * packをJSONファイルとしてダウンロードする。
- * Hub派生値（hub_degree/hub_bonus/hub_rank）を自動付与してからエクスポートする。
+ * Hub派生値（global + deck）を自動付与してからエクスポートする。
  */
 export function downloadPack(packObj, filename) {
   const name = filename || `${packObj.pack_meta?.pack_id || "gos-pack"}.json`;
-  // Hub派生値を付与してからエクスポート
+  // Hub派生値（global + deck）を付与してからエクスポート
   const packWithHubs = attachHubValues(packObj);
   const text = stringifyPack(packWithHubs, { pretty: true });
   const blob = new Blob([text], { type: "application/json" });
