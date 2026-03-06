@@ -1,0 +1,22 @@
+# GUNO V6 secrets
+guno_v6/config.js
+
+# Node
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
