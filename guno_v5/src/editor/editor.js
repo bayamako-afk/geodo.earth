@@ -93,7 +93,7 @@ function makeSamplePack(slotSize = 10) {
 
   return {
     pack_meta: {
-      pack_version: "0.2", pack_id: "tokyo_4lines_v2",
+      pack_version: "1.0", pack_id: "tokyo_4lines_v2",
       name: "東京4路線コース", locale_default: "ja",
       created_at: iso, updated_at: iso
     },
@@ -870,10 +870,10 @@ function wireUI() {
     setStatus("📂 保存データを読み込みました");
   });
 
-  // 📤 JSONエクスポート
+  // 📤 JSONエクスポート（Hub派生値自動付与）
   $("btnExportPack").addEventListener("click", () => {
     gos.io.downloadPack(state.pack, `${state.pack.pack_meta?.pack_id||"gos-pack"}_pack.json`);
-    setStatus("📤 コースをJSONファイルでエクスポートしました（インポートで復元可能）");
+    setStatus("📤 コースをJSONエクスポート（hub_degree/hub_bonus/hub_rank自動付与済み）");
   });
 
   // 📥 JSONインポート（v0.1・v0.2対応）
