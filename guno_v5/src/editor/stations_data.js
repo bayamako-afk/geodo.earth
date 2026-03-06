@@ -1,5 +1,5 @@
 // Auto-generated from geojson — DO NOT EDIT MANUALLY
-// Generated: 2026-03-06T00:57:50
+// Generated: 2026-03-06T01:31:09
 
 export const GEO_LINES = [
   {
@@ -9,6 +9,14 @@ export const GEO_LINES = [
     "color": "#FF6600",
     "operator": "JR東日本",
     "station_count": 24
+  },
+  {
+    "slug": "jr-east-saikyo",
+    "line_code": "JA",
+    "name_ja": "埼京線",
+    "color": "#00AA55",
+    "operator": "JR東日本",
+    "station_count": 18
   },
   {
     "slug": "jr-east-yamanote",
@@ -417,6 +425,246 @@ export const GEO_STATIONS = [
     "cross_lines": []
   },
   {
+    "id": "JA_01",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 1,
+    "name_ja": "大宮",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.623246,
+      35.906154
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_02",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 2,
+    "name_ja": "北与野",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.6286943,
+      35.8906568
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_03",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 3,
+    "name_ja": "与野本町",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.6260943,
+      35.8812246
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_04",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 4,
+    "name_ja": "中浦和",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.6377841,
+      35.8535828
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_05",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 5,
+    "name_ja": "武蔵浦和",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.6470106,
+      35.845604
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_06",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 6,
+    "name_ja": "北戸田",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.660149,
+      35.8276964
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_07",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 7,
+    "name_ja": "戸田",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.6696624,
+      35.8177162
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_08",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 8,
+    "name_ja": "戸田公園",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.6782307,
+      35.8079703
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_09",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 9,
+    "name_ja": "浮間舟渡",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.691526,
+      35.7912358
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_10",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 10,
+    "name_ja": "北赤羽",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7060812,
+      35.786828
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_11",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 11,
+    "name_ja": "赤羽",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7205462,
+      35.7780233
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_12",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 12,
+    "name_ja": "十条",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7223332,
+      35.7600073
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_13",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 13,
+    "name_ja": "板橋",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7194978,
+      35.7452674
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_14",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 14,
+    "name_ja": "池袋",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7114812,
+      35.7300675
+    ],
+    "cross_lines": [
+      "JY",
+      "M"
+    ]
+  },
+  {
+    "id": "JA_15",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 15,
+    "name_ja": "新宿",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7014117,
+      35.6891946
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_16",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 16,
+    "name_ja": "渋谷",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7019479,
+      35.6581374
+    ],
+    "cross_lines": [
+      "JY",
+      "Z"
+    ]
+  },
+  {
+    "id": "JA_17",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 17,
+    "name_ja": "恵比寿",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7103229,
+      35.646483
+    ],
+    "cross_lines": []
+  },
+  {
+    "id": "JA_18",
+    "lc": "JA",
+    "slug": "jr-east-saikyo",
+    "order": 18,
+    "name_ja": "大崎",
+    "name_en": "Saikyo Line",
+    "coords": [
+      139.7283987,
+      35.6193482
+    ],
+    "cross_lines": []
+  },
+  {
     "id": "JY_01",
     "lc": "JY",
     "slug": "jr-east-yamanote",
@@ -591,6 +839,7 @@ export const GEO_STATIONS = [
       35.72985950101142
     ],
     "cross_lines": [
+      "JA",
       "M"
     ]
   },
@@ -684,6 +933,7 @@ export const GEO_STATIONS = [
       35.65818605
     ],
     "cross_lines": [
+      "JA",
       "Z"
     ]
   },
@@ -1853,6 +2103,7 @@ export const GEO_STATIONS = [
       35.659506450015485
     ],
     "cross_lines": [
+      "JA",
       "JY"
     ]
   },
@@ -2337,6 +2588,7 @@ export const GEO_STATIONS = [
       35.7302282
     ],
     "cross_lines": [
+      "JA",
       "JY"
     ]
   },
@@ -3627,6 +3879,7 @@ export const CROSS_STATIONS = {
   ],
   "新宿": [
     "E",
+    "JA",
     "JC",
     "JY",
     "M"
@@ -3638,6 +3891,27 @@ export const CROSS_STATIONS = {
   "荻窪": [
     "JC",
     "M"
+  ],
+  "池袋": [
+    "JA",
+    "JY",
+    "M",
+    "Y"
+  ],
+  "渋谷": [
+    "G",
+    "JA",
+    "JY",
+    "Z"
+  ],
+  "恵比寿": [
+    "",
+    "JA",
+    "JY"
+  ],
+  "大崎": [
+    "JA",
+    "JY"
   ],
   "秋葉原": [
     "",
@@ -3656,26 +3930,12 @@ export const CROSS_STATIONS = {
     "JY",
     "N"
   ],
-  "池袋": [
-    "JY",
-    "M",
-    "Y"
-  ],
   "高田馬場": [
     "JY",
     "T"
   ],
   "代々木": [
     "E",
-    "JY"
-  ],
-  "渋谷": [
-    "G",
-    "JY",
-    "Z"
-  ],
-  "恵比寿": [
-    "",
     "JY"
   ],
   "目黒": [
