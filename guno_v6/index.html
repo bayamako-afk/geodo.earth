@@ -5,285 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>GUNO V6</title>
   <link rel="icon" type="image/png" href="../guno_v5/src/assets/cards/GUNO_BACK.png">
-  <style>
-    /* ===== Design tokens (V5 互換) ===== */
-    :root {
-      --bg: #0b0b0b;
-      --panel: #131313;
-      --line: #2a2a2a;
-      --txt: #eaeaea;
-      --gold: #f5c518;
-      --red: #c0392b;
-      --green: #27ae60;
-      --blue: #2980b9;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--txt);
-      overflow-x: hidden;
-    }
-
-    /* ===== Layout ===== */
-    #app {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-      gap: 24px;
-    }
-
-    /* ===== Logo ===== */
-    .logo {
-      text-align: center;
-    }
-    .logo h1 {
-      font-size: clamp(2rem, 8vw, 4rem);
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 30px rgba(245, 197, 24, 0.4);
-    }
-    .logo .version-badge {
-      display: inline-block;
-      background: var(--red);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 2px 10px;
-      border-radius: 20px;
-      margin-top: 4px;
-      letter-spacing: 0.1em;
-    }
-    .logo .tagline {
-      margin-top: 8px;
-      color: #888;
-      font-size: 0.9rem;
-    }
-
-    /* ===== Status card ===== */
-    #status-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 20px 28px;
-      width: 100%;
-      max-width: 480px;
-      text-align: center;
-    }
-    #status-card h2 {
-      font-size: 1rem;
-      color: #888;
-      font-weight: 600;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    #status-message {
-      font-size: 1.1rem;
-      color: var(--txt);
-      line-height: 1.6;
-    }
-    #status-message .highlight {
-      color: var(--gold);
-      font-weight: 700;
-    }
-    #status-message .ok {
-      color: var(--green);
-    }
-    #status-message .error {
-      color: var(--red);
-    }
-
-    /* ===== Supabase info ===== */
-    #supabase-info {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px 24px;
-      width: 100%;
-      max-width: 480px;
-    }
-    #supabase-info h3 {
-      font-size: 0.8rem;
-      color: #666;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
-    }
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.85rem;
-    }
-    .info-row:last-child { border-bottom: none; }
-    .info-label { color: #888; }
-    .info-value {
-      color: var(--txt);
-      font-family: monospace;
-      font-size: 0.8rem;
-      max-width: 260px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .badge-ok {
-      background: rgba(39, 174, 96, 0.2);
-      color: var(--green);
-      border: 1px solid rgba(39, 174, 96, 0.4);
-      border-radius: 6px;
-      padding: 2px 8px;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-    .badge-pending {
-      background: rgba(245, 197, 24, 0.15);
-      color: var(--gold);
-      border: 1px solid rgba(245, 197, 24, 0.3);
-      border-radius: 6px;
-      padding: 2px 8px;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    /* ===== Dev roadmap ===== */
-    #roadmap {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px 24px;
-      width: 100%;
-      max-width: 480px;
-    }
-    #roadmap h3 {
-      font-size: 0.8rem;
-      color: #666;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
-    }
-    .phase-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 7px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.85rem;
-    }
-    .phase-item:last-child { border-bottom: none; }
-    .phase-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .phase-dot.done   { background: var(--green); }
-    .phase-dot.active { background: var(--gold); box-shadow: 0 0 6px rgba(245,197,24,0.6); }
-    .phase-dot.todo   { background: #333; border: 1px solid #555; }
-    .phase-label { color: var(--txt); flex: 1; }
-    .phase-label.done-text { color: #666; text-decoration: line-through; }
-    .phase-label.active-text { color: var(--gold); font-weight: 700; }
-
-    /* ===== Footer ===== */
-    footer {
-      color: #444;
-      font-size: 0.75rem;
-      text-align: center;
-    }
-    footer a { color: #666; text-decoration: none; }
-    footer a:hover { color: #aaa; }
-  </style>
+  <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body>
-  <div id="app">
+<div id="app">
 
-    <!-- Logo -->
-    <div class="logo">
-      <h1>GUNO V6</h1>
-      <span class="version-badge">ONLINE DEMO · 開発中</span>
-      <p class="tagline">路線カードゲーム — オンライン対戦版</p>
+  <!-- ===== ヘッダー ===== -->
+  <div class="header" id="main-header">
+    <div><h2 style="margin:0; color:gold; font-size:1.1em; line-height:1;">GUNO v6</h2></div>
+    <div class="controls">
+      <button onclick="toggleLog()" id="btn-log">📜 ログ</button>
+      <button id="btn-new" onclick="confirmNewGame()" class="btn-new">🎲 新規</button>
+      <button id="btn-mode" onclick="toggleAuto()" class="btn-auto-off">▶ AUTO: OFF</button>
+      <button id="btn-pause" onclick="togglePause()" class="btn-pause-active">⏸ 停止</button>
     </div>
-
-    <!-- Status -->
-    <div id="status-card">
-      <h2>System Status</h2>
-      <div id="status-message">初期化中...</div>
-    </div>
-
-    <!-- Supabase info -->
-    <div id="supabase-info">
-      <h3>Supabase 接続情報</h3>
-      <div class="info-row">
-        <span class="info-label">Project URL</span>
-        <span class="info-value" id="info-url">—</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">rooms テーブル</span>
-        <span id="info-rooms">—</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">game_states テーブル</span>
-        <span id="info-game-states">—</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Realtime</span>
-        <span id="info-realtime">—</span>
-      </div>
-    </div>
-
-    <!-- Roadmap -->
-    <div id="roadmap">
-      <h3>開発ロードマップ</h3>
-      <div class="phase-item">
-        <div class="phase-dot done"></div>
-        <span class="phase-label done-text">Phase 0: Supabase セットアップ</span>
-      </div>
-      <div class="phase-item">
-        <div class="phase-dot active"></div>
-        <span class="phase-label active-text">Phase 1: v6-foundation（基盤構築）← 現在</span>
-      </div>
-      <div class="phase-item">
-        <div class="phase-dot todo"></div>
-        <span class="phase-label">Phase 2: Pack v1.0 ローダー</span>
-      </div>
-      <div class="phase-item">
-        <div class="phase-dot todo"></div>
-        <span class="phase-label">Phase 3: Core Game Engine 分離</span>
-      </div>
-      <div class="phase-item">
-        <div class="phase-dot todo"></div>
-        <span class="phase-label">Phase 4: Scoring 分離</span>
-      </div>
-      <div class="phase-item">
-        <div class="phase-dot todo"></div>
-        <span class="phase-label">Phase 5: v6-local 最小 UI</span>
-      </div>
-      <div class="phase-item">
-        <div class="phase-dot todo"></div>
-        <span class="phase-label">Phase 6: Online-demo ルーム基盤</span>
-      </div>
-    </div>
-
-    <footer>
-      <p>GUNO V6 — <a href="../guno_v5/src/index.html">V5 ローカル版はこちら</a></p>
-    </footer>
-
   </div>
 
-  <!-- Supabase JS SDK (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <!-- V6 アプリケーション本体 -->
-  <script type="module" src="./src/app/main.js"></script>
+  <!-- ===== ステータスバー ===== -->
+  <div id="statusBar" class="status-bar">準備中...</div>
+
+  <!-- ===== ヒントエリア ===== -->
+  <div id="hint-area" class="hint-area hint-waiting">準備中...</div>
+
+  <!-- ===== メインコンテンツ（3列レイアウト） ===== -->
+  <div class="main-layout">
+
+    <!-- 左列：デッキ・捨て札 -->
+    <div class="panel panel-deck">
+      <div class="deck-area">
+        <div class="deck-label">DECK</div>
+        <div id="draw-pile-visual" class="draw-pile">?</div>
+        <div class="deck-label" style="margin-top:12px;">場</div>
+        <div id="discard-pile" class="discard-pile"></div>
+      </div>
+    </div>
+
+    <!-- 中央列：スロットエリア -->
+    <div class="panel panel-slots" id="slots-container">
+      <div id="slots-area">
+        <div class="line-wrapper">
+          <div id="header-jy" class="line-header" style="background:#00AA00;">JY 山手線</div>
+          <div id="map-jy" class="map-grid" style="--cols:10;"></div>
+        </div>
+        <div class="line-wrapper">
+          <div id="header-m" class="line-header" style="background:#E60012;">M 丸ノ内線</div>
+          <div id="map-m" class="map-grid" style="--cols:10;"></div>
+        </div>
+        <div class="line-wrapper">
+          <div id="header-g" class="line-header" style="background:#F39700;">G 銀座線</div>
+          <div id="map-g" class="map-grid" style="--cols:10;"></div>
+        </div>
+        <div class="line-wrapper">
+          <div id="header-t" class="line-header" style="background:#009BBF;">T 東西線</div>
+          <div id="map-t" class="map-grid" style="--cols:10;"></div>
+        </div>
+        <!-- 停電エリア -->
+        <div class="line-wrapper blackout-wrapper">
+          <div id="header-blackout" class="line-header blackout-header">⚡ 停電</div>
+          <div class="blackout-inner">
+            <div id="map-blackout" class="map-grid" style="--cols:4;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右列：プレイヤー手札 -->
+    <div class="panel panel-players">
+      <div id="players-area"></div>
+    </div>
+
+  </div><!-- /.main-layout -->
+
+  <!-- ===== 結果オーバーレイ ===== -->
+  <div id="result-overlay">
+    <div class="result-card">
+      <h1 style="color:gold; margin:0 0 16px;">🏆 VICTORY!</h1>
+      <table id="result-table"></table>
+      <div style="display:flex; justify-content:center; gap:10px; margin-top:16px;">
+        <button class="btn-restart"
+          style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">
+          もう一度遊ぶ
+        </button>
+        <button onclick="document.getElementById('result-overlay').style.display='none';"
+          style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">
+          ✖ 閉じる
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#app -->
+
+<!-- ===== ログパネル ===== -->
+<div class="panel-log" id="log-container">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+    <h3 style="margin:0;">📜 ログ履歴</h3>
+    <button onclick="toggleLog()"
+      style="background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:2px 10px; border-radius:4px;">
+      閉じる
+    </button>
+  </div>
+  <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
+</div>
+
+<!-- vendor -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!-- app（ESM） -->
+<script type="module" src="src/app/main.js"></script>
 </body>
 </html>
