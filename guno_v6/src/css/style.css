@@ -213,7 +213,17 @@ html, body {
   padding: 4px;
   background: #0d0d0d;
 }
-.blackout-wrapper { background: #fff; padding: 6px; }
+/* 停電エリア: 初期はヘッダーのみ表示、JS描画後に展開 */
+.blackout-wrapper {
+  background: #fff;
+  padding: 6px;
+  max-height: 60px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.blackout-wrapper.expanded {
+  max-height: 400px;
+}
 .blackout-header  { background: #fff; color: #ff6b00; margin-bottom: 6px; }
 .blackout-inner   { background: #1a1a1a; border-radius: 5px; padding: 8px; }
 
@@ -403,14 +413,19 @@ html, body {
 .teiden-en   { font-size: calc(var(--w) * 0.08); color: #888; }
 
 /* ===== 結果オーバーレイ ===== */
+/* JS未読込時・初期状態で必ず非表示 */
 #result-overlay {
-  display: none;
+  display: none !important;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.85);
   z-index: 1000;
   align-items: center;
   justify-content: center;
+}
+/* JSがshowResult()を呼んだときだけflex表示 */
+#result-overlay.is-visible {
+  display: flex !important;
 }
 .result-card {
   background: #1a1a1a;
@@ -435,6 +450,7 @@ html, body {
 #result-table th { color: #888; font-size: 11px; }
 
 /* ===== ログパネル ===== */
+/* 初期状態は画面外（right: -320px）かつ非表示 */
 .panel-log {
   position: fixed;
   top: 0;
@@ -448,8 +464,14 @@ html, body {
   flex-direction: column;
   z-index: 200;
   transition: right 0.25s ease;
+  visibility: hidden;
+  pointer-events: none;
 }
-body.show-log .panel-log { right: 0; }
+body.show-log .panel-log {
+  right: 0;
+  visibility: visible;
+  pointer-events: auto;
+}
 
 /* ===== レスポンシブ ===== */
 @media (max-width: 768px) {

@@ -5,7 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>GUNO V6</title>
   <link rel="icon" type="image/png" href="../guno_v5/src/assets/cards/GUNO_BACK.png">
-  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="./src/css/style.css">
+  <!-- FOUC防止: JS読み込み前に必ず非表示にする要素 -->
+  <style>
+    #result-overlay { display: none !important; }
+    .panel-log { visibility: hidden; pointer-events: none; }
+    body.show-log .panel-log { visibility: visible; pointer-events: auto; }
+  </style>
 </head>
 <body>
 <div id="app">

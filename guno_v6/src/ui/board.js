@@ -134,6 +134,10 @@ export function renderBoard({
       }
     }
     blackoutEl.innerHTML = bh;
+
+    // 停電エリアを展開（JS描画後に max-height を解除）
+    const blackoutWrapper = blackoutEl.closest(".blackout-wrapper");
+    if (blackoutWrapper) blackoutWrapper.classList.add("expanded");
   }
 
   // 停電モード（場の最上が停電カードの場合）

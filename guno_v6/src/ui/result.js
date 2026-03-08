@@ -66,7 +66,7 @@ export function showResult({ overlayEl, tableEl, players, mapState, stationsDB =
     restartBtn.onclick = onRestart;
   }
 
-  overlayEl.style.display = "flex";
+  overlayEl.classList.add("is-visible");
 
   // 紙吹雪
   if (window.confetti) {
@@ -81,5 +81,5 @@ export function showResult({ overlayEl, tableEl, players, mapState, stationsDB =
  */
 export function hideResult(overlayEl) {
   if (!overlayEl) return;
-  overlayEl.style.display = "none";
+  overlayEl.classList.remove("is-visible");
 }
