@@ -110,7 +110,7 @@ export function renderBoard({
     gridEl.innerHTML = html;
   }
 
-  // 停電エリア
+  // 停電エリア（V5と同じ形式: 路線コード・路線名・⚡を表示）
   const blackoutEl = document.getElementById("map-blackout");
   if (blackoutEl && packData.routes) {
     let bh = "";
@@ -118,7 +118,7 @@ export function renderBoard({
       const { lc } = route;
       if (teidenPlayed[lc]) {
         bh += `
-          <div class="slot active guno-card guno-card--teiden" data-line="${lc}" style="border:2px solid #fff;">
+          <div class="slot active guno-card guno-card--teiden" data-line="${lc}" style="border:2px solid #fff; --w:var(--card-w); margin:0;">
             <div class="teiden-icon">⚡</div>
             <div class="teiden-sub">停電</div>
             <div class="teiden-en">Blackout</div>
@@ -127,8 +127,16 @@ export function renderBoard({
       } else {
         bh += `
           <div class="slot" style="background:#1a1a1a;">
-            <div class="slot-order" style="color:${route.color};">[${lc}]</div>
-            <div style="font-size:20px; margin-top:4px;">⚡</div>
+            <div style="position:absolute; top:8px; left:50%; transform:translateX(-50%);
+                        font-weight:bold; font-size:14px; color:${route.color};">
+              [${lc}]
+            </div>
+            <div style="position:absolute; top:28px; left:50%; transform:translateX(-50%);
+                        font-size:10px; color:${route.color}; white-space:nowrap;">
+              ${route.name_ja}
+            </div>
+            <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
+                        font-size:24px;">⚡</div>
           </div>
         `;
       }
@@ -216,9 +224,11 @@ export function renderHint(el, { gameOver, isWaitingHuman, playableIndices, deck
 export function renderStatusBar(el, { turnCount, deckCount, direction, currentPlayer, gameOver }) {
   if (!el) return;
   if (gameOver) {
-    el.textContent = "🏁 ゲーム終了";
+    el.textContent = "対局終了";
+    el.classList.remove("is-warning", "is-danger", "is-paused");
     return;
   }
   const dir = direction === 1 ? "↻" : "↺";
   el.textContent = `Turn ${turnCount} | ${dir} | Deck: ${deckCount} | 手番: ${currentPlayer?.icon ?? ""}${currentPlayer?.name ?? ""}`;
+  el.classList.remove("is-warning", "is-danger", "is-paused");
 }

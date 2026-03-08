@@ -44,6 +44,8 @@
             <div class="controls">
                 <!-- V5と同一ボタン群（onclickなし・main.jsのaddEventListenerで処理） -->
                 <button id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
+                <!-- V5に存在するJP/ENボタン（V6では未実装のためdisabled） -->
+                <button id="btn-lang" disabled title="言語切替（V6未実装）">JP/EN</button>
                 <button id="btn-new" class="btn-new">🎲 <span id="btn-new-text">新規</span></button>
                 <button id="btn-mode" class="btn-auto-off">▶ AUTO: OFF</button>
                 <button id="btn-pause" class="btn-pause-active" style="display:none;">⏸ 停止</button>
@@ -52,8 +54,6 @@
             </div>
         </div>
         <div id="statusBar" class="status-bar">準備中...</div>
-        <!-- V6追加: ヒントエリア（V5にはない） -->
-        <div id="hint-area"></div>
         <div id="slots-area">
             <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
@@ -68,11 +68,9 @@
         </div>
     </div>
 
-    <!-- 右列：地図 ※V5と同一構造（V6ではLeaflet未使用のためプレースホルダー） -->
+    <!-- 右列：地図 ※V5と同一構造（V6ではLeaflet未使用のため空の暗い領域） -->
     <div class="panel panel-map" id="map-container">
-        <div id="map" style="height:100%; min-height:240px; background:#111; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#444; font-size:14px;">
-            地図（Phase 6以降で実装予定）
-        </div>
+        <div id="map"></div>
     </div>
 
     <!-- 勝利オーバーレイ ※V5と同一構造 -->

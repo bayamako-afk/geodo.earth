@@ -8,7 +8,7 @@
  *   - CPU プレイヤーの手札は裏面で表示する
  */
 
-import { normStar } from "../core/rules.js";
+import { normStar, calcScore } from "../core/rules.js";
 
 // ===== カード HTML 生成 =====
 
@@ -104,6 +104,7 @@ export function renderHands({
   container.innerHTML = players.map((p, pIdx) => {
     const isTurn = pIdx === turnIndex && !gameOver && p.status === "active";
     const stCount = Object.values(mapState).filter((o) => o === pIdx).length;
+    const score = calcScore(p, pIdx, mapState);
     const isHuman = p.isHuman;
     const showCards = isHuman || autoPlay;
 
@@ -114,19 +115,19 @@ export function renderHands({
       return stationCardHtml(card, { canPlay, isHuman, autoPlay, cardIdx: ci });
     }).join("");
 
+    // V5互换フォーマット: player-info-row 構造
+    const infoClass = isTurn ? "player-info-row player-info-row--active" : "player-info-row";
+    const turnLabel = isTurn
+      ? (isHuman && !autoPlay
+        ? ' <span class="turn-label turn-label--human">➡️</span>'
+        : ' <span class="turn-label turn-label--cpu">➡️</span>')
+      : "";
+
     return `
       <div class="player-box ${isTurn ? "active-turn" : ""} ${p.status === "eliminated" ? "eliminated" : ""}"
            style="border-left-color:${p.color}">
-        <div class="player-header">
-          <span class="player-icon">${p.icon}</span>
-          <span class="player-name">${p.name}</span>
-          <span class="player-stats">
-            駅:<b>${stCount}</b> GUNO:<b>${p.guno}</b>
-          </span>
-          ${isTurn ? '<span class="turn-badge">▶ 手番</span>' : ""}
-          ${p.status === "eliminated" ? '<span class="elim-badge">脱落</span>' : ""}
-        </div>
-        <div class="hand-cards">${cardsHtml}</div>
+        <div class="${infoClass}"><b>${p.icon} ${p.name}</b> <small>Stations:${stCount} | GUNO:${p.guno} | Score:${score}</small>${turnLabel}</div>
+        <div class="player-cards-row">${cardsHtml}</div>
       </div>
     `;
   }).join("");

@@ -4,6 +4,18 @@
  * このファイルはV6固有の追加要素のみ定義する
  */
 
+/* ===== V6: #map 空領域（Leaflet未使用のため暗い背景のみ） ===== */
+#map {
+  background: #111;
+  border-radius: 12px;
+}
+
+/* ===== V6: JP/ENボタン disabled スタイル ===== */
+#btn-lang:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 /* ===== V6追加: オンラインボタン ===== */
 .btn-online {
   background: #003366 !important;
