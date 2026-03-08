@@ -78,6 +78,8 @@ html, body {
 .controls button:active { transform: scale(0.94); filter: brightness(0.85); }
 #btn-log    { background: #2a2a2a; color: #ccc; border: 1px solid #444; }
 .btn-new    { background: #c0392b !important; color: #fff !important; border: 2px solid #e74c3c !important; }
+.btn-online { background: #1a6b3c; color: #7fff7f; border: 1px solid #2ecc71; }
+.btn-online:hover { background: #2ecc71; color: #000; }
 .btn-auto-off { background: #2a2a2a; color: #ccc; border: 1px solid #444; }
 .btn-auto-on  { background: #1a6b1a; color: #7fff7f; border: 1px solid #2ea82e; }
 .btn-pause-active { background: #2a2a2a; color: #ccc; border: 1px solid #444; }
