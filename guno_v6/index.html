@@ -15,6 +15,7 @@
     <div><h2 style="margin:0; color:gold; font-size:1.1em; line-height:1;">GUNO v6</h2></div>
     <div class="controls">
       <button onclick="toggleLog()" id="btn-log">📜 ログ</button>
+      <button id="btn-online" onclick="openOnlineRoom()" class="btn-online">🌐 オンライン</button>
       <button id="btn-new" onclick="confirmNewGame()" class="btn-new">🎲 新規</button>
       <button id="btn-mode" onclick="toggleAuto()" class="btn-auto-off">▶ AUTO: OFF</button>
       <button id="btn-pause" onclick="togglePause()" class="btn-pause-active">⏸ 停止</button>
@@ -107,6 +108,9 @@
   </div>
   <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
 </div>
+
+<!-- ===== ルームパネルコンテナ ===== -->
+<div id="room-panel-container"></div>
 
 <!-- vendor -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
