@@ -93,13 +93,14 @@ function serializeCard(card) {
  */
 function serializePlayer(player) {
   return {
-    name:    player.name,
-    icon:    player.icon,
-    color:   player.color,
-    isHuman: player.isHuman,
-    status:  player.status,
-    guno:    player.guno,
-    hand:    player.hand.map(serializeCard),
+    name:      player.name,
+    icon:      player.icon,
+    color:     player.color,
+    isHuman:   player.isHuman,
+    status:    player.status,
+    guno:      player.guno,
+    hand:      player.hand.map(serializeCard),
+    sessionId: player.sessionId ?? null,  // ゲストアクション照合用
   };
 }
 
@@ -155,13 +156,14 @@ function deserializeCard(snap) {
  */
 function deserializePlayer(snap) {
   return {
-    name:    snap.name    ?? "Player",
-    icon:    snap.icon    ?? "👤",
-    color:   snap.color   ?? "#888",
-    isHuman: snap.isHuman ?? false,
-    status:  snap.status  ?? "active",
-    guno:    snap.guno    ?? 0,
-    hand:    (snap.hand   || []).map(deserializeCard),
+    name:      snap.name      ?? "Player",
+    icon:      snap.icon      ?? "👤",
+    color:     snap.color     ?? "#888",
+    isHuman:   snap.isHuman   ?? false,
+    status:    snap.status    ?? "active",
+    guno:      snap.guno      ?? 0,
+    hand:      (snap.hand     || []).map(deserializeCard),
+    sessionId: snap.sessionId ?? null,  // ゲストアクション照合用
   };
 }
 

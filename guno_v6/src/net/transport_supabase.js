@@ -51,6 +51,9 @@ export class TransportSupabase {
     this._playerIcon = playerIcon;
     this._channel = null;
     this._connected = false;
+    this._reconnectAttempts = 0;
+    this._maxReconnectAttempts = 5;
+    this._reconnectTimer = null;
 
     // ===== コールバック（外部から設定） =====
 
@@ -176,6 +179,7 @@ export class TransportSupabase {
         if (status === "SUBSCRIBED") {
           clearTimeout(timeout);
           this._connected = true;
+          this._reconnectAttempts = 0;
 
           // Presence に自分の情報を登録
           await this._channel.track({
@@ -189,12 +193,50 @@ export class TransportSupabase {
           resolve();
         } else if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
           clearTimeout(timeout);
-          const err = new Error(`Realtime 接続失敗: ${status}`);
-          if (this.onError) this.onError(err.message);
-          reject(err);
+          this._connected = false;
+          if (this._reconnectAttempts < this._maxReconnectAttempts) {
+            // 自動再接続を試みる
+            this._scheduleReconnect();
+            resolve(); // 初回接続失敗でも reject しない（再接続で復帰）
+          } else {
+            const err = new Error(`Realtime 接続失敗: ${status}`);
+            if (this.onError) this.onError(err.message);
+            reject(err);
+          }
         }
       });
     });
+  }
+
+  // ===== 再接続 =====
+
+  /**
+   * 再接続をスケジュールする（指数バックオフ）。
+   */
+  _scheduleReconnect() {
+    if (this._reconnectTimer) clearTimeout(this._reconnectTimer);
+    const delay = Math.min(1000 * Math.pow(2, this._reconnectAttempts), 30000);
+    this._reconnectAttempts++;
+    console.log(`[Transport] 再接続を試みます (${this._reconnectAttempts}/${this._maxReconnectAttempts}) - ${delay}ms 後`);
+    this._reconnectTimer = setTimeout(async () => {
+      try {
+        if (this._channel) {
+          await this._supabase.removeChannel(this._channel);
+          this._channel = null;
+        }
+        this._connected = false;
+        await this.connect();
+        console.log("[Transport] 再接続成功");
+        if (this.onConnectionChange) this.onConnectionChange("RECONNECTED");
+      } catch (e) {
+        console.warn("[Transport] 再接続失敗:", e.message);
+        if (this._reconnectAttempts < this._maxReconnectAttempts) {
+          this._scheduleReconnect();
+        } else {
+          if (this.onError) this.onError("再接続上限に達しました");
+        }
+      }
+    }, delay);
   }
 
   // ===== ゲストアクション送信 =====

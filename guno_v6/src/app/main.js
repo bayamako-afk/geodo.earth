@@ -11,8 +11,9 @@
  *   - window._gunoAppブリッジパターンは使用しない
  *
  * オンライン対戦（host-authoritative）:
- *   Host: game_states テーブルを更新 → Realtime で全員に配信
+ *   Host: game_states テーブルを更新 → Postgres Changes で全員に配信
  *   Guest: Broadcast でアクションを Host に送信
+ *   ゲストはCPUターンを実行しない（ホストのみ実行）
  */
 
 // ===== Import =====
@@ -68,7 +69,7 @@ let waitingHuman = false;
 /** @type {object|null} Realtime トランスポート */
 let _transport = null;
 
-/** @type {object|null} ルーム情報 */
+/** @type {object|null} ルーム情報 { room, sessionId, playerIndex, isHost, players } */
 let _roomInfo = null;
 
 /** @type {string|null} game_states レコード ID */
@@ -79,6 +80,9 @@ let _version = 1;
 
 /** @type {boolean} オンラインモード中かどうか */
 let _isOnline = false;
+
+/** @type {number} 自分のプレイヤーインデックス（オンライン時） */
+let _myPlayerIndex = 0;
 
 // ===== DOM ヘルパー =====
 
@@ -140,6 +144,15 @@ function buildMiniPack() {
   };
 }
 
+// ===== オンライン状態表示 =====
+
+function updateOnlineStatus(text, isConnected = false) {
+  const el = $("online-status");
+  if (!el) return;
+  el.textContent = isConnected ? `● ${text}` : `○ ${text}`;
+  el.style.color = isConnected ? "#4caf50" : "#888";
+}
+
 // ===== UI 全体更新 =====
 
 function renderAll() {
@@ -148,26 +161,30 @@ function renderAll() {
   const { players, turnIndex, deck, discardPile, mapState, lastHits, teidenPlayed, direction, turnCount, gameOver } = gameState;
   const topCard = discardPile.length > 0 ? discardPile[discardPile.length - 1] : null;
   const currentPlayer = players[turnIndex];
-  const playableIndices = (!gameOver && waitingHuman)
-    ? getPlayableIndices(players[0].hand, topCard)
+
+  // オンライン時: 自分のターンかどうかを判定
+  const isMyTurn = _isOnline ? (turnIndex === _myPlayerIndex) : true;
+  const playableIndices = (!gameOver && waitingHuman && isMyTurn)
+    ? getPlayableIndices(players[_myPlayerIndex].hand, topCard)
     : [];
 
   renderBoard({ packData, mapState, players, lastHits, teidenPlayed, topCard });
   renderDiscardPile($("discard-pile"), topCard);
-  renderDeckCount($("draw-pile-visual"), deck.length, waitingHuman && playableIndices.length === 0 && deck.length > 0);
+  renderDeckCount($("draw-pile-visual"), deck.length, waitingHuman && isMyTurn && playableIndices.length === 0 && deck.length > 0);
   renderHands({
     container: $("players-area"),
     players, turnIndex, gameOver,
-    playableIndices, isWaitingHuman: waitingHuman, autoPlay, mapState,
+    playableIndices, isWaitingHuman: waitingHuman && isMyTurn, autoPlay, mapState,
     onCardClick: handleCardClick,
+    myPlayerIndex: _myPlayerIndex,
   });
-  // V5小指: statusBarにヒントを統合（hint-areaは山手符あれば使用）
+  // statusBarにヒントを統合（V5と同じ方式）
   const statusEl = $("statusBar");
   if (statusEl) {
     if (gameOver) {
       statusEl.textContent = "対局終了";
       statusEl.classList.remove("is-warning", "is-danger", "is-paused");
-    } else if (waitingHuman) {
+    } else if (waitingHuman && isMyTurn) {
       if (playableIndices.length > 0) {
         statusEl.textContent = "💡 出せるカードをタップ";
         statusEl.classList.remove("is-warning", "is-danger", "is-paused");
@@ -178,6 +195,9 @@ function renderAll() {
         statusEl.textContent = "💡 パス（出せるカードなし）";
         statusEl.classList.remove("is-warning", "is-danger", "is-paused");
       }
+    } else if (_isOnline && waitingHuman && !isMyTurn) {
+      statusEl.textContent = `⏳ ${currentPlayer.name} の手番を待っています...`;
+      statusEl.classList.remove("is-warning", "is-danger", "is-paused");
     } else {
       renderStatusBar(statusEl, { turnCount, deckCount: deck.length, direction, currentPlayer, gameOver });
     }
@@ -205,35 +225,77 @@ function emit(event) {
 
 function handleCardClick(cardIdx) {
   if (!waitingHuman || gameState.gameOver) return;
-  waitingHuman = false;
 
-  if (_isOnline && !_roomInfo?.isHost) {
-    // ゲスト: アクションをホストに送信
-    _transport?.sendAction({ type: "play_card", cardIndex: cardIdx, session_id: getSessionId() });
+  if (_isOnline) {
+    if (gameState.turnIndex !== _myPlayerIndex) return; // 自分のターンでない
+    waitingHuman = false;
+
+    if (!_roomInfo?.isHost) {
+      // ゲスト: アクションをホストに送信
+      _transport?.sendAction({ type: "play_card", cardIndex: cardIdx, session_id: getSessionId() });
+      return;
+    }
+    // ホスト（かつ自分がプレイヤー）: ローカルで処理してブロードキャスト
+    playCard(gameState, _myPlayerIndex, cardIdx, emit);
+    renderAll();
+    if (!gameState.gameOver) {
+      endTurn(gameState, emit);
+      renderAll();
+      broadcastState();
+      scheduleNextTurn();
+    }
     return;
   }
 
+  // ローカルモード
+  waitingHuman = false;
   playCard(gameState, 0, cardIdx, emit);
   renderAll();
   if (!gameState.gameOver) {
     endTurn(gameState, emit);
     renderAll();
-    if (_isOnline && _roomInfo?.isHost) broadcastState();
     scheduleNextTurn();
   }
 }
 
 function handleDrawClick() {
   if (!waitingHuman || gameState.gameOver) return;
+
+  const myIdx = _isOnline ? _myPlayerIndex : 0;
   const topCard = gameState.discardPile.at(-1) ?? null;
-  const playable = getPlayableIndices(gameState.players[0].hand, topCard);
+  const playable = getPlayableIndices(gameState.players[myIdx].hand, topCard);
   if (playable.length > 0) return;
 
-  if (_isOnline && !_roomInfo?.isHost) {
-    _transport?.sendAction({ type: "draw_card", session_id: getSessionId() });
+  if (_isOnline) {
+    if (gameState.turnIndex !== _myPlayerIndex) return;
+
+    if (!_roomInfo?.isHost) {
+      _transport?.sendAction({ type: "draw_card", session_id: getSessionId() });
+      return;
+    }
+    // ホスト（かつ自分がプレイヤー）
+    waitingHuman = false;
+    drawCard(gameState, myIdx, emit);
+    renderAll();
+    const newTopCard = gameState.discardPile.at(-1) ?? null;
+    const newPlayable = getPlayableIndices(gameState.players[myIdx].hand, newTopCard);
+    if (newPlayable.length > 0) {
+      waitingHuman = true;
+      renderAll();
+      return;
+    }
+    passTurn(gameState, myIdx, emit);
+    renderAll();
+    if (!gameState.gameOver) {
+      endTurn(gameState, emit);
+      renderAll();
+      broadcastState();
+      scheduleNextTurn();
+    }
     return;
   }
 
+  // ローカルモード
   waitingHuman = false;
   drawCard(gameState, 0, emit);
   renderAll();
@@ -249,7 +311,6 @@ function handleDrawClick() {
   if (!gameState.gameOver) {
     endTurn(gameState, emit);
     renderAll();
-    if (_isOnline && _roomInfo?.isHost) broadcastState();
     scheduleNextTurn();
   }
 }
@@ -260,6 +321,16 @@ function scheduleNextTurn() {
   if (gameState.gameOver) return;
   const { players, turnIndex } = gameState;
   const current = players[turnIndex];
+
+  // オンライン時: ゲストはCPUターンを実行しない（ホストのみ実行）
+  if (_isOnline && !_roomInfo?.isHost) {
+    // ゲストは自分のターンになるまで待機
+    if (turnIndex === _myPlayerIndex) {
+      waitingHuman = true;
+      renderAll();
+    }
+    return;
+  }
 
   if (current.isHuman && !autoPlay) {
     waitingHuman = true;
@@ -288,8 +359,10 @@ async function startGame() {
   waitingHuman = false;
   paused = false;
   _isOnline = false;
+  _myPlayerIndex = 0;
   hideResult($("result-overlay"));
   clearLog($("log"));
+  updateOnlineStatus("ローカル", false);
 
   if (!packData) await loadPack();
 
@@ -372,6 +445,7 @@ function openOnlineRoom() {
 async function handleOnlineGameStart(info) {
   _roomInfo = info;
   _isOnline = true;
+  _myPlayerIndex = info.playerIndex;
   const { room, sessionId, playerIndex, isHost, players } = info;
 
   // ルームパネルを閉じる
@@ -384,12 +458,53 @@ async function handleOnlineGameStart(info) {
   // パックを読み込む
   if (!packData) await loadPack();
 
+  // オンライン状態を更新
+  updateOnlineStatus("接続中...", false);
+
   // トランスポートを接続
-  _transport = await createTransport(_supabase, room.id, {
-    isHost,
-    playerName: players[playerIndex]?.name ?? "Player",
-    playerIcon: players[playerIndex]?.icon ?? "🌊",
-  });
+  try {
+    _transport = await createTransport(_supabase, room.id, {
+      isHost,
+      playerName: players[playerIndex]?.name ?? "Player",
+      playerIcon: players[playerIndex]?.icon ?? "🌊",
+    });
+    updateOnlineStatus(isHost ? "ホスト" : "ゲスト", true);
+  } catch (e) {
+    console.error("[V6] Transport connection failed:", e);
+    updateOnlineStatus("接続失敗", false);
+    return;
+  }
+
+  // 接続状態変化のコールバックを設定
+  _transport.onConnectionChange = async (status) => {
+    if (status === "SUBSCRIBED" || status === "RECONNECTED") {
+      updateOnlineStatus(isHost ? "ホスト" : "ゲスト", true);
+      // 再接続時: 最新状態を取得して復帰
+      if (status === "RECONNECTED" && !isHost) {
+        try {
+          const latest = await fetchGameState(_supabase, room.id);
+          if (latest?.state_json) {
+            const s = typeof latest.state_json === "string"
+              ? JSON.parse(latest.state_json) : latest.state_json;
+            gameState = deserializeState(s);
+            _gameStateId = latest.id;
+            _version = latest.version;
+            waitingHuman = false;
+            renderAll();
+            if (!gameState.gameOver && gameState.turnIndex === _myPlayerIndex) {
+              waitingHuman = true;
+              renderAll();
+            }
+            console.log("[V6] 再接続後に最新状態を復元しました");
+          }
+        } catch (e) {
+          console.warn("[V6] 再接続後の状態取得失敗:", e.message);
+        }
+      }
+    } else if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
+      updateOnlineStatus("切断中...", false);
+    }
+  };
 
   if (isHost) {
     // ホスト: ゲームを初期化して Supabase に保存
@@ -399,18 +514,27 @@ async function handleOnlineGameStart(info) {
     hideResult($("result-overlay"));
     clearLog($("log"));
 
-    const playerConfigs = players.map(p => ({
+    // プレイヤー設定: 全プレイヤーをオンラインプレイヤーとして設定
+    // ホスト自身 (playerIndex=0) のみ isHuman=true、他は isHuman=false（ゲストが操作）
+    const playerConfigs = players.map((p, i) => ({
       name: p.name,
       icon: p.icon,
       color: p.color ?? "#174a7c",
-      isHuman: p.session_id === sessionId,
+      isHuman: i === playerIndex, // ホスト自身のみ true
+      sessionId: p.session_id,   // ゲストアクション照合用
     }));
 
     gameState = initGame({ packData, playerConfigs });
     const serialized = serializeState(gameState);
-    const record = await saveInitialGameState(_supabase, room.id, serialized);
-    _gameStateId = record.id;
-    _version = record.version;
+    try {
+      const record = await saveInitialGameState(_supabase, room.id, serialized);
+      _gameStateId = record.id;
+      _version = record.version;
+    } catch (e) {
+      console.error("[V6] saveInitialGameState failed:", e);
+      updateOnlineStatus("保存失敗", false);
+      return;
+    }
 
     // ゲストのアクションを受け取って処理する
     _transport.onGuestAction = handleGuestAction;
@@ -423,18 +547,33 @@ async function handleOnlineGameStart(info) {
       gameState = deserializeState(state);
       _version = state._version ?? _version;
       _gameStateId = state._gameStateId ?? _gameStateId;
+      waitingHuman = false; // ホストから状態を受け取ったらリセット
       renderAll();
+      // 自分のターンになったら入力待ちに
+      if (!gameState.gameOver && gameState.turnIndex === _myPlayerIndex) {
+        waitingHuman = true;
+        renderAll();
+      }
     };
 
-    // 既存の状態を取得（ゲーム開始済みの場合）
-    const existing = await fetchGameState(_supabase, room.id);
-    if (existing?.state_json) {
-      const s = typeof existing.state_json === "string"
-        ? JSON.parse(existing.state_json) : existing.state_json;
-      gameState = deserializeState(s);
-      _gameStateId = existing.id;
-      _version = existing.version;
-      renderAll();
+    // 既存の状態を取得（ゲーム開始済みの場合 / 切断復帰）
+    try {
+      const existing = await fetchGameState(_supabase, room.id);
+      if (existing?.state_json) {
+        const s = typeof existing.state_json === "string"
+          ? JSON.parse(existing.state_json) : existing.state_json;
+        gameState = deserializeState(s);
+        _gameStateId = existing.id;
+        _version = existing.version;
+        renderAll();
+        // 自分のターンなら入力待ちに
+        if (!gameState.gameOver && gameState.turnIndex === _myPlayerIndex) {
+          waitingHuman = true;
+          renderAll();
+        }
+      }
+    } catch (e) {
+      console.warn("[V6] fetchGameState failed:", e.message);
     }
   }
 }
@@ -445,13 +584,32 @@ async function handleOnlineGameStart(info) {
 function handleGuestAction(action) {
   if (!gameState || gameState.gameOver) return;
   const { players } = gameState;
+
+  // session_id でプレイヤーを特定
   const pIdx = players.findIndex(p => p.sessionId === action.session_id);
-  if (pIdx < 0 || pIdx !== gameState.turnIndex) return;
+  if (pIdx < 0) {
+    console.warn("[V6] handleGuestAction: unknown session_id", action.session_id);
+    return;
+  }
+  if (pIdx !== gameState.turnIndex) {
+    console.warn("[V6] handleGuestAction: not this player's turn", pIdx, gameState.turnIndex);
+    return;
+  }
 
   if (action.type === "play_card" && action.cardIndex != null) {
     playCard(gameState, pIdx, action.cardIndex, emit);
   } else if (action.type === "draw_card") {
     drawCard(gameState, pIdx, emit);
+    // 引いた後に出せるカードがあれば再度入力待ち（ゲストに通知）
+    const newTopCard = gameState.discardPile.at(-1) ?? null;
+    const newPlayable = getPlayableIndices(gameState.players[pIdx].hand, newTopCard);
+    if (newPlayable.length > 0) {
+      // 状態をブロードキャストして再度入力待ち
+      broadcastState();
+      renderAll();
+      return;
+    }
+    passTurn(gameState, pIdx, emit);
   } else if (action.type === "pass_turn") {
     passTurn(gameState, pIdx, emit);
   }
@@ -469,12 +627,26 @@ async function broadcastState() {
   if (!_gameStateId || !_roomInfo?.isHost) return;
   try {
     const serialized = serializeState(gameState);
+    // sessionId をプレイヤーに付与してシリアライズ
     const record = await updateGameState(
       _supabase, _gameStateId, serialized, _version, "turn"
     );
     _version = record.version;
   } catch (e) {
     console.warn("[V6] broadcastState error:", e.message);
+    // バージョン競合の場合は最新状態を取得して再試行
+    if (e.message.includes("バージョン競合")) {
+      try {
+        const latest = await fetchGameState(_supabase, _roomInfo.room.id);
+        if (latest) {
+          _version = latest.version;
+          _gameStateId = latest.id;
+          await broadcastState(); // 再試行
+        }
+      } catch (e2) {
+        console.error("[V6] broadcastState retry failed:", e2.message);
+      }
+    }
   }
 }
 
