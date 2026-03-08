@@ -1,121 +1,97 @@
+<!-- GUNO v6 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>GUNO V6</title>
-  <link rel="icon" type="image/png" href="../guno_v5/src/assets/cards/GUNO_BACK.png">
-  <link rel="stylesheet" href="./src/css/style.css">
-  <!-- FOUC防止: JS読み込み前に必ず非表示にする要素 -->
-  <style>
-    #result-overlay { display: none !important; }
-    .panel-log { visibility: hidden; pointer-events: none; }
-    body.show-log .panel-log { visibility: visible; pointer-events: auto; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GUNO v6</title>
+<!-- V5と同じCSSを流用 -->
+<link rel="stylesheet" href="../guno_v5/src/css/app.css">
+<link rel="icon" type="image/png" href="../guno_v5/src/assets/cards/GUNO_BACK.png">
+<!-- FOUC防止: JS読み込み前に必ず非表示 -->
+<style>
+  #result-overlay { display: none !important; }
+  #result-overlay.is-visible { display: flex !important; }
+</style>
 </head>
 <body>
-<div id="app">
 
-  <!-- ===== ヘッダー ===== -->
-  <div class="header" id="main-header">
-    <div><h2 style="margin:0; color:gold; font-size:1.1em; line-height:1;">GUNO v6</h2></div>
-    <div class="controls">
-      <button onclick="toggleLog()" id="btn-log">📜 ログ</button>
-      <button id="btn-online" onclick="openOnlineRoom()" class="btn-online">🌐 オンライン</button>
-      <button id="btn-new" onclick="confirmNewGame()" class="btn-new">🎲 新規</button>
-      <button id="btn-mode" onclick="toggleAuto()" class="btn-auto-off">▶ AUTO: OFF</button>
-      <button id="btn-pause" onclick="togglePause()" class="btn-pause-active">⏸ 停止</button>
-    </div>
-  </div>
-
-  <!-- ===== ステータスバー ===== -->
-  <div id="statusBar" class="status-bar">準備中...</div>
-
-  <!-- ===== ヒントエリア ===== -->
-  <div id="hint-area" class="hint-area hint-waiting">準備中...</div>
-
-  <!-- ===== メインコンテンツ（3列レイアウト） ===== -->
-  <div class="main-layout">
-
-    <!-- 左列：デッキ・捨て札 -->
-    <div class="panel panel-deck">
-      <div class="deck-area">
-        <div class="deck-label">DECK</div>
-        <div id="draw-pile-visual" class="draw-pile">?</div>
-        <div class="deck-label" style="margin-top:12px;">場</div>
-        <div id="discard-pile" class="discard-pile"></div>
-      </div>
+<div class="game-container">
+    <!-- 左列：ダッシュボード（DECK/LAST・手札・スコア） -->
+    <div class="panel panel-dashboard" id="dashboard-container">
+        <div style="display:flex; justify-content:space-around; align-items:center; background:#111; padding:5px 10px; border-radius:10px; margin-bottom:6px; flex-shrink: 0;">
+            <div style="text-align:center;"><small style="color:#666;">DECK</small><div id="draw-pile-visual" class="guno-back"></div></div>
+            <div id="direction-arrow" style="font-size:32px; color:gold;">↻</div>
+            <div style="text-align:center;"><small style="color:#666;">LAST</small><div id="discard-pile"></div></div>
+        </div>
+        <div id="players-area"></div>
+        <div id="persistent-result" style="margin-top:20px;"></div>
     </div>
 
-    <!-- 中央列：スロットエリア -->
+    <!-- 中央列：スロットエリア（ヘッダー＋路線・停電） -->
     <div class="panel panel-slots" id="slots-container">
-      <div id="slots-area">
-        <div class="line-wrapper">
-          <div id="header-jy" class="line-header" style="background:#00AA00;">JY 山手線</div>
-          <div id="map-jy" class="map-grid" style="--cols:10;"></div>
+        <!-- ヘッダー -->
+        <div class="header" id="main-header">
+            <div>
+                <h2 style="margin:0; color:gold; font-size:1.1em; line-height:1;">GUNO v6</h2>
+                <!-- V6追加: 接続状態表示 -->
+                <small id="online-status" style="color:#555; font-size:10px; display:block; margin-top:2px;">● ローカル</small>
+            </div>
+            <div class="controls">
+                <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
+                <button id="btn-new" onclick="confirmNewGame()" class="btn-new">🎲 <span id="btn-new-text">新規</span></button>
+                <button id="btn-mode" onclick="toggleAuto()" class="btn-auto-off">▶ AUTO: OFF</button>
+                <button id="btn-pause" onclick="togglePause()" class="btn-pause-active" style="display:none;">⏸ 停止</button>
+                <!-- V6追加: オンラインボタン -->
+                <button id="btn-online" onclick="openOnlineRoom()" class="btn-online">🌐 オンライン</button>
+            </div>
         </div>
-        <div class="line-wrapper">
-          <div id="header-m" class="line-header" style="background:#E60012;">M 丸ノ内線</div>
-          <div id="map-m" class="map-grid" style="--cols:10;"></div>
+        <div id="statusBar" class="status-bar">準備中...</div>
+        <div id="hint-area" style="background:rgba(76,175,80,0.1); color:#4CAF50; border-radius:6px; padding:6px 8px; margin-bottom:8px; font-weight:bold; text-align:center; font-size:13px; border:1px dashed #4CAF50; min-height:18px;"></div>
+        <div id="slots-area">
+            <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-g" class="line-header"></div><div id="map-g" class="map-grid"></div></div>
+            <div class="line-wrapper"><div id="header-t" class="line-header"></div><div id="map-t" class="map-grid"></div></div>
+            <div class="line-wrapper" style="background:#fff; border-radius:8px; padding:8px; margin-top:8px;">
+                <div id="header-blackout" class="line-header" style="background:#fff; color:#ff6b00; margin-bottom:8px;">⚡ 停電</div>
+                <div style="background:#1a1a1a; border-radius:6px; padding:12px;">
+                    <div id="map-blackout" class="map-grid" style="--cols:4;"></div>
+                </div>
+            </div>
         </div>
-        <div class="line-wrapper">
-          <div id="header-g" class="line-header" style="background:#F39700;">G 銀座線</div>
-          <div id="map-g" class="map-grid" style="--cols:10;"></div>
-        </div>
-        <div class="line-wrapper">
-          <div id="header-t" class="line-header" style="background:#009BBF;">T 東西線</div>
-          <div id="map-t" class="map-grid" style="--cols:10;"></div>
-        </div>
-        <!-- 停電エリア -->
-        <div class="line-wrapper blackout-wrapper">
-          <div id="header-blackout" class="line-header blackout-header">⚡ 停電</div>
-          <div class="blackout-inner">
-            <div id="map-blackout" class="map-grid" style="--cols:4;"></div>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- 右列：プレイヤー手札 -->
-    <div class="panel panel-players">
-      <div id="players-area"></div>
+    <!-- 右列：地図（V6ではLeaflet地図なし → プレイヤー情報パネルで代替） -->
+    <div class="panel panel-map" id="map-container">
+        <div id="map" style="height:100%; min-height:240px; background:#111; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#444; font-size:14px;">
+            地図（Phase 6以降で実装予定）
+        </div>
     </div>
 
-  </div><!-- /.main-layout -->
-
-  <!-- ===== 結果オーバーレイ ===== -->
-  <div id="result-overlay">
-    <div class="result-card">
-      <h1 style="color:gold; margin:0 0 16px;">🏆 VICTORY!</h1>
-      <table id="result-table"></table>
-      <div style="display:flex; justify-content:center; gap:10px; margin-top:16px;">
-        <button class="btn-restart"
-          style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">
-          もう一度遊ぶ
-        </button>
-        <button onclick="document.getElementById('result-overlay').style.display='none';"
-          style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">
-          ✖ 閉じる
-        </button>
-      </div>
+    <!-- 勝利オーバーレイ（V5と同一構造） -->
+    <div id="result-overlay">
+        <div class="result-card">
+            <h1 style="color:gold;">🏆 VICTORY!</h1>
+            <table id="result-table"></table>
+            <div style="display:flex; justify-content:center; gap:10px;">
+                <button class="btn-restart" style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">もう一度遊ぶ</button>
+                <button onclick="document.getElementById('result-overlay').classList.remove('is-visible');" style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">✖ 閉じる</button>
+            </div>
+        </div>
     </div>
-  </div>
-
-</div><!-- /#app -->
-
-<!-- ===== ログパネル ===== -->
-<div class="panel-log" id="log-container">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-    <h3 style="margin:0;">📜 ログ履歴</h3>
-    <button onclick="toggleLog()"
-      style="background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:2px 10px; border-radius:4px;">
-      閉じる
-    </button>
-  </div>
-  <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
 </div>
 
-<!-- ===== ルームパネルコンテナ ===== -->
+<!-- ログパネル（V5と同一構造） -->
+<div class="panel-log" id="log-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <h3 style="margin:0;" id="log-title">📜 ログ履歴</h3>
+        <button onclick="toggleLog()" style="background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:2px 10px; border-radius:4px;" id="btn-close-log">閉じる</button>
+    </div>
+    <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
+</div>
+
+<!-- V6追加: オンラインルームパネルコンテナ -->
 <div id="room-panel-container"></div>
 
 <!-- vendor -->
@@ -123,5 +99,15 @@
 
 <!-- app（ESM） -->
 <script type="module" src="src/app/main.js"></script>
+
+<script>
+// 新規ゲーム確認ダイアログ（誤タップ防止）
+function confirmNewGame() {
+    if (window._gunoApp && window._gunoApp.confirmNewGame) {
+        window._gunoApp.confirmNewGame();
+    }
+}
+</script>
+
 </body>
 </html>
