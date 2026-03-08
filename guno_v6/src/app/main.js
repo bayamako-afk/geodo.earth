@@ -327,9 +327,15 @@ function confirmNewGame() {
 // ===== オンラインルームパネルを開く =====
 
 function openOnlineRoom() {
-  injectRoomPanelStyles();
   const container = $("room-panel-container");
   if (!container) return;
+  // トグル: 既に開いている場合は閉じる
+  if (container.style.display === "block") {
+    container.style.display = "none";
+    container.innerHTML = "";
+    return;
+  }
+  injectRoomPanelStyles();
   container.style.display = "block";
   mountRoomPanel({
     container,
