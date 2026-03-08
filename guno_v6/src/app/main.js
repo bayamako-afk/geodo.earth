@@ -162,21 +162,21 @@ function renderAll() {
     onCardClick: handleCardClick,
   });
   // V5小指: statusBarにヒントを統合（hint-areaは山手符あれば使用）
-  const statusEl = $(“statusBar”);
+  const statusEl = $("statusBar");
   if (statusEl) {
     if (gameOver) {
-      statusEl.textContent = “対局終了”;
-      statusEl.classList.remove(“is-warning”, “is-danger”, “is-paused”);
+      statusEl.textContent = "対局終了";
+      statusEl.classList.remove("is-warning", "is-danger", "is-paused");
     } else if (waitingHuman) {
       if (playableIndices.length > 0) {
-        statusEl.textContent = “💡 出せるカードをタップ”;
-        statusEl.classList.remove(“is-warning”, “is-danger”, “is-paused”);
+        statusEl.textContent = "💡 出せるカードをタップ";
+        statusEl.classList.remove("is-warning", "is-danger", "is-paused");
       } else if (deck.length > 0) {
-        statusEl.textContent = “💡 DECKをタップして1枚引く”;
-        statusEl.classList.remove(“is-warning”, “is-danger”, “is-paused”);
+        statusEl.textContent = "💡 DECKをタップして1枚引く";
+        statusEl.classList.remove("is-warning", "is-danger", "is-paused");
       } else {
-        statusEl.textContent = “💡 パス（出せるカードなし）”;
-        statusEl.classList.remove(“is-warning”, “is-danger”, “is-paused”);
+        statusEl.textContent = "💡 パス（出せるカードなし）";
+        statusEl.classList.remove("is-warning", "is-danger", "is-paused");
       }
     } else {
       renderStatusBar(statusEl, { turnCount, deckCount: deck.length, direction, currentPlayer, gameOver });
