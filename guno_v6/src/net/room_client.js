@@ -116,7 +116,8 @@ export async function joinRoom(supabase, roomCode, { playerName = "ゲスト" } 
   const players = JSON.parse(room.players_json || "[]");
   const existing = players.find(p => p.session_id === sessionId);
   if (existing) {
-    return { room, sessionId, playerIndex: players.indexOf(existing) };
+    const isHost = existing.is_host === true || room.host_id === sessionId;
+    return { room, sessionId, playerIndex: players.indexOf(existing), isHost };
   }
 
   // プレイヤーを追加
@@ -143,7 +144,7 @@ export async function joinRoom(supabase, roomCode, { playerName = "ゲスト" } 
     .single();
 
   if (updateErr) throw new Error(`ルーム参加失敗: ${updateErr.message}`);
-  return { room: updated, sessionId, playerIndex: idx };
+  return { room: updated, sessionId, playerIndex: idx, isHost: false };
 }
 
 // ===== ルーム一覧取得 =====
