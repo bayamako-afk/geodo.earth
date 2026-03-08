@@ -316,6 +316,7 @@ window.startGame    = startGame;
 window.toggleAuto   = toggleAuto;
 window.togglePause  = togglePause;
 window.toggleLog    = toggleLog;
+window.humanDraw    = handleDrawClick;
 window.confirmNewGame = () => {
   if (gameState && !gameState.gameOver && gameState.turnCount > 0) {
     if (!confirm("新しいゲームを始めますか？\n現在のゲームは終了します。")) return;

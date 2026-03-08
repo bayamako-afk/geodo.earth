@@ -5,19 +5,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>GUNO v6</title>
-<!-- V5と同じCSSを流用 -->
-<link rel="stylesheet" href="../guno_v5/src/css/app.css">
+<!-- V5と同じCSS3枚をすべて読み込む（layout_v405.css + cards.css + log_drawer.css） -->
+<link rel="stylesheet" href="../guno_v5/src/css/layout_v405.css">
+<link rel="stylesheet" href="../guno_v5/src/css/cards.css">
+<link rel="stylesheet" href="../guno_v5/src/css/log_drawer.css">
+<!-- V6固有追加スタイル（オンライン要素のみ） -->
+<link rel="stylesheet" href="src/css/style.css">
 <link rel="icon" type="image/png" href="../guno_v5/src/assets/cards/GUNO_BACK.png">
-<!-- FOUC防止: JS読み込み前に必ず非表示 -->
+<!-- FOUC防止: CSS読み込み前に確実に非表示 -->
 <style>
   #result-overlay { display: none !important; }
   #result-overlay.is-visible { display: flex !important; }
+  .panel-log { transform: translateY(100%); }
+  body.show-log .panel-log { transform: translateY(0); }
 </style>
 </head>
 <body>
 
 <div class="game-container">
-    <!-- 左列：ダッシュボード（DECK/LAST・手札・スコア） -->
+    <!-- 左列：ダッシュボード（DECK/LAST・手札・スコア） ※V5と完全同一 -->
     <div class="panel panel-dashboard" id="dashboard-container">
         <div style="display:flex; justify-content:space-around; align-items:center; background:#111; padding:5px 10px; border-radius:10px; margin-bottom:6px; flex-shrink: 0;">
             <div style="text-align:center;"><small style="color:#666;">DECK</small><div id="draw-pile-visual" class="guno-back"></div></div>
@@ -28,26 +34,26 @@
         <div id="persistent-result" style="margin-top:20px;"></div>
     </div>
 
-    <!-- 中央列：スロットエリア（ヘッダー＋路線・停電） -->
+    <!-- 中央列：スロットエリア（ヘッダー＋路線・停電） ※V5と同一構造、V6追加要素のみ差分 -->
     <div class="panel panel-slots" id="slots-container">
-        <!-- ヘッダー -->
+        <!-- ヘッダー：PCでは中央列の上部、スマホでは画面上部に固定 -->
         <div class="header" id="main-header">
             <div>
                 <h2 style="margin:0; color:gold; font-size:1.1em; line-height:1;">GUNO v6</h2>
-                <!-- V6追加: 接続状態表示 -->
-                <small id="online-status" style="color:#555; font-size:10px; display:block; margin-top:2px;">● ローカル</small>
+                <!-- V6追加: 接続状態表示（V5にはない） -->
+                <small id="online-status" class="status-local">● ローカル</small>
             </div>
             <div class="controls">
                 <button onclick="toggleLog()" id="btn-log">📜 <span id="btn-log-text">ログ</span></button>
                 <button id="btn-new" onclick="confirmNewGame()" class="btn-new">🎲 <span id="btn-new-text">新規</span></button>
                 <button id="btn-mode" onclick="toggleAuto()" class="btn-auto-off">▶ AUTO: OFF</button>
                 <button id="btn-pause" onclick="togglePause()" class="btn-pause-active" style="display:none;">⏸ 停止</button>
-                <!-- V6追加: オンラインボタン -->
+                <!-- V6追加: オンラインボタン（V5にはない） -->
                 <button id="btn-online" onclick="openOnlineRoom()" class="btn-online">🌐 オンライン</button>
             </div>
         </div>
         <div id="statusBar" class="status-bar">準備中...</div>
-        <div id="hint-area" style="background:rgba(76,175,80,0.1); color:#4CAF50; border-radius:6px; padding:6px 8px; margin-bottom:8px; font-weight:bold; text-align:center; font-size:13px; border:1px dashed #4CAF50; min-height:18px;"></div>
+        <div id="hint-area"></div>
         <div id="slots-area">
             <div class="line-wrapper"><div id="header-jy" class="line-header"></div><div id="map-jy" class="map-grid"></div></div>
             <div class="line-wrapper"><div id="header-m" class="line-header"></div><div id="map-m" class="map-grid"></div></div>
@@ -62,27 +68,33 @@
         </div>
     </div>
 
-    <!-- 右列：地図（V6ではLeaflet地図なし → プレイヤー情報パネルで代替） -->
+    <!-- 右列：地図 ※V5と同一構造（V6ではLeaflet未使用のためプレースホルダー） -->
     <div class="panel panel-map" id="map-container">
         <div id="map" style="height:100%; min-height:240px; background:#111; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#444; font-size:14px;">
             地図（Phase 6以降で実装予定）
         </div>
     </div>
 
-    <!-- 勝利オーバーレイ（V5と同一構造） -->
+    <!-- 勝利オーバーレイ ※V5と完全同一（閉じるボタンのみis-visibleクラス方式に変更） -->
     <div id="result-overlay">
         <div class="result-card">
             <h1 style="color:gold;">🏆 VICTORY!</h1>
             <table id="result-table"></table>
             <div style="display:flex; justify-content:center; gap:10px;">
-                <button class="btn-restart" style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">もう一度遊ぶ</button>
+                <button onclick="startGame()" style="padding:10px 30px; background:gold; color:#000; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">もう一度遊ぶ</button>
                 <button onclick="document.getElementById('result-overlay').classList.remove('is-visible');" style="padding:10px 30px; background:#555; color:#fff; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">✖ 閉じる</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- ログパネル（V5と同一構造） -->
+<!-- カードグリッド（開発用）※V5と完全同一 -->
+<section id="dev-overlay" class="hidden" style="margin:20px auto; padding:20px; background:#1a1a1a; border-radius:8px; max-width:1400px;">
+    <h3 style="margin:8px 0; color:gold;">GUNO Cards (Digital Overlay)</h3>
+    <div id="cardGrid" class="guno-card-grid"></div>
+</section>
+
+<!-- ログパネル ※V5と完全同一 -->
 <div class="panel-log" id="log-container">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
         <h3 style="margin:0;" id="log-title">📜 ログ履歴</h3>
@@ -91,7 +103,7 @@
     <div id="log" style="flex-grow:1; overflow-y:auto; font-size:11px; background:#111; padding:10px; border-radius:6px;"></div>
 </div>
 
-<!-- V6追加: オンラインルームパネルコンテナ -->
+<!-- V6追加: オンラインルームパネルコンテナ（V5にはない） -->
 <div id="room-panel-container"></div>
 
 <!-- vendor -->
@@ -101,10 +113,38 @@
 <script type="module" src="src/app/main.js"></script>
 
 <script>
-// 新規ゲーム確認ダイアログ（誤タップ防止）
+// 新規ゲーム確認ダイアログ（誤タップ防止）※V5と同一ロジック
 function confirmNewGame() {
     if (window._gunoApp && window._gunoApp.confirmNewGame) {
         window._gunoApp.confirmNewGame();
+    }
+}
+// ログトグル（V5互換）
+function toggleLog() {
+    document.body.classList.toggle('show-log');
+}
+// AUTO切り替え（V5互換）
+function toggleAuto() {
+    if (window._gunoApp && window._gunoApp.toggleAuto) {
+        window._gunoApp.toggleAuto();
+    }
+}
+// 一時停止（V5互換）
+function togglePause() {
+    if (window._gunoApp && window._gunoApp.togglePause) {
+        window._gunoApp.togglePause();
+    }
+}
+// ゲーム開始（result-overlayの「もう一度遊ぶ」用）
+function startGame() {
+    if (window._gunoApp && window._gunoApp.startGame) {
+        window._gunoApp.startGame();
+    }
+}
+// オンラインルームを開く（V6追加）
+function openOnlineRoom() {
+    if (window._gunoApp && window._gunoApp.openOnlineRoom) {
+        window._gunoApp.openOnlineRoom();
     }
 }
 </script>
