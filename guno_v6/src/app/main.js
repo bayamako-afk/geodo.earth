@@ -1,148 +1,299 @@
 /**
  * guno_v6/src/app/main.js
- * GUNO V6 アプリケーション エントリーポイント
+ * GUNO V6 エントリーポイント（Phase 5: ローカル対戦プロトタイプ）
  *
- * Phase 1: v6-foundation
- * - Supabase 接続の確認
- * - rooms / game_states テーブルへの疎通確認
- * - Realtime 接続の確認
- * - 今後のモジュール（core, data, net, ui）の初期化ポイント
+ * アーキテクチャ（単方向データフロー）:
+ *   User Action → Engine → State → UI Render
+ *
+ * Phase 6 以降で net/room_client.js を統合してオンライン対戦に拡張する。
  */
 
 import GUNO_V6_CONFIG from "../../config.js";
+import { loadPackFromUrl } from "../data/pack_loader.js";
+import {
+  initGame, playCard, drawCard, passTurn, endTurn, runCpuTurn,
+} from "../core/game_engine.js";
+import { getPlayableIndices } from "../core/rules.js";
+import { renderHands, renderDiscardPile, renderDeckCount } from "../ui/hand.js";
+import { renderBoard, renderStatusBar, renderHint } from "../ui/board.js";
+import { logEvent, clearLog, toggleLog } from "../ui/log.js";
+import { showResult, hideResult } from "../ui/result.js";
 
-// ===== DOM ヘルパー =====
+// ===== グローバル状態 =====
+
+/** @type {object|null} ゲーム状態 */
+let gameState = null;
+
+/** @type {object|null} パックデータ */
+let packData = null;
+
+/** @type {boolean} オートプレイモード */
+let autoPlay = false;
+
+/** @type {boolean} 一時停止中 */
+let paused = false;
+
+/** @type {number|null} オートプレイタイマー */
+let autoTimer = null;
+
+/** @type {boolean} 人間プレイヤーの入力待ち */
+let waitingHuman = false;
+
+// ===== DOM 要素 =====
+
 const $ = (id) => document.getElementById(id);
 
-function setStatus(html) {
-  const el = $("status-message");
-  if (el) el.innerHTML = html;
-}
+// ===== パック読み込み =====
 
-function setBadge(id, ok, label) {
-  const el = $(id);
-  if (!el) return;
-  el.innerHTML = ok
-    ? `<span class="badge-ok">✓ ${label}</span>`
-    : `<span class="badge-pending">⚠ ${label}</span>`;
-}
+const PACK_URL = "../../assets/guno/routes_guno.json";
 
-// ===== Supabase クライアント初期化 =====
-let supabase = null;
-
-function initSupabase() {
-  const { url, anonKey } = GUNO_V6_CONFIG.supabase;
-  // グローバルに読み込まれた supabase-js UMD を使用
-  if (typeof window.supabase === "undefined") {
-    throw new Error("Supabase JS SDK が読み込まれていません");
-  }
-  supabase = window.supabase.createClient(url, anonKey);
-  $("info-url").textContent = url.replace("https://", "").replace(".supabase.co", "…");
-  return supabase;
-}
-
-// ===== テーブル疎通確認 =====
-async function checkTable(tableName) {
-  const { error } = await supabase
-    .from(tableName)
-    .select("id", { count: "exact", head: true });
-  return !error;
-}
-
-// ===== Realtime 接続確認 =====
-async function checkRealtime() {
-  return new Promise((resolve) => {
-    const channel = supabase
-      .channel("v6_foundation_check")
-      .on("system", { event: "connected" }, () => {
-        supabase.removeChannel(channel);
-        resolve(true);
-      })
-      .subscribe((status) => {
-        if (status === "SUBSCRIBED") {
-          supabase.removeChannel(channel);
-          resolve(true);
-        }
-        if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
-          supabase.removeChannel(channel);
-          resolve(false);
-        }
-      });
-
-    // タイムアウト: 5秒
-    setTimeout(() => {
-      supabase.removeChannel(channel);
-      resolve(false);
-    }, 5000);
-  });
-}
-
-// ===== メイン初期化 =====
-async function main() {
-  setStatus("Supabase に接続中...");
-
+async function loadPack() {
   try {
-    // 1. Supabase クライアント初期化
-    initSupabase();
-
-    // 2. テーブル疎通確認（並列）
-    const [roomsOk, gameStatesOk] = await Promise.all([
-      checkTable(GUNO_V6_CONFIG.tables.rooms),
-      checkTable(GUNO_V6_CONFIG.tables.gameStates),
-    ]);
-
-    setBadge("info-rooms", roomsOk, roomsOk ? "OK" : "エラー");
-    setBadge("info-game-states", gameStatesOk, gameStatesOk ? "OK" : "エラー");
-
-    // 3. Realtime 接続確認
-    const realtimeOk = await checkRealtime();
-    setBadge("info-realtime", realtimeOk, realtimeOk ? "OK" : "エラー");
-
-    // 4. 総合ステータス表示
-    const allOk = roomsOk && gameStatesOk && realtimeOk;
-
-    if (allOk) {
-      setStatus(
-        `<span class="ok">✓ Supabase 接続成功</span><br>` +
-        `<span style="color:#888; font-size:0.9rem;">rooms / game_states テーブルおよび Realtime が正常に動作しています。</span><br><br>` +
-        `<span class="highlight">GUNO V6</span> の基盤が整いました。<br>` +
-        `<span style="color:#888; font-size:0.85rem;">次のステップ: Phase 2 — Pack v1.0 ローダーの実装</span>`
-      );
-    } else {
-      const issues = [];
-      if (!roomsOk) issues.push("rooms テーブル");
-      if (!gameStatesOk) issues.push("game_states テーブル");
-      if (!realtimeOk) issues.push("Realtime");
-      setStatus(
-        `<span class="error">⚠ 一部の接続に問題があります</span><br>` +
-        `<span style="color:#888; font-size:0.9rem;">問題: ${issues.join(", ")}</span>`
-      );
-    }
-
-  } catch (err) {
-    console.error("[GUNO V6] 初期化エラー:", err);
-    setStatus(
-      `<span class="error">✗ 初期化に失敗しました</span><br>` +
-      `<span style="color:#888; font-size:0.85rem;">${err.message}</span>`
-    );
+    packData = await loadPackFromUrl(PACK_URL);
+    console.log("[V6] Pack loaded:", packData.meta?.name ?? "unknown");
+  } catch (e) {
+    console.warn("[V6] Pack load failed, using built-in mini pack:", e.message);
+    packData = buildMiniPack();
   }
-}
-
-// ===== エントリーポイント =====
-// DOM 読み込み完了後に main() を実行
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", main);
-} else {
-  main();
 }
 
 /**
- * 今後のモジュール統合ポイント（Phase 2〜6 で順次実装）
- *
- * Phase 2: import { loadPack } from "../data/pack_loader.js";
- * Phase 3: import { initGame, playCard, drawCard } from "../core/game_engine.js";
- * Phase 4: import { calculateScore } from "../core/scoring.js";
- * Phase 5: import { renderHand, renderBoard } from "../ui/hand.js";
- * Phase 6: import { createRoom, joinRoom } from "../net/room_client.js";
- *          import { connect } from "../net/transport_supabase.js";
+ * フォールバック用ミニパックを生成する。
  */
+function buildMiniPack() {
+  const routes = [
+    { lc:"JY", name_ja:"山手線", name_en:"Yamanote", color:"#00AA00", size:10 },
+    { lc:"M",  name_ja:"丸ノ内線", name_en:"Marunouchi", color:"#E60012", size:10 },
+    { lc:"G",  name_ja:"銀座線", name_en:"Ginza", color:"#F39700", size:10 },
+    { lc:"T",  name_ja:"東西線", name_en:"Tozai", color:"#009BBF", size:10 },
+  ];
+
+  const NAMES = {
+    JY: ["渋谷","恵比寿","目黒","五反田","大崎","品川","田町","浜松町","新橋","有楽町"],
+    M:  ["池袋","新大塚","茗荷谷","後楽園","本郷三丁目","御茶ノ水","淡路町","大手町","東京","銀座"],
+    G:  ["渋谷","表参道","外苑前","青山一丁目","赤坂見附","溜池山王","虎ノ門","新橋","銀座","京橋"],
+    T:  ["中野","落合","高田馬場","早稲田","神楽坂","飯田橋","九段下","竹橋","大手町","日本橋"],
+  };
+
+  const HUB = { JY:[0,0,0,0,0,0,0,0,0,0], M:[2,0,0,2,0,0,0,2,2,2], G:[2,2,0,0,2,0,0,0,2,0], T:[0,0,2,0,0,0,0,0,2,0] };
+
+  for (const r of routes) {
+    r.members = NAMES[r.lc].map((name, i) => ({
+      order: i+1, id:`${r.lc.toLowerCase()}-${i+1}`,
+      name_ja: name, name_en: name,
+      isHub: HUB[r.lc][i] > 0,
+      hub_degree_deck: HUB[r.lc][i], hub_bonus_deck: HUB[r.lc][i], hub_rank_deck: HUB[r.lc][i] > 0 ? "B" : "C",
+      hub_degree_global: 1, hub_bonus_global: 0, hub_rank_global: "C",
+    }));
+  }
+
+  const stations = [];
+  for (const r of routes) {
+    for (const s of r.members) {
+      stations.push({ lc:r.lc, name_ja:r.name_ja, name_en:r.name_en, color:r.color,
+        order:s.order, st_ja:s.name_ja, st_en:s.name_en, file:`${r.lc}_${s.order}`, ...s });
+    }
+  }
+
+  const teidenMap = Object.fromEntries(routes.map(r => [r.lc, `${r.lc}_TEIDEN`]));
+
+  return {
+    meta: { pack_id:"mini_v6", pack_version:"1.0", name:"GUNO V6 Mini Pack", description:"Built-in fallback pack" },
+    routes, stations, teidenMap, raw:{},
+  };
+}
+
+// ===== UI 全体更新 =====
+
+function renderAll() {
+  if (!gameState || !packData) return;
+
+  const { players, turnIndex, deck, discardPile, mapState, lastHits, teidenPlayed, direction, turnCount, gameOver } = gameState;
+  const topCard = discardPile.length > 0 ? discardPile[discardPile.length - 1] : null;
+  const currentPlayer = players[turnIndex];
+  const playableIndices = (!gameOver && waitingHuman)
+    ? getPlayableIndices(players[0].hand, topCard)
+    : [];
+
+  // ボード
+  renderBoard({ packData, mapState, players, lastHits, teidenPlayed, topCard });
+
+  // 捨て札・デッキ
+  renderDiscardPile($("discard-pile"), topCard);
+  renderDeckCount($("draw-pile-visual"), deck.length, waitingHuman && playableIndices.length === 0 && deck.length > 0);
+
+  // 手札
+  renderHands({
+    container: $("players-area"),
+    players, turnIndex, gameOver,
+    playableIndices, isWaitingHuman: waitingHuman, autoPlay, mapState,
+    onCardClick: handleCardClick,
+  });
+
+  // ステータス・ヒント
+  renderStatusBar($("statusBar"), { turnCount, deckCount: deck.length, direction, currentPlayer, gameOver });
+  renderHint($("hint-area"), { gameOver, isWaitingHuman: waitingHuman, playableIndices, deckCount: deck.length, currentPlayer });
+}
+
+// ===== ゲームイベントハンドラ =====
+
+function emit(event) {
+  logEvent($("log"), event);
+  if (event.type === "game_over") {
+    renderAll();
+    showResult({
+      overlayEl: $("result-overlay"),
+      tableEl:   $("result-table"),
+      players:   gameState.players,
+      mapState:  gameState.mapState,
+      stationsDB: packData.stations ?? [],
+      onRestart: startGame,
+    });
+  }
+}
+
+// ===== 人間プレイヤーの操作 =====
+
+function handleCardClick(cardIdx) {
+  if (!waitingHuman || gameState.gameOver) return;
+  waitingHuman = false;
+  playCard(gameState, 0, cardIdx, emit);
+  renderAll();
+  if (!gameState.gameOver) {
+    endTurn(gameState, emit);
+    renderAll();
+    scheduleNextTurn();
+  }
+}
+
+function handleDrawClick() {
+  if (!waitingHuman || gameState.gameOver) return;
+  const topCard = gameState.discardPile.at(-1) ?? null;
+  const playable = getPlayableIndices(gameState.players[0].hand, topCard);
+  if (playable.length > 0) return; // 出せるカードがある場合はドロー不可
+  waitingHuman = false;
+  drawCard(gameState, 0, emit);
+  renderAll();
+  // ドロー後に出せるカードがあれば再度待機
+  const newTopCard = gameState.discardPile.at(-1) ?? null;
+  const newPlayable = getPlayableIndices(gameState.players[0].hand, newTopCard);
+  if (newPlayable.length > 0) {
+    waitingHuman = true;
+    renderAll();
+    return;
+  }
+  passTurn(gameState, 0, emit);
+  renderAll();
+  if (!gameState.gameOver) {
+    endTurn(gameState, emit);
+    renderAll();
+    scheduleNextTurn();
+  }
+}
+
+// ===== ターン進行 =====
+
+function scheduleNextTurn() {
+  if (gameState.gameOver) return;
+  const { players, turnIndex } = gameState;
+  const current = players[turnIndex];
+
+  if (current.isHuman && !autoPlay) {
+    waitingHuman = true;
+    renderAll();
+    return;
+  }
+
+  // CPU ターン
+  const delay = autoPlay ? 300 : 600;
+  autoTimer = setTimeout(() => {
+    if (paused || gameState.gameOver) return;
+    runCpuTurn(gameState, emit);
+    renderAll();
+    if (!gameState.gameOver) {
+      endTurn(gameState, emit);
+      renderAll();
+      scheduleNextTurn();
+    }
+  }, delay);
+}
+
+// ===== ゲーム開始 =====
+
+export async function startGame() {
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  waitingHuman = false;
+  paused = false;
+  hideResult($("result-overlay"));
+  clearLog($("log"));
+
+  if (!packData) await loadPack();
+
+  const playerConfigs = [
+    { name:"あなた", icon:"🌊", color:"#174a7c", isHuman:true  },
+    { name:"CPU-1",  icon:"🌸", color:"#b52942", isHuman:false },
+    { name:"CPU-2",  icon:"🌙", color:"#e6b422", isHuman:false },
+    { name:"CPU-3",  icon:"🏯", color:"#745399", isHuman:false },
+  ];
+
+  gameState = initGame({ packData, playerConfigs });
+  renderAll();
+  scheduleNextTurn();
+}
+
+// ===== オートプレイ切り替え =====
+
+export function toggleAuto() {
+  autoPlay = !autoPlay;
+  const btn = $("btn-mode");
+  if (btn) {
+    btn.textContent = `▶ AUTO: ${autoPlay ? "ON" : "OFF"}`;
+    btn.className = autoPlay ? "btn-auto-on" : "btn-auto-off";
+  }
+  if (autoPlay && waitingHuman) {
+    waitingHuman = false;
+    scheduleNextTurn();
+  }
+}
+
+// ===== 一時停止 =====
+
+export function togglePause() {
+  paused = !paused;
+  const btn = $("btn-pause");
+  if (btn) {
+    btn.textContent = paused ? "▶ 再開" : "⏸ 停止";
+    btn.className = paused ? "btn-pause-paused" : "btn-pause-active";
+  }
+  if (!paused && !waitingHuman && gameState && !gameState.gameOver) {
+    scheduleNextTurn();
+  }
+}
+
+// ===== グローバル公開（HTML の onclick から呼ぶ） =====
+
+window.startGame    = startGame;
+window.toggleAuto   = toggleAuto;
+window.togglePause  = togglePause;
+window.toggleLog    = toggleLog;
+window.confirmNewGame = () => {
+  if (gameState && !gameState.gameOver && gameState.turnCount > 0) {
+    if (!confirm("新しいゲームを始めますか？\n現在のゲームは終了します。")) return;
+  }
+  startGame();
+};
+
+// ===== デッキクリックイベント =====
+
+document.addEventListener("DOMContentLoaded", () => {
+  const drawPileEl = $("draw-pile-visual");
+  if (drawPileEl) {
+    drawPileEl.addEventListener("click", handleDrawClick);
+  }
+  startGame();
+});
+
+// ===== Phase 6 統合ポイント =====
+// TODO: import { RoomClient } from "../net/room_client.js";
+// TODO: import { TransportSupabase } from "../net/transport_supabase.js";
+// TODO: import { RoomPanel } from "../ui/room_panel.js";

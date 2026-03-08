@@ -1,0 +1,465 @@
+/* =========================================
+   guno_v6/src/css/style.css
+   GUNO V6 スタイルシート
+   V5 デザイントークン継承 + Phase 5 ゲーム画面
+   ユーザー好み: 余白最小限・コンパクト表示
+========================================= */
+
+/* ===== Design Tokens (V5 互換) ===== */
+:root {
+  --bg:      #0b0b0b;
+  --panel:   #131313;
+  --line:    #2a2a2a;
+  --txt:     #eaeaea;
+  --gold:    #f5c518;
+  --red:     #c0392b;
+  --green:   #27ae60;
+  --blue:    #2980b9;
+  --card-w:  clamp(52px, 4.5vw, 80px);
+  --card-h:  calc(var(--card-w) * 1.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--txt);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* ===== App 全体レイアウト ===== */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ===== ヘッダー ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #0f0f0f;
+  border-bottom: 1px solid var(--line);
+  padding: 6px 10px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ===== コントロールボタン群 ===== */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.controls button, .header button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 9px;
+  border: none;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+.controls button:active { transform: scale(0.94); filter: brightness(0.85); }
+#btn-log    { background: #2a2a2a; color: #ccc; border: 1px solid #444; }
+.btn-new    { background: #c0392b !important; color: #fff !important; border: 2px solid #e74c3c !important; }
+.btn-auto-off { background: #2a2a2a; color: #ccc; border: 1px solid #444; }
+.btn-auto-on  { background: #1a6b1a; color: #7fff7f; border: 1px solid #2ea82e; }
+.btn-pause-active { background: #2a2a2a; color: #ccc; border: 1px solid #444; }
+.btn-pause-paused { background: #1a4a6b; color: #7fcfff; border: 1px solid #2e7ea8; }
+
+/* ===== ステータスバー ===== */
+.status-bar {
+  background: #0f0f0f;
+  border-bottom: 1px solid var(--line);
+  padding: 3px 10px;
+  font-size: 11px;
+  color: #888;
+  flex-shrink: 0;
+}
+
+/* ===== ヒントエリア ===== */
+.hint-area {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  min-height: 24px;
+}
+.hint-play    { background: rgba(76,175,80,0.1); color: #4CAF50; border-color: #4CAF50; }
+.hint-draw    { background: rgba(33,150,243,0.1); color: #2196F3; border-color: #2196F3; }
+.hint-pass    { background: rgba(255,152,0,0.1);  color: #FF9800; border-color: #FF9800; }
+.hint-waiting { background: transparent; color: #555; }
+.hint-gameover{ background: rgba(192,57,43,0.15); color: #e74c3c; border-color: #e74c3c; }
+
+/* ===== メインレイアウト（3列） ===== */
+.main-layout {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 6px;
+  padding: 6px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ===== パネル共通 ===== */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ===== 左列：デッキ・捨て札 ===== */
+.panel-deck {
+  width: calc(var(--card-w) + 20px);
+  min-width: 80px;
+}
+.deck-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 6px;
+  gap: 4px;
+}
+.deck-label {
+  font-size: 9px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.draw-pile {
+  width: var(--card-w);
+  height: var(--card-h);
+  background: #333;
+  border: 2px solid #555;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-image: url("../../../guno_v5/src/assets/cards/GUNO_BACK.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #444;
+}
+.draw-pile.can-draw {
+  cursor: pointer;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px #4CAF50, 0 0 18px 6px rgba(76,175,80,0.7);
+  animation: deckPulseGreen 1.6s ease-in-out infinite;
+}
+.draw-pile.deck-low {
+  border-color: #ff4444;
+  box-shadow: 0 0 0 2px #ff4444, 0 0 18px 6px rgba(255,68,68,0.7);
+  animation: deckPulseRed 0.9s ease-in-out infinite;
+}
+@keyframes deckPulseGreen {
+  0%,100% { box-shadow: 0 0 0 2px #4CAF50, 0 0 18px 6px rgba(76,175,80,0.7); }
+  50%     { box-shadow: 0 0 0 3px #4CAF50, 0 0 30px 10px rgba(76,175,80,0.9); }
+}
+@keyframes deckPulseRed {
+  0%,100% { box-shadow: 0 0 0 2px #ff4444, 0 0 18px 6px rgba(255,68,68,0.7); }
+  50%     { box-shadow: 0 0 0 3px #ff6666, 0 0 30px 10px rgba(255,68,68,0.9); }
+}
+.discard-pile {
+  width: var(--card-w);
+  min-height: var(--card-h);
+}
+
+/* ===== 中央列：スロットエリア ===== */
+.panel-slots {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#slots-area { padding: 6px; display: flex; flex-direction: column; gap: 6px; }
+.line-wrapper { background: var(--panel); border-radius: 7px; overflow: hidden; }
+.line-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 4px 4px 0 0;
+}
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 10), 1fr);
+  gap: 3px;
+  padding: 4px;
+  background: #0d0d0d;
+}
+.blackout-wrapper { background: #fff; padding: 6px; }
+.blackout-header  { background: #fff; color: #ff6b00; margin-bottom: 6px; }
+.blackout-inner   { background: #1a1a1a; border-radius: 5px; padding: 8px; }
+
+/* ===== 右列：プレイヤー手札 ===== */
+.panel-players {
+  width: clamp(200px, 22vw, 320px);
+  overflow-y: auto;
+}
+#players-area { padding: 6px; display: flex; flex-direction: column; gap: 6px; }
+
+/* ===== プレイヤーボックス ===== */
+.player-box {
+  background: #1a1a1a;
+  border-radius: 8px;
+  border-left: 4px solid #555;
+  padding: 6px;
+  transition: border-color 0.2s;
+}
+.player-box.active-turn {
+  border-left-color: var(--gold) !important;
+  box-shadow: 0 0 8px rgba(245,197,24,0.3);
+}
+.player-box.eliminated { opacity: 0.45; }
+.player-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 5px;
+  font-size: 11px;
+}
+.player-icon { font-size: 14px; }
+.player-name { font-weight: 700; flex: 1; }
+.player-stats { color: #888; font-size: 10px; }
+.turn-badge  { background: var(--gold); color: #000; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+.elim-badge  { background: #555; color: #999; font-size: 9px; padding: 1px 5px; border-radius: 4px; }
+.hand-cards  { display: flex; flex-wrap: wrap; gap: 3px; }
+
+/* ===== スロット（盤面） ===== */
+.slot {
+  background: #2a2a2a;
+  border: 1px solid #3d3d3d;
+  border-radius: 4px;
+  aspect-ratio: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+  min-width: 0;
+}
+.slot-order { font-size: 9px; color: #666; }
+.slot-name  { font-size: 9px; text-align: center; word-break: break-all; padding: 0 2px; }
+.owner-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* ===== GUNO カード（手札・スロット共通） ===== */
+.guno-card {
+  --w: var(--card-w);
+  --h: var(--card-h);
+  --line-color: #555;
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  border-radius: calc(var(--w) * 0.07);
+  overflow: hidden;
+  background: var(--line-color);
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  user-select: none;
+  transition: transform 0.12s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.12s ease;
+  flex-shrink: 0;
+}
+/* 路線別カラー */
+.guno-card[data-line="JY"] { --line-color: #00AA00; }
+.guno-card[data-line="M"]  { --line-color: #E60012; }
+.guno-card[data-line="G"]  { --line-color: #F39700; }
+.guno-card[data-line="T"]  { --line-color: #009BBF; }
+
+/* カードホバー（PC） */
+@media (hover: hover) {
+  .guno-card:hover { transform: scale(1.6) translateY(-8px); z-index: 9999; box-shadow: 0 16px 50px rgba(0,0,0,.5); }
+}
+
+/* プレイ可能 */
+.card.playable {
+  cursor: pointer;
+  border: 2px solid #4CAF50 !important;
+  box-shadow: 0 0 12px rgba(76,175,80,0.8);
+}
+/* プレイ不可 */
+.card.unplayable { filter: grayscale(80%) brightness(0.4); opacity: 0.5; }
+
+/* 裏面カード */
+.card-back {
+  width: var(--card-w);
+  height: var(--card-h);
+  background-image: url("../../../guno_v5/src/assets/cards/GUNO_BACK.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #444;
+  border: 2px solid #666;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+/* ===== カード内部レイアウト ===== */
+.corner {
+  position: absolute;
+  width: calc(var(--w) * 0.85);
+  height: calc(var(--w) * 0.85);
+  border-radius: 50%;
+  overflow: hidden;
+}
+.corner--tl { top: calc(var(--w) * -0.35); left: calc(var(--w) * -0.35); }
+.corner--br { bottom: calc(var(--w) * -0.35); right: calc(var(--w) * -0.35); }
+.corner-bg  { position: absolute; inset: 0; background: rgba(0,0,0,0.25); border-radius: 50%; }
+.corner-num {
+  position: absolute;
+  font-size: calc(var(--w) * 0.28);
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  bottom: calc(var(--w) * 0.08);
+  right: calc(var(--w) * 0.08);
+  line-height: 1;
+}
+.corner-num--rot { transform: rotate(180deg); top: calc(var(--w) * 0.08); left: calc(var(--w) * 0.08); bottom: auto; right: auto; }
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+.station-jp {
+  font-size: calc(var(--w) * 0.14);
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+  text-align: center;
+  line-height: 1.1;
+  word-break: break-all;
+}
+.station-jp.short-name { font-size: calc(var(--w) * 0.22); }
+.station-en {
+  font-size: calc(var(--w) * 0.065);
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  margin-top: 2px;
+  word-break: break-all;
+}
+.route-code {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: calc(var(--w) * 0.1);
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.05em;
+}
+.hub-star { color: gold; }
+
+/* ===== 停電カード ===== */
+.guno-card--teiden {
+  background: #1a1a1a !important;
+  border: 2px solid #ff6b00;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.teiden-icon { font-size: calc(var(--w) * 0.35); }
+.teiden-sub  { font-size: calc(var(--w) * 0.12); font-weight: 700; color: #ff6b00; }
+.teiden-en   { font-size: calc(var(--w) * 0.08); color: #888; }
+
+/* ===== 結果オーバーレイ ===== */
+#result-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.result-card {
+  background: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 16px;
+  padding: 24px 32px;
+  text-align: center;
+  max-width: 480px;
+  width: 90%;
+}
+#result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+#result-table th, #result-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+}
+#result-table th { color: #888; font-size: 11px; }
+
+/* ===== ログパネル ===== */
+.panel-log {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100vh;
+  background: #111;
+  border-left: 1px solid var(--line);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  transition: right 0.25s ease;
+}
+body.show-log .panel-log { right: 0; }
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .panel-deck {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .deck-area { flex-direction: row; gap: 12px; }
+  .panel-players { width: 100%; }
+}
