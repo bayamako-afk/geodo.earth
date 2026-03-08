@@ -5,6 +5,11 @@
  * アーキテクチャ（単方向データフロー）:
  *   User Action → Engine → State → UI Render
  *
+ * イベント登録方針:
+ *   - インラインonclickは一切使用しない
+ *   - 全てのUIイベントはDOMContentLoaded内でaddEventListenerにより登録する
+ *   - window._gunoAppブリッジパターンは使用しない
+ *
  * オンライン対戦（host-authoritative）:
  *   Host: game_states テーブルを更新 → Realtime で全員に配信
  *   Guest: Broadcast でアクションを Host に送信
@@ -259,7 +264,7 @@ function scheduleNextTurn() {
 
 // ===== ゲーム開始（ローカル） =====
 
-export async function startGame() {
+async function startGame() {
   if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
   waitingHuman = false;
   paused = false;
@@ -283,7 +288,7 @@ export async function startGame() {
 
 // ===== オートプレイ切り替え =====
 
-export function toggleAuto() {
+function toggleAuto() {
   autoPlay = !autoPlay;
   const btn = $("btn-mode");
   if (btn) {
@@ -298,7 +303,7 @@ export function toggleAuto() {
 
 // ===== 一時停止 =====
 
-export function togglePause() {
+function togglePause() {
   paused = !paused;
   const btn = $("btn-pause");
   if (btn) {
@@ -310,42 +315,30 @@ export function togglePause() {
   }
 }
 
-// ===== グローバル公開（HTML の onclick から呼ぶ） =====
+// ===== 新規ゲーム確認 =====
 
-window.startGame    = startGame;
-window.toggleAuto   = toggleAuto;
-window.togglePause  = togglePause;
-window.toggleLog    = toggleLog;
-window.humanDraw    = handleDrawClick;
-window.confirmNewGame = () => {
+function confirmNewGame() {
   if (gameState && !gameState.gameOver && gameState.turnCount > 0) {
     if (!confirm("新しいゲームを始めますか？\n現在のゲームは終了します。")) return;
   }
   startGame();
-};
+}
 
-// ===== デッキクリックイベント =====
+// ===== オンラインルームパネルを開く =====
 
-document.addEventListener("DOMContentLoaded", () => {
-  const drawPileEl = $("draw-pile-visual");
-  if (drawPileEl) drawPileEl.addEventListener("click", handleDrawClick);
-  startGame();
-});
-
-// ===== Phase 6: オンライン対戦 =====
-
-/**
- * 「オンライン」ボタンからルームパネルを開く。
- */
-export function openOnlineRoom() {
+function openOnlineRoom() {
   injectRoomPanelStyles();
   const container = $("room-panel-container");
+  if (!container) return;
+  container.style.display = "block";
   mountRoomPanel({
     container,
     supabase: _supabase,
     onGameStart: handleOnlineGameStart,
   });
 }
+
+// ===== Phase 6: オンライン対戦 =====
 
 /**
  * ルームパネルからゲーム開始コールバック。
@@ -357,7 +350,11 @@ async function handleOnlineGameStart(info) {
   const { room, sessionId, playerIndex, isHost, players } = info;
 
   // ルームパネルを閉じる
-  $("room-panel-container").innerHTML = "";
+  const container = $("room-panel-container");
+  if (container) {
+    container.innerHTML = "";
+    container.style.display = "none";
+  }
 
   // パックを読み込む
   if (!packData) await loadPack();
@@ -456,5 +453,45 @@ async function broadcastState() {
   }
 }
 
-// グローバル公開
-window.openOnlineRoom = openOnlineRoom;
+// ===== DOMContentLoaded: 全UIイベントをaddEventListenerで登録 =====
+
+document.addEventListener("DOMContentLoaded", () => {
+  // デッキ（山札）クリック → カードを引く
+  const drawPileEl = $("draw-pile-visual");
+  if (drawPileEl) drawPileEl.addEventListener("click", handleDrawClick);
+
+  // ログボタン
+  const btnLog = $("btn-log");
+  if (btnLog) btnLog.addEventListener("click", () => toggleLog());
+
+  // ログを閉じるボタン
+  const btnCloseLog = $("btn-close-log");
+  if (btnCloseLog) btnCloseLog.addEventListener("click", () => toggleLog());
+
+  // 新規ゲームボタン
+  const btnNew = $("btn-new");
+  if (btnNew) btnNew.addEventListener("click", confirmNewGame);
+
+  // オートプレイ切り替えボタン
+  const btnMode = $("btn-mode");
+  if (btnMode) btnMode.addEventListener("click", toggleAuto);
+
+  // 一時停止ボタン
+  const btnPause = $("btn-pause");
+  if (btnPause) btnPause.addEventListener("click", togglePause);
+
+  // 結果オーバーレイ: もう一度遊ぶ
+  const btnRestart = $("btn-restart");
+  if (btnRestart) btnRestart.addEventListener("click", startGame);
+
+  // 結果オーバーレイ: 閉じる
+  const btnCloseResult = $("btn-close-result");
+  if (btnCloseResult) btnCloseResult.addEventListener("click", () => hideResult($("result-overlay")));
+
+  // V6追加: オンラインボタン
+  const btnOnline = $("btn-online");
+  if (btnOnline) btnOnline.addEventListener("click", openOnlineRoom);
+
+  // ゲーム開始
+  startGame();
+});

@@ -60,13 +60,14 @@ export function showResult({ overlayEl, tableEl, players, mapState, stationsDB =
     <tbody>${rows}</tbody>
   `;
 
-  // 「もう一度」ボタンのイベント
-  const restartBtn = overlayEl.querySelector(".btn-restart");
+  // 「もう一度」ボタンのイベント（IDで取得）
+  const restartBtn = overlayEl.querySelector("#btn-restart") || overlayEl.querySelector(".btn-restart");
   if (restartBtn && onRestart) {
+    // 既存のリスナーを避けるためonclickで設定
     restartBtn.onclick = onRestart;
   }
 
-  overlayEl.classList.add("is-visible");
+  overlayEl.style.display = "flex";
 
   // 紙吹雪
   if (window.confetti) {
@@ -81,5 +82,5 @@ export function showResult({ overlayEl, tableEl, players, mapState, stationsDB =
  */
 export function hideResult(overlayEl) {
   if (!overlayEl) return;
-  overlayEl.classList.remove("is-visible");
+  overlayEl.style.display = "none";
 }
