@@ -3,7 +3,7 @@
     "pack_version": "1.0",
     "pack_id": "tokyo_core",
     "name": "Tokyo Core Lines",
-    "description": "山手線・丸ノ内線・銀座線（各10駅）",
+    "description": "山手線・丸ノ内線・銀座線・東西線（各10駅）",
     "generated_by": "GUNO Deck Generator v1.0",
     "generated_at": "2026-03-08"
   },
@@ -225,6 +225,76 @@
       "name_en": "Kyobashi",
       "station_code": "g-10",
       "cross_lines": []
+    },
+    "t-01": {
+      "type": "station",
+      "name_ja": "西船橋",
+      "name_en": "Nishi-funabashi",
+      "station_code": "t-01",
+      "cross_lines": []
+    },
+    "t-02": {
+      "type": "station",
+      "name_ja": "原木中山",
+      "name_en": "Baraki-nakayama",
+      "station_code": "t-02",
+      "cross_lines": []
+    },
+    "t-03": {
+      "type": "station",
+      "name_ja": "妙典",
+      "name_en": "Myoden",
+      "station_code": "t-03",
+      "cross_lines": []
+    },
+    "t-04": {
+      "type": "station",
+      "name_ja": "行徳",
+      "name_en": "Gyotoku",
+      "station_code": "t-04",
+      "cross_lines": []
+    },
+    "t-05": {
+      "type": "station",
+      "name_ja": "南行徳",
+      "name_en": "Minami-gyotoku",
+      "station_code": "t-05",
+      "cross_lines": []
+    },
+    "t-06": {
+      "type": "station",
+      "name_ja": "浦安",
+      "name_en": "Urayasu",
+      "station_code": "t-06",
+      "cross_lines": []
+    },
+    "t-07": {
+      "type": "station",
+      "name_ja": "葛西",
+      "name_en": "Kasai",
+      "station_code": "t-07",
+      "cross_lines": []
+    },
+    "t-08": {
+      "type": "station",
+      "name_ja": "西葛西",
+      "name_en": "Nishi-kasai",
+      "station_code": "t-08",
+      "cross_lines": []
+    },
+    "t-09": {
+      "type": "station",
+      "name_ja": "南砂町",
+      "name_en": "Minami-sunacho",
+      "station_code": "t-09",
+      "cross_lines": []
+    },
+    "t-10": {
+      "type": "station",
+      "name_ja": "東陽町",
+      "name_en": "Tatsumi",
+      "station_code": "t-10",
+      "cross_lines": []
     }
   },
   "collections": {
@@ -287,6 +357,26 @@
         "g-09",
         "g-10"
       ]
+    },
+    "T": {
+      "kind": "route",
+      "lc": "T",
+      "name_ja": "東西線",
+      "name_en": "Tozai",
+      "color": "#009BBF",
+      "size": 10,
+      "members": [
+        "t-01",
+        "t-02",
+        "t-03",
+        "t-04",
+        "t-05",
+        "t-06",
+        "t-07",
+        "t-08",
+        "t-09",
+        "t-10"
+      ]
     }
   },
   "layouts": {
@@ -300,6 +390,9 @@
         },
         {
           "collection_id": "G"
+        },
+        {
+          "collection_id": "T"
         }
       ]
     }

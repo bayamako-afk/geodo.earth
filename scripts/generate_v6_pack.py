@@ -49,6 +49,14 @@ ROUTES_CONFIG = [
         "color": "#F39700",
         "deck_size": 10,
     },
+    {
+        "geojson_file": "tokyo-metro-tozai_stations.geojson",
+        "lc": "T",
+        "name_ja": "東西線",
+        "name_en": "Tozai",
+        "color": "#009BBF",
+        "deck_size": 10,
+    },
 ]
 
 # 駅名の日英マッピング
@@ -83,6 +91,17 @@ STATION_EN_MAP = {
     "三越前": "Mitsukoshimae",
     "末広町": "Suehirocho", "上野広小路": "Ueno-hirokoji",
     "稲荷町": "Inaricho", "田原町": "Tawaramachi", "浅草": "Asakusa",
+    # 東西線
+    "中野": "Nakano", "落合": "Ochiai",
+    "早稲田": "Waseda", "神楽坂": "Kagurazaka",
+    "飯田橋": "Iidabashi", "九段下": "Kudanshita",
+    "竹橋": "Takebashi",
+    "茅場町": "Kayabacho", "門前仲町": "Monzen-nakacho",
+    "木場": "Kiba", "東陽町": "Tatsumi", "南砂町": "Minami-sunacho",
+    "西葛西": "Nishi-kasai", "葛西": "Kasai",
+    "浦安": "Urayasu", "南行徳": "Minami-gyotoku",
+    "行徳": "Gyotoku", "妙典": "Myoden",
+    "原木中山": "Baraki-nakayama", "西船橋": "Nishi-funabashi",
 }
 
 
@@ -184,7 +203,7 @@ def generate_v6_pack():
             "pack_version": "1.0",
             "pack_id": "tokyo_core",
             "name": "Tokyo Core Lines",
-            "description": "山手線・丸ノ内線・銀座線（各10駅）",
+            "description": "山手線・丸ノ内線・銀座線・東西線（各10駅）",
             "generated_by": "GUNO Deck Generator v1.0",
             "generated_at": str(date.today()),
         },
