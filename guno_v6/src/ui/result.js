@@ -5,6 +5,9 @@
  * 責務:
  *   - ゲーム終了時にランキングテーブルを表示する
  *   - 結果オーバーレイの表示/非表示を制御する
+ *
+ * スコア内訳表示列:
+ *   順位 | Player | Total | 駅数 | 駅pt | GUNO | GUNO pt | Hub
  */
 
 import { calcRanking } from "../core/scoring.js";
@@ -32,18 +35,32 @@ export function showResult({ overlayEl, tableEl, players, mapState, stationsDB =
     const isWinner = i === 0;
     const styleAttr = isWinner ? 'style="color:gold; font-weight:bold;"' : "";
     const aliveIcon = r.isAlive ? "" : '<span style="opacity:.5;">💀</span>';
-    // RankEntry fields: playerIcon, playerName (r.player is not a field of RankEntry)
-    const icon = r.playerIcon ?? r.player?.icon ?? "🎮";
-    const name = r.playerName ?? r.player?.name ?? "Player";
+
+    // RankEntry fields: playerIcon, playerName, stationCount, stationPoints, guno, gunoPoints, hubBonus, total
+    // Safe fallbacks for icon and name only — score fields are always present in RankEntry
+    const icon  = r.playerIcon ?? r.player?.icon ?? "🎮";
+    const name  = r.playerName ?? r.player?.name ?? "Player";
+
+    // Score breakdown values (always defined in RankEntry from calcScoreDetail)
+    const stCount  = r.stationCount  ?? 0;
+    const stPts    = r.stationPoints ?? stCount;   // stationPoints = stationCount × 1pt
+    const guno     = r.guno          ?? 0;
+    const gunoPts  = r.gunoPoints    ?? 0;
+    const hub      = r.hubBonus      ?? 0;
+    const total    = r.total         ?? (stPts + gunoPts + hub);
+
+    const hubCell  = hub > 0 ? `+${hub}` : "-";
+
     rows += `
       <tr ${styleAttr}>
         <td>${isWinner ? "🏆" : i + 1}</td>
         <td>${icon} ${name} ${aliveIcon}</td>
-        <td><b>${r.total}</b></td>
-        <td>${r.stationCount}</td>
-        <td>${r.guno}</td>
-        <td>${r.gunoPoints}</td>
-        <td>${r.hubBonus > 0 ? "+" + r.hubBonus : "-"}</td>
+        <td><b>${total}</b></td>
+        <td>${stCount}</td>
+        <td>${stPts}</td>
+        <td>${guno}</td>
+        <td>${gunoPts}</td>
+        <td>${hubCell}</td>
       </tr>
     `;
   });
@@ -54,10 +71,11 @@ export function showResult({ overlayEl, tableEl, players, mapState, stationsDB =
         <th>順位</th>
         <th>Player</th>
         <th>Total</th>
-        <th>駅</th>
-        <th>GUNO</th>
-        <th>GUNO pt</th>
-        <th>Hub</th>
+        <th title="所有駅数">駅数</th>
+        <th title="駅ポイント（駅数×1pt）">駅pt</th>
+        <th title="GUNO達成回数">GUNO</th>
+        <th title="GUNOポイント（回数×10pt）">GUNO pt</th>
+        <th title="乗換駅ボーナス">Hub</th>
       </tr>
     </thead>
     <tbody>${rows}</tbody>
