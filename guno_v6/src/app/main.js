@@ -90,7 +90,7 @@ const $ = (id) => document.getElementById(id);
 
 // ===== パック読み込み =====
 
-const PACK_URL = "../../assets/guno/routes_guno.json";
+const PACK_URL = "../../assets/guno/guno_pack_v6.json";
 
 async function loadPack() {
   try {
