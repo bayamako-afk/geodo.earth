@@ -109,16 +109,18 @@ export async function joinRoom(supabase, roomCode, { playerName = "ゲスト" } 
     .single();
 
   if (fetchErr || !room) throw new Error(`ルームが見つかりません: ${code}`);
-  if (room.status !== "waiting") throw new Error("このルームはすでにゲームが開始されています");
-  if (room.player_count >= room.max_players) throw new Error("ルームが満員です");
 
-  // 既に参加済みか確認
+  // 既に参加済みか確認（切断復帰を含む）
   const players = JSON.parse(room.players_json || "[]");
   const existing = players.find(p => p.session_id === sessionId);
   if (existing) {
     const isHost = existing.is_host === true || room.host_id === sessionId;
     return { room, sessionId, playerIndex: players.indexOf(existing), isHost };
   }
+
+  // 新規参加の場合: waiting 状態のみ許可
+  if (room.status !== "waiting") throw new Error("このルームはすでにゲームが開始されています");
+  if (room.player_count >= room.max_players) throw new Error("ルームが満員です");
 
   // プレイヤーを追加
   const icons = ["🌸", "🌙", "🏯", "🌊"];
