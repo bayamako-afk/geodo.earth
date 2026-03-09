@@ -262,3 +262,22 @@
   transform: none !important;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
 }
+
+/* ===== V6: カードサイズ調整 ===== */
+/*
+ * 問題: .guno-card のデフォルト --w は 220px（大きすぎる）
+ * --card-w は .map-grid コンテナクエリ内でのみ定義されるため
+ * 手札エリアでは var(--card-w) が未定義になり 220px のままになる
+ */
+
+/* 手札カードを適切なサイズに固定 */
+.player-cards-row .guno-card {
+  --w: 64px;
+}
+
+/* マップスロットの最大サイズを拡大（90px → 120px） */
+@supports (width: 1cqw) {
+  .map-grid {
+    --card-w: clamp(28px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols)), 120px);
+  }
+}

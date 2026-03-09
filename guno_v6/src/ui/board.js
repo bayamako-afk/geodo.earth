@@ -29,7 +29,7 @@ function ownedSlotHtml(lc, order, station, owner) {
   const shortClass = nameClean.length <= 2 ? "short-name" : "";
 
   return `
-    <div class="slot active guno-card" data-line="${lc}" style="border:2px solid ${owner.color};">
+    <div class="slot active guno-card" data-line="${lc}" style="margin:0; border:2px solid ${owner.color};">
       <div class="corner corner--tl">
         <div class="corner-bg"></div>
         <div class="corner-num">${order}</div>
@@ -118,7 +118,7 @@ export function renderBoard({
       const { lc } = route;
       if (teidenPlayed[lc]) {
         bh += `
-          <div class="slot active guno-card guno-card--teiden" data-line="${lc}" style="border:2px solid #fff; --w:var(--card-w); margin:0;">
+          <div class="slot active guno-card guno-card--teiden" data-line="${lc}" style="border:2px solid #fff; margin:0;">
             <div class="teiden-icon">⚡</div>
             <div class="teiden-sub">停電</div>
             <div class="teiden-en">Blackout</div>

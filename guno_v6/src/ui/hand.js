@@ -33,7 +33,7 @@ function stationCardHtml(card, { canPlay, isHuman, autoPlay, cardIdx }) {
   const clickAttr = canPlay ? `data-card-idx="${cardIdx}"` : "";
 
   return `
-    <div class="card guno-card ${playableClass}" data-line="${card.lc}" ${clickAttr} title="${card.st_ja} (${card.st_en})">
+    <div class="card guno-card ${playableClass}" data-line="${card.lc}" ${clickAttr} title="${card.st_ja} (${card.st_en})" style="margin:0;">
       <div class="corner corner--tl">
         <div class="corner-bg"></div>
         <div class="corner-num">${card.order}</div>
@@ -62,7 +62,7 @@ function teidenCardHtml(card, { canPlay, cardIdx }) {
   const playableClass = canPlay ? "playable" : "";
   const clickAttr = canPlay ? `data-card-idx="${cardIdx}"` : "";
   return `
-    <div class="card guno-card guno-card--teiden ${playableClass}" data-line="${card.lc}" ${clickAttr}>
+    <div class="card guno-card guno-card--teiden ${playableClass}" data-line="${card.lc}" ${clickAttr} style="margin:0;">
       <div class="teiden-icon">⚡</div>
       <div class="teiden-sub">停電</div>
       <div class="teiden-en">Blackout</div>
