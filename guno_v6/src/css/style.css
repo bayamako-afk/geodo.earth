@@ -243,3 +243,22 @@
   color: #888;
   font-size: 11px;
 }
+
+/* ===== CPU手札 裸面カード ===== */
+/* hand.js の backCardHtml() が生成する .card.card-back に適用 */
+/* style.css の位置: guno_v6/src/css/style.css */
+/* index.html から見た相対パス: assets/cards/GUNO_BACK.png */
+/* このCSSファイルから見た相対パス: ../../assets/cards/GUNO_BACK.png */
+.card-back {
+  background-image: url('../../assets/cards/GUNO_BACK.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #1a1a2e;
+  border-color: #444 !important;
+  cursor: default;
+}
+.card-back:hover {
+  transform: none !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
+}
