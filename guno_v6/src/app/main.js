@@ -97,7 +97,13 @@ async function loadPack() {
     packData = await loadPackFromUrl(PACK_URL);
     console.log("[V6] Pack loaded:", packData.meta?.name ?? "unknown");
   } catch (e) {
-    console.warn("[V6] Pack load failed, using built-in mini pack:", e.message);
+    // routes_guno.json is a V5 GeoJSON-reference format, not a V6 pack.
+    // Falling back to the built-in mini pack is the expected behavior.
+    console.info(
+      "[V6] External pack not available (V5 format or missing pack_meta.pack_version). " +
+      "Using built-in mini pack (4 lines: JY/M/G/T). " +
+      "Detail:", e.message
+    );
     packData = buildMiniPack();
   }
 }
@@ -516,9 +522,10 @@ async function handleOnlineGameStart(info) {
 
     // プレイヤー設定: 全プレイヤーをオンラインプレイヤーとして設定
     // ホスト自身 (playerIndex=0) のみ isHuman=true、他は isHuman=false（ゲストが操作）
+    const _DEFAULT_ICONS = ["🌊", "🌸", "🌙", "🌏"];
     const playerConfigs = players.map((p, i) => ({
-      name: p.name,
-      icon: p.icon,
+      name: p.name ?? `Player${i + 1}`,
+      icon: p.icon ?? _DEFAULT_ICONS[i % _DEFAULT_ICONS.length],
       color: p.color ?? "#174a7c",
       isHuman: i === playerIndex, // ホスト自身のみ true
       sessionId: p.session_id,   // ゲストアクション照合用

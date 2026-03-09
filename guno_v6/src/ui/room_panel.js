@@ -162,7 +162,7 @@ async function loadRoomList(container, supabase, onGameStart) {
 async function handleCreateRoom({ container, supabase, onGameStart, playerName, playerIcon }) {
   showError(container, "");
   try {
-    const { room, sessionId } = await createRoom(supabase, { playerName });
+    const { room, sessionId } = await createRoom(supabase, { playerName, playerIcon });
     showWaitingRoom({ container, supabase, room, sessionId, playerIndex: 0, isHost: true, playerName, playerIcon, onGameStart });
   } catch (e) {
     showError(container, e.message);
@@ -174,7 +174,7 @@ async function handleCreateRoom({ container, supabase, onGameStart, playerName, 
 async function handleJoinRoom({ container, supabase, onGameStart, roomCode, playerName, playerIcon }) {
   showError(container, "");
   try {
-    const { room, sessionId, playerIndex, isHost } = await joinRoom(supabase, roomCode, { playerName });
+    const { room, sessionId, playerIndex, isHost } = await joinRoom(supabase, roomCode, { playerName, playerIcon });
     showWaitingRoom({ container, supabase, room, sessionId, playerIndex, isHost: isHost ?? false, playerName, playerIcon, onGameStart });
   } catch (e) {
     showError(container, e.message);

@@ -32,10 +32,13 @@ export function showResult({ overlayEl, tableEl, players, mapState, stationsDB =
     const isWinner = i === 0;
     const styleAttr = isWinner ? 'style="color:gold; font-weight:bold;"' : "";
     const aliveIcon = r.isAlive ? "" : '<span style="opacity:.5;">💀</span>';
+    // RankEntry fields: playerIcon, playerName (r.player is not a field of RankEntry)
+    const icon = r.playerIcon ?? r.player?.icon ?? "🎮";
+    const name = r.playerName ?? r.player?.name ?? "Player";
     rows += `
       <tr ${styleAttr}>
         <td>${isWinner ? "🏆" : i + 1}</td>
-        <td>${r.player.icon} ${r.player.name} ${aliveIcon}</td>
+        <td>${icon} ${name} ${aliveIcon}</td>
         <td><b>${r.total}</b></td>
         <td>${r.stationCount}</td>
         <td>${r.guno}</td>

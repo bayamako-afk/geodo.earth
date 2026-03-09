@@ -60,7 +60,7 @@ export function generateRoomCode() {
  * @param {string} [opts.playerName="ホスト"] - ホストのプレイヤー名
  * @returns {Promise<{room: object, sessionId: string}>}
  */
-export async function createRoom(supabase, { packName = "routes_guno", maxPlayers = 4, playerName = "ホスト" } = {}) {
+export async function createRoom(supabase, { packName = "routes_guno", maxPlayers = 4, playerName = "ホスト", playerIcon = "🌊" } = {}) {
   const sessionId = getSessionId();
   const roomCode = generateRoomCode();
 
@@ -72,7 +72,7 @@ export async function createRoom(supabase, { packName = "routes_guno", maxPlayer
     player_count: 1,
     pack_name: packName,
     players_json: JSON.stringify([
-      { session_id: sessionId, name: playerName, icon: "🌊", color: "#174a7c", is_host: true, ready: false },
+      { session_id: sessionId, name: playerName, icon: playerIcon, color: "#174a7c", is_host: true, ready: false },
     ]),
   };
 
@@ -97,7 +97,7 @@ export async function createRoom(supabase, { packName = "routes_guno", maxPlayer
  * @param {string} [opts.playerName="ゲスト"] - プレイヤー名
  * @returns {Promise<{room: object, sessionId: string, playerIndex: number}>}
  */
-export async function joinRoom(supabase, roomCode, { playerName = "ゲスト" } = {}) {
+export async function joinRoom(supabase, roomCode, { playerName = "ゲスト", playerIcon = null } = {}) {
   const sessionId = getSessionId();
   const code = roomCode.toUpperCase().trim();
 
@@ -123,13 +123,13 @@ export async function joinRoom(supabase, roomCode, { playerName = "ゲスト" } 
   if (room.player_count >= room.max_players) throw new Error("ルームが満員です");
 
   // プレイヤーを追加
-  const icons = ["🌸", "🌙", "🏯", "🌊"];
+  const defaultIcons = ["🌸", "🌙", "🌏", "🌊"];
   const colors = ["#b52942", "#e6b422", "#745399", "#174a7c"];
   const idx = players.length;
   players.push({
     session_id: sessionId,
     name: playerName,
-    icon: icons[idx % icons.length],
+    icon: playerIcon ?? defaultIcons[idx % defaultIcons.length],
     color: colors[idx % colors.length],
     is_host: false,
     ready: false,
