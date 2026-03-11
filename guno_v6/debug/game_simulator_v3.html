@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Simulator v3 — GUNO V6 Debug</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    /* ── Top nav ── */
+    .topbar {
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .topbar .brand { color: #58a6ff; font-weight: 700; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; }
+    .topbar .sub   { color: #8b949e; font-size: 11px; }
+    .topbar nav    { margin-left: auto; display: flex; gap: 4px; flex-wrap: wrap; }
+    .topbar nav a  {
+      color: #8b949e; text-decoration: none; font-size: 11px; padding: 2px 7px;
+      border-radius: 4px; border: 1px solid transparent;
+    }
+    .topbar nav a:hover { color: #c9d1d9; border-color: #30363d; }
+    .topbar nav a.active { color: #58a6ff; border-color: #1f6feb; background: #0d2044; }
+    /* ── Layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      height: calc(100vh - 36px);
+    }
+    /* ── Left panel ── */
+    .left-panel {
+      background: #161b22;
+      border-right: 1px solid #30363d;
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    /* ── Right panel ── */
+    .right-panel {
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    /* ── Section headers ── */
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: #8b949e;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+    /* ── Summary cards ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .summary-card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .summary-card .label { font-size: 10px; color: #8b949e; }
+    .summary-card .value { font-size: 22px; font-weight: 700; color: #c9d1d9; }
+    .summary-card .sub   { font-size: 10px; color: #6e7681; }
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 5px;
+      border: 1px solid #30363d;
+      background: #21262d;
+      color: #c9d1d9;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    .btn:hover { background: #30363d; border-color: #8b949e; }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn.primary { background: #1f6feb; border-color: #388bfd; color: #fff; }
+    .btn.primary:hover:not(:disabled) { background: #388bfd; }
+    .btn.success { background: #238636; border-color: #2ea043; color: #fff; }
+    .btn.success:hover:not(:disabled) { background: #2ea043; }
+    /* ── Progress ── */
+    .progress-bar-wrap {
+      background: #21262d;
+      border-radius: 4px;
+      height: 6px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-bar-wrap.visible { display: block; }
+    .progress-bar {
+      height: 100%;
+      background: #1f6feb;
+      transition: width .2s;
+      width: 0%;
+    }
+    /* ── Status ── */
+    .status-line {
+      font-size: 11px;
+      color: #8b949e;
+      min-height: 16px;
+    }
+    .status-line.running { color: #d29922; }
+    .status-line.done    { color: #2ea043; }
+    .status-line.error   { color: #f85149; }
+    /* ── Input group ── */
+    .input-group { display: flex; flex-direction: column; gap: 4px; }
+    .input-group label { font-size: 10px; color: #8b949e; }
+    .input-group input, .input-group select {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      color: #c9d1d9;
+      font-size: 12px;
+      padding: 4px 8px;
+      width: 100%;
+    }
+    /* ── Player config rows ── */
+    .player-rows { display: flex; flex-direction: column; gap: 4px; }
+    .player-row {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 6px;
+      align-items: center;
+    }
+    .player-badge {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: #fff;
+    }
+    .player-row select {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      color: #c9d1d9;
+      font-size: 11px;
+      padding: 3px 6px;
+    }
+    /* ── Charts area ── */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .chart-card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .chart-card canvas { width: 100% !important; }
+    /* ── Tables ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .data-table th {
+      background: #161b22;
+      color: #8b949e;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      padding: 6px 10px;
+      text-align: left;
+      border-bottom: 1px solid #21262d;
+    }
+    .data-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #161b22;
+      color: #c9d1d9;
+    }
+    .data-table tr:hover td { background: #161b22; }
+    .data-table .rank { color: #8b949e; font-size: 11px; }
+    .data-table .highlight { color: #58a6ff; font-weight: 600; }
+    .data-table .win-badge {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    /* ── Stacked bar ── */
+    .stacked-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .stacked-bar-label {
+      width: 70px;
+      font-size: 11px;
+      color: #c9d1d9;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .stacked-bar {
+      flex: 1;
+      height: 20px;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+    }
+    .stacked-bar-seg {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: rgba(255,255,255,.85);
+      transition: width .3s;
+    }
+    .stacked-bar-total {
+      width: 40px;
+      font-size: 11px;
+      color: #8b949e;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    /* ── Win rate bar ── */
+    .winrate-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .winrate-label {
+      width: 70px;
+      font-size: 11px;
+      color: #c9d1d9;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .winrate-bar-bg {
+      flex: 1;
+      background: #21262d;
+      border-radius: 3px;
+      height: 18px;
+      overflow: hidden;
+    }
+    .winrate-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      padding-left: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      transition: width .4s;
+    }
+    .winrate-pct {
+      width: 40px;
+      font-size: 11px;
+      color: #8b949e;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    /* ── Top stations/routes ── */
+    .top-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .top-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .top-item-rank {
+      width: 18px;
+      font-size: 10px;
+      color: #6e7681;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .top-item-name {
+      flex: 1;
+      font-size: 12px;
+      color: #c9d1d9;
+    }
+    .top-item-bar-bg {
+      width: 80px;
+      background: #21262d;
+      border-radius: 2px;
+      height: 8px;
+      overflow: hidden;
+    }
+    .top-item-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: #1f6feb;
+    }
+    .top-item-count {
+      width: 36px;
+      font-size: 11px;
+      color: #8b949e;
+      text-align: right;
+    }
+    /* ── End reasons ── */
+    .end-reason-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .end-reason-label { flex: 1; font-size: 11px; color: #c9d1d9; }
+    .end-reason-bar-bg {
+      width: 100px;
+      background: #21262d;
+      border-radius: 2px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .end-reason-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+    }
+    .end-reason-count { width: 36px; font-size: 11px; color: #8b949e; text-align: right; }
+    /* ── Placeholder ── */
+    .placeholder {
+      color: #6e7681;
+      font-size: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    /* ── Strategy colors ── */
+    .strategy-hub      { color: #d29922; }
+    .strategy-route    { color: #2ea043; }
+    .strategy-balanced { color: #58a6ff; }
+    .strategy-greedy   { color: #f85149; }
+    .strategy-random   { color: #8b949e; }
+    /* ── Badge colors ── */
+    .badge-hub      { background: #9e6a03; }
+    .badge-route    { background: #1a7f37; }
+    .badge-balanced { background: #1f6feb; }
+    .badge-greedy   { background: #b91c1c; }
+    .badge-random   { background: #4b5563; }
+    /* ── Seg colors ── */
+    .seg-st      { background: #1f6feb; }
+    .seg-guno    { background: #d29922; }
+    .seg-route   { background: #2ea043; }
+    .seg-network { background: #8b5cf6; }
+    /* ── Two-col bottom ── */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .full-row {
+      grid-column: 1 / -1;
+    }
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <span class="brand">GUNO V6</span>
+  <span class="sub">Debug Tools</span>
+  <nav>
+    <a href="deck_viewer.html">Deck</a>
+    <a href="hub_bonus_viewer.html">Hub</a>
+    <a href="route_score_viewer.html">Route Score</a>
+    <a href="station_graph_viewer.html">Graph</a>
+    <a href="play_engine_viewer.html">Play Engine</a>
+    <a href="game_simulator_v2.html">Sim v2</a>
+    <a href="game_simulator_v3.html" class="active">Sim v3</a>
+  </nav>
+</div>
+
+<div class="layout">
+  <!-- ── Left panel ── -->
+  <div class="left-panel">
+    <div>
+      <div class="section-title">Simulation</div>
+      <div class="input-group" style="margin-bottom:8px">
+        <label>Number of games</label>
+        <select id="num-games">
+          <option value="100">100 games</option>
+          <option value="200">200 games</option>
+          <option value="500" selected>500 games</option>
+          <option value="1000">1000 games</option>
+          <option value="2000">2000 games</option>
+        </select>
+      </div>
+      <div class="input-group" style="margin-bottom:8px">
+        <label>Network Score</label>
+        <select id="use-network">
+          <option value="1" selected>Enabled</option>
+          <option value="0">Disabled</option>
+        </select>
+      </div>
+      <button class="btn primary" onclick="runSim()" id="run-btn">▶ Run Simulation</button>
+      <button class="btn" onclick="resetResults()" id="reset-btn">↺ Reset</button>
+    </div>
+
+    <div>
+      <div class="section-title">Players (4)</div>
+      <div class="player-rows" id="player-rows">
+        <!-- generated by JS -->
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Status</div>
+      <div class="progress-bar-wrap" id="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="status-line" id="status-line">Ready.</div>
+    </div>
+
+    <div>
+      <div class="section-title">Game Stats</div>
+      <div id="game-stats-panel" class="placeholder">—</div>
+    </div>
+
+    <div>
+      <div class="section-title">End Reasons</div>
+      <div id="end-reasons-panel" class="placeholder">—</div>
+    </div>
+  </div>
+
+  <!-- ── Right panel ── -->
+  <div class="right-panel">
+    <!-- Summary row -->
+    <div class="summary-grid" id="summary-grid">
+      <div class="summary-card">
+        <div class="label">Total Games</div>
+        <div class="value" id="sum-total">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Top Strategy</div>
+        <div class="value" id="sum-top-strategy" style="font-size:16px">—</div>
+        <div class="sub" id="sum-top-winrate">—</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Win Rate Spread</div>
+        <div class="value" id="sum-spread">—</div>
+        <div class="sub" id="sum-balance">—</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Avg Turns/Game</div>
+        <div class="value" id="sum-avg-turns">—</div>
+      </div>
+    </div>
+
+    <!-- Win rate chart -->
+    <div class="chart-card">
+      <div class="section-title">Strategy Win Rate</div>
+      <div id="winrate-chart" class="placeholder">Run a simulation to see results.</div>
+    </div>
+
+    <!-- Score breakdown -->
+    <div class="chart-card">
+      <div class="section-title">Score Breakdown (avg per game)</div>
+      <div id="score-breakdown" class="placeholder">Run a simulation to see results.</div>
+    </div>
+
+    <!-- Bottom row: top stations + top routes -->
+    <div class="bottom-row">
+      <div class="chart-card">
+        <div class="section-title">Top Winning Stations</div>
+        <div id="top-stations" class="placeholder">—</div>
+      </div>
+      <div class="chart-card">
+        <div class="section-title">Top Completed Routes</div>
+        <div id="top-routes" class="placeholder">—</div>
+      </div>
+    </div>
+
+    <!-- Detailed table -->
+    <div class="chart-card">
+      <div class="section-title">Detailed Strategy Stats</div>
+      <div id="detail-table" class="placeholder">Run a simulation to see results.</div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+// ── Strategy colors ──
+const STRATEGY_COLORS = {
+  hub:      { bar: '#d29922', bg: '#9e6a03', text: '#fff' },
+  route:    { bar: '#2ea043', bg: '#1a7f37', text: '#fff' },
+  balanced: { bar: '#58a6ff', bg: '#1f6feb', text: '#fff' },
+  greedy:   { bar: '#f85149', bg: '#b91c1c', text: '#fff' },
+  random:   { bar: '#8b949e', bg: '#4b5563', text: '#fff' },
+};
+const SEG_COLORS = {
+  st:      { bg: '#1f6feb', label: 'Station' },
+  guno:    { bg: '#d29922', label: 'GUNO' },
+  route:   { bg: '#2ea043', label: 'Route' },
+  network: { bg: '#8b5cf6', label: 'Network' },
+};
+const DEFAULT_STRATEGIES = ['hub', 'route', 'balanced', 'greedy'];
+
+// ── Player rows ──
+function initPlayerRows() {
+  const container = document.getElementById('player-rows');
+  container.innerHTML = '';
+  DEFAULT_STRATEGIES.forEach((s, i) => {
+    const colors = STRATEGY_COLORS[s] || STRATEGY_COLORS.greedy;
+    const row = document.createElement('div');
+    row.className = 'player-row';
+    row.innerHTML = `
+      <div class="player-badge" style="background:${colors.bg}">P${i+1}</div>
+      <select id="strategy-${i}">
+        <option value="hub"      ${s==='hub'      ? 'selected':''}>Hub</option>
+        <option value="route"    ${s==='route'    ? 'selected':''}>Route v2</option>
+        <option value="balanced" ${s==='balanced' ? 'selected':''}>Balanced</option>
+        <option value="greedy"   ${s==='greedy'   ? 'selected':''}>Greedy</option>
+        <option value="random"   ${s==='random'   ? 'selected':''}>Random</option>
+      </select>
+    `;
+    container.appendChild(row);
+  });
+}
+initPlayerRows();
+
+// ── Helpers ──
+function setStatus(msg, cls = '') {
+  const el = document.getElementById('status-line');
+  el.textContent = msg;
+  el.className = 'status-line ' + cls;
+}
+function setProgress(pct) {
+  const wrap = document.getElementById('progress-wrap');
+  const bar  = document.getElementById('progress-bar');
+  if (pct < 0) { wrap.classList.remove('visible'); return; }
+  wrap.classList.add('visible');
+  bar.style.width = pct + '%';
+}
+function setRunning(v) {
+  document.getElementById('run-btn').disabled = v;
+  document.getElementById('reset-btn').disabled = v;
+}
+
+// ── Render win rate chart ──
+function renderWinRateChart(ranking) {
+  const el = document.getElementById('winrate-chart');
+  const expected = (100 / ranking.length).toFixed(1);
+  let html = `<div style="font-size:10px;color:#6e7681;margin-bottom:8px">Expected: ${expected}% each</div>`;
+  for (const s of ranking) {
+    const c = STRATEGY_COLORS[s.strategy] || STRATEGY_COLORS.greedy;
+    const pct = Math.min(s.win_rate, 100);
+    html += `
+      <div class="winrate-row">
+        <div class="winrate-label">${s.strategy}</div>
+        <div class="winrate-bar-bg">
+          <div class="winrate-bar-fill" style="width:${pct}%;background:${c.bar}">
+            ${pct >= 12 ? pct.toFixed(1)+'%' : ''}
+          </div>
+        </div>
+        <div class="winrate-pct">${pct.toFixed(1)}%</div>
+      </div>`;
+  }
+  el.innerHTML = html;
+}
+
+// ── Render score breakdown ──
+function renderScoreBreakdown(ranking) {
+  const el = document.getElementById('score-breakdown');
+  // Find max total for scaling
+  const maxTotal = Math.max(...ranking.map(s => s.avg_score));
+  let html = `<div style="display:flex;gap:12px;margin-bottom:10px;font-size:10px;color:#8b949e">`;
+  for (const [key, c] of Object.entries(SEG_COLORS)) {
+    html += `<span><span style="display:inline-block;width:10px;height:10px;background:${c.bg};border-radius:2px;margin-right:3px"></span>${c.label}</span>`;
+  }
+  html += `</div>`;
+  for (const s of ranking) {
+    const total = s.avg_score;
+    const stPct      = total > 0 ? (s.avg_st_count / total * 100) : 0;
+    const gunoPct    = total > 0 ? (s.avg_guno_pts / total * 100) : 0;
+    const routePct   = total > 0 ? (s.avg_route_bonus / total * 100) : 0;
+    const networkPct = total > 0 ? (s.avg_network_bonus / total * 100) : 0;
+    const barWidth   = maxTotal > 0 ? (total / maxTotal * 100) : 0;
+    html += `
+      <div class="stacked-bar-row">
+        <div class="stacked-bar-label">${s.strategy}</div>
+        <div style="flex:1">
+          <div class="stacked-bar" style="width:${barWidth}%">
+            <div class="stacked-bar-seg seg-st"      style="width:${stPct}%">${stPct>=10?Math.round(stPct)+'%':''}</div>
+            <div class="stacked-bar-seg seg-guno"    style="width:${gunoPct}%;background:#d29922">${gunoPct>=8?Math.round(gunoPct)+'%':''}</div>
+            <div class="stacked-bar-seg seg-route"   style="width:${routePct}%;background:#2ea043">${routePct>=8?Math.round(routePct)+'%':''}</div>
+            <div class="stacked-bar-seg seg-network" style="width:${networkPct}%;background:#8b5cf6">${networkPct>=8?Math.round(networkPct)+'%':''}</div>
+          </div>
+        </div>
+        <div class="stacked-bar-total">${total.toFixed(1)}</div>
+      </div>`;
+  }
+  el.innerHTML = html;
+}
+
+// ── Render top stations ──
+function renderTopStations(topStations) {
+  const el = document.getElementById('top-stations');
+  if (!topStations || topStations.length === 0) {
+    el.innerHTML = '<div class="placeholder">No data</div>';
+    return;
+  }
+  const maxWins = topStations[0].wins;
+  let html = '<div class="top-list">';
+  topStations.slice(0, 15).forEach((s, i) => {
+    const pct = maxWins > 0 ? (s.wins / maxWins * 100) : 0;
+    html += `
+      <div class="top-item">
+        <div class="top-item-rank">${i+1}</div>
+        <div class="top-item-name">${s.name}</div>
+        <div class="top-item-bar-bg">
+          <div class="top-item-bar-fill" style="width:${pct}%"></div>
+        </div>
+        <div class="top-item-count">${s.wins}</div>
+      </div>`;
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// ── Render top routes ──
+function renderTopRoutes(topRoutes) {
+  const el = document.getElementById('top-routes');
+  if (!topRoutes || topRoutes.length === 0) {
+    el.innerHTML = '<div class="placeholder">No data</div>';
+    return;
+  }
+  const maxWins = topRoutes[0].wins;
+  const routeColors = { JY: '#9acd32', M: '#e60012', G: '#f39700', T: '#009bbf' };
+  let html = '<div class="top-list">';
+  topRoutes.slice(0, 10).forEach((r, i) => {
+    const pct = maxWins > 0 ? (r.wins / maxWins * 100) : 0;
+    const color = routeColors[r.lc] || '#58a6ff';
+    html += `
+      <div class="top-item">
+        <div class="top-item-rank">${i+1}</div>
+        <div class="top-item-name">
+          <span style="display:inline-block;width:8px;height:8px;background:${color};border-radius:50%;margin-right:4px"></span>
+          ${r.name}
+        </div>
+        <div class="top-item-bar-bg">
+          <div class="top-item-bar-fill" style="width:${pct}%;background:${color}"></div>
+        </div>
+        <div class="top-item-count">${r.wins}</div>
+      </div>`;
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// ── Render detail table ──
+function renderDetailTable(ranking) {
+  const el = document.getElementById('detail-table');
+  let html = `<table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Strategy</th>
+        <th>Win Rate</th>
+        <th>Avg Total</th>
+        <th>Avg Station</th>
+        <th>Avg GUNO</th>
+        <th>Avg Route</th>
+        <th>Avg Network</th>
+        <th>Avg Turns</th>
+      </tr>
+    </thead>
+    <tbody>`;
+  ranking.forEach((s, i) => {
+    const c = STRATEGY_COLORS[s.strategy] || STRATEGY_COLORS.greedy;
+    html += `<tr>
+      <td class="rank">${i+1}</td>
+      <td><span class="win-badge" style="background:${c.bg};color:#fff">${s.strategy}</span></td>
+      <td class="highlight">${s.win_rate.toFixed(1)}%</td>
+      <td>${s.avg_score.toFixed(1)}</td>
+      <td>${s.avg_st_count.toFixed(1)}</td>
+      <td>${s.avg_guno_pts.toFixed(1)}</td>
+      <td>${s.avg_route_bonus.toFixed(1)}</td>
+      <td>${s.avg_network_bonus.toFixed(1)}</td>
+      <td>${(s.avg_turns || 0).toFixed(1)}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+// ── Render game stats ──
+function renderGameStats(gameStats) {
+  const el = document.getElementById('game-stats-panel');
+  el.innerHTML = `
+    <div style="font-size:11px;color:#8b949e;margin-bottom:4px">Avg turns: <span style="color:#c9d1d9">${gameStats.avg_turns.toFixed(1)}</span></div>
+    <div style="font-size:11px;color:#8b949e">Total turns: <span style="color:#c9d1d9">${gameStats.total_turns.toLocaleString()}</span></div>
+  `;
+}
+
+// ── Render end reasons ──
+function renderEndReasons(endReasons, total) {
+  const el = document.getElementById('end-reasons-panel');
+  const colors = {
+    players_eliminated: '#f85149',
+    routes_complete:    '#2ea043',
+    no_playable_cards:  '#d29922',
+    unknown:            '#8b949e',
+  };
+  let html = '';
+  for (const [reason, count] of Object.entries(endReasons).sort((a,b) => b[1]-a[1])) {
+    const pct = total > 0 ? (count / total * 100) : 0;
+    const color = colors[reason] || '#8b949e';
+    const label = reason.replace(/_/g, ' ');
+    html += `
+      <div class="end-reason-row">
+        <div class="end-reason-label">${label}</div>
+        <div class="end-reason-bar-bg">
+          <div class="end-reason-bar-fill" style="width:${pct}%;background:${color}"></div>
+        </div>
+        <div class="end-reason-count">${count}</div>
+      </div>`;
+  }
+  el.innerHTML = html || '<div class="placeholder">—</div>';
+}
+
+// ── Update summary ──
+function updateSummary(result) {
+  const ranking = result.strategy_ranking;
+  const top = ranking[0];
+  const bottom = ranking[ranking.length - 1];
+  const spread = top.win_rate - bottom.win_rate;
+  document.getElementById('sum-total').textContent = result.game_stats.total_simulations.toLocaleString();
+  document.getElementById('sum-top-strategy').textContent = top.strategy;
+  document.getElementById('sum-top-winrate').textContent = `${top.win_rate.toFixed(1)}% win rate`;
+  document.getElementById('sum-spread').textContent = spread.toFixed(1) + '%';
+  document.getElementById('sum-balance').textContent =
+    spread < 10 ? '✓ Excellent' : spread < 15 ? '✓ Good' : spread < 25 ? '△ Moderate' : '✗ Poor';
+  document.getElementById('sum-avg-turns').textContent = result.game_stats.avg_turns.toFixed(1);
+}
+
+// ── Main simulation runner ──
+window.runSim = async function() {
+  const n = parseInt(document.getElementById('num-games').value, 10);
+  const useNetwork = document.getElementById('use-network').value === '1';
+  const players = Array.from({ length: 4 }, (_, i) => ({
+    id: `P${i+1}`,
+    name: `Player ${i+1}`,
+    strategy: document.getElementById(`strategy-${i}`).value,
+  }));
+  setRunning(true);
+  setStatus('Loading data...', 'running');
+  setProgress(2);
+  try {
+    // Load pack data
+    const packRes = await fetch('../assets/guno/guno_pack_v6.json');
+    if (!packRes.ok) throw new Error('Failed to load pack data');
+    const packJson = await packRes.json();
+    const { loadPackFromObject } = await import('../src/data/pack_loader.js');
+    const packData = loadPackFromObject(packJson);
+    // Load station graph (optional)
+    let stationGraph = null;
+    if (useNetwork) {
+      try {
+        const graphRes = await fetch('../data/graph/station_graph_tokyo.json');
+        if (graphRes.ok) stationGraph = await graphRes.json();
+      } catch (e) { console.warn('station_graph not loaded:', e); }
+    }
+    setStatus(`Running ${n} games...`, 'running');
+    setProgress(10);
+    // Import simulator
+    const { runSimulatorV3Sync } = await import('../src/simulator/game_simulator_v3.js');
+    // Run in chunks for progress feedback
+    const chunkSize = Math.max(20, Math.ceil(n / 20));
+    let done = 0;
+    let accumulated = null;
+    while (done < n) {
+      const gamesThisChunk = Math.min(chunkSize, n - done);
+      const chunkResult = runSimulatorV3Sync(gamesThisChunk, packData, players, { stationGraph });
+      if (!accumulated) {
+        accumulated = chunkResult;
+      } else {
+        // Merge game stats
+        accumulated.game_stats.total_simulations += chunkResult.game_stats.total_simulations;
+        accumulated.game_stats.total_turns += chunkResult.game_stats.total_turns;
+        for (const [r, c] of Object.entries(chunkResult.game_stats.end_reasons)) {
+          accumulated.game_stats.end_reasons[r] = (accumulated.game_stats.end_reasons[r] || 0) + c;
+        }
+        // Merge strategy stats
+        for (const s of Object.keys(accumulated.strategy_stats)) {
+          const src = chunkResult.strategy_stats[s];
+          const dst = accumulated.strategy_stats[s];
+          if (!src) continue;
+          dst.wins              += src.wins;
+          dst.games_played      += src.games_played;
+          dst.total_score       += src.total_score;
+          dst.total_st_count    += src.total_st_count;
+          dst.total_guno_pts    += src.total_guno_pts;
+          dst.total_guno_count  += src.total_guno_count;
+          dst.total_route_bonus += src.total_route_bonus;
+          dst.total_network_bonus += src.total_network_bonus;
+        }
+        // Merge top stations / routes
+        accumulated._topStationMap = accumulated._topStationMap || new Map(
+          (accumulated._topStations || []).map(s => [s.name, s.wins])
+        );
+        for (const [name, wins] of Object.entries(chunkResult._topStationMap || {})) {
+          accumulated._topStationMap.set(name, (accumulated._topStationMap.get(name) || 0) + wins);
+        }
+        accumulated._topRouteMap = accumulated._topRouteMap || new Map(
+          (accumulated._topRoutes || []).map(r => [r.name, { wins: r.wins, lc: r.lc }])
+        );
+        for (const [name, data] of Object.entries(chunkResult._topRouteMap || {})) {
+          const prev = accumulated._topRouteMap.get(name) || { wins: 0, lc: data.lc };
+          accumulated._topRouteMap.set(name, { wins: prev.wins + data.wins, lc: data.lc });
+        }
+      }
+      done += gamesThisChunk;
+      const pct = 10 + Math.round((done / n) * 85);
+      setProgress(pct);
+      setStatus(`Running... ${done} / ${n} games`, 'running');
+      await new Promise(r => setTimeout(r, 0));
+    }
+    // Finalize averages
+    const total = accumulated.game_stats.total_simulations;
+    accumulated.game_stats.avg_turns = accumulated.game_stats.total_turns / total;
+    for (const s of Object.values(accumulated.strategy_stats)) {
+      if (s.games_played > 0) {
+        s.win_rate           = (s.wins / total) * 100;
+        s.avg_score          = s.total_score          / s.games_played;
+        s.avg_st_count       = s.total_st_count       / s.games_played;
+        s.avg_guno_pts       = s.total_guno_pts       / s.games_played;
+        s.avg_guno_count     = s.total_guno_count     / s.games_played;
+        s.avg_route_bonus    = s.total_route_bonus    / s.games_played;
+        s.avg_network_bonus  = s.total_network_bonus  / s.games_played;
+        s.avg_turns          = accumulated.game_stats.avg_turns;
+      }
+    }
+    accumulated.strategy_ranking = Object.values(accumulated.strategy_stats)
+      .sort((a, b) => b.win_rate - a.win_rate);
+    // Build top stations from map
+    const topStations = [...(accumulated._topStationMap || new Map()).entries()]
+      .map(([name, wins]) => ({ name, wins }))
+      .sort((a, b) => b.wins - a.wins)
+      .slice(0, 15);
+    // Build top routes from map
+    const topRoutes = [...(accumulated._topRouteMap || new Map()).entries()]
+      .map(([name, data]) => ({ name, wins: data.wins, lc: data.lc }))
+      .sort((a, b) => b.wins - a.wins)
+      .slice(0, 10);
+    setProgress(100);
+    setStatus(`Completed ${total} simulations.`, 'done');
+    // Render all panels
+    renderWinRateChart(accumulated.strategy_ranking);
+    renderScoreBreakdown(accumulated.strategy_ranking);
+    renderTopStations(topStations);
+    renderTopRoutes(topRoutes);
+    renderDetailTable(accumulated.strategy_ranking);
+    renderGameStats(accumulated.game_stats);
+    renderEndReasons(accumulated.game_stats.end_reasons, total);
+    updateSummary(accumulated);
+  } catch (err) {
+    console.error('Simulation error:', err);
+    setStatus(`Error: ${err.message}`, 'error');
+  } finally {
+    setRunning(false);
+    setTimeout(() => setProgress(-1), 3000);
+  }
+};
+
+window.resetResults = function() {
+  ['winrate-chart','score-breakdown','top-stations','top-routes','detail-table'].forEach(id => {
+    document.getElementById(id).innerHTML = '<div class="placeholder">Run a simulation to see results.</div>';
+  });
+  document.getElementById('game-stats-panel').innerHTML = '<div class="placeholder">—</div>';
+  document.getElementById('end-reasons-panel').innerHTML = '<div class="placeholder">—</div>';
+  document.getElementById('sum-total').textContent = '0';
+  document.getElementById('sum-top-strategy').textContent = '—';
+  document.getElementById('sum-top-winrate').textContent = '—';
+  document.getElementById('sum-spread').textContent = '—';
+  document.getElementById('sum-balance').textContent = '—';
+  document.getElementById('sum-avg-turns').textContent = '—';
+  setStatus('Reset. Ready.', '');
+  setProgress(-1);
+};
+</script>
+</body>
+</html>

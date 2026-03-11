@@ -74,21 +74,69 @@ const STRATEGY_EVALUATORS = {
   },
 
   /**
-   * route: 既に所有している路線のカードを優先する（路線完成を狙う）
-   * 同路線カードに大きなボーナスを与える
+   * route v2: セグメント拡張・完成率・連続ブロック長を考慮した改善版
+   *
+   * 評価軸:
+   *   1. adjacency_bonus: 既存の連続ブロックに隣接する駅（order±1）を優先
+   *   2. completion_bonus: 完成に近い路線（残り駅数が少ない）を優先
+   *   3. block_length_bonus: 既存の最長連続ブロックを延ばす方向を優先
+   *   4. owned_count_bonus: 既に多く持っている路線のカードを補助的に優先
    */
-  route: (card, hand, mapState, playerIdx) => {
-    // 自分が所有している路線のカード数を数える
-    const ownedByLine = {};
+  route: (card, hand, mapState, playerIdx, state) => {
+    const lc = card.lc;
+    const order = card.order || 0;
+    // 自分が占有している全スロットを路線別に整理
+    const ownedByLine = {};   // lc → Set<order>
     for (const [key, owner] of Object.entries(mapState)) {
       if (owner === playerIdx) {
-        const lc = key.split('-')[0];
-        ownedByLine[lc] = (ownedByLine[lc] || 0) + 1;
+        const [linecode, ord] = key.split('-');
+        if (!ownedByLine[linecode]) ownedByLine[linecode] = new Set();
+        ownedByLine[linecode].add(Number(ord));
       }
     }
-    const sameLineCount = ownedByLine[card.lc] || 0;
-    // 既に多く持っている路線のカードを優先
-    return sameLineCount * 5 + (card.hub_bonus_deck || 0);
+    const ownedOrders = ownedByLine[lc] || new Set();
+    // 1. adjacency_bonus: 既存占有駅の order±1 に隣接しているか
+    let adjacencyBonus = 0;
+    if (ownedOrders.has(order - 1) || ownedOrders.has(order + 1)) {
+      adjacencyBonus = 20;
+      // さらに両側に隣接（ブロックの中間を埋める）場合は追加ボーナス
+      if (ownedOrders.has(order - 1) && ownedOrders.has(order + 1)) {
+        adjacencyBonus = 30;
+      }
+    }
+    // 2. completion_bonus: 路線の残り駅数が少ないほど高い
+    //    routeSize は state.routeCodes から取得（なければ10と仮定）
+    const routeSize = (state && state.routeCodes)
+      ? Object.keys(mapState).filter(k => k.startsWith(lc + '-')).length
+      : 10;
+    const ownedCount = ownedOrders.size;
+    const remaining = routeSize - ownedCount;
+    // remaining が 0〜3 のとき高ボーナス（完成間近）
+    const completionBonus = remaining <= 0 ? 0
+      : remaining === 1 ? 25
+      : remaining === 2 ? 18
+      : remaining === 3 ? 12
+      : remaining <= 5 ? 8
+      : ownedCount * 2;  // まだ序盤は所有数に比例
+    // 3. block_length_bonus: 最長連続ブロックを計算して延ばす方向を優先
+    let maxBlock = 0;
+    if (ownedOrders.size > 0) {
+      const sorted = [...ownedOrders].sort((a, b) => a - b);
+      let cur = 1;
+      for (let i = 1; i < sorted.length; i++) {
+        if (sorted[i] === sorted[i - 1] + 1) { cur++; }
+        else { cur = 1; }
+        if (cur > maxBlock) maxBlock = cur;
+      }
+      if (maxBlock === 0) maxBlock = 1;
+    }
+    // このカードを置いたときに最長ブロックが伸びるか
+    const wouldExtendBlock = ownedOrders.has(order - 1) || ownedOrders.has(order + 1);
+    const blockBonus = wouldExtendBlock ? maxBlock * 3 : 0;
+    // 4. owned_count_bonus: 補助的な所有数ボーナス
+    const ownedCountBonus = ownedCount * 1.5;
+    return adjacencyBonus + completionBonus + blockBonus + ownedCountBonus
+      + (card.hub_bonus_deck || 0) * 0.5;
   },
 
   /**
@@ -260,6 +308,10 @@ function simulateSingleGameV3(playerConfigs, packData, options = {}) {
         gunoRoutes.push(lc);
       }
     }
+    // 占有スロットのキー配列（上位駅集計用）
+    const ownedSlots = Object.entries(state.mapState)
+      .filter(([, owner]) => owner === idx)
+      .map(([key]) => key);
     return {
       playerId:              cfg.id,
       strategy:              cfg.strategy,
@@ -277,6 +329,7 @@ function simulateSingleGameV3(playerConfigs, packData, options = {}) {
       total,
       gunoRoutes,
       isAlive:               p.status !== 'eliminated',
+      ownedSlots,
     };
   });
 
@@ -339,23 +392,23 @@ export function runSimulatorV3Sync(numSimulations, packData, playerConfigs, opti
     };
   }
 
-  // ゲーム全体統計
+   // ゲーム全体統計
   const gameStats = {
     total_simulations: numSimulations,
     total_turns:       0,
     avg_turns:         0,
     end_reasons:       {},
   };
-
+  // 上位駅・路線集計（勝者が最も多く占有した駅・完成した路線）
+  const topStationMap = new Map();  // station_name → wins
+  const topRouteMap   = new Map();  // route_name → { wins, lc }
   // シミュレーション実行
   for (let i = 0; i < numSimulations; i++) {
     const result = simulateSingleGameV3(players, packData, options);
-
     // ゲーム統計更新
     gameStats.total_turns += result.turnCount;
     const reason = result.endReason || 'unknown';
     gameStats.end_reasons[reason] = (gameStats.end_reasons[reason] || 0) + 1;
-
     // 戦略別統計更新
     for (const res of result.results) {
       const st = strategyStats[res.strategy];
@@ -369,6 +422,29 @@ export function runSimulatorV3Sync(numSimulations, packData, playerConfigs, opti
       st.total_network_bonus += res.networkBonus  || 0;
       if (res.playerId === result.winnerId) {
         st.wins++;
+      }
+    }
+    // 勝者の占有駅・完成路線を集計
+    const winnerResult = result.results.find(r => r.playerId === result.winnerId);
+    if (winnerResult) {
+      // 勝者の占有駅を ownedSlots から取得
+      for (const key of (winnerResult.ownedSlots || [])) {
+        const [lc, ord] = key.split('-');
+        const route = packData.routes ? packData.routes[lc] : null;
+        if (route && route.members) {
+          const member = route.members[Number(ord) - 1];
+          if (member) {
+            const name = member.name_ja || member.name || key;
+            topStationMap.set(name, (topStationMap.get(name) || 0) + 1);
+          }
+        }
+      }
+      // 勝者の完成路線を集計
+      for (const lc of (winnerResult.completedRoutes || [])) {
+        const route = packData.routes ? packData.routes[lc] : null;
+        const name = route ? (route.name_ja || route.name || lc) : lc;
+        const prev = topRouteMap.get(name) || { wins: 0, lc };
+        topRouteMap.set(name, { wins: prev.wins + 1, lc });
       }
     }
   }
@@ -393,11 +469,24 @@ export function runSimulatorV3Sync(numSimulations, packData, playerConfigs, opti
   const strategyRanking = Object.values(strategyStats)
     .sort((a, b) => b.win_rate - a.win_rate);
 
+  // 上位駅・路線をソートして配列化
+  const topStations = [...topStationMap.entries()]
+    .map(([name, wins]) => ({ name, wins }))
+    .sort((a, b) => b.wins - a.wins)
+    .slice(0, 20);
+  const topRoutes = [...topRouteMap.entries()]
+    .map(([name, data]) => ({ name, wins: data.wins, lc: data.lc }))
+    .sort((a, b) => b.wins - a.wins)
+    .slice(0, 10);
   return {
     game_stats:       gameStats,
     strategy_stats:   strategyStats,
     strategy_ranking: strategyRanking,
     players,
+    top_stations:     topStations,
+    top_routes:       topRoutes,
+    _topStationMap:   Object.fromEntries(topStationMap),
+    _topRouteMap:     Object.fromEntries([...topRouteMap.entries()].map(([k,v]) => [k, v])),
   };
 }
 
