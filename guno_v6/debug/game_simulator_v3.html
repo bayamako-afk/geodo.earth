@@ -823,18 +823,15 @@ window.runSim = async function() {
           dst.total_network_bonus += src.total_network_bonus;
         }
         // Merge top stations / routes
-        accumulated._topStationMap = accumulated._topStationMap || new Map(
-          (accumulated._topStations || []).map(s => [s.name, s.wins])
-        );
+        // _topStationMapは Object.fromEntries() で変換されたプレーンオブジェクト
+        if (!accumulated._topStationMap) accumulated._topStationMap = {};
         for (const [name, wins] of Object.entries(chunkResult._topStationMap || {})) {
-          accumulated._topStationMap.set(name, (accumulated._topStationMap.get(name) || 0) + wins);
+          accumulated._topStationMap[name] = (accumulated._topStationMap[name] || 0) + wins;
         }
-        accumulated._topRouteMap = accumulated._topRouteMap || new Map(
-          (accumulated._topRoutes || []).map(r => [r.name, { wins: r.wins, lc: r.lc }])
-        );
+        if (!accumulated._topRouteMap) accumulated._topRouteMap = {};
         for (const [name, data] of Object.entries(chunkResult._topRouteMap || {})) {
-          const prev = accumulated._topRouteMap.get(name) || { wins: 0, lc: data.lc };
-          accumulated._topRouteMap.set(name, { wins: prev.wins + data.wins, lc: data.lc });
+          const prev = accumulated._topRouteMap[name] || { wins: 0, lc: data.lc };
+          accumulated._topRouteMap[name] = { wins: prev.wins + data.wins, lc: data.lc };
         }
       }
       done += gamesThisChunk;
@@ -860,13 +857,13 @@ window.runSim = async function() {
     }
     accumulated.strategy_ranking = Object.values(accumulated.strategy_stats)
       .sort((a, b) => b.win_rate - a.win_rate);
-    // Build top stations from map
-    const topStations = [...(accumulated._topStationMap || new Map()).entries()]
+    // Build top stations from plain object
+    const topStations = Object.entries(accumulated._topStationMap || {})
       .map(([name, wins]) => ({ name, wins }))
       .sort((a, b) => b.wins - a.wins)
       .slice(0, 15);
-    // Build top routes from map
-    const topRoutes = [...(accumulated._topRouteMap || new Map()).entries()]
+    // Build top routes from plain object
+    const topRoutes = Object.entries(accumulated._topRouteMap || {})
       .map(([name, data]) => ({ name, wins: data.wins, lc: data.lc }))
       .sort((a, b) => b.wins - a.wins)
       .slice(0, 10);
