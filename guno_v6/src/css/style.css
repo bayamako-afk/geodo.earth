@@ -286,9 +286,8 @@
  * V5は画像カードなので10列(35px)でも路線色で識別できるが、
  * V6はテキストカードなので最低5列(74px)が必要
  * ベースCSSのコンテナクエリ（380px→10列）を上書きする
+ * 注意: @supportsブロック内の@containerは一部ブラウザで動作しないため、直接@containerを使用
  */
-@supports (width: 1cqw) {
-  @container (min-width: 380px) { .map-grid { --cols: 5; } }
-  @container (min-width: 280px) and (max-width: 379px) { .map-grid { --cols: 4; } }
-  @container (max-width: 279px) { .map-grid { --cols: 3; } }
-}
+@container (min-width: 380px) { .map-grid { --cols: 5; } }
+@container (min-width: 280px) and (max-width: 379px) { .map-grid { --cols: 4; } }
+@container (max-width: 279px) { .map-grid { --cols: 3; } }
