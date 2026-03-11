@@ -330,6 +330,7 @@ function simulateSingleGameV3(playerConfigs, packData, options = {}) {
       gunoRoutes,
       isAlive:               p.status !== 'eliminated',
       ownedSlots,
+      routeDetails:          routeScore.route_details || [],
     };
   });
 
@@ -402,6 +403,14 @@ export function runSimulatorV3Sync(numSimulations, packData, playerConfigs, opti
   // 上位駅・路線集計（勝者が最も多く占有した駅・完成した路線）
   const topStationMap = new Map();  // station_name → wins
   const topRouteMap   = new Map();  // route_name → { wins, lc }
+  // packData.routesは配列なので、lcコードおよび英語名でルックアップできるマップを作成
+  const routeByLc = {};
+  if (packData.routes) {
+    for (const route of Object.values(packData.routes)) {
+      if (route.lc)     routeByLc[route.lc]     = route;
+      if (route.name_en) routeByLc[route.name_en] = route;  // 英語名でもルックアップ可能
+    }
+  }
   // シミュレーション実行
   for (let i = 0; i < numSimulations; i++) {
     const result = simulateSingleGameV3(players, packData, options);
@@ -430,7 +439,7 @@ export function runSimulatorV3Sync(numSimulations, packData, playerConfigs, opti
       // 勝者の占有駅を ownedSlots から取得
       for (const key of (winnerResult.ownedSlots || [])) {
         const [lc, ord] = key.split('-');
-        const route = packData.routes ? packData.routes[lc] : null;
+        const route = routeByLc[lc];
         if (route && route.members) {
           const member = route.members[Number(ord) - 1];
           if (member) {
@@ -439,10 +448,13 @@ export function runSimulatorV3Sync(numSimulations, packData, playerConfigs, opti
           }
         }
       }
-      // 勝者の完成路線を集計
-      for (const lc of (winnerResult.completedRoutes || [])) {
-        const route = packData.routes ? packData.routes[lc] : null;
-        const name = route ? (route.name_ja || route.name || lc) : lc;
+      // 勝者が最も占有した路線（完成・未完成問わず、占有数最大の路線）を集計
+      const routeDetails = winnerResult.routeDetails || [];
+      // 占有数最大の路線（トップ1位）を記録
+      if (routeDetails.length > 0) {
+        const topRoute = routeDetails[0];  // routeDetailsはボーナス降順でソート済み
+        const lc   = topRoute.line_id;
+        const name = topRoute.line_name || lc;
         const prev = topRouteMap.get(name) || { wins: 0, lc };
         topRouteMap.set(name, { wins: prev.wins + 1, lc });
       }
