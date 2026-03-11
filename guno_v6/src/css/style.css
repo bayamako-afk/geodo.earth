@@ -281,3 +281,14 @@
     --card-w: clamp(28px, calc((100cqw - ((var(--cols) - 1) * var(--card-gap))) / var(--cols)), 120px);
   }
 }
+
+/* V6: テキストカードのため列数を減らして可読性を確保
+ * V5は画像カードなので10列(35px)でも路線色で識別できるが、
+ * V6はテキストカードなので最低5列(74px)が必要
+ * ベースCSSのコンテナクエリ（380px→10列）を上書きする
+ */
+@supports (width: 1cqw) {
+  @container (min-width: 380px) { .map-grid { --cols: 5; } }
+  @container (min-width: 280px) and (max-width: 379px) { .map-grid { --cols: 4; } }
+  @container (max-width: 279px) { .map-grid { --cols: 3; } }
+}
