@@ -88,6 +88,8 @@ export function renderBoard({
     const gridEl = document.getElementById(`map-${lc.toLowerCase()}`);
     const headerEl = document.getElementById(`header-${lc.toLowerCase()}`);
     if (!gridEl) continue;
+    // V6: テキストカードのため列数を制御（CSSコンテナクエリの上書きが効かないためJSで設定）
+    gridEl.style.setProperty('--cols', '5');
 
     if (headerEl) {
       const isGuno = lastHits[lc] !== undefined;
