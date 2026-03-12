@@ -504,7 +504,7 @@ document.getElementById('btn-labels').addEventListener('click', function () {
     document.title = `Station Graph — ${cityName}`;
 
     // 3. Check data_ready
-    if (!profile.status?.data_ready) {
+    if (profile.status?.data_ready === false) {
       document.getElementById('overlay').classList.add('hidden');
       const banner = document.getElementById('data-not-ready-banner');
       banner.innerHTML = `<strong>${cityName}</strong> — dataset not ready yet <span style="color:#a16207;margin-left:8px">(city_id: ${cityId})</span>`;

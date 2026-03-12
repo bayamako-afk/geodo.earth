@@ -25,6 +25,10 @@
     "primary_label":   "name_ja",
     "secondary_label": "name_en"
   },
+  "status": {
+    "data_ready": true,
+    "notes": "Tokyo initial playable city package."
+  },
   "deck_defaults": {
     "deck_size": 40,
     "rarity_targets": {

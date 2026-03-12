@@ -819,7 +819,7 @@
       document.getElementById('header-subtitle').textContent = `${cityName} — GUNO V6 Debug`;
 
       // 3. Check data_ready
-      if (!profile.status?.data_ready) {
+      if (profile.status?.data_ready === false) {
         const b = document.getElementById('data-not-ready-banner');
         b.innerHTML = `<strong>${cityName}</strong> — dataset not ready yet <span style="color:#a16207;margin-left:8px">(${cityId})</span>`;
         b.style.display = 'block';

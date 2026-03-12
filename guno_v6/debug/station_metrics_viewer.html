@@ -525,7 +525,7 @@ async function loadData(GRAPH_URL, METRICS_URL) {
   const cityName = profile.name || cityId;
   document.title = `Station Metrics — ${cityName}`;
   document.querySelector('#toolbar .title').textContent = `GUNO V6 — ${cityName}`;
-  if (!profile.status?.data_ready) {
+  if (profile.status?.data_ready === false) {
     const b = document.getElementById('data-not-ready-banner');
     b.innerHTML = `<strong>${cityName}</strong> — dataset not ready yet <span style="color:#a16207;margin-left:8px">(${cityId})</span>`;
     b.style.display = 'block';
