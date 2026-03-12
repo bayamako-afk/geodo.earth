@@ -78,13 +78,58 @@ for gid, station in station_by_id.items():
     }
 
 # ── Build collections ─────────────────────────────────────────────────────────
+# IMPORTANT: ROUTE_SIZE = 10 is hardcoded in the game engine (rules.js).
+# All collections must use size=10 and exactly 10 members.
+# For lines with more than 10 stations, we select the 10 most representative
+# stations (hub stations prioritized, then evenly spaced).
+
+ROUTE_SIZE = 10
+
+# Load station metrics for hub-aware selection
+try:
+    with open(OSAKA / 'derived' / 'station_metrics.json') as f:
+        metrics_data = json.load(f)
+    # station_global_id -> composite_score
+    station_score = {}
+    for s in metrics_data.get('stations', []):
+        station_score[s.get('station_global_id', '')] = s.get('composite_score', 0)
+except Exception:
+    station_score = {}
+
+
+def select_10_stations(slots, station_score_map):
+    """Select 10 representative stations from a line's slots.
+    Strategy: always include first and last, then fill with highest-scoring stations.
+    Returns list of (order, gid) tuples with re-numbered order 1-10.
+    """
+    if len(slots) <= ROUTE_SIZE:
+        return slots  # already <= 10, use as-is
+
+    # Score each slot by station composite score
+    scored = [(station_score_map.get(gid, 0), order, gid) for order, gid in slots]
+
+    # Always include first and last station
+    must_include = {slots[0][1], slots[-1][1]}  # gids
+
+    # Sort remaining by score descending, pick top (ROUTE_SIZE - 2)
+    remaining = [(sc, ord_, gid) for sc, ord_, gid in scored if gid not in must_include]
+    remaining.sort(key=lambda x: -x[0])
+    selected_gids = must_include | {gid for _, _, gid in remaining[:ROUTE_SIZE - 2]}
+
+    # Filter original slots to selected, preserving order
+    selected = [(order, gid) for order, gid in slots if gid in selected_gids]
+    # Re-number order 1..N
+    return [(i + 1, gid) for i, (_, gid) in enumerate(selected)]
+
 
 collections = {}
 for lc, slots in line_to_slots.items():
     line = line_by_id[lc]
+    # Select exactly ROUTE_SIZE stations
+    selected_slots = select_10_stations(slots, station_score)
     # members: list of station_codes in order
     members = []
-    for order, gid in slots:
+    for order, gid in selected_slots:
         code = station_canonical_code.get(gid, gid)
         members.append(code)
     lc_lower = lc.lower()
@@ -94,8 +139,8 @@ for lc, slots in line_to_slots.items():
         "name_ja":  line['line_name'],
         "name_en":  line['line_name_en'],
         "color":    line['color'],
-        "size":     len(members),
-        "members":  members
+        "size":     ROUTE_SIZE,
+        "members":  members[:ROUTE_SIZE]  # enforce exactly 10
     }
 
 # ── Assemble pack ─────────────────────────────────────────────────────────────

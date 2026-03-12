@@ -26,13 +26,15 @@
     "secondary_label": "station_name_en"
   },
   "deck_defaults": {
-    "deck_size": 40,
+    "deck_size": 32,
     "rarity_targets": {
-      "Legendary": 1,
-      "Epic": 9,
-      "Rare": 10,
-      "Common": 20
-    }
+      "legendary": 1,
+      "epic": 8,
+      "rare": 9,
+      "common": 14
+    },
+    "deck_name": "osaka_v1",
+    "tuning_note": "C2 config — best balance from 10-candidate study (spread=7%, avg_turns=90.6)"
   },
   "status": {
     "data_ready": true,
