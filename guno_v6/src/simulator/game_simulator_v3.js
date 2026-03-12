@@ -539,3 +539,145 @@ export async function runSimulatorV3(numSimulations, options = {}) {
 export function runSingleGameDebug(playerConfigs, packData) {
   return simulateSingleGameV3(playerConfigs, packData, { logEvents: true });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// マルチシティ対応 API（city_loader.js 統合）
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * SimulatorError — city data not ready or load failure
+ */
+export class SimulatorError extends Error {
+  constructor(code, message) {
+    super(message);
+    this.name = 'SimulatorError';
+    this.code = code;
+  }
+}
+
+/**
+ * 都市IDを解決する（URLパラメータ → レジストリのデフォルト）。
+ * @param {string|null} cityId
+ * @param {string} baseUrl
+ * @returns {Promise<string>}
+ */
+async function _resolveCityId(cityId, baseUrl) {
+  if (cityId) return cityId;
+  const { loadCityRegistry, getDefaultCityId } = await import('../city/city_loader.js');
+  const registry = await loadCityRegistry(baseUrl);
+  return getDefaultCityId(registry);
+}
+
+/**
+ * 都市プロファイルとパックデータをロードする。
+ * data_ready === false の場合は SimulatorError をスローする。
+ *
+ * @param {string} cityId
+ * @param {string} baseUrl
+ * @returns {Promise<{ profile: Object, packData: Object, stationGraph: Object|null }>}
+ */
+async function _loadCityAssets(cityId, baseUrl) {
+  const { loadCityProfile, resolveDatasetUrl } = await import('../city/city_loader.js');
+  const { loadPackFromUrl } = await import('../data/pack_loader.js');
+
+  const profile = await loadCityProfile(cityId, baseUrl);
+
+  // data_ready チェック
+  if (profile.status?.data_ready === false) {
+    throw new SimulatorError(
+      'DATA_NOT_READY',
+      `City data for "${cityId}" is not ready yet. ` +
+      `Please generate the data package before running simulations.`
+    );
+  }
+
+  // パックデータをロード
+  const packUrl = resolveDatasetUrl('default_pack', profile, baseUrl);
+  const packData = await loadPackFromUrl(packUrl);
+
+  // station_graph（ネットワークスコア用、オプション）
+  let stationGraph = null;
+  try {
+    const graphUrl = resolveDatasetUrl('station_graph', profile, baseUrl);
+    const res = await fetch(graphUrl);
+    if (res.ok) stationGraph = await res.json();
+  } catch (e) {
+    console.warn(`game_simulator_v3: station_graph not loaded for "${cityId}":`, e.message);
+  }
+
+  return { profile, packData, stationGraph };
+}
+
+/**
+ * マルチシティ対応バッチシミュレーション。
+ *
+ * @param {Object} options
+ * @param {string}   [options.baseUrl]          - guno_v6 ルートのベースURL
+ * @param {string}   [options.cityId]           - 都市ID（省略時はレジストリのデフォルト）
+ * @param {number}   [options.simulationCount]  - シミュレーション回数（デフォルト: 100）
+ * @param {Object[]} [options.strategySetup]    - プレイヤー設定（省略時はデフォルト4戦略）
+ * @param {boolean}  [options.useNetworkScore]  - ネットワークスコアを使用するか（デフォルト: true）
+ * @param {number}   [options.maxTurns]         - 1ゲームの最大ターン数（デフォルト: 500）
+ * @returns {Promise<Object>} バッチ集計結果（city_id を含む）
+ */
+export async function runSimulationBatch(options = {}) {
+  const baseUrl = options.baseUrl || null;
+  const simCount = options.simulationCount || 100;
+  const useNetwork = options.useNetworkScore !== false;
+
+  const cityId = await _resolveCityId(options.cityId || null, baseUrl);
+  const { profile, packData, stationGraph } = await _loadCityAssets(cityId, baseUrl);
+
+  const players = options.strategySetup || [
+    { id: 'P1', name: 'Hub AI',      strategy: 'hub' },
+    { id: 'P2', name: 'Route AI',    strategy: 'route' },
+    { id: 'P3', name: 'Balanced AI', strategy: 'balanced' },
+    { id: 'P4', name: 'Greedy AI',   strategy: 'greedy' },
+  ];
+
+  const simOptions = {
+    stationGraph: useNetwork ? stationGraph : null,
+    maxTurns: options.maxTurns || 500,
+  };
+
+  const result = runSimulatorV3Sync(simCount, packData, players, simOptions);
+
+  // city_id をバッチサマリーに追加
+  result.city_id          = cityId;
+  result.city_name        = profile.city_name || cityId;
+  result.simulation_count = simCount;
+
+  return result;
+}
+
+/**
+ * マルチシティ対応単一ゲームシミュレーション。
+ *
+ * @param {Object} options
+ * @param {string}   [options.baseUrl]
+ * @param {string}   [options.cityId]
+ * @param {Object[]} [options.strategySetup]
+ * @param {boolean}  [options.logEvents]
+ * @param {number}   [options.maxTurns]
+ * @returns {Promise<Object>} 単一ゲーム結果
+ */
+export async function runSingleSimulation(options = {}) {
+  const baseUrl = options.baseUrl || null;
+  const cityId  = await _resolveCityId(options.cityId || null, baseUrl);
+  const { packData, stationGraph } = await _loadCityAssets(cityId, baseUrl);
+
+  const players = options.strategySetup || [
+    { id: 'P1', name: 'Hub AI',      strategy: 'hub' },
+    { id: 'P2', name: 'Route AI',    strategy: 'route' },
+    { id: 'P3', name: 'Balanced AI', strategy: 'balanced' },
+    { id: 'P4', name: 'Greedy AI',   strategy: 'greedy' },
+  ];
+
+  const simOptions = {
+    stationGraph: stationGraph,
+    maxTurns: options.maxTurns || 500,
+    logEvents: options.logEvents || false,
+  };
+
+  return simulateSingleGameV3(players, packData, simOptions);
+}

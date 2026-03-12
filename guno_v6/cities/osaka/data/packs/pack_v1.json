@@ -2,22 +2,64 @@
   "pack_meta": {
     "pack_version": "1.0",
     "pack_id": "osaka_core",
-    "city": "osaka",
     "name": "Osaka Core Lines",
-    "description": "御堂筋線・谷町線・四つ橋線・阪急京都線・大阪環状線",
-    "generated_by": "GUNO Deck Generator v1.0",
-    "generated_at": "2026-03-12T04:17:08Z"
+    "description": "御堂筋線・谷町線・四つ橋線・阪急京都線・JR大阪環状線",
+    "generated_by": "generate_osaka_pack_v2.py",
+    "generated_at": "2026-03-12"
   },
   "entities": {
-    "m13": {
+    "m01": {
       "type": "station",
-      "name_ja": "天王寺",
-      "name_en": "Tennoji",
-      "station_code": "m13",
+      "name_ja": "江坂",
+      "name_en": "Esaka",
+      "station_code": "m01",
+      "cross_lines": []
+    },
+    "m02": {
+      "type": "station",
+      "name_ja": "東三国",
+      "name_en": "Higashi-Mikuni",
+      "station_code": "m02",
+      "cross_lines": []
+    },
+    "m03": {
+      "type": "station",
+      "name_ja": "新大阪",
+      "name_en": "Shin-Osaka",
+      "station_code": "m03",
+      "cross_lines": []
+    },
+    "m04": {
+      "type": "station",
+      "name_ja": "西中島南方",
+      "name_en": "Nishinakajima-Minamikata",
+      "station_code": "m04",
+      "cross_lines": []
+    },
+    "hk02": {
+      "type": "station",
+      "name_ja": "中津",
+      "name_en": "Nakatsu",
+      "station_code": "hk02",
       "cross_lines": [
-        "T",
-        "OC"
+        "HK"
       ]
+    },
+    "hk01": {
+      "type": "station",
+      "name_ja": "梅田",
+      "name_en": "Umeda",
+      "station_code": "hk01",
+      "cross_lines": [
+        "HK"
+      ]
+    },
+    "m07": {
+      "type": "station",
+      "name_ja": "淀屋橋",
+      "name_en": "Yodoyabashi",
+      "station_code": "m07",
+      "cross_lines": []
     },
     "m08": {
       "type": "station",
@@ -28,14 +70,12 @@
         "Y"
       ]
     },
-    "m11": {
+    "m09": {
       "type": "station",
-      "name_ja": "大国町",
-      "name_en": "Daikoku Cho",
-      "station_code": "m11",
-      "cross_lines": [
-        "Y"
-      ]
+      "name_ja": "心斎橋",
+      "name_en": "Shinsaibashi",
+      "station_code": "m09",
+      "cross_lines": []
     },
     "m10": {
       "type": "station",
@@ -46,14 +86,45 @@
         "Y"
       ]
     },
-    "m05": {
+    "m11": {
       "type": "station",
-      "name_ja": "中津",
-      "name_en": "Nakatsu",
-      "station_code": "m05",
+      "name_ja": "大国町",
+      "name_en": "Daikoku-cho",
+      "station_code": "m11",
       "cross_lines": [
-        "HK"
+        "Y"
       ]
+    },
+    "m12": {
+      "type": "station",
+      "name_ja": "動物園前",
+      "name_en": "Dobutsuen-mae",
+      "station_code": "m12",
+      "cross_lines": []
+    },
+    "m13": {
+      "type": "station",
+      "name_ja": "天王寺",
+      "name_en": "Tennoji",
+      "station_code": "m13",
+      "cross_lines": [
+        "OC",
+        "T"
+      ]
+    },
+    "m14": {
+      "type": "station",
+      "name_ja": "昭和町",
+      "name_en": "Showa-cho",
+      "station_code": "m14",
+      "cross_lines": []
+    },
+    "m15": {
+      "type": "station",
+      "name_ja": "西田辺",
+      "name_en": "Nishi-Tanabe",
+      "station_code": "m15",
+      "cross_lines": []
     },
     "m16": {
       "type": "station",
@@ -64,76 +135,109 @@
         "T"
       ]
     },
-    "m06": {
+    "m17": {
       "type": "station",
-      "name_ja": "梅田",
-      "name_en": "Umeda",
-      "station_code": "m06",
-      "cross_lines": [
-        "HK"
-      ]
-    },
-    "m12": {
-      "type": "station",
-      "name_ja": "動物園前",
-      "name_en": "Dobutsuen Mae",
-      "station_code": "m12",
+      "name_ja": "あびこ",
+      "name_en": "Abiko",
+      "station_code": "m17",
       "cross_lines": []
     },
-    "m07": {
+    "m18": {
       "type": "station",
-      "name_ja": "淀屋橋",
-      "name_en": "Yodoyabashi",
-      "station_code": "m07",
+      "name_ja": "北花田",
+      "name_en": "Kita-Hanada",
+      "station_code": "m18",
       "cross_lines": []
     },
-    "t16": {
+    "m19": {
       "type": "station",
-      "name_ja": "四天王寺前夕陽ヶ丘",
-      "name_en": "Shitennoji Mae Yuhigaoka",
-      "station_code": "t16",
+      "name_ja": "新金岡",
+      "name_en": "Shin-Kanaoka",
+      "station_code": "m19",
       "cross_lines": []
     },
-    "t15": {
+    "m20": {
       "type": "station",
-      "name_ja": "谷町九丁目",
-      "name_en": "Tanimachi 9 Chome",
-      "station_code": "t15",
+      "name_ja": "なかもず",
+      "name_en": "Nakamozu",
+      "station_code": "m20",
       "cross_lines": []
     },
-    "hk03": {
+    "t01": {
       "type": "station",
-      "name_ja": "十三",
-      "name_en": "Juso",
-      "station_code": "hk03",
+      "name_ja": "大日",
+      "name_en": "Dainichi",
+      "station_code": "t01",
       "cross_lines": []
     },
-    "t14": {
+    "t02": {
       "type": "station",
-      "name_ja": "谷町六丁目",
-      "name_en": "Tanimachi 6 Chome",
-      "station_code": "t14",
+      "name_ja": "守口",
+      "name_en": "Moriguchi",
+      "station_code": "t02",
       "cross_lines": []
     },
-    "hk04": {
+    "t03": {
       "type": "station",
-      "name_ja": "崇禅寺",
-      "name_en": "Sozenji",
-      "station_code": "hk04",
+      "name_ja": "太子橋今市",
+      "name_en": "Taishibashi-Imaichi",
+      "station_code": "t03",
       "cross_lines": []
     },
-    "t13": {
+    "t04": {
       "type": "station",
-      "name_ja": "谷町四丁目",
-      "name_en": "Tanimachi 4 Chome",
-      "station_code": "t13",
+      "name_ja": "千林大宮",
+      "name_en": "Senbayashi-Omiya",
+      "station_code": "t04",
       "cross_lines": []
     },
-    "hk05": {
+    "t05": {
       "type": "station",
-      "name_ja": "淡路",
-      "name_en": "Awaji",
-      "station_code": "hk05",
+      "name_ja": "関目高殿",
+      "name_en": "Sekime-Takadono",
+      "station_code": "t05",
+      "cross_lines": []
+    },
+    "t06": {
+      "type": "station",
+      "name_ja": "野江内代",
+      "name_en": "Noe-Uchindai",
+      "station_code": "t06",
+      "cross_lines": []
+    },
+    "t07": {
+      "type": "station",
+      "name_ja": "都島",
+      "name_en": "Miyakojima",
+      "station_code": "t07",
+      "cross_lines": []
+    },
+    "t08": {
+      "type": "station",
+      "name_ja": "天神橋筋六丁目",
+      "name_en": "Tenjinbashisuji 6-chome",
+      "station_code": "t08",
+      "cross_lines": []
+    },
+    "t09": {
+      "type": "station",
+      "name_ja": "中崎町",
+      "name_en": "Nakazaki-cho",
+      "station_code": "t09",
+      "cross_lines": []
+    },
+    "t10": {
+      "type": "station",
+      "name_ja": "東梅田",
+      "name_en": "Higashi-Umeda",
+      "station_code": "t10",
+      "cross_lines": []
+    },
+    "t11": {
+      "type": "station",
+      "name_ja": "南森町",
+      "name_en": "Minami-Morimachi",
+      "station_code": "t11",
       "cross_lines": []
     },
     "t12": {
@@ -143,32 +247,102 @@
       "station_code": "t12",
       "cross_lines": []
     },
-    "hk06": {
+    "t13": {
       "type": "station",
-      "name_ja": "上新庄",
-      "name_en": "Kamishinjyo",
-      "station_code": "hk06",
+      "name_ja": "谷町四丁目",
+      "name_en": "Tanimachi 4-chome",
+      "station_code": "t13",
       "cross_lines": []
     },
-    "t11": {
+    "t14": {
       "type": "station",
-      "name_ja": "南森町",
-      "name_en": "Minami Morimachi",
-      "station_code": "t11",
+      "name_ja": "谷町六丁目",
+      "name_en": "Tanimachi 6-chome",
+      "station_code": "t14",
       "cross_lines": []
     },
-    "hk07": {
+    "t15": {
       "type": "station",
-      "name_ja": "相川",
-      "name_en": "Aikawa",
-      "station_code": "hk07",
+      "name_ja": "谷町九丁目",
+      "name_en": "Tanimachi 9-chome",
+      "station_code": "t15",
       "cross_lines": []
     },
-    "m09": {
+    "t16": {
       "type": "station",
-      "name_ja": "心斎橋",
-      "name_en": "Shinsaibashi",
-      "station_code": "m09",
+      "name_ja": "四天王寺前夕陽ヶ丘",
+      "name_en": "Shitennoji-mae Yuhigaoka",
+      "station_code": "t16",
+      "cross_lines": []
+    },
+    "t18": {
+      "type": "station",
+      "name_ja": "阿倍野",
+      "name_en": "Abeno",
+      "station_code": "t18",
+      "cross_lines": []
+    },
+    "t19": {
+      "type": "station",
+      "name_ja": "文の里",
+      "name_en": "Fuminosato",
+      "station_code": "t19",
+      "cross_lines": []
+    },
+    "t21": {
+      "type": "station",
+      "name_ja": "駒川中野",
+      "name_en": "Komagawa-Nakano",
+      "station_code": "t21",
+      "cross_lines": []
+    },
+    "t22": {
+      "type": "station",
+      "name_ja": "平野",
+      "name_en": "Hirano",
+      "station_code": "t22",
+      "cross_lines": []
+    },
+    "t23": {
+      "type": "station",
+      "name_ja": "喜連瓜破",
+      "name_en": "Kire-Urizaru",
+      "station_code": "t23",
+      "cross_lines": []
+    },
+    "t24": {
+      "type": "station",
+      "name_ja": "出戸",
+      "name_en": "Deto",
+      "station_code": "t24",
+      "cross_lines": []
+    },
+    "t25": {
+      "type": "station",
+      "name_ja": "長原",
+      "name_en": "Nagahara",
+      "station_code": "t25",
+      "cross_lines": []
+    },
+    "t26": {
+      "type": "station",
+      "name_ja": "八尾南",
+      "name_en": "Yao-Minami",
+      "station_code": "t26",
+      "cross_lines": []
+    },
+    "y01": {
+      "type": "station",
+      "name_ja": "西梅田",
+      "name_en": "Nishi-Umeda",
+      "station_code": "y01",
+      "cross_lines": []
+    },
+    "y02": {
+      "type": "station",
+      "name_ja": "肥後橋",
+      "name_en": "Higobashi",
+      "station_code": "y02",
       "cross_lines": []
     },
     "y04": {
@@ -178,11 +352,74 @@
       "station_code": "y04",
       "cross_lines": []
     },
-    "t10": {
+    "y07": {
       "type": "station",
-      "name_ja": "東梅田",
-      "name_en": "Higashi Umeda",
-      "station_code": "t10",
+      "name_ja": "花園町",
+      "name_en": "Hanazonocho",
+      "station_code": "y07",
+      "cross_lines": []
+    },
+    "y08": {
+      "type": "station",
+      "name_ja": "岸里",
+      "name_en": "Kishinosato",
+      "station_code": "y08",
+      "cross_lines": []
+    },
+    "y09": {
+      "type": "station",
+      "name_ja": "玉出",
+      "name_en": "Tamade",
+      "station_code": "y09",
+      "cross_lines": []
+    },
+    "y10": {
+      "type": "station",
+      "name_ja": "北加賀屋",
+      "name_en": "Kita-Kagaya",
+      "station_code": "y10",
+      "cross_lines": []
+    },
+    "y11": {
+      "type": "station",
+      "name_ja": "住之江公園",
+      "name_en": "Suminoe-koen",
+      "station_code": "y11",
+      "cross_lines": []
+    },
+    "hk03": {
+      "type": "station",
+      "name_ja": "十三",
+      "name_en": "Juso",
+      "station_code": "hk03",
+      "cross_lines": []
+    },
+    "hk04": {
+      "type": "station",
+      "name_ja": "崇禅寺",
+      "name_en": "Sozenji",
+      "station_code": "hk04",
+      "cross_lines": []
+    },
+    "hk05": {
+      "type": "station",
+      "name_ja": "淡路",
+      "name_en": "Awaji",
+      "station_code": "hk05",
+      "cross_lines": []
+    },
+    "hk06": {
+      "type": "station",
+      "name_ja": "上新庄",
+      "name_en": "Kamishinjyo",
+      "station_code": "hk06",
+      "cross_lines": []
+    },
+    "hk07": {
+      "type": "station",
+      "name_ja": "相川",
+      "name_en": "Aikawa",
+      "station_code": "hk07",
       "cross_lines": []
     },
     "hk08": {
@@ -192,24 +429,129 @@
       "station_code": "hk08",
       "cross_lines": []
     },
-    "t09": {
-      "type": "station",
-      "name_ja": "中崎町",
-      "name_en": "Nakazaki Cho",
-      "station_code": "t09",
-      "cross_lines": []
-    },
     "hk09": {
       "type": "station",
       "name_ja": "摂津市",
-      "name_en": "Settsu Shi",
+      "name_en": "Settsu-shi",
       "station_code": "hk09",
+      "cross_lines": []
+    },
+    "hk10": {
+      "type": "station",
+      "name_ja": "南茨木",
+      "name_en": "Minami-Ibaraki",
+      "station_code": "hk10",
+      "cross_lines": []
+    },
+    "hk11": {
+      "type": "station",
+      "name_ja": "茨木市",
+      "name_en": "Ibaraki-shi",
+      "station_code": "hk11",
+      "cross_lines": []
+    },
+    "hk12": {
+      "type": "station",
+      "name_ja": "総持寺",
+      "name_en": "Sojiji",
+      "station_code": "hk12",
+      "cross_lines": []
+    },
+    "hk13": {
+      "type": "station",
+      "name_ja": "富田",
+      "name_en": "Tonda",
+      "station_code": "hk13",
+      "cross_lines": []
+    },
+    "hk14": {
+      "type": "station",
+      "name_ja": "高槻市",
+      "name_en": "Takatsuki-shi",
+      "station_code": "hk14",
+      "cross_lines": []
+    },
+    "hk15": {
+      "type": "station",
+      "name_ja": "上牧",
+      "name_en": "Kammaki",
+      "station_code": "hk15",
+      "cross_lines": []
+    },
+    "hk16": {
+      "type": "station",
+      "name_ja": "水無瀬",
+      "name_en": "Minase",
+      "station_code": "hk16",
+      "cross_lines": []
+    },
+    "hk17": {
+      "type": "station",
+      "name_ja": "大山崎",
+      "name_en": "Oyamazaki",
+      "station_code": "hk17",
+      "cross_lines": []
+    },
+    "oc01": {
+      "type": "station",
+      "name_ja": "大阪",
+      "name_en": "Osaka",
+      "station_code": "oc01",
+      "cross_lines": []
+    },
+    "oc02": {
+      "type": "station",
+      "name_ja": "福島",
+      "name_en": "Fukushima",
+      "station_code": "oc02",
+      "cross_lines": []
+    },
+    "oc03": {
+      "type": "station",
+      "name_ja": "野田",
+      "name_en": "Noda",
+      "station_code": "oc03",
+      "cross_lines": []
+    },
+    "oc04": {
+      "type": "station",
+      "name_ja": "西九条",
+      "name_en": "Nishi-Kujo",
+      "station_code": "oc04",
+      "cross_lines": []
+    },
+    "oc05": {
+      "type": "station",
+      "name_ja": "弁天町",
+      "name_en": "Bentenmachi",
+      "station_code": "oc05",
+      "cross_lines": []
+    },
+    "oc06": {
+      "type": "station",
+      "name_ja": "大正",
+      "name_en": "Taisho",
+      "station_code": "oc06",
+      "cross_lines": []
+    },
+    "oc07": {
+      "type": "station",
+      "name_ja": "芦原橋",
+      "name_en": "Ashiharabashi",
+      "station_code": "oc07",
+      "cross_lines": []
+    },
+    "oc08": {
+      "type": "station",
+      "name_ja": "今宮",
+      "name_en": "Imamiya",
+      "station_code": "oc08",
       "cross_lines": []
     },
     "oc09": {
       "type": "station",
       "name_ja": "新今宮",
-      "name_en": "Shin Imamiya",
+      "name_en": "Shin-Imamiya",
       "station_code": "oc09",
       "cross_lines": []
     },
@@ -220,67 +562,11 @@
       "station_code": "oc11",
       "cross_lines": []
     },
-    "t08": {
-      "type": "station",
-      "name_ja": "天神橋筋六丁目",
-      "name_en": "Tenjinbashisuji 6 Chome",
-      "station_code": "t08",
-      "cross_lines": []
-    },
-    "hk10": {
-      "type": "station",
-      "name_ja": "南茨木",
-      "name_en": "Minami Ibaraki",
-      "station_code": "hk10",
-      "cross_lines": []
-    },
-    "oc08": {
-      "type": "station",
-      "name_ja": "今宮",
-      "name_en": "Imamiya",
-      "station_code": "oc08",
-      "cross_lines": []
-    },
     "oc12": {
       "type": "station",
       "name_ja": "桃谷",
       "name_en": "Momotani",
       "station_code": "oc12",
-      "cross_lines": []
-    },
-    "t07": {
-      "type": "station",
-      "name_ja": "都島",
-      "name_en": "Miyakojima",
-      "station_code": "t07",
-      "cross_lines": []
-    },
-    "hk11": {
-      "type": "station",
-      "name_ja": "茨木市",
-      "name_en": "Ibaraki Shi",
-      "station_code": "hk11",
-      "cross_lines": []
-    },
-    "m14": {
-      "type": "station",
-      "name_ja": "昭和町",
-      "name_en": "Showa Cho",
-      "station_code": "m14",
-      "cross_lines": []
-    },
-    "t18": {
-      "type": "station",
-      "name_ja": "阿倍野",
-      "name_en": "Abeno",
-      "station_code": "t18",
-      "cross_lines": []
-    },
-    "oc07": {
-      "type": "station",
-      "name_ja": "芦原橋",
-      "name_en": "Ashiharabashi",
-      "station_code": "oc07",
       "cross_lines": []
     },
     "oc13": {
@@ -290,30 +576,64 @@
       "station_code": "oc13",
       "cross_lines": []
     },
-    "m15": {
+    "oc14": {
       "type": "station",
-      "name_ja": "西田辺",
-      "name_en": "Nishi Tanabe",
-      "station_code": "m15",
+      "name_ja": "玉造",
+      "name_en": "Tamatsukuri",
+      "station_code": "oc14",
       "cross_lines": []
     },
-    "t19": {
+    "oc15": {
       "type": "station",
-      "name_ja": "文の里",
-      "name_en": "Fuminosato",
-      "station_code": "t19",
+      "name_ja": "森ノ宮",
+      "name_en": "Morinomiya",
+      "station_code": "oc15",
+      "cross_lines": []
+    },
+    "oc16": {
+      "type": "station",
+      "name_ja": "大阪城公園",
+      "name_en": "Osaka-jo Park",
+      "station_code": "oc16",
+      "cross_lines": []
+    },
+    "oc17": {
+      "type": "station",
+      "name_ja": "京橋",
+      "name_en": "Kyobashi",
+      "station_code": "oc17",
+      "cross_lines": []
+    },
+    "oc18": {
+      "type": "station",
+      "name_ja": "桜ノ宮",
+      "name_en": "Sakuranomiya",
+      "station_code": "oc18",
+      "cross_lines": []
+    },
+    "oc19": {
+      "type": "station",
+      "name_ja": "天満",
+      "name_en": "Temma",
+      "station_code": "oc19",
       "cross_lines": []
     }
   },
   "collections": {
     "m": {
-      "line_id": "M",
-      "line_name": "御堂筋線",
-      "line_name_en": "Midosuji Line",
+      "kind": "line",
+      "lc": "m",
+      "name_ja": "御堂筋線",
+      "name_en": "Midosuji Line",
       "color": "#E5171F",
-      "stations": [
-        "m05",
-        "m06",
+      "size": 20,
+      "members": [
+        "m01",
+        "m02",
+        "m03",
+        "m04",
+        "hk02",
+        "hk01",
         "m07",
         "m08",
         "m09",
@@ -323,16 +643,27 @@
         "m13",
         "m14",
         "m15",
-        "m16"
-      ],
-      "complete_bonus": 60
+        "m16",
+        "m17",
+        "m18",
+        "m19",
+        "m20"
+      ]
     },
     "t": {
-      "line_id": "T",
-      "line_name": "谷町線",
-      "line_name_en": "Tanimachi Line",
+      "kind": "line",
+      "lc": "t",
+      "name_ja": "谷町線",
+      "name_en": "Tanimachi Line",
       "color": "#522886",
-      "stations": [
+      "size": 26,
+      "members": [
+        "t01",
+        "t02",
+        "t03",
+        "t04",
+        "t05",
+        "t06",
         "t07",
         "t08",
         "t09",
@@ -343,32 +674,47 @@
         "t14",
         "t15",
         "t16",
-        "t17",
+        "m13",
         "t18",
         "t19",
-        "t20"
-      ],
-      "complete_bonus": 70
+        "m16",
+        "t21",
+        "t22",
+        "t23",
+        "t24",
+        "t25",
+        "t26"
+      ]
     },
     "y": {
-      "line_id": "Y",
-      "line_name": "四つ橋線",
-      "line_name_en": "Yotsubashi Line",
+      "kind": "line",
+      "lc": "y",
+      "name_ja": "四つ橋線",
+      "name_en": "Yotsubashi Line",
       "color": "#0066B3",
-      "stations": [
-        "y03",
+      "size": 11,
+      "members": [
+        "y01",
+        "y02",
+        "m08",
         "y04",
-        "y05",
-        "y06"
-      ],
-      "complete_bonus": 20
+        "m10",
+        "m11",
+        "y07",
+        "y08",
+        "y09",
+        "y10",
+        "y11"
+      ]
     },
     "hk": {
-      "line_id": "HK",
-      "line_name": "阪急京都線",
-      "line_name_en": "Hankyu Kyoto Line",
+      "kind": "line",
+      "lc": "hk",
+      "name_ja": "阪急京都線",
+      "name_en": "Hankyu Kyoto Line",
       "color": "#6C3B2A",
-      "stations": [
+      "size": 17,
+      "members": [
         "hk01",
         "hk02",
         "hk03",
@@ -379,114 +725,71 @@
         "hk08",
         "hk09",
         "hk10",
-        "hk11"
-      ],
-      "complete_bonus": 55
+        "hk11",
+        "hk12",
+        "hk13",
+        "hk14",
+        "hk15",
+        "hk16",
+        "hk17"
+      ]
     },
     "oc": {
-      "line_id": "OC",
-      "line_name": "大阪環状線",
-      "line_name_en": "Osaka Loop Line",
+      "kind": "line",
+      "lc": "oc",
+      "name_ja": "大阪環状線",
+      "name_en": "Osaka Loop Line",
       "color": "#FF6600",
-      "stations": [
+      "size": 20,
+      "members": [
+        "oc01",
+        "oc02",
+        "oc03",
+        "oc04",
+        "oc05",
+        "oc06",
         "oc07",
         "oc08",
         "oc09",
-        "oc10",
+        "m13",
         "oc11",
         "oc12",
-        "oc13"
-      ],
-      "complete_bonus": 35
+        "oc13",
+        "oc14",
+        "oc15",
+        "oc16",
+        "oc17",
+        "oc18",
+        "oc19",
+        "oc01"
+      ]
     }
   },
   "layouts": {
-    "m": {
-      "type": "line",
-      "direction": "horizontal",
-      "stations": [
-        "m05",
-        "m06",
-        "m07",
-        "m08",
-        "m09",
-        "m10",
-        "m11",
-        "m12",
-        "m13",
-        "m14",
-        "m15",
-        "m16"
-      ]
-    },
-    "t": {
-      "type": "line",
-      "direction": "horizontal",
-      "stations": [
-        "t07",
-        "t08",
-        "t09",
-        "t10",
-        "t11",
-        "t12",
-        "t13",
-        "t14",
-        "t15",
-        "t16",
-        "t17",
-        "t18",
-        "t19",
-        "t20"
-      ]
-    },
-    "y": {
-      "type": "line",
-      "direction": "horizontal",
-      "stations": [
-        "y03",
-        "y04",
-        "y05",
-        "y06"
-      ]
-    },
-    "hk": {
-      "type": "line",
-      "direction": "horizontal",
-      "stations": [
-        "hk01",
-        "hk02",
-        "hk03",
-        "hk04",
-        "hk05",
-        "hk06",
-        "hk07",
-        "hk08",
-        "hk09",
-        "hk10",
-        "hk11"
-      ]
-    },
-    "oc": {
-      "type": "line",
-      "direction": "horizontal",
-      "stations": [
-        "oc07",
-        "oc08",
-        "oc09",
-        "oc10",
-        "oc11",
-        "oc12",
-        "oc13"
+    "default": {
+      "slots": [
+        {
+          "collection_id": "hk"
+        },
+        {
+          "collection_id": "m"
+        },
+        {
+          "collection_id": "oc"
+        },
+        {
+          "collection_id": "t"
+        },
+        {
+          "collection_id": "y"
+        }
       ]
     }
   },
   "rules": {
-    "deck_size": 40,
-    "hand_size": 5,
-    "win_condition": "highest_score",
-    "scoring": {
-      "station_base": "score_total",
-      "route_complete_bonus": "complete_bonus"
-    }
+    "deck_size": 10,
+    "hand_size": 7,
+    "guno_threshold": 10,
+    "max_players": 4
   }
 }

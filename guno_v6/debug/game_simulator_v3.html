@@ -387,6 +387,12 @@
 <div class="topbar">
   <span class="brand">GUNO V6</span>
   <span class="sub">Debug Tools</span>
+  <div id="city-selector-container" style="display:flex;align-items:center;gap:6px;margin-left:12px">
+    <span style="font-size:11px;color:#8b949e">City:</span>
+    <select id="city-selector" style="background:#0d1117;color:#c9d1d9;border:1px solid #30363d;border-radius:4px;padding:2px 6px;font-size:11px;cursor:pointer" onchange="switchCity(this.value)">
+      <option value="tokyo">Tokyo</option>
+    </select>
+  </div>
   <nav>
     <a href="deck_viewer.html">Deck</a>
     <a href="hub_bonus_viewer.html">Hub</a>
@@ -507,6 +513,68 @@
 </div>
 
 <script type="module">
+// ── City Bootstrap ──
+let activeCityId = 'tokyo';
+let activeCityProfile = null;
+let cityDataReady = true;
+
+async function bootstrapCity() {
+  // Resolve city from URL param
+  const params = new URLSearchParams(location.search);
+  const requestedCity = params.get('city');
+
+  try {
+    const { loadCityRegistry, getDefaultCityId, loadCityProfile } = await import('../src/city/city_loader.js');
+    const registry = await loadCityRegistry();
+    const defaultCity = getDefaultCityId(registry);
+    activeCityId = requestedCity || defaultCity;
+
+    // Populate city selector
+    const sel = document.getElementById('city-selector');
+    sel.innerHTML = '';
+    for (const entry of registry.cities) {
+      const opt = document.createElement('option');
+      opt.value = entry.city_id;
+      opt.textContent = entry.display_name || entry.city_id;
+      if (entry.city_id === activeCityId) opt.selected = true;
+      sel.appendChild(opt);
+    }
+
+    // Load city profile
+    activeCityProfile = await loadCityProfile(activeCityId);
+    cityDataReady = activeCityProfile.status?.data_ready !== false;
+
+    // Update page title
+    const cityLabel = activeCityProfile.city_name || activeCityId;
+    document.title = `Game Simulator v3 — ${cityLabel} — GUNO V6 Debug`;
+    document.querySelector('.topbar .brand').textContent = `GUNO V6 · ${cityLabel}`;
+
+    if (!cityDataReady) {
+      showDataNotReadyBanner(activeCityId);
+      document.getElementById('run-btn').disabled = true;
+    }
+  } catch (e) {
+    console.error('bootstrapCity error:', e);
+    setStatus('Failed to load city registry: ' + e.message, 'error');
+  }
+}
+
+function showDataNotReadyBanner(cityId) {
+  const banner = document.createElement('div');
+  banner.id = 'data-not-ready-banner';
+  banner.style.cssText = 'background:#7d4e00;color:#ffa657;padding:8px 14px;font-size:12px;border-bottom:1px solid #9e6a03;';
+  banner.textContent = `⚠ City data for "${cityId}" is not ready yet. Simulation is disabled until the data package is generated.`;
+  document.body.insertBefore(banner, document.querySelector('.layout'));
+}
+
+window.switchCity = function(cityId) {
+  const url = new URL(location.href);
+  url.searchParams.set('city', cityId);
+  location.href = url.toString();
+};
+
+bootstrapCity();
+
 // ── Strategy colors ──
 const STRATEGY_COLORS = {
   hub:      { bar: '#d29922', bg: '#9e6a03', text: '#fff' },
@@ -774,17 +842,23 @@ window.runSim = async function() {
   setStatus('Loading data...', 'running');
   setProgress(2);
   try {
-    // Load pack data
-    const packRes = await fetch('../assets/guno/guno_pack_v6.json');
-    if (!packRes.ok) throw new Error('Failed to load pack data');
-    const packJson = await packRes.json();
-    const { loadPackFromObject } = await import('../src/data/pack_loader.js');
-    const packData = loadPackFromObject(packJson);
-    // Load station graph (optional)
+    // Guard: data not ready
+    if (!cityDataReady) {
+      throw new Error(`City data for "${activeCityId}" is not ready yet.`);
+    }
+    // Load city-aware pack data
+    const { loadCityProfile, resolveDatasetUrl } = await import('../src/city/city_loader.js');
+    const { loadPackFromUrl } = await import('../src/data/pack_loader.js');
+    const profile = activeCityProfile || await loadCityProfile(activeCityId);
+    const packUrl = resolveDatasetUrl('default_pack', profile);
+    const packData = await loadPackFromUrl(packUrl);
+    console.log(`[SimV3] Loaded pack for city: ${activeCityId}, routes: ${packData.routes.length}, stations: ${packData.stations.length}`);
+    // Load station graph (optional, city-aware)
     let stationGraph = null;
     if (useNetwork) {
       try {
-        const graphRes = await fetch('../cities/tokyo/data/graph/station_graph.json');
+        const graphUrl = resolveDatasetUrl('station_graph', profile);
+        const graphRes = await fetch(graphUrl);
         if (graphRes.ok) stationGraph = await graphRes.json();
       } catch (e) { console.warn('station_graph not loaded:', e); }
     }
