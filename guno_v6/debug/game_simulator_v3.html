@@ -784,7 +784,7 @@ window.runSim = async function() {
     let stationGraph = null;
     if (useNetwork) {
       try {
-        const graphRes = await fetch('../data/graph/station_graph_tokyo.json');
+        const graphRes = await fetch('../cities/tokyo/data/graph/station_graph.json');
         if (graphRes.ok) stationGraph = await graphRes.json();
       } catch (e) { console.warn('station_graph not loaded:', e); }
     }

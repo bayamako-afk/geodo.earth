@@ -5,6 +5,9 @@
  * Assigns card rarity tiers to stations based on their network importance (score_total).
  */
 
+// TODO(multi-city): Replace hardcoded Tokyo path with:
+//   resolveDatasetUrl('station_metrics', cityProfile, baseUrl)
+// from src/city/city_loader.js once city-switch support is connected.
 const DEFAULT_METRICS_PATH = '../data/derived/station_metrics_tokyo.json';
 
 /**

@@ -507,7 +507,7 @@
   // ── Load metrics for Quick Fill ────────────────────────────────────────────
   async function loadMetrics() {
     try {
-      const metricsUrl = new URL('../data/derived/station_metrics_tokyo.json', location.href).href;
+      const metricsUrl = new URL('../cities/tokyo/data/derived/station_metrics.json', location.href).href;
       const res = await fetch(metricsUrl);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();

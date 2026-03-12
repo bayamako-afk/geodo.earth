@@ -558,10 +558,10 @@
 
   try {
     const [metricsRes, linesRes, graphRes, masterRes] = await Promise.all([
-      fetch(`${BASE_URL}data/derived/station_metrics_tokyo.json`),
-      fetch(`${BASE_URL}data/master/station_lines_tokyo.json`),
-      fetch(`${BASE_URL}data/graph/station_graph_tokyo.json`),
-      fetch(`${BASE_URL}data/master/lines_tokyo_master.json`)
+      fetch(`${BASE_URL}cities/tokyo/data/derived/station_metrics.json`),
+      fetch(`${BASE_URL}cities/tokyo/data/master/station_lines.json`),
+      fetch(`${BASE_URL}cities/tokyo/data/graph/station_graph.json`),
+      fetch(`${BASE_URL}cities/tokyo/data/master/lines_master.json`)
     ]);
     stationMetrics = await metricsRes.json();
     stationLines   = await linesRes.json();

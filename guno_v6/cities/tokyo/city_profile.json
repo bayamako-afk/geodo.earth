@@ -1,0 +1,37 @@
+{
+  "city_id": "tokyo",
+  "display_name": "Tokyo",
+  "country": "Japan",
+  "language": "ja",
+  "timezone": "Asia/Tokyo",
+  "map": {
+    "center": [35.68, 139.76],
+    "zoom": 11
+  },
+  "dataset": {
+    "station_master":   "cities/tokyo/data/master/stations_master.json",
+    "station_lines":    "cities/tokyo/data/master/station_lines.json",
+    "lines_master":     "cities/tokyo/data/master/lines_master.json",
+    "station_graph":    "cities/tokyo/data/graph/station_graph.json",
+    "station_metrics":  "cities/tokyo/data/derived/station_metrics.json",
+    "line_metrics":     "cities/tokyo/data/derived/line_metrics.json",
+    "default_deck":     "cities/tokyo/data/decks/deck_v1.json",
+    "default_pack":     "cities/tokyo/data/packs/pack_v1.json"
+  },
+  "routes": {
+    "featured_lines": ["JY", "G", "M", "T", "Z"]
+  },
+  "ui": {
+    "primary_label":   "name_ja",
+    "secondary_label": "name_en"
+  },
+  "deck_defaults": {
+    "deck_size": 40,
+    "rarity_targets": {
+      "Legendary": 1,
+      "Epic": 9,
+      "Rare": 10,
+      "Common": 20
+    }
+  }
+}

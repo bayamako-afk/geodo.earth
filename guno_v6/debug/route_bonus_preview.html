@@ -661,7 +661,7 @@
   // ── Load data ────────────────────────────────────────────────────────────────
   async function loadData() {
     const base = new URL('../', location.href).href;
-    const url  = base + 'data/derived/line_metrics_tokyo.json';
+    const url  = base + 'cities/tokyo/data/derived/line_metrics.json';
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}: ${url}`);

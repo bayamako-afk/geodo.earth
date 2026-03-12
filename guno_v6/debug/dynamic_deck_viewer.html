@@ -759,7 +759,7 @@
 
   try {
     // Pre-load lines data for line distribution
-    const linesUrl = BASE_URL + 'data/master/station_lines_tokyo.json';
+    const linesUrl = BASE_URL + 'cities/tokyo/data/master/station_lines.json';
     const res = await fetch(linesUrl);
     if (res.ok) {
       linesData = await res.json();

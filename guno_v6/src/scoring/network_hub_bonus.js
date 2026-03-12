@@ -16,6 +16,9 @@
 // This file lives at: guno_v6/src/scoring/network_hub_bonus.js
 // Data lives at:      guno_v6/data/derived/station_metrics_tokyo.json
 // Relative path from this file: ../../data/derived/station_metrics_tokyo.json
+// TODO(multi-city): Replace hardcoded Tokyo path with:
+//   resolveDatasetUrl('station_metrics', cityProfile, baseUrl)
+// from src/city/city_loader.js once city-switch support is connected.
 // ---------------------------------------------------------------------------
 const METRICS_URL = '../../data/derived/station_metrics_tokyo.json';
 

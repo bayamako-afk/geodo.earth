@@ -1,0 +1,406 @@
+{
+  "pack_meta": {
+    "pack_version": "1.0",
+    "pack_id": "tokyo_core",
+    "name": "Tokyo Core Lines",
+    "description": "山手線・丸ノ内線・銀座線・東西線（各10駅）",
+    "generated_by": "GUNO Deck Generator v1.0",
+    "generated_at": "2026-03-08"
+  },
+  "entities": {
+    "jy-01": {
+      "type": "station",
+      "name_ja": "東京",
+      "name_en": "Tokyo",
+      "station_code": "jy-01",
+      "cross_lines": [
+        "M"
+      ]
+    },
+    "jy-02": {
+      "type": "station",
+      "name_ja": "神田",
+      "name_en": "Kanda",
+      "station_code": "jy-02",
+      "cross_lines": []
+    },
+    "jy-03": {
+      "type": "station",
+      "name_ja": "秋葉原",
+      "name_en": "Akihabara",
+      "station_code": "jy-03",
+      "cross_lines": []
+    },
+    "jy-04": {
+      "type": "station",
+      "name_ja": "御徒町",
+      "name_en": "Okachimachi",
+      "station_code": "jy-04",
+      "cross_lines": []
+    },
+    "jy-05": {
+      "type": "station",
+      "name_ja": "上野",
+      "name_en": "Ueno",
+      "station_code": "jy-05",
+      "cross_lines": []
+    },
+    "jy-06": {
+      "type": "station",
+      "name_ja": "鶯谷",
+      "name_en": "Uguisudani",
+      "station_code": "jy-06",
+      "cross_lines": []
+    },
+    "jy-07": {
+      "type": "station",
+      "name_ja": "日暮里",
+      "name_en": "Nippori",
+      "station_code": "jy-07",
+      "cross_lines": []
+    },
+    "jy-08": {
+      "type": "station",
+      "name_ja": "西日暮里",
+      "name_en": "Nishi-nippori",
+      "station_code": "jy-08",
+      "cross_lines": []
+    },
+    "jy-09": {
+      "type": "station",
+      "name_ja": "田端",
+      "name_en": "Tabata",
+      "station_code": "jy-09",
+      "cross_lines": []
+    },
+    "jy-10": {
+      "type": "station",
+      "name_ja": "駒込",
+      "name_en": "Komagome",
+      "station_code": "jy-10",
+      "cross_lines": []
+    },
+    "m-01": {
+      "type": "station",
+      "name_ja": "池袋",
+      "name_en": "Ikebukuro",
+      "station_code": "m-01",
+      "cross_lines": []
+    },
+    "m-02": {
+      "type": "station",
+      "name_ja": "新大塚",
+      "name_en": "Shin-otsuka",
+      "station_code": "m-02",
+      "cross_lines": []
+    },
+    "m-03": {
+      "type": "station",
+      "name_ja": "茗荷谷",
+      "name_en": "Myogadani",
+      "station_code": "m-03",
+      "cross_lines": []
+    },
+    "m-04": {
+      "type": "station",
+      "name_ja": "後楽園",
+      "name_en": "Korakuen",
+      "station_code": "m-04",
+      "cross_lines": []
+    },
+    "m-05": {
+      "type": "station",
+      "name_ja": "本郷三丁目",
+      "name_en": "Hongo-sanchome",
+      "station_code": "m-05",
+      "cross_lines": []
+    },
+    "m-06": {
+      "type": "station",
+      "name_ja": "御茶ノ水",
+      "name_en": "Ochanomizu",
+      "station_code": "m-06",
+      "cross_lines": []
+    },
+    "m-07": {
+      "type": "station",
+      "name_ja": "淡路町",
+      "name_en": "Awajicho",
+      "station_code": "m-07",
+      "cross_lines": []
+    },
+    "m-08": {
+      "type": "station",
+      "name_ja": "大手町",
+      "name_en": "Otemachi",
+      "station_code": "m-08",
+      "cross_lines": []
+    },
+    "m-09": {
+      "type": "station",
+      "name_ja": "東京",
+      "name_en": "Tokyo",
+      "station_code": "m-09",
+      "cross_lines": [
+        "JY"
+      ]
+    },
+    "m-10": {
+      "type": "station",
+      "name_ja": "銀座",
+      "name_en": "Ginza",
+      "station_code": "m-10",
+      "cross_lines": [
+        "G"
+      ]
+    },
+    "g-01": {
+      "type": "station",
+      "name_ja": "渋谷",
+      "name_en": "Shibuya",
+      "station_code": "g-01",
+      "cross_lines": []
+    },
+    "g-02": {
+      "type": "station",
+      "name_ja": "表参道",
+      "name_en": "Omotesando",
+      "station_code": "g-02",
+      "cross_lines": []
+    },
+    "g-03": {
+      "type": "station",
+      "name_ja": "外苑前",
+      "name_en": "Gaien-mae",
+      "station_code": "g-03",
+      "cross_lines": []
+    },
+    "g-04": {
+      "type": "station",
+      "name_ja": "青山一丁目",
+      "name_en": "Aoyama-itchome",
+      "station_code": "g-04",
+      "cross_lines": []
+    },
+    "g-05": {
+      "type": "station",
+      "name_ja": "赤坂見附",
+      "name_en": "Akasaka-mitsuke",
+      "station_code": "g-05",
+      "cross_lines": []
+    },
+    "g-06": {
+      "type": "station",
+      "name_ja": "溜池山王",
+      "name_en": "Tameike-sanno",
+      "station_code": "g-06",
+      "cross_lines": []
+    },
+    "g-07": {
+      "type": "station",
+      "name_ja": "虎ノ門",
+      "name_en": "Toranomon",
+      "station_code": "g-07",
+      "cross_lines": []
+    },
+    "g-08": {
+      "type": "station",
+      "name_ja": "新橋",
+      "name_en": "Shimbashi",
+      "station_code": "g-08",
+      "cross_lines": []
+    },
+    "g-09": {
+      "type": "station",
+      "name_ja": "銀座",
+      "name_en": "Ginza",
+      "station_code": "g-09",
+      "cross_lines": [
+        "M"
+      ]
+    },
+    "g-10": {
+      "type": "station",
+      "name_ja": "京橋",
+      "name_en": "Kyobashi",
+      "station_code": "g-10",
+      "cross_lines": []
+    },
+    "t-01": {
+      "type": "station",
+      "name_ja": "西船橋",
+      "name_en": "Nishi-funabashi",
+      "station_code": "t-01",
+      "cross_lines": []
+    },
+    "t-02": {
+      "type": "station",
+      "name_ja": "原木中山",
+      "name_en": "Baraki-nakayama",
+      "station_code": "t-02",
+      "cross_lines": []
+    },
+    "t-03": {
+      "type": "station",
+      "name_ja": "妙典",
+      "name_en": "Myoden",
+      "station_code": "t-03",
+      "cross_lines": []
+    },
+    "t-04": {
+      "type": "station",
+      "name_ja": "行徳",
+      "name_en": "Gyotoku",
+      "station_code": "t-04",
+      "cross_lines": []
+    },
+    "t-05": {
+      "type": "station",
+      "name_ja": "南行徳",
+      "name_en": "Minami-gyotoku",
+      "station_code": "t-05",
+      "cross_lines": []
+    },
+    "t-06": {
+      "type": "station",
+      "name_ja": "浦安",
+      "name_en": "Urayasu",
+      "station_code": "t-06",
+      "cross_lines": []
+    },
+    "t-07": {
+      "type": "station",
+      "name_ja": "葛西",
+      "name_en": "Kasai",
+      "station_code": "t-07",
+      "cross_lines": []
+    },
+    "t-08": {
+      "type": "station",
+      "name_ja": "西葛西",
+      "name_en": "Nishi-kasai",
+      "station_code": "t-08",
+      "cross_lines": []
+    },
+    "t-09": {
+      "type": "station",
+      "name_ja": "南砂町",
+      "name_en": "Minami-sunacho",
+      "station_code": "t-09",
+      "cross_lines": []
+    },
+    "t-10": {
+      "type": "station",
+      "name_ja": "東陽町",
+      "name_en": "Tatsumi",
+      "station_code": "t-10",
+      "cross_lines": []
+    }
+  },
+  "collections": {
+    "JY": {
+      "kind": "route",
+      "lc": "JY",
+      "name_ja": "山手線",
+      "name_en": "Yamanote",
+      "color": "#80C241",
+      "size": 10,
+      "members": [
+        "jy-01",
+        "jy-02",
+        "jy-03",
+        "jy-04",
+        "jy-05",
+        "jy-06",
+        "jy-07",
+        "jy-08",
+        "jy-09",
+        "jy-10"
+      ]
+    },
+    "M": {
+      "kind": "route",
+      "lc": "M",
+      "name_ja": "丸ノ内線",
+      "name_en": "Marunouchi",
+      "color": "#E60012",
+      "size": 10,
+      "members": [
+        "m-01",
+        "m-02",
+        "m-03",
+        "m-04",
+        "m-05",
+        "m-06",
+        "m-07",
+        "m-08",
+        "m-09",
+        "m-10"
+      ]
+    },
+    "G": {
+      "kind": "route",
+      "lc": "G",
+      "name_ja": "銀座線",
+      "name_en": "Ginza",
+      "color": "#F39700",
+      "size": 10,
+      "members": [
+        "g-01",
+        "g-02",
+        "g-03",
+        "g-04",
+        "g-05",
+        "g-06",
+        "g-07",
+        "g-08",
+        "g-09",
+        "g-10"
+      ]
+    },
+    "T": {
+      "kind": "route",
+      "lc": "T",
+      "name_ja": "東西線",
+      "name_en": "Tozai",
+      "color": "#009BBF",
+      "size": 10,
+      "members": [
+        "t-01",
+        "t-02",
+        "t-03",
+        "t-04",
+        "t-05",
+        "t-06",
+        "t-07",
+        "t-08",
+        "t-09",
+        "t-10"
+      ]
+    }
+  },
+  "layouts": {
+    "default": {
+      "slots": [
+        {
+          "collection_id": "JY"
+        },
+        {
+          "collection_id": "M"
+        },
+        {
+          "collection_id": "G"
+        },
+        {
+          "collection_id": "T"
+        }
+      ]
+    }
+  },
+  "rules": {
+    "deck_size": 10,
+    "hand_size": 7,
+    "guno_threshold": 10,
+    "max_players": 4
+  }
+}

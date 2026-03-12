@@ -625,7 +625,7 @@ function render() {
 // ── Load data ─────────────────────────────────────────────────────────────────
 async function loadData() {
   const baseUrl = new URL('../', location.href).href;
-  const metricsUrl = baseUrl + 'data/derived/line_metrics_tokyo.json';
+  const metricsUrl = baseUrl + 'cities/tokyo/data/derived/line_metrics.json';
 
   try {
     setStatus('Loading line_metrics_tokyo.json…');

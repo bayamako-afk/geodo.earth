@@ -1,0 +1,10 @@
+{
+  "default_city": "tokyo",
+  "cities": [
+    {
+      "city_id": "tokyo",
+      "display_name": "Tokyo",
+      "profile": "cities/tokyo/city_profile.json"
+    }
+  ]
+}

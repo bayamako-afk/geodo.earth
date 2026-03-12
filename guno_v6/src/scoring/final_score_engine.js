@@ -19,6 +19,9 @@ import { computeHubBonus, computeHubBonusSync } from './network_hub_bonus.js?v=3
 
 // ---------------------------------------------------------------------------
 // Path resolution
+// TODO(multi-city): Replace hardcoded Tokyo path with:
+//   resolveDatasetUrl('station_metrics', cityProfile, baseUrl)
+// from src/city/city_loader.js once city-switch support is connected.
 // ---------------------------------------------------------------------------
 const METRICS_URL = '../../data/derived/station_metrics_tokyo.json';
 

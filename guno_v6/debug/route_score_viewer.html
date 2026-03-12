@@ -417,8 +417,8 @@ ST_356602_1397060</textarea>
   async function ensureData() {
     if (_stationLinesData && _linesMasterData) return;
     const base = location.href;
-    const slUrl = new URL('../data/master/station_lines_tokyo.json', base).href;
-    const lmUrl = new URL('../data/master/lines_tokyo_master.json', base).href;
+    const slUrl = new URL('../cities/tokyo/data/master/station_lines.json', base).href;
+    const lmUrl = new URL('../cities/tokyo/data/master/lines_master.json', base).href;
     const [slRes, lmRes] = await Promise.all([fetch(slUrl), fetch(lmUrl)]);
     _stationLinesData = await slRes.json();
     _linesMasterData  = await lmRes.json();

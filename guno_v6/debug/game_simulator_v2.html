@@ -675,9 +675,9 @@
       // Fetch data first
       const baseUrl = BASE_URL;
       const [metricsRes, linesRes, masterRes] = await Promise.all([
-        fetch(`${baseUrl}data/derived/station_metrics_tokyo.json`),
-        fetch(`${baseUrl}data/master/station_lines_tokyo.json`),
-        fetch(`${baseUrl}data/master/lines_tokyo_master.json`)
+        fetch(`${baseUrl}cities/tokyo/data/derived/station_metrics.json`),
+        fetch(`${baseUrl}cities/tokyo/data/master/station_lines.json`),
+        fetch(`${baseUrl}cities/tokyo/data/master/lines_master.json`)
       ]);
 
       if (!metricsRes.ok || !linesRes.ok || !masterRes.ok) {

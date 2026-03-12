@@ -357,7 +357,7 @@
   // ── Load metrics for Quick Fill ────────────────────────────────────────────
   async function loadMetrics() {
     try {
-      const res = await fetch('../data/derived/station_metrics_tokyo.json');
+      const res = await fetch('../cities/tokyo/data/derived/station_metrics.json');
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       allMetrics = data.stations || data;

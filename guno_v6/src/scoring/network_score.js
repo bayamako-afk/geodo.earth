@@ -308,6 +308,9 @@ export function computeNetworkScoreFromMapState(mapState, playerIdx, packData, s
 // 非同期版（ブラウザ向け）
 // ─────────────────────────────────────────────────────────────────────────────
 
+// TODO(multi-city): Replace hardcoded Tokyo path with:
+//   resolveDatasetUrl('station_graph', cityProfile, baseUrl)
+// from src/city/city_loader.js once city-switch support is connected.
 const DEFAULT_GRAPH_PATH = '../../data/graph/station_graph_tokyo.json';
 
 let _graphCache = null;

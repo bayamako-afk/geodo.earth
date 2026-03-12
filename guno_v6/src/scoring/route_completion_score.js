@@ -16,6 +16,10 @@
 // ── Data paths ───────────────────────────────────────────────────────────────
 // Default paths are relative to this file's location (src/scoring/ → ../../data/master/)
 // When calling from debug/, pass baseUrl: location.href to resolve correctly.
+// TODO(multi-city): Replace hardcoded Tokyo paths with:
+//   resolveDatasetUrl('station_lines', cityProfile, baseUrl)
+//   resolveDatasetUrl('lines_master', cityProfile, baseUrl)
+// from src/city/city_loader.js once city-switch support is connected.
 const DEFAULT_STATION_LINES_PATH = '../../data/master/station_lines_tokyo.json';
 const DEFAULT_LINES_MASTER_PATH  = '../../data/master/lines_tokyo_master.json';
 
