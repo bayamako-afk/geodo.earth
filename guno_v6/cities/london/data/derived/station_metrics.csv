@@ -1,0 +1,163 @@
+station_global_id,station_name,station_name_en,line_ids,line_count,hub_score,centrality_score,composite_score,rarity,degree
+ST_P51492_N00194,Earl's Court,Earl's Court,PIC|DIS|CIR,3,5.0,5.0,5.0,legendary,4
+ST_P51507_N00122,Embankment,Embankment,NOR|DIS|CIR,3,5.0,5.0,5.0,legendary,4
+ST_P51494_N00183,Gloucester Road,Gloucester Road,PIC|DIS|CIR,3,5.0,3.75,4.5,legendary,3
+ST_P51494_N00174,South Kensington,South Kensington,PIC|DIS|CIR,3,5.0,3.75,4.5,legendary,3
+ST_P51490_N00213,Baron's Court,Baron's Court,PIC|DIS|CIR,3,5.0,2.5,4.0,legendary,2
+ST_P51493_N00224,Hammersmith,Hammersmith,PIC|DIS|CIR,3,5.0,2.5,4.0,legendary,2
+ST_P51490_N00206,West Kensington,West Kensington,PIC|DIS|CIR,3,5.0,2.5,4.0,legendary,2
+ST_P51517_N00120,Holborn,Holborn,CEN|PIC,2,2.5,5.0,3.5,legendary,4
+ST_P51531_N00124,King's Cross St. Pancras,King's Cross St. Pancras,PIC|CIR,2,2.5,5.0,3.5,legendary,4
+ST_P51511_N00128,Leicester Square,Leicester Square,NOR|PIC,2,2.5,5.0,3.5,legendary,4
+ST_P51518_N00082,Liverpool Street,Liverpool Street,CEN|CIR,2,2.5,5.0,3.5,legendary,4
+ST_P51525_N00033,Mile End,Mile End,CEN|DIS,2,2.5,5.0,3.5,legendary,4
+ST_P51509_N00196,Notting Hill Gate,Notting Hill Gate,CEN|CIR,2,2.5,5.0,3.5,legendary,4
+ST_P51516_N00130,Tottenham Court Road,Tottenham Court Road,CEN|NOR,2,2.5,5.0,3.5,legendary,4
+ST_P51494_N00268,Chiswick Park,Chiswick Park,PIC|DIS,2,2.5,3.75,3.0,epic,3
+ST_P51510_N00076,Tower Hill,Tower Hill,DIS|CIR,2,2.5,3.75,3.0,epic,3
+ST_P51512_N00103,Blackfriars,Blackfriars,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51511_N00090,Cannon Street,Cannon Street,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51512_N00094,Mansion House,Mansion House,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51510_N00086,Monument,Monument,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51494_N00235,Ravenscourt Park,Ravenscourt Park,PIC|DIS,2,2.5,2.5,2.5,epic,2
+ST_P51492_N00156,Sloane Square,Sloane Square,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51499_N00134,St. James's Park,St. James's Park,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51495_N00241,Stamford Brook,Stamford Brook,PIC|DIS,2,2.5,2.5,2.5,epic,2
+ST_P51511_N00114,Temple,Temple,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51495_N00254,Turnham Green,Turnham Green,PIC|DIS,2,2.5,2.5,2.5,epic,2
+ST_P51496_N00145,Victoria,Victoria,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51501_N00125,Westminster,Westminster,DIS|CIR,2,2.5,2.5,2.5,epic,2
+ST_P51503_N00280,Acton Town,Acton Town,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51514_N00075,Aldgate,Aldgate,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51515_N00073,Aldgate East,Aldgate East,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51616_N00133,Arnos Grove,Arnos Grove,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51558_N00106,Arsenal,Arsenal,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51523_N00157,Baker Street,Baker Street,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51443_N00153,Balham,Balham,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51513_N00089,Bank,Bank,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51520_N00098,Barbican,Barbican,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51540_P00081,Barking,Barking,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51512_N00187,Bayswater,Bayswater,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51540_P00122,Becontree,Becontree,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51550_N00165,Belsize Park,Belsize Park,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51527_N00055,Bethnal Green,Bethnal Green,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51514_N00149,Bond Street,Bond Street,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51495_N00338,Boston Manor,Boston Manor,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51605_N00122,Bounds Green,Bounds Green,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51527_N00025,Bow Road,Bow Road,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51576_N00214,Brent Cross,Brent Cross,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51522_N00012,Bromley-by-Bow,Bromley-by-Bow,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51627_P00047,Buckhurst Hill,Buckhurst Hill,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51603_N00266,Burnt Oak,Burnt Oak,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51544_N00119,Caledonian Road,Caledonian Road,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51539_N00143,Camden Town,Camden Town,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51544_N00154,Chalk Farm,Chalk Farm,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51518_N00111,Chancery Lane,Chancery Lane,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51508_N00125,Charing Cross,Charing Cross,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51461_N00138,Clapham Common,Clapham Common,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51465_N00130,Clapham North,Clapham North,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51455_N00148,Clapham South,Clapham South,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51595_N00250,Colindale,Colindale,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51420_N00188,Colliers Wood,Colliers Wood,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51513_N00124,Covent Garden,Covent Garden,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51544_P00160,Dagenham East,Dagenham East,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51542_P00140,Dagenham Heathway,Dagenham Heathway,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51645_P00084,Debden,Debden,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51515_N00302,Ealing Broadway,Ealing Broadway,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51517_N00245,East Acton,East Acton,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51540_P00052,East Ham,East Ham,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51461_N00212,East Putney,East Putney,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51520_N00169,Edgware Road,Edgware Road,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51549_P00190,Elm Park,Elm Park,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51528_N00134,Euston,Euston,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51526_N00136,Euston Square,Euston Square,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51520_N00105,Farringdon,Farringdon,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51564_N00101,Finsbury Park,Finsbury Park,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51480_N00193,Fulham Broadway,Fulham Broadway,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51572_N00194,Golders Green,Golders Green,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51502_N00227,Goldhawk Road,Goldhawk Road,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51520_N00135,Goodge Street,Goodge Street,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51524_N00144,Great Portland Street,Great Portland Street,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51507_N00143,Green Park,Green Park,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51542_N00346,Greenford,Greenford,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51492_N00275,Gunnersbury,Gunnersbury,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51566_N00178,Hampstead,Hampstead,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51530_N00299,Hanger Lane,Hanger Lane,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51466_N00424,Hatton Cross,Hatton Cross,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51471_N00452,Heathrow Terminals 2&3,Heathrow Terminals 2&3,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51458_N00448,Heathrow Terminal 4,Heathrow Terminal 4,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51583_N00227,Hendon Central,Hendon Central,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51501_N00192,High Street Kensington,High Street Kensington,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51508_N00206,Holland Park,Holland Park,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51553_N00113,Holloway Road,Holloway Road,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51554_P00214,Hornchurch,Hornchurch,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51472_N00367,Hounslow Central,Hounslow Central,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51472_N00346,Hounslow East,Hounslow East,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51474_N00386,Hounslow West,Hounslow West,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51503_N00153,Hyde Park Corner,Hyde Park Corner,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51488_N00105,Kennington,Kennington,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51478_N00285,Kew Gardens,Kew Gardens,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51502_N00161,Knightsbridge,Knightsbridge,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51512_N00176,Lancaster Gate,Lancaster Gate,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51556_N00004,Leyton,Leyton,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51569_P00008,Leytonstone,Leytonstone,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51641_P00056,Loughton,Loughton,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51570_N00096,Manor House,Manor House,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51514_N00159,Marble Arch,Marble Arch,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51519_N00089,Moorgate,Moorgate,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51534_N00139,Mornington Crescent,Mornington Crescent,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51523_N00264,North Acton,North Acton,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51499_N00315,Northfields,Northfields,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51549_N00368,Northolt,Northolt,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51648_N00133,Oakwood,Oakwood,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51481_N00352,Osterley,Osterley,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51482_N00113,Oval,Oval,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51515_N00142,Oxford Circus,Oxford Circus,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51515_N00176,Paddington,Paddington,CIR,1,0.0,2.5,1.0,epic,2
+ST_P51475_N00200,Parsons Green,Parsons Green,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51536_N00323,Perivale,Perivale,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51510_N00135,Piccadilly Circus,Piccadilly Circus,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51532_P00020,Plaistow,Plaistow,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51468_N00209,Putney Bridge,Putney Bridge,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51511_N00188,Queensway,Queensway,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51561_N00415,Ruislip Gardens,Ruislip Gardens,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51523_N00124,Russell Square,Russell Square,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51505_N00219,Shepherd's Bush,Shepherd's Bush,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51506_N00226,Shepherd's Bush Market,Shepherd's Bush Market,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51581_P00020,Snaresbrook,Snaresbrook,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51501_N00306,South Ealing,South Ealing,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51557_N00399,South Ruislip,South Ruislip,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51414_N00192,South Wimbledon,South Wimbledon,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51592_P00028,South Woodford,South Woodford,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51445_N00206,Southfields,Southfields,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51632_N00128,Southgate,Southgate,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51515_N00098,St. Paul's,St. Paul's,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51522_N00046,Stepney Green,Stepney Green,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51472_N00123,Stockwell,Stockwell,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51542_N00004,Stratford,Stratford,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51671_P00104,Theydon Bois,Theydon Bois,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51435_N00161,Tooting Bec,Tooting Bec,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51427_N00168,Tooting Broadway,Tooting Broadway,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51590_N00103,Turnpike Lane,Turnpike Lane,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51557_P00234,Upminster Bridge,Upminster Bridge,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51538_P00100,Upney,Upney,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51535_P00035,Upton Park,Upton Park,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51524_N00139,Warren Street,Warren Street,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51504_N00114,Waterloo,Waterloo,NOR,1,0.0,2.5,1.0,epic,2
+ST_P51517_N00280,West Acton,West Acton,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51487_N00195,West Brompton,West Brompton,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51529_P00005,West Ham,West Ham,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51512_N00227,White City,White City,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51520_N00060,Whitechapel,Whitechapel,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51421_N00206,Wimbledon,Wimbledon,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51435_N00206,Wimbledon Park,Wimbledon Park,DIS,1,0.0,2.5,1.0,epic,2
+ST_P51598_N00110,Wood Green,Wood Green,PIC,1,0.0,2.5,1.0,epic,2
+ST_P51608_P00034,Woodford,Woodford,CEN,1,0.0,2.5,1.0,epic,2
+ST_P51652_N00150,Cockfosters,Cockfosters,PIC,1,0.0,1.25,0.5,common,1
+ST_P51613_N00276,Edgware,Edgware,NOR,1,0.0,1.25,0.5,common,1
+ST_P51694_P00114,Epping,Epping,CEN,1,0.0,1.25,0.5,common,1
+ST_P51473_N00489,Heathrow Terminal 5,Heathrow Terminal 5,PIC,1,0.0,1.25,0.5,common,1
+ST_P51402_N00195,Morden,Morden,NOR,1,0.0,1.25,0.5,common,1
+ST_P51463_N00301,Richmond,Richmond,DIS,1,0.0,1.25,0.5,common,1
+ST_P51559_P00251,Upminster,Upminster,DIS,1,0.0,1.25,0.5,common,1
+ST_P51569_N00436,West Ruislip,West Ruislip,CEN,1,0.0,1.25,0.5,common,1

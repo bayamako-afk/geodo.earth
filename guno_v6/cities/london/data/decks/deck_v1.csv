@@ -1,0 +1,31 @@
+card_id,station_global_id,station_name,station_name_en,line_id,collection_id,order,rarity,composite_score
+LDN001,ST_P51507_N00122,Embankment,Embankment,NOR,nor,2,legendary,5.0
+LDN002,ST_P51492_N00194,Earl's Court,Earl's Court,PIC,pic,2,epic,5.0
+LDN003,ST_P51494_N00183,Gloucester Road,Gloucester Road,PIC,pic,3,epic,4.5
+LDN004,ST_P51494_N00174,South Kensington,South Kensington,PIC,pic,4,epic,4.5
+LDN005,ST_P51493_N00224,Hammersmith,Hammersmith,PIC,pic,5,epic,4.0
+LDN006,ST_P51490_N00213,Baron's Court,Baron's Court,PIC,pic,6,epic,4.0
+LDN007,ST_P51490_N00206,West Kensington,West Kensington,PIC,pic,7,epic,4.0
+LDN008,ST_P51509_N00196,Notting Hill Gate,Notting Hill Gate,CEN,cen,2,rare,3.5
+LDN009,ST_P51516_N00130,Tottenham Court Road,Tottenham Court Road,CEN,cen,3,rare,3.5
+LDN010,ST_P51517_N00120,Holborn,Holborn,CEN,cen,4,rare,3.5
+LDN011,ST_P51518_N00082,Liverpool Street,Liverpool Street,CEN,cen,5,rare,3.5
+LDN012,ST_P51525_N00033,Mile End,Mile End,CEN,cen,6,rare,3.5
+LDN013,ST_P51511_N00128,Leicester Square,Leicester Square,NOR,nor,4,rare,3.5
+LDN014,ST_P51531_N00124,King's Cross St. Pancras,King's Cross St. Pancras,CIR,cir,8,rare,3.5
+LDN015,ST_P51561_N00415,Ruislip Gardens,Ruislip Gardens,CEN,cen,7,rare,1.0
+LDN016,ST_P51557_N00399,South Ruislip,South Ruislip,CEN,cen,8,common,1.0
+LDN017,ST_P51549_N00368,Northolt,Northolt,CEN,cen,9,common,1.0
+LDN018,ST_P51603_N00266,Burnt Oak,Burnt Oak,NOR,nor,5,common,1.0
+LDN019,ST_P51595_N00250,Colindale,Colindale,NOR,nor,6,common,1.0
+LDN020,ST_P51583_N00227,Hendon Central,Hendon Central,NOR,nor,7,common,1.0
+LDN021,ST_P51576_N00214,Brent Cross,Brent Cross,NOR,nor,8,common,1.0
+LDN022,ST_P51572_N00194,Golders Green,Golders Green,NOR,nor,9,common,1.0
+LDN023,ST_P51569_N00436,West Ruislip,West Ruislip,CEN,cen,1,common,0.5
+LDN024,ST_P51694_P00114,Epping,Epping,CEN,cen,10,common,0.5
+LDN025,ST_P51613_N00276,Edgware,Edgware,NOR,nor,1,common,0.5
+LDN026,ST_P51402_N00195,Morden,Morden,NOR,nor,10,common,0.5
+LDN027,ST_P51473_N00489,Heathrow Terminal 5,Heathrow Terminal 5,PIC,pic,1,common,0.5
+LDN028,ST_P51652_N00150,Cockfosters,Cockfosters,PIC,pic,10,common,0.5
+LDN029,ST_P51463_N00301,Richmond,Richmond,DIS,dis,1,common,0.5
+LDN030,ST_P51559_P00251,Upminster,Upminster,DIS,dis,10,common,0.5

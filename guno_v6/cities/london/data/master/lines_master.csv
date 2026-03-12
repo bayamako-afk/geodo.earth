@@ -1,0 +1,6 @@
+line_id,line_name,line_name_en,operator_name,color,prefectures,is_loop,status,station_count
+CEN,Central line,Central line,Transport for London,#DC241F,England,False,active,41
+NOR,Northern line,Northern line,Transport for London,#000000,England,False,active,31
+PIC,Piccadilly line,Piccadilly line,Transport for London,#003688,England,False,active,43
+DIS,District line,District line,Transport for London,#00782A,England,False,active,51
+CIR,Circle line,Circle line,Transport for London,#FFD329,England,True,active,31

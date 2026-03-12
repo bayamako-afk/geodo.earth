@@ -1,0 +1,713 @@
+{
+  "pack_meta": {
+    "pack_version": "1.0",
+    "pack_id": "london_v1",
+    "name": "London Underground Pack v1",
+    "description": "5-line London Underground pack: CEN/NOR/PIC/DIS/CIR",
+    "generated_by": "generate_london_deck.py",
+    "generated_at": "2026-03-12"
+  },
+  "layouts": {
+    "default": {
+      "slots": [
+        {
+          "collection_id": "cen",
+          "line_id": "CEN",
+          "line_name": "Central line",
+          "color": "#DC241F",
+          "size": 10
+        },
+        {
+          "collection_id": "nor",
+          "line_id": "NOR",
+          "line_name": "Northern line",
+          "color": "#000000",
+          "size": 10
+        },
+        {
+          "collection_id": "pic",
+          "line_id": "PIC",
+          "line_name": "Piccadilly line",
+          "color": "#003688",
+          "size": 10
+        },
+        {
+          "collection_id": "dis",
+          "line_id": "DIS",
+          "line_name": "District line",
+          "color": "#00782A",
+          "size": 10
+        },
+        {
+          "collection_id": "cir",
+          "line_id": "CIR",
+          "line_name": "Circle line",
+          "color": "#FFD329",
+          "size": 10
+        }
+      ]
+    }
+  },
+  "collections": {
+    "cen": {
+      "kind": "line",
+      "lc": "cen",
+      "name_ja": "Central line",
+      "name_en": "Central line",
+      "color": "#DC241F",
+      "size": 10,
+      "members": [
+        "cen-01",
+        "cen-02",
+        "cen-03",
+        "cen-04",
+        "cen-05",
+        "cen-06",
+        "cen-07",
+        "cen-08",
+        "cen-09",
+        "cen-10"
+      ]
+    },
+    "nor": {
+      "kind": "line",
+      "lc": "nor",
+      "name_ja": "Northern line",
+      "name_en": "Northern line",
+      "color": "#000000",
+      "size": 10,
+      "members": [
+        "nor-01",
+        "nor-02",
+        "nor-03",
+        "nor-04",
+        "nor-05",
+        "nor-06",
+        "nor-07",
+        "nor-08",
+        "nor-09",
+        "nor-10"
+      ]
+    },
+    "pic": {
+      "kind": "line",
+      "lc": "pic",
+      "name_ja": "Piccadilly line",
+      "name_en": "Piccadilly line",
+      "color": "#003688",
+      "size": 10,
+      "members": [
+        "pic-01",
+        "pic-02",
+        "pic-03",
+        "pic-04",
+        "pic-05",
+        "pic-06",
+        "pic-07",
+        "pic-08",
+        "pic-09",
+        "pic-10"
+      ]
+    },
+    "dis": {
+      "kind": "line",
+      "lc": "dis",
+      "name_ja": "District line",
+      "name_en": "District line",
+      "color": "#00782A",
+      "size": 10,
+      "members": [
+        "dis-01",
+        "dis-02",
+        "dis-03",
+        "dis-04",
+        "dis-05",
+        "dis-06",
+        "dis-07",
+        "dis-08",
+        "dis-09",
+        "dis-10"
+      ]
+    },
+    "cir": {
+      "kind": "line",
+      "lc": "cir",
+      "name_ja": "Circle line",
+      "name_en": "Circle line",
+      "color": "#FFD329",
+      "size": 10,
+      "members": [
+        "cir-01",
+        "cir-02",
+        "cir-03",
+        "cir-04",
+        "cir-05",
+        "cir-06",
+        "cir-07",
+        "cir-08",
+        "cir-09",
+        "cir-10"
+      ]
+    }
+  },
+  "entities": {
+    "cen-01": {
+      "type": "station",
+      "name_ja": "West Ruislip",
+      "name_en": "West Ruislip",
+      "station_code": "cen-01",
+      "station_global_id": "ST_P51569_N00436",
+      "cross_lines": [
+        "cen"
+      ]
+    },
+    "cen-02": {
+      "type": "station",
+      "name_ja": "Notting Hill Gate",
+      "name_en": "Notting Hill Gate",
+      "station_code": "cen-02",
+      "station_global_id": "ST_P51509_N00196",
+      "cross_lines": [
+        "cen",
+        "cir"
+      ]
+    },
+    "cen-03": {
+      "type": "station",
+      "name_ja": "Tottenham Court Road",
+      "name_en": "Tottenham Court Road",
+      "station_code": "cen-03",
+      "station_global_id": "ST_P51516_N00130",
+      "cross_lines": [
+        "cen",
+        "nor"
+      ]
+    },
+    "cen-04": {
+      "type": "station",
+      "name_ja": "Holborn",
+      "name_en": "Holborn",
+      "station_code": "cen-04",
+      "station_global_id": "ST_P51517_N00120",
+      "cross_lines": [
+        "cen",
+        "pic"
+      ]
+    },
+    "cen-05": {
+      "type": "station",
+      "name_ja": "Liverpool Street",
+      "name_en": "Liverpool Street",
+      "station_code": "cen-05",
+      "station_global_id": "ST_P51518_N00082",
+      "cross_lines": [
+        "cen",
+        "cir"
+      ]
+    },
+    "cen-06": {
+      "type": "station",
+      "name_ja": "Mile End",
+      "name_en": "Mile End",
+      "station_code": "cen-06",
+      "station_global_id": "ST_P51525_N00033",
+      "cross_lines": [
+        "cen",
+        "dis"
+      ]
+    },
+    "cen-07": {
+      "type": "station",
+      "name_ja": "Ruislip Gardens",
+      "name_en": "Ruislip Gardens",
+      "station_code": "cen-07",
+      "station_global_id": "ST_P51561_N00415",
+      "cross_lines": [
+        "cen"
+      ]
+    },
+    "cen-08": {
+      "type": "station",
+      "name_ja": "South Ruislip",
+      "name_en": "South Ruislip",
+      "station_code": "cen-08",
+      "station_global_id": "ST_P51557_N00399",
+      "cross_lines": [
+        "cen"
+      ]
+    },
+    "cen-09": {
+      "type": "station",
+      "name_ja": "Northolt",
+      "name_en": "Northolt",
+      "station_code": "cen-09",
+      "station_global_id": "ST_P51549_N00368",
+      "cross_lines": [
+        "cen"
+      ]
+    },
+    "cen-10": {
+      "type": "station",
+      "name_ja": "Epping",
+      "name_en": "Epping",
+      "station_code": "cen-10",
+      "station_global_id": "ST_P51694_P00114",
+      "cross_lines": [
+        "cen"
+      ]
+    },
+    "nor-01": {
+      "type": "station",
+      "name_ja": "Edgware",
+      "name_en": "Edgware",
+      "station_code": "nor-01",
+      "station_global_id": "ST_P51613_N00276",
+      "cross_lines": [
+        "nor"
+      ]
+    },
+    "nor-02": {
+      "type": "station",
+      "name_ja": "Embankment",
+      "name_en": "Embankment",
+      "station_code": "nor-02",
+      "station_global_id": "ST_P51507_N00122",
+      "cross_lines": [
+        "nor",
+        "dis",
+        "cir"
+      ]
+    },
+    "nor-03": {
+      "type": "station",
+      "name_ja": "Tottenham Court Road",
+      "name_en": "Tottenham Court Road",
+      "station_code": "nor-03",
+      "station_global_id": "ST_P51516_N00130",
+      "cross_lines": [
+        "cen",
+        "nor"
+      ]
+    },
+    "nor-04": {
+      "type": "station",
+      "name_ja": "Leicester Square",
+      "name_en": "Leicester Square",
+      "station_code": "nor-04",
+      "station_global_id": "ST_P51511_N00128",
+      "cross_lines": [
+        "nor",
+        "pic"
+      ]
+    },
+    "nor-05": {
+      "type": "station",
+      "name_ja": "Burnt Oak",
+      "name_en": "Burnt Oak",
+      "station_code": "nor-05",
+      "station_global_id": "ST_P51603_N00266",
+      "cross_lines": [
+        "nor"
+      ]
+    },
+    "nor-06": {
+      "type": "station",
+      "name_ja": "Colindale",
+      "name_en": "Colindale",
+      "station_code": "nor-06",
+      "station_global_id": "ST_P51595_N00250",
+      "cross_lines": [
+        "nor"
+      ]
+    },
+    "nor-07": {
+      "type": "station",
+      "name_ja": "Hendon Central",
+      "name_en": "Hendon Central",
+      "station_code": "nor-07",
+      "station_global_id": "ST_P51583_N00227",
+      "cross_lines": [
+        "nor"
+      ]
+    },
+    "nor-08": {
+      "type": "station",
+      "name_ja": "Brent Cross",
+      "name_en": "Brent Cross",
+      "station_code": "nor-08",
+      "station_global_id": "ST_P51576_N00214",
+      "cross_lines": [
+        "nor"
+      ]
+    },
+    "nor-09": {
+      "type": "station",
+      "name_ja": "Golders Green",
+      "name_en": "Golders Green",
+      "station_code": "nor-09",
+      "station_global_id": "ST_P51572_N00194",
+      "cross_lines": [
+        "nor"
+      ]
+    },
+    "nor-10": {
+      "type": "station",
+      "name_ja": "Morden",
+      "name_en": "Morden",
+      "station_code": "nor-10",
+      "station_global_id": "ST_P51402_N00195",
+      "cross_lines": [
+        "nor"
+      ]
+    },
+    "pic-01": {
+      "type": "station",
+      "name_ja": "Heathrow Terminal 5",
+      "name_en": "Heathrow Terminal 5",
+      "station_code": "pic-01",
+      "station_global_id": "ST_P51473_N00489",
+      "cross_lines": [
+        "pic"
+      ]
+    },
+    "pic-02": {
+      "type": "station",
+      "name_ja": "Earl's Court",
+      "name_en": "Earl's Court",
+      "station_code": "pic-02",
+      "station_global_id": "ST_P51492_N00194",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "pic-03": {
+      "type": "station",
+      "name_ja": "Gloucester Road",
+      "name_en": "Gloucester Road",
+      "station_code": "pic-03",
+      "station_global_id": "ST_P51494_N00183",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "pic-04": {
+      "type": "station",
+      "name_ja": "South Kensington",
+      "name_en": "South Kensington",
+      "station_code": "pic-04",
+      "station_global_id": "ST_P51494_N00174",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "pic-05": {
+      "type": "station",
+      "name_ja": "Hammersmith",
+      "name_en": "Hammersmith",
+      "station_code": "pic-05",
+      "station_global_id": "ST_P51493_N00224",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "pic-06": {
+      "type": "station",
+      "name_ja": "Baron's Court",
+      "name_en": "Baron's Court",
+      "station_code": "pic-06",
+      "station_global_id": "ST_P51490_N00213",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "pic-07": {
+      "type": "station",
+      "name_ja": "West Kensington",
+      "name_en": "West Kensington",
+      "station_code": "pic-07",
+      "station_global_id": "ST_P51490_N00206",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "pic-08": {
+      "type": "station",
+      "name_ja": "Leicester Square",
+      "name_en": "Leicester Square",
+      "station_code": "pic-08",
+      "station_global_id": "ST_P51511_N00128",
+      "cross_lines": [
+        "nor",
+        "pic"
+      ]
+    },
+    "pic-09": {
+      "type": "station",
+      "name_ja": "Holborn",
+      "name_en": "Holborn",
+      "station_code": "pic-09",
+      "station_global_id": "ST_P51517_N00120",
+      "cross_lines": [
+        "cen",
+        "pic"
+      ]
+    },
+    "pic-10": {
+      "type": "station",
+      "name_ja": "Cockfosters",
+      "name_en": "Cockfosters",
+      "station_code": "pic-10",
+      "station_global_id": "ST_P51652_N00150",
+      "cross_lines": [
+        "pic"
+      ]
+    },
+    "dis-01": {
+      "type": "station",
+      "name_ja": "Richmond",
+      "name_en": "Richmond",
+      "station_code": "dis-01",
+      "station_global_id": "ST_P51463_N00301",
+      "cross_lines": [
+        "dis"
+      ]
+    },
+    "dis-02": {
+      "type": "station",
+      "name_ja": "Earl's Court",
+      "name_en": "Earl's Court",
+      "station_code": "dis-02",
+      "station_global_id": "ST_P51492_N00194",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "dis-03": {
+      "type": "station",
+      "name_ja": "Embankment",
+      "name_en": "Embankment",
+      "station_code": "dis-03",
+      "station_global_id": "ST_P51507_N00122",
+      "cross_lines": [
+        "nor",
+        "dis",
+        "cir"
+      ]
+    },
+    "dis-04": {
+      "type": "station",
+      "name_ja": "Gloucester Road",
+      "name_en": "Gloucester Road",
+      "station_code": "dis-04",
+      "station_global_id": "ST_P51494_N00183",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "dis-05": {
+      "type": "station",
+      "name_ja": "South Kensington",
+      "name_en": "South Kensington",
+      "station_code": "dis-05",
+      "station_global_id": "ST_P51494_N00174",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "dis-06": {
+      "type": "station",
+      "name_ja": "Hammersmith",
+      "name_en": "Hammersmith",
+      "station_code": "dis-06",
+      "station_global_id": "ST_P51493_N00224",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "dis-07": {
+      "type": "station",
+      "name_ja": "Baron's Court",
+      "name_en": "Baron's Court",
+      "station_code": "dis-07",
+      "station_global_id": "ST_P51490_N00213",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "dis-08": {
+      "type": "station",
+      "name_ja": "West Kensington",
+      "name_en": "West Kensington",
+      "station_code": "dis-08",
+      "station_global_id": "ST_P51490_N00206",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "dis-09": {
+      "type": "station",
+      "name_ja": "Mile End",
+      "name_en": "Mile End",
+      "station_code": "dis-09",
+      "station_global_id": "ST_P51525_N00033",
+      "cross_lines": [
+        "cen",
+        "dis"
+      ]
+    },
+    "dis-10": {
+      "type": "station",
+      "name_ja": "Upminster",
+      "name_en": "Upminster",
+      "station_code": "dis-10",
+      "station_global_id": "ST_P51559_P00251",
+      "cross_lines": [
+        "dis"
+      ]
+    },
+    "cir-01": {
+      "type": "station",
+      "name_ja": "Hammersmith",
+      "name_en": "Hammersmith",
+      "station_code": "cir-01",
+      "station_global_id": "ST_P51493_N00224",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "cir-02": {
+      "type": "station",
+      "name_ja": "Earl's Court",
+      "name_en": "Earl's Court",
+      "station_code": "cir-02",
+      "station_global_id": "ST_P51492_N00194",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "cir-03": {
+      "type": "station",
+      "name_ja": "Embankment",
+      "name_en": "Embankment",
+      "station_code": "cir-03",
+      "station_global_id": "ST_P51507_N00122",
+      "cross_lines": [
+        "nor",
+        "dis",
+        "cir"
+      ]
+    },
+    "cir-04": {
+      "type": "station",
+      "name_ja": "South Kensington",
+      "name_en": "South Kensington",
+      "station_code": "cir-04",
+      "station_global_id": "ST_P51494_N00174",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "cir-05": {
+      "type": "station",
+      "name_ja": "Baron's Court",
+      "name_en": "Baron's Court",
+      "station_code": "cir-05",
+      "station_global_id": "ST_P51490_N00213",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "cir-06": {
+      "type": "station",
+      "name_ja": "West Kensington",
+      "name_en": "West Kensington",
+      "station_code": "cir-06",
+      "station_global_id": "ST_P51490_N00206",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    },
+    "cir-07": {
+      "type": "station",
+      "name_ja": "Notting Hill Gate",
+      "name_en": "Notting Hill Gate",
+      "station_code": "cir-07",
+      "station_global_id": "ST_P51509_N00196",
+      "cross_lines": [
+        "cen",
+        "cir"
+      ]
+    },
+    "cir-08": {
+      "type": "station",
+      "name_ja": "King's Cross St. Pancras",
+      "name_en": "King's Cross St. Pancras",
+      "station_code": "cir-08",
+      "station_global_id": "ST_P51531_N00124",
+      "cross_lines": [
+        "cir"
+      ]
+    },
+    "cir-09": {
+      "type": "station",
+      "name_ja": "Liverpool Street",
+      "name_en": "Liverpool Street",
+      "station_code": "cir-09",
+      "station_global_id": "ST_P51518_N00082",
+      "cross_lines": [
+        "cen",
+        "cir"
+      ]
+    },
+    "cir-10": {
+      "type": "station",
+      "name_ja": "Gloucester Road",
+      "name_en": "Gloucester Road",
+      "station_code": "cir-10",
+      "station_global_id": "ST_P51494_N00183",
+      "cross_lines": [
+        "pic",
+        "dis",
+        "cir"
+      ]
+    }
+  },
+  "rules": {
+    "route_size": 10,
+    "allow_transfer_bonus": true
+  }
+}

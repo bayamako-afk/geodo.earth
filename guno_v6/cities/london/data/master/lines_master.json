@@ -1,0 +1,67 @@
+[
+  {
+    "line_id": "CEN",
+    "line_name": "Central line",
+    "line_name_en": "Central line",
+    "operator_name": "Transport for London",
+    "color": "#DC241F",
+    "prefectures": [
+      "England"
+    ],
+    "is_loop": false,
+    "status": "active",
+    "station_count": 41
+  },
+  {
+    "line_id": "NOR",
+    "line_name": "Northern line",
+    "line_name_en": "Northern line",
+    "operator_name": "Transport for London",
+    "color": "#000000",
+    "prefectures": [
+      "England"
+    ],
+    "is_loop": false,
+    "status": "active",
+    "station_count": 31
+  },
+  {
+    "line_id": "PIC",
+    "line_name": "Piccadilly line",
+    "line_name_en": "Piccadilly line",
+    "operator_name": "Transport for London",
+    "color": "#003688",
+    "prefectures": [
+      "England"
+    ],
+    "is_loop": false,
+    "status": "active",
+    "station_count": 43
+  },
+  {
+    "line_id": "DIS",
+    "line_name": "District line",
+    "line_name_en": "District line",
+    "operator_name": "Transport for London",
+    "color": "#00782A",
+    "prefectures": [
+      "England"
+    ],
+    "is_loop": false,
+    "status": "active",
+    "station_count": 51
+  },
+  {
+    "line_id": "CIR",
+    "line_name": "Circle line",
+    "line_name_en": "Circle line",
+    "operator_name": "Transport for London",
+    "color": "#FFD329",
+    "prefectures": [
+      "England"
+    ],
+    "is_loop": true,
+    "status": "active",
+    "station_count": 31
+  }
+]

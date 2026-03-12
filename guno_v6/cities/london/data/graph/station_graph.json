@@ -1,0 +1,4035 @@
+{
+  "graph_meta": {
+    "city_id": "london",
+    "version": "1.0",
+    "node_count": 162,
+    "edge_count": 169
+  },
+  "nodes": [
+    {
+      "station_global_id": "ST_P51503_N00280",
+      "station_name": "Acton Town",
+      "station_name_en": "Acton Town",
+      "lat": 51.5031,
+      "lon": -0.2802,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51501_N00306",
+        "ST_P51494_N00268"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51514_N00075",
+      "station_name": "Aldgate",
+      "station_name_en": "Aldgate",
+      "lat": 51.5143,
+      "lon": -0.0752,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51518_N00082",
+        "ST_P51510_N00076"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51515_N00073",
+      "station_name": "Aldgate East",
+      "station_name_en": "Aldgate East",
+      "lat": 51.5151,
+      "lon": -0.0726,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51510_N00076",
+        "ST_P51520_N00060"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51616_N00133",
+      "station_name": "Arnos Grove",
+      "station_name_en": "Arnos Grove",
+      "lat": 51.6164,
+      "lon": -0.133,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51605_N00122",
+        "ST_P51632_N00128"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51558_N00106",
+      "station_name": "Arsenal",
+      "station_name_en": "Arsenal",
+      "lat": 51.5584,
+      "lon": -0.1058,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51553_N00113",
+        "ST_P51564_N00101"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51523_N00157",
+      "station_name": "Baker Street",
+      "station_name_en": "Baker Street",
+      "lat": 51.5226,
+      "lon": -0.1571,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51520_N00169",
+        "ST_P51524_N00144"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51443_N00153",
+      "station_name": "Balham",
+      "station_name_en": "Balham",
+      "lat": 51.4432,
+      "lon": -0.1527,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51455_N00148",
+        "ST_P51435_N00161"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51513_N00089",
+      "station_name": "Bank",
+      "station_name_en": "Bank",
+      "lat": 51.5133,
+      "lon": -0.0886,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51515_N00098",
+        "ST_P51518_N00082"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51520_N00098",
+      "station_name": "Barbican",
+      "station_name_en": "Barbican",
+      "lat": 51.52,
+      "lon": -0.0978,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51520_N00105",
+        "ST_P51519_N00089"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51540_P00081",
+      "station_name": "Barking",
+      "station_name_en": "Barking",
+      "lat": 51.5398,
+      "lon": 0.0806,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51540_P00052",
+        "ST_P51538_P00100"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51490_N00213",
+      "station_name": "Baron's Court",
+      "station_name_en": "Baron's Court",
+      "lat": 51.4904,
+      "lon": -0.2127,
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51493_N00224",
+        "ST_P51490_N00206"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51512_N00187",
+      "station_name": "Bayswater",
+      "station_name_en": "Bayswater",
+      "lat": 51.5122,
+      "lon": -0.1874,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51509_N00196",
+        "ST_P51515_N00176"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51540_P00122",
+      "station_name": "Becontree",
+      "station_name_en": "Becontree",
+      "lat": 51.54,
+      "lon": 0.1218,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51538_P00100",
+        "ST_P51542_P00140"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51550_N00165",
+      "station_name": "Belsize Park",
+      "station_name_en": "Belsize Park",
+      "lat": 51.5502,
+      "lon": -0.1647,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51566_N00178",
+        "ST_P51544_N00154"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51527_N00055",
+      "station_name": "Bethnal Green",
+      "station_name_en": "Bethnal Green",
+      "lat": 51.5272,
+      "lon": -0.0553,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51518_N00082",
+        "ST_P51525_N00033"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51512_N00103",
+      "station_name": "Blackfriars",
+      "station_name_en": "Blackfriars",
+      "lat": 51.512,
+      "lon": -0.1033,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51511_N00114",
+        "ST_P51512_N00094"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51514_N00149",
+      "station_name": "Bond Street",
+      "station_name_en": "Bond Street",
+      "lat": 51.5142,
+      "lon": -0.1494,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51514_N00159",
+        "ST_P51515_N00142"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51495_N00338",
+      "station_name": "Boston Manor",
+      "station_name_en": "Boston Manor",
+      "lat": 51.4951,
+      "lon": -0.3376,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51481_N00352",
+        "ST_P51499_N00315"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51605_N00122",
+      "station_name": "Bounds Green",
+      "station_name_en": "Bounds Green",
+      "lat": 51.605,
+      "lon": -0.1219,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51598_N00110",
+        "ST_P51616_N00133"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51527_N00025",
+      "station_name": "Bow Road",
+      "station_name_en": "Bow Road",
+      "lat": 51.5269,
+      "lon": -0.0248,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51525_N00033",
+        "ST_P51522_N00012"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51576_N00214",
+      "station_name": "Brent Cross",
+      "station_name_en": "Brent Cross",
+      "lat": 51.5765,
+      "lon": -0.2135,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51583_N00227",
+        "ST_P51572_N00194"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51522_N00012",
+      "station_name": "Bromley-by-Bow",
+      "station_name_en": "Bromley-by-Bow",
+      "lat": 51.5225,
+      "lon": -0.0118,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51527_N00025",
+        "ST_P51529_P00005"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51627_P00047",
+      "station_name": "Buckhurst Hill",
+      "station_name_en": "Buckhurst Hill",
+      "lat": 51.6268,
+      "lon": 0.0468,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51608_P00034",
+        "ST_P51641_P00056"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51603_N00266",
+      "station_name": "Burnt Oak",
+      "station_name_en": "Burnt Oak",
+      "lat": 51.6026,
+      "lon": -0.2657,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51613_N00276",
+        "ST_P51595_N00250"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51544_N00119",
+      "station_name": "Caledonian Road",
+      "station_name_en": "Caledonian Road",
+      "lat": 51.5436,
+      "lon": -0.1194,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51531_N00124",
+        "ST_P51553_N00113"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51539_N00143",
+      "station_name": "Camden Town",
+      "station_name_en": "Camden Town",
+      "lat": 51.5393,
+      "lon": -0.1426,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51544_N00154",
+        "ST_P51534_N00139"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51511_N00090",
+      "station_name": "Cannon Street",
+      "station_name_en": "Cannon Street",
+      "lat": 51.5113,
+      "lon": -0.0904,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51512_N00094",
+        "ST_P51510_N00086"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51544_N00154",
+      "station_name": "Chalk Farm",
+      "station_name_en": "Chalk Farm",
+      "lat": 51.5444,
+      "lon": -0.1543,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51550_N00165",
+        "ST_P51539_N00143"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51518_N00111",
+      "station_name": "Chancery Lane",
+      "station_name_en": "Chancery Lane",
+      "lat": 51.5183,
+      "lon": -0.1114,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51517_N00120",
+        "ST_P51515_N00098"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51508_N00125",
+      "station_name": "Charing Cross",
+      "station_name_en": "Charing Cross",
+      "lat": 51.5081,
+      "lon": -0.1248,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51511_N00128",
+        "ST_P51507_N00122"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51494_N00268",
+      "station_name": "Chiswick Park",
+      "station_name_en": "Chiswick Park",
+      "lat": 51.4944,
+      "lon": -0.2678,
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_P51503_N00280",
+        "ST_P51495_N00254",
+        "ST_P51492_N00275"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51461_N00138",
+      "station_name": "Clapham Common",
+      "station_name_en": "Clapham Common",
+      "lat": 51.4614,
+      "lon": -0.1384,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51465_N00130",
+        "ST_P51455_N00148"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51465_N00130",
+      "station_name": "Clapham North",
+      "station_name_en": "Clapham North",
+      "lat": 51.4649,
+      "lon": -0.1299,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51472_N00123",
+        "ST_P51461_N00138"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51455_N00148",
+      "station_name": "Clapham South",
+      "station_name_en": "Clapham South",
+      "lat": 51.4549,
+      "lon": -0.148,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51461_N00138",
+        "ST_P51443_N00153"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51652_N00150",
+      "station_name": "Cockfosters",
+      "station_name_en": "Cockfosters",
+      "lat": 51.6517,
+      "lon": -0.1497,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_P51648_N00133"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51595_N00250",
+      "station_name": "Colindale",
+      "station_name_en": "Colindale",
+      "lat": 51.5952,
+      "lon": -0.2503,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51603_N00266",
+        "ST_P51583_N00227"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51420_N00188",
+      "station_name": "Colliers Wood",
+      "station_name_en": "Colliers Wood",
+      "lat": 51.4197,
+      "lon": -0.1882,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51427_N00168",
+        "ST_P51414_N00192"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51513_N00124",
+      "station_name": "Covent Garden",
+      "station_name_en": "Covent Garden",
+      "lat": 51.5129,
+      "lon": -0.1243,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51511_N00128",
+        "ST_P51517_N00120"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51544_P00160",
+      "station_name": "Dagenham East",
+      "station_name_en": "Dagenham East",
+      "lat": 51.5443,
+      "lon": 0.1601,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51542_P00140",
+        "ST_P51549_P00190"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51542_P00140",
+      "station_name": "Dagenham Heathway",
+      "station_name_en": "Dagenham Heathway",
+      "lat": 51.5418,
+      "lon": 0.1401,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51540_P00122",
+        "ST_P51544_P00160"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51645_P00084",
+      "station_name": "Debden",
+      "station_name_en": "Debden",
+      "lat": 51.6453,
+      "lon": 0.084,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51641_P00056",
+        "ST_P51671_P00104"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51515_N00302",
+      "station_name": "Ealing Broadway",
+      "station_name_en": "Ealing Broadway",
+      "lat": 51.5149,
+      "lon": -0.3016,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51530_N00299",
+        "ST_P51517_N00280"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51492_N00194",
+      "station_name": "Earl's Court",
+      "station_name_en": "Earl's Court",
+      "lat": 51.4917,
+      "lon": -0.1937,
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51490_N00206",
+        "ST_P51494_N00183",
+        "ST_P51487_N00195",
+        "ST_P51501_N00192"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51517_N00245",
+      "station_name": "East Acton",
+      "station_name_en": "East Acton",
+      "lat": 51.5166,
+      "lon": -0.2451,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51523_N00264",
+        "ST_P51512_N00227"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51540_P00052",
+      "station_name": "East Ham",
+      "station_name_en": "East Ham",
+      "lat": 51.5398,
+      "lon": 0.0524,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51535_P00035",
+        "ST_P51540_P00081"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51461_N00212",
+      "station_name": "East Putney",
+      "station_name_en": "East Putney",
+      "lat": 51.4607,
+      "lon": -0.2121,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51468_N00209",
+        "ST_P51445_N00206"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51613_N00276",
+      "station_name": "Edgware",
+      "station_name_en": "Edgware",
+      "lat": 51.6133,
+      "lon": -0.2756,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_P51603_N00266"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51520_N00169",
+      "station_name": "Edgware Road",
+      "station_name_en": "Edgware Road",
+      "lat": 51.5199,
+      "lon": -0.1686,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51515_N00176",
+        "ST_P51523_N00157"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51549_P00190",
+      "station_name": "Elm Park",
+      "station_name_en": "Elm Park",
+      "lat": 51.5491,
+      "lon": 0.1895,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51544_P00160",
+        "ST_P51554_P00214"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51507_N00122",
+      "station_name": "Embankment",
+      "station_name_en": "Embankment",
+      "lat": 51.5074,
+      "lon": -0.1223,
+      "line_ids": [
+        "NOR",
+        "DIS",
+        "CIR"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51508_N00125",
+        "ST_P51504_N00114",
+        "ST_P51501_N00125",
+        "ST_P51511_N00114"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51694_P00114",
+      "station_name": "Epping",
+      "station_name_en": "Epping",
+      "lat": 51.6937,
+      "lon": 0.114,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_P51671_P00104"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51528_N00134",
+      "station_name": "Euston",
+      "station_name_en": "Euston",
+      "lat": 51.5282,
+      "lon": -0.1337,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51534_N00139",
+        "ST_P51524_N00139"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51526_N00136",
+      "station_name": "Euston Square",
+      "station_name_en": "Euston Square",
+      "lat": 51.5262,
+      "lon": -0.1355,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51524_N00144",
+        "ST_P51531_N00124"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51520_N00105",
+      "station_name": "Farringdon",
+      "station_name_en": "Farringdon",
+      "lat": 51.5203,
+      "lon": -0.105,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51531_N00124",
+        "ST_P51520_N00098"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51564_N00101",
+      "station_name": "Finsbury Park",
+      "station_name_en": "Finsbury Park",
+      "lat": 51.5642,
+      "lon": -0.1006,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51558_N00106",
+        "ST_P51570_N00096"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51480_N00193",
+      "station_name": "Fulham Broadway",
+      "station_name_en": "Fulham Broadway",
+      "lat": 51.4802,
+      "lon": -0.1929,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51487_N00195",
+        "ST_P51475_N00200"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51494_N00183",
+      "station_name": "Gloucester Road",
+      "station_name_en": "Gloucester Road",
+      "lat": 51.4944,
+      "lon": -0.1831,
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_P51492_N00194",
+        "ST_P51494_N00174",
+        "ST_P51421_N00206"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51572_N00194",
+      "station_name": "Golders Green",
+      "station_name_en": "Golders Green",
+      "lat": 51.5724,
+      "lon": -0.1943,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51576_N00214",
+        "ST_P51566_N00178"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51502_N00227",
+      "station_name": "Goldhawk Road",
+      "station_name_en": "Goldhawk Road",
+      "lat": 51.5016,
+      "lon": -0.2267,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51506_N00226",
+        "ST_P51505_N00219"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51520_N00135",
+      "station_name": "Goodge Street",
+      "station_name_en": "Goodge Street",
+      "lat": 51.5205,
+      "lon": -0.1347,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51524_N00139",
+        "ST_P51516_N00130"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51524_N00144",
+      "station_name": "Great Portland Street",
+      "station_name_en": "Great Portland Street",
+      "lat": 51.5242,
+      "lon": -0.1441,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51523_N00157",
+        "ST_P51526_N00136"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51507_N00143",
+      "station_name": "Green Park",
+      "station_name_en": "Green Park",
+      "lat": 51.5067,
+      "lon": -0.1428,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51503_N00153",
+        "ST_P51510_N00135"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51542_N00346",
+      "station_name": "Greenford",
+      "station_name_en": "Greenford",
+      "lat": 51.5423,
+      "lon": -0.3464,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51549_N00368",
+        "ST_P51536_N00323"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51492_N00275",
+      "station_name": "Gunnersbury",
+      "station_name_en": "Gunnersbury",
+      "lat": 51.4918,
+      "lon": -0.275,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51478_N00285",
+        "ST_P51494_N00268"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51493_N00224",
+      "station_name": "Hammersmith",
+      "station_name_en": "Hammersmith",
+      "lat": 51.4934,
+      "lon": -0.2237,
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51494_N00235",
+        "ST_P51490_N00213"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51566_N00178",
+      "station_name": "Hampstead",
+      "station_name_en": "Hampstead",
+      "lat": 51.5665,
+      "lon": -0.1783,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51572_N00194",
+        "ST_P51550_N00165"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51530_N00299",
+      "station_name": "Hanger Lane",
+      "station_name_en": "Hanger Lane",
+      "lat": 51.5299,
+      "lon": -0.2989,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51536_N00323",
+        "ST_P51515_N00302"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51466_N00424",
+      "station_name": "Hatton Cross",
+      "station_name_en": "Hatton Cross",
+      "lat": 51.4665,
+      "lon": -0.4237,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51458_N00448",
+        "ST_P51474_N00386"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51471_N00452",
+      "station_name": "Heathrow Terminals 2&3",
+      "station_name_en": "Heathrow Terminals 2&3",
+      "lat": 51.4713,
+      "lon": -0.4524,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51473_N00489",
+        "ST_P51458_N00448"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51458_N00448",
+      "station_name": "Heathrow Terminal 4",
+      "station_name_en": "Heathrow Terminal 4",
+      "lat": 51.4583,
+      "lon": -0.4479,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51471_N00452",
+        "ST_P51466_N00424"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51473_N00489",
+      "station_name": "Heathrow Terminal 5",
+      "station_name_en": "Heathrow Terminal 5",
+      "lat": 51.4733,
+      "lon": -0.489,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_P51471_N00452"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51583_N00227",
+      "station_name": "Hendon Central",
+      "station_name_en": "Hendon Central",
+      "lat": 51.5831,
+      "lon": -0.2268,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51595_N00250",
+        "ST_P51576_N00214"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51501_N00192",
+      "station_name": "High Street Kensington",
+      "station_name_en": "High Street Kensington",
+      "lat": 51.5008,
+      "lon": -0.1921,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51492_N00194",
+        "ST_P51509_N00196"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51517_N00120",
+      "station_name": "Holborn",
+      "station_name_en": "Holborn",
+      "lat": 51.5174,
+      "lon": -0.12,
+      "line_ids": [
+        "CEN",
+        "PIC"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51516_N00130",
+        "ST_P51518_N00111",
+        "ST_P51513_N00124",
+        "ST_P51523_N00124"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51508_N00206",
+      "station_name": "Holland Park",
+      "station_name_en": "Holland Park",
+      "lat": 51.5075,
+      "lon": -0.2062,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51505_N00219",
+        "ST_P51509_N00196"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51553_N00113",
+      "station_name": "Holloway Road",
+      "station_name_en": "Holloway Road",
+      "lat": 51.5534,
+      "lon": -0.1132,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51544_N00119",
+        "ST_P51558_N00106"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51554_P00214",
+      "station_name": "Hornchurch",
+      "station_name_en": "Hornchurch",
+      "lat": 51.554,
+      "lon": 0.2137,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51549_P00190",
+        "ST_P51557_P00234"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51472_N00367",
+      "station_name": "Hounslow Central",
+      "station_name_en": "Hounslow Central",
+      "lat": 51.4719,
+      "lon": -0.3669,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51474_N00386",
+        "ST_P51472_N00346"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51472_N00346",
+      "station_name": "Hounslow East",
+      "station_name_en": "Hounslow East",
+      "lat": 51.4724,
+      "lon": -0.3455,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51472_N00367",
+        "ST_P51481_N00352"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51474_N00386",
+      "station_name": "Hounslow West",
+      "station_name_en": "Hounslow West",
+      "lat": 51.4736,
+      "lon": -0.3865,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51466_N00424",
+        "ST_P51472_N00367"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51503_N00153",
+      "station_name": "Hyde Park Corner",
+      "station_name_en": "Hyde Park Corner",
+      "lat": 51.5027,
+      "lon": -0.1527,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51502_N00161",
+        "ST_P51507_N00143"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51488_N00105",
+      "station_name": "Kennington",
+      "station_name_en": "Kennington",
+      "lat": 51.4882,
+      "lon": -0.1053,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51504_N00114",
+        "ST_P51482_N00113"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51478_N00285",
+      "station_name": "Kew Gardens",
+      "station_name_en": "Kew Gardens",
+      "lat": 51.4777,
+      "lon": -0.2849,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51463_N00301",
+        "ST_P51492_N00275"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51531_N00124",
+      "station_name": "King's Cross St. Pancras",
+      "station_name_en": "King's Cross St. Pancras",
+      "lat": 51.5308,
+      "lon": -0.1238,
+      "line_ids": [
+        "PIC",
+        "CIR"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51523_N00124",
+        "ST_P51544_N00119",
+        "ST_P51526_N00136",
+        "ST_P51520_N00105"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51502_N00161",
+      "station_name": "Knightsbridge",
+      "station_name_en": "Knightsbridge",
+      "lat": 51.5019,
+      "lon": -0.1606,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51494_N00174",
+        "ST_P51503_N00153"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51512_N00176",
+      "station_name": "Lancaster Gate",
+      "station_name_en": "Lancaster Gate",
+      "lat": 51.5117,
+      "lon": -0.1762,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51511_N00188",
+        "ST_P51514_N00159"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51511_N00128",
+      "station_name": "Leicester Square",
+      "station_name_en": "Leicester Square",
+      "lat": 51.5113,
+      "lon": -0.1281,
+      "line_ids": [
+        "NOR",
+        "PIC"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51516_N00130",
+        "ST_P51508_N00125",
+        "ST_P51510_N00135",
+        "ST_P51513_N00124"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51556_N00004",
+      "station_name": "Leyton",
+      "station_name_en": "Leyton",
+      "lat": 51.5564,
+      "lon": -0.0044,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51542_N00004",
+        "ST_P51569_P00008"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51569_P00008",
+      "station_name": "Leytonstone",
+      "station_name_en": "Leytonstone",
+      "lat": 51.5686,
+      "lon": 0.0082,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51556_N00004",
+        "ST_P51581_P00020"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51518_N00082",
+      "station_name": "Liverpool Street",
+      "station_name_en": "Liverpool Street",
+      "lat": 51.5178,
+      "lon": -0.0823,
+      "line_ids": [
+        "CEN",
+        "CIR"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51513_N00089",
+        "ST_P51527_N00055",
+        "ST_P51519_N00089",
+        "ST_P51514_N00075"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51641_P00056",
+      "station_name": "Loughton",
+      "station_name_en": "Loughton",
+      "lat": 51.6413,
+      "lon": 0.056,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51627_P00047",
+        "ST_P51645_P00084"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51570_N00096",
+      "station_name": "Manor House",
+      "station_name_en": "Manor House",
+      "lat": 51.5705,
+      "lon": -0.0956,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51564_N00101",
+        "ST_P51590_N00103"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51512_N00094",
+      "station_name": "Mansion House",
+      "station_name_en": "Mansion House",
+      "lat": 51.5124,
+      "lon": -0.0942,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51512_N00103",
+        "ST_P51511_N00090"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51514_N00159",
+      "station_name": "Marble Arch",
+      "station_name_en": "Marble Arch",
+      "lat": 51.5137,
+      "lon": -0.1588,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51512_N00176",
+        "ST_P51514_N00149"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51525_N00033",
+      "station_name": "Mile End",
+      "station_name_en": "Mile End",
+      "lat": 51.5253,
+      "lon": -0.0334,
+      "line_ids": [
+        "CEN",
+        "DIS"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51527_N00055",
+        "ST_P51542_N00004",
+        "ST_P51522_N00046",
+        "ST_P51527_N00025"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51510_N00086",
+      "station_name": "Monument",
+      "station_name_en": "Monument",
+      "lat": 51.51,
+      "lon": -0.0858,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51511_N00090",
+        "ST_P51510_N00076"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51519_N00089",
+      "station_name": "Moorgate",
+      "station_name_en": "Moorgate",
+      "lat": 51.5186,
+      "lon": -0.0886,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51520_N00098",
+        "ST_P51518_N00082"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51402_N00195",
+      "station_name": "Morden",
+      "station_name_en": "Morden",
+      "lat": 51.4023,
+      "lon": -0.1948,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_P51414_N00192"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51534_N00139",
+      "station_name": "Mornington Crescent",
+      "station_name_en": "Mornington Crescent",
+      "lat": 51.5343,
+      "lon": -0.1389,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51539_N00143",
+        "ST_P51528_N00134"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51523_N00264",
+      "station_name": "North Acton",
+      "station_name_en": "North Acton",
+      "lat": 51.5228,
+      "lon": -0.264,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51517_N00280",
+        "ST_P51517_N00245"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51499_N00315",
+      "station_name": "Northfields",
+      "station_name_en": "Northfields",
+      "lat": 51.4994,
+      "lon": -0.3147,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51495_N00338",
+        "ST_P51501_N00306"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51549_N00368",
+      "station_name": "Northolt",
+      "station_name_en": "Northolt",
+      "lat": 51.5489,
+      "lon": -0.3682,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51557_N00399",
+        "ST_P51542_N00346"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51509_N00196",
+      "station_name": "Notting Hill Gate",
+      "station_name_en": "Notting Hill Gate",
+      "lat": 51.5094,
+      "lon": -0.1963,
+      "line_ids": [
+        "CEN",
+        "CIR"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51508_N00206",
+        "ST_P51511_N00188",
+        "ST_P51501_N00192",
+        "ST_P51512_N00187"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51648_N00133",
+      "station_name": "Oakwood",
+      "station_name_en": "Oakwood",
+      "lat": 51.6475,
+      "lon": -0.133,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51632_N00128",
+        "ST_P51652_N00150"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51481_N00352",
+      "station_name": "Osterley",
+      "station_name_en": "Osterley",
+      "lat": 51.4811,
+      "lon": -0.3522,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51472_N00346",
+        "ST_P51495_N00338"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51482_N00113",
+      "station_name": "Oval",
+      "station_name_en": "Oval",
+      "lat": 51.4819,
+      "lon": -0.1133,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51488_N00105",
+        "ST_P51472_N00123"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51515_N00142",
+      "station_name": "Oxford Circus",
+      "station_name_en": "Oxford Circus",
+      "lat": 51.5152,
+      "lon": -0.1415,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51514_N00149",
+        "ST_P51516_N00130"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51515_N00176",
+      "station_name": "Paddington",
+      "station_name_en": "Paddington",
+      "lat": 51.5154,
+      "lon": -0.1755,
+      "line_ids": [
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51512_N00187",
+        "ST_P51520_N00169"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51475_N00200",
+      "station_name": "Parsons Green",
+      "station_name_en": "Parsons Green",
+      "lat": 51.4749,
+      "lon": -0.1998,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51480_N00193",
+        "ST_P51468_N00209"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51536_N00323",
+      "station_name": "Perivale",
+      "station_name_en": "Perivale",
+      "lat": 51.5363,
+      "lon": -0.3228,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51542_N00346",
+        "ST_P51530_N00299"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51510_N00135",
+      "station_name": "Piccadilly Circus",
+      "station_name_en": "Piccadilly Circus",
+      "lat": 51.5099,
+      "lon": -0.1348,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51507_N00143",
+        "ST_P51511_N00128"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51532_P00020",
+      "station_name": "Plaistow",
+      "station_name_en": "Plaistow",
+      "lat": 51.5318,
+      "lon": 0.02,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51529_P00005",
+        "ST_P51535_P00035"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51468_N00209",
+      "station_name": "Putney Bridge",
+      "station_name_en": "Putney Bridge",
+      "lat": 51.4682,
+      "lon": -0.209,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51475_N00200",
+        "ST_P51461_N00212"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51511_N00188",
+      "station_name": "Queensway",
+      "station_name_en": "Queensway",
+      "lat": 51.5107,
+      "lon": -0.1875,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51509_N00196",
+        "ST_P51512_N00176"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51494_N00235",
+      "station_name": "Ravenscourt Park",
+      "station_name_en": "Ravenscourt Park",
+      "lat": 51.4939,
+      "lon": -0.2348,
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51495_N00241",
+        "ST_P51493_N00224"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51463_N00301",
+      "station_name": "Richmond",
+      "station_name_en": "Richmond",
+      "lat": 51.4633,
+      "lon": -0.3013,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_P51478_N00285"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51561_N00415",
+      "station_name": "Ruislip Gardens",
+      "station_name_en": "Ruislip Gardens",
+      "lat": 51.5614,
+      "lon": -0.4152,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51569_N00436",
+        "ST_P51557_N00399"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51523_N00124",
+      "station_name": "Russell Square",
+      "station_name_en": "Russell Square",
+      "lat": 51.5231,
+      "lon": -0.1244,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51517_N00120",
+        "ST_P51531_N00124"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51505_N00219",
+      "station_name": "Shepherd's Bush",
+      "station_name_en": "Shepherd's Bush",
+      "lat": 51.5049,
+      "lon": -0.2188,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51502_N00227",
+        "ST_P51508_N00206"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51506_N00226",
+      "station_name": "Shepherd's Bush Market",
+      "station_name_en": "Shepherd's Bush Market",
+      "lat": 51.5055,
+      "lon": -0.2265,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51512_N00227",
+        "ST_P51502_N00227"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51492_N00156",
+      "station_name": "Sloane Square",
+      "station_name_en": "Sloane Square",
+      "lat": 51.4924,
+      "lon": -0.1565,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51494_N00174",
+        "ST_P51496_N00145"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51581_P00020",
+      "station_name": "Snaresbrook",
+      "station_name_en": "Snaresbrook",
+      "lat": 51.5806,
+      "lon": 0.0202,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51569_P00008",
+        "ST_P51592_P00028"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51501_N00306",
+      "station_name": "South Ealing",
+      "station_name_en": "South Ealing",
+      "lat": 51.5009,
+      "lon": -0.3059,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51499_N00315",
+        "ST_P51503_N00280"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51494_N00174",
+      "station_name": "South Kensington",
+      "station_name_en": "South Kensington",
+      "lat": 51.4941,
+      "lon": -0.1738,
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_P51494_N00183",
+        "ST_P51502_N00161",
+        "ST_P51492_N00156"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51557_N00399",
+      "station_name": "South Ruislip",
+      "station_name_en": "South Ruislip",
+      "lat": 51.5568,
+      "lon": -0.3989,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51561_N00415",
+        "ST_P51549_N00368"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51414_N00192",
+      "station_name": "South Wimbledon",
+      "station_name_en": "South Wimbledon",
+      "lat": 51.414,
+      "lon": -0.1919,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51420_N00188",
+        "ST_P51402_N00195"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51592_P00028",
+      "station_name": "South Woodford",
+      "station_name_en": "South Woodford",
+      "lat": 51.5918,
+      "lon": 0.0275,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51581_P00020",
+        "ST_P51608_P00034"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51445_N00206",
+      "station_name": "Southfields",
+      "station_name_en": "Southfields",
+      "lat": 51.4452,
+      "lon": -0.2065,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51461_N00212",
+        "ST_P51435_N00206"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51632_N00128",
+      "station_name": "Southgate",
+      "station_name_en": "Southgate",
+      "lat": 51.6321,
+      "lon": -0.1279,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51616_N00133",
+        "ST_P51648_N00133"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51499_N00134",
+      "station_name": "St. James's Park",
+      "station_name_en": "St. James's Park",
+      "lat": 51.4994,
+      "lon": -0.1335,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51496_N00145",
+        "ST_P51501_N00125"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51515_N00098",
+      "station_name": "St. Paul's",
+      "station_name_en": "St. Paul's",
+      "lat": 51.5146,
+      "lon": -0.0977,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51518_N00111",
+        "ST_P51513_N00089"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51495_N00241",
+      "station_name": "Stamford Brook",
+      "station_name_en": "Stamford Brook",
+      "lat": 51.4951,
+      "lon": -0.2408,
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51495_N00254",
+        "ST_P51494_N00235"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51522_N00046",
+      "station_name": "Stepney Green",
+      "station_name_en": "Stepney Green",
+      "lat": 51.5218,
+      "lon": -0.0465,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51520_N00060",
+        "ST_P51525_N00033"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51472_N00123",
+      "station_name": "Stockwell",
+      "station_name_en": "Stockwell",
+      "lat": 51.4722,
+      "lon": -0.1228,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51482_N00113",
+        "ST_P51465_N00130"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51542_N00004",
+      "station_name": "Stratford",
+      "station_name_en": "Stratford",
+      "lat": 51.5415,
+      "lon": -0.0042,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51525_N00033",
+        "ST_P51556_N00004"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51511_N00114",
+      "station_name": "Temple",
+      "station_name_en": "Temple",
+      "lat": 51.5111,
+      "lon": -0.1138,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51507_N00122",
+        "ST_P51512_N00103"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51671_P00104",
+      "station_name": "Theydon Bois",
+      "station_name_en": "Theydon Bois",
+      "lat": 51.6713,
+      "lon": 0.1035,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51645_P00084",
+        "ST_P51694_P00114"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51435_N00161",
+      "station_name": "Tooting Bec",
+      "station_name_en": "Tooting Bec",
+      "lat": 51.4352,
+      "lon": -0.1609,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51443_N00153",
+        "ST_P51427_N00168"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51427_N00168",
+      "station_name": "Tooting Broadway",
+      "station_name_en": "Tooting Broadway",
+      "lat": 51.4274,
+      "lon": -0.168,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51435_N00161",
+        "ST_P51420_N00188"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51516_N00130",
+      "station_name": "Tottenham Court Road",
+      "station_name_en": "Tottenham Court Road",
+      "lat": 51.5165,
+      "lon": -0.1304,
+      "line_ids": [
+        "CEN",
+        "NOR"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_P51515_N00142",
+        "ST_P51517_N00120",
+        "ST_P51520_N00135",
+        "ST_P51511_N00128"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51510_N00076",
+      "station_name": "Tower Hill",
+      "station_name_en": "Tower Hill",
+      "lat": 51.5098,
+      "lon": -0.0765,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_P51510_N00086",
+        "ST_P51515_N00073",
+        "ST_P51514_N00075"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51495_N00254",
+      "station_name": "Turnham Green",
+      "station_name_en": "Turnham Green",
+      "lat": 51.4952,
+      "lon": -0.2543,
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51494_N00268",
+        "ST_P51495_N00241"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51590_N00103",
+      "station_name": "Turnpike Lane",
+      "station_name_en": "Turnpike Lane",
+      "lat": 51.5901,
+      "lon": -0.1034,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51570_N00096",
+        "ST_P51598_N00110"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51559_P00251",
+      "station_name": "Upminster",
+      "station_name_en": "Upminster",
+      "lat": 51.5592,
+      "lon": 0.2513,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_P51557_P00234"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51557_P00234",
+      "station_name": "Upminster Bridge",
+      "station_name_en": "Upminster Bridge",
+      "lat": 51.5573,
+      "lon": 0.2337,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51554_P00214",
+        "ST_P51559_P00251"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51538_P00100",
+      "station_name": "Upney",
+      "station_name_en": "Upney",
+      "lat": 51.5382,
+      "lon": 0.1003,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51540_P00081",
+        "ST_P51540_P00122"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51535_P00035",
+      "station_name": "Upton Park",
+      "station_name_en": "Upton Park",
+      "lat": 51.5352,
+      "lon": 0.0349,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51532_P00020",
+        "ST_P51540_P00052"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51496_N00145",
+      "station_name": "Victoria",
+      "station_name_en": "Victoria",
+      "lat": 51.4965,
+      "lon": -0.1447,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51492_N00156",
+        "ST_P51499_N00134"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51524_N00139",
+      "station_name": "Warren Street",
+      "station_name_en": "Warren Street",
+      "lat": 51.5244,
+      "lon": -0.1388,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51528_N00134",
+        "ST_P51520_N00135"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51504_N00114",
+      "station_name": "Waterloo",
+      "station_name_en": "Waterloo",
+      "lat": 51.5036,
+      "lon": -0.1143,
+      "line_ids": [
+        "NOR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51507_N00122",
+        "ST_P51488_N00105"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51517_N00280",
+      "station_name": "West Acton",
+      "station_name_en": "West Acton",
+      "lat": 51.5168,
+      "lon": -0.28,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51515_N00302",
+        "ST_P51523_N00264"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51487_N00195",
+      "station_name": "West Brompton",
+      "station_name_en": "West Brompton",
+      "lat": 51.4869,
+      "lon": -0.1946,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51492_N00194",
+        "ST_P51480_N00193"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51529_P00005",
+      "station_name": "West Ham",
+      "station_name_en": "West Ham",
+      "lat": 51.5286,
+      "lon": 0.0053,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51522_N00012",
+        "ST_P51532_P00020"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51490_N00206",
+      "station_name": "West Kensington",
+      "station_name_en": "West Kensington",
+      "lat": 51.4905,
+      "lon": -0.2058,
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51490_N00213",
+        "ST_P51492_N00194"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51569_N00436",
+      "station_name": "West Ruislip",
+      "station_name_en": "West Ruislip",
+      "lat": 51.5694,
+      "lon": -0.4363,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_P51561_N00415"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51501_N00125",
+      "station_name": "Westminster",
+      "station_name_en": "Westminster",
+      "lat": 51.501,
+      "lon": -0.1248,
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51499_N00134",
+        "ST_P51507_N00122"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51512_N00227",
+      "station_name": "White City",
+      "station_name_en": "White City",
+      "lat": 51.5116,
+      "lon": -0.2268,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51517_N00245",
+        "ST_P51506_N00226"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51520_N00060",
+      "station_name": "Whitechapel",
+      "station_name_en": "Whitechapel",
+      "lat": 51.5196,
+      "lon": -0.06,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51515_N00073",
+        "ST_P51522_N00046"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51421_N00206",
+      "station_name": "Wimbledon",
+      "station_name_en": "Wimbledon",
+      "lat": 51.4213,
+      "lon": -0.2062,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51435_N00206",
+        "ST_P51494_N00183"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51435_N00206",
+      "station_name": "Wimbledon Park",
+      "station_name_en": "Wimbledon Park",
+      "lat": 51.435,
+      "lon": -0.2059,
+      "line_ids": [
+        "DIS"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51445_N00206",
+        "ST_P51421_N00206"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51598_N00110",
+      "station_name": "Wood Green",
+      "station_name_en": "Wood Green",
+      "lat": 51.5975,
+      "lon": -0.1095,
+      "line_ids": [
+        "PIC"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51590_N00103",
+        "ST_P51605_N00122"
+      ]
+    },
+    {
+      "station_global_id": "ST_P51608_P00034",
+      "station_name": "Woodford",
+      "station_name_en": "Woodford",
+      "lat": 51.6076,
+      "lon": 0.0337,
+      "line_ids": [
+        "CEN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_P51592_P00028",
+        "ST_P51627_P00047"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "ST_P51561_N00415",
+      "to": "ST_P51569_N00436",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.708,
+      "weight": 0.5854
+    },
+    {
+      "from": "ST_P51557_N00399",
+      "to": "ST_P51561_N00415",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.237,
+      "weight": 0.8081
+    },
+    {
+      "from": "ST_P51549_N00368",
+      "to": "ST_P51557_N00399",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 2.297,
+      "weight": 0.4353
+    },
+    {
+      "from": "ST_P51542_N00346",
+      "to": "ST_P51549_N00368",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.677,
+      "weight": 0.5964
+    },
+    {
+      "from": "ST_P51536_N00323",
+      "to": "ST_P51542_N00346",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.763,
+      "weight": 0.5671
+    },
+    {
+      "from": "ST_P51530_N00299",
+      "to": "ST_P51536_N00323",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.8,
+      "weight": 0.5556
+    },
+    {
+      "from": "ST_P51515_N00302",
+      "to": "ST_P51530_N00299",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.678,
+      "weight": 0.5958
+    },
+    {
+      "from": "ST_P51515_N00302",
+      "to": "ST_P51517_N00280",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.509,
+      "weight": 0.6625
+    },
+    {
+      "from": "ST_P51517_N00280",
+      "to": "ST_P51523_N00264",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.293,
+      "weight": 0.7737
+    },
+    {
+      "from": "ST_P51517_N00245",
+      "to": "ST_P51523_N00264",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.478,
+      "weight": 0.6765
+    },
+    {
+      "from": "ST_P51512_N00227",
+      "to": "ST_P51517_N00245",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.383,
+      "weight": 0.7231
+    },
+    {
+      "from": "ST_P51506_N00226",
+      "to": "ST_P51512_N00227",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.679,
+      "weight": 1.4736
+    },
+    {
+      "from": "ST_P51502_N00227",
+      "to": "ST_P51506_N00226",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.434,
+      "weight": 2.3048
+    },
+    {
+      "from": "ST_P51502_N00227",
+      "to": "ST_P51505_N00219",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.659,
+      "weight": 1.5186
+    },
+    {
+      "from": "ST_P51505_N00219",
+      "to": "ST_P51508_N00206",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.919,
+      "weight": 1.0885
+    },
+    {
+      "from": "ST_P51508_N00206",
+      "to": "ST_P51509_N00196",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.717,
+      "weight": 1.3947
+    },
+    {
+      "from": "ST_P51509_N00196",
+      "to": "ST_P51511_N00188",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.626,
+      "weight": 1.5976
+    },
+    {
+      "from": "ST_P51511_N00188",
+      "to": "ST_P51512_N00176",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.79,
+      "weight": 1.266
+    },
+    {
+      "from": "ST_P51512_N00176",
+      "to": "ST_P51514_N00159",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.224,
+      "weight": 0.8167
+    },
+    {
+      "from": "ST_P51514_N00149",
+      "to": "ST_P51514_N00159",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.653,
+      "weight": 1.5318
+    },
+    {
+      "from": "ST_P51514_N00149",
+      "to": "ST_P51515_N00142",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.558,
+      "weight": 1.7926
+    },
+    {
+      "from": "ST_P51515_N00142",
+      "to": "ST_P51516_N00130",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.782,
+      "weight": 1.2795
+    },
+    {
+      "from": "ST_P51516_N00130",
+      "to": "ST_P51517_N00120",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.727,
+      "weight": 1.3764
+    },
+    {
+      "from": "ST_P51517_N00120",
+      "to": "ST_P51518_N00111",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.603,
+      "weight": 1.6572
+    },
+    {
+      "from": "ST_P51515_N00098",
+      "to": "ST_P51518_N00111",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.033,
+      "weight": 0.9677
+    },
+    {
+      "from": "ST_P51513_N00089",
+      "to": "ST_P51515_N00098",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.646,
+      "weight": 1.5478
+    },
+    {
+      "from": "ST_P51513_N00089",
+      "to": "ST_P51518_N00082",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 0.664,
+      "weight": 1.5068
+    },
+    {
+      "from": "ST_P51518_N00082",
+      "to": "ST_P51527_N00055",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 2.141,
+      "weight": 0.4672
+    },
+    {
+      "from": "ST_P51525_N00033",
+      "to": "ST_P51527_N00055",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.53,
+      "weight": 0.6537
+    },
+    {
+      "from": "ST_P51525_N00033",
+      "to": "ST_P51542_N00004",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 2.706,
+      "weight": 0.3695
+    },
+    {
+      "from": "ST_P51542_N00004",
+      "to": "ST_P51556_N00004",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.657,
+      "weight": 0.6036
+    },
+    {
+      "from": "ST_P51556_N00004",
+      "to": "ST_P51569_P00008",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.612,
+      "weight": 0.6203
+    },
+    {
+      "from": "ST_P51569_P00008",
+      "to": "ST_P51581_P00020",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.571,
+      "weight": 0.6365
+    },
+    {
+      "from": "ST_P51581_P00020",
+      "to": "ST_P51592_P00028",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.344,
+      "weight": 0.7443
+    },
+    {
+      "from": "ST_P51592_P00028",
+      "to": "ST_P51608_P00034",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.808,
+      "weight": 0.553
+    },
+    {
+      "from": "ST_P51608_P00034",
+      "to": "ST_P51627_P00047",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 2.319,
+      "weight": 0.4313
+    },
+    {
+      "from": "ST_P51627_P00047",
+      "to": "ST_P51641_P00056",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.733,
+      "weight": 0.5771
+    },
+    {
+      "from": "ST_P51641_P00056",
+      "to": "ST_P51645_P00084",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 1.983,
+      "weight": 0.5044
+    },
+    {
+      "from": "ST_P51645_P00084",
+      "to": "ST_P51671_P00104",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 3.189,
+      "weight": 0.3136
+    },
+    {
+      "from": "ST_P51671_P00104",
+      "to": "ST_P51694_P00114",
+      "line_ids": [
+        "CEN"
+      ],
+      "distance_km": 2.594,
+      "weight": 0.3855
+    },
+    {
+      "from": "ST_P51603_N00266",
+      "to": "ST_P51613_N00276",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.372,
+      "weight": 0.7287
+    },
+    {
+      "from": "ST_P51595_N00250",
+      "to": "ST_P51603_N00266",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.345,
+      "weight": 0.7436
+    },
+    {
+      "from": "ST_P51583_N00227",
+      "to": "ST_P51595_N00250",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 2.109,
+      "weight": 0.4743
+    },
+    {
+      "from": "ST_P51576_N00214",
+      "to": "ST_P51583_N00227",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.176,
+      "weight": 0.8503
+    },
+    {
+      "from": "ST_P51572_N00194",
+      "to": "ST_P51576_N00214",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.403,
+      "weight": 0.7128
+    },
+    {
+      "from": "ST_P51566_N00178",
+      "to": "ST_P51572_N00194",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.286,
+      "weight": 0.7777
+    },
+    {
+      "from": "ST_P51550_N00165",
+      "to": "ST_P51566_N00178",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 2.042,
+      "weight": 0.4898
+    },
+    {
+      "from": "ST_P51544_N00154",
+      "to": "ST_P51550_N00165",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.966,
+      "weight": 1.0352
+    },
+    {
+      "from": "ST_P51539_N00143",
+      "to": "ST_P51544_N00154",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.988,
+      "weight": 1.0121
+    },
+    {
+      "from": "ST_P51534_N00139",
+      "to": "ST_P51539_N00143",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.612,
+      "weight": 1.6339
+    },
+    {
+      "from": "ST_P51528_N00134",
+      "to": "ST_P51534_N00139",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.768,
+      "weight": 1.3025
+    },
+    {
+      "from": "ST_P51524_N00139",
+      "to": "ST_P51528_N00134",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.55,
+      "weight": 1.8166
+    },
+    {
+      "from": "ST_P51520_N00135",
+      "to": "ST_P51524_N00139",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.518,
+      "weight": 1.9298
+    },
+    {
+      "from": "ST_P51516_N00130",
+      "to": "ST_P51520_N00135",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.535,
+      "weight": 1.8687
+    },
+    {
+      "from": "ST_P51511_N00128",
+      "to": "ST_P51516_N00130",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.6,
+      "weight": 1.6674
+    },
+    {
+      "from": "ST_P51508_N00125",
+      "to": "ST_P51511_N00128",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.423,
+      "weight": 2.3651
+    },
+    {
+      "from": "ST_P51507_N00122",
+      "to": "ST_P51508_N00125",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.19,
+      "weight": 5.2708
+    },
+    {
+      "from": "ST_P51504_N00114",
+      "to": "ST_P51507_N00122",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.697,
+      "weight": 1.4357
+    },
+    {
+      "from": "ST_P51488_N00105",
+      "to": "ST_P51504_N00114",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.822,
+      "weight": 0.5488
+    },
+    {
+      "from": "ST_P51482_N00113",
+      "to": "ST_P51488_N00105",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.893,
+      "weight": 1.1197
+    },
+    {
+      "from": "ST_P51472_N00123",
+      "to": "ST_P51482_N00113",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.263,
+      "weight": 0.7915
+    },
+    {
+      "from": "ST_P51465_N00130",
+      "to": "ST_P51472_N00123",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.949,
+      "weight": 1.0536
+    },
+    {
+      "from": "ST_P51461_N00138",
+      "to": "ST_P51465_N00130",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.706,
+      "weight": 1.4168
+    },
+    {
+      "from": "ST_P51455_N00148",
+      "to": "ST_P51461_N00138",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.982,
+      "weight": 1.0181
+    },
+    {
+      "from": "ST_P51443_N00153",
+      "to": "ST_P51455_N00148",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.341,
+      "weight": 0.7456
+    },
+    {
+      "from": "ST_P51435_N00161",
+      "to": "ST_P51443_N00153",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.056,
+      "weight": 0.9473
+    },
+    {
+      "from": "ST_P51427_N00168",
+      "to": "ST_P51435_N00161",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.997,
+      "weight": 1.0028
+    },
+    {
+      "from": "ST_P51420_N00188",
+      "to": "ST_P51427_N00168",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.642,
+      "weight": 0.6092
+    },
+    {
+      "from": "ST_P51414_N00192",
+      "to": "ST_P51420_N00188",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 0.684,
+      "weight": 1.4625
+    },
+    {
+      "from": "ST_P51402_N00195",
+      "to": "ST_P51414_N00192",
+      "line_ids": [
+        "NOR"
+      ],
+      "distance_km": 1.316,
+      "weight": 0.7596
+    },
+    {
+      "from": "ST_P51471_N00452",
+      "to": "ST_P51473_N00489",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 2.545,
+      "weight": 0.393
+    },
+    {
+      "from": "ST_P51458_N00448",
+      "to": "ST_P51471_N00452",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.479,
+      "weight": 0.6762
+    },
+    {
+      "from": "ST_P51458_N00448",
+      "to": "ST_P51466_N00424",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.908,
+      "weight": 0.524
+    },
+    {
+      "from": "ST_P51466_N00424",
+      "to": "ST_P51474_N00386",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 2.695,
+      "weight": 0.3711
+    },
+    {
+      "from": "ST_P51472_N00367",
+      "to": "ST_P51474_N00386",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.371,
+      "weight": 0.7296
+    },
+    {
+      "from": "ST_P51472_N00346",
+      "to": "ST_P51472_N00367",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.483,
+      "weight": 0.6742
+    },
+    {
+      "from": "ST_P51472_N00346",
+      "to": "ST_P51481_N00352",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.073,
+      "weight": 0.932
+    },
+    {
+      "from": "ST_P51481_N00352",
+      "to": "ST_P51495_N00338",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.856,
+      "weight": 0.5387
+    },
+    {
+      "from": "ST_P51495_N00338",
+      "to": "ST_P51499_N00315",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.656,
+      "weight": 0.6039
+    },
+    {
+      "from": "ST_P51499_N00315",
+      "to": "ST_P51501_N00306",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.632,
+      "weight": 1.5834
+    },
+    {
+      "from": "ST_P51501_N00306",
+      "to": "ST_P51503_N00280",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.796,
+      "weight": 0.5569
+    },
+    {
+      "from": "ST_P51494_N00268",
+      "to": "ST_P51503_N00280",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.293,
+      "weight": 0.7732
+    },
+    {
+      "from": "ST_P51494_N00268",
+      "to": "ST_P51495_N00254",
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "distance_km": 0.939,
+      "weight": 1.0652
+    },
+    {
+      "from": "ST_P51495_N00241",
+      "to": "ST_P51495_N00254",
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "distance_km": 0.935,
+      "weight": 1.0699
+    },
+    {
+      "from": "ST_P51494_N00235",
+      "to": "ST_P51495_N00241",
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "distance_km": 0.436,
+      "weight": 2.2921
+    },
+    {
+      "from": "ST_P51493_N00224",
+      "to": "ST_P51494_N00235",
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "distance_km": 0.77,
+      "weight": 1.2979
+    },
+    {
+      "from": "ST_P51490_N00213",
+      "to": "ST_P51493_N00224",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.831,
+      "weight": 1.2028
+    },
+    {
+      "from": "ST_P51490_N00206",
+      "to": "ST_P51490_N00213",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.478,
+      "weight": 2.0927
+    },
+    {
+      "from": "ST_P51490_N00206",
+      "to": "ST_P51492_N00194",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.848,
+      "weight": 1.1788
+    },
+    {
+      "from": "ST_P51492_N00194",
+      "to": "ST_P51494_N00183",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.793,
+      "weight": 1.2612
+    },
+    {
+      "from": "ST_P51494_N00174",
+      "to": "ST_P51494_N00183",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.645,
+      "weight": 1.5511
+    },
+    {
+      "from": "ST_P51494_N00174",
+      "to": "ST_P51502_N00161",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.26,
+      "weight": 0.7938
+    },
+    {
+      "from": "ST_P51502_N00161",
+      "to": "ST_P51503_N00153",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.554,
+      "weight": 1.805
+    },
+    {
+      "from": "ST_P51503_N00153",
+      "to": "ST_P51507_N00143",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.817,
+      "weight": 1.2241
+    },
+    {
+      "from": "ST_P51507_N00143",
+      "to": "ST_P51510_N00135",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.658,
+      "weight": 1.5194
+    },
+    {
+      "from": "ST_P51510_N00135",
+      "to": "ST_P51511_N00128",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.489,
+      "weight": 2.0446
+    },
+    {
+      "from": "ST_P51511_N00128",
+      "to": "ST_P51513_N00124",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.317,
+      "weight": 3.1496
+    },
+    {
+      "from": "ST_P51513_N00124",
+      "to": "ST_P51517_N00120",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.582,
+      "weight": 1.7177
+    },
+    {
+      "from": "ST_P51517_N00120",
+      "to": "ST_P51523_N00124",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.703,
+      "weight": 1.4222
+    },
+    {
+      "from": "ST_P51523_N00124",
+      "to": "ST_P51531_N00124",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.857,
+      "weight": 1.1666
+    },
+    {
+      "from": "ST_P51531_N00124",
+      "to": "ST_P51544_N00119",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.455,
+      "weight": 0.6871
+    },
+    {
+      "from": "ST_P51544_N00119",
+      "to": "ST_P51553_N00113",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.171,
+      "weight": 0.854
+    },
+    {
+      "from": "ST_P51553_N00113",
+      "to": "ST_P51558_N00106",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.756,
+      "weight": 1.3236
+    },
+    {
+      "from": "ST_P51558_N00106",
+      "to": "ST_P51564_N00101",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.738,
+      "weight": 1.3544
+    },
+    {
+      "from": "ST_P51564_N00101",
+      "to": "ST_P51570_N00096",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.781,
+      "weight": 1.2802
+    },
+    {
+      "from": "ST_P51570_N00096",
+      "to": "ST_P51590_N00103",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 2.245,
+      "weight": 0.4454
+    },
+    {
+      "from": "ST_P51590_N00103",
+      "to": "ST_P51598_N00110",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 0.924,
+      "weight": 1.0817
+    },
+    {
+      "from": "ST_P51598_N00110",
+      "to": "ST_P51605_N00122",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.195,
+      "weight": 0.8365
+    },
+    {
+      "from": "ST_P51605_N00122",
+      "to": "ST_P51616_N00133",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.481,
+      "weight": 0.6751
+    },
+    {
+      "from": "ST_P51616_N00133",
+      "to": "ST_P51632_N00128",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.781,
+      "weight": 0.5615
+    },
+    {
+      "from": "ST_P51632_N00128",
+      "to": "ST_P51648_N00133",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.748,
+      "weight": 0.572
+    },
+    {
+      "from": "ST_P51648_N00133",
+      "to": "ST_P51652_N00150",
+      "line_ids": [
+        "PIC"
+      ],
+      "distance_km": 1.243,
+      "weight": 0.8044
+    },
+    {
+      "from": "ST_P51463_N00301",
+      "to": "ST_P51478_N00285",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.963,
+      "weight": 0.5094
+    },
+    {
+      "from": "ST_P51478_N00285",
+      "to": "ST_P51492_N00275",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.711,
+      "weight": 0.5844
+    },
+    {
+      "from": "ST_P51492_N00275",
+      "to": "ST_P51494_N00268",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.576,
+      "weight": 1.7354
+    },
+    {
+      "from": "ST_P51487_N00195",
+      "to": "ST_P51492_N00194",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.537,
+      "weight": 1.8609
+    },
+    {
+      "from": "ST_P51480_N00193",
+      "to": "ST_P51487_N00195",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.754,
+      "weight": 1.3258
+    },
+    {
+      "from": "ST_P51475_N00200",
+      "to": "ST_P51480_N00193",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.759,
+      "weight": 1.318
+    },
+    {
+      "from": "ST_P51468_N00209",
+      "to": "ST_P51475_N00200",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.98,
+      "weight": 1.02
+    },
+    {
+      "from": "ST_P51461_N00212",
+      "to": "ST_P51468_N00209",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.861,
+      "weight": 1.1612
+    },
+    {
+      "from": "ST_P51445_N00206",
+      "to": "ST_P51461_N00212",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.767,
+      "weight": 0.566
+    },
+    {
+      "from": "ST_P51435_N00206",
+      "to": "ST_P51445_N00206",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.135,
+      "weight": 0.8811
+    },
+    {
+      "from": "ST_P51421_N00206",
+      "to": "ST_P51435_N00206",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.524,
+      "weight": 0.6564
+    },
+    {
+      "from": "ST_P51421_N00206",
+      "to": "ST_P51494_N00183",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 8.284,
+      "weight": 0.1207
+    },
+    {
+      "from": "ST_P51492_N00156",
+      "to": "ST_P51494_N00174",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 1.213,
+      "weight": 0.8247
+    },
+    {
+      "from": "ST_P51492_N00156",
+      "to": "ST_P51496_N00145",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.936,
+      "weight": 1.0689
+    },
+    {
+      "from": "ST_P51496_N00145",
+      "to": "ST_P51499_N00134",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.84,
+      "weight": 1.1909
+    },
+    {
+      "from": "ST_P51499_N00134",
+      "to": "ST_P51501_N00125",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.628,
+      "weight": 1.5925
+    },
+    {
+      "from": "ST_P51501_N00125",
+      "to": "ST_P51507_N00122",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.732,
+      "weight": 1.3654
+    },
+    {
+      "from": "ST_P51507_N00122",
+      "to": "ST_P51511_N00114",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.718,
+      "weight": 1.393
+    },
+    {
+      "from": "ST_P51511_N00114",
+      "to": "ST_P51512_N00103",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.733,
+      "weight": 1.3633
+    },
+    {
+      "from": "ST_P51512_N00094",
+      "to": "ST_P51512_N00103",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.631,
+      "weight": 1.584
+    },
+    {
+      "from": "ST_P51511_N00090",
+      "to": "ST_P51512_N00094",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.29,
+      "weight": 3.448
+    },
+    {
+      "from": "ST_P51510_N00086",
+      "to": "ST_P51511_N00090",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.35,
+      "weight": 2.8602
+    },
+    {
+      "from": "ST_P51510_N00076",
+      "to": "ST_P51510_N00086",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "distance_km": 0.644,
+      "weight": 1.5528
+    },
+    {
+      "from": "ST_P51510_N00076",
+      "to": "ST_P51515_N00073",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.648,
+      "weight": 1.5428
+    },
+    {
+      "from": "ST_P51515_N00073",
+      "to": "ST_P51520_N00060",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.005,
+      "weight": 0.9948
+    },
+    {
+      "from": "ST_P51520_N00060",
+      "to": "ST_P51522_N00046",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.966,
+      "weight": 1.0357
+    },
+    {
+      "from": "ST_P51522_N00046",
+      "to": "ST_P51525_N00033",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.986,
+      "weight": 1.0138
+    },
+    {
+      "from": "ST_P51525_N00033",
+      "to": "ST_P51527_N00025",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 0.621,
+      "weight": 1.6103
+    },
+    {
+      "from": "ST_P51522_N00012",
+      "to": "ST_P51527_N00025",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.024,
+      "weight": 0.9767
+    },
+    {
+      "from": "ST_P51522_N00012",
+      "to": "ST_P51529_P00005",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.364,
+      "weight": 0.7333
+    },
+    {
+      "from": "ST_P51529_P00005",
+      "to": "ST_P51532_P00020",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.077,
+      "weight": 0.9282
+    },
+    {
+      "from": "ST_P51532_P00020",
+      "to": "ST_P51535_P00035",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.098,
+      "weight": 0.9109
+    },
+    {
+      "from": "ST_P51535_P00035",
+      "to": "ST_P51540_P00052",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.314,
+      "weight": 0.761
+    },
+    {
+      "from": "ST_P51540_P00052",
+      "to": "ST_P51540_P00081",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.95,
+      "weight": 0.5127
+    },
+    {
+      "from": "ST_P51538_P00100",
+      "to": "ST_P51540_P00081",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.374,
+      "weight": 0.7278
+    },
+    {
+      "from": "ST_P51538_P00100",
+      "to": "ST_P51540_P00122",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.5,
+      "weight": 0.6665
+    },
+    {
+      "from": "ST_P51540_P00122",
+      "to": "ST_P51542_P00140",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.281,
+      "weight": 0.7804
+    },
+    {
+      "from": "ST_P51542_P00140",
+      "to": "ST_P51544_P00160",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.411,
+      "weight": 0.7088
+    },
+    {
+      "from": "ST_P51544_P00160",
+      "to": "ST_P51549_P00190",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 2.102,
+      "weight": 0.4758
+    },
+    {
+      "from": "ST_P51549_P00190",
+      "to": "ST_P51554_P00214",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.76,
+      "weight": 0.5683
+    },
+    {
+      "from": "ST_P51554_P00214",
+      "to": "ST_P51557_P00234",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.431,
+      "weight": 0.699
+    },
+    {
+      "from": "ST_P51557_P00234",
+      "to": "ST_P51559_P00251",
+      "line_ids": [
+        "DIS"
+      ],
+      "distance_km": 1.235,
+      "weight": 0.8098
+    },
+    {
+      "from": "ST_P51492_N00194",
+      "to": "ST_P51501_N00192",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 1.018,
+      "weight": 0.9824
+    },
+    {
+      "from": "ST_P51501_N00192",
+      "to": "ST_P51509_N00196",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.999,
+      "weight": 1.0005
+    },
+    {
+      "from": "ST_P51509_N00196",
+      "to": "ST_P51512_N00187",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.69,
+      "weight": 1.449
+    },
+    {
+      "from": "ST_P51512_N00187",
+      "to": "ST_P51515_N00176",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.897,
+      "weight": 1.1148
+    },
+    {
+      "from": "ST_P51515_N00176",
+      "to": "ST_P51520_N00169",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.692,
+      "weight": 1.4459
+    },
+    {
+      "from": "ST_P51520_N00169",
+      "to": "ST_P51523_N00157",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.85,
+      "weight": 1.1759
+    },
+    {
+      "from": "ST_P51523_N00157",
+      "to": "ST_P51524_N00144",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.917,
+      "weight": 1.0907
+    },
+    {
+      "from": "ST_P51524_N00144",
+      "to": "ST_P51526_N00136",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.635,
+      "weight": 1.5744
+    },
+    {
+      "from": "ST_P51526_N00136",
+      "to": "ST_P51531_N00124",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.957,
+      "weight": 1.0444
+    },
+    {
+      "from": "ST_P51520_N00105",
+      "to": "ST_P51531_N00124",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 1.748,
+      "weight": 0.5722
+    },
+    {
+      "from": "ST_P51520_N00098",
+      "to": "ST_P51520_N00105",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.499,
+      "weight": 2.0029
+    },
+    {
+      "from": "ST_P51519_N00089",
+      "to": "ST_P51520_N00098",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.655,
+      "weight": 1.526
+    },
+    {
+      "from": "ST_P51518_N00082",
+      "to": "ST_P51519_N00089",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.445,
+      "weight": 2.2477
+    },
+    {
+      "from": "ST_P51514_N00075",
+      "to": "ST_P51518_N00082",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.627,
+      "weight": 1.5955
+    },
+    {
+      "from": "ST_P51510_N00076",
+      "to": "ST_P51514_N00075",
+      "line_ids": [
+        "CIR"
+      ],
+      "distance_km": 0.508,
+      "weight": 1.967
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+station_global_id,station_slug,station_name,station_name_kana,station_name_en,prefecture_code,prefecture_name,lat,lon,operators,line_ids,line_count,hub_degree_global,source_names,aliases,status
+ST_P51503_N00280,acton_town,Acton Town,,Acton Town,ENG,England,51.5031,-0.2802,Transport for London,PIC,1,1,Acton Town,Acton Town station,active
+ST_P51514_N00075,aldgate,Aldgate,,Aldgate,ENG,England,51.5143,-0.0752,Transport for London,CIR,1,1,Aldgate,Aldgate station,active
+ST_P51515_N00073,aldgate_east,Aldgate East,,Aldgate East,ENG,England,51.5151,-0.0726,Transport for London,DIS,1,1,Aldgate East,Aldgate East station,active
+ST_P51616_N00133,arnos_grove,Arnos Grove,,Arnos Grove,ENG,England,51.6164,-0.133,Transport for London,PIC,1,1,Arnos Grove,Arnos Grove station,active
+ST_P51558_N00106,arsenal,Arsenal,,Arsenal,ENG,England,51.5584,-0.1058,Transport for London,PIC,1,1,Arsenal,Arsenal station,active
+ST_P51523_N00157,baker_street,Baker Street,,Baker Street,ENG,England,51.5226,-0.1571,Transport for London,CIR,1,1,Baker Street,Baker Street station,active
+ST_P51443_N00153,balham,Balham,,Balham,ENG,England,51.4432,-0.1527,Transport for London,NOR,1,1,Balham,Balham station,active
+ST_P51513_N00089,bank,Bank,,Bank,ENG,England,51.5133,-0.0886,Transport for London,CEN,1,1,Bank,Bank station,active
+ST_P51520_N00098,barbican,Barbican,,Barbican,ENG,England,51.52,-0.0978,Transport for London,CIR,1,1,Barbican,Barbican station,active
+ST_P51540_P00081,barking,Barking,,Barking,ENG,England,51.5398,0.0806,Transport for London,DIS,1,1,Barking,Barking station,active
+ST_P51490_N00213,barons_court,Baron's Court,,Baron's Court,ENG,England,51.4904,-0.2127,Transport for London,PIC|DIS|CIR,3,3,Baron's Court,Baron's Court station,active
+ST_P51512_N00187,bayswater,Bayswater,,Bayswater,ENG,England,51.5122,-0.1874,Transport for London,CIR,1,1,Bayswater,Bayswater station,active
+ST_P51540_P00122,becontree,Becontree,,Becontree,ENG,England,51.54,0.1218,Transport for London,DIS,1,1,Becontree,Becontree station,active
+ST_P51550_N00165,belsize_park,Belsize Park,,Belsize Park,ENG,England,51.5502,-0.1647,Transport for London,NOR,1,1,Belsize Park,Belsize Park station,active
+ST_P51527_N00055,bethnal_green,Bethnal Green,,Bethnal Green,ENG,England,51.5272,-0.0553,Transport for London,CEN,1,1,Bethnal Green,Bethnal Green station,active
+ST_P51512_N00103,blackfriars,Blackfriars,,Blackfriars,ENG,England,51.512,-0.1033,Transport for London,DIS|CIR,2,2,Blackfriars,Blackfriars station,active
+ST_P51514_N00149,bond_street,Bond Street,,Bond Street,ENG,England,51.5142,-0.1494,Transport for London,CEN,1,1,Bond Street,Bond Street station,active
+ST_P51495_N00338,boston_manor,Boston Manor,,Boston Manor,ENG,England,51.4951,-0.3376,Transport for London,PIC,1,1,Boston Manor,Boston Manor station,active
+ST_P51605_N00122,bounds_green,Bounds Green,,Bounds Green,ENG,England,51.605,-0.1219,Transport for London,PIC,1,1,Bounds Green,Bounds Green station,active
+ST_P51527_N00025,bow_road,Bow Road,,Bow Road,ENG,England,51.5269,-0.0248,Transport for London,DIS,1,1,Bow Road,Bow Road station,active
+ST_P51576_N00214,brent_cross,Brent Cross,,Brent Cross,ENG,England,51.5765,-0.2135,Transport for London,NOR,1,1,Brent Cross,Brent Cross station,active
+ST_P51522_N00012,bromley_by_bow,Bromley-by-Bow,,Bromley-by-Bow,ENG,England,51.5225,-0.0118,Transport for London,DIS,1,1,Bromley-by-Bow,Bromley-by-Bow station,active
+ST_P51627_P00047,buckhurst_hill,Buckhurst Hill,,Buckhurst Hill,ENG,England,51.6268,0.0468,Transport for London,CEN,1,1,Buckhurst Hill,Buckhurst Hill station,active
+ST_P51603_N00266,burnt_oak,Burnt Oak,,Burnt Oak,ENG,England,51.6026,-0.2657,Transport for London,NOR,1,1,Burnt Oak,Burnt Oak station,active
+ST_P51544_N00119,caledonian_road,Caledonian Road,,Caledonian Road,ENG,England,51.5436,-0.1194,Transport for London,PIC,1,1,Caledonian Road,Caledonian Road station,active
+ST_P51539_N00143,camden_town,Camden Town,,Camden Town,ENG,England,51.5393,-0.1426,Transport for London,NOR,1,1,Camden Town,Camden Town station,active
+ST_P51511_N00090,cannon_street,Cannon Street,,Cannon Street,ENG,England,51.5113,-0.0904,Transport for London,DIS|CIR,2,2,Cannon Street,Cannon Street station,active
+ST_P51544_N00154,chalk_farm,Chalk Farm,,Chalk Farm,ENG,England,51.5444,-0.1543,Transport for London,NOR,1,1,Chalk Farm,Chalk Farm station,active
+ST_P51518_N00111,chancery_lane,Chancery Lane,,Chancery Lane,ENG,England,51.5183,-0.1114,Transport for London,CEN,1,1,Chancery Lane,Chancery Lane station,active
+ST_P51508_N00125,charing_cross,Charing Cross,,Charing Cross,ENG,England,51.5081,-0.1248,Transport for London,NOR,1,1,Charing Cross,Charing Cross station,active
+ST_P51494_N00268,chiswick_park,Chiswick Park,,Chiswick Park,ENG,England,51.4944,-0.2678,Transport for London,PIC|DIS,2,2,Chiswick Park,Chiswick Park station,active
+ST_P51461_N00138,clapham_common,Clapham Common,,Clapham Common,ENG,England,51.4614,-0.1384,Transport for London,NOR,1,1,Clapham Common,Clapham Common station,active
+ST_P51465_N00130,clapham_north,Clapham North,,Clapham North,ENG,England,51.4649,-0.1299,Transport for London,NOR,1,1,Clapham North,Clapham North station,active
+ST_P51455_N00148,clapham_south,Clapham South,,Clapham South,ENG,England,51.4549,-0.148,Transport for London,NOR,1,1,Clapham South,Clapham South station,active
+ST_P51652_N00150,cockfosters,Cockfosters,,Cockfosters,ENG,England,51.6517,-0.1497,Transport for London,PIC,1,1,Cockfosters,Cockfosters station,active
+ST_P51595_N00250,colindale,Colindale,,Colindale,ENG,England,51.5952,-0.2503,Transport for London,NOR,1,1,Colindale,Colindale station,active
+ST_P51420_N00188,colliers_wood,Colliers Wood,,Colliers Wood,ENG,England,51.4197,-0.1882,Transport for London,NOR,1,1,Colliers Wood,Colliers Wood station,active
+ST_P51513_N00124,covent_garden,Covent Garden,,Covent Garden,ENG,England,51.5129,-0.1243,Transport for London,PIC,1,1,Covent Garden,Covent Garden station,active
+ST_P51544_P00160,dagenham_east,Dagenham East,,Dagenham East,ENG,England,51.5443,0.1601,Transport for London,DIS,1,1,Dagenham East,Dagenham East station,active
+ST_P51542_P00140,dagenham_heathway,Dagenham Heathway,,Dagenham Heathway,ENG,England,51.5418,0.1401,Transport for London,DIS,1,1,Dagenham Heathway,Dagenham Heathway station,active
+ST_P51645_P00084,debden,Debden,,Debden,ENG,England,51.6453,0.084,Transport for London,CEN,1,1,Debden,Debden station,active
+ST_P51515_N00302,ealing_broadway,Ealing Broadway,,Ealing Broadway,ENG,England,51.5149,-0.3016,Transport for London,CEN,1,1,Ealing Broadway,Ealing Broadway station,active
+ST_P51492_N00194,earls_court,Earl's Court,,Earl's Court,ENG,England,51.4917,-0.1937,Transport for London,PIC|DIS|CIR,3,3,Earl's Court,Earl's Court station,active
+ST_P51517_N00245,east_acton,East Acton,,East Acton,ENG,England,51.5166,-0.2451,Transport for London,CEN,1,1,East Acton,East Acton station,active
+ST_P51540_P00052,east_ham,East Ham,,East Ham,ENG,England,51.5398,0.0524,Transport for London,DIS,1,1,East Ham,East Ham station,active
+ST_P51461_N00212,east_putney,East Putney,,East Putney,ENG,England,51.4607,-0.2121,Transport for London,DIS,1,1,East Putney,East Putney station,active
+ST_P51613_N00276,edgware,Edgware,,Edgware,ENG,England,51.6133,-0.2756,Transport for London,NOR,1,1,Edgware,Edgware station,active
+ST_P51520_N00169,edgware_road,Edgware Road,,Edgware Road,ENG,England,51.5199,-0.1686,Transport for London,CIR,1,1,Edgware Road,Edgware Road station,active
+ST_P51549_P00190,elm_park,Elm Park,,Elm Park,ENG,England,51.5491,0.1895,Transport for London,DIS,1,1,Elm Park,Elm Park station,active
+ST_P51507_N00122,embankment,Embankment,,Embankment,ENG,England,51.5074,-0.1223,Transport for London,NOR|DIS|CIR,3,3,Embankment,Embankment station,active
+ST_P51694_P00114,epping,Epping,,Epping,ENG,England,51.6937,0.114,Transport for London,CEN,1,1,Epping,Epping station,active
+ST_P51528_N00134,euston,Euston,,Euston,ENG,England,51.5282,-0.1337,Transport for London,NOR,1,1,Euston,Euston station,active
+ST_P51526_N00136,euston_square,Euston Square,,Euston Square,ENG,England,51.5262,-0.1355,Transport for London,CIR,1,1,Euston Square,Euston Square station,active
+ST_P51520_N00105,farringdon,Farringdon,,Farringdon,ENG,England,51.5203,-0.105,Transport for London,CIR,1,1,Farringdon,Farringdon station,active
+ST_P51564_N00101,finsbury_park,Finsbury Park,,Finsbury Park,ENG,England,51.5642,-0.1006,Transport for London,PIC,1,1,Finsbury Park,Finsbury Park station,active
+ST_P51480_N00193,fulham_broadway,Fulham Broadway,,Fulham Broadway,ENG,England,51.4802,-0.1929,Transport for London,DIS,1,1,Fulham Broadway,Fulham Broadway station,active
+ST_P51494_N00183,gloucester_road,Gloucester Road,,Gloucester Road,ENG,England,51.4944,-0.1831,Transport for London,PIC|DIS|CIR,3,3,Gloucester Road,Gloucester Road station,active
+ST_P51572_N00194,golders_green,Golders Green,,Golders Green,ENG,England,51.5724,-0.1943,Transport for London,NOR,1,1,Golders Green,Golders Green station,active
+ST_P51502_N00227,goldhawk_road,Goldhawk Road,,Goldhawk Road,ENG,England,51.5016,-0.2267,Transport for London,CEN,1,1,Goldhawk Road,Goldhawk Road station,active
+ST_P51520_N00135,goodge_street,Goodge Street,,Goodge Street,ENG,England,51.5205,-0.1347,Transport for London,NOR,1,1,Goodge Street,Goodge Street station,active
+ST_P51524_N00144,great_portland_st,Great Portland Street,,Great Portland Street,ENG,England,51.5242,-0.1441,Transport for London,CIR,1,1,Great Portland Street,Great Portland Street station,active
+ST_P51507_N00143,green_park,Green Park,,Green Park,ENG,England,51.5067,-0.1428,Transport for London,PIC,1,1,Green Park,Green Park station,active
+ST_P51542_N00346,greenford,Greenford,,Greenford,ENG,England,51.5423,-0.3464,Transport for London,CEN,1,1,Greenford,Greenford station,active
+ST_P51492_N00275,gunnersbury,Gunnersbury,,Gunnersbury,ENG,England,51.4918,-0.275,Transport for London,DIS,1,1,Gunnersbury,Gunnersbury station,active
+ST_P51493_N00224,hammersmith,Hammersmith,,Hammersmith,ENG,England,51.4934,-0.2237,Transport for London,PIC|DIS|CIR,3,3,Hammersmith,Hammersmith station,active
+ST_P51566_N00178,hampstead,Hampstead,,Hampstead,ENG,England,51.5665,-0.1783,Transport for London,NOR,1,1,Hampstead,Hampstead station,active
+ST_P51530_N00299,hanger_lane,Hanger Lane,,Hanger Lane,ENG,England,51.5299,-0.2989,Transport for London,CEN,1,1,Hanger Lane,Hanger Lane station,active
+ST_P51466_N00424,hatton_cross,Hatton Cross,,Hatton Cross,ENG,England,51.4665,-0.4237,Transport for London,PIC,1,1,Hatton Cross,Hatton Cross station,active
+ST_P51471_N00452,heathrow_t123,Heathrow Terminals 2&3,,Heathrow Terminals 2&3,ENG,England,51.4713,-0.4524,Transport for London,PIC,1,1,Heathrow Terminals 2&3,Heathrow Terminals 2&3 station,active
+ST_P51458_N00448,heathrow_t4,Heathrow Terminal 4,,Heathrow Terminal 4,ENG,England,51.4583,-0.4479,Transport for London,PIC,1,1,Heathrow Terminal 4,Heathrow Terminal 4 station,active
+ST_P51473_N00489,heathrow_t5,Heathrow Terminal 5,,Heathrow Terminal 5,ENG,England,51.4733,-0.489,Transport for London,PIC,1,1,Heathrow Terminal 5,Heathrow Terminal 5 station,active
+ST_P51583_N00227,hendon_central,Hendon Central,,Hendon Central,ENG,England,51.5831,-0.2268,Transport for London,NOR,1,1,Hendon Central,Hendon Central station,active
+ST_P51501_N00192,high_street_ken,High Street Kensington,,High Street Kensington,ENG,England,51.5008,-0.1921,Transport for London,CIR,1,1,High Street Kensington,High Street Kensington station,active
+ST_P51517_N00120,holborn,Holborn,,Holborn,ENG,England,51.5174,-0.12,Transport for London,CEN|PIC,2,2,Holborn,Holborn station,active
+ST_P51508_N00206,holland_park,Holland Park,,Holland Park,ENG,England,51.5075,-0.2062,Transport for London,CEN,1,1,Holland Park,Holland Park station,active
+ST_P51553_N00113,holloway_road,Holloway Road,,Holloway Road,ENG,England,51.5534,-0.1132,Transport for London,PIC,1,1,Holloway Road,Holloway Road station,active
+ST_P51554_P00214,hornchurch,Hornchurch,,Hornchurch,ENG,England,51.554,0.2137,Transport for London,DIS,1,1,Hornchurch,Hornchurch station,active
+ST_P51472_N00367,hounslow_central,Hounslow Central,,Hounslow Central,ENG,England,51.4719,-0.3669,Transport for London,PIC,1,1,Hounslow Central,Hounslow Central station,active
+ST_P51472_N00346,hounslow_east,Hounslow East,,Hounslow East,ENG,England,51.4724,-0.3455,Transport for London,PIC,1,1,Hounslow East,Hounslow East station,active
+ST_P51474_N00386,hounslow_west,Hounslow West,,Hounslow West,ENG,England,51.4736,-0.3865,Transport for London,PIC,1,1,Hounslow West,Hounslow West station,active
+ST_P51503_N00153,hyde_park_corner,Hyde Park Corner,,Hyde Park Corner,ENG,England,51.5027,-0.1527,Transport for London,PIC,1,1,Hyde Park Corner,Hyde Park Corner station,active
+ST_P51488_N00105,kennington,Kennington,,Kennington,ENG,England,51.4882,-0.1053,Transport for London,NOR,1,1,Kennington,Kennington station,active
+ST_P51478_N00285,kew_gardens,Kew Gardens,,Kew Gardens,ENG,England,51.4777,-0.2849,Transport for London,DIS,1,1,Kew Gardens,Kew Gardens station,active
+ST_P51531_N00124,kings_cross,King's Cross St. Pancras,,King's Cross St. Pancras,ENG,England,51.5308,-0.1238,Transport for London,PIC|CIR,2,2,King's Cross St. Pancras,King's Cross St. Pancras station,active
+ST_P51502_N00161,knightsbridge,Knightsbridge,,Knightsbridge,ENG,England,51.5019,-0.1606,Transport for London,PIC,1,1,Knightsbridge,Knightsbridge station,active
+ST_P51512_N00176,lancaster_gate,Lancaster Gate,,Lancaster Gate,ENG,England,51.5117,-0.1762,Transport for London,CEN,1,1,Lancaster Gate,Lancaster Gate station,active
+ST_P51511_N00128,leicester_square,Leicester Square,,Leicester Square,ENG,England,51.5113,-0.1281,Transport for London,NOR|PIC,2,2,Leicester Square,Leicester Square station,active
+ST_P51556_N00004,leyton,Leyton,,Leyton,ENG,England,51.5564,-0.0044,Transport for London,CEN,1,1,Leyton,Leyton station,active
+ST_P51569_P00008,leytonstone,Leytonstone,,Leytonstone,ENG,England,51.5686,0.0082,Transport for London,CEN,1,1,Leytonstone,Leytonstone station,active
+ST_P51518_N00082,liverpool_street,Liverpool Street,,Liverpool Street,ENG,England,51.5178,-0.0823,Transport for London,CEN|CIR,2,2,Liverpool Street,Liverpool Street station,active
+ST_P51641_P00056,loughton,Loughton,,Loughton,ENG,England,51.6413,0.056,Transport for London,CEN,1,1,Loughton,Loughton station,active
+ST_P51570_N00096,manor_house,Manor House,,Manor House,ENG,England,51.5705,-0.0956,Transport for London,PIC,1,1,Manor House,Manor House station,active
+ST_P51512_N00094,mansion_house,Mansion House,,Mansion House,ENG,England,51.5124,-0.0942,Transport for London,DIS|CIR,2,2,Mansion House,Mansion House station,active
+ST_P51514_N00159,marble_arch,Marble Arch,,Marble Arch,ENG,England,51.5137,-0.1588,Transport for London,CEN,1,1,Marble Arch,Marble Arch station,active
+ST_P51525_N00033,mile_end,Mile End,,Mile End,ENG,England,51.5253,-0.0334,Transport for London,CEN|DIS,2,2,Mile End,Mile End station,active
+ST_P51510_N00086,monument,Monument,,Monument,ENG,England,51.51,-0.0858,Transport for London,DIS|CIR,2,2,Monument,Monument station,active
+ST_P51519_N00089,moorgate,Moorgate,,Moorgate,ENG,England,51.5186,-0.0886,Transport for London,CIR,1,1,Moorgate,Moorgate station,active
+ST_P51402_N00195,morden,Morden,,Morden,ENG,England,51.4023,-0.1948,Transport for London,NOR,1,1,Morden,Morden station,active
+ST_P51534_N00139,mornington_crescent,Mornington Crescent,,Mornington Crescent,ENG,England,51.5343,-0.1389,Transport for London,NOR,1,1,Mornington Crescent,Mornington Crescent station,active
+ST_P51523_N00264,north_acton,North Acton,,North Acton,ENG,England,51.5228,-0.264,Transport for London,CEN,1,1,North Acton,North Acton station,active
+ST_P51499_N00315,northfields,Northfields,,Northfields,ENG,England,51.4994,-0.3147,Transport for London,PIC,1,1,Northfields,Northfields station,active
+ST_P51549_N00368,northolt,Northolt,,Northolt,ENG,England,51.5489,-0.3682,Transport for London,CEN,1,1,Northolt,Northolt station,active
+ST_P51509_N00196,notting_hill_gate,Notting Hill Gate,,Notting Hill Gate,ENG,England,51.5094,-0.1963,Transport for London,CEN|CIR,2,2,Notting Hill Gate,Notting Hill Gate station,active
+ST_P51648_N00133,oakwood,Oakwood,,Oakwood,ENG,England,51.6475,-0.133,Transport for London,PIC,1,1,Oakwood,Oakwood station,active
+ST_P51481_N00352,osterley,Osterley,,Osterley,ENG,England,51.4811,-0.3522,Transport for London,PIC,1,1,Osterley,Osterley station,active
+ST_P51482_N00113,oval,Oval,,Oval,ENG,England,51.4819,-0.1133,Transport for London,NOR,1,1,Oval,Oval station,active
+ST_P51515_N00142,oxford_circus,Oxford Circus,,Oxford Circus,ENG,England,51.5152,-0.1415,Transport for London,CEN,1,1,Oxford Circus,Oxford Circus station,active
+ST_P51515_N00176,paddington,Paddington,,Paddington,ENG,England,51.5154,-0.1755,Transport for London,CIR,1,1,Paddington,Paddington station,active
+ST_P51475_N00200,parsons_green,Parsons Green,,Parsons Green,ENG,England,51.4749,-0.1998,Transport for London,DIS,1,1,Parsons Green,Parsons Green station,active
+ST_P51536_N00323,perivale,Perivale,,Perivale,ENG,England,51.5363,-0.3228,Transport for London,CEN,1,1,Perivale,Perivale station,active
+ST_P51510_N00135,piccadilly_circus,Piccadilly Circus,,Piccadilly Circus,ENG,England,51.5099,-0.1348,Transport for London,PIC,1,1,Piccadilly Circus,Piccadilly Circus station,active
+ST_P51532_P00020,plaistow,Plaistow,,Plaistow,ENG,England,51.5318,0.02,Transport for London,DIS,1,1,Plaistow,Plaistow station,active
+ST_P51468_N00209,putney_bridge,Putney Bridge,,Putney Bridge,ENG,England,51.4682,-0.209,Transport for London,DIS,1,1,Putney Bridge,Putney Bridge station,active
+ST_P51511_N00188,queensway,Queensway,,Queensway,ENG,England,51.5107,-0.1875,Transport for London,CEN,1,1,Queensway,Queensway station,active
+ST_P51494_N00235,ravenscourt_park,Ravenscourt Park,,Ravenscourt Park,ENG,England,51.4939,-0.2348,Transport for London,PIC|DIS,2,2,Ravenscourt Park,Ravenscourt Park station,active
+ST_P51463_N00301,richmond,Richmond,,Richmond,ENG,England,51.4633,-0.3013,Transport for London,DIS,1,1,Richmond,Richmond station,active
+ST_P51561_N00415,ruislip_gardens,Ruislip Gardens,,Ruislip Gardens,ENG,England,51.5614,-0.4152,Transport for London,CEN,1,1,Ruislip Gardens,Ruislip Gardens station,active
+ST_P51523_N00124,russell_square,Russell Square,,Russell Square,ENG,England,51.5231,-0.1244,Transport for London,PIC,1,1,Russell Square,Russell Square station,active
+ST_P51505_N00219,shepherds_bush,Shepherd's Bush,,Shepherd's Bush,ENG,England,51.5049,-0.2188,Transport for London,CEN,1,1,Shepherd's Bush,Shepherd's Bush station,active
+ST_P51506_N00226,shepherds_bush_mkt,Shepherd's Bush Market,,Shepherd's Bush Market,ENG,England,51.5055,-0.2265,Transport for London,CEN,1,1,Shepherd's Bush Market,Shepherd's Bush Market station,active
+ST_P51492_N00156,sloane_square,Sloane Square,,Sloane Square,ENG,England,51.4924,-0.1565,Transport for London,DIS|CIR,2,2,Sloane Square,Sloane Square station,active
+ST_P51581_P00020,snaresbrook,Snaresbrook,,Snaresbrook,ENG,England,51.5806,0.0202,Transport for London,CEN,1,1,Snaresbrook,Snaresbrook station,active
+ST_P51501_N00306,south_ealing,South Ealing,,South Ealing,ENG,England,51.5009,-0.3059,Transport for London,PIC,1,1,South Ealing,South Ealing station,active
+ST_P51494_N00174,south_kensington,South Kensington,,South Kensington,ENG,England,51.4941,-0.1738,Transport for London,PIC|DIS|CIR,3,3,South Kensington,South Kensington station,active
+ST_P51557_N00399,south_ruislip,South Ruislip,,South Ruislip,ENG,England,51.5568,-0.3989,Transport for London,CEN,1,1,South Ruislip,South Ruislip station,active
+ST_P51414_N00192,south_wimbledon,South Wimbledon,,South Wimbledon,ENG,England,51.414,-0.1919,Transport for London,NOR,1,1,South Wimbledon,South Wimbledon station,active
+ST_P51592_P00028,south_woodford,South Woodford,,South Woodford,ENG,England,51.5918,0.0275,Transport for London,CEN,1,1,South Woodford,South Woodford station,active
+ST_P51445_N00206,southfields,Southfields,,Southfields,ENG,England,51.4452,-0.2065,Transport for London,DIS,1,1,Southfields,Southfields station,active
+ST_P51632_N00128,southgate,Southgate,,Southgate,ENG,England,51.6321,-0.1279,Transport for London,PIC,1,1,Southgate,Southgate station,active
+ST_P51499_N00134,st_james_park,St. James's Park,,St. James's Park,ENG,England,51.4994,-0.1335,Transport for London,DIS|CIR,2,2,St. James's Park,St. James's Park station,active
+ST_P51515_N00098,st_pauls,St. Paul's,,St. Paul's,ENG,England,51.5146,-0.0977,Transport for London,CEN,1,1,St. Paul's,St. Paul's station,active
+ST_P51495_N00241,stamford_brook,Stamford Brook,,Stamford Brook,ENG,England,51.4951,-0.2408,Transport for London,PIC|DIS,2,2,Stamford Brook,Stamford Brook station,active
+ST_P51522_N00046,stepney_green,Stepney Green,,Stepney Green,ENG,England,51.5218,-0.0465,Transport for London,DIS,1,1,Stepney Green,Stepney Green station,active
+ST_P51472_N00123,stockwell,Stockwell,,Stockwell,ENG,England,51.4722,-0.1228,Transport for London,NOR,1,1,Stockwell,Stockwell station,active
+ST_P51542_N00004,stratford,Stratford,,Stratford,ENG,England,51.5415,-0.0042,Transport for London,CEN,1,1,Stratford,Stratford station,active
+ST_P51511_N00114,temple,Temple,,Temple,ENG,England,51.5111,-0.1138,Transport for London,DIS|CIR,2,2,Temple,Temple station,active
+ST_P51671_P00104,theydon_bois,Theydon Bois,,Theydon Bois,ENG,England,51.6713,0.1035,Transport for London,CEN,1,1,Theydon Bois,Theydon Bois station,active
+ST_P51435_N00161,tooting_bec,Tooting Bec,,Tooting Bec,ENG,England,51.4352,-0.1609,Transport for London,NOR,1,1,Tooting Bec,Tooting Bec station,active
+ST_P51427_N00168,tooting_broadway,Tooting Broadway,,Tooting Broadway,ENG,England,51.4274,-0.168,Transport for London,NOR,1,1,Tooting Broadway,Tooting Broadway station,active
+ST_P51516_N00130,tottenham_court_rd,Tottenham Court Road,,Tottenham Court Road,ENG,England,51.5165,-0.1304,Transport for London,CEN|NOR,2,2,Tottenham Court Road,Tottenham Court Road station,active
+ST_P51510_N00076,tower_hill,Tower Hill,,Tower Hill,ENG,England,51.5098,-0.0765,Transport for London,DIS|CIR,2,2,Tower Hill,Tower Hill station,active
+ST_P51495_N00254,turnham_green,Turnham Green,,Turnham Green,ENG,England,51.4952,-0.2543,Transport for London,PIC|DIS,2,2,Turnham Green,Turnham Green station,active
+ST_P51590_N00103,turnpike_lane,Turnpike Lane,,Turnpike Lane,ENG,England,51.5901,-0.1034,Transport for London,PIC,1,1,Turnpike Lane,Turnpike Lane station,active
+ST_P51559_P00251,upminster,Upminster,,Upminster,ENG,England,51.5592,0.2513,Transport for London,DIS,1,1,Upminster,Upminster station,active
+ST_P51557_P00234,upminster_bridge,Upminster Bridge,,Upminster Bridge,ENG,England,51.5573,0.2337,Transport for London,DIS,1,1,Upminster Bridge,Upminster Bridge station,active
+ST_P51538_P00100,upney,Upney,,Upney,ENG,England,51.5382,0.1003,Transport for London,DIS,1,1,Upney,Upney station,active
+ST_P51535_P00035,upton_park,Upton Park,,Upton Park,ENG,England,51.5352,0.0349,Transport for London,DIS,1,1,Upton Park,Upton Park station,active
+ST_P51496_N00145,victoria,Victoria,,Victoria,ENG,England,51.4965,-0.1447,Transport for London,DIS|CIR,2,2,Victoria,Victoria station,active
+ST_P51524_N00139,warren_street,Warren Street,,Warren Street,ENG,England,51.5244,-0.1388,Transport for London,NOR,1,1,Warren Street,Warren Street station,active
+ST_P51504_N00114,waterloo,Waterloo,,Waterloo,ENG,England,51.5036,-0.1143,Transport for London,NOR,1,1,Waterloo,Waterloo station,active
+ST_P51517_N00280,west_acton,West Acton,,West Acton,ENG,England,51.5168,-0.28,Transport for London,CEN,1,1,West Acton,West Acton station,active
+ST_P51487_N00195,west_brompton,West Brompton,,West Brompton,ENG,England,51.4869,-0.1946,Transport for London,DIS,1,1,West Brompton,West Brompton station,active
+ST_P51529_P00005,west_ham,West Ham,,West Ham,ENG,England,51.5286,0.0053,Transport for London,DIS,1,1,West Ham,West Ham station,active
+ST_P51490_N00206,west_kensington,West Kensington,,West Kensington,ENG,England,51.4905,-0.2058,Transport for London,PIC|DIS|CIR,3,3,West Kensington,West Kensington station,active
+ST_P51569_N00436,west_ruislip,West Ruislip,,West Ruislip,ENG,England,51.5694,-0.4363,Transport for London,CEN,1,1,West Ruislip,West Ruislip station,active
+ST_P51501_N00125,westminster,Westminster,,Westminster,ENG,England,51.501,-0.1248,Transport for London,DIS|CIR,2,2,Westminster,Westminster station,active
+ST_P51512_N00227,white_city,White City,,White City,ENG,England,51.5116,-0.2268,Transport for London,CEN,1,1,White City,White City station,active
+ST_P51520_N00060,whitechapel,Whitechapel,,Whitechapel,ENG,England,51.5196,-0.06,Transport for London,DIS,1,1,Whitechapel,Whitechapel station,active
+ST_P51421_N00206,wimbledon,Wimbledon,,Wimbledon,ENG,England,51.4213,-0.2062,Transport for London,DIS,1,1,Wimbledon,Wimbledon station,active
+ST_P51435_N00206,wimbledon_park,Wimbledon Park,,Wimbledon Park,ENG,England,51.435,-0.2059,Transport for London,DIS,1,1,Wimbledon Park,Wimbledon Park station,active
+ST_P51598_N00110,wood_green,Wood Green,,Wood Green,ENG,England,51.5975,-0.1095,Transport for London,PIC,1,1,Wood Green,Wood Green station,active
+ST_P51608_P00034,woodford,Woodford,,Woodford,ENG,England,51.6076,0.0337,Transport for London,CEN,1,1,Woodford,Woodford station,active

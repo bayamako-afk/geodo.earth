@@ -1,0 +1,6 @@
+line_id,line_name,color,is_loop,station_count,transfer_count,avg_composite_score,max_composite_score,line_strength_score
+CIR,Circle line,#FFD329,True,31,20,2.5161,5.0,3.2613
+DIS,District line,#00782A,False,51,22,1.9314,5.0,2.852
+PIC,Piccadilly line,#003688,False,43,13,1.7674,5.0,2.7372
+NOR,Northern line,#000000,False,31,3,1.2581,5.0,2.3807
+CEN,Central line,#DC241F,False,41,5,1.2805,3.5,1.9463

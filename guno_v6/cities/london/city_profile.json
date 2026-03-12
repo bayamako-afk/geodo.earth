@@ -19,23 +19,25 @@
     "default_pack": "cities/london/data/packs/pack_v1.json"
   },
   "routes": {
-    "featured_lines": []
+    "featured_lines": ["CEN", "NOR", "PIC", "DIS", "CIR"]
   },
   "ui": {
     "primary_label": "station_name_en",
-    "secondary_label": "station_name_local"
+    "secondary_label": "station_name_en"
   },
   "deck_defaults": {
-    "deck_size": 40,
+    "deck_size": 30,
     "rarity_targets": {
-      "Legendary": 1,
-      "Epic": 9,
-      "Rare": 10,
-      "Common": 20
-    }
+      "legendary": 1,
+      "epic": 6,
+      "rare": 8,
+      "common": 15
+    },
+    "deck_name": "london_v1",
+    "tuning_note": "Initial config — balance study pending"
   },
   "status": {
-    "data_ready": false,
-    "notes": "Profile scaffold only. London datasets not generated yet."
+    "data_ready": true,
+    "notes": "v1 package: 5 lines (CEN/NOR/PIC/DIS/CIR), 162 unique stations, 30 representative stations in pack (ROUTE_SIZE=10), deck_size=30."
   }
 }

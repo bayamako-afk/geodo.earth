@@ -1,0 +1,342 @@
+{
+  "deck_meta": {
+    "deck_name": "london_v1",
+    "city_id": "london",
+    "version": "1.0",
+    "deck_size": 30,
+    "generator": "generate_london_deck.py",
+    "generated_at": "2026-03-12"
+  },
+  "cards": [
+    {
+      "card_id": "LDN001",
+      "station_global_id": "ST_P51507_N00122",
+      "station_name": "Embankment",
+      "station_name_en": "Embankment",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 2,
+      "rarity": "legendary",
+      "composite_score": 5.0
+    },
+    {
+      "card_id": "LDN002",
+      "station_global_id": "ST_P51492_N00194",
+      "station_name": "Earl's Court",
+      "station_name_en": "Earl's Court",
+      "line_id": "PIC",
+      "collection_id": "pic",
+      "order": 2,
+      "rarity": "epic",
+      "composite_score": 5.0
+    },
+    {
+      "card_id": "LDN003",
+      "station_global_id": "ST_P51494_N00183",
+      "station_name": "Gloucester Road",
+      "station_name_en": "Gloucester Road",
+      "line_id": "PIC",
+      "collection_id": "pic",
+      "order": 3,
+      "rarity": "epic",
+      "composite_score": 4.5
+    },
+    {
+      "card_id": "LDN004",
+      "station_global_id": "ST_P51494_N00174",
+      "station_name": "South Kensington",
+      "station_name_en": "South Kensington",
+      "line_id": "PIC",
+      "collection_id": "pic",
+      "order": 4,
+      "rarity": "epic",
+      "composite_score": 4.5
+    },
+    {
+      "card_id": "LDN005",
+      "station_global_id": "ST_P51493_N00224",
+      "station_name": "Hammersmith",
+      "station_name_en": "Hammersmith",
+      "line_id": "PIC",
+      "collection_id": "pic",
+      "order": 5,
+      "rarity": "epic",
+      "composite_score": 4.0
+    },
+    {
+      "card_id": "LDN006",
+      "station_global_id": "ST_P51490_N00213",
+      "station_name": "Baron's Court",
+      "station_name_en": "Baron's Court",
+      "line_id": "PIC",
+      "collection_id": "pic",
+      "order": 6,
+      "rarity": "epic",
+      "composite_score": 4.0
+    },
+    {
+      "card_id": "LDN007",
+      "station_global_id": "ST_P51490_N00206",
+      "station_name": "West Kensington",
+      "station_name_en": "West Kensington",
+      "line_id": "PIC",
+      "collection_id": "pic",
+      "order": 7,
+      "rarity": "epic",
+      "composite_score": 4.0
+    },
+    {
+      "card_id": "LDN008",
+      "station_global_id": "ST_P51509_N00196",
+      "station_name": "Notting Hill Gate",
+      "station_name_en": "Notting Hill Gate",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 2,
+      "rarity": "rare",
+      "composite_score": 3.5
+    },
+    {
+      "card_id": "LDN009",
+      "station_global_id": "ST_P51516_N00130",
+      "station_name": "Tottenham Court Road",
+      "station_name_en": "Tottenham Court Road",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 3,
+      "rarity": "rare",
+      "composite_score": 3.5
+    },
+    {
+      "card_id": "LDN010",
+      "station_global_id": "ST_P51517_N00120",
+      "station_name": "Holborn",
+      "station_name_en": "Holborn",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 4,
+      "rarity": "rare",
+      "composite_score": 3.5
+    },
+    {
+      "card_id": "LDN011",
+      "station_global_id": "ST_P51518_N00082",
+      "station_name": "Liverpool Street",
+      "station_name_en": "Liverpool Street",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 5,
+      "rarity": "rare",
+      "composite_score": 3.5
+    },
+    {
+      "card_id": "LDN012",
+      "station_global_id": "ST_P51525_N00033",
+      "station_name": "Mile End",
+      "station_name_en": "Mile End",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 6,
+      "rarity": "rare",
+      "composite_score": 3.5
+    },
+    {
+      "card_id": "LDN013",
+      "station_global_id": "ST_P51511_N00128",
+      "station_name": "Leicester Square",
+      "station_name_en": "Leicester Square",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 4,
+      "rarity": "rare",
+      "composite_score": 3.5
+    },
+    {
+      "card_id": "LDN014",
+      "station_global_id": "ST_P51531_N00124",
+      "station_name": "King's Cross St. Pancras",
+      "station_name_en": "King's Cross St. Pancras",
+      "line_id": "CIR",
+      "collection_id": "cir",
+      "order": 8,
+      "rarity": "rare",
+      "composite_score": 3.5
+    },
+    {
+      "card_id": "LDN015",
+      "station_global_id": "ST_P51561_N00415",
+      "station_name": "Ruislip Gardens",
+      "station_name_en": "Ruislip Gardens",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 7,
+      "rarity": "rare",
+      "composite_score": 1.0
+    },
+    {
+      "card_id": "LDN016",
+      "station_global_id": "ST_P51557_N00399",
+      "station_name": "South Ruislip",
+      "station_name_en": "South Ruislip",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 8,
+      "rarity": "common",
+      "composite_score": 1.0
+    },
+    {
+      "card_id": "LDN017",
+      "station_global_id": "ST_P51549_N00368",
+      "station_name": "Northolt",
+      "station_name_en": "Northolt",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 9,
+      "rarity": "common",
+      "composite_score": 1.0
+    },
+    {
+      "card_id": "LDN018",
+      "station_global_id": "ST_P51603_N00266",
+      "station_name": "Burnt Oak",
+      "station_name_en": "Burnt Oak",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 5,
+      "rarity": "common",
+      "composite_score": 1.0
+    },
+    {
+      "card_id": "LDN019",
+      "station_global_id": "ST_P51595_N00250",
+      "station_name": "Colindale",
+      "station_name_en": "Colindale",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 6,
+      "rarity": "common",
+      "composite_score": 1.0
+    },
+    {
+      "card_id": "LDN020",
+      "station_global_id": "ST_P51583_N00227",
+      "station_name": "Hendon Central",
+      "station_name_en": "Hendon Central",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 7,
+      "rarity": "common",
+      "composite_score": 1.0
+    },
+    {
+      "card_id": "LDN021",
+      "station_global_id": "ST_P51576_N00214",
+      "station_name": "Brent Cross",
+      "station_name_en": "Brent Cross",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 8,
+      "rarity": "common",
+      "composite_score": 1.0
+    },
+    {
+      "card_id": "LDN022",
+      "station_global_id": "ST_P51572_N00194",
+      "station_name": "Golders Green",
+      "station_name_en": "Golders Green",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 9,
+      "rarity": "common",
+      "composite_score": 1.0
+    },
+    {
+      "card_id": "LDN023",
+      "station_global_id": "ST_P51569_N00436",
+      "station_name": "West Ruislip",
+      "station_name_en": "West Ruislip",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 1,
+      "rarity": "common",
+      "composite_score": 0.5
+    },
+    {
+      "card_id": "LDN024",
+      "station_global_id": "ST_P51694_P00114",
+      "station_name": "Epping",
+      "station_name_en": "Epping",
+      "line_id": "CEN",
+      "collection_id": "cen",
+      "order": 10,
+      "rarity": "common",
+      "composite_score": 0.5
+    },
+    {
+      "card_id": "LDN025",
+      "station_global_id": "ST_P51613_N00276",
+      "station_name": "Edgware",
+      "station_name_en": "Edgware",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 1,
+      "rarity": "common",
+      "composite_score": 0.5
+    },
+    {
+      "card_id": "LDN026",
+      "station_global_id": "ST_P51402_N00195",
+      "station_name": "Morden",
+      "station_name_en": "Morden",
+      "line_id": "NOR",
+      "collection_id": "nor",
+      "order": 10,
+      "rarity": "common",
+      "composite_score": 0.5
+    },
+    {
+      "card_id": "LDN027",
+      "station_global_id": "ST_P51473_N00489",
+      "station_name": "Heathrow Terminal 5",
+      "station_name_en": "Heathrow Terminal 5",
+      "line_id": "PIC",
+      "collection_id": "pic",
+      "order": 1,
+      "rarity": "common",
+      "composite_score": 0.5
+    },
+    {
+      "card_id": "LDN028",
+      "station_global_id": "ST_P51652_N00150",
+      "station_name": "Cockfosters",
+      "station_name_en": "Cockfosters",
+      "line_id": "PIC",
+      "collection_id": "pic",
+      "order": 10,
+      "rarity": "common",
+      "composite_score": 0.5
+    },
+    {
+      "card_id": "LDN029",
+      "station_global_id": "ST_P51463_N00301",
+      "station_name": "Richmond",
+      "station_name_en": "Richmond",
+      "line_id": "DIS",
+      "collection_id": "dis",
+      "order": 1,
+      "rarity": "common",
+      "composite_score": 0.5
+    },
+    {
+      "card_id": "LDN030",
+      "station_global_id": "ST_P51559_P00251",
+      "station_name": "Upminster",
+      "station_name_en": "Upminster",
+      "line_id": "DIS",
+      "collection_id": "dis",
+      "order": 10,
+      "rarity": "common",
+      "composite_score": 0.5
+    }
+  ]
+}

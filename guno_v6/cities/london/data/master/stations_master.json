@@ -1,0 +1,4249 @@
+[
+  {
+    "station_global_id": "ST_P51503_N00280",
+    "station_slug": "acton_town",
+    "station_name": "Acton Town",
+    "station_name_kana": "",
+    "station_name_en": "Acton Town",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5031,
+    "lon": -0.2802,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Acton Town"
+    ],
+    "aliases": [
+      "Acton Town station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51514_N00075",
+    "station_slug": "aldgate",
+    "station_name": "Aldgate",
+    "station_name_kana": "",
+    "station_name_en": "Aldgate",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5143,
+    "lon": -0.0752,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Aldgate"
+    ],
+    "aliases": [
+      "Aldgate station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51515_N00073",
+    "station_slug": "aldgate_east",
+    "station_name": "Aldgate East",
+    "station_name_kana": "",
+    "station_name_en": "Aldgate East",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5151,
+    "lon": -0.0726,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Aldgate East"
+    ],
+    "aliases": [
+      "Aldgate East station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51616_N00133",
+    "station_slug": "arnos_grove",
+    "station_name": "Arnos Grove",
+    "station_name_kana": "",
+    "station_name_en": "Arnos Grove",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6164,
+    "lon": -0.133,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Arnos Grove"
+    ],
+    "aliases": [
+      "Arnos Grove station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51558_N00106",
+    "station_slug": "arsenal",
+    "station_name": "Arsenal",
+    "station_name_kana": "",
+    "station_name_en": "Arsenal",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5584,
+    "lon": -0.1058,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Arsenal"
+    ],
+    "aliases": [
+      "Arsenal station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51523_N00157",
+    "station_slug": "baker_street",
+    "station_name": "Baker Street",
+    "station_name_kana": "",
+    "station_name_en": "Baker Street",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5226,
+    "lon": -0.1571,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Baker Street"
+    ],
+    "aliases": [
+      "Baker Street station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51443_N00153",
+    "station_slug": "balham",
+    "station_name": "Balham",
+    "station_name_kana": "",
+    "station_name_en": "Balham",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4432,
+    "lon": -0.1527,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Balham"
+    ],
+    "aliases": [
+      "Balham station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51513_N00089",
+    "station_slug": "bank",
+    "station_name": "Bank",
+    "station_name_kana": "",
+    "station_name_en": "Bank",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5133,
+    "lon": -0.0886,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bank"
+    ],
+    "aliases": [
+      "Bank station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51520_N00098",
+    "station_slug": "barbican",
+    "station_name": "Barbican",
+    "station_name_kana": "",
+    "station_name_en": "Barbican",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.52,
+    "lon": -0.0978,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Barbican"
+    ],
+    "aliases": [
+      "Barbican station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51540_P00081",
+    "station_slug": "barking",
+    "station_name": "Barking",
+    "station_name_kana": "",
+    "station_name_en": "Barking",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5398,
+    "lon": 0.0806,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Barking"
+    ],
+    "aliases": [
+      "Barking station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51490_N00213",
+    "station_slug": "barons_court",
+    "station_name": "Baron's Court",
+    "station_name_kana": "",
+    "station_name_en": "Baron's Court",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4904,
+    "lon": -0.2127,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Baron's Court"
+    ],
+    "aliases": [
+      "Baron's Court station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51512_N00187",
+    "station_slug": "bayswater",
+    "station_name": "Bayswater",
+    "station_name_kana": "",
+    "station_name_en": "Bayswater",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5122,
+    "lon": -0.1874,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bayswater"
+    ],
+    "aliases": [
+      "Bayswater station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51540_P00122",
+    "station_slug": "becontree",
+    "station_name": "Becontree",
+    "station_name_kana": "",
+    "station_name_en": "Becontree",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.54,
+    "lon": 0.1218,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Becontree"
+    ],
+    "aliases": [
+      "Becontree station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51550_N00165",
+    "station_slug": "belsize_park",
+    "station_name": "Belsize Park",
+    "station_name_kana": "",
+    "station_name_en": "Belsize Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5502,
+    "lon": -0.1647,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Belsize Park"
+    ],
+    "aliases": [
+      "Belsize Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51527_N00055",
+    "station_slug": "bethnal_green",
+    "station_name": "Bethnal Green",
+    "station_name_kana": "",
+    "station_name_en": "Bethnal Green",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5272,
+    "lon": -0.0553,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bethnal Green"
+    ],
+    "aliases": [
+      "Bethnal Green station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51512_N00103",
+    "station_slug": "blackfriars",
+    "station_name": "Blackfriars",
+    "station_name_kana": "",
+    "station_name_en": "Blackfriars",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.512,
+    "lon": -0.1033,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Blackfriars"
+    ],
+    "aliases": [
+      "Blackfriars station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51514_N00149",
+    "station_slug": "bond_street",
+    "station_name": "Bond Street",
+    "station_name_kana": "",
+    "station_name_en": "Bond Street",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5142,
+    "lon": -0.1494,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bond Street"
+    ],
+    "aliases": [
+      "Bond Street station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51495_N00338",
+    "station_slug": "boston_manor",
+    "station_name": "Boston Manor",
+    "station_name_kana": "",
+    "station_name_en": "Boston Manor",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4951,
+    "lon": -0.3376,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Boston Manor"
+    ],
+    "aliases": [
+      "Boston Manor station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51605_N00122",
+    "station_slug": "bounds_green",
+    "station_name": "Bounds Green",
+    "station_name_kana": "",
+    "station_name_en": "Bounds Green",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.605,
+    "lon": -0.1219,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bounds Green"
+    ],
+    "aliases": [
+      "Bounds Green station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51527_N00025",
+    "station_slug": "bow_road",
+    "station_name": "Bow Road",
+    "station_name_kana": "",
+    "station_name_en": "Bow Road",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5269,
+    "lon": -0.0248,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bow Road"
+    ],
+    "aliases": [
+      "Bow Road station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51576_N00214",
+    "station_slug": "brent_cross",
+    "station_name": "Brent Cross",
+    "station_name_kana": "",
+    "station_name_en": "Brent Cross",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5765,
+    "lon": -0.2135,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Brent Cross"
+    ],
+    "aliases": [
+      "Brent Cross station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51522_N00012",
+    "station_slug": "bromley_by_bow",
+    "station_name": "Bromley-by-Bow",
+    "station_name_kana": "",
+    "station_name_en": "Bromley-by-Bow",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5225,
+    "lon": -0.0118,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bromley-by-Bow"
+    ],
+    "aliases": [
+      "Bromley-by-Bow station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51627_P00047",
+    "station_slug": "buckhurst_hill",
+    "station_name": "Buckhurst Hill",
+    "station_name_kana": "",
+    "station_name_en": "Buckhurst Hill",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6268,
+    "lon": 0.0468,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Buckhurst Hill"
+    ],
+    "aliases": [
+      "Buckhurst Hill station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51603_N00266",
+    "station_slug": "burnt_oak",
+    "station_name": "Burnt Oak",
+    "station_name_kana": "",
+    "station_name_en": "Burnt Oak",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6026,
+    "lon": -0.2657,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Burnt Oak"
+    ],
+    "aliases": [
+      "Burnt Oak station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51544_N00119",
+    "station_slug": "caledonian_road",
+    "station_name": "Caledonian Road",
+    "station_name_kana": "",
+    "station_name_en": "Caledonian Road",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5436,
+    "lon": -0.1194,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Caledonian Road"
+    ],
+    "aliases": [
+      "Caledonian Road station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51539_N00143",
+    "station_slug": "camden_town",
+    "station_name": "Camden Town",
+    "station_name_kana": "",
+    "station_name_en": "Camden Town",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5393,
+    "lon": -0.1426,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Camden Town"
+    ],
+    "aliases": [
+      "Camden Town station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51511_N00090",
+    "station_slug": "cannon_street",
+    "station_name": "Cannon Street",
+    "station_name_kana": "",
+    "station_name_en": "Cannon Street",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5113,
+    "lon": -0.0904,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Cannon Street"
+    ],
+    "aliases": [
+      "Cannon Street station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51544_N00154",
+    "station_slug": "chalk_farm",
+    "station_name": "Chalk Farm",
+    "station_name_kana": "",
+    "station_name_en": "Chalk Farm",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5444,
+    "lon": -0.1543,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Chalk Farm"
+    ],
+    "aliases": [
+      "Chalk Farm station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51518_N00111",
+    "station_slug": "chancery_lane",
+    "station_name": "Chancery Lane",
+    "station_name_kana": "",
+    "station_name_en": "Chancery Lane",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5183,
+    "lon": -0.1114,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Chancery Lane"
+    ],
+    "aliases": [
+      "Chancery Lane station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51508_N00125",
+    "station_slug": "charing_cross",
+    "station_name": "Charing Cross",
+    "station_name_kana": "",
+    "station_name_en": "Charing Cross",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5081,
+    "lon": -0.1248,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Charing Cross"
+    ],
+    "aliases": [
+      "Charing Cross station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51494_N00268",
+    "station_slug": "chiswick_park",
+    "station_name": "Chiswick Park",
+    "station_name_kana": "",
+    "station_name_en": "Chiswick Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4944,
+    "lon": -0.2678,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Chiswick Park"
+    ],
+    "aliases": [
+      "Chiswick Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51461_N00138",
+    "station_slug": "clapham_common",
+    "station_name": "Clapham Common",
+    "station_name_kana": "",
+    "station_name_en": "Clapham Common",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4614,
+    "lon": -0.1384,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Clapham Common"
+    ],
+    "aliases": [
+      "Clapham Common station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51465_N00130",
+    "station_slug": "clapham_north",
+    "station_name": "Clapham North",
+    "station_name_kana": "",
+    "station_name_en": "Clapham North",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4649,
+    "lon": -0.1299,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Clapham North"
+    ],
+    "aliases": [
+      "Clapham North station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51455_N00148",
+    "station_slug": "clapham_south",
+    "station_name": "Clapham South",
+    "station_name_kana": "",
+    "station_name_en": "Clapham South",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4549,
+    "lon": -0.148,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Clapham South"
+    ],
+    "aliases": [
+      "Clapham South station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51652_N00150",
+    "station_slug": "cockfosters",
+    "station_name": "Cockfosters",
+    "station_name_kana": "",
+    "station_name_en": "Cockfosters",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6517,
+    "lon": -0.1497,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Cockfosters"
+    ],
+    "aliases": [
+      "Cockfosters station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51595_N00250",
+    "station_slug": "colindale",
+    "station_name": "Colindale",
+    "station_name_kana": "",
+    "station_name_en": "Colindale",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5952,
+    "lon": -0.2503,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Colindale"
+    ],
+    "aliases": [
+      "Colindale station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51420_N00188",
+    "station_slug": "colliers_wood",
+    "station_name": "Colliers Wood",
+    "station_name_kana": "",
+    "station_name_en": "Colliers Wood",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4197,
+    "lon": -0.1882,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Colliers Wood"
+    ],
+    "aliases": [
+      "Colliers Wood station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51513_N00124",
+    "station_slug": "covent_garden",
+    "station_name": "Covent Garden",
+    "station_name_kana": "",
+    "station_name_en": "Covent Garden",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5129,
+    "lon": -0.1243,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Covent Garden"
+    ],
+    "aliases": [
+      "Covent Garden station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51544_P00160",
+    "station_slug": "dagenham_east",
+    "station_name": "Dagenham East",
+    "station_name_kana": "",
+    "station_name_en": "Dagenham East",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5443,
+    "lon": 0.1601,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Dagenham East"
+    ],
+    "aliases": [
+      "Dagenham East station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51542_P00140",
+    "station_slug": "dagenham_heathway",
+    "station_name": "Dagenham Heathway",
+    "station_name_kana": "",
+    "station_name_en": "Dagenham Heathway",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5418,
+    "lon": 0.1401,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Dagenham Heathway"
+    ],
+    "aliases": [
+      "Dagenham Heathway station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51645_P00084",
+    "station_slug": "debden",
+    "station_name": "Debden",
+    "station_name_kana": "",
+    "station_name_en": "Debden",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6453,
+    "lon": 0.084,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Debden"
+    ],
+    "aliases": [
+      "Debden station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51515_N00302",
+    "station_slug": "ealing_broadway",
+    "station_name": "Ealing Broadway",
+    "station_name_kana": "",
+    "station_name_en": "Ealing Broadway",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5149,
+    "lon": -0.3016,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Ealing Broadway"
+    ],
+    "aliases": [
+      "Ealing Broadway station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51492_N00194",
+    "station_slug": "earls_court",
+    "station_name": "Earl's Court",
+    "station_name_kana": "",
+    "station_name_en": "Earl's Court",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4917,
+    "lon": -0.1937,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Earl's Court"
+    ],
+    "aliases": [
+      "Earl's Court station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51517_N00245",
+    "station_slug": "east_acton",
+    "station_name": "East Acton",
+    "station_name_kana": "",
+    "station_name_en": "East Acton",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5166,
+    "lon": -0.2451,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "East Acton"
+    ],
+    "aliases": [
+      "East Acton station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51540_P00052",
+    "station_slug": "east_ham",
+    "station_name": "East Ham",
+    "station_name_kana": "",
+    "station_name_en": "East Ham",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5398,
+    "lon": 0.0524,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "East Ham"
+    ],
+    "aliases": [
+      "East Ham station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51461_N00212",
+    "station_slug": "east_putney",
+    "station_name": "East Putney",
+    "station_name_kana": "",
+    "station_name_en": "East Putney",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4607,
+    "lon": -0.2121,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "East Putney"
+    ],
+    "aliases": [
+      "East Putney station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51613_N00276",
+    "station_slug": "edgware",
+    "station_name": "Edgware",
+    "station_name_kana": "",
+    "station_name_en": "Edgware",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6133,
+    "lon": -0.2756,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Edgware"
+    ],
+    "aliases": [
+      "Edgware station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51520_N00169",
+    "station_slug": "edgware_road",
+    "station_name": "Edgware Road",
+    "station_name_kana": "",
+    "station_name_en": "Edgware Road",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5199,
+    "lon": -0.1686,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Edgware Road"
+    ],
+    "aliases": [
+      "Edgware Road station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51549_P00190",
+    "station_slug": "elm_park",
+    "station_name": "Elm Park",
+    "station_name_kana": "",
+    "station_name_en": "Elm Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5491,
+    "lon": 0.1895,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Elm Park"
+    ],
+    "aliases": [
+      "Elm Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51507_N00122",
+    "station_slug": "embankment",
+    "station_name": "Embankment",
+    "station_name_kana": "",
+    "station_name_en": "Embankment",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5074,
+    "lon": -0.1223,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR",
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Embankment"
+    ],
+    "aliases": [
+      "Embankment station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51694_P00114",
+    "station_slug": "epping",
+    "station_name": "Epping",
+    "station_name_kana": "",
+    "station_name_en": "Epping",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6937,
+    "lon": 0.114,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Epping"
+    ],
+    "aliases": [
+      "Epping station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51528_N00134",
+    "station_slug": "euston",
+    "station_name": "Euston",
+    "station_name_kana": "",
+    "station_name_en": "Euston",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5282,
+    "lon": -0.1337,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Euston"
+    ],
+    "aliases": [
+      "Euston station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51526_N00136",
+    "station_slug": "euston_square",
+    "station_name": "Euston Square",
+    "station_name_kana": "",
+    "station_name_en": "Euston Square",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5262,
+    "lon": -0.1355,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Euston Square"
+    ],
+    "aliases": [
+      "Euston Square station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51520_N00105",
+    "station_slug": "farringdon",
+    "station_name": "Farringdon",
+    "station_name_kana": "",
+    "station_name_en": "Farringdon",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5203,
+    "lon": -0.105,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Farringdon"
+    ],
+    "aliases": [
+      "Farringdon station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51564_N00101",
+    "station_slug": "finsbury_park",
+    "station_name": "Finsbury Park",
+    "station_name_kana": "",
+    "station_name_en": "Finsbury Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5642,
+    "lon": -0.1006,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Finsbury Park"
+    ],
+    "aliases": [
+      "Finsbury Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51480_N00193",
+    "station_slug": "fulham_broadway",
+    "station_name": "Fulham Broadway",
+    "station_name_kana": "",
+    "station_name_en": "Fulham Broadway",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4802,
+    "lon": -0.1929,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Fulham Broadway"
+    ],
+    "aliases": [
+      "Fulham Broadway station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51494_N00183",
+    "station_slug": "gloucester_road",
+    "station_name": "Gloucester Road",
+    "station_name_kana": "",
+    "station_name_en": "Gloucester Road",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4944,
+    "lon": -0.1831,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Gloucester Road"
+    ],
+    "aliases": [
+      "Gloucester Road station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51572_N00194",
+    "station_slug": "golders_green",
+    "station_name": "Golders Green",
+    "station_name_kana": "",
+    "station_name_en": "Golders Green",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5724,
+    "lon": -0.1943,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Golders Green"
+    ],
+    "aliases": [
+      "Golders Green station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51502_N00227",
+    "station_slug": "goldhawk_road",
+    "station_name": "Goldhawk Road",
+    "station_name_kana": "",
+    "station_name_en": "Goldhawk Road",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5016,
+    "lon": -0.2267,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Goldhawk Road"
+    ],
+    "aliases": [
+      "Goldhawk Road station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51520_N00135",
+    "station_slug": "goodge_street",
+    "station_name": "Goodge Street",
+    "station_name_kana": "",
+    "station_name_en": "Goodge Street",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5205,
+    "lon": -0.1347,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Goodge Street"
+    ],
+    "aliases": [
+      "Goodge Street station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51524_N00144",
+    "station_slug": "great_portland_st",
+    "station_name": "Great Portland Street",
+    "station_name_kana": "",
+    "station_name_en": "Great Portland Street",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5242,
+    "lon": -0.1441,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Great Portland Street"
+    ],
+    "aliases": [
+      "Great Portland Street station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51507_N00143",
+    "station_slug": "green_park",
+    "station_name": "Green Park",
+    "station_name_kana": "",
+    "station_name_en": "Green Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5067,
+    "lon": -0.1428,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Green Park"
+    ],
+    "aliases": [
+      "Green Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51542_N00346",
+    "station_slug": "greenford",
+    "station_name": "Greenford",
+    "station_name_kana": "",
+    "station_name_en": "Greenford",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5423,
+    "lon": -0.3464,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Greenford"
+    ],
+    "aliases": [
+      "Greenford station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51492_N00275",
+    "station_slug": "gunnersbury",
+    "station_name": "Gunnersbury",
+    "station_name_kana": "",
+    "station_name_en": "Gunnersbury",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4918,
+    "lon": -0.275,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Gunnersbury"
+    ],
+    "aliases": [
+      "Gunnersbury station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51493_N00224",
+    "station_slug": "hammersmith",
+    "station_name": "Hammersmith",
+    "station_name_kana": "",
+    "station_name_en": "Hammersmith",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4934,
+    "lon": -0.2237,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Hammersmith"
+    ],
+    "aliases": [
+      "Hammersmith station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51566_N00178",
+    "station_slug": "hampstead",
+    "station_name": "Hampstead",
+    "station_name_kana": "",
+    "station_name_en": "Hampstead",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5665,
+    "lon": -0.1783,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hampstead"
+    ],
+    "aliases": [
+      "Hampstead station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51530_N00299",
+    "station_slug": "hanger_lane",
+    "station_name": "Hanger Lane",
+    "station_name_kana": "",
+    "station_name_en": "Hanger Lane",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5299,
+    "lon": -0.2989,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hanger Lane"
+    ],
+    "aliases": [
+      "Hanger Lane station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51466_N00424",
+    "station_slug": "hatton_cross",
+    "station_name": "Hatton Cross",
+    "station_name_kana": "",
+    "station_name_en": "Hatton Cross",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4665,
+    "lon": -0.4237,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hatton Cross"
+    ],
+    "aliases": [
+      "Hatton Cross station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51471_N00452",
+    "station_slug": "heathrow_t123",
+    "station_name": "Heathrow Terminals 2&3",
+    "station_name_kana": "",
+    "station_name_en": "Heathrow Terminals 2&3",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4713,
+    "lon": -0.4524,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Heathrow Terminals 2&3"
+    ],
+    "aliases": [
+      "Heathrow Terminals 2&3 station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51458_N00448",
+    "station_slug": "heathrow_t4",
+    "station_name": "Heathrow Terminal 4",
+    "station_name_kana": "",
+    "station_name_en": "Heathrow Terminal 4",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4583,
+    "lon": -0.4479,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Heathrow Terminal 4"
+    ],
+    "aliases": [
+      "Heathrow Terminal 4 station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51473_N00489",
+    "station_slug": "heathrow_t5",
+    "station_name": "Heathrow Terminal 5",
+    "station_name_kana": "",
+    "station_name_en": "Heathrow Terminal 5",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4733,
+    "lon": -0.489,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Heathrow Terminal 5"
+    ],
+    "aliases": [
+      "Heathrow Terminal 5 station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51583_N00227",
+    "station_slug": "hendon_central",
+    "station_name": "Hendon Central",
+    "station_name_kana": "",
+    "station_name_en": "Hendon Central",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5831,
+    "lon": -0.2268,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hendon Central"
+    ],
+    "aliases": [
+      "Hendon Central station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51501_N00192",
+    "station_slug": "high_street_ken",
+    "station_name": "High Street Kensington",
+    "station_name_kana": "",
+    "station_name_en": "High Street Kensington",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5008,
+    "lon": -0.1921,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "High Street Kensington"
+    ],
+    "aliases": [
+      "High Street Kensington station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51517_N00120",
+    "station_slug": "holborn",
+    "station_name": "Holborn",
+    "station_name_kana": "",
+    "station_name_en": "Holborn",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5174,
+    "lon": -0.12,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN",
+      "PIC"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Holborn"
+    ],
+    "aliases": [
+      "Holborn station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51508_N00206",
+    "station_slug": "holland_park",
+    "station_name": "Holland Park",
+    "station_name_kana": "",
+    "station_name_en": "Holland Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5075,
+    "lon": -0.2062,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Holland Park"
+    ],
+    "aliases": [
+      "Holland Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51553_N00113",
+    "station_slug": "holloway_road",
+    "station_name": "Holloway Road",
+    "station_name_kana": "",
+    "station_name_en": "Holloway Road",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5534,
+    "lon": -0.1132,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Holloway Road"
+    ],
+    "aliases": [
+      "Holloway Road station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51554_P00214",
+    "station_slug": "hornchurch",
+    "station_name": "Hornchurch",
+    "station_name_kana": "",
+    "station_name_en": "Hornchurch",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.554,
+    "lon": 0.2137,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hornchurch"
+    ],
+    "aliases": [
+      "Hornchurch station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51472_N00367",
+    "station_slug": "hounslow_central",
+    "station_name": "Hounslow Central",
+    "station_name_kana": "",
+    "station_name_en": "Hounslow Central",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4719,
+    "lon": -0.3669,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hounslow Central"
+    ],
+    "aliases": [
+      "Hounslow Central station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51472_N00346",
+    "station_slug": "hounslow_east",
+    "station_name": "Hounslow East",
+    "station_name_kana": "",
+    "station_name_en": "Hounslow East",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4724,
+    "lon": -0.3455,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hounslow East"
+    ],
+    "aliases": [
+      "Hounslow East station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51474_N00386",
+    "station_slug": "hounslow_west",
+    "station_name": "Hounslow West",
+    "station_name_kana": "",
+    "station_name_en": "Hounslow West",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4736,
+    "lon": -0.3865,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hounslow West"
+    ],
+    "aliases": [
+      "Hounslow West station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51503_N00153",
+    "station_slug": "hyde_park_corner",
+    "station_name": "Hyde Park Corner",
+    "station_name_kana": "",
+    "station_name_en": "Hyde Park Corner",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5027,
+    "lon": -0.1527,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hyde Park Corner"
+    ],
+    "aliases": [
+      "Hyde Park Corner station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51488_N00105",
+    "station_slug": "kennington",
+    "station_name": "Kennington",
+    "station_name_kana": "",
+    "station_name_en": "Kennington",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4882,
+    "lon": -0.1053,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Kennington"
+    ],
+    "aliases": [
+      "Kennington station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51478_N00285",
+    "station_slug": "kew_gardens",
+    "station_name": "Kew Gardens",
+    "station_name_kana": "",
+    "station_name_en": "Kew Gardens",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4777,
+    "lon": -0.2849,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Kew Gardens"
+    ],
+    "aliases": [
+      "Kew Gardens station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51531_N00124",
+    "station_slug": "kings_cross",
+    "station_name": "King's Cross St. Pancras",
+    "station_name_kana": "",
+    "station_name_en": "King's Cross St. Pancras",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5308,
+    "lon": -0.1238,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "King's Cross St. Pancras"
+    ],
+    "aliases": [
+      "King's Cross St. Pancras station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51502_N00161",
+    "station_slug": "knightsbridge",
+    "station_name": "Knightsbridge",
+    "station_name_kana": "",
+    "station_name_en": "Knightsbridge",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5019,
+    "lon": -0.1606,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Knightsbridge"
+    ],
+    "aliases": [
+      "Knightsbridge station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51512_N00176",
+    "station_slug": "lancaster_gate",
+    "station_name": "Lancaster Gate",
+    "station_name_kana": "",
+    "station_name_en": "Lancaster Gate",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5117,
+    "lon": -0.1762,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Lancaster Gate"
+    ],
+    "aliases": [
+      "Lancaster Gate station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51511_N00128",
+    "station_slug": "leicester_square",
+    "station_name": "Leicester Square",
+    "station_name_kana": "",
+    "station_name_en": "Leicester Square",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5113,
+    "lon": -0.1281,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR",
+      "PIC"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Leicester Square"
+    ],
+    "aliases": [
+      "Leicester Square station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51556_N00004",
+    "station_slug": "leyton",
+    "station_name": "Leyton",
+    "station_name_kana": "",
+    "station_name_en": "Leyton",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5564,
+    "lon": -0.0044,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Leyton"
+    ],
+    "aliases": [
+      "Leyton station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51569_P00008",
+    "station_slug": "leytonstone",
+    "station_name": "Leytonstone",
+    "station_name_kana": "",
+    "station_name_en": "Leytonstone",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5686,
+    "lon": 0.0082,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Leytonstone"
+    ],
+    "aliases": [
+      "Leytonstone station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51518_N00082",
+    "station_slug": "liverpool_street",
+    "station_name": "Liverpool Street",
+    "station_name_kana": "",
+    "station_name_en": "Liverpool Street",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5178,
+    "lon": -0.0823,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Liverpool Street"
+    ],
+    "aliases": [
+      "Liverpool Street station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51641_P00056",
+    "station_slug": "loughton",
+    "station_name": "Loughton",
+    "station_name_kana": "",
+    "station_name_en": "Loughton",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6413,
+    "lon": 0.056,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Loughton"
+    ],
+    "aliases": [
+      "Loughton station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51570_N00096",
+    "station_slug": "manor_house",
+    "station_name": "Manor House",
+    "station_name_kana": "",
+    "station_name_en": "Manor House",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5705,
+    "lon": -0.0956,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Manor House"
+    ],
+    "aliases": [
+      "Manor House station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51512_N00094",
+    "station_slug": "mansion_house",
+    "station_name": "Mansion House",
+    "station_name_kana": "",
+    "station_name_en": "Mansion House",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5124,
+    "lon": -0.0942,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Mansion House"
+    ],
+    "aliases": [
+      "Mansion House station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51514_N00159",
+    "station_slug": "marble_arch",
+    "station_name": "Marble Arch",
+    "station_name_kana": "",
+    "station_name_en": "Marble Arch",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5137,
+    "lon": -0.1588,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Marble Arch"
+    ],
+    "aliases": [
+      "Marble Arch station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51525_N00033",
+    "station_slug": "mile_end",
+    "station_name": "Mile End",
+    "station_name_kana": "",
+    "station_name_en": "Mile End",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5253,
+    "lon": -0.0334,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN",
+      "DIS"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Mile End"
+    ],
+    "aliases": [
+      "Mile End station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51510_N00086",
+    "station_slug": "monument",
+    "station_name": "Monument",
+    "station_name_kana": "",
+    "station_name_en": "Monument",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.51,
+    "lon": -0.0858,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Monument"
+    ],
+    "aliases": [
+      "Monument station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51519_N00089",
+    "station_slug": "moorgate",
+    "station_name": "Moorgate",
+    "station_name_kana": "",
+    "station_name_en": "Moorgate",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5186,
+    "lon": -0.0886,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Moorgate"
+    ],
+    "aliases": [
+      "Moorgate station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51402_N00195",
+    "station_slug": "morden",
+    "station_name": "Morden",
+    "station_name_kana": "",
+    "station_name_en": "Morden",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4023,
+    "lon": -0.1948,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Morden"
+    ],
+    "aliases": [
+      "Morden station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51534_N00139",
+    "station_slug": "mornington_crescent",
+    "station_name": "Mornington Crescent",
+    "station_name_kana": "",
+    "station_name_en": "Mornington Crescent",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5343,
+    "lon": -0.1389,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Mornington Crescent"
+    ],
+    "aliases": [
+      "Mornington Crescent station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51523_N00264",
+    "station_slug": "north_acton",
+    "station_name": "North Acton",
+    "station_name_kana": "",
+    "station_name_en": "North Acton",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5228,
+    "lon": -0.264,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "North Acton"
+    ],
+    "aliases": [
+      "North Acton station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51499_N00315",
+    "station_slug": "northfields",
+    "station_name": "Northfields",
+    "station_name_kana": "",
+    "station_name_en": "Northfields",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4994,
+    "lon": -0.3147,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Northfields"
+    ],
+    "aliases": [
+      "Northfields station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51549_N00368",
+    "station_slug": "northolt",
+    "station_name": "Northolt",
+    "station_name_kana": "",
+    "station_name_en": "Northolt",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5489,
+    "lon": -0.3682,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Northolt"
+    ],
+    "aliases": [
+      "Northolt station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51509_N00196",
+    "station_slug": "notting_hill_gate",
+    "station_name": "Notting Hill Gate",
+    "station_name_kana": "",
+    "station_name_en": "Notting Hill Gate",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5094,
+    "lon": -0.1963,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Notting Hill Gate"
+    ],
+    "aliases": [
+      "Notting Hill Gate station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51648_N00133",
+    "station_slug": "oakwood",
+    "station_name": "Oakwood",
+    "station_name_kana": "",
+    "station_name_en": "Oakwood",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6475,
+    "lon": -0.133,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Oakwood"
+    ],
+    "aliases": [
+      "Oakwood station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51481_N00352",
+    "station_slug": "osterley",
+    "station_name": "Osterley",
+    "station_name_kana": "",
+    "station_name_en": "Osterley",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4811,
+    "lon": -0.3522,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Osterley"
+    ],
+    "aliases": [
+      "Osterley station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51482_N00113",
+    "station_slug": "oval",
+    "station_name": "Oval",
+    "station_name_kana": "",
+    "station_name_en": "Oval",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4819,
+    "lon": -0.1133,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Oval"
+    ],
+    "aliases": [
+      "Oval station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51515_N00142",
+    "station_slug": "oxford_circus",
+    "station_name": "Oxford Circus",
+    "station_name_kana": "",
+    "station_name_en": "Oxford Circus",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5152,
+    "lon": -0.1415,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Oxford Circus"
+    ],
+    "aliases": [
+      "Oxford Circus station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51515_N00176",
+    "station_slug": "paddington",
+    "station_name": "Paddington",
+    "station_name_kana": "",
+    "station_name_en": "Paddington",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5154,
+    "lon": -0.1755,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CIR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Paddington"
+    ],
+    "aliases": [
+      "Paddington station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51475_N00200",
+    "station_slug": "parsons_green",
+    "station_name": "Parsons Green",
+    "station_name_kana": "",
+    "station_name_en": "Parsons Green",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4749,
+    "lon": -0.1998,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Parsons Green"
+    ],
+    "aliases": [
+      "Parsons Green station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51536_N00323",
+    "station_slug": "perivale",
+    "station_name": "Perivale",
+    "station_name_kana": "",
+    "station_name_en": "Perivale",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5363,
+    "lon": -0.3228,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Perivale"
+    ],
+    "aliases": [
+      "Perivale station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51510_N00135",
+    "station_slug": "piccadilly_circus",
+    "station_name": "Piccadilly Circus",
+    "station_name_kana": "",
+    "station_name_en": "Piccadilly Circus",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5099,
+    "lon": -0.1348,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Piccadilly Circus"
+    ],
+    "aliases": [
+      "Piccadilly Circus station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51532_P00020",
+    "station_slug": "plaistow",
+    "station_name": "Plaistow",
+    "station_name_kana": "",
+    "station_name_en": "Plaistow",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5318,
+    "lon": 0.02,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Plaistow"
+    ],
+    "aliases": [
+      "Plaistow station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51468_N00209",
+    "station_slug": "putney_bridge",
+    "station_name": "Putney Bridge",
+    "station_name_kana": "",
+    "station_name_en": "Putney Bridge",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4682,
+    "lon": -0.209,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Putney Bridge"
+    ],
+    "aliases": [
+      "Putney Bridge station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51511_N00188",
+    "station_slug": "queensway",
+    "station_name": "Queensway",
+    "station_name_kana": "",
+    "station_name_en": "Queensway",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5107,
+    "lon": -0.1875,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Queensway"
+    ],
+    "aliases": [
+      "Queensway station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51494_N00235",
+    "station_slug": "ravenscourt_park",
+    "station_name": "Ravenscourt Park",
+    "station_name_kana": "",
+    "station_name_en": "Ravenscourt Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4939,
+    "lon": -0.2348,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Ravenscourt Park"
+    ],
+    "aliases": [
+      "Ravenscourt Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51463_N00301",
+    "station_slug": "richmond",
+    "station_name": "Richmond",
+    "station_name_kana": "",
+    "station_name_en": "Richmond",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4633,
+    "lon": -0.3013,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Richmond"
+    ],
+    "aliases": [
+      "Richmond station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51561_N00415",
+    "station_slug": "ruislip_gardens",
+    "station_name": "Ruislip Gardens",
+    "station_name_kana": "",
+    "station_name_en": "Ruislip Gardens",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5614,
+    "lon": -0.4152,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Ruislip Gardens"
+    ],
+    "aliases": [
+      "Ruislip Gardens station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51523_N00124",
+    "station_slug": "russell_square",
+    "station_name": "Russell Square",
+    "station_name_kana": "",
+    "station_name_en": "Russell Square",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5231,
+    "lon": -0.1244,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Russell Square"
+    ],
+    "aliases": [
+      "Russell Square station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51505_N00219",
+    "station_slug": "shepherds_bush",
+    "station_name": "Shepherd's Bush",
+    "station_name_kana": "",
+    "station_name_en": "Shepherd's Bush",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5049,
+    "lon": -0.2188,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Shepherd's Bush"
+    ],
+    "aliases": [
+      "Shepherd's Bush station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51506_N00226",
+    "station_slug": "shepherds_bush_mkt",
+    "station_name": "Shepherd's Bush Market",
+    "station_name_kana": "",
+    "station_name_en": "Shepherd's Bush Market",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5055,
+    "lon": -0.2265,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Shepherd's Bush Market"
+    ],
+    "aliases": [
+      "Shepherd's Bush Market station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51492_N00156",
+    "station_slug": "sloane_square",
+    "station_name": "Sloane Square",
+    "station_name_kana": "",
+    "station_name_en": "Sloane Square",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4924,
+    "lon": -0.1565,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Sloane Square"
+    ],
+    "aliases": [
+      "Sloane Square station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51581_P00020",
+    "station_slug": "snaresbrook",
+    "station_name": "Snaresbrook",
+    "station_name_kana": "",
+    "station_name_en": "Snaresbrook",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5806,
+    "lon": 0.0202,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Snaresbrook"
+    ],
+    "aliases": [
+      "Snaresbrook station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51501_N00306",
+    "station_slug": "south_ealing",
+    "station_name": "South Ealing",
+    "station_name_kana": "",
+    "station_name_en": "South Ealing",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5009,
+    "lon": -0.3059,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "South Ealing"
+    ],
+    "aliases": [
+      "South Ealing station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51494_N00174",
+    "station_slug": "south_kensington",
+    "station_name": "South Kensington",
+    "station_name_kana": "",
+    "station_name_en": "South Kensington",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4941,
+    "lon": -0.1738,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "South Kensington"
+    ],
+    "aliases": [
+      "South Kensington station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51557_N00399",
+    "station_slug": "south_ruislip",
+    "station_name": "South Ruislip",
+    "station_name_kana": "",
+    "station_name_en": "South Ruislip",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5568,
+    "lon": -0.3989,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "South Ruislip"
+    ],
+    "aliases": [
+      "South Ruislip station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51414_N00192",
+    "station_slug": "south_wimbledon",
+    "station_name": "South Wimbledon",
+    "station_name_kana": "",
+    "station_name_en": "South Wimbledon",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.414,
+    "lon": -0.1919,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "South Wimbledon"
+    ],
+    "aliases": [
+      "South Wimbledon station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51592_P00028",
+    "station_slug": "south_woodford",
+    "station_name": "South Woodford",
+    "station_name_kana": "",
+    "station_name_en": "South Woodford",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5918,
+    "lon": 0.0275,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "South Woodford"
+    ],
+    "aliases": [
+      "South Woodford station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51445_N00206",
+    "station_slug": "southfields",
+    "station_name": "Southfields",
+    "station_name_kana": "",
+    "station_name_en": "Southfields",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4452,
+    "lon": -0.2065,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Southfields"
+    ],
+    "aliases": [
+      "Southfields station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51632_N00128",
+    "station_slug": "southgate",
+    "station_name": "Southgate",
+    "station_name_kana": "",
+    "station_name_en": "Southgate",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6321,
+    "lon": -0.1279,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Southgate"
+    ],
+    "aliases": [
+      "Southgate station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51499_N00134",
+    "station_slug": "st_james_park",
+    "station_name": "St. James's Park",
+    "station_name_kana": "",
+    "station_name_en": "St. James's Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4994,
+    "lon": -0.1335,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "St. James's Park"
+    ],
+    "aliases": [
+      "St. James's Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51515_N00098",
+    "station_slug": "st_pauls",
+    "station_name": "St. Paul's",
+    "station_name_kana": "",
+    "station_name_en": "St. Paul's",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5146,
+    "lon": -0.0977,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "St. Paul's"
+    ],
+    "aliases": [
+      "St. Paul's station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51495_N00241",
+    "station_slug": "stamford_brook",
+    "station_name": "Stamford Brook",
+    "station_name_kana": "",
+    "station_name_en": "Stamford Brook",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4951,
+    "lon": -0.2408,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Stamford Brook"
+    ],
+    "aliases": [
+      "Stamford Brook station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51522_N00046",
+    "station_slug": "stepney_green",
+    "station_name": "Stepney Green",
+    "station_name_kana": "",
+    "station_name_en": "Stepney Green",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5218,
+    "lon": -0.0465,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Stepney Green"
+    ],
+    "aliases": [
+      "Stepney Green station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51472_N00123",
+    "station_slug": "stockwell",
+    "station_name": "Stockwell",
+    "station_name_kana": "",
+    "station_name_en": "Stockwell",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4722,
+    "lon": -0.1228,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Stockwell"
+    ],
+    "aliases": [
+      "Stockwell station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51542_N00004",
+    "station_slug": "stratford",
+    "station_name": "Stratford",
+    "station_name_kana": "",
+    "station_name_en": "Stratford",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5415,
+    "lon": -0.0042,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Stratford"
+    ],
+    "aliases": [
+      "Stratford station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51511_N00114",
+    "station_slug": "temple",
+    "station_name": "Temple",
+    "station_name_kana": "",
+    "station_name_en": "Temple",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5111,
+    "lon": -0.1138,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Temple"
+    ],
+    "aliases": [
+      "Temple station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51671_P00104",
+    "station_slug": "theydon_bois",
+    "station_name": "Theydon Bois",
+    "station_name_kana": "",
+    "station_name_en": "Theydon Bois",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6713,
+    "lon": 0.1035,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Theydon Bois"
+    ],
+    "aliases": [
+      "Theydon Bois station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51435_N00161",
+    "station_slug": "tooting_bec",
+    "station_name": "Tooting Bec",
+    "station_name_kana": "",
+    "station_name_en": "Tooting Bec",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4352,
+    "lon": -0.1609,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Tooting Bec"
+    ],
+    "aliases": [
+      "Tooting Bec station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51427_N00168",
+    "station_slug": "tooting_broadway",
+    "station_name": "Tooting Broadway",
+    "station_name_kana": "",
+    "station_name_en": "Tooting Broadway",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4274,
+    "lon": -0.168,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Tooting Broadway"
+    ],
+    "aliases": [
+      "Tooting Broadway station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51516_N00130",
+    "station_slug": "tottenham_court_rd",
+    "station_name": "Tottenham Court Road",
+    "station_name_kana": "",
+    "station_name_en": "Tottenham Court Road",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5165,
+    "lon": -0.1304,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN",
+      "NOR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Tottenham Court Road"
+    ],
+    "aliases": [
+      "Tottenham Court Road station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51510_N00076",
+    "station_slug": "tower_hill",
+    "station_name": "Tower Hill",
+    "station_name_kana": "",
+    "station_name_en": "Tower Hill",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5098,
+    "lon": -0.0765,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Tower Hill"
+    ],
+    "aliases": [
+      "Tower Hill station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51495_N00254",
+    "station_slug": "turnham_green",
+    "station_name": "Turnham Green",
+    "station_name_kana": "",
+    "station_name_en": "Turnham Green",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4952,
+    "lon": -0.2543,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Turnham Green"
+    ],
+    "aliases": [
+      "Turnham Green station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51590_N00103",
+    "station_slug": "turnpike_lane",
+    "station_name": "Turnpike Lane",
+    "station_name_kana": "",
+    "station_name_en": "Turnpike Lane",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5901,
+    "lon": -0.1034,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Turnpike Lane"
+    ],
+    "aliases": [
+      "Turnpike Lane station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51559_P00251",
+    "station_slug": "upminster",
+    "station_name": "Upminster",
+    "station_name_kana": "",
+    "station_name_en": "Upminster",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5592,
+    "lon": 0.2513,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Upminster"
+    ],
+    "aliases": [
+      "Upminster station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51557_P00234",
+    "station_slug": "upminster_bridge",
+    "station_name": "Upminster Bridge",
+    "station_name_kana": "",
+    "station_name_en": "Upminster Bridge",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5573,
+    "lon": 0.2337,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Upminster Bridge"
+    ],
+    "aliases": [
+      "Upminster Bridge station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51538_P00100",
+    "station_slug": "upney",
+    "station_name": "Upney",
+    "station_name_kana": "",
+    "station_name_en": "Upney",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5382,
+    "lon": 0.1003,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Upney"
+    ],
+    "aliases": [
+      "Upney station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51535_P00035",
+    "station_slug": "upton_park",
+    "station_name": "Upton Park",
+    "station_name_kana": "",
+    "station_name_en": "Upton Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5352,
+    "lon": 0.0349,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Upton Park"
+    ],
+    "aliases": [
+      "Upton Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51496_N00145",
+    "station_slug": "victoria",
+    "station_name": "Victoria",
+    "station_name_kana": "",
+    "station_name_en": "Victoria",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4965,
+    "lon": -0.1447,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Victoria"
+    ],
+    "aliases": [
+      "Victoria station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51524_N00139",
+    "station_slug": "warren_street",
+    "station_name": "Warren Street",
+    "station_name_kana": "",
+    "station_name_en": "Warren Street",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5244,
+    "lon": -0.1388,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Warren Street"
+    ],
+    "aliases": [
+      "Warren Street station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51504_N00114",
+    "station_slug": "waterloo",
+    "station_name": "Waterloo",
+    "station_name_kana": "",
+    "station_name_en": "Waterloo",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5036,
+    "lon": -0.1143,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "NOR"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Waterloo"
+    ],
+    "aliases": [
+      "Waterloo station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51517_N00280",
+    "station_slug": "west_acton",
+    "station_name": "West Acton",
+    "station_name_kana": "",
+    "station_name_en": "West Acton",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5168,
+    "lon": -0.28,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "West Acton"
+    ],
+    "aliases": [
+      "West Acton station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51487_N00195",
+    "station_slug": "west_brompton",
+    "station_name": "West Brompton",
+    "station_name_kana": "",
+    "station_name_en": "West Brompton",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4869,
+    "lon": -0.1946,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "West Brompton"
+    ],
+    "aliases": [
+      "West Brompton station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51529_P00005",
+    "station_slug": "west_ham",
+    "station_name": "West Ham",
+    "station_name_kana": "",
+    "station_name_en": "West Ham",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5286,
+    "lon": 0.0053,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "West Ham"
+    ],
+    "aliases": [
+      "West Ham station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51490_N00206",
+    "station_slug": "west_kensington",
+    "station_name": "West Kensington",
+    "station_name_kana": "",
+    "station_name_en": "West Kensington",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4905,
+    "lon": -0.2058,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC",
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "West Kensington"
+    ],
+    "aliases": [
+      "West Kensington station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51569_N00436",
+    "station_slug": "west_ruislip",
+    "station_name": "West Ruislip",
+    "station_name_kana": "",
+    "station_name_en": "West Ruislip",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5694,
+    "lon": -0.4363,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "West Ruislip"
+    ],
+    "aliases": [
+      "West Ruislip station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51501_N00125",
+    "station_slug": "westminster",
+    "station_name": "Westminster",
+    "station_name_kana": "",
+    "station_name_en": "Westminster",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.501,
+    "lon": -0.1248,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS",
+      "CIR"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Westminster"
+    ],
+    "aliases": [
+      "Westminster station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51512_N00227",
+    "station_slug": "white_city",
+    "station_name": "White City",
+    "station_name_kana": "",
+    "station_name_en": "White City",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5116,
+    "lon": -0.2268,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "White City"
+    ],
+    "aliases": [
+      "White City station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51520_N00060",
+    "station_slug": "whitechapel",
+    "station_name": "Whitechapel",
+    "station_name_kana": "",
+    "station_name_en": "Whitechapel",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5196,
+    "lon": -0.06,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Whitechapel"
+    ],
+    "aliases": [
+      "Whitechapel station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51421_N00206",
+    "station_slug": "wimbledon",
+    "station_name": "Wimbledon",
+    "station_name_kana": "",
+    "station_name_en": "Wimbledon",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.4213,
+    "lon": -0.2062,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Wimbledon"
+    ],
+    "aliases": [
+      "Wimbledon station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51435_N00206",
+    "station_slug": "wimbledon_park",
+    "station_name": "Wimbledon Park",
+    "station_name_kana": "",
+    "station_name_en": "Wimbledon Park",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.435,
+    "lon": -0.2059,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "DIS"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Wimbledon Park"
+    ],
+    "aliases": [
+      "Wimbledon Park station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51598_N00110",
+    "station_slug": "wood_green",
+    "station_name": "Wood Green",
+    "station_name_kana": "",
+    "station_name_en": "Wood Green",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.5975,
+    "lon": -0.1095,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "PIC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Wood Green"
+    ],
+    "aliases": [
+      "Wood Green station"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_P51608_P00034",
+    "station_slug": "woodford",
+    "station_name": "Woodford",
+    "station_name_kana": "",
+    "station_name_en": "Woodford",
+    "prefecture_code": "ENG",
+    "prefecture_name": "England",
+    "lat": 51.6076,
+    "lon": 0.0337,
+    "operators": [
+      "Transport for London"
+    ],
+    "line_ids": [
+      "CEN"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Woodford"
+    ],
+    "aliases": [
+      "Woodford station"
+    ],
+    "status": "active"
+  }
+]

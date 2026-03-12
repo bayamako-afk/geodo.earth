@@ -1,0 +1,2312 @@
+{
+  "dataset_meta": {
+    "city_id": "london",
+    "version": "1.0",
+    "station_count": 162
+  },
+  "stations": [
+    {
+      "station_global_id": "ST_P51492_N00194",
+      "station_name": "Earl's Court",
+      "station_name_en": "Earl's Court",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 5.0,
+      "composite_score": 5.0,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51507_N00122",
+      "station_name": "Embankment",
+      "station_name_en": "Embankment",
+      "line_ids": [
+        "NOR",
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 5.0,
+      "composite_score": 5.0,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51494_N00183",
+      "station_name": "Gloucester Road",
+      "station_name_en": "Gloucester Road",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 3.75,
+      "composite_score": 4.5,
+      "rarity": "legendary",
+      "degree": 3
+    },
+    {
+      "station_global_id": "ST_P51494_N00174",
+      "station_name": "South Kensington",
+      "station_name_en": "South Kensington",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 3.75,
+      "composite_score": 4.5,
+      "rarity": "legendary",
+      "degree": 3
+    },
+    {
+      "station_global_id": "ST_P51490_N00213",
+      "station_name": "Baron's Court",
+      "station_name_en": "Baron's Court",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 2.5,
+      "composite_score": 4.0,
+      "rarity": "legendary",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51493_N00224",
+      "station_name": "Hammersmith",
+      "station_name_en": "Hammersmith",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 2.5,
+      "composite_score": 4.0,
+      "rarity": "legendary",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51490_N00206",
+      "station_name": "West Kensington",
+      "station_name_en": "West Kensington",
+      "line_ids": [
+        "PIC",
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 2.5,
+      "composite_score": 4.0,
+      "rarity": "legendary",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51517_N00120",
+      "station_name": "Holborn",
+      "station_name_en": "Holborn",
+      "line_ids": [
+        "CEN",
+        "PIC"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 5.0,
+      "composite_score": 3.5,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51531_N00124",
+      "station_name": "King's Cross St. Pancras",
+      "station_name_en": "King's Cross St. Pancras",
+      "line_ids": [
+        "PIC",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 5.0,
+      "composite_score": 3.5,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51511_N00128",
+      "station_name": "Leicester Square",
+      "station_name_en": "Leicester Square",
+      "line_ids": [
+        "NOR",
+        "PIC"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 5.0,
+      "composite_score": 3.5,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51518_N00082",
+      "station_name": "Liverpool Street",
+      "station_name_en": "Liverpool Street",
+      "line_ids": [
+        "CEN",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 5.0,
+      "composite_score": 3.5,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51525_N00033",
+      "station_name": "Mile End",
+      "station_name_en": "Mile End",
+      "line_ids": [
+        "CEN",
+        "DIS"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 5.0,
+      "composite_score": 3.5,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51509_N00196",
+      "station_name": "Notting Hill Gate",
+      "station_name_en": "Notting Hill Gate",
+      "line_ids": [
+        "CEN",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 5.0,
+      "composite_score": 3.5,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51516_N00130",
+      "station_name": "Tottenham Court Road",
+      "station_name_en": "Tottenham Court Road",
+      "line_ids": [
+        "CEN",
+        "NOR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 5.0,
+      "composite_score": 3.5,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "ST_P51494_N00268",
+      "station_name": "Chiswick Park",
+      "station_name_en": "Chiswick Park",
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.75,
+      "composite_score": 3.0,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "ST_P51510_N00076",
+      "station_name": "Tower Hill",
+      "station_name_en": "Tower Hill",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.75,
+      "composite_score": 3.0,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "ST_P51512_N00103",
+      "station_name": "Blackfriars",
+      "station_name_en": "Blackfriars",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51511_N00090",
+      "station_name": "Cannon Street",
+      "station_name_en": "Cannon Street",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51512_N00094",
+      "station_name": "Mansion House",
+      "station_name_en": "Mansion House",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51510_N00086",
+      "station_name": "Monument",
+      "station_name_en": "Monument",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51494_N00235",
+      "station_name": "Ravenscourt Park",
+      "station_name_en": "Ravenscourt Park",
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51492_N00156",
+      "station_name": "Sloane Square",
+      "station_name_en": "Sloane Square",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51499_N00134",
+      "station_name": "St. James's Park",
+      "station_name_en": "St. James's Park",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51495_N00241",
+      "station_name": "Stamford Brook",
+      "station_name_en": "Stamford Brook",
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51511_N00114",
+      "station_name": "Temple",
+      "station_name_en": "Temple",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51495_N00254",
+      "station_name": "Turnham Green",
+      "station_name_en": "Turnham Green",
+      "line_ids": [
+        "PIC",
+        "DIS"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51496_N00145",
+      "station_name": "Victoria",
+      "station_name_en": "Victoria",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51501_N00125",
+      "station_name": "Westminster",
+      "station_name_en": "Westminster",
+      "line_ids": [
+        "DIS",
+        "CIR"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51503_N00280",
+      "station_name": "Acton Town",
+      "station_name_en": "Acton Town",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51514_N00075",
+      "station_name": "Aldgate",
+      "station_name_en": "Aldgate",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51515_N00073",
+      "station_name": "Aldgate East",
+      "station_name_en": "Aldgate East",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51616_N00133",
+      "station_name": "Arnos Grove",
+      "station_name_en": "Arnos Grove",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51558_N00106",
+      "station_name": "Arsenal",
+      "station_name_en": "Arsenal",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51523_N00157",
+      "station_name": "Baker Street",
+      "station_name_en": "Baker Street",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51443_N00153",
+      "station_name": "Balham",
+      "station_name_en": "Balham",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51513_N00089",
+      "station_name": "Bank",
+      "station_name_en": "Bank",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51520_N00098",
+      "station_name": "Barbican",
+      "station_name_en": "Barbican",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51540_P00081",
+      "station_name": "Barking",
+      "station_name_en": "Barking",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51512_N00187",
+      "station_name": "Bayswater",
+      "station_name_en": "Bayswater",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51540_P00122",
+      "station_name": "Becontree",
+      "station_name_en": "Becontree",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51550_N00165",
+      "station_name": "Belsize Park",
+      "station_name_en": "Belsize Park",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51527_N00055",
+      "station_name": "Bethnal Green",
+      "station_name_en": "Bethnal Green",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51514_N00149",
+      "station_name": "Bond Street",
+      "station_name_en": "Bond Street",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51495_N00338",
+      "station_name": "Boston Manor",
+      "station_name_en": "Boston Manor",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51605_N00122",
+      "station_name": "Bounds Green",
+      "station_name_en": "Bounds Green",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51527_N00025",
+      "station_name": "Bow Road",
+      "station_name_en": "Bow Road",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51576_N00214",
+      "station_name": "Brent Cross",
+      "station_name_en": "Brent Cross",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51522_N00012",
+      "station_name": "Bromley-by-Bow",
+      "station_name_en": "Bromley-by-Bow",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51627_P00047",
+      "station_name": "Buckhurst Hill",
+      "station_name_en": "Buckhurst Hill",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51603_N00266",
+      "station_name": "Burnt Oak",
+      "station_name_en": "Burnt Oak",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51544_N00119",
+      "station_name": "Caledonian Road",
+      "station_name_en": "Caledonian Road",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51539_N00143",
+      "station_name": "Camden Town",
+      "station_name_en": "Camden Town",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51544_N00154",
+      "station_name": "Chalk Farm",
+      "station_name_en": "Chalk Farm",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51518_N00111",
+      "station_name": "Chancery Lane",
+      "station_name_en": "Chancery Lane",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51508_N00125",
+      "station_name": "Charing Cross",
+      "station_name_en": "Charing Cross",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51461_N00138",
+      "station_name": "Clapham Common",
+      "station_name_en": "Clapham Common",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51465_N00130",
+      "station_name": "Clapham North",
+      "station_name_en": "Clapham North",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51455_N00148",
+      "station_name": "Clapham South",
+      "station_name_en": "Clapham South",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51595_N00250",
+      "station_name": "Colindale",
+      "station_name_en": "Colindale",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51420_N00188",
+      "station_name": "Colliers Wood",
+      "station_name_en": "Colliers Wood",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51513_N00124",
+      "station_name": "Covent Garden",
+      "station_name_en": "Covent Garden",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51544_P00160",
+      "station_name": "Dagenham East",
+      "station_name_en": "Dagenham East",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51542_P00140",
+      "station_name": "Dagenham Heathway",
+      "station_name_en": "Dagenham Heathway",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51645_P00084",
+      "station_name": "Debden",
+      "station_name_en": "Debden",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51515_N00302",
+      "station_name": "Ealing Broadway",
+      "station_name_en": "Ealing Broadway",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51517_N00245",
+      "station_name": "East Acton",
+      "station_name_en": "East Acton",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51540_P00052",
+      "station_name": "East Ham",
+      "station_name_en": "East Ham",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51461_N00212",
+      "station_name": "East Putney",
+      "station_name_en": "East Putney",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51520_N00169",
+      "station_name": "Edgware Road",
+      "station_name_en": "Edgware Road",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51549_P00190",
+      "station_name": "Elm Park",
+      "station_name_en": "Elm Park",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51528_N00134",
+      "station_name": "Euston",
+      "station_name_en": "Euston",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51526_N00136",
+      "station_name": "Euston Square",
+      "station_name_en": "Euston Square",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51520_N00105",
+      "station_name": "Farringdon",
+      "station_name_en": "Farringdon",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51564_N00101",
+      "station_name": "Finsbury Park",
+      "station_name_en": "Finsbury Park",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51480_N00193",
+      "station_name": "Fulham Broadway",
+      "station_name_en": "Fulham Broadway",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51572_N00194",
+      "station_name": "Golders Green",
+      "station_name_en": "Golders Green",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51502_N00227",
+      "station_name": "Goldhawk Road",
+      "station_name_en": "Goldhawk Road",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51520_N00135",
+      "station_name": "Goodge Street",
+      "station_name_en": "Goodge Street",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51524_N00144",
+      "station_name": "Great Portland Street",
+      "station_name_en": "Great Portland Street",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51507_N00143",
+      "station_name": "Green Park",
+      "station_name_en": "Green Park",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51542_N00346",
+      "station_name": "Greenford",
+      "station_name_en": "Greenford",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51492_N00275",
+      "station_name": "Gunnersbury",
+      "station_name_en": "Gunnersbury",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51566_N00178",
+      "station_name": "Hampstead",
+      "station_name_en": "Hampstead",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51530_N00299",
+      "station_name": "Hanger Lane",
+      "station_name_en": "Hanger Lane",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51466_N00424",
+      "station_name": "Hatton Cross",
+      "station_name_en": "Hatton Cross",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51471_N00452",
+      "station_name": "Heathrow Terminals 2&3",
+      "station_name_en": "Heathrow Terminals 2&3",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51458_N00448",
+      "station_name": "Heathrow Terminal 4",
+      "station_name_en": "Heathrow Terminal 4",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51583_N00227",
+      "station_name": "Hendon Central",
+      "station_name_en": "Hendon Central",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51501_N00192",
+      "station_name": "High Street Kensington",
+      "station_name_en": "High Street Kensington",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51508_N00206",
+      "station_name": "Holland Park",
+      "station_name_en": "Holland Park",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51553_N00113",
+      "station_name": "Holloway Road",
+      "station_name_en": "Holloway Road",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51554_P00214",
+      "station_name": "Hornchurch",
+      "station_name_en": "Hornchurch",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51472_N00367",
+      "station_name": "Hounslow Central",
+      "station_name_en": "Hounslow Central",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51472_N00346",
+      "station_name": "Hounslow East",
+      "station_name_en": "Hounslow East",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51474_N00386",
+      "station_name": "Hounslow West",
+      "station_name_en": "Hounslow West",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51503_N00153",
+      "station_name": "Hyde Park Corner",
+      "station_name_en": "Hyde Park Corner",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51488_N00105",
+      "station_name": "Kennington",
+      "station_name_en": "Kennington",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51478_N00285",
+      "station_name": "Kew Gardens",
+      "station_name_en": "Kew Gardens",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51502_N00161",
+      "station_name": "Knightsbridge",
+      "station_name_en": "Knightsbridge",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51512_N00176",
+      "station_name": "Lancaster Gate",
+      "station_name_en": "Lancaster Gate",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51556_N00004",
+      "station_name": "Leyton",
+      "station_name_en": "Leyton",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51569_P00008",
+      "station_name": "Leytonstone",
+      "station_name_en": "Leytonstone",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51641_P00056",
+      "station_name": "Loughton",
+      "station_name_en": "Loughton",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51570_N00096",
+      "station_name": "Manor House",
+      "station_name_en": "Manor House",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51514_N00159",
+      "station_name": "Marble Arch",
+      "station_name_en": "Marble Arch",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51519_N00089",
+      "station_name": "Moorgate",
+      "station_name_en": "Moorgate",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51534_N00139",
+      "station_name": "Mornington Crescent",
+      "station_name_en": "Mornington Crescent",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51523_N00264",
+      "station_name": "North Acton",
+      "station_name_en": "North Acton",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51499_N00315",
+      "station_name": "Northfields",
+      "station_name_en": "Northfields",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51549_N00368",
+      "station_name": "Northolt",
+      "station_name_en": "Northolt",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51648_N00133",
+      "station_name": "Oakwood",
+      "station_name_en": "Oakwood",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51481_N00352",
+      "station_name": "Osterley",
+      "station_name_en": "Osterley",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51482_N00113",
+      "station_name": "Oval",
+      "station_name_en": "Oval",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51515_N00142",
+      "station_name": "Oxford Circus",
+      "station_name_en": "Oxford Circus",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51515_N00176",
+      "station_name": "Paddington",
+      "station_name_en": "Paddington",
+      "line_ids": [
+        "CIR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51475_N00200",
+      "station_name": "Parsons Green",
+      "station_name_en": "Parsons Green",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51536_N00323",
+      "station_name": "Perivale",
+      "station_name_en": "Perivale",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51510_N00135",
+      "station_name": "Piccadilly Circus",
+      "station_name_en": "Piccadilly Circus",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51532_P00020",
+      "station_name": "Plaistow",
+      "station_name_en": "Plaistow",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51468_N00209",
+      "station_name": "Putney Bridge",
+      "station_name_en": "Putney Bridge",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51511_N00188",
+      "station_name": "Queensway",
+      "station_name_en": "Queensway",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51561_N00415",
+      "station_name": "Ruislip Gardens",
+      "station_name_en": "Ruislip Gardens",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51523_N00124",
+      "station_name": "Russell Square",
+      "station_name_en": "Russell Square",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51505_N00219",
+      "station_name": "Shepherd's Bush",
+      "station_name_en": "Shepherd's Bush",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51506_N00226",
+      "station_name": "Shepherd's Bush Market",
+      "station_name_en": "Shepherd's Bush Market",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51581_P00020",
+      "station_name": "Snaresbrook",
+      "station_name_en": "Snaresbrook",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51501_N00306",
+      "station_name": "South Ealing",
+      "station_name_en": "South Ealing",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51557_N00399",
+      "station_name": "South Ruislip",
+      "station_name_en": "South Ruislip",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51414_N00192",
+      "station_name": "South Wimbledon",
+      "station_name_en": "South Wimbledon",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51592_P00028",
+      "station_name": "South Woodford",
+      "station_name_en": "South Woodford",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51445_N00206",
+      "station_name": "Southfields",
+      "station_name_en": "Southfields",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51632_N00128",
+      "station_name": "Southgate",
+      "station_name_en": "Southgate",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51515_N00098",
+      "station_name": "St. Paul's",
+      "station_name_en": "St. Paul's",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51522_N00046",
+      "station_name": "Stepney Green",
+      "station_name_en": "Stepney Green",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51472_N00123",
+      "station_name": "Stockwell",
+      "station_name_en": "Stockwell",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51542_N00004",
+      "station_name": "Stratford",
+      "station_name_en": "Stratford",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51671_P00104",
+      "station_name": "Theydon Bois",
+      "station_name_en": "Theydon Bois",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51435_N00161",
+      "station_name": "Tooting Bec",
+      "station_name_en": "Tooting Bec",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51427_N00168",
+      "station_name": "Tooting Broadway",
+      "station_name_en": "Tooting Broadway",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51590_N00103",
+      "station_name": "Turnpike Lane",
+      "station_name_en": "Turnpike Lane",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51557_P00234",
+      "station_name": "Upminster Bridge",
+      "station_name_en": "Upminster Bridge",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51538_P00100",
+      "station_name": "Upney",
+      "station_name_en": "Upney",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51535_P00035",
+      "station_name": "Upton Park",
+      "station_name_en": "Upton Park",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51524_N00139",
+      "station_name": "Warren Street",
+      "station_name_en": "Warren Street",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51504_N00114",
+      "station_name": "Waterloo",
+      "station_name_en": "Waterloo",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51517_N00280",
+      "station_name": "West Acton",
+      "station_name_en": "West Acton",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51487_N00195",
+      "station_name": "West Brompton",
+      "station_name_en": "West Brompton",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51529_P00005",
+      "station_name": "West Ham",
+      "station_name_en": "West Ham",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51512_N00227",
+      "station_name": "White City",
+      "station_name_en": "White City",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51520_N00060",
+      "station_name": "Whitechapel",
+      "station_name_en": "Whitechapel",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51421_N00206",
+      "station_name": "Wimbledon",
+      "station_name_en": "Wimbledon",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51435_N00206",
+      "station_name": "Wimbledon Park",
+      "station_name_en": "Wimbledon Park",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51598_N00110",
+      "station_name": "Wood Green",
+      "station_name_en": "Wood Green",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51608_P00034",
+      "station_name": "Woodford",
+      "station_name_en": "Woodford",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.5,
+      "composite_score": 1.0,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "ST_P51652_N00150",
+      "station_name": "Cockfosters",
+      "station_name_en": "Cockfosters",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.25,
+      "composite_score": 0.5,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "ST_P51613_N00276",
+      "station_name": "Edgware",
+      "station_name_en": "Edgware",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.25,
+      "composite_score": 0.5,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "ST_P51694_P00114",
+      "station_name": "Epping",
+      "station_name_en": "Epping",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.25,
+      "composite_score": 0.5,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "ST_P51473_N00489",
+      "station_name": "Heathrow Terminal 5",
+      "station_name_en": "Heathrow Terminal 5",
+      "line_ids": [
+        "PIC"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.25,
+      "composite_score": 0.5,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "ST_P51402_N00195",
+      "station_name": "Morden",
+      "station_name_en": "Morden",
+      "line_ids": [
+        "NOR"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.25,
+      "composite_score": 0.5,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "ST_P51463_N00301",
+      "station_name": "Richmond",
+      "station_name_en": "Richmond",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.25,
+      "composite_score": 0.5,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "ST_P51559_P00251",
+      "station_name": "Upminster",
+      "station_name_en": "Upminster",
+      "line_ids": [
+        "DIS"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.25,
+      "composite_score": 0.5,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "ST_P51569_N00436",
+      "station_name": "West Ruislip",
+      "station_name_en": "West Ruislip",
+      "line_ids": [
+        "CEN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.25,
+      "composite_score": 0.5,
+      "rarity": "common",
+      "degree": 1
+    }
+  ]
+}
