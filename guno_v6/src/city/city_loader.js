@@ -90,6 +90,52 @@ export async function loadDefaultCityProfile(baseUrl) {
   return loadCityProfile(cityId, baseUrl);
 }
 
+/**
+ * List all cities registered in the registry.
+ * Returns an array of { city_id, display_name, profile } objects.
+ * @param {string} [baseUrl] - Base URL of the guno_v6 root.
+ * @returns {Promise<Array<{city_id: string, display_name: string, profile: string}>>}
+ */
+export async function listAvailableCities(baseUrl) {
+  const registry = await loadCityRegistry(baseUrl);
+  return registry.cities;
+}
+
+/**
+ * Load all dataset files for a given city and return them as a single object.
+ * Convenience wrapper that fetches the city profile and all its datasets.
+ * @param {string} cityId - e.g. "tokyo"
+ * @param {string} [baseUrl] - Base URL of the guno_v6 root.
+ * @returns {Promise<{ profile: Object, datasets: Object }>}
+ *   profile  — the city_profile.json object
+ *   datasets — { [key]: parsedJson } for each key in profile.dataset
+ */
+export async function loadCityData(cityId, baseUrl) {
+  const profile = await loadCityProfile(cityId, baseUrl);
+  const base    = _resolveBase(baseUrl);
+
+  const datasetEntries = await Promise.all(
+    Object.entries(profile.dataset).map(async ([key, relativePath]) => {
+      const url = base + relativePath;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        return [key, data];
+      } catch (err) {
+        // Dataset file may not exist yet (scaffold cities); return null gracefully
+        console.warn(`city_loader: could not load dataset "${key}" for city "${cityId}" (${url}): ${err.message}`);
+        return [key, null];
+      }
+    })
+  );
+
+  return {
+    profile,
+    datasets: Object.fromEntries(datasetEntries)
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Internal helpers
 // ---------------------------------------------------------------------------
