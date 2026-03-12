@@ -5,6 +5,21 @@
       "city_id": "tokyo",
       "display_name": "Tokyo",
       "profile": "cities/tokyo/city_profile.json"
+    },
+    {
+      "city_id": "osaka",
+      "display_name": "Osaka",
+      "profile": "cities/osaka/city_profile.json"
+    },
+    {
+      "city_id": "london",
+      "display_name": "London",
+      "profile": "cities/london/city_profile.json"
+    },
+    {
+      "city_id": "nyc",
+      "display_name": "New York City",
+      "profile": "cities/nyc/city_profile.json"
     }
   ]
 }
