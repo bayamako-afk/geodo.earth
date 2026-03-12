@@ -545,6 +545,7 @@
   let linesData   = null;
   let dataReady   = false;
   let activeCityProfile = null;
+  let activeCityId = null;
 
   const BASE_URL = new URL('../', location.href).href;
 
@@ -613,11 +614,10 @@
 
     try {
       const deck = await _generateDeck({
-        baseUrl: BASE_URL,
-        config: {
-          deckSize,
-          rarityTargets: { Legendary: legendary, Epic: epic, Rare: rare, Common: common }
-        }
+        baseUrl:       BASE_URL,
+        cityId:        activeCityId,
+        deckSize,
+        rarityTargets: { Legendary: legendary, Epic: epic, Rare: rare, Common: common }
       });
 
       currentDeck = deck;
@@ -811,9 +811,10 @@
       populateCitySelector(registry.cities, cityId);
 
       // 2. Load city profile
+      activeCityId = cityId;
       const profile  = await loadCityProfile(cityId);
       activeCityProfile = profile;
-      const cityName = profile.name || cityId;
+      const cityName = profile.display_name || profile.name || cityId;
       document.title = `Dynamic Deck Viewer — ${cityName}`;
       document.getElementById('header-subtitle').textContent = `${cityName} — GUNO V6 Debug`;
 

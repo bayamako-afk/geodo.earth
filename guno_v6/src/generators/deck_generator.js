@@ -1,50 +1,83 @@
 /**
  * deck_generator.js
- * GUNO V6 — Dynamic Deck Generator
+ * GUNO V6 — Dynamic Deck Generator (multi-city)
  *
  * Generates a playable GUNO deck from station metrics and rarity classifications.
  * Applies rarity targets and attempts to maintain route diversity.
+ *
+ * Public API:
+ *   generateDeck(options)          — async, city-aware (preferred)
+ *   generateDeckSync(...)          — sync, pre-loaded data (legacy / internal)
+ *   generateDeckFromConfig(...)    — async wrapper (legacy compat)
+ *
+ * generateDeck options:
+ *   baseUrl      {string}  — Base URL of guno_v6 root (auto-detected in browser)
+ *   cityId       {string}  — City ID, e.g. "tokyo", "osaka" (default: registry default)
+ *   deckSize     {number}  — Override deck size (default: from city profile or 40)
+ *   rarityTargets {Object} — Override rarity targets
+ *   config       {Object}  — Legacy config object (deckSize, rarityTargets, deckName, version)
  */
 
-import { classifyAllStationsSync, classifyAllStations } from '../scoring/station_rarity.js';
+import { classifyAllStationsSync } from '../scoring/station_rarity.js';
+import {
+  loadCityRegistry,
+  getDefaultCityId,
+  loadCityProfile,
+  resolveDatasetUrl,
+} from '../city/city_loader.js';
 
-// Default configuration for v1
-const DEFAULT_CONFIG = {
-  deckSize: 40,
-  rarityTargets: {
-    Legendary: 1,
-    Epic: 9,
-    Rare: 10,
-    Common: 20
-  },
-  deckName: "tokyo_dynamic_v1",
-  version: "1.0"
+// ── Internal defaults ─────────────────────────────────────────────────────────
+
+const FALLBACK_DECK_SIZE = 40;
+const FALLBACK_RARITY_TARGETS = {
+  Legendary: 1,
+  Epic:      9,
+  Rare:      10,
+  Common:    20
 };
-
 const RARITY_ORDER = ['Legendary', 'Epic', 'Rare', 'Common'];
+
+// ── Structured error helper ───────────────────────────────────────────────────
+
+class DeckGeneratorError extends Error {
+  constructor(message, code, cityId) {
+    super(message);
+    this.name = 'DeckGeneratorError';
+    this.code = code;       // e.g. 'DATA_NOT_READY', 'MISSING_DATASET', 'INVALID_METRICS'
+    this.cityId = cityId;
+  }
+}
+
+// ── Core sync generator (unchanged logic) ─────────────────────────────────────
 
 /**
  * Generate a deck synchronously using pre-loaded data.
- * @param {Object} stationMetrics - Parsed JSON from station_metrics_tokyo.json
- * @param {Array} stationLines - Parsed JSON from station_lines_tokyo.json (optional, for diversity)
- * @param {Object} config - Optional configuration overrides
+ * @param {Object} stationMetrics - Parsed JSON from station_metrics.json
+ * @param {Array|null} stationLines - Parsed JSON from station_lines.json (optional)
+ * @param {Object} config - Configuration: { deckSize, rarityTargets, deckName, version, cityId }
  * @returns {Object} Generated deck JSON structure
  */
 export function generateDeckSync(stationMetrics, stationLines = null, config = {}) {
-  const finalConfig = { ...DEFAULT_CONFIG, ...config };
-  const targets = { ...finalConfig.rarityTargets };
+  const deckSize     = config.deckSize     || FALLBACK_DECK_SIZE;
+  const targets      = { ...FALLBACK_RARITY_TARGETS, ...(config.rarityTargets || {}) };
+  const deckName     = config.deckName     || `${config.cityId || 'city'}_dynamic_v1`;
+  const version      = config.version      || '1.0';
+  const cityId       = config.cityId       || 'unknown';
 
   // 1. Classify all stations
-  // Accept both array (legacy) and {stations:[...]} object formats
   const metricsInput = Array.isArray(stationMetrics)
     ? { stations: stationMetrics }
     : stationMetrics;
   const allStations = classifyAllStationsSync(metricsInput);
   if (!allStations || allStations.length === 0) {
-    throw new Error("Failed to classify stations. Metrics data may be invalid.");
+    throw new DeckGeneratorError(
+      `Failed to classify stations for city "${cityId}". Metrics data may be invalid.`,
+      'INVALID_METRICS',
+      cityId
+    );
   }
 
-  // Build a lookup for lines if provided
+  // Build station → lines lookup
   const stationToLines = {};
   if (stationLines && Array.isArray(stationLines)) {
     stationLines.forEach(record => {
@@ -56,7 +89,7 @@ export function generateDeckSync(stationMetrics, stationLines = null, config = {
     });
   }
 
-  // 2. Group stations by rarity (already sorted by score_total desc from classifyAllStationsSync)
+  // 2. Group stations by rarity (sorted by score_total desc from classifyAllStationsSync)
   const grouped = {
     Legendary: allStations.filter(s => s.rarity === 'Legendary'),
     Epic:      allStations.filter(s => s.rarity === 'Epic'),
@@ -65,157 +98,218 @@ export function generateDeckSync(stationMetrics, stationLines = null, config = {
   };
 
   const selectedStations = [];
-  const lineCounts = {}; // Track how many times each line appears in the deck
+  const lineCounts = {};
 
-  // Helper to pick a station considering diversity
+  // Diversity-aware picker
   function pickNextStation(candidates) {
     if (candidates.length === 0) return null;
-    
-    // If no line data, just take the highest score (first item)
-    if (!stationLines || stationLines.length === 0) {
-      return candidates.shift();
-    }
+    if (!stationLines || stationLines.length === 0) return candidates.shift();
 
-    // Diversity: limit how many times a single line can appear in the deck.
-    // With 40 cards across 5 lines (~8 stations each on average), aim for ~8 per line max.
-    // Use a soft cap: prefer stations whose lines are under-represented.
-    // Hard cap: skip stations where ALL lines are at or above the hard limit.
-    const SOFT_CAP = 6;  // prefer stations with at least one line below this
-    const HARD_CAP = 10; // never let a single line exceed this count
-    
+    const SOFT_CAP = 6;
+    const HARD_CAP = 10;
+
     let bestIdx = -1;
-    // Pass 1: find first candidate with at least one line below SOFT_CAP
     for (let i = 0; i < candidates.length; i++) {
       const lines = stationToLines[candidates[i].station_global_id] || [];
-      const hasSoftRoom = lines.length === 0 || lines.some(line => (lineCounts[line] || 0) < SOFT_CAP);
-      if (hasSoftRoom) { bestIdx = i; break; }
+      if (lines.length === 0 || lines.some(l => (lineCounts[l] || 0) < SOFT_CAP)) {
+        bestIdx = i; break;
+      }
     }
-    // Pass 2: if no soft-room candidate found, find first below HARD_CAP
     if (bestIdx === -1) {
       for (let i = 0; i < candidates.length; i++) {
         const lines = stationToLines[candidates[i].station_global_id] || [];
-        const hasHardRoom = lines.length === 0 || lines.some(line => (lineCounts[line] || 0) < HARD_CAP);
-        if (hasHardRoom) { bestIdx = i; break; }
+        if (lines.length === 0 || lines.some(l => (lineCounts[l] || 0) < HARD_CAP)) {
+          bestIdx = i; break;
+        }
       }
     }
-    // Fallback: just take the first candidate
     if (bestIdx === -1) bestIdx = 0;
 
     const picked = candidates.splice(bestIdx, 1)[0];
-    
-    // Update line counts
-    const pickedLines = stationToLines[picked.station_global_id] || [];
-    pickedLines.forEach(line => {
-      lineCounts[line] = (lineCounts[line] || 0) + 1;
+    (stationToLines[picked.station_global_id] || []).forEach(l => {
+      lineCounts[l] = (lineCounts[l] || 0) + 1;
     });
-
     return picked;
   }
 
   // 3. Select stations to meet targets, cascading shortages downward
   let carryOver = 0;
-
   for (const rarity of RARITY_ORDER) {
     let target = (targets[rarity] || 0) + carryOver;
-    const candidates = [...grouped[rarity]]; // clone array to mutate
-    
+    const candidates = [...grouped[rarity]];
     let pickedCount = 0;
     while (pickedCount < target && candidates.length > 0) {
       const picked = pickNextStation(candidates);
-      if (picked) {
-        selectedStations.push(picked);
-        pickedCount++;
-      }
+      if (picked) { selectedStations.push(picked); pickedCount++; }
     }
+    carryOver = pickedCount < target ? target - pickedCount : 0;
+  }
 
-    // If we couldn't meet the target, carry the shortage to the next lower rarity
-    if (pickedCount < target) {
-      carryOver = target - pickedCount;
-    } else {
-      carryOver = 0;
+  // Fill remaining shortage from any remaining stations
+  if (selectedStations.length < deckSize) {
+    const needed = deckSize - selectedStations.length;
+    const remaining = allStations.filter(
+      s => !selectedStations.some(sel => sel.station_global_id === s.station_global_id)
+    );
+    for (let i = 0; i < needed && remaining.length > 0; i++) {
+      selectedStations.push(pickNextStation(remaining));
     }
   }
 
-  // If we still have a shortage after Common, just grab any remaining stations by score
-  if (selectedStations.length < finalConfig.deckSize) {
-    const remainingNeeded = finalConfig.deckSize - selectedStations.length;
-    const allRemaining = allStations.filter(s => !selectedStations.some(sel => sel.station_global_id === s.station_global_id));
-    
-    for (let i = 0; i < remainingNeeded && allRemaining.length > 0; i++) {
-      selectedStations.push(pickNextStation(allRemaining));
-    }
-  }
-
-  // 4. Final sorting and card generation
-  // Sort the final deck by score_total descending
+  // 4. Sort and build cards
   selectedStations.sort((a, b) => b.score_total - a.score_total);
+  const finalCards = selectedStations.slice(0, deckSize).map((s, index) => ({
+    card_id:           `card_${String(index + 1).padStart(3, '0')}`,
+    station_global_id: s.station_global_id,
+    station_name:      s.station_name,
+    station_slug:      s.station_slug,
+    score_total:       s.score_total,
+    rank:              s.rank,
+    rarity:            s.rarity
+  }));
 
-  // Truncate if we somehow overshot (shouldn't happen with the logic above, but safe)
-  const finalCards = selectedStations.slice(0, finalConfig.deckSize).map((s, index) => {
-    return {
-      card_id: `card_${String(index + 1).padStart(3, '0')}`,
-      station_global_id: s.station_global_id,
-      station_name: s.station_name,
-      station_slug: s.station_slug,
-      score_total: s.score_total,
-      rank: s.rank,
-      rarity: s.rarity
-    };
-  });
+  // 5. Validation
+  const uniqueIds = new Set(finalCards.map(c => c.station_global_id));
+  const uniqueCardIds = new Set(finalCards.map(c => c.card_id));
+  if (uniqueIds.size !== finalCards.length) {
+    throw new DeckGeneratorError(
+      `Duplicate station_global_id detected in generated deck for city "${cityId}".`,
+      'DUPLICATE_STATION',
+      cityId
+    );
+  }
+  if (uniqueCardIds.size !== finalCards.length) {
+    throw new DeckGeneratorError(
+      `Duplicate card_id detected in generated deck for city "${cityId}".`,
+      'DUPLICATE_CARD_ID',
+      cityId
+    );
+  }
 
-  // 5. Build final deck object
+  // 6. Build deck object
   return {
     deck_meta: {
-      version: finalConfig.version,
-      deck_name: finalConfig.deckName,
-      deck_size: finalCards.length,
-      generator: "deck_generator.js",
-      source_metrics: "station_metrics_tokyo.json"
+      version,
+      deck_name:   deckName,
+      deck_size:   finalCards.length,
+      city_id:     cityId,
+      generator:   'deck_generator.js',
+      generated_at: new Date().toISOString()
     },
     cards: finalCards
   };
 }
 
+// ── Async city-aware generator (primary API) ──────────────────────────────────
+
 /**
- * Generate a deck asynchronously by fetching data files.
- * @param {Object} options - Options including baseUrl and config overrides
- * @returns {Promise<Object>} Generated deck JSON structure
+ * Generate a deck asynchronously for a given city.
+ *
+ * @param {Object} options
+ * @param {string} [options.baseUrl]       — Base URL of guno_v6 root
+ * @param {string} [options.cityId]        — City ID (default: registry default_city)
+ * @param {number} [options.deckSize]      — Override deck size
+ * @param {Object} [options.rarityTargets] — Override rarity targets
+ * @param {Object} [options.config]        — Legacy config object (deckSize, rarityTargets, deckName, version)
+ * @returns {Promise<Object>} Generated deck JSON
  */
 export async function generateDeck(options = {}) {
   const baseUrl = options.baseUrl || '';
-  
-  // Resolve URLs
-  const metricsUrl = baseUrl ? (baseUrl.endsWith('/') ? baseUrl : baseUrl + '/') + 'data/derived/station_metrics_tokyo.json' : '../data/derived/station_metrics_tokyo.json';
-  const linesUrl = baseUrl ? (baseUrl.endsWith('/') ? baseUrl : baseUrl + '/') + 'data/master/station_lines_tokyo.json' : '../data/master/station_lines_tokyo.json';
 
-  try {
-    // Fetch metrics (required)
-    const metricsRes = await fetch(metricsUrl);
-    if (!metricsRes.ok) throw new Error(`Failed to load metrics: ${metricsRes.status}`);
-    const metricsData = await metricsRes.json();
-
-    // Fetch lines (optional, for diversity)
-    let linesData = null;
+  // 1. Resolve cityId
+  let cityId = options.cityId || null;
+  if (!cityId) {
     try {
-      const linesRes = await fetch(linesUrl);
-      if (linesRes.ok) {
-        linesData = await linesRes.json();
-      }
-    } catch (e) {
-      console.warn("Could not load station_lines_tokyo.json for diversity control. Proceeding without it.");
+      const registry = await loadCityRegistry(baseUrl || undefined);
+      cityId = getDefaultCityId(registry);
+    } catch (err) {
+      // Fallback for environments where registry is not accessible
+      cityId = 'tokyo';
+      console.warn(`[deck_generator] Could not load city registry, defaulting to "${cityId}":`, err.message);
     }
-
-    return generateDeckSync(metricsData, linesData, options.config || {});
-  } catch (error) {
-    console.error("generateDeck error:", error);
-    throw error;
   }
+
+  // 2. Load city profile
+  let profile;
+  try {
+    profile = await loadCityProfile(cityId, baseUrl || undefined);
+  } catch (err) {
+    throw new DeckGeneratorError(
+      `Could not load city profile for "${cityId}": ${err.message}`,
+      'PROFILE_LOAD_FAILED',
+      cityId
+    );
+  }
+
+  // 3. Check data_ready
+  if (profile.status && profile.status.data_ready === false) {
+    throw new DeckGeneratorError(
+      `City data for "${cityId}" is not ready yet.`,
+      'DATA_NOT_READY',
+      cityId
+    );
+  }
+
+  // 4. Resolve config: profile defaults → legacy config → explicit options
+  const profileDefaults = profile.deck_defaults || {};
+  const legacyConfig    = options.config || {};
+
+  const deckSize = options.deckSize
+    ?? legacyConfig.deckSize
+    ?? profileDefaults.deck_size
+    ?? FALLBACK_DECK_SIZE;
+
+  const rarityTargets = options.rarityTargets
+    ?? legacyConfig.rarityTargets
+    ?? profileDefaults.rarity_targets
+    ?? FALLBACK_RARITY_TARGETS;
+
+  const deckName  = legacyConfig.deckName  || `${cityId}_dynamic_v1`;
+  const version   = legacyConfig.version   || '1.0';
+
+  const finalConfig = {
+    deckSize,
+    rarityTargets,
+    deckName,
+    version,
+    cityId
+  };
+
+  // 5. Load station_metrics (required)
+  let metricsData;
+  try {
+    const metricsUrl = resolveDatasetUrl('station_metrics', profile, baseUrl || undefined);
+    const res = await fetch(metricsUrl);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    metricsData = await res.json();
+  } catch (err) {
+    throw new DeckGeneratorError(
+      `Failed to load station_metrics for city "${cityId}": ${err.message}`,
+      'MISSING_DATASET',
+      cityId
+    );
+  }
+
+  // 6. Load station_lines (optional, for diversity)
+  let linesData = null;
+  try {
+    const linesUrl = resolveDatasetUrl('station_lines', profile, baseUrl || undefined);
+    const res = await fetch(linesUrl);
+    if (res.ok) linesData = await res.json();
+  } catch (err) {
+    console.warn(`[deck_generator] Could not load station_lines for "${cityId}" (diversity disabled):`, err.message);
+  }
+
+  // 7. Generate
+  return generateDeckSync(metricsData, linesData, finalConfig);
 }
 
+// ── Legacy compat wrapper ─────────────────────────────────────────────────────
+
 /**
- * Helper to generate a deck from a specific config (wrapper around generateDeck)
- * @param {Object} config - Configuration object
- * @param {Object} options - Additional options like baseUrl
+ * Generate a deck from a specific config (legacy wrapper).
+ * @param {Object} config
+ * @param {Object} options
  * @returns {Promise<Object>}
  */
 export async function generateDeckFromConfig(config, options = {}) {
