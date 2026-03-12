@@ -19,7 +19,7 @@
     "default_pack": "cities/osaka/data/packs/pack_v1.json"
   },
   "routes": {
-    "featured_lines": []
+    "featured_lines": ["M", "T", "Y", "HK", "OC"]
   },
   "ui": {
     "primary_label": "station_name_ja",
@@ -35,7 +35,7 @@
     }
   },
   "status": {
-    "data_ready": false,
-    "notes": "Profile scaffold only. Osaka datasets not generated yet."
+    "data_ready": true,
+    "notes": "Osaka initial playable city package generated."
   }
 }

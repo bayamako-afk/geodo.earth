@@ -1,0 +1,98 @@
+{
+  "dataset_meta": {
+    "version": "1.0",
+    "region": "osaka",
+    "generated_at": "2026-03-12T04:16:34Z",
+    "source_files": [
+      "cities/osaka/data/master/lines_master.json",
+      "cities/osaka/data/master/station_lines.json",
+      "cities/osaka/data/derived/station_metrics.json"
+    ],
+    "formula": {
+      "line_strength": "station_count*0.5 + transfer_count*2.0 + hub_score_sum*0.3 + avg_score*0.5",
+      "line_difficulty": "station_count*0.4 - transfer_count*1.5 - terminal_count*0.3"
+    },
+    "total_lines": 5
+  },
+  "validation": {
+    "total_lines": 5,
+    "total_stations_covered": 85
+  },
+  "lines": [
+    {
+      "line_id": "M",
+      "line_name": "御堂筋線",
+      "line_name_en": "Midosuji Line",
+      "operator_name": "大阪メトロ",
+      "color": "#E5171F",
+      "is_loop": false,
+      "station_count": 20,
+      "transfer_station_count": 7,
+      "terminal_count": 2,
+      "hub_score_sum": 179.8129,
+      "avg_station_score": 8.9906,
+      "line_strength": 82.4392,
+      "line_difficulty": -3.1
+    },
+    {
+      "line_id": "T",
+      "line_name": "谷町線",
+      "line_name_en": "Tanimachi Line",
+      "operator_name": "大阪メトロ",
+      "color": "#522886",
+      "is_loop": false,
+      "station_count": 26,
+      "transfer_station_count": 2,
+      "terminal_count": 2,
+      "hub_score_sum": 183.7745,
+      "avg_station_score": 7.0682,
+      "line_strength": 75.6664,
+      "line_difficulty": 6.8
+    },
+    {
+      "line_id": "OC",
+      "line_name": "大阪環状線",
+      "line_name_en": "Osaka Loop Line",
+      "operator_name": "JR西日本",
+      "color": "#FF6600",
+      "is_loop": true,
+      "station_count": 19,
+      "transfer_station_count": 1,
+      "terminal_count": 0,
+      "hub_score_sum": 128.8084,
+      "avg_station_score": 6.7794,
+      "line_strength": 53.5322,
+      "line_difficulty": 6.1
+    },
+    {
+      "line_id": "HK",
+      "line_name": "阪急京都線",
+      "line_name_en": "Hankyu Kyoto Line",
+      "operator_name": "阪急電鉄",
+      "color": "#6C3B2A",
+      "is_loop": false,
+      "station_count": 17,
+      "transfer_station_count": 2,
+      "terminal_count": 2,
+      "hub_score_sum": 120.7762,
+      "avg_station_score": 7.1045,
+      "line_strength": 52.2851,
+      "line_difficulty": 3.2
+    },
+    {
+      "line_id": "Y",
+      "line_name": "四つ橋線",
+      "line_name_en": "Yotsubashi Line",
+      "operator_name": "大阪メトロ",
+      "color": "#0066B3",
+      "is_loop": false,
+      "station_count": 11,
+      "transfer_station_count": 3,
+      "terminal_count": 2,
+      "hub_score_sum": 84.5456,
+      "avg_station_score": 7.686,
+      "line_strength": 40.7067,
+      "line_difficulty": -0.7
+    }
+  ]
+}

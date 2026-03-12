@@ -1,0 +1,2223 @@
+[
+  {
+    "station_global_id": "ST_34751_135500",
+    "station_slug": "esaka",
+    "station_name": "江坂",
+    "station_name_kana": "えさか",
+    "station_name_en": "Esaka",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7508,
+    "lon": 135.4998,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "江坂"
+    ],
+    "aliases": [
+      "江坂駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34737_135501",
+    "station_slug": "higashi-mikuni",
+    "station_name": "東三国",
+    "station_name_kana": "ひがしみくに",
+    "station_name_en": "Higashi-Mikuni",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7367,
+    "lon": 135.5013,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "東三国"
+    ],
+    "aliases": [
+      "東三国駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34733_135500",
+    "station_slug": "shin-osaka",
+    "station_name": "新大阪",
+    "station_name_kana": "しんおおさか",
+    "station_name_en": "Shin-Osaka",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7333,
+    "lon": 135.5,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "新大阪"
+    ],
+    "aliases": [
+      "新大阪駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34722_135497",
+    "station_slug": "nishinakajima-minamikata",
+    "station_name": "西中島南方",
+    "station_name_kana": "にしなかじまみなみかた",
+    "station_name_en": "Nishinakajima-Minamikata",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7216,
+    "lon": 135.4966,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "西中島南方"
+    ],
+    "aliases": [
+      "西中島南方駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34707_135496",
+    "station_slug": "nakatsu",
+    "station_name": "中津",
+    "station_name_kana": "なかつ",
+    "station_name_en": "Nakatsu",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7072,
+    "lon": 135.4965,
+    "operators": [
+      "大阪メトロ",
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "M",
+      "HK"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "中津"
+    ],
+    "aliases": [
+      "中津駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34703_135498",
+    "station_slug": "umeda",
+    "station_name": "梅田",
+    "station_name_kana": "うめだ",
+    "station_name_en": "Umeda",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7026,
+    "lon": 135.4982,
+    "operators": [
+      "大阪メトロ",
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "M",
+      "HK"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "梅田"
+    ],
+    "aliases": [
+      "梅田駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34694_135501",
+    "station_slug": "yodoyabashi",
+    "station_name": "淀屋橋",
+    "station_name_kana": "よどやばし",
+    "station_name_en": "Yodoyabashi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6935,
+    "lon": 135.5014,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "淀屋橋"
+    ],
+    "aliases": [
+      "淀屋橋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34682_135500",
+    "station_slug": "honmachi",
+    "station_name": "本町",
+    "station_name_kana": "ほんまち",
+    "station_name_en": "Honmachi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6822,
+    "lon": 135.4998,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M",
+      "Y"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "本町"
+    ],
+    "aliases": [
+      "本町駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34675_135501",
+    "station_slug": "shinsaibashi",
+    "station_name": "心斎橋",
+    "station_name_kana": "しんさいばし",
+    "station_name_en": "Shinsaibashi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6747,
+    "lon": 135.5012,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "心斎橋"
+    ],
+    "aliases": [
+      "心斎橋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34666_135501",
+    "station_slug": "namba",
+    "station_name": "なんば",
+    "station_name_kana": "なんば",
+    "station_name_en": "Namba",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6665,
+    "lon": 135.5013,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M",
+      "Y"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "なんば"
+    ],
+    "aliases": [
+      "なんば駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34657_135498",
+    "station_slug": "daikoku-cho",
+    "station_name": "大国町",
+    "station_name_kana": "だいこくちょう",
+    "station_name_en": "Daikoku-cho",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6568,
+    "lon": 135.4982,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M",
+      "Y"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "大国町"
+    ],
+    "aliases": [
+      "大国町駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34652_135506",
+    "station_slug": "dobutsuen-mae",
+    "station_name": "動物園前",
+    "station_name_kana": "どうぶつえんまえ",
+    "station_name_en": "Dobutsuen-mae",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6518,
+    "lon": 135.5063,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "動物園前"
+    ],
+    "aliases": [
+      "動物園前駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34646_135513",
+    "station_slug": "tennoji",
+    "station_name": "天王寺",
+    "station_name_kana": "てんのうじ",
+    "station_name_en": "Tennoji",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6462,
+    "lon": 135.5133,
+    "operators": [
+      "大阪メトロ",
+      "JR西日本"
+    ],
+    "line_ids": [
+      "M",
+      "T",
+      "OC"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "天王寺"
+    ],
+    "aliases": [
+      "天王寺駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34638_135518",
+    "station_slug": "showa-cho",
+    "station_name": "昭和町",
+    "station_name_kana": "しょうわちょう",
+    "station_name_en": "Showa-cho",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6375,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "昭和町"
+    ],
+    "aliases": [
+      "昭和町駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34631_135517",
+    "station_slug": "nishi-tanabe",
+    "station_name": "西田辺",
+    "station_name_kana": "にしたなべ",
+    "station_name_en": "Nishi-Tanabe",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6308,
+    "lon": 135.5167,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "西田辺"
+    ],
+    "aliases": [
+      "西田辺駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34618_135518",
+    "station_slug": "nagai",
+    "station_name": "長居",
+    "station_name_kana": "ながい",
+    "station_name_en": "Nagai",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6178,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M",
+      "T"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "長居"
+    ],
+    "aliases": [
+      "長居駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34604_135518",
+    "station_slug": "abiko",
+    "station_name": "あびこ",
+    "station_name_kana": "あびこ",
+    "station_name_en": "Abiko",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6043,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "あびこ"
+    ],
+    "aliases": [
+      "あびこ駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34590_135518",
+    "station_slug": "kita-hanada",
+    "station_name": "北花田",
+    "station_name_kana": "きたはなだ",
+    "station_name_en": "Kita-Hanada",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.5897,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "北花田"
+    ],
+    "aliases": [
+      "北花田駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34576_135518",
+    "station_slug": "shin-kanaoka",
+    "station_name": "新金岡",
+    "station_name_kana": "しんかなおか",
+    "station_name_en": "Shin-Kanaoka",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.5758,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "新金岡"
+    ],
+    "aliases": [
+      "新金岡駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34565_135518",
+    "station_slug": "nakamozu",
+    "station_name": "なかもず",
+    "station_name_kana": "なかもず",
+    "station_name_en": "Nakamozu",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.5647,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "M"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "なかもず"
+    ],
+    "aliases": [
+      "なかもず駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34758_135537",
+    "station_slug": "dainichi",
+    "station_name": "大日",
+    "station_name_kana": "だいにち",
+    "station_name_en": "Dainichi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7583,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "大日"
+    ],
+    "aliases": [
+      "大日駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34743_135537",
+    "station_slug": "moriguchi",
+    "station_name": "守口",
+    "station_name_kana": "もりぐち",
+    "station_name_en": "Moriguchi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7433,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "守口"
+    ],
+    "aliases": [
+      "守口駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34727_135537",
+    "station_slug": "taishibashi-imaichi",
+    "station_name": "太子橋今市",
+    "station_name_kana": "たいしばしいまいち",
+    "station_name_en": "Taishibashi-Imaichi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7267,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "太子橋今市"
+    ],
+    "aliases": [
+      "太子橋今市駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34717_135537",
+    "station_slug": "senbayashi-omiya",
+    "station_name": "千林大宮",
+    "station_name_kana": "せんばやしおおみや",
+    "station_name_en": "Senbayashi-Omiya",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7167,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "千林大宮"
+    ],
+    "aliases": [
+      "千林大宮駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34707_135537",
+    "station_slug": "sekime-takadono",
+    "station_name": "関目高殿",
+    "station_name_kana": "せきめたかどの",
+    "station_name_en": "Sekime-Takadono",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7067,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "関目高殿"
+    ],
+    "aliases": [
+      "関目高殿駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34697_135537",
+    "station_slug": "noe-uchindai",
+    "station_name": "野江内代",
+    "station_name_kana": "のえうちんだい",
+    "station_name_en": "Noe-Uchindai",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6967,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "野江内代"
+    ],
+    "aliases": [
+      "野江内代駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34693_135528",
+    "station_slug": "miyakojima",
+    "station_name": "都島",
+    "station_name_kana": "みやこじま",
+    "station_name_en": "Miyakojima",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6933,
+    "lon": 135.5283,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "都島"
+    ],
+    "aliases": [
+      "都島駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34702_135513",
+    "station_slug": "tenjinbashisuji-6-chome",
+    "station_name": "天神橋筋六丁目",
+    "station_name_kana": "てんじんばしすじろくちょうめ",
+    "station_name_en": "Tenjinbashisuji 6-chome",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7017,
+    "lon": 135.5133,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "天神橋筋六丁目"
+    ],
+    "aliases": [
+      "天神橋筋六丁目駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34707_135508",
+    "station_slug": "nakazaki-cho",
+    "station_name": "中崎町",
+    "station_name_kana": "なかざきちょう",
+    "station_name_en": "Nakazaki-cho",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7067,
+    "lon": 135.5083,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "中崎町"
+    ],
+    "aliases": [
+      "中崎町駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34702_135503",
+    "station_slug": "higashi-umeda",
+    "station_name": "東梅田",
+    "station_name_kana": "ひがしうめだ",
+    "station_name_en": "Higashi-Umeda",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7017,
+    "lon": 135.5033,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "東梅田"
+    ],
+    "aliases": [
+      "東梅田駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34693_135508",
+    "station_slug": "minami-morimachi",
+    "station_name": "南森町",
+    "station_name_kana": "みなみもりまち",
+    "station_name_en": "Minami-Morimachi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6933,
+    "lon": 135.5083,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "南森町"
+    ],
+    "aliases": [
+      "南森町駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34688_135518",
+    "station_slug": "temmabashi",
+    "station_name": "天満橋",
+    "station_name_kana": "てんまばし",
+    "station_name_en": "Temmabashi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6883,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "天満橋"
+    ],
+    "aliases": [
+      "天満橋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34682_135518",
+    "station_slug": "tanimachi-4-chome",
+    "station_name": "谷町四丁目",
+    "station_name_kana": "たにまちよんちょうめ",
+    "station_name_en": "Tanimachi 4-chome",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6817,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "谷町四丁目"
+    ],
+    "aliases": [
+      "谷町四丁目駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34672_135518",
+    "station_slug": "tanimachi-6-chome",
+    "station_name": "谷町六丁目",
+    "station_name_kana": "たにまちろくちょうめ",
+    "station_name_en": "Tanimachi 6-chome",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6717,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "谷町六丁目"
+    ],
+    "aliases": [
+      "谷町六丁目駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34662_135518",
+    "station_slug": "tanimachi-9-chome",
+    "station_name": "谷町九丁目",
+    "station_name_kana": "たにまちきゅうちょうめ",
+    "station_name_en": "Tanimachi 9-chome",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6617,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "谷町九丁目"
+    ],
+    "aliases": [
+      "谷町九丁目駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34653_135518",
+    "station_slug": "shitennoji-mae-yuhigaoka",
+    "station_name": "四天王寺前夕陽ヶ丘",
+    "station_name_kana": "してんのうじまえゆうひがおか",
+    "station_name_en": "Shitennoji-mae Yuhigaoka",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6533,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "四天王寺前夕陽ヶ丘"
+    ],
+    "aliases": [
+      "四天王寺前夕陽ヶ丘駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34638_135513",
+    "station_slug": "abeno",
+    "station_name": "阿倍野",
+    "station_name_kana": "あべの",
+    "station_name_en": "Abeno",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6383,
+    "lon": 135.5133,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "阿倍野"
+    ],
+    "aliases": [
+      "阿倍野駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34628_135518",
+    "station_slug": "fuminosato",
+    "station_name": "文の里",
+    "station_name_kana": "ふみのさと",
+    "station_name_en": "Fuminosato",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6283,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "文の里"
+    ],
+    "aliases": [
+      "文の里駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34608_135518",
+    "station_slug": "komagawa-nakano",
+    "station_name": "駒川中野",
+    "station_name_kana": "こまがわなかの",
+    "station_name_en": "Komagawa-Nakano",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6083,
+    "lon": 135.5183,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "駒川中野"
+    ],
+    "aliases": [
+      "駒川中野駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34598_135527",
+    "station_slug": "hirano",
+    "station_name": "平野",
+    "station_name_kana": "ひらの",
+    "station_name_en": "Hirano",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.5983,
+    "lon": 135.5267,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "平野"
+    ],
+    "aliases": [
+      "平野駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34588_135537",
+    "station_slug": "kire-urizaru",
+    "station_name": "喜連瓜破",
+    "station_name_kana": "きれうりわり",
+    "station_name_en": "Kire-Urizaru",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.5883,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "喜連瓜破"
+    ],
+    "aliases": [
+      "喜連瓜破駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34578_135537",
+    "station_slug": "deto",
+    "station_name": "出戸",
+    "station_name_kana": "でと",
+    "station_name_en": "Deto",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.5783,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "出戸"
+    ],
+    "aliases": [
+      "出戸駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34568_135537",
+    "station_slug": "nagahara",
+    "station_name": "長原",
+    "station_name_kana": "ながはら",
+    "station_name_en": "Nagahara",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.5683,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "長原"
+    ],
+    "aliases": [
+      "長原駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34558_135537",
+    "station_slug": "yao-minami",
+    "station_name": "八尾南",
+    "station_name_kana": "やおみなみ",
+    "station_name_en": "Yao-Minami",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.5583,
+    "lon": 135.5367,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "T"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "八尾南"
+    ],
+    "aliases": [
+      "八尾南駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34698_135493",
+    "station_slug": "nishi-umeda",
+    "station_name": "西梅田",
+    "station_name_kana": "にしうめだ",
+    "station_name_en": "Nishi-Umeda",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6983,
+    "lon": 135.4933,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "Y"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "西梅田"
+    ],
+    "aliases": [
+      "西梅田駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34690_135497",
+    "station_slug": "higobashi",
+    "station_name": "肥後橋",
+    "station_name_kana": "ひごばし",
+    "station_name_en": "Higobashi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.69,
+    "lon": 135.4967,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "Y"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "肥後橋"
+    ],
+    "aliases": [
+      "肥後橋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34673_135497",
+    "station_slug": "yotsubashi",
+    "station_name": "四ツ橋",
+    "station_name_kana": "よつばし",
+    "station_name_en": "Yotsubashi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6733,
+    "lon": 135.4967,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "Y"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "四ツ橋"
+    ],
+    "aliases": [
+      "四ツ橋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34647_135497",
+    "station_slug": "hanazonocho",
+    "station_name": "花園町",
+    "station_name_kana": "はなぞのちょう",
+    "station_name_en": "Hanazonocho",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6467,
+    "lon": 135.4967,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "Y"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "花園町"
+    ],
+    "aliases": [
+      "花園町駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34637_135497",
+    "station_slug": "kishinosato",
+    "station_name": "岸里",
+    "station_name_kana": "きしのさと",
+    "station_name_en": "Kishinosato",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6367,
+    "lon": 135.4967,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "Y"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "岸里"
+    ],
+    "aliases": [
+      "岸里駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34627_135497",
+    "station_slug": "tamade",
+    "station_name": "玉出",
+    "station_name_kana": "たまで",
+    "station_name_en": "Tamade",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6267,
+    "lon": 135.4967,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "Y"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "玉出"
+    ],
+    "aliases": [
+      "玉出駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34617_135497",
+    "station_slug": "kita-kagaya",
+    "station_name": "北加賀屋",
+    "station_name_kana": "きたかがや",
+    "station_name_en": "Kita-Kagaya",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6167,
+    "lon": 135.4967,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "Y"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "北加賀屋"
+    ],
+    "aliases": [
+      "北加賀屋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34607_135497",
+    "station_slug": "suminoe-koen",
+    "station_name": "住之江公園",
+    "station_name_kana": "すみのえこうえん",
+    "station_name_en": "Suminoe-koen",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6067,
+    "lon": 135.4967,
+    "operators": [
+      "大阪メトロ"
+    ],
+    "line_ids": [
+      "Y"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "住之江公園"
+    ],
+    "aliases": [
+      "住之江公園駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34723_135473",
+    "station_slug": "juso",
+    "station_name": "十三",
+    "station_name_kana": "じゅうそう",
+    "station_name_en": "Juso",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7233,
+    "lon": 135.4733,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "十三"
+    ],
+    "aliases": [
+      "十三駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34733_135483",
+    "station_slug": "sozenji",
+    "station_name": "崇禅寺",
+    "station_name_kana": "そうぜんじ",
+    "station_name_en": "Sozenji",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7333,
+    "lon": 135.4833,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "崇禅寺"
+    ],
+    "aliases": [
+      "崇禅寺駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34742_135488",
+    "station_slug": "awaji",
+    "station_name": "淡路",
+    "station_name_kana": "あわじ",
+    "station_name_en": "Awaji",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7417,
+    "lon": 135.4883,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "淡路"
+    ],
+    "aliases": [
+      "淡路駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34750_135503",
+    "station_slug": "kamishinjyo",
+    "station_name": "上新庄",
+    "station_name_kana": "かみしんじょう",
+    "station_name_en": "Kamishinjyo",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.75,
+    "lon": 135.5033,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "上新庄"
+    ],
+    "aliases": [
+      "上新庄駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34753_135518",
+    "station_slug": "aikawa",
+    "station_name": "相川",
+    "station_name_kana": "あいかわ",
+    "station_name_en": "Aikawa",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7533,
+    "lon": 135.5183,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "相川"
+    ],
+    "aliases": [
+      "相川駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34757_135533",
+    "station_slug": "shojaku",
+    "station_name": "正雀",
+    "station_name_kana": "しょうじゃく",
+    "station_name_en": "Shojaku",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7567,
+    "lon": 135.5333,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "正雀"
+    ],
+    "aliases": [
+      "正雀駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34768_135547",
+    "station_slug": "settsu-shi",
+    "station_name": "摂津市",
+    "station_name_kana": "せっつし",
+    "station_name_en": "Settsu-shi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7683,
+    "lon": 135.5467,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "摂津市"
+    ],
+    "aliases": [
+      "摂津市駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34782_135562",
+    "station_slug": "minami-ibaraki",
+    "station_name": "南茨木",
+    "station_name_kana": "みなみいばらき",
+    "station_name_en": "Minami-Ibaraki",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7817,
+    "lon": 135.5617,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "南茨木"
+    ],
+    "aliases": [
+      "南茨木駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34812_135570",
+    "station_slug": "ibaraki-shi",
+    "station_name": "茨木市",
+    "station_name_kana": "いばらきし",
+    "station_name_en": "Ibaraki-shi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.8117,
+    "lon": 135.57,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "茨木市"
+    ],
+    "aliases": [
+      "茨木市駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34818_135583",
+    "station_slug": "sojiji",
+    "station_name": "総持寺",
+    "station_name_kana": "そうじじ",
+    "station_name_en": "Sojiji",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.8183,
+    "lon": 135.5833,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "総持寺"
+    ],
+    "aliases": [
+      "総持寺駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34823_135598",
+    "station_slug": "tonda",
+    "station_name": "富田",
+    "station_name_kana": "とんだ",
+    "station_name_en": "Tonda",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.8233,
+    "lon": 135.5983,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "富田"
+    ],
+    "aliases": [
+      "富田駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34843_135617",
+    "station_slug": "takatsuki-shi",
+    "station_name": "高槻市",
+    "station_name_kana": "たかつきし",
+    "station_name_en": "Takatsuki-shi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.8433,
+    "lon": 135.6167,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "高槻市"
+    ],
+    "aliases": [
+      "高槻市駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34862_135632",
+    "station_slug": "kammaki",
+    "station_name": "上牧",
+    "station_name_kana": "かんまき",
+    "station_name_en": "Kammaki",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.8617,
+    "lon": 135.6317,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "上牧"
+    ],
+    "aliases": [
+      "上牧駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34870_135648",
+    "station_slug": "minase",
+    "station_name": "水無瀬",
+    "station_name_kana": "みなせ",
+    "station_name_en": "Minase",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.87,
+    "lon": 135.6483,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "水無瀬"
+    ],
+    "aliases": [
+      "水無瀬駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34895_135668",
+    "station_slug": "oyamazaki",
+    "station_name": "大山崎",
+    "station_name_kana": "おおやまざき",
+    "station_name_en": "Oyamazaki",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.895,
+    "lon": 135.6683,
+    "operators": [
+      "阪急電鉄"
+    ],
+    "line_ids": [
+      "HK"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "大山崎"
+    ],
+    "aliases": [
+      "大山崎駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34702_135496",
+    "station_slug": "osaka",
+    "station_name": "大阪",
+    "station_name_kana": "おおさか",
+    "station_name_en": "Osaka",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7025,
+    "lon": 135.4959,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "大阪"
+    ],
+    "aliases": [
+      "大阪駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34697_135478",
+    "station_slug": "fukushima",
+    "station_name": "福島",
+    "station_name_kana": "ふくしま",
+    "station_name_en": "Fukushima",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6967,
+    "lon": 135.4783,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "福島"
+    ],
+    "aliases": [
+      "福島駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34688_135470",
+    "station_slug": "noda",
+    "station_name": "野田",
+    "station_name_kana": "のだ",
+    "station_name_en": "Noda",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6883,
+    "lon": 135.47,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "野田"
+    ],
+    "aliases": [
+      "野田駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34677_135468",
+    "station_slug": "nishi-kujo",
+    "station_name": "西九条",
+    "station_name_kana": "にしくじょう",
+    "station_name_en": "Nishi-Kujo",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6767,
+    "lon": 135.4683,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "西九条"
+    ],
+    "aliases": [
+      "西九条駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34668_135468",
+    "station_slug": "bentenmachi",
+    "station_name": "弁天町",
+    "station_name_kana": "べんてんちょう",
+    "station_name_en": "Bentenmachi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6683,
+    "lon": 135.4683,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "弁天町"
+    ],
+    "aliases": [
+      "弁天町駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34662_135473",
+    "station_slug": "taisho",
+    "station_name": "大正",
+    "station_name_kana": "たいしょう",
+    "station_name_en": "Taisho",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6617,
+    "lon": 135.4733,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "大正"
+    ],
+    "aliases": [
+      "大正駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34653_135482",
+    "station_slug": "ashiharabashi",
+    "station_name": "芦原橋",
+    "station_name_kana": "あしはらばし",
+    "station_name_en": "Ashiharabashi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6533,
+    "lon": 135.4817,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "芦原橋"
+    ],
+    "aliases": [
+      "芦原橋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34648_135493",
+    "station_slug": "imamiya",
+    "station_name": "今宮",
+    "station_name_kana": "いまみや",
+    "station_name_en": "Imamiya",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6483,
+    "lon": 135.4933,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "今宮"
+    ],
+    "aliases": [
+      "今宮駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34647_135502",
+    "station_slug": "shin-imamiya",
+    "station_name": "新今宮",
+    "station_name_kana": "しんいまみや",
+    "station_name_en": "Shin-Imamiya",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6467,
+    "lon": 135.5017,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "新今宮"
+    ],
+    "aliases": [
+      "新今宮駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34653_135527",
+    "station_slug": "teradacho",
+    "station_name": "寺田町",
+    "station_name_kana": "てらだちょう",
+    "station_name_en": "Teradacho",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6533,
+    "lon": 135.5267,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "寺田町"
+    ],
+    "aliases": [
+      "寺田町駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34662_135537",
+    "station_slug": "momotani",
+    "station_name": "桃谷",
+    "station_name_kana": "ももたに",
+    "station_name_en": "Momotani",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6617,
+    "lon": 135.5367,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "桃谷"
+    ],
+    "aliases": [
+      "桃谷駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34668_135543",
+    "station_slug": "tsuruhashi",
+    "station_name": "鶴橋",
+    "station_name_kana": "つるはし",
+    "station_name_en": "Tsuruhashi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6683,
+    "lon": 135.5433,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "鶴橋"
+    ],
+    "aliases": [
+      "鶴橋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34673_135538",
+    "station_slug": "tamatsukuri",
+    "station_name": "玉造",
+    "station_name_kana": "たまつくり",
+    "station_name_en": "Tamatsukuri",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6733,
+    "lon": 135.5383,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "玉造"
+    ],
+    "aliases": [
+      "玉造駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34678_135533",
+    "station_slug": "morinomiya",
+    "station_name": "森ノ宮",
+    "station_name_kana": "もりのみや",
+    "station_name_en": "Morinomiya",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6783,
+    "lon": 135.5333,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "森ノ宮"
+    ],
+    "aliases": [
+      "森ノ宮駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34683_135528",
+    "station_slug": "osaka-jo-park",
+    "station_name": "大阪城公園",
+    "station_name_kana": "おおさかじょうこうえん",
+    "station_name_en": "Osaka-jo Park",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6833,
+    "lon": 135.5283,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "大阪城公園"
+    ],
+    "aliases": [
+      "大阪城公園駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34693_135532",
+    "station_slug": "kyobashi",
+    "station_name": "京橋",
+    "station_name_kana": "きょうばし",
+    "station_name_en": "Kyobashi",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.6933,
+    "lon": 135.5317,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "京橋"
+    ],
+    "aliases": [
+      "京橋駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34702_135522",
+    "station_slug": "sakuranomiya",
+    "station_name": "桜ノ宮",
+    "station_name_kana": "さくらのみや",
+    "station_name_en": "Sakuranomiya",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7017,
+    "lon": 135.5217,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "桜ノ宮"
+    ],
+    "aliases": [
+      "桜ノ宮駅"
+    ],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_34708_135513",
+    "station_slug": "temma",
+    "station_name": "天満",
+    "station_name_kana": "てんま",
+    "station_name_en": "Temma",
+    "prefecture_code": "27",
+    "prefecture_name": "大阪府",
+    "lat": 34.7083,
+    "lon": 135.5133,
+    "operators": [
+      "JR西日本"
+    ],
+    "line_ids": [
+      "OC"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "天満"
+    ],
+    "aliases": [
+      "天満駅"
+    ],
+    "status": "active"
+  }
+]

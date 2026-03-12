@@ -1,0 +1,377 @@
+{
+  "deck_meta": {
+    "version": "1.0",
+    "city": "osaka",
+    "source_metrics": "station_metrics.json",
+    "deck_size": 40,
+    "rarity_distribution": {
+      "S": 5,
+      "A": 10,
+      "B": 15,
+      "C": 10
+    },
+    "generated_at": "2026-03-12T04:17:08Z"
+  },
+  "cards": [
+    {
+      "card_id": "card_001",
+      "station_global_id": "ST_34646_135513",
+      "station_name": "天王寺",
+      "station_slug": "tennoji",
+      "score_total": 22.3178,
+      "rarity": "S",
+      "rank": 1
+    },
+    {
+      "card_id": "card_002",
+      "station_global_id": "ST_34682_135500",
+      "station_name": "本町",
+      "station_slug": "honmachi",
+      "score_total": 14.2585,
+      "rarity": "S",
+      "rank": 2
+    },
+    {
+      "card_id": "card_003",
+      "station_global_id": "ST_34657_135498",
+      "station_name": "大国町",
+      "station_slug": "daikoku-cho",
+      "score_total": 14.2295,
+      "rarity": "S",
+      "rank": 3
+    },
+    {
+      "card_id": "card_004",
+      "station_global_id": "ST_34666_135501",
+      "station_name": "なんば",
+      "station_slug": "namba",
+      "score_total": 13.4162,
+      "rarity": "S",
+      "rank": 4
+    },
+    {
+      "card_id": "card_005",
+      "station_global_id": "ST_34707_135496",
+      "station_name": "中津",
+      "station_slug": "nakatsu",
+      "score_total": 12.7149,
+      "rarity": "S",
+      "rank": 5
+    },
+    {
+      "card_id": "card_006",
+      "station_global_id": "ST_34618_135518",
+      "station_name": "長居",
+      "station_slug": "nagai",
+      "score_total": 12.1974,
+      "rarity": "A",
+      "rank": 6
+    },
+    {
+      "card_id": "card_007",
+      "station_global_id": "ST_34703_135498",
+      "station_name": "梅田",
+      "station_slug": "umeda",
+      "score_total": 11.6718,
+      "rarity": "A",
+      "rank": 7
+    },
+    {
+      "card_id": "card_008",
+      "station_global_id": "ST_34652_135506",
+      "station_name": "動物園前",
+      "station_slug": "dobutsuen-mae",
+      "score_total": 9.8766,
+      "rarity": "A",
+      "rank": 8
+    },
+    {
+      "card_id": "card_009",
+      "station_global_id": "ST_34694_135501",
+      "station_name": "淀屋橋",
+      "station_slug": "yodoyabashi",
+      "score_total": 8.7952,
+      "rarity": "A",
+      "rank": 9
+    },
+    {
+      "card_id": "card_010",
+      "station_global_id": "ST_34653_135518",
+      "station_name": "四天王寺前夕陽ヶ丘",
+      "station_slug": "shitennoji-mae-yuhigaoka",
+      "score_total": 7.969,
+      "rarity": "A",
+      "rank": 10
+    },
+    {
+      "card_id": "card_011",
+      "station_global_id": "ST_34662_135518",
+      "station_name": "谷町九丁目",
+      "station_slug": "tanimachi-9-chome",
+      "score_total": 7.8112,
+      "rarity": "A",
+      "rank": 11
+    },
+    {
+      "card_id": "card_012",
+      "station_global_id": "ST_34723_135473",
+      "station_name": "十三",
+      "station_slug": "juso",
+      "score_total": 7.8112,
+      "rarity": "A",
+      "rank": 12
+    },
+    {
+      "card_id": "card_013",
+      "station_global_id": "ST_34672_135518",
+      "station_name": "谷町六丁目",
+      "station_slug": "tanimachi-6-chome",
+      "score_total": 7.6477,
+      "rarity": "A",
+      "rank": 13
+    },
+    {
+      "card_id": "card_014",
+      "station_global_id": "ST_34733_135483",
+      "station_name": "崇禅寺",
+      "station_slug": "sozenji",
+      "score_total": 7.6477,
+      "rarity": "A",
+      "rank": 14
+    },
+    {
+      "card_id": "card_015",
+      "station_global_id": "ST_34682_135518",
+      "station_name": "谷町四丁目",
+      "station_slug": "tanimachi-4-chome",
+      "score_total": 7.4785,
+      "rarity": "A",
+      "rank": 15
+    },
+    {
+      "card_id": "card_016",
+      "station_global_id": "ST_34742_135488",
+      "station_name": "淡路",
+      "station_slug": "awaji",
+      "score_total": 7.4785,
+      "rarity": "B",
+      "rank": 16
+    },
+    {
+      "card_id": "card_017",
+      "station_global_id": "ST_34688_135518",
+      "station_name": "天満橋",
+      "station_slug": "temmabashi",
+      "score_total": 7.3035,
+      "rarity": "B",
+      "rank": 17
+    },
+    {
+      "card_id": "card_018",
+      "station_global_id": "ST_34750_135503",
+      "station_name": "上新庄",
+      "station_slug": "kamishinjyo",
+      "score_total": 7.3035,
+      "rarity": "B",
+      "rank": 18
+    },
+    {
+      "card_id": "card_019",
+      "station_global_id": "ST_34693_135508",
+      "station_name": "南森町",
+      "station_slug": "minami-morimachi",
+      "score_total": 7.1228,
+      "rarity": "B",
+      "rank": 19
+    },
+    {
+      "card_id": "card_020",
+      "station_global_id": "ST_34753_135518",
+      "station_name": "相川",
+      "station_slug": "aikawa",
+      "score_total": 7.1228,
+      "rarity": "B",
+      "rank": 20
+    },
+    {
+      "card_id": "card_021",
+      "station_global_id": "ST_34675_135501",
+      "station_name": "心斎橋",
+      "station_slug": "shinsaibashi",
+      "score_total": 7.0797,
+      "rarity": "B",
+      "rank": 21
+    },
+    {
+      "card_id": "card_022",
+      "station_global_id": "ST_34673_135497",
+      "station_name": "四ツ橋",
+      "station_slug": "yotsubashi",
+      "score_total": 7.0797,
+      "rarity": "B",
+      "rank": 22
+    },
+    {
+      "card_id": "card_023",
+      "station_global_id": "ST_34702_135503",
+      "station_name": "東梅田",
+      "station_slug": "higashi-umeda",
+      "score_total": 6.9363,
+      "rarity": "B",
+      "rank": 23
+    },
+    {
+      "card_id": "card_024",
+      "station_global_id": "ST_34757_135533",
+      "station_name": "正雀",
+      "station_slug": "shojaku",
+      "score_total": 6.9363,
+      "rarity": "B",
+      "rank": 24
+    },
+    {
+      "card_id": "card_025",
+      "station_global_id": "ST_34707_135508",
+      "station_name": "中崎町",
+      "station_slug": "nakazaki-cho",
+      "score_total": 6.7441,
+      "rarity": "B",
+      "rank": 25
+    },
+    {
+      "card_id": "card_026",
+      "station_global_id": "ST_34768_135547",
+      "station_name": "摂津市",
+      "station_slug": "settsu-shi",
+      "score_total": 6.7441,
+      "rarity": "B",
+      "rank": 26
+    },
+    {
+      "card_id": "card_027",
+      "station_global_id": "ST_34647_135502",
+      "station_name": "新今宮",
+      "station_slug": "shin-imamiya",
+      "score_total": 6.6179,
+      "rarity": "B",
+      "rank": 27
+    },
+    {
+      "card_id": "card_028",
+      "station_global_id": "ST_34653_135527",
+      "station_name": "寺田町",
+      "station_slug": "teradacho",
+      "score_total": 6.6179,
+      "rarity": "B",
+      "rank": 28
+    },
+    {
+      "card_id": "card_029",
+      "station_global_id": "ST_34702_135513",
+      "station_name": "天神橋筋六丁目",
+      "station_slug": "tenjinbashisuji-6-chome",
+      "score_total": 6.5462,
+      "rarity": "B",
+      "rank": 29
+    },
+    {
+      "card_id": "card_030",
+      "station_global_id": "ST_34782_135562",
+      "station_name": "南茨木",
+      "station_slug": "minami-ibaraki",
+      "score_total": 6.5462,
+      "rarity": "B",
+      "rank": 30
+    },
+    {
+      "card_id": "card_031",
+      "station_global_id": "ST_34648_135493",
+      "station_name": "今宮",
+      "station_slug": "imamiya",
+      "score_total": 6.4286,
+      "rarity": "C",
+      "rank": 31
+    },
+    {
+      "card_id": "card_032",
+      "station_global_id": "ST_34662_135537",
+      "station_name": "桃谷",
+      "station_slug": "momotani",
+      "score_total": 6.4286,
+      "rarity": "C",
+      "rank": 32
+    },
+    {
+      "card_id": "card_033",
+      "station_global_id": "ST_34693_135528",
+      "station_name": "都島",
+      "station_slug": "miyakojima",
+      "score_total": 6.3425,
+      "rarity": "C",
+      "rank": 33
+    },
+    {
+      "card_id": "card_034",
+      "station_global_id": "ST_34812_135570",
+      "station_name": "茨木市",
+      "station_slug": "ibaraki-shi",
+      "score_total": 6.3425,
+      "rarity": "C",
+      "rank": 34
+    },
+    {
+      "card_id": "card_035",
+      "station_global_id": "ST_34638_135518",
+      "station_name": "昭和町",
+      "station_slug": "showa-cho",
+      "score_total": 6.3067,
+      "rarity": "C",
+      "rank": 35
+    },
+    {
+      "card_id": "card_036",
+      "station_global_id": "ST_34638_135513",
+      "station_name": "阿倍野",
+      "station_slug": "abeno",
+      "score_total": 6.3067,
+      "rarity": "C",
+      "rank": 36
+    },
+    {
+      "card_id": "card_037",
+      "station_global_id": "ST_34653_135482",
+      "station_name": "芦原橋",
+      "station_slug": "ashiharabashi",
+      "score_total": 6.2392,
+      "rarity": "C",
+      "rank": 37
+    },
+    {
+      "card_id": "card_038",
+      "station_global_id": "ST_34668_135543",
+      "station_name": "鶴橋",
+      "station_slug": "tsuruhashi",
+      "score_total": 6.2392,
+      "rarity": "C",
+      "rank": 38
+    },
+    {
+      "card_id": "card_039",
+      "station_global_id": "ST_34631_135517",
+      "station_name": "西田辺",
+      "station_slug": "nishi-tanabe",
+      "score_total": 6.1374,
+      "rarity": "C",
+      "rank": 39
+    },
+    {
+      "card_id": "card_040",
+      "station_global_id": "ST_34628_135518",
+      "station_name": "文の里",
+      "station_slug": "fuminosato",
+      "score_total": 6.1374,
+      "rarity": "C",
+      "rank": 40
+    }
+  ]
+}

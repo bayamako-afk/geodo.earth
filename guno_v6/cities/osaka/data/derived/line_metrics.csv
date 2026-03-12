@@ -1,0 +1,6 @@
+line_id,line_name,line_name_en,operator_name,color,is_loop,station_count,transfer_station_count,terminal_count,hub_score_sum,avg_station_score,line_strength,line_difficulty
+M,御堂筋線,Midosuji Line,大阪メトロ,#E5171F,False,20,7,2,179.8129,8.9906,82.4392,-3.1
+T,谷町線,Tanimachi Line,大阪メトロ,#522886,False,26,2,2,183.7745,7.0682,75.6664,6.8
+OC,大阪環状線,Osaka Loop Line,JR西日本,#FF6600,True,19,1,0,128.8084,6.7794,53.5322,6.1
+HK,阪急京都線,Hankyu Kyoto Line,阪急電鉄,#6C3B2A,False,17,2,2,120.7762,7.1045,52.2851,3.2
+Y,四つ橋線,Yotsubashi Line,大阪メトロ,#0066B3,False,11,3,2,84.5456,7.686,40.7067,-0.7

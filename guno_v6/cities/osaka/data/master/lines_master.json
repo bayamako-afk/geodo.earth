@@ -1,0 +1,68 @@
+[
+  {
+    "line_id": "M",
+    "line_name": "御堂筋線",
+    "line_name_en": "Midosuji Line",
+    "operator_name": "大阪メトロ",
+    "color": "#E5171F",
+    "prefectures": [
+      "大阪府"
+    ],
+    "is_loop": false,
+    "status": "active",
+    "station_count": 20
+  },
+  {
+    "line_id": "T",
+    "line_name": "谷町線",
+    "line_name_en": "Tanimachi Line",
+    "operator_name": "大阪メトロ",
+    "color": "#522886",
+    "prefectures": [
+      "大阪府"
+    ],
+    "is_loop": false,
+    "status": "active",
+    "station_count": 26
+  },
+  {
+    "line_id": "Y",
+    "line_name": "四つ橋線",
+    "line_name_en": "Yotsubashi Line",
+    "operator_name": "大阪メトロ",
+    "color": "#0066B3",
+    "prefectures": [
+      "大阪府"
+    ],
+    "is_loop": false,
+    "status": "active",
+    "station_count": 11
+  },
+  {
+    "line_id": "HK",
+    "line_name": "阪急京都線",
+    "line_name_en": "Hankyu Kyoto Line",
+    "operator_name": "阪急電鉄",
+    "color": "#6C3B2A",
+    "prefectures": [
+      "大阪府",
+      "京都府"
+    ],
+    "is_loop": false,
+    "status": "active",
+    "station_count": 17
+  },
+  {
+    "line_id": "OC",
+    "line_name": "大阪環状線",
+    "line_name_en": "Osaka Loop Line",
+    "operator_name": "JR西日本",
+    "color": "#FF6600",
+    "prefectures": [
+      "大阪府"
+    ],
+    "is_loop": true,
+    "status": "active",
+    "station_count": 20
+  }
+]

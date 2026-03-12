@@ -1,0 +1,492 @@
+{
+  "pack_meta": {
+    "pack_version": "1.0",
+    "pack_id": "osaka_core",
+    "city": "osaka",
+    "name": "Osaka Core Lines",
+    "description": "御堂筋線・谷町線・四つ橋線・阪急京都線・大阪環状線",
+    "generated_by": "GUNO Deck Generator v1.0",
+    "generated_at": "2026-03-12T04:17:08Z"
+  },
+  "entities": {
+    "m13": {
+      "type": "station",
+      "name_ja": "天王寺",
+      "name_en": "Tennoji",
+      "station_code": "m13",
+      "cross_lines": [
+        "T",
+        "OC"
+      ]
+    },
+    "m08": {
+      "type": "station",
+      "name_ja": "本町",
+      "name_en": "Honmachi",
+      "station_code": "m08",
+      "cross_lines": [
+        "Y"
+      ]
+    },
+    "m11": {
+      "type": "station",
+      "name_ja": "大国町",
+      "name_en": "Daikoku Cho",
+      "station_code": "m11",
+      "cross_lines": [
+        "Y"
+      ]
+    },
+    "m10": {
+      "type": "station",
+      "name_ja": "なんば",
+      "name_en": "Namba",
+      "station_code": "m10",
+      "cross_lines": [
+        "Y"
+      ]
+    },
+    "m05": {
+      "type": "station",
+      "name_ja": "中津",
+      "name_en": "Nakatsu",
+      "station_code": "m05",
+      "cross_lines": [
+        "HK"
+      ]
+    },
+    "m16": {
+      "type": "station",
+      "name_ja": "長居",
+      "name_en": "Nagai",
+      "station_code": "m16",
+      "cross_lines": [
+        "T"
+      ]
+    },
+    "m06": {
+      "type": "station",
+      "name_ja": "梅田",
+      "name_en": "Umeda",
+      "station_code": "m06",
+      "cross_lines": [
+        "HK"
+      ]
+    },
+    "m12": {
+      "type": "station",
+      "name_ja": "動物園前",
+      "name_en": "Dobutsuen Mae",
+      "station_code": "m12",
+      "cross_lines": []
+    },
+    "m07": {
+      "type": "station",
+      "name_ja": "淀屋橋",
+      "name_en": "Yodoyabashi",
+      "station_code": "m07",
+      "cross_lines": []
+    },
+    "t16": {
+      "type": "station",
+      "name_ja": "四天王寺前夕陽ヶ丘",
+      "name_en": "Shitennoji Mae Yuhigaoka",
+      "station_code": "t16",
+      "cross_lines": []
+    },
+    "t15": {
+      "type": "station",
+      "name_ja": "谷町九丁目",
+      "name_en": "Tanimachi 9 Chome",
+      "station_code": "t15",
+      "cross_lines": []
+    },
+    "hk03": {
+      "type": "station",
+      "name_ja": "十三",
+      "name_en": "Juso",
+      "station_code": "hk03",
+      "cross_lines": []
+    },
+    "t14": {
+      "type": "station",
+      "name_ja": "谷町六丁目",
+      "name_en": "Tanimachi 6 Chome",
+      "station_code": "t14",
+      "cross_lines": []
+    },
+    "hk04": {
+      "type": "station",
+      "name_ja": "崇禅寺",
+      "name_en": "Sozenji",
+      "station_code": "hk04",
+      "cross_lines": []
+    },
+    "t13": {
+      "type": "station",
+      "name_ja": "谷町四丁目",
+      "name_en": "Tanimachi 4 Chome",
+      "station_code": "t13",
+      "cross_lines": []
+    },
+    "hk05": {
+      "type": "station",
+      "name_ja": "淡路",
+      "name_en": "Awaji",
+      "station_code": "hk05",
+      "cross_lines": []
+    },
+    "t12": {
+      "type": "station",
+      "name_ja": "天満橋",
+      "name_en": "Temmabashi",
+      "station_code": "t12",
+      "cross_lines": []
+    },
+    "hk06": {
+      "type": "station",
+      "name_ja": "上新庄",
+      "name_en": "Kamishinjyo",
+      "station_code": "hk06",
+      "cross_lines": []
+    },
+    "t11": {
+      "type": "station",
+      "name_ja": "南森町",
+      "name_en": "Minami Morimachi",
+      "station_code": "t11",
+      "cross_lines": []
+    },
+    "hk07": {
+      "type": "station",
+      "name_ja": "相川",
+      "name_en": "Aikawa",
+      "station_code": "hk07",
+      "cross_lines": []
+    },
+    "m09": {
+      "type": "station",
+      "name_ja": "心斎橋",
+      "name_en": "Shinsaibashi",
+      "station_code": "m09",
+      "cross_lines": []
+    },
+    "y04": {
+      "type": "station",
+      "name_ja": "四ツ橋",
+      "name_en": "Yotsubashi",
+      "station_code": "y04",
+      "cross_lines": []
+    },
+    "t10": {
+      "type": "station",
+      "name_ja": "東梅田",
+      "name_en": "Higashi Umeda",
+      "station_code": "t10",
+      "cross_lines": []
+    },
+    "hk08": {
+      "type": "station",
+      "name_ja": "正雀",
+      "name_en": "Shojaku",
+      "station_code": "hk08",
+      "cross_lines": []
+    },
+    "t09": {
+      "type": "station",
+      "name_ja": "中崎町",
+      "name_en": "Nakazaki Cho",
+      "station_code": "t09",
+      "cross_lines": []
+    },
+    "hk09": {
+      "type": "station",
+      "name_ja": "摂津市",
+      "name_en": "Settsu Shi",
+      "station_code": "hk09",
+      "cross_lines": []
+    },
+    "oc09": {
+      "type": "station",
+      "name_ja": "新今宮",
+      "name_en": "Shin Imamiya",
+      "station_code": "oc09",
+      "cross_lines": []
+    },
+    "oc11": {
+      "type": "station",
+      "name_ja": "寺田町",
+      "name_en": "Teradacho",
+      "station_code": "oc11",
+      "cross_lines": []
+    },
+    "t08": {
+      "type": "station",
+      "name_ja": "天神橋筋六丁目",
+      "name_en": "Tenjinbashisuji 6 Chome",
+      "station_code": "t08",
+      "cross_lines": []
+    },
+    "hk10": {
+      "type": "station",
+      "name_ja": "南茨木",
+      "name_en": "Minami Ibaraki",
+      "station_code": "hk10",
+      "cross_lines": []
+    },
+    "oc08": {
+      "type": "station",
+      "name_ja": "今宮",
+      "name_en": "Imamiya",
+      "station_code": "oc08",
+      "cross_lines": []
+    },
+    "oc12": {
+      "type": "station",
+      "name_ja": "桃谷",
+      "name_en": "Momotani",
+      "station_code": "oc12",
+      "cross_lines": []
+    },
+    "t07": {
+      "type": "station",
+      "name_ja": "都島",
+      "name_en": "Miyakojima",
+      "station_code": "t07",
+      "cross_lines": []
+    },
+    "hk11": {
+      "type": "station",
+      "name_ja": "茨木市",
+      "name_en": "Ibaraki Shi",
+      "station_code": "hk11",
+      "cross_lines": []
+    },
+    "m14": {
+      "type": "station",
+      "name_ja": "昭和町",
+      "name_en": "Showa Cho",
+      "station_code": "m14",
+      "cross_lines": []
+    },
+    "t18": {
+      "type": "station",
+      "name_ja": "阿倍野",
+      "name_en": "Abeno",
+      "station_code": "t18",
+      "cross_lines": []
+    },
+    "oc07": {
+      "type": "station",
+      "name_ja": "芦原橋",
+      "name_en": "Ashiharabashi",
+      "station_code": "oc07",
+      "cross_lines": []
+    },
+    "oc13": {
+      "type": "station",
+      "name_ja": "鶴橋",
+      "name_en": "Tsuruhashi",
+      "station_code": "oc13",
+      "cross_lines": []
+    },
+    "m15": {
+      "type": "station",
+      "name_ja": "西田辺",
+      "name_en": "Nishi Tanabe",
+      "station_code": "m15",
+      "cross_lines": []
+    },
+    "t19": {
+      "type": "station",
+      "name_ja": "文の里",
+      "name_en": "Fuminosato",
+      "station_code": "t19",
+      "cross_lines": []
+    }
+  },
+  "collections": {
+    "m": {
+      "line_id": "M",
+      "line_name": "御堂筋線",
+      "line_name_en": "Midosuji Line",
+      "color": "#E5171F",
+      "stations": [
+        "m05",
+        "m06",
+        "m07",
+        "m08",
+        "m09",
+        "m10",
+        "m11",
+        "m12",
+        "m13",
+        "m14",
+        "m15",
+        "m16"
+      ],
+      "complete_bonus": 60
+    },
+    "t": {
+      "line_id": "T",
+      "line_name": "谷町線",
+      "line_name_en": "Tanimachi Line",
+      "color": "#522886",
+      "stations": [
+        "t07",
+        "t08",
+        "t09",
+        "t10",
+        "t11",
+        "t12",
+        "t13",
+        "t14",
+        "t15",
+        "t16",
+        "t17",
+        "t18",
+        "t19",
+        "t20"
+      ],
+      "complete_bonus": 70
+    },
+    "y": {
+      "line_id": "Y",
+      "line_name": "四つ橋線",
+      "line_name_en": "Yotsubashi Line",
+      "color": "#0066B3",
+      "stations": [
+        "y03",
+        "y04",
+        "y05",
+        "y06"
+      ],
+      "complete_bonus": 20
+    },
+    "hk": {
+      "line_id": "HK",
+      "line_name": "阪急京都線",
+      "line_name_en": "Hankyu Kyoto Line",
+      "color": "#6C3B2A",
+      "stations": [
+        "hk01",
+        "hk02",
+        "hk03",
+        "hk04",
+        "hk05",
+        "hk06",
+        "hk07",
+        "hk08",
+        "hk09",
+        "hk10",
+        "hk11"
+      ],
+      "complete_bonus": 55
+    },
+    "oc": {
+      "line_id": "OC",
+      "line_name": "大阪環状線",
+      "line_name_en": "Osaka Loop Line",
+      "color": "#FF6600",
+      "stations": [
+        "oc07",
+        "oc08",
+        "oc09",
+        "oc10",
+        "oc11",
+        "oc12",
+        "oc13"
+      ],
+      "complete_bonus": 35
+    }
+  },
+  "layouts": {
+    "m": {
+      "type": "line",
+      "direction": "horizontal",
+      "stations": [
+        "m05",
+        "m06",
+        "m07",
+        "m08",
+        "m09",
+        "m10",
+        "m11",
+        "m12",
+        "m13",
+        "m14",
+        "m15",
+        "m16"
+      ]
+    },
+    "t": {
+      "type": "line",
+      "direction": "horizontal",
+      "stations": [
+        "t07",
+        "t08",
+        "t09",
+        "t10",
+        "t11",
+        "t12",
+        "t13",
+        "t14",
+        "t15",
+        "t16",
+        "t17",
+        "t18",
+        "t19",
+        "t20"
+      ]
+    },
+    "y": {
+      "type": "line",
+      "direction": "horizontal",
+      "stations": [
+        "y03",
+        "y04",
+        "y05",
+        "y06"
+      ]
+    },
+    "hk": {
+      "type": "line",
+      "direction": "horizontal",
+      "stations": [
+        "hk01",
+        "hk02",
+        "hk03",
+        "hk04",
+        "hk05",
+        "hk06",
+        "hk07",
+        "hk08",
+        "hk09",
+        "hk10",
+        "hk11"
+      ]
+    },
+    "oc": {
+      "type": "line",
+      "direction": "horizontal",
+      "stations": [
+        "oc07",
+        "oc08",
+        "oc09",
+        "oc10",
+        "oc11",
+        "oc12",
+        "oc13"
+      ]
+    }
+  },
+  "rules": {
+    "deck_size": 40,
+    "hand_size": 5,
+    "win_condition": "highest_score",
+    "scoring": {
+      "station_base": "score_total",
+      "route_complete_bonus": "complete_bonus"
+    }
+  }
+}
