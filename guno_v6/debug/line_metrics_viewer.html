@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Line Metrics Viewer — GUNO V6 Debug</title>
   <style>
+    /* city selector */
+    #city-selector-wrapper { display:flex; align-items:center; gap:5px; margin-left:8px; }
+    #city-selector-wrapper label { font-size:10px; color:#8b949e; text-transform:uppercase; letter-spacing:.06em; white-space:nowrap; }
+    #city-select { background:#21262d; color:#c9d1d9; border:1px solid #30363d; border-radius:4px; font-size:11px; padding:3px 6px; cursor:pointer; outline:none; }
+    #data-not-ready-banner { display:none; position:fixed; top:40px; left:50%; transform:translateX(-50%); background:#78350f; color:#fde68a; padding:10px 24px; border-radius:6px; font-size:12px; z-index:9997; text-align:center; border:1px solid #d97706; }
+  </style>
+  <style>
     /* ── Base ──────────────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -282,8 +289,8 @@
 
 <!-- Top bar -->
 <div id="topbar">
-  <span class="title">Line Metrics Viewer</span>
-  <span class="subtitle">GUNO V6 Debug Tools</span>
+  <span class="title" id="topbar-title">Line Metrics Viewer</span>
+  <span class="subtitle" id="topbar-subtitle">GUNO V6 Debug Tools</span>
   <nav class="nav-links">
     <a href="station_graph_viewer.html">Graph</a>
     <a href="station_metrics_viewer.html">Metrics</a>
@@ -295,10 +302,16 @@
     <a href="game_simulator.html">Sim</a>
     <a href="dynamic_deck_viewer.html">DynDeck</a>
   </nav>
+  <!-- City selector -->
+  <div id="city-selector-wrapper">
+    <label for="city-select">City:</label>
+    <select id="city-select"></select>
+  </div>
 </div>
 
 <!-- Error banner -->
 <div id="error-banner"></div>
+<div id="data-not-ready-banner"></div>
 
 <!-- Layout -->
 <div id="layout">
@@ -448,8 +461,45 @@
   <span id="status-text">Loading data…</span>
 </div>
 
-<script>
-// ── State ─────────────────────────────────────────────────────────────────────
+<script type="module">
+import {
+  loadCityRegistry,
+  getDefaultCityId,
+  loadCityProfile,
+  resolveDatasetUrl,
+} from '../src/city/city_loader.js';
+
+// ── City helpers ──────────────────────────────────────────────────────────────
+function getCityIdFromUrl() {
+  return new URLSearchParams(window.location.search).get('city') || null;
+}
+async function resolveCity() {
+  const registry  = await loadCityRegistry();
+  const defaultId = getDefaultCityId(registry);
+  const paramId   = getCityIdFromUrl();
+  if (!paramId) return { cityId: defaultId, registry };
+  const valid = registry.cities.some(c => c.city_id === paramId);
+  if (!valid) { console.warn(`Unknown city "${paramId}", fallback to "${defaultId}"`); return { cityId: defaultId, registry }; }
+  return { cityId: paramId, registry };
+}
+function populateCitySelector(cities, activeCityId) {
+  const select = document.getElementById('city-select');
+  select.innerHTML = '';
+  cities.forEach(city => {
+    const opt = document.createElement('option');
+    opt.value = city.city_id;
+    opt.textContent = city.display_name || city.city_id;
+    if (city.city_id === activeCityId) opt.selected = true;
+    select.appendChild(opt);
+  });
+  select.addEventListener('change', () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('city', select.value);
+    window.location.href = url.toString();
+  });
+}
+
+// ── State ────────────────────────────────────────────────────────────────────────────────
 let allLines = [];
 let meta     = {};
 
@@ -622,13 +672,10 @@ function render() {
   renderDifficultyTable(allLines);
 }
 
-// ── Load data ─────────────────────────────────────────────────────────────────
-async function loadData() {
-  const baseUrl = new URL('../', location.href).href;
-  const metricsUrl = baseUrl + 'cities/tokyo/data/derived/line_metrics.json';
-
+// ── Load data ───────────────────────────────────────────────────────────────────────────────
+async function loadData(metricsUrl) {
   try {
-    setStatus('Loading line_metrics_tokyo.json…');
+    setStatus('Loading line_metrics…');
     const res = await fetch(metricsUrl);
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${metricsUrl}`);
     const data = await res.json();
@@ -651,14 +698,30 @@ async function loadData() {
   }
 }
 
-// ── Event listeners ───────────────────────────────────────────────────────────
+// ── Event listeners ───────────────────────────────────────────────────────────────────────────────
 document.getElementById('sort-strength').addEventListener('change', render);
 document.getElementById('sort-difficulty').addEventListener('change', render);
 document.getElementById('filter-strong').addEventListener('change', render);
 document.getElementById('filter-difficult').addEventListener('change', render);
 
-// ── Init ──────────────────────────────────────────────────────────────────────
-loadData();
+// ── Bootstrap ───────────────────────────────────────────────────────────────────────────────
+(async () => {
+  const { cityId, registry } = await resolveCity();
+  populateCitySelector(registry.cities, cityId);
+  const profile  = await loadCityProfile(cityId);
+  const cityName = profile.name || cityId;
+  document.title = `Line Metrics — ${cityName}`;
+  document.getElementById('topbar-title').textContent = `Line Metrics Viewer — ${cityName}`;
+  if (!profile.status?.data_ready) {
+    const b = document.getElementById('data-not-ready-banner');
+    b.innerHTML = `<strong>${cityName}</strong> — dataset not ready yet <span style="color:#a16207;margin-left:8px">(${cityId})</span>`;
+    b.style.display = 'block';
+    setStatus('Data not ready', false);
+    return;
+  }
+  const metricsUrl = resolveDatasetUrl('line_metrics', profile);
+  await loadData(metricsUrl);
+})();
 </script>
 </body>
 </html>

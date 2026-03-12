@@ -61,6 +61,31 @@
     #toolbar-status.ok  { color: #34d399; }
     #toolbar-status.err { color: #f87171; }
 
+    /* ── City selector ───────────────────────── */
+    #city-selector-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 8px;
+    }
+    #city-selector-wrapper label {
+      font-size: 10px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    #city-select {
+      background: #374151;
+      color: #d1d5db;
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      font-size: 11px;
+      padding: 3px 6px;
+      cursor: pointer;
+      outline: none;
+    }
+
     /* ── Map controls ────────────────────────── */
     .ctrl-btn {
       padding: 4px 10px;
@@ -191,26 +216,51 @@
       font-size: 12px;
       z-index: 9998;
     }
+
+    /* Data-not-ready banner */
+    #data-not-ready-banner {
+      display: none;
+      position: fixed;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #78350f;
+      color: #fde68a;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 12px;
+      z-index: 9997;
+      text-align: center;
+      border: 1px solid #d97706;
+    }
   </style>
 </head>
 <body>
 
 <div id="overlay">
   <div class="spinner"></div>
-  <p>Loading station graph…</p>
+  <p id="overlay-msg">Loading station graph…</p>
 </div>
 
 <div id="error-banner">Failed to load station graph</div>
+<div id="data-not-ready-banner"></div>
 
 <div id="app">
 
   <!-- Toolbar -->
   <div id="toolbar">
-    <h1>GUNO V6 — Station Graph Viewer</h1>
+    <h1 id="toolbar-title">GUNO V6 — Station Graph Viewer</h1>
     <span class="badge">debug</span>
     <button class="ctrl-btn" id="btn-fit">Fit to Graph</button>
     <button class="ctrl-btn active" id="btn-edges">Toggle Edges</button>
     <button class="ctrl-btn" id="btn-labels">Toggle Labels</button>
+
+    <!-- City selector (populated dynamically) -->
+    <div id="city-selector-wrapper">
+      <label for="city-select">City:</label>
+      <select id="city-select"></select>
+    </div>
+
     <span id="toolbar-status">Initializing…</span>
   </div>
 
@@ -259,95 +309,102 @@
   </div>
 </div>
 
-<script>
-// ── Configuration ────────────────────────────────────────────────────────────
+<script type="module">
+import {
+  loadCityRegistry,
+  getDefaultCityId,
+  loadCityProfile,
+  listAvailableCities,
+  resolveDatasetUrl,
+} from '../src/city/city_loader.js';
 
-const GRAPH_URL = '../cities/tokyo/data/graph/station_graph.json';
+// ── City resolution ───────────────────────────────────────────────────────────
 
-const LINE_COLORS = {
-  JY: '#84cc16',
-  G:  '#f97316',
-  M:  '#ef4444',
-  T:  '#06b6d4',
-  Z:  '#a855f7',
-};
+function getCityIdFromUrl() {
+  return new URLSearchParams(window.location.search).get('city') || null;
+}
+
+async function resolveCity() {
+  const registry  = await loadCityRegistry();
+  const defaultId = getDefaultCityId(registry);
+  const paramId   = getCityIdFromUrl();
+
+  if (!paramId) return { cityId: defaultId, registry };
+
+  const valid = registry.cities.some(c => c.city_id === paramId);
+  if (!valid) {
+    showBanner('error-banner', `Unknown city "${paramId}" — falling back to "${defaultId}"`);
+    return { cityId: defaultId, registry };
+  }
+  return { cityId: paramId, registry };
+}
+
+// ── City selector ─────────────────────────────────────────────────────────────
+
+function populateCitySelector(cities, activeCityId) {
+  const select = document.getElementById('city-select');
+  select.innerHTML = '';
+  cities.forEach(city => {
+    const opt = document.createElement('option');
+    opt.value = city.city_id;
+    opt.textContent = city.display_name || city.city_id;
+    if (city.city_id === activeCityId) opt.selected = true;
+    select.appendChild(opt);
+  });
+  select.addEventListener('change', () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('city', select.value);
+    window.location.href = url.toString();
+  });
+}
+
+// ── Banner helpers ────────────────────────────────────────────────────────────
+
+function showBanner(id, msg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// ── Map ───────────────────────────────────────────────────────────────────────
 
 const DEFAULT_COLOR = '#94a3b8';
 
-// ── State ────────────────────────────────────────────────────────────────────
-
 let map;
 let graph;
-let nodeIndex = new Map();   // node_id → node
-let nodeMarkers = [];        // { marker, node }
-let edgePolylines = [];      // L.Polyline[]
-let labelMarkers = [];       // L.Marker[]
+let lineColors = {};
+let nodeIndex = new Map();
+let nodeMarkers = [];
+let edgePolylines = [];
+let labelMarkers = [];
 let edgeBounds;
-
 let edgesVisible = true;
 let labelsVisible = false;
 
-// ── Map init ─────────────────────────────────────────────────────────────────
-
-function initMap() {
-  map = L.map('map', {
-    center: [35.6895, 139.6917],
-    zoom: 11,
-  });
-
+function initMap(center) {
+  map = L.map('map', { center: center || [35.6895, 139.6917], zoom: 11 });
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '© OpenStreetMap contributors © CARTO',
     maxZoom: 19,
   }).addTo(map);
 }
 
-// ── Load graph ───────────────────────────────────────────────────────────────
-
-async function loadGraph() {
-  console.log('[Viewer] Fetching graph');
-  const res = await fetch(GRAPH_URL);
-  if (!res.ok) throw new Error(`HTTP ${res.status} — ${GRAPH_URL}`);
-  graph = await res.json();
-  console.log('[Viewer] nodes:', graph.nodes.length);
-  console.log('[Viewer] edges:', graph.edges.length);
-}
-
-// ── Render nodes ─────────────────────────────────────────────────────────────
-
 function renderNodes() {
-  // Build index first
   graph.nodes.forEach(n => nodeIndex.set(n.node_id, n));
-
   graph.nodes.forEach(n => {
     const isHub = n.hub_degree_global > 1;
     const radius = isHub ? 10 : 7;
     const color  = isHub ? '#e879f9' : '#f1f5f9';
-
     const marker = L.circleMarker([n.lat, n.lon], {
-      radius,
-      fillColor: color,
-      color: '#111827',
-      weight: isHub ? 2 : 1,
-      fillOpacity: 0.95,
-      bubblingMouseEvents: false,
+      radius, fillColor: color, color: '#111827',
+      weight: isHub ? 2 : 1, fillOpacity: 0.95, bubblingMouseEvents: false,
     }).addTo(map);
-
     marker.on('click', (e) => { L.DomEvent.stopPropagation(e); inspectStation(n); });
     nodeMarkers.push({ marker, node: n });
-
-    // Label (hidden by default)
     const icon = L.divIcon({
       className: '',
-      html: `<div style="
-        background:rgba(31,41,55,0.88);
-        color:#f9fafb;
-        font-size:10px;
-        padding:1px 5px;
-        border-radius:3px;
-        white-space:nowrap;
-        border:1px solid #374151;
-        pointer-events:none;
-      ">${n.station_name}</div>`,
+      html: `<div style="background:rgba(31,41,55,0.88);color:#f9fafb;font-size:10px;padding:1px 5px;border-radius:3px;white-space:nowrap;border:1px solid #374151;pointer-events:none">${n.station_name}</div>`,
       iconAnchor: [-10, 10],
     });
     const lm = L.marker([n.lat, n.lon], { icon, interactive: false, zIndexOffset: -100 });
@@ -355,66 +412,49 @@ function renderNodes() {
   });
 }
 
-// ── Render edges ─────────────────────────────────────────────────────────────
-
 function renderEdges() {
   const latlngs = [];
-
   graph.edges.forEach(e => {
     const fromNode = nodeIndex.get(e.from);
     const toNode   = nodeIndex.get(e.to);
     if (!fromNode || !toNode) return;
-
-    const color = LINE_COLORS[e.line_id] || DEFAULT_COLOR;
+    const color = lineColors[e.line_id] || DEFAULT_COLOR;
     const pl = L.polyline(
       [[fromNode.lat, fromNode.lon], [toNode.lat, toNode.lon]],
       { color, weight: 2.5, opacity: 0.8, interactive: false }
     ).addTo(map);
-
     edgePolylines.push(pl);
     latlngs.push([fromNode.lat, fromNode.lon], [toNode.lat, toNode.lon]);
   });
-
-  if (latlngs.length > 0) {
-    edgeBounds = L.latLngBounds(latlngs);
-  }
+  if (latlngs.length) edgeBounds = L.latLngBounds(latlngs);
 }
-
-// ── Statistics panel ─────────────────────────────────────────────────────────
 
 function renderStats() {
   const stats = graph.graph_statistics || {};
-  document.getElementById('s-nodes').textContent = stats.total_nodes ?? graph.nodes.length;
-  document.getElementById('s-edges').textContent = stats.total_edges ?? graph.edges.length;
-  document.getElementById('s-lines').textContent = stats.total_lines ?? '—';
-  document.getElementById('s-hubs').textContent  = stats.hub_nodes   ?? graph.nodes.filter(n => n.hub_degree_global > 1).length;
+  document.getElementById('s-nodes').textContent = stats.node_count ?? graph.nodes.length;
+  document.getElementById('s-edges').textContent = stats.edge_count ?? graph.edges.length;
+  document.getElementById('s-lines').textContent = stats.line_count ?? '—';
+  document.getElementById('s-hubs').textContent  = stats.transfer_station_count ?? graph.nodes.filter(n => n.hub_degree_global > 1).length;
 }
 
-// ── Line legend ───────────────────────────────────────────────────────────────
-
-function renderLegend() {
-  const edgesPerLine = (graph.graph_statistics || {}).edges_per_line || {};
+function renderLegend(linesData) {
   const container = document.getElementById('line-legend');
-
-  Object.entries(LINE_COLORS).forEach(([lid, color]) => {
+  container.innerHTML = '';
+  linesData.forEach(line => {
     const div = document.createElement('div');
     div.className = 'line-item';
     div.innerHTML = `
-      <div class="line-swatch" style="background:${color}"></div>
-      <span class="line-name">${lid}</span>
-      <span class="line-edges">${edgesPerLine[lid] ?? ''}e</span>
+      <div class="line-swatch" style="background:${line.color || DEFAULT_COLOR}"></div>
+      <span class="line-name">${line.line_name || line.line_id}</span>
+      <span class="line-edges">${line.line_id}</span>
     `;
     container.appendChild(div);
   });
 }
 
-// ── Station inspector ─────────────────────────────────────────────────────────
-
 function inspectStation(n) {
   const hubBadge = n.hub_degree_global > 1
-    ? `<span class="hub-badge">HUB ×${n.hub_degree_global}</span>`
-    : '';
-
+    ? `<span class="hub-badge">HUB ×${n.hub_degree_global}</span>` : '';
   document.getElementById('inspector-content').innerHTML = `
     <div><span class="field-name">name: </span><span class="field-value">${n.station_name}</span>${hubBadge}</div>
     <div><span class="field-name">slug: </span><span class="field-value">${n.station_slug}</span></div>
@@ -426,55 +466,89 @@ function inspectStation(n) {
   `;
 }
 
-// ── Toolbar controls ──────────────────────────────────────────────────────────
-
-document.getElementById('btn-fit').addEventListener('click', () => {
-  if (edgeBounds) map.fitBounds(edgeBounds, { padding: [40, 40] });
-});
-
-document.getElementById('btn-edges').addEventListener('click', function () {
-  edgesVisible = !edgesVisible;
-  this.classList.toggle('active', edgesVisible);
-  edgePolylines.forEach(pl => {
-    if (edgesVisible) pl.addTo(map); else map.removeLayer(pl);
-  });
-});
-
-document.getElementById('btn-labels').addEventListener('click', function () {
-  labelsVisible = !labelsVisible;
-  this.classList.toggle('active', labelsVisible);
-  labelMarkers.forEach(lm => {
-    if (labelsVisible) lm.addTo(map); else map.removeLayer(lm);
-  });
-});
-
-// ── Status helpers ────────────────────────────────────────────────────────────
-
 function setStatus(msg, type) {
   const el = document.getElementById('toolbar-status');
   el.textContent = msg;
   el.className = type || '';
 }
 
+// ── Toolbar buttons ───────────────────────────────────────────────────────────
+
+document.getElementById('btn-fit').addEventListener('click', () => {
+  if (edgeBounds) map.fitBounds(edgeBounds, { padding: [40, 40] });
+});
+document.getElementById('btn-edges').addEventListener('click', function () {
+  edgesVisible = !edgesVisible;
+  this.classList.toggle('active', edgesVisible);
+  edgePolylines.forEach(pl => { if (edgesVisible) pl.addTo(map); else map.removeLayer(pl); });
+});
+document.getElementById('btn-labels').addEventListener('click', function () {
+  labelsVisible = !labelsVisible;
+  this.classList.toggle('active', labelsVisible);
+  labelMarkers.forEach(lm => { if (labelsVisible) lm.addTo(map); else map.removeLayer(lm); });
+});
+
 // ── Bootstrap ─────────────────────────────────────────────────────────────────
 
 (async () => {
   try {
-    initMap();
-    await loadGraph();
+    // 1. Resolve city
+    const { cityId, registry } = await resolveCity();
+    const cities = registry.cities;
+    populateCitySelector(cities, cityId);
+
+    // 2. Load city profile
+    const profile = await loadCityProfile(cityId);
+    const cityName = profile.name || profile.city_id;
+    document.getElementById('toolbar-title').textContent = `GUNO V6 — Station Graph Viewer [${cityName}]`;
+    document.title = `Station Graph — ${cityName}`;
+
+    // 3. Check data_ready
+    if (!profile.status?.data_ready) {
+      document.getElementById('overlay').classList.add('hidden');
+      const banner = document.getElementById('data-not-ready-banner');
+      banner.innerHTML = `<strong>${cityName}</strong> — dataset not ready yet <span style="color:#a16207;margin-left:8px">(city_id: ${cityId})</span>`;
+      banner.style.display = 'block';
+      setStatus('Data not ready', 'err');
+      return;
+    }
+
+    // 4. Load graph
+    document.getElementById('overlay-msg').textContent = `Loading ${cityName} graph…`;
+    const graphUrl = resolveDatasetUrl('station_graph', profile);
+    const res = await fetch(graphUrl);
+    if (!res.ok) throw new Error(`HTTP ${res.status} — ${graphUrl}`);
+    graph = await res.json();
+
+    // 5. Load lines for legend colors
+    const linesUrl = resolveDatasetUrl('lines_master', profile);
+    let linesData = [];
+    try {
+      const lr = await fetch(linesUrl);
+      if (lr.ok) {
+        linesData = await lr.json();
+        linesData.forEach(l => { lineColors[l.line_id] = l.color; });
+      }
+    } catch (_) { /* non-fatal */ }
+
+    // 6. Determine map center from graph
+    const firstNode = graph.nodes[0];
+    const center = firstNode ? [firstNode.lat, firstNode.lon] : [35.6895, 139.6917];
+    initMap(center);
+
+    // 7. Render
     renderStats();
-    renderNodes();   // must run first to populate nodeIndex
+    renderNodes();
     renderEdges();
-    renderLegend();
+    renderLegend(linesData);
 
     if (edgeBounds) map.fitBounds(edgeBounds, { padding: [40, 40] });
-
     setStatus(`Loaded — ${graph.nodes.length} nodes, ${graph.edges.length} edges`, 'ok');
-    console.log('Station graph loaded successfully');
+
   } catch (err) {
     console.error('[Viewer] Error:', err);
     setStatus('Failed to load station graph', 'err');
-    document.getElementById('error-banner').style.display = 'block';
+    showBanner('error-banner', `Failed to load station graph: ${err.message}`);
   } finally {
     document.getElementById('overlay').classList.add('hidden');
   }

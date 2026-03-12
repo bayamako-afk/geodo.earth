@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GUNO V6 — Station Metrics Viewer</title>
+  <!-- city selector style -->
+  <style>
+    #city-selector-wrapper { display:flex; align-items:center; gap:5px; margin-left:8px; }
+    #city-selector-wrapper label { font-size:10px; color:#64748b; text-transform:uppercase; letter-spacing:.06em; white-space:nowrap; }
+    #city-select { background:#334155; color:#cbd5e1; border:1px solid #475569; border-radius:4px; font-size:11px; padding:3px 6px; cursor:pointer; outline:none; }
+    #data-not-ready-banner { display:none; position:fixed; top:40px; left:50%; transform:translateX(-50%); background:#78350f; color:#fde68a; padding:10px 24px; border-radius:6px; font-size:12px; z-index:9997; text-align:center; border:1px solid #d97706; }
+  </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -114,6 +121,11 @@
       <option value="hub_score">hub_score</option>
       <option value="betweenness">betweenness</option>
     </select>
+    <!-- City selector -->
+    <div id="city-selector-wrapper">
+      <label for="city-select">City:</label>
+      <select id="city-select"></select>
+    </div>
     <span id="status">Loading...</span>
   </div>
 
@@ -162,12 +174,46 @@
 </div>
 
 <div id="error-banner"></div>
+<div id="data-not-ready-banner"></div>
 
-<script>
+<script type="module">
+import {
+  loadCityRegistry,
+  getDefaultCityId,
+  loadCityProfile,
+  resolveDatasetUrl,
+} from '../src/city/city_loader.js';
+
+// ── City helpers ───────────────────────────────────────────────────────────
+function getCityIdFromUrl() {
+  return new URLSearchParams(window.location.search).get('city') || null;
+}
+async function resolveCity() {
+  const registry  = await loadCityRegistry();
+  const defaultId = getDefaultCityId(registry);
+  const paramId   = getCityIdFromUrl();
+  if (!paramId) return { cityId: defaultId, registry };
+  const valid = registry.cities.some(c => c.city_id === paramId);
+  if (!valid) { console.warn(`Unknown city "${paramId}", fallback to "${defaultId}"`); return { cityId: defaultId, registry }; }
+  return { cityId: paramId, registry };
+}
+function populateCitySelector(cities, activeCityId) {
+  const select = document.getElementById('city-select');
+  select.innerHTML = '';
+  cities.forEach(city => {
+    const opt = document.createElement('option');
+    opt.value = city.city_id;
+    opt.textContent = city.display_name || city.city_id;
+    if (city.city_id === activeCityId) opt.selected = true;
+    select.appendChild(opt);
+  });
+  select.addEventListener('change', () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('city', select.value);
+    window.location.href = url.toString();
+  });
+}
 // ── Constants ──────────────────────────────────────────────────────────────
-const GRAPH_URL   = '../cities/tokyo/data/graph/station_graph.json';
-const METRICS_URL = '../cities/tokyo/data/derived/station_metrics.json';
-
 const LINE_COLORS = {
   JY: '#86efac', G: '#f97316', M: '#f87171',
   T:  '#67e8f9', Z: '#c084fc',
@@ -421,7 +467,7 @@ document.getElementById('btn-labels').addEventListener('click', function() {
 document.getElementById('metric-select').addEventListener('change', onMetricChange);
 
 // ── Load data ──────────────────────────────────────────────────────────────
-async function loadData() {
+async function loadData(GRAPH_URL, METRICS_URL) {
   console.log('[Viewer] Fetching graph:', GRAPH_URL);
   console.log('[Viewer] Fetching metrics:', METRICS_URL);
 
@@ -471,7 +517,25 @@ async function loadData() {
   console.log('[Viewer] Station metrics loaded successfully');
 }
 
-loadData();
+// ── Bootstrap ────────────────────────────────────────────────────────────
+(async () => {
+  const { cityId, registry } = await resolveCity();
+  populateCitySelector(registry.cities, cityId);
+  const profile = await loadCityProfile(cityId);
+  const cityName = profile.name || cityId;
+  document.title = `Station Metrics — ${cityName}`;
+  document.querySelector('#toolbar .title').textContent = `GUNO V6 — ${cityName}`;
+  if (!profile.status?.data_ready) {
+    const b = document.getElementById('data-not-ready-banner');
+    b.innerHTML = `<strong>${cityName}</strong> — dataset not ready yet <span style="color:#a16207;margin-left:8px">(${cityId})</span>`;
+    b.style.display = 'block';
+    document.getElementById('status').textContent = 'Data not ready';
+    return;
+  }
+  const GRAPH_URL   = resolveDatasetUrl('station_graph',    profile);
+  const METRICS_URL = resolveDatasetUrl('station_metrics',  profile);
+  await loadData(GRAPH_URL, METRICS_URL);
+})();
 </script>
 </body>
 </html>

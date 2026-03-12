@@ -35,6 +35,11 @@
       padding: 3px 8px; border: 1px solid #4ecdc4; border-radius: 3px;
     }
     #header .nav-links a:hover { background: #4ecdc4; color: #1a1a2e; }
+    /* city selector */
+    #city-selector-wrapper { display:flex; align-items:center; gap:5px; margin-left:8px; }
+    #city-selector-wrapper label { font-size:10px; color:#888; text-transform:uppercase; letter-spacing:.06em; white-space:nowrap; }
+    #city-select { background:#0f3460; color:#c9d1d9; border:1px solid #4ecdc4; border-radius:4px; font-size:11px; padding:3px 6px; cursor:pointer; outline:none; }
+    #data-not-ready-banner { display:none; position:fixed; top:40px; left:50%; transform:translateX(-50%); background:#78350f; color:#fde68a; padding:10px 24px; border-radius:6px; font-size:12px; z-index:9997; text-align:center; border:1px solid #d97706; }
 
     /* ── Error banner ─────────────────────────────────────────────────────── */
     #error-banner {
@@ -347,7 +352,7 @@
 <!-- Header -->
 <div id="header">
   <h1>DYNAMIC DECK VIEWER</h1>
-  <span class="subtitle">GUNO V6 Debug Tools</span>
+  <span class="subtitle" id="header-subtitle">GUNO V6 Debug Tools</span>
   <nav class="nav-links">
     <a href="station_graph_viewer.html">Graph</a>
     <a href="station_metrics_viewer.html">Metrics</a>
@@ -358,10 +363,16 @@
     <a href="final_score_viewer.html">Final</a>
     <a href="game_simulator.html">Sim</a>
   </nav>
+  <!-- City selector -->
+  <div id="city-selector-wrapper">
+    <label for="city-select">City:</label>
+    <select id="city-select"></select>
+  </div>
 </div>
 
 <!-- Error banner -->
 <div id="error-banner"></div>
+<div id="data-not-ready-banner"></div>
 
 <!-- Main -->
 <div id="main">
@@ -492,11 +503,48 @@
 
 <script type="module">
   import { generateDeck as _generateDeck } from '../src/generators/deck_generator.js?v=1';
+  import {
+    loadCityRegistry,
+    getDefaultCityId,
+    loadCityProfile,
+    resolveDatasetUrl,
+  } from '../src/city/city_loader.js';
 
-  // ── State ─────────────────────────────────────────────────────────────────
+  // ── City helpers ──────────────────────────────────────────────────────────────
+  function getCityIdFromUrl() {
+    return new URLSearchParams(window.location.search).get('city') || null;
+  }
+  async function resolveCity() {
+    const registry  = await loadCityRegistry();
+    const defaultId = getDefaultCityId(registry);
+    const paramId   = getCityIdFromUrl();
+    if (!paramId) return { cityId: defaultId, registry };
+    const valid = registry.cities.some(c => c.city_id === paramId);
+    if (!valid) { console.warn(`Unknown city "${paramId}", fallback to "${defaultId}"`); return { cityId: defaultId, registry }; }
+    return { cityId: paramId, registry };
+  }
+  function populateCitySelector(cities, activeCityId) {
+    const select = document.getElementById('city-select');
+    select.innerHTML = '';
+    cities.forEach(city => {
+      const opt = document.createElement('option');
+      opt.value = city.city_id;
+      opt.textContent = city.display_name || city.city_id;
+      if (city.city_id === activeCityId) opt.selected = true;
+      select.appendChild(opt);
+    });
+    select.addEventListener('change', () => {
+      const url = new URL(window.location.href);
+      url.searchParams.set('city', select.value);
+      window.location.href = url.toString();
+    });
+  }
+
+  // ── State ───────────────────────────────────────────────────────────────────────────────
   let currentDeck = null;
   let linesData   = null;
   let dataReady   = false;
+  let activeCityProfile = null;
 
   const BASE_URL = new URL('../', location.href).href;
 
@@ -753,28 +801,52 @@
     banner.style.display = 'block';
     banner.textContent = msg;
   }
-
-  // ── Init ──────────────────────────────────────────────────────────────────
+  // ── Bootstrap ───────────────────────────────────────────────────────────────────────────────
   const statusEl = document.getElementById('status');
 
-  try {
-    // Pre-load lines data for line distribution
-    const linesUrl = BASE_URL + 'cities/tokyo/data/master/station_lines.json';
-    const res = await fetch(linesUrl);
-    if (res.ok) {
-      linesData = await res.json();
+  (async () => {
+    try {
+      // 1. Resolve city
+      const { cityId, registry } = await resolveCity();
+      populateCitySelector(registry.cities, cityId);
+
+      // 2. Load city profile
+      const profile  = await loadCityProfile(cityId);
+      activeCityProfile = profile;
+      const cityName = profile.name || cityId;
+      document.title = `Dynamic Deck Viewer — ${cityName}`;
+      document.getElementById('header-subtitle').textContent = `${cityName} — GUNO V6 Debug`;
+
+      // 3. Check data_ready
+      if (!profile.status?.data_ready) {
+        const b = document.getElementById('data-not-ready-banner');
+        b.innerHTML = `<strong>${cityName}</strong> — dataset not ready yet <span style="color:#a16207;margin-left:8px">(${cityId})</span>`;
+        b.style.display = 'block';
+        statusEl.textContent = 'Data not ready';
+        return;
+      }
+
+      // 4. Pre-load lines data for line distribution
+      try {
+        const linesUrl = resolveDatasetUrl('station_lines', profile);
+        const res = await fetch(linesUrl);
+        if (res.ok) linesData = await res.json();
+      } catch (err) {
+        console.warn('Could not pre-load lines data:', err);
+      }
+
+      dataReady = true;
+      document.getElementById('btn-generate').disabled = false;
+      statusEl.textContent = `Data loaded — ${cityName}. Ready.`;
+      validateInputs();
+    } catch (err) {
+      console.warn('Bootstrap error:', err);
+      dataReady = true;
+      document.getElementById('btn-generate').disabled = false;
+      statusEl.textContent = 'Ready (no line data).';
+      validateInputs();
     }
-    dataReady = true;
-    document.getElementById('btn-generate').disabled = false;
-    statusEl.textContent = 'Data loaded. Ready.';
-    validateInputs();
-  } catch (err) {
-    console.warn('Could not pre-load lines data:', err);
-    dataReady = true;
-    document.getElementById('btn-generate').disabled = false;
-    statusEl.textContent = 'Ready (no line data).';
-    validateInputs();
-  }
+  })();
 </script>
 
 </body>
