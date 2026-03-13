@@ -1,0 +1,153 @@
+station_global_id,station_slug,station_name,station_name_en,station_name_local,city,lat,lon
+nyc_0001,103_st,103 St,103 St,103 St,nyc,40.7999,-73.9681
+nyc_0002,103_st_lex,103 St (Lex),103 St (Lex),103 St (Lex),nyc,40.7862,-73.9479
+nyc_0003,110_st_lex,110 St (Lex),110 St (Lex),110 St (Lex),nyc,40.7924,-73.9443
+nyc_0004,111_st_7,111 St,111 St,111 St,nyc,40.7508,-73.8558
+nyc_0005,116_st_columbia,116 St–Columbia University,116 St–Columbia University,116 St–Columbia University,nyc,40.8079,-73.9632
+nyc_0006,116_st_lex,116 St (Lex),116 St (Lex),116 St (Lex),nyc,40.7981,-73.9418
+nyc_0007,125_st,125 St,125 St,125 St,nyc,40.8157,-73.9543
+nyc_0008,125_st_lex,125 St (Lex),125 St (Lex),125 St (Lex),nyc,40.8043,-73.9377
+nyc_0009,135_st,135 St,135 St,135 St,nyc,40.8175,-73.9478
+nyc_0010,137_st_city_college,137 St–City College,137 St–City College,137 St–City College,nyc,40.8218,-73.9499
+nyc_0011,138_st_grand_concourse,138 St–Grand Concourse,138 St–Grand Concourse,138 St–Grand Concourse,nyc,40.8131,-73.9363
+nyc_0012,145_st,145 St,145 St,145 St,nyc,40.8259,-73.9481
+nyc_0013,149_st_grand_concourse,149 St–Grand Concourse,149 St–Grand Concourse,149 St–Grand Concourse,nyc,40.8189,-73.9272
+nyc_0014,14_st,14 St,14 St,14 St,nyc,40.7378,-73.9996
+nyc_0015,14_st_union_sq,14 St–Union Sq,14 St–Union Sq,14 St–Union Sq,nyc,40.7352,-73.9903
+nyc_0016,155_st,155 St,155 St,155 St,nyc,40.8299,-73.9416
+nyc_0017,157_st,157 St,157 St,157 St,nyc,40.8341,-73.9437
+nyc_0018,161_st_yankee,161 St–Yankee Stadium,161 St–Yankee Stadium,161 St–Yankee Stadium,nyc,40.8277,-73.9258
+nyc_0019,163_st_amsterdam,163 St–Amsterdam Av,163 St–Amsterdam Av,163 St–Amsterdam Av,nyc,40.8358,-73.9393
+nyc_0020,167_st,167 St,167 St,167 St,nyc,40.8327,-73.9028
+nyc_0021,168_st,168 St–Washington Heights,168 St–Washington Heights,168 St–Washington Heights,nyc,40.8402,-73.9397
+nyc_0022,170_st,170 St,170 St,170 St,nyc,40.84,-73.8989
+nyc_0023,175_st,175 St,175 St,175 St,nyc,40.847,-73.937
+nyc_0024,176_st,176 St,176 St,176 St,nyc,40.8487,-73.8958
+nyc_0025,181_st,181 St,181 St,181 St,nyc,40.8498,-73.9332
+nyc_0026,183_st,183 St,183 St,183 St,nyc,40.858,-73.8961
+nyc_0027,18_st,18 St,18 St,18 St,nyc,40.74,-73.9977
+nyc_0028,190_st,190 St,190 St,190 St,nyc,40.8581,-73.934
+nyc_0029,191_st,191 St,191 St,191 St,nyc,40.8557,-73.9295
+nyc_0030,207_st,207 St,207 St,207 St,nyc,40.8647,-73.9191
+nyc_0031,215_st,215 St,215 St,215 St,nyc,40.8694,-73.9147
+nyc_0032,231_st,231 St,231 St,231 St,nyc,40.8784,-73.9042
+nyc_0033,238_st,238 St,238 St,238 St,nyc,40.8843,-73.9005
+nyc_0034,23_st,23 St,23 St,23 St,nyc,40.7429,-73.9958
+nyc_0035,23_st_park,23 St (Park),23 St (Park),23 St (Park),nyc,40.7398,-73.9895
+nyc_0036,25_st,25 St,25 St,25 St,nyc,40.6603,-73.9985
+nyc_0037,28_st,28 St,28 St,28 St,nyc,40.7472,-73.9942
+nyc_0038,28_st_park,28 St (Park),28 St (Park),28 St (Park),nyc,40.7432,-73.9878
+nyc_0039,30_av,30 Av,30 Av,30 Av,nyc,40.7663,-73.9305
+nyc_0040,33_st_park,33 St (Park),33 St (Park),33 St (Park),nyc,40.7465,-73.9843
+nyc_0041,33_st_rawson,33 St–Rawson St,33 St–Rawson St,33 St–Rawson St,nyc,40.7467,-73.9033
+nyc_0042,34_st_herald_sq,34 St–Herald Sq,34 St–Herald Sq,34 St–Herald Sq,nyc,40.749,-73.9883
+nyc_0043,34_st_hudson_yards,34 St–Hudson Yards,34 St–Hudson Yards,34 St–Hudson Yards,nyc,40.7548,-74.0019
+nyc_0044,34_st_penn,34 St–Penn Station,34 St–Penn Station,34 St–Penn Station,nyc,40.7506,-73.9913
+nyc_0045,36_av,36 Av,36 Av,36 Av,nyc,40.7561,-73.9299
+nyc_0046,36_st_n,36 St,36 St,36 St,nyc,40.6551,-74.0034
+nyc_0047,39_av,39 Av–Dutch Kills,39 Av–Dutch Kills,39 Av–Dutch Kills,nyc,40.7519,-73.9299
+nyc_0048,40_st_lowery,40 St–Lowery St,40 St–Lowery St,40 St–Lowery St,nyc,40.7467,-73.9033
+nyc_0049,42_st_port_authority,42 St–Port Authority Bus Terminal,42 St–Port Authority Bus Terminal,42 St–Port Authority Bus Terminal,nyc,40.7572,-73.9903
+nyc_0050,45_st,45 St,45 St,45 St,nyc,40.6487,-74.0095
+nyc_0051,46_st_bliss_st,46 St–Bliss St,46 St–Bliss St,46 St–Bliss St,nyc,40.7467,-73.9033
+nyc_0052,49_st,49 St,49 St,49 St,nyc,40.7596,-73.9841
+nyc_0053,4_av_9_st,4 Av–9 St,4 Av–9 St,4 Av–9 St,nyc,40.6703,-73.9884
+nyc_0054,50_st,50 St,50 St,50 St,nyc,40.7612,-73.9836
+nyc_0055,51_st,51 St,51 St,51 St,nyc,40.7574,-73.9718
+nyc_0056,52_st_lincoln_av,52 St–Lincoln Av,52 St–Lincoln Av,52 St–Lincoln Av,nyc,40.7467,-73.9033
+nyc_0057,53_st_n,53 St,53 St,53 St,nyc,40.6451,-74.0144
+nyc_0058,57_st_7_av,57 St–7 Av,57 St–7 Av,57 St–7 Av,nyc,40.7638,-73.9776
+nyc_0059,59_st_4_av,59 St (4 Av),59 St (4 Av),59 St (4 Av),nyc,40.6412,-74.0175
+nyc_0060,59_st_columbus_circle,59 St–Columbus Circle,59 St–Columbus Circle,59 St–Columbus Circle,nyc,40.7682,-73.9819
+nyc_0061,59_st_lex,59 St (Lex),59 St (Lex),59 St (Lex),nyc,40.7625,-73.9675
+nyc_0062,5_av_42,5 Av,5 Av,5 Av,nyc,40.7545,-73.9836
+nyc_0063,5_av_59,5 Av/59 St,5 Av/59 St,5 Av/59 St,nyc,40.7648,-73.9731
+nyc_0064,61_st_woodside,61 St–Woodside,61 St–Woodside,61 St–Woodside,nyc,40.7467,-73.9033
+nyc_0065,66_st_lincoln_ctr,66 St–Lincoln Center,66 St–Lincoln Center,66 St–Lincoln Center,nyc,40.7741,-73.9823
+nyc_0066,68_st_hunter,68 St–Hunter College,68 St–Hunter College,68 St–Hunter College,nyc,40.7683,-73.9637
+nyc_0067,69_st_fisk_av,69 St–Fisk Av,69 St–Fisk Av,69 St–Fisk Av,nyc,40.7467,-73.9001
+nyc_0068,72_st,72 St,72 St,72 St,nyc,40.778,-73.9823
+nyc_0069,74_st_broadway,74 St–Broadway,74 St–Broadway,74 St–Broadway,nyc,40.7467,-73.8912
+nyc_0070,77_st,77 St,77 St,77 St,nyc,40.7736,-73.9596
+nyc_0071,79_st,79 St,79 St,79 St,nyc,40.7835,-73.98
+nyc_0072,80_st,80 St,80 St,80 St,nyc,40.6791,-73.8607
+nyc_0073,81_st_museum,81 St–Museum of Natural History,81 St–Museum of Natural History,81 St–Museum of Natural History,nyc,40.7815,-73.9797
+nyc_0074,82_st_jackson_hts,82 St–Jackson Hts,82 St–Jackson Hts,82 St–Jackson Hts,nyc,40.7462,-73.8836
+nyc_0075,86_st,86 St,86 St,86 St,nyc,40.7885,-73.976
+nyc_0076,86_st_lex,86 St (Lex),86 St (Lex),86 St (Lex),nyc,40.7777,-73.9553
+nyc_0077,88_st,88 St,88 St,88 St,nyc,40.6804,-73.8556
+nyc_0078,8_st_nyu,8 St–NYU,8 St–NYU,8 St–NYU,nyc,40.7307,-73.9921
+nyc_0079,90_st_elmhurst,90 St–Elmhurst Av,90 St–Elmhurst Av,90 St–Elmhurst Av,nyc,40.7453,-73.8793
+nyc_0080,96_st,96 St,96 St,96 St,nyc,40.794,-73.9721
+nyc_0081,96_st_lex,96 St (Lex),96 St (Lex),96 St (Lex),nyc,40.7843,-73.9475
+nyc_0082,astoria_blvd,Astoria Blvd,Astoria Blvd,Astoria Blvd,nyc,40.7706,-73.9301
+nyc_0083,astoria_ditmars,Astoria–Ditmars Blvd,Astoria–Ditmars Blvd,Astoria–Ditmars Blvd,nyc,40.7754,-73.912
+nyc_0084,atlantic_av_barclays,Atlantic Av–Barclays Ctr,Atlantic Av–Barclays Ctr,Atlantic Av–Barclays Ctr,nyc,40.6843,-73.9779
+nyc_0085,bay_ridge_95,Bay Ridge–95 St,Bay Ridge–95 St,Bay Ridge–95 St,nyc,40.6163,-74.0305
+nyc_0086,bedford_pk_blvd,Bedford Park Blvd,Bedford Park Blvd,Bedford Park Blvd,nyc,40.8731,-73.8831
+nyc_0087,borough_hall,Borough Hall,Borough Hall,Borough Hall,nyc,40.6925,-73.9899
+nyc_0088,bowling_green,Bowling Green,Bowling Green,Bowling Green,nyc,40.7046,-74.0141
+nyc_0089,broadway_astoria,Broadway (Astoria),Broadway (Astoria),Broadway (Astoria),nyc,40.7614,-73.9269
+nyc_0090,broadway_junction,Broadway Junction,Broadway Junction,Broadway Junction,nyc,40.6783,-73.9049
+nyc_0091,brooklyn_bridge,Brooklyn Bridge–City Hall,Brooklyn Bridge–City Hall,Brooklyn Bridge–City Hall,nyc,40.713,-74.004
+nyc_0092,canal_st,Canal St,Canal St,Canal St,nyc,40.7226,-74.0056
+nyc_0093,canal_st_n,Canal St (N),Canal St (N),Canal St (N),nyc,40.7196,-74.0001
+nyc_0094,cathedral_pkwy_110,Cathedral Pkwy–110 St,Cathedral Pkwy–110 St,Cathedral Pkwy–110 St,nyc,40.8031,-73.966
+nyc_0095,chambers_st,Chambers St,Chambers St,Chambers St,nyc,40.7141,-74.0087
+nyc_0096,christopher_st,Christopher St–Sheridan Sq,Christopher St–Sheridan Sq,Christopher St–Sheridan Sq,nyc,40.7333,-74.0027
+nyc_0097,city_hall_n,City Hall (N),City Hall (N),City Hall (N),nyc,40.7131,-74.0082
+nyc_0098,cortlandt_st,Cortlandt St,Cortlandt St,Cortlandt St,nyc,40.7113,-74.0133
+nyc_0099,court_sq_7,Court Sq,Court Sq,Court Sq,nyc,40.7472,-73.9453
+nyc_0100,court_st_n,Court St,Court St,Court St,nyc,40.6941,-73.9918
+nyc_0101,crown_heights_utica,Crown Heights–Utica Av,Crown Heights–Utica Av,Crown Heights–Utica Av,nyc,40.6696,-73.9294
+nyc_0102,dekalb_av,DeKalb Av,DeKalb Av,DeKalb Av,nyc,40.6906,-73.9818
+nyc_0103,dyckman_st,Dyckman St,Dyckman St,Dyckman St,nyc,40.8605,-73.9255
+nyc_0104,euclid_av,Euclid Av,Euclid Av,Euclid Av,nyc,40.6751,-73.872
+nyc_0105,flushing_main,Flushing–Main St,Flushing–Main St,Flushing–Main St,nyc,40.7596,-73.83
+nyc_0106,fordham_rd,Fordham Rd,Fordham Rd,Fordham Rd,nyc,40.862,-73.8972
+nyc_0107,franklin_av,Franklin Av,Franklin Av,Franklin Av,nyc,40.6818,-73.9584
+nyc_0108,franklin_st,Franklin St,Franklin St,Franklin St,nyc,40.7191,-74.0076
+nyc_0109,fulton_st,Fulton St,Fulton St,Fulton St,nyc,40.7093,-74.0078
+nyc_0110,grand_central_42,Grand Central–42 St,Grand Central–42 St,Grand Central–42 St,nyc,40.7527,-73.9772
+nyc_0111,grant_av,Grant Av,Grant Av,Grant Av,nyc,40.6773,-73.8659
+nyc_0112,high_st_brooklyn_bridge,High St–Brooklyn Bridge,High St–Brooklyn Bridge,High St–Brooklyn Bridge,nyc,40.6993,-73.99
+nyc_0113,houston_st,Houston St,Houston St,Houston St,nyc,40.7282,-74.005
+nyc_0114,hoyt_schermerhorn,Hoyt–Schermerhorn Sts,Hoyt–Schermerhorn Sts,Hoyt–Schermerhorn Sts,nyc,40.6882,-73.9851
+nyc_0115,hunters_pt_av,Hunters Point Av,Hunters Point Av,Hunters Point Av,nyc,40.7443,-73.9482
+nyc_0116,inwood_207,Inwood–207 St,Inwood–207 St,Inwood–207 St,nyc,40.8679,-73.9211
+nyc_0117,jackson_hts_roosevelt,Jackson Hts–Roosevelt Av,Jackson Hts–Roosevelt Av,Jackson Hts–Roosevelt Av,nyc,40.7463,-73.8912
+nyc_0118,jay_st_metrotech,Jay St–MetroTech,Jay St–MetroTech,Jay St–MetroTech,nyc,40.6921,-73.9851
+nyc_0119,junction_blvd,Junction Blvd,Junction Blvd,Junction Blvd,nyc,40.7487,-73.8695
+nyc_0120,junius_st,Junius St,Junius St,Junius St,nyc,40.6606,-73.8929
+nyc_0121,kingsbridge_rd,Kingsbridge Rd,Kingsbridge Rd,Kingsbridge Rd,nyc,40.8683,-73.8979
+nyc_0122,kingston_throop,Kingston–Throop Avs,Kingston–Throop Avs,Kingston–Throop Avs,nyc,40.668,-73.9405
+nyc_0123,lefferts_blvd,Ozone Park–Lefferts Blvd,Ozone Park–Lefferts Blvd,Ozone Park–Lefferts Blvd,nyc,40.6852,-73.8486
+nyc_0124,liberty_av,Liberty Av,Liberty Av,Liberty Av,nyc,40.6745,-73.8866
+nyc_0125,marble_hill_225,Marble Hill–225 St,Marble Hill–225 St,Marble Hill–225 St,nyc,40.874,-73.9099
+nyc_0126,mets_willets_pt,Mets–Willets Point,Mets–Willets Point,Mets–Willets Point,nyc,40.7543,-73.8456
+nyc_0127,mosholu_pkwy,Mosholu Pkwy,Mosholu Pkwy,Mosholu Pkwy,nyc,40.8979,-73.8912
+nyc_0128,nevins_st,Nevins St,Nevins St,Nevins St,nyc,40.6883,-73.9808
+nyc_0129,new_lots_av,New Lots Av,New Lots Av,New Lots Av,nyc,40.6659,-73.8744
+nyc_0130,norwood_205,Norwood–205 St,Norwood–205 St,Norwood–205 St,nyc,40.8882,-73.8806
+nyc_0131,nostrand_av,Nostrand Av,Nostrand Av,Nostrand Av,nyc,40.6698,-73.9501
+nyc_0132,pennsylvania_av,Pennsylvania Av,Pennsylvania Av,Pennsylvania Av,nyc,40.664,-73.8879
+nyc_0133,prince_st,Prince St,Prince St,Prince St,nyc,40.7243,-73.9974
+nyc_0134,prospect_av,Prospect Av,Prospect Av,Prospect Av,nyc,40.665,-73.9924
+nyc_0135,queensboro_plaza,Queensboro Plaza,Queensboro Plaza,Queensboro Plaza,nyc,40.7506,-73.9404
+nyc_0136,ralph_av,Ralph Av,Ralph Av,Ralph Av,nyc,40.6784,-73.92
+nyc_0137,rector_st,Rector St,Rector St,Rector St,nyc,40.7079,-74.0132
+nyc_0138,rockaway_av,Rockaway Av,Rockaway Av,Rockaway Av,nyc,40.6624,-73.9
+nyc_0139,saratoga_av,Saratoga Av,Saratoga Av,Saratoga Av,nyc,40.6615,-73.9094
+nyc_0140,shepherd_av,Shepherd Av,Shepherd Av,Shepherd Av,nyc,40.6742,-73.8716
+nyc_0141,south_ferry,South Ferry,South Ferry,South Ferry,nyc,40.7016,-74.0131
+nyc_0142,spring_st,Spring St,Spring St,Spring St,nyc,40.7262,-74.003
+nyc_0143,sutter_av_rutland,Sutter Av–Rutland Rd,Sutter Av–Rutland Rd,Sutter Av–Rutland Rd,nyc,40.6647,-73.9153
+nyc_0144,times_sq_42,Times Sq–42 St,Times Sq–42 St,Times Sq–42 St,nyc,40.7556,-73.9877
+nyc_0145,union_st_n,Union St,Union St,Union St,nyc,40.6773,-73.9832
+nyc_0146,van_cortlandt_242,Van Cortlandt Park–242 St,Van Cortlandt Park–242 St,Van Cortlandt Park–242 St,nyc,40.8895,-73.8988
+nyc_0147,van_siclen_av,Van Siclen Av,Van Siclen Av,Van Siclen Av,nyc,40.6649,-73.8793
+nyc_0148,vernon_jackson,Vernon Blvd–Jackson Av,Vernon Blvd–Jackson Av,Vernon Blvd–Jackson Av,nyc,40.7424,-73.9537
+nyc_0149,w_4_st,W 4 St–Washington Sq,W 4 St–Washington Sq,W 4 St–Washington Sq,nyc,40.7322,-74.0001
+nyc_0150,wall_st,Wall St,Wall St,Wall St,nyc,40.7073,-74.011
+nyc_0151,whitehall_st,Whitehall St–South Ferry,Whitehall St–South Ferry,Whitehall St–South Ferry,nyc,40.7034,-74.0138
+nyc_0152,woodlawn,Woodlawn,Woodlawn,Woodlawn,nyc,40.9059,-73.8987

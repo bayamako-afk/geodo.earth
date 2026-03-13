@@ -1,0 +1,6 @@
+line_id,line_name,line_name_en,color,operator,system,city
+L1,1 Train,1 Train,#EE352E,MTA New York City Transit,IRT Broadway–7th Ave,nyc
+L4,4 Train,4 Train,#00933C,MTA New York City Transit,IRT Lexington Ave Express,nyc
+LA,A Train,A Train,#2850AD,MTA New York City Transit,IND 8th Ave Express,nyc
+LN,N Train,N Train,#FCCC0A,MTA New York City Transit,BMT Broadway,nyc
+L7,7 Train,7 Train,#B933AD,MTA New York City Transit,IRT Flushing,nyc

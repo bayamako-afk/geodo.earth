@@ -1,0 +1,2169 @@
+{
+  "dataset_meta": {
+    "city_id": "nyc",
+    "version": "1.0",
+    "station_count": 152
+  },
+  "stations": [
+    {
+      "station_global_id": "nyc_0144",
+      "station_name": "Times Sq–42 St",
+      "station_name_en": "Times Sq–42 St",
+      "line_ids": [
+        "L1",
+        "LN",
+        "L7"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 5.0,
+      "composite_score": 5.0,
+      "rarity": "legendary",
+      "degree": 6
+    },
+    {
+      "station_global_id": "nyc_0034",
+      "station_name": "23 St",
+      "station_name_en": "23 St",
+      "line_ids": [
+        "L1",
+        "LA",
+        "LN"
+      ],
+      "line_count": 3,
+      "hub_score": 5.0,
+      "centrality_score": 4.1667,
+      "composite_score": 4.6667,
+      "rarity": "legendary",
+      "degree": 5
+    },
+    {
+      "station_global_id": "nyc_0012",
+      "station_name": "145 St",
+      "station_name_en": "145 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0014",
+      "station_name": "14 St",
+      "station_name_en": "14 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0015",
+      "station_name": "14 St–Union Sq",
+      "station_name_en": "14 St–Union Sq",
+      "line_ids": [
+        "L4",
+        "LN"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0021",
+      "station_name": "168 St–Washington Heights",
+      "station_name_en": "168 St–Washington Heights",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0025",
+      "station_name": "181 St",
+      "station_name_en": "181 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0030",
+      "station_name": "207 St",
+      "station_name_en": "207 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0061",
+      "station_name": "59 St (Lex)",
+      "station_name_en": "59 St (Lex)",
+      "line_ids": [
+        "L4",
+        "LN"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0068",
+      "station_name": "72 St",
+      "station_name_en": "72 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0084",
+      "station_name": "Atlantic Av–Barclays Ctr",
+      "station_name_en": "Atlantic Av–Barclays Ctr",
+      "line_ids": [
+        "L4",
+        "LN"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0092",
+      "station_name": "Canal St",
+      "station_name_en": "Canal St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0095",
+      "station_name": "Chambers St",
+      "station_name_en": "Chambers St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0109",
+      "station_name": "Fulton St",
+      "station_name_en": "Fulton St",
+      "line_ids": [
+        "L4",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0110",
+      "station_name": "Grand Central–42 St",
+      "station_name_en": "Grand Central–42 St",
+      "line_ids": [
+        "L4",
+        "L7"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0135",
+      "station_name": "Queensboro Plaza",
+      "station_name_en": "Queensboro Plaza",
+      "line_ids": [
+        "LN",
+        "L7"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0138",
+      "station_name": "Rockaway Av",
+      "station_name_en": "Rockaway Av",
+      "line_ids": [
+        "L4",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0147",
+      "station_name": "Van Siclen Av",
+      "station_name_en": "Van Siclen Av",
+      "line_ids": [
+        "L4",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "rarity": "legendary",
+      "degree": 4
+    },
+    {
+      "station_global_id": "nyc_0007",
+      "station_name": "125 St",
+      "station_name_en": "125 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "nyc_0037",
+      "station_name": "28 St",
+      "station_name_en": "28 St",
+      "line_ids": [
+        "L1",
+        "LN"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "nyc_0043",
+      "station_name": "34 St–Hudson Yards",
+      "station_name_en": "34 St–Hudson Yards",
+      "line_ids": [
+        "LA",
+        "L7"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "nyc_0054",
+      "station_name": "50 St",
+      "station_name_en": "50 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "nyc_0060",
+      "station_name": "59 St–Columbus Circle",
+      "station_name_en": "59 St–Columbus Circle",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "nyc_0075",
+      "station_name": "86 St",
+      "station_name_en": "86 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "nyc_0098",
+      "station_name": "Cortlandt St",
+      "station_name_en": "Cortlandt St",
+      "line_ids": [
+        "L1",
+        "LN"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "nyc_0137",
+      "station_name": "Rector St",
+      "station_name_en": "Rector St",
+      "line_ids": [
+        "L1",
+        "LN"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 2.5,
+      "composite_score": 2.5,
+      "rarity": "epic",
+      "degree": 3
+    },
+    {
+      "station_global_id": "nyc_0001",
+      "station_name": "103 St",
+      "station_name_en": "103 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 1.6667,
+      "composite_score": 2.1667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0005",
+      "station_name": "116 St–Columbia University",
+      "station_name_en": "116 St–Columbia University",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 1.6667,
+      "composite_score": 2.1667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0080",
+      "station_name": "96 St",
+      "station_name_en": "96 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 1.6667,
+      "composite_score": 2.1667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0094",
+      "station_name": "Cathedral Pkwy–110 St",
+      "station_name_en": "Cathedral Pkwy–110 St",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "line_count": 2,
+      "hub_score": 2.5,
+      "centrality_score": 1.6667,
+      "composite_score": 2.1667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0002",
+      "station_name": "103 St (Lex)",
+      "station_name_en": "103 St (Lex)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0003",
+      "station_name": "110 St (Lex)",
+      "station_name_en": "110 St (Lex)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0004",
+      "station_name": "111 St",
+      "station_name_en": "111 St",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0006",
+      "station_name": "116 St (Lex)",
+      "station_name_en": "116 St (Lex)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0008",
+      "station_name": "125 St (Lex)",
+      "station_name_en": "125 St (Lex)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0009",
+      "station_name": "135 St",
+      "station_name_en": "135 St",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0010",
+      "station_name": "137 St–City College",
+      "station_name_en": "137 St–City College",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0011",
+      "station_name": "138 St–Grand Concourse",
+      "station_name_en": "138 St–Grand Concourse",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0013",
+      "station_name": "149 St–Grand Concourse",
+      "station_name_en": "149 St–Grand Concourse",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0016",
+      "station_name": "155 St",
+      "station_name_en": "155 St",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0017",
+      "station_name": "157 St",
+      "station_name_en": "157 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0018",
+      "station_name": "161 St–Yankee Stadium",
+      "station_name_en": "161 St–Yankee Stadium",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0019",
+      "station_name": "163 St–Amsterdam Av",
+      "station_name_en": "163 St–Amsterdam Av",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0020",
+      "station_name": "167 St",
+      "station_name_en": "167 St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0022",
+      "station_name": "170 St",
+      "station_name_en": "170 St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0023",
+      "station_name": "175 St",
+      "station_name_en": "175 St",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0024",
+      "station_name": "176 St",
+      "station_name_en": "176 St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0026",
+      "station_name": "183 St",
+      "station_name_en": "183 St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0027",
+      "station_name": "18 St",
+      "station_name_en": "18 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0028",
+      "station_name": "190 St",
+      "station_name_en": "190 St",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0029",
+      "station_name": "191 St",
+      "station_name_en": "191 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0031",
+      "station_name": "215 St",
+      "station_name_en": "215 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0032",
+      "station_name": "231 St",
+      "station_name_en": "231 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0033",
+      "station_name": "238 St",
+      "station_name_en": "238 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0035",
+      "station_name": "23 St (Park)",
+      "station_name_en": "23 St (Park)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0036",
+      "station_name": "25 St",
+      "station_name_en": "25 St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0038",
+      "station_name": "28 St (Park)",
+      "station_name_en": "28 St (Park)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0039",
+      "station_name": "30 Av",
+      "station_name_en": "30 Av",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0040",
+      "station_name": "33 St (Park)",
+      "station_name_en": "33 St (Park)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0041",
+      "station_name": "33 St–Rawson St",
+      "station_name_en": "33 St–Rawson St",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0042",
+      "station_name": "34 St–Herald Sq",
+      "station_name_en": "34 St–Herald Sq",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0044",
+      "station_name": "34 St–Penn Station",
+      "station_name_en": "34 St–Penn Station",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0045",
+      "station_name": "36 Av",
+      "station_name_en": "36 Av",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0046",
+      "station_name": "36 St",
+      "station_name_en": "36 St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0047",
+      "station_name": "39 Av–Dutch Kills",
+      "station_name_en": "39 Av–Dutch Kills",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0048",
+      "station_name": "40 St–Lowery St",
+      "station_name_en": "40 St–Lowery St",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0049",
+      "station_name": "42 St–Port Authority Bus Terminal",
+      "station_name_en": "42 St–Port Authority Bus Terminal",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0050",
+      "station_name": "45 St",
+      "station_name_en": "45 St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0051",
+      "station_name": "46 St–Bliss St",
+      "station_name_en": "46 St–Bliss St",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0052",
+      "station_name": "49 St",
+      "station_name_en": "49 St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0053",
+      "station_name": "4 Av–9 St",
+      "station_name_en": "4 Av–9 St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0055",
+      "station_name": "51 St",
+      "station_name_en": "51 St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0056",
+      "station_name": "52 St–Lincoln Av",
+      "station_name_en": "52 St–Lincoln Av",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0057",
+      "station_name": "53 St",
+      "station_name_en": "53 St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0058",
+      "station_name": "57 St–7 Av",
+      "station_name_en": "57 St–7 Av",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0059",
+      "station_name": "59 St (4 Av)",
+      "station_name_en": "59 St (4 Av)",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0062",
+      "station_name": "5 Av",
+      "station_name_en": "5 Av",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0063",
+      "station_name": "5 Av/59 St",
+      "station_name_en": "5 Av/59 St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0064",
+      "station_name": "61 St–Woodside",
+      "station_name_en": "61 St–Woodside",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0065",
+      "station_name": "66 St–Lincoln Center",
+      "station_name_en": "66 St–Lincoln Center",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0066",
+      "station_name": "68 St–Hunter College",
+      "station_name_en": "68 St–Hunter College",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0067",
+      "station_name": "69 St–Fisk Av",
+      "station_name_en": "69 St–Fisk Av",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0069",
+      "station_name": "74 St–Broadway",
+      "station_name_en": "74 St–Broadway",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0070",
+      "station_name": "77 St",
+      "station_name_en": "77 St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0071",
+      "station_name": "79 St",
+      "station_name_en": "79 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0072",
+      "station_name": "80 St",
+      "station_name_en": "80 St",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0073",
+      "station_name": "81 St–Museum of Natural History",
+      "station_name_en": "81 St–Museum of Natural History",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0074",
+      "station_name": "82 St–Jackson Hts",
+      "station_name_en": "82 St–Jackson Hts",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0076",
+      "station_name": "86 St (Lex)",
+      "station_name_en": "86 St (Lex)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0077",
+      "station_name": "88 St",
+      "station_name_en": "88 St",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0078",
+      "station_name": "8 St–NYU",
+      "station_name_en": "8 St–NYU",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0079",
+      "station_name": "90 St–Elmhurst Av",
+      "station_name_en": "90 St–Elmhurst Av",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0081",
+      "station_name": "96 St (Lex)",
+      "station_name_en": "96 St (Lex)",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0082",
+      "station_name": "Astoria Blvd",
+      "station_name_en": "Astoria Blvd",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0086",
+      "station_name": "Bedford Park Blvd",
+      "station_name_en": "Bedford Park Blvd",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0087",
+      "station_name": "Borough Hall",
+      "station_name_en": "Borough Hall",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0088",
+      "station_name": "Bowling Green",
+      "station_name_en": "Bowling Green",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0089",
+      "station_name": "Broadway (Astoria)",
+      "station_name_en": "Broadway (Astoria)",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0090",
+      "station_name": "Broadway Junction",
+      "station_name_en": "Broadway Junction",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0091",
+      "station_name": "Brooklyn Bridge–City Hall",
+      "station_name_en": "Brooklyn Bridge–City Hall",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0093",
+      "station_name": "Canal St (N)",
+      "station_name_en": "Canal St (N)",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0096",
+      "station_name": "Christopher St–Sheridan Sq",
+      "station_name_en": "Christopher St–Sheridan Sq",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0097",
+      "station_name": "City Hall (N)",
+      "station_name_en": "City Hall (N)",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0099",
+      "station_name": "Court Sq",
+      "station_name_en": "Court Sq",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0100",
+      "station_name": "Court St",
+      "station_name_en": "Court St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0101",
+      "station_name": "Crown Heights–Utica Av",
+      "station_name_en": "Crown Heights–Utica Av",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0102",
+      "station_name": "DeKalb Av",
+      "station_name_en": "DeKalb Av",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0103",
+      "station_name": "Dyckman St",
+      "station_name_en": "Dyckman St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0104",
+      "station_name": "Euclid Av",
+      "station_name_en": "Euclid Av",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0106",
+      "station_name": "Fordham Rd",
+      "station_name_en": "Fordham Rd",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0107",
+      "station_name": "Franklin Av",
+      "station_name_en": "Franklin Av",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0108",
+      "station_name": "Franklin St",
+      "station_name_en": "Franklin St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0111",
+      "station_name": "Grant Av",
+      "station_name_en": "Grant Av",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0112",
+      "station_name": "High St–Brooklyn Bridge",
+      "station_name_en": "High St–Brooklyn Bridge",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0113",
+      "station_name": "Houston St",
+      "station_name_en": "Houston St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0114",
+      "station_name": "Hoyt–Schermerhorn Sts",
+      "station_name_en": "Hoyt–Schermerhorn Sts",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0115",
+      "station_name": "Hunters Point Av",
+      "station_name_en": "Hunters Point Av",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0117",
+      "station_name": "Jackson Hts–Roosevelt Av",
+      "station_name_en": "Jackson Hts–Roosevelt Av",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0118",
+      "station_name": "Jay St–MetroTech",
+      "station_name_en": "Jay St–MetroTech",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0119",
+      "station_name": "Junction Blvd",
+      "station_name_en": "Junction Blvd",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0120",
+      "station_name": "Junius St",
+      "station_name_en": "Junius St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0121",
+      "station_name": "Kingsbridge Rd",
+      "station_name_en": "Kingsbridge Rd",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0122",
+      "station_name": "Kingston–Throop Avs",
+      "station_name_en": "Kingston–Throop Avs",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0124",
+      "station_name": "Liberty Av",
+      "station_name_en": "Liberty Av",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0125",
+      "station_name": "Marble Hill–225 St",
+      "station_name_en": "Marble Hill–225 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0126",
+      "station_name": "Mets–Willets Point",
+      "station_name_en": "Mets–Willets Point",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0127",
+      "station_name": "Mosholu Pkwy",
+      "station_name_en": "Mosholu Pkwy",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0128",
+      "station_name": "Nevins St",
+      "station_name_en": "Nevins St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0130",
+      "station_name": "Norwood–205 St",
+      "station_name_en": "Norwood–205 St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0131",
+      "station_name": "Nostrand Av",
+      "station_name_en": "Nostrand Av",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0132",
+      "station_name": "Pennsylvania Av",
+      "station_name_en": "Pennsylvania Av",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0133",
+      "station_name": "Prince St",
+      "station_name_en": "Prince St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0134",
+      "station_name": "Prospect Av",
+      "station_name_en": "Prospect Av",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0136",
+      "station_name": "Ralph Av",
+      "station_name_en": "Ralph Av",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0139",
+      "station_name": "Saratoga Av",
+      "station_name_en": "Saratoga Av",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0140",
+      "station_name": "Shepherd Av",
+      "station_name_en": "Shepherd Av",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0142",
+      "station_name": "Spring St",
+      "station_name_en": "Spring St",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0143",
+      "station_name": "Sutter Av–Rutland Rd",
+      "station_name_en": "Sutter Av–Rutland Rd",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0145",
+      "station_name": "Union St",
+      "station_name_en": "Union St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0148",
+      "station_name": "Vernon Blvd–Jackson Av",
+      "station_name_en": "Vernon Blvd–Jackson Av",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0149",
+      "station_name": "W 4 St–Washington Sq",
+      "station_name_en": "W 4 St–Washington Sq",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0150",
+      "station_name": "Wall St",
+      "station_name_en": "Wall St",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0151",
+      "station_name": "Whitehall St–South Ferry",
+      "station_name_en": "Whitehall St–South Ferry",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.6667,
+      "composite_score": 0.6667,
+      "rarity": "epic",
+      "degree": 2
+    },
+    {
+      "station_global_id": "nyc_0083",
+      "station_name": "Astoria–Ditmars Blvd",
+      "station_name_en": "Astoria–Ditmars Blvd",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "nyc_0085",
+      "station_name": "Bay Ridge–95 St",
+      "station_name_en": "Bay Ridge–95 St",
+      "line_ids": [
+        "LN"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "nyc_0105",
+      "station_name": "Flushing–Main St",
+      "station_name_en": "Flushing–Main St",
+      "line_ids": [
+        "L7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "nyc_0116",
+      "station_name": "Inwood–207 St",
+      "station_name_en": "Inwood–207 St",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "nyc_0123",
+      "station_name": "Ozone Park–Lefferts Blvd",
+      "station_name_en": "Ozone Park–Lefferts Blvd",
+      "line_ids": [
+        "LA"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "nyc_0129",
+      "station_name": "New Lots Av",
+      "station_name_en": "New Lots Av",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "nyc_0141",
+      "station_name": "South Ferry",
+      "station_name_en": "South Ferry",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "nyc_0146",
+      "station_name": "Van Cortlandt Park–242 St",
+      "station_name_en": "Van Cortlandt Park–242 St",
+      "line_ids": [
+        "L1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    },
+    {
+      "station_global_id": "nyc_0152",
+      "station_name": "Woodlawn",
+      "station_name_en": "Woodlawn",
+      "line_ids": [
+        "L4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.8333,
+      "composite_score": 0.3333,
+      "rarity": "common",
+      "degree": 1
+    }
+  ]
+}

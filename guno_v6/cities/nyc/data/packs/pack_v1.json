@@ -1,0 +1,693 @@
+{
+  "pack_meta": {
+    "pack_version": "1.0",
+    "pack_id": "nyc_v1",
+    "name": "NYC Subway Pack v1",
+    "description": "5-line NYC Subway pack: 1/4/A/N/7 Trains",
+    "generated_by": "generate_nyc_deck.py",
+    "generated_at": "2026-03-12"
+  },
+  "layouts": {
+    "default": {
+      "slots": [
+        {
+          "collection_id": "l1",
+          "line_id": "L1",
+          "line_name": "1 Train",
+          "color": "#EE352E",
+          "size": 10
+        },
+        {
+          "collection_id": "l4",
+          "line_id": "L4",
+          "line_name": "4 Train",
+          "color": "#00933C",
+          "size": 10
+        },
+        {
+          "collection_id": "la",
+          "line_id": "LA",
+          "line_name": "A Train",
+          "color": "#2850AD",
+          "size": 10
+        },
+        {
+          "collection_id": "ln",
+          "line_id": "LN",
+          "line_name": "N Train",
+          "color": "#FCCC0A",
+          "size": 10
+        },
+        {
+          "collection_id": "l7",
+          "line_id": "L7",
+          "line_name": "7 Train",
+          "color": "#B933AD",
+          "size": 10
+        }
+      ]
+    }
+  },
+  "collections": {
+    "l1": {
+      "kind": "line",
+      "lc": "l1",
+      "name_ja": "1 Train",
+      "name_en": "1 Train",
+      "color": "#EE352E",
+      "size": 10,
+      "members": [
+        "l1-01",
+        "l1-02",
+        "l1-03",
+        "l1-04",
+        "l1-05",
+        "l1-06",
+        "l1-07",
+        "l1-08",
+        "l1-09",
+        "l1-10"
+      ]
+    },
+    "l4": {
+      "kind": "line",
+      "lc": "l4",
+      "name_ja": "4 Train",
+      "name_en": "4 Train",
+      "color": "#00933C",
+      "size": 10,
+      "members": [
+        "l4-01",
+        "l4-02",
+        "l4-03",
+        "l4-04",
+        "l4-05",
+        "l4-06",
+        "l4-07",
+        "l4-08",
+        "l4-09",
+        "l4-10"
+      ]
+    },
+    "la": {
+      "kind": "line",
+      "lc": "la",
+      "name_ja": "A Train",
+      "name_en": "A Train",
+      "color": "#2850AD",
+      "size": 10,
+      "members": [
+        "la-01",
+        "la-02",
+        "la-03",
+        "la-04",
+        "la-05",
+        "la-06",
+        "la-07",
+        "la-08",
+        "la-09",
+        "la-10"
+      ]
+    },
+    "ln": {
+      "kind": "line",
+      "lc": "ln",
+      "name_ja": "N Train",
+      "name_en": "N Train",
+      "color": "#FCCC0A",
+      "size": 10,
+      "members": [
+        "ln-01",
+        "ln-02",
+        "ln-03",
+        "ln-04",
+        "ln-05",
+        "ln-06",
+        "ln-07",
+        "ln-08",
+        "ln-09",
+        "ln-10"
+      ]
+    },
+    "l7": {
+      "kind": "line",
+      "lc": "l7",
+      "name_ja": "7 Train",
+      "name_en": "7 Train",
+      "color": "#B933AD",
+      "size": 10,
+      "members": [
+        "l7-01",
+        "l7-02",
+        "l7-03",
+        "l7-04",
+        "l7-05",
+        "l7-06",
+        "l7-07",
+        "l7-08",
+        "l7-09",
+        "l7-10"
+      ]
+    }
+  },
+  "entities": {
+    "l1-01": {
+      "type": "station",
+      "name_ja": "Van Cortlandt Park–242 St",
+      "name_en": "Van Cortlandt Park–242 St",
+      "station_code": "l1-01",
+      "station_global_id": "nyc_0146",
+      "cross_lines": [
+        "l1"
+      ]
+    },
+    "l1-02": {
+      "type": "station",
+      "name_ja": "Times Sq–42 St",
+      "name_en": "Times Sq–42 St",
+      "station_code": "l1-02",
+      "station_global_id": "nyc_0144",
+      "cross_lines": [
+        "l1",
+        "ln",
+        "l7"
+      ]
+    },
+    "l1-03": {
+      "type": "station",
+      "name_ja": "23 St",
+      "name_en": "23 St",
+      "station_code": "l1-03",
+      "station_global_id": "nyc_0034",
+      "cross_lines": [
+        "l1",
+        "la",
+        "ln"
+      ]
+    },
+    "l1-04": {
+      "type": "station",
+      "name_ja": "207 St",
+      "name_en": "207 St",
+      "station_code": "l1-04",
+      "station_global_id": "nyc_0030",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "l1-05": {
+      "type": "station",
+      "name_ja": "181 St",
+      "name_en": "181 St",
+      "station_code": "l1-05",
+      "station_global_id": "nyc_0025",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "l1-06": {
+      "type": "station",
+      "name_ja": "168 St–Washington Heights",
+      "name_en": "168 St–Washington Heights",
+      "station_code": "l1-06",
+      "station_global_id": "nyc_0021",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "l1-07": {
+      "type": "station",
+      "name_ja": "145 St",
+      "name_en": "145 St",
+      "station_code": "l1-07",
+      "station_global_id": "nyc_0012",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "l1-08": {
+      "type": "station",
+      "name_ja": "72 St",
+      "name_en": "72 St",
+      "station_code": "l1-08",
+      "station_global_id": "nyc_0068",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "l1-09": {
+      "type": "station",
+      "name_ja": "14 St",
+      "name_en": "14 St",
+      "station_code": "l1-09",
+      "station_global_id": "nyc_0014",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "l1-10": {
+      "type": "station",
+      "name_ja": "South Ferry",
+      "name_en": "South Ferry",
+      "station_code": "l1-10",
+      "station_global_id": "nyc_0141",
+      "cross_lines": [
+        "l1"
+      ]
+    },
+    "l4-01": {
+      "type": "station",
+      "name_ja": "Woodlawn",
+      "name_en": "Woodlawn",
+      "station_code": "l4-01",
+      "station_global_id": "nyc_0152",
+      "cross_lines": [
+        "l4"
+      ]
+    },
+    "l4-02": {
+      "type": "station",
+      "name_ja": "59 St (Lex)",
+      "name_en": "59 St (Lex)",
+      "station_code": "l4-02",
+      "station_global_id": "nyc_0061",
+      "cross_lines": [
+        "l4",
+        "ln"
+      ]
+    },
+    "l4-03": {
+      "type": "station",
+      "name_ja": "Grand Central–42 St",
+      "name_en": "Grand Central–42 St",
+      "station_code": "l4-03",
+      "station_global_id": "nyc_0110",
+      "cross_lines": [
+        "l4",
+        "l7"
+      ]
+    },
+    "l4-04": {
+      "type": "station",
+      "name_ja": "14 St–Union Sq",
+      "name_en": "14 St–Union Sq",
+      "station_code": "l4-04",
+      "station_global_id": "nyc_0015",
+      "cross_lines": [
+        "l4",
+        "ln"
+      ]
+    },
+    "l4-05": {
+      "type": "station",
+      "name_ja": "Fulton St",
+      "name_en": "Fulton St",
+      "station_code": "l4-05",
+      "station_global_id": "nyc_0109",
+      "cross_lines": [
+        "l4"
+      ]
+    },
+    "l4-06": {
+      "type": "station",
+      "name_ja": "Atlantic Av–Barclays Ctr",
+      "name_en": "Atlantic Av–Barclays Ctr",
+      "station_code": "l4-06",
+      "station_global_id": "nyc_0084",
+      "cross_lines": [
+        "l4",
+        "ln"
+      ]
+    },
+    "l4-07": {
+      "type": "station",
+      "name_ja": "Rockaway Av",
+      "name_en": "Rockaway Av",
+      "station_code": "l4-07",
+      "station_global_id": "nyc_0138",
+      "cross_lines": [
+        "l4"
+      ]
+    },
+    "l4-08": {
+      "type": "station",
+      "name_ja": "Van Siclen Av",
+      "name_en": "Van Siclen Av",
+      "station_code": "l4-08",
+      "station_global_id": "nyc_0147",
+      "cross_lines": [
+        "l4"
+      ]
+    },
+    "l4-09": {
+      "type": "station",
+      "name_ja": "Mosholu Pkwy",
+      "name_en": "Mosholu Pkwy",
+      "station_code": "l4-09",
+      "station_global_id": "nyc_0127",
+      "cross_lines": [
+        "l4"
+      ]
+    },
+    "l4-10": {
+      "type": "station",
+      "name_ja": "New Lots Av",
+      "name_en": "New Lots Av",
+      "station_code": "l4-10",
+      "station_global_id": "nyc_0129",
+      "cross_lines": [
+        "l4"
+      ]
+    },
+    "la-01": {
+      "type": "station",
+      "name_ja": "Inwood–207 St",
+      "name_en": "Inwood–207 St",
+      "station_code": "la-01",
+      "station_global_id": "nyc_0116",
+      "cross_lines": [
+        "la"
+      ]
+    },
+    "la-02": {
+      "type": "station",
+      "name_ja": "23 St",
+      "name_en": "23 St",
+      "station_code": "la-02",
+      "station_global_id": "nyc_0034",
+      "cross_lines": [
+        "l1",
+        "la",
+        "ln"
+      ]
+    },
+    "la-03": {
+      "type": "station",
+      "name_ja": "207 St",
+      "name_en": "207 St",
+      "station_code": "la-03",
+      "station_global_id": "nyc_0030",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "la-04": {
+      "type": "station",
+      "name_ja": "181 St",
+      "name_en": "181 St",
+      "station_code": "la-04",
+      "station_global_id": "nyc_0025",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "la-05": {
+      "type": "station",
+      "name_ja": "168 St–Washington Heights",
+      "name_en": "168 St–Washington Heights",
+      "station_code": "la-05",
+      "station_global_id": "nyc_0021",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "la-06": {
+      "type": "station",
+      "name_ja": "145 St",
+      "name_en": "145 St",
+      "station_code": "la-06",
+      "station_global_id": "nyc_0012",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "la-07": {
+      "type": "station",
+      "name_ja": "72 St",
+      "name_en": "72 St",
+      "station_code": "la-07",
+      "station_global_id": "nyc_0068",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "la-08": {
+      "type": "station",
+      "name_ja": "14 St",
+      "name_en": "14 St",
+      "station_code": "la-08",
+      "station_global_id": "nyc_0014",
+      "cross_lines": [
+        "l1",
+        "la"
+      ]
+    },
+    "la-09": {
+      "type": "station",
+      "name_ja": "Canal St",
+      "name_en": "Canal St",
+      "station_code": "la-09",
+      "station_global_id": "nyc_0092",
+      "cross_lines": [
+        "la"
+      ]
+    },
+    "la-10": {
+      "type": "station",
+      "name_ja": "Ozone Park–Lefferts Blvd",
+      "name_en": "Ozone Park–Lefferts Blvd",
+      "station_code": "la-10",
+      "station_global_id": "nyc_0123",
+      "cross_lines": [
+        "la"
+      ]
+    },
+    "ln-01": {
+      "type": "station",
+      "name_ja": "Astoria–Ditmars Blvd",
+      "name_en": "Astoria–Ditmars Blvd",
+      "station_code": "ln-01",
+      "station_global_id": "nyc_0083",
+      "cross_lines": [
+        "ln"
+      ]
+    },
+    "ln-02": {
+      "type": "station",
+      "name_ja": "Times Sq–42 St",
+      "name_en": "Times Sq–42 St",
+      "station_code": "ln-02",
+      "station_global_id": "nyc_0144",
+      "cross_lines": [
+        "l1",
+        "ln",
+        "l7"
+      ]
+    },
+    "ln-03": {
+      "type": "station",
+      "name_ja": "23 St",
+      "name_en": "23 St",
+      "station_code": "ln-03",
+      "station_global_id": "nyc_0034",
+      "cross_lines": [
+        "l1",
+        "la",
+        "ln"
+      ]
+    },
+    "ln-04": {
+      "type": "station",
+      "name_ja": "Queensboro Plaza",
+      "name_en": "Queensboro Plaza",
+      "station_code": "ln-04",
+      "station_global_id": "nyc_0135",
+      "cross_lines": [
+        "ln",
+        "l7"
+      ]
+    },
+    "ln-05": {
+      "type": "station",
+      "name_ja": "59 St (Lex)",
+      "name_en": "59 St (Lex)",
+      "station_code": "ln-05",
+      "station_global_id": "nyc_0061",
+      "cross_lines": [
+        "l4",
+        "ln"
+      ]
+    },
+    "ln-06": {
+      "type": "station",
+      "name_ja": "14 St–Union Sq",
+      "name_en": "14 St–Union Sq",
+      "station_code": "ln-06",
+      "station_global_id": "nyc_0015",
+      "cross_lines": [
+        "l4",
+        "ln"
+      ]
+    },
+    "ln-07": {
+      "type": "station",
+      "name_ja": "Atlantic Av–Barclays Ctr",
+      "name_en": "Atlantic Av–Barclays Ctr",
+      "station_code": "ln-07",
+      "station_global_id": "nyc_0084",
+      "cross_lines": [
+        "l4",
+        "ln"
+      ]
+    },
+    "ln-08": {
+      "type": "station",
+      "name_ja": "28 St",
+      "name_en": "28 St",
+      "station_code": "ln-08",
+      "station_global_id": "nyc_0037",
+      "cross_lines": [
+        "ln"
+      ]
+    },
+    "ln-09": {
+      "type": "station",
+      "name_ja": "Cortlandt St",
+      "name_en": "Cortlandt St",
+      "station_code": "ln-09",
+      "station_global_id": "nyc_0098",
+      "cross_lines": [
+        "ln"
+      ]
+    },
+    "ln-10": {
+      "type": "station",
+      "name_ja": "Bay Ridge–95 St",
+      "name_en": "Bay Ridge–95 St",
+      "station_code": "ln-10",
+      "station_global_id": "nyc_0085",
+      "cross_lines": [
+        "ln"
+      ]
+    },
+    "l7-01": {
+      "type": "station",
+      "name_ja": "Flushing–Main St",
+      "name_en": "Flushing–Main St",
+      "station_code": "l7-01",
+      "station_global_id": "nyc_0105",
+      "cross_lines": [
+        "l7"
+      ]
+    },
+    "l7-02": {
+      "type": "station",
+      "name_ja": "Times Sq–42 St",
+      "name_en": "Times Sq–42 St",
+      "station_code": "l7-02",
+      "station_global_id": "nyc_0144",
+      "cross_lines": [
+        "l1",
+        "ln",
+        "l7"
+      ]
+    },
+    "l7-03": {
+      "type": "station",
+      "name_ja": "Queensboro Plaza",
+      "name_en": "Queensboro Plaza",
+      "station_code": "l7-03",
+      "station_global_id": "nyc_0135",
+      "cross_lines": [
+        "ln",
+        "l7"
+      ]
+    },
+    "l7-04": {
+      "type": "station",
+      "name_ja": "Grand Central–42 St",
+      "name_en": "Grand Central–42 St",
+      "station_code": "l7-04",
+      "station_global_id": "nyc_0110",
+      "cross_lines": [
+        "l4",
+        "l7"
+      ]
+    },
+    "l7-05": {
+      "type": "station",
+      "name_ja": "Mets–Willets Point",
+      "name_en": "Mets–Willets Point",
+      "station_code": "l7-05",
+      "station_global_id": "nyc_0126",
+      "cross_lines": [
+        "l7"
+      ]
+    },
+    "l7-06": {
+      "type": "station",
+      "name_ja": "111 St",
+      "name_en": "111 St",
+      "station_code": "l7-06",
+      "station_global_id": "nyc_0004",
+      "cross_lines": [
+        "l7"
+      ]
+    },
+    "l7-07": {
+      "type": "station",
+      "name_ja": "Junction Blvd",
+      "name_en": "Junction Blvd",
+      "station_code": "l7-07",
+      "station_global_id": "nyc_0119",
+      "cross_lines": [
+        "l7"
+      ]
+    },
+    "l7-08": {
+      "type": "station",
+      "name_ja": "Jackson Hts–Roosevelt Av",
+      "name_en": "Jackson Hts–Roosevelt Av",
+      "station_code": "l7-08",
+      "station_global_id": "nyc_0117",
+      "cross_lines": [
+        "l7"
+      ]
+    },
+    "l7-09": {
+      "type": "station",
+      "name_ja": "90 St–Elmhurst Av",
+      "name_en": "90 St–Elmhurst Av",
+      "station_code": "l7-09",
+      "station_global_id": "nyc_0079",
+      "cross_lines": [
+        "l7"
+      ]
+    },
+    "l7-10": {
+      "type": "station",
+      "name_ja": "34 St–Hudson Yards",
+      "name_en": "34 St–Hudson Yards",
+      "station_code": "l7-10",
+      "station_global_id": "nyc_0043",
+      "cross_lines": [
+        "l7"
+      ]
+    }
+  },
+  "rules": {
+    "route_size": 10,
+    "allow_transfer_bonus": true
+  }
+}

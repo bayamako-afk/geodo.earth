@@ -1,0 +1,153 @@
+station_global_id,station_name,station_name_en,line_ids,line_count,hub_score,centrality_score,composite_score,rarity,degree
+nyc_0144,Times Sq–42 St,Times Sq–42 St,L1|LN|L7,3,5.0,5.0,5.0,legendary,6
+nyc_0034,23 St,23 St,L1|LA|LN,3,5.0,4.1667,4.6667,legendary,5
+nyc_0012,145 St,145 St,L1|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0014,14 St,14 St,L1|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0015,14 St–Union Sq,14 St–Union Sq,L4|LN,2,2.5,3.3333,2.8333,legendary,4
+nyc_0021,168 St–Washington Heights,168 St–Washington Heights,L1|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0025,181 St,181 St,L1|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0030,207 St,207 St,L1|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0061,59 St (Lex),59 St (Lex),L4|LN,2,2.5,3.3333,2.8333,legendary,4
+nyc_0068,72 St,72 St,L1|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0084,Atlantic Av–Barclays Ctr,Atlantic Av–Barclays Ctr,L4|LN,2,2.5,3.3333,2.8333,legendary,4
+nyc_0092,Canal St,Canal St,L1|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0095,Chambers St,Chambers St,L1|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0109,Fulton St,Fulton St,L4|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0110,Grand Central–42 St,Grand Central–42 St,L4|L7,2,2.5,3.3333,2.8333,legendary,4
+nyc_0135,Queensboro Plaza,Queensboro Plaza,LN|L7,2,2.5,3.3333,2.8333,legendary,4
+nyc_0138,Rockaway Av,Rockaway Av,L4|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0147,Van Siclen Av,Van Siclen Av,L4|LA,2,2.5,3.3333,2.8333,legendary,4
+nyc_0007,125 St,125 St,L1|LA,2,2.5,2.5,2.5,epic,3
+nyc_0037,28 St,28 St,L1|LN,2,2.5,2.5,2.5,epic,3
+nyc_0043,34 St–Hudson Yards,34 St–Hudson Yards,LA|L7,2,2.5,2.5,2.5,epic,3
+nyc_0054,50 St,50 St,L1|LA,2,2.5,2.5,2.5,epic,3
+nyc_0060,59 St–Columbus Circle,59 St–Columbus Circle,L1|LA,2,2.5,2.5,2.5,epic,3
+nyc_0075,86 St,86 St,L1|LA,2,2.5,2.5,2.5,epic,3
+nyc_0098,Cortlandt St,Cortlandt St,L1|LN,2,2.5,2.5,2.5,epic,3
+nyc_0137,Rector St,Rector St,L1|LN,2,2.5,2.5,2.5,epic,3
+nyc_0001,103 St,103 St,L1|LA,2,2.5,1.6667,2.1667,epic,2
+nyc_0005,116 St–Columbia University,116 St–Columbia University,L1|LA,2,2.5,1.6667,2.1667,epic,2
+nyc_0080,96 St,96 St,L1|LA,2,2.5,1.6667,2.1667,epic,2
+nyc_0094,Cathedral Pkwy–110 St,Cathedral Pkwy–110 St,L1|LA,2,2.5,1.6667,2.1667,epic,2
+nyc_0002,103 St (Lex),103 St (Lex),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0003,110 St (Lex),110 St (Lex),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0004,111 St,111 St,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0006,116 St (Lex),116 St (Lex),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0008,125 St (Lex),125 St (Lex),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0009,135 St,135 St,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0010,137 St–City College,137 St–City College,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0011,138 St–Grand Concourse,138 St–Grand Concourse,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0013,149 St–Grand Concourse,149 St–Grand Concourse,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0016,155 St,155 St,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0017,157 St,157 St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0018,161 St–Yankee Stadium,161 St–Yankee Stadium,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0019,163 St–Amsterdam Av,163 St–Amsterdam Av,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0020,167 St,167 St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0022,170 St,170 St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0023,175 St,175 St,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0024,176 St,176 St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0026,183 St,183 St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0027,18 St,18 St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0028,190 St,190 St,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0029,191 St,191 St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0031,215 St,215 St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0032,231 St,231 St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0033,238 St,238 St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0035,23 St (Park),23 St (Park),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0036,25 St,25 St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0038,28 St (Park),28 St (Park),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0039,30 Av,30 Av,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0040,33 St (Park),33 St (Park),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0041,33 St–Rawson St,33 St–Rawson St,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0042,34 St–Herald Sq,34 St–Herald Sq,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0044,34 St–Penn Station,34 St–Penn Station,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0045,36 Av,36 Av,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0046,36 St,36 St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0047,39 Av–Dutch Kills,39 Av–Dutch Kills,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0048,40 St–Lowery St,40 St–Lowery St,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0049,42 St–Port Authority Bus Terminal,42 St–Port Authority Bus Terminal,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0050,45 St,45 St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0051,46 St–Bliss St,46 St–Bliss St,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0052,49 St,49 St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0053,4 Av–9 St,4 Av–9 St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0055,51 St,51 St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0056,52 St–Lincoln Av,52 St–Lincoln Av,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0057,53 St,53 St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0058,57 St–7 Av,57 St–7 Av,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0059,59 St (4 Av),59 St (4 Av),LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0062,5 Av,5 Av,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0063,5 Av/59 St,5 Av/59 St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0064,61 St–Woodside,61 St–Woodside,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0065,66 St–Lincoln Center,66 St–Lincoln Center,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0066,68 St–Hunter College,68 St–Hunter College,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0067,69 St–Fisk Av,69 St–Fisk Av,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0069,74 St–Broadway,74 St–Broadway,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0070,77 St,77 St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0071,79 St,79 St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0072,80 St,80 St,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0073,81 St–Museum of Natural History,81 St–Museum of Natural History,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0074,82 St–Jackson Hts,82 St–Jackson Hts,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0076,86 St (Lex),86 St (Lex),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0077,88 St,88 St,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0078,8 St–NYU,8 St–NYU,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0079,90 St–Elmhurst Av,90 St–Elmhurst Av,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0081,96 St (Lex),96 St (Lex),L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0082,Astoria Blvd,Astoria Blvd,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0086,Bedford Park Blvd,Bedford Park Blvd,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0087,Borough Hall,Borough Hall,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0088,Bowling Green,Bowling Green,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0089,Broadway (Astoria),Broadway (Astoria),LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0090,Broadway Junction,Broadway Junction,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0091,Brooklyn Bridge–City Hall,Brooklyn Bridge–City Hall,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0093,Canal St (N),Canal St (N),LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0096,Christopher St–Sheridan Sq,Christopher St–Sheridan Sq,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0097,City Hall (N),City Hall (N),LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0099,Court Sq,Court Sq,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0100,Court St,Court St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0101,Crown Heights–Utica Av,Crown Heights–Utica Av,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0102,DeKalb Av,DeKalb Av,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0103,Dyckman St,Dyckman St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0104,Euclid Av,Euclid Av,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0106,Fordham Rd,Fordham Rd,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0107,Franklin Av,Franklin Av,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0108,Franklin St,Franklin St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0111,Grant Av,Grant Av,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0112,High St–Brooklyn Bridge,High St–Brooklyn Bridge,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0113,Houston St,Houston St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0114,Hoyt–Schermerhorn Sts,Hoyt–Schermerhorn Sts,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0115,Hunters Point Av,Hunters Point Av,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0117,Jackson Hts–Roosevelt Av,Jackson Hts–Roosevelt Av,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0118,Jay St–MetroTech,Jay St–MetroTech,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0119,Junction Blvd,Junction Blvd,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0120,Junius St,Junius St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0121,Kingsbridge Rd,Kingsbridge Rd,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0122,Kingston–Throop Avs,Kingston–Throop Avs,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0124,Liberty Av,Liberty Av,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0125,Marble Hill–225 St,Marble Hill–225 St,L1,1,0.0,1.6667,0.6667,epic,2
+nyc_0126,Mets–Willets Point,Mets–Willets Point,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0127,Mosholu Pkwy,Mosholu Pkwy,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0128,Nevins St,Nevins St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0130,Norwood–205 St,Norwood–205 St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0131,Nostrand Av,Nostrand Av,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0132,Pennsylvania Av,Pennsylvania Av,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0133,Prince St,Prince St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0134,Prospect Av,Prospect Av,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0136,Ralph Av,Ralph Av,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0139,Saratoga Av,Saratoga Av,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0140,Shepherd Av,Shepherd Av,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0142,Spring St,Spring St,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0143,Sutter Av–Rutland Rd,Sutter Av–Rutland Rd,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0145,Union St,Union St,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0148,Vernon Blvd–Jackson Av,Vernon Blvd–Jackson Av,L7,1,0.0,1.6667,0.6667,epic,2
+nyc_0149,W 4 St–Washington Sq,W 4 St–Washington Sq,LA,1,0.0,1.6667,0.6667,epic,2
+nyc_0150,Wall St,Wall St,L4,1,0.0,1.6667,0.6667,epic,2
+nyc_0151,Whitehall St–South Ferry,Whitehall St–South Ferry,LN,1,0.0,1.6667,0.6667,epic,2
+nyc_0083,Astoria–Ditmars Blvd,Astoria–Ditmars Blvd,LN,1,0.0,0.8333,0.3333,common,1
+nyc_0085,Bay Ridge–95 St,Bay Ridge–95 St,LN,1,0.0,0.8333,0.3333,common,1
+nyc_0105,Flushing–Main St,Flushing–Main St,L7,1,0.0,0.8333,0.3333,common,1
+nyc_0116,Inwood–207 St,Inwood–207 St,LA,1,0.0,0.8333,0.3333,common,1
+nyc_0123,Ozone Park–Lefferts Blvd,Ozone Park–Lefferts Blvd,LA,1,0.0,0.8333,0.3333,common,1
+nyc_0129,New Lots Av,New Lots Av,L4,1,0.0,0.8333,0.3333,common,1
+nyc_0141,South Ferry,South Ferry,L1,1,0.0,0.8333,0.3333,common,1
+nyc_0146,Van Cortlandt Park–242 St,Van Cortlandt Park–242 St,L1,1,0.0,0.8333,0.3333,common,1
+nyc_0152,Woodlawn,Woodlawn,L4,1,0.0,0.8333,0.3333,common,1

@@ -1,0 +1,47 @@
+[
+  {
+    "line_id": "L1",
+    "line_name": "1 Train",
+    "line_name_en": "1 Train",
+    "color": "#EE352E",
+    "operator": "MTA New York City Transit",
+    "system": "IRT Broadway–7th Ave",
+    "city": "nyc"
+  },
+  {
+    "line_id": "L4",
+    "line_name": "4 Train",
+    "line_name_en": "4 Train",
+    "color": "#00933C",
+    "operator": "MTA New York City Transit",
+    "system": "IRT Lexington Ave Express",
+    "city": "nyc"
+  },
+  {
+    "line_id": "LA",
+    "line_name": "A Train",
+    "line_name_en": "A Train",
+    "color": "#2850AD",
+    "operator": "MTA New York City Transit",
+    "system": "IND 8th Ave Express",
+    "city": "nyc"
+  },
+  {
+    "line_id": "LN",
+    "line_name": "N Train",
+    "line_name_en": "N Train",
+    "color": "#FCCC0A",
+    "operator": "MTA New York City Transit",
+    "system": "BMT Broadway",
+    "city": "nyc"
+  },
+  {
+    "line_id": "L7",
+    "line_name": "7 Train",
+    "line_name_en": "7 Train",
+    "color": "#B933AD",
+    "operator": "MTA New York City Transit",
+    "system": "IRT Flushing",
+    "city": "nyc"
+  }
+]

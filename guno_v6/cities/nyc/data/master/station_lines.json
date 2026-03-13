@@ -1,0 +1,922 @@
+[
+  {
+    "station_global_id": "nyc_0146",
+    "line_id": "L1",
+    "order_in_line": 1
+  },
+  {
+    "station_global_id": "nyc_0033",
+    "line_id": "L1",
+    "order_in_line": 2
+  },
+  {
+    "station_global_id": "nyc_0032",
+    "line_id": "L1",
+    "order_in_line": 3
+  },
+  {
+    "station_global_id": "nyc_0125",
+    "line_id": "L1",
+    "order_in_line": 4
+  },
+  {
+    "station_global_id": "nyc_0031",
+    "line_id": "L1",
+    "order_in_line": 5
+  },
+  {
+    "station_global_id": "nyc_0030",
+    "line_id": "L1",
+    "order_in_line": 6
+  },
+  {
+    "station_global_id": "nyc_0103",
+    "line_id": "L1",
+    "order_in_line": 7
+  },
+  {
+    "station_global_id": "nyc_0029",
+    "line_id": "L1",
+    "order_in_line": 8
+  },
+  {
+    "station_global_id": "nyc_0025",
+    "line_id": "L1",
+    "order_in_line": 9
+  },
+  {
+    "station_global_id": "nyc_0021",
+    "line_id": "L1",
+    "order_in_line": 10
+  },
+  {
+    "station_global_id": "nyc_0017",
+    "line_id": "L1",
+    "order_in_line": 11
+  },
+  {
+    "station_global_id": "nyc_0012",
+    "line_id": "L1",
+    "order_in_line": 12
+  },
+  {
+    "station_global_id": "nyc_0010",
+    "line_id": "L1",
+    "order_in_line": 13
+  },
+  {
+    "station_global_id": "nyc_0007",
+    "line_id": "L1",
+    "order_in_line": 14
+  },
+  {
+    "station_global_id": "nyc_0005",
+    "line_id": "L1",
+    "order_in_line": 15
+  },
+  {
+    "station_global_id": "nyc_0094",
+    "line_id": "L1",
+    "order_in_line": 16
+  },
+  {
+    "station_global_id": "nyc_0001",
+    "line_id": "L1",
+    "order_in_line": 17
+  },
+  {
+    "station_global_id": "nyc_0080",
+    "line_id": "L1",
+    "order_in_line": 18
+  },
+  {
+    "station_global_id": "nyc_0075",
+    "line_id": "L1",
+    "order_in_line": 19
+  },
+  {
+    "station_global_id": "nyc_0071",
+    "line_id": "L1",
+    "order_in_line": 20
+  },
+  {
+    "station_global_id": "nyc_0068",
+    "line_id": "L1",
+    "order_in_line": 21
+  },
+  {
+    "station_global_id": "nyc_0065",
+    "line_id": "L1",
+    "order_in_line": 22
+  },
+  {
+    "station_global_id": "nyc_0060",
+    "line_id": "L1",
+    "order_in_line": 23
+  },
+  {
+    "station_global_id": "nyc_0054",
+    "line_id": "L1",
+    "order_in_line": 24
+  },
+  {
+    "station_global_id": "nyc_0144",
+    "line_id": "L1",
+    "order_in_line": 25
+  },
+  {
+    "station_global_id": "nyc_0044",
+    "line_id": "L1",
+    "order_in_line": 26
+  },
+  {
+    "station_global_id": "nyc_0037",
+    "line_id": "L1",
+    "order_in_line": 27
+  },
+  {
+    "station_global_id": "nyc_0034",
+    "line_id": "L1",
+    "order_in_line": 28
+  },
+  {
+    "station_global_id": "nyc_0027",
+    "line_id": "L1",
+    "order_in_line": 29
+  },
+  {
+    "station_global_id": "nyc_0014",
+    "line_id": "L1",
+    "order_in_line": 30
+  },
+  {
+    "station_global_id": "nyc_0096",
+    "line_id": "L1",
+    "order_in_line": 31
+  },
+  {
+    "station_global_id": "nyc_0113",
+    "line_id": "L1",
+    "order_in_line": 32
+  },
+  {
+    "station_global_id": "nyc_0092",
+    "line_id": "L1",
+    "order_in_line": 33
+  },
+  {
+    "station_global_id": "nyc_0108",
+    "line_id": "L1",
+    "order_in_line": 34
+  },
+  {
+    "station_global_id": "nyc_0095",
+    "line_id": "L1",
+    "order_in_line": 35
+  },
+  {
+    "station_global_id": "nyc_0098",
+    "line_id": "L1",
+    "order_in_line": 36
+  },
+  {
+    "station_global_id": "nyc_0137",
+    "line_id": "L1",
+    "order_in_line": 37
+  },
+  {
+    "station_global_id": "nyc_0141",
+    "line_id": "L1",
+    "order_in_line": 38
+  },
+  {
+    "station_global_id": "nyc_0152",
+    "line_id": "L4",
+    "order_in_line": 1
+  },
+  {
+    "station_global_id": "nyc_0127",
+    "line_id": "L4",
+    "order_in_line": 2
+  },
+  {
+    "station_global_id": "nyc_0130",
+    "line_id": "L4",
+    "order_in_line": 3
+  },
+  {
+    "station_global_id": "nyc_0086",
+    "line_id": "L4",
+    "order_in_line": 4
+  },
+  {
+    "station_global_id": "nyc_0121",
+    "line_id": "L4",
+    "order_in_line": 5
+  },
+  {
+    "station_global_id": "nyc_0106",
+    "line_id": "L4",
+    "order_in_line": 6
+  },
+  {
+    "station_global_id": "nyc_0026",
+    "line_id": "L4",
+    "order_in_line": 7
+  },
+  {
+    "station_global_id": "nyc_0024",
+    "line_id": "L4",
+    "order_in_line": 8
+  },
+  {
+    "station_global_id": "nyc_0022",
+    "line_id": "L4",
+    "order_in_line": 9
+  },
+  {
+    "station_global_id": "nyc_0020",
+    "line_id": "L4",
+    "order_in_line": 10
+  },
+  {
+    "station_global_id": "nyc_0018",
+    "line_id": "L4",
+    "order_in_line": 11
+  },
+  {
+    "station_global_id": "nyc_0013",
+    "line_id": "L4",
+    "order_in_line": 12
+  },
+  {
+    "station_global_id": "nyc_0011",
+    "line_id": "L4",
+    "order_in_line": 13
+  },
+  {
+    "station_global_id": "nyc_0008",
+    "line_id": "L4",
+    "order_in_line": 14
+  },
+  {
+    "station_global_id": "nyc_0006",
+    "line_id": "L4",
+    "order_in_line": 15
+  },
+  {
+    "station_global_id": "nyc_0003",
+    "line_id": "L4",
+    "order_in_line": 16
+  },
+  {
+    "station_global_id": "nyc_0002",
+    "line_id": "L4",
+    "order_in_line": 17
+  },
+  {
+    "station_global_id": "nyc_0081",
+    "line_id": "L4",
+    "order_in_line": 18
+  },
+  {
+    "station_global_id": "nyc_0076",
+    "line_id": "L4",
+    "order_in_line": 19
+  },
+  {
+    "station_global_id": "nyc_0070",
+    "line_id": "L4",
+    "order_in_line": 20
+  },
+  {
+    "station_global_id": "nyc_0066",
+    "line_id": "L4",
+    "order_in_line": 21
+  },
+  {
+    "station_global_id": "nyc_0061",
+    "line_id": "L4",
+    "order_in_line": 22
+  },
+  {
+    "station_global_id": "nyc_0055",
+    "line_id": "L4",
+    "order_in_line": 23
+  },
+  {
+    "station_global_id": "nyc_0110",
+    "line_id": "L4",
+    "order_in_line": 24
+  },
+  {
+    "station_global_id": "nyc_0040",
+    "line_id": "L4",
+    "order_in_line": 25
+  },
+  {
+    "station_global_id": "nyc_0038",
+    "line_id": "L4",
+    "order_in_line": 26
+  },
+  {
+    "station_global_id": "nyc_0035",
+    "line_id": "L4",
+    "order_in_line": 27
+  },
+  {
+    "station_global_id": "nyc_0015",
+    "line_id": "L4",
+    "order_in_line": 28
+  },
+  {
+    "station_global_id": "nyc_0091",
+    "line_id": "L4",
+    "order_in_line": 29
+  },
+  {
+    "station_global_id": "nyc_0109",
+    "line_id": "L4",
+    "order_in_line": 30
+  },
+  {
+    "station_global_id": "nyc_0150",
+    "line_id": "L4",
+    "order_in_line": 31
+  },
+  {
+    "station_global_id": "nyc_0088",
+    "line_id": "L4",
+    "order_in_line": 32
+  },
+  {
+    "station_global_id": "nyc_0087",
+    "line_id": "L4",
+    "order_in_line": 33
+  },
+  {
+    "station_global_id": "nyc_0128",
+    "line_id": "L4",
+    "order_in_line": 34
+  },
+  {
+    "station_global_id": "nyc_0084",
+    "line_id": "L4",
+    "order_in_line": 35
+  },
+  {
+    "station_global_id": "nyc_0107",
+    "line_id": "L4",
+    "order_in_line": 36
+  },
+  {
+    "station_global_id": "nyc_0101",
+    "line_id": "L4",
+    "order_in_line": 37
+  },
+  {
+    "station_global_id": "nyc_0143",
+    "line_id": "L4",
+    "order_in_line": 38
+  },
+  {
+    "station_global_id": "nyc_0139",
+    "line_id": "L4",
+    "order_in_line": 39
+  },
+  {
+    "station_global_id": "nyc_0138",
+    "line_id": "L4",
+    "order_in_line": 40
+  },
+  {
+    "station_global_id": "nyc_0120",
+    "line_id": "L4",
+    "order_in_line": 41
+  },
+  {
+    "station_global_id": "nyc_0132",
+    "line_id": "L4",
+    "order_in_line": 42
+  },
+  {
+    "station_global_id": "nyc_0147",
+    "line_id": "L4",
+    "order_in_line": 43
+  },
+  {
+    "station_global_id": "nyc_0129",
+    "line_id": "L4",
+    "order_in_line": 44
+  },
+  {
+    "station_global_id": "nyc_0116",
+    "line_id": "LA",
+    "order_in_line": 1
+  },
+  {
+    "station_global_id": "nyc_0030",
+    "line_id": "LA",
+    "order_in_line": 2
+  },
+  {
+    "station_global_id": "nyc_0028",
+    "line_id": "LA",
+    "order_in_line": 3
+  },
+  {
+    "station_global_id": "nyc_0025",
+    "line_id": "LA",
+    "order_in_line": 4
+  },
+  {
+    "station_global_id": "nyc_0023",
+    "line_id": "LA",
+    "order_in_line": 5
+  },
+  {
+    "station_global_id": "nyc_0021",
+    "line_id": "LA",
+    "order_in_line": 6
+  },
+  {
+    "station_global_id": "nyc_0019",
+    "line_id": "LA",
+    "order_in_line": 7
+  },
+  {
+    "station_global_id": "nyc_0016",
+    "line_id": "LA",
+    "order_in_line": 8
+  },
+  {
+    "station_global_id": "nyc_0012",
+    "line_id": "LA",
+    "order_in_line": 9
+  },
+  {
+    "station_global_id": "nyc_0009",
+    "line_id": "LA",
+    "order_in_line": 10
+  },
+  {
+    "station_global_id": "nyc_0007",
+    "line_id": "LA",
+    "order_in_line": 11
+  },
+  {
+    "station_global_id": "nyc_0005",
+    "line_id": "LA",
+    "order_in_line": 12
+  },
+  {
+    "station_global_id": "nyc_0094",
+    "line_id": "LA",
+    "order_in_line": 13
+  },
+  {
+    "station_global_id": "nyc_0001",
+    "line_id": "LA",
+    "order_in_line": 14
+  },
+  {
+    "station_global_id": "nyc_0080",
+    "line_id": "LA",
+    "order_in_line": 15
+  },
+  {
+    "station_global_id": "nyc_0075",
+    "line_id": "LA",
+    "order_in_line": 16
+  },
+  {
+    "station_global_id": "nyc_0073",
+    "line_id": "LA",
+    "order_in_line": 17
+  },
+  {
+    "station_global_id": "nyc_0068",
+    "line_id": "LA",
+    "order_in_line": 18
+  },
+  {
+    "station_global_id": "nyc_0060",
+    "line_id": "LA",
+    "order_in_line": 19
+  },
+  {
+    "station_global_id": "nyc_0054",
+    "line_id": "LA",
+    "order_in_line": 20
+  },
+  {
+    "station_global_id": "nyc_0049",
+    "line_id": "LA",
+    "order_in_line": 21
+  },
+  {
+    "station_global_id": "nyc_0043",
+    "line_id": "LA",
+    "order_in_line": 22
+  },
+  {
+    "station_global_id": "nyc_0034",
+    "line_id": "LA",
+    "order_in_line": 23
+  },
+  {
+    "station_global_id": "nyc_0014",
+    "line_id": "LA",
+    "order_in_line": 24
+  },
+  {
+    "station_global_id": "nyc_0149",
+    "line_id": "LA",
+    "order_in_line": 25
+  },
+  {
+    "station_global_id": "nyc_0142",
+    "line_id": "LA",
+    "order_in_line": 26
+  },
+  {
+    "station_global_id": "nyc_0092",
+    "line_id": "LA",
+    "order_in_line": 27
+  },
+  {
+    "station_global_id": "nyc_0095",
+    "line_id": "LA",
+    "order_in_line": 28
+  },
+  {
+    "station_global_id": "nyc_0109",
+    "line_id": "LA",
+    "order_in_line": 29
+  },
+  {
+    "station_global_id": "nyc_0112",
+    "line_id": "LA",
+    "order_in_line": 30
+  },
+  {
+    "station_global_id": "nyc_0118",
+    "line_id": "LA",
+    "order_in_line": 31
+  },
+  {
+    "station_global_id": "nyc_0114",
+    "line_id": "LA",
+    "order_in_line": 32
+  },
+  {
+    "station_global_id": "nyc_0131",
+    "line_id": "LA",
+    "order_in_line": 33
+  },
+  {
+    "station_global_id": "nyc_0122",
+    "line_id": "LA",
+    "order_in_line": 34
+  },
+  {
+    "station_global_id": "nyc_0136",
+    "line_id": "LA",
+    "order_in_line": 35
+  },
+  {
+    "station_global_id": "nyc_0138",
+    "line_id": "LA",
+    "order_in_line": 36
+  },
+  {
+    "station_global_id": "nyc_0090",
+    "line_id": "LA",
+    "order_in_line": 37
+  },
+  {
+    "station_global_id": "nyc_0124",
+    "line_id": "LA",
+    "order_in_line": 38
+  },
+  {
+    "station_global_id": "nyc_0147",
+    "line_id": "LA",
+    "order_in_line": 39
+  },
+  {
+    "station_global_id": "nyc_0140",
+    "line_id": "LA",
+    "order_in_line": 40
+  },
+  {
+    "station_global_id": "nyc_0104",
+    "line_id": "LA",
+    "order_in_line": 41
+  },
+  {
+    "station_global_id": "nyc_0111",
+    "line_id": "LA",
+    "order_in_line": 42
+  },
+  {
+    "station_global_id": "nyc_0072",
+    "line_id": "LA",
+    "order_in_line": 43
+  },
+  {
+    "station_global_id": "nyc_0077",
+    "line_id": "LA",
+    "order_in_line": 44
+  },
+  {
+    "station_global_id": "nyc_0123",
+    "line_id": "LA",
+    "order_in_line": 45
+  },
+  {
+    "station_global_id": "nyc_0083",
+    "line_id": "LN",
+    "order_in_line": 1
+  },
+  {
+    "station_global_id": "nyc_0082",
+    "line_id": "LN",
+    "order_in_line": 2
+  },
+  {
+    "station_global_id": "nyc_0039",
+    "line_id": "LN",
+    "order_in_line": 3
+  },
+  {
+    "station_global_id": "nyc_0089",
+    "line_id": "LN",
+    "order_in_line": 4
+  },
+  {
+    "station_global_id": "nyc_0045",
+    "line_id": "LN",
+    "order_in_line": 5
+  },
+  {
+    "station_global_id": "nyc_0047",
+    "line_id": "LN",
+    "order_in_line": 6
+  },
+  {
+    "station_global_id": "nyc_0135",
+    "line_id": "LN",
+    "order_in_line": 7
+  },
+  {
+    "station_global_id": "nyc_0061",
+    "line_id": "LN",
+    "order_in_line": 8
+  },
+  {
+    "station_global_id": "nyc_0063",
+    "line_id": "LN",
+    "order_in_line": 9
+  },
+  {
+    "station_global_id": "nyc_0058",
+    "line_id": "LN",
+    "order_in_line": 10
+  },
+  {
+    "station_global_id": "nyc_0052",
+    "line_id": "LN",
+    "order_in_line": 11
+  },
+  {
+    "station_global_id": "nyc_0144",
+    "line_id": "LN",
+    "order_in_line": 12
+  },
+  {
+    "station_global_id": "nyc_0042",
+    "line_id": "LN",
+    "order_in_line": 13
+  },
+  {
+    "station_global_id": "nyc_0037",
+    "line_id": "LN",
+    "order_in_line": 14
+  },
+  {
+    "station_global_id": "nyc_0034",
+    "line_id": "LN",
+    "order_in_line": 15
+  },
+  {
+    "station_global_id": "nyc_0015",
+    "line_id": "LN",
+    "order_in_line": 16
+  },
+  {
+    "station_global_id": "nyc_0078",
+    "line_id": "LN",
+    "order_in_line": 17
+  },
+  {
+    "station_global_id": "nyc_0133",
+    "line_id": "LN",
+    "order_in_line": 18
+  },
+  {
+    "station_global_id": "nyc_0093",
+    "line_id": "LN",
+    "order_in_line": 19
+  },
+  {
+    "station_global_id": "nyc_0097",
+    "line_id": "LN",
+    "order_in_line": 20
+  },
+  {
+    "station_global_id": "nyc_0098",
+    "line_id": "LN",
+    "order_in_line": 21
+  },
+  {
+    "station_global_id": "nyc_0137",
+    "line_id": "LN",
+    "order_in_line": 22
+  },
+  {
+    "station_global_id": "nyc_0151",
+    "line_id": "LN",
+    "order_in_line": 23
+  },
+  {
+    "station_global_id": "nyc_0100",
+    "line_id": "LN",
+    "order_in_line": 24
+  },
+  {
+    "station_global_id": "nyc_0102",
+    "line_id": "LN",
+    "order_in_line": 25
+  },
+  {
+    "station_global_id": "nyc_0084",
+    "line_id": "LN",
+    "order_in_line": 26
+  },
+  {
+    "station_global_id": "nyc_0145",
+    "line_id": "LN",
+    "order_in_line": 27
+  },
+  {
+    "station_global_id": "nyc_0053",
+    "line_id": "LN",
+    "order_in_line": 28
+  },
+  {
+    "station_global_id": "nyc_0134",
+    "line_id": "LN",
+    "order_in_line": 29
+  },
+  {
+    "station_global_id": "nyc_0036",
+    "line_id": "LN",
+    "order_in_line": 30
+  },
+  {
+    "station_global_id": "nyc_0046",
+    "line_id": "LN",
+    "order_in_line": 31
+  },
+  {
+    "station_global_id": "nyc_0050",
+    "line_id": "LN",
+    "order_in_line": 32
+  },
+  {
+    "station_global_id": "nyc_0057",
+    "line_id": "LN",
+    "order_in_line": 33
+  },
+  {
+    "station_global_id": "nyc_0059",
+    "line_id": "LN",
+    "order_in_line": 34
+  },
+  {
+    "station_global_id": "nyc_0085",
+    "line_id": "LN",
+    "order_in_line": 35
+  },
+  {
+    "station_global_id": "nyc_0105",
+    "line_id": "L7",
+    "order_in_line": 1
+  },
+  {
+    "station_global_id": "nyc_0126",
+    "line_id": "L7",
+    "order_in_line": 2
+  },
+  {
+    "station_global_id": "nyc_0004",
+    "line_id": "L7",
+    "order_in_line": 3
+  },
+  {
+    "station_global_id": "nyc_0119",
+    "line_id": "L7",
+    "order_in_line": 4
+  },
+  {
+    "station_global_id": "nyc_0117",
+    "line_id": "L7",
+    "order_in_line": 5
+  },
+  {
+    "station_global_id": "nyc_0079",
+    "line_id": "L7",
+    "order_in_line": 6
+  },
+  {
+    "station_global_id": "nyc_0074",
+    "line_id": "L7",
+    "order_in_line": 7
+  },
+  {
+    "station_global_id": "nyc_0069",
+    "line_id": "L7",
+    "order_in_line": 8
+  },
+  {
+    "station_global_id": "nyc_0067",
+    "line_id": "L7",
+    "order_in_line": 9
+  },
+  {
+    "station_global_id": "nyc_0064",
+    "line_id": "L7",
+    "order_in_line": 10
+  },
+  {
+    "station_global_id": "nyc_0056",
+    "line_id": "L7",
+    "order_in_line": 11
+  },
+  {
+    "station_global_id": "nyc_0051",
+    "line_id": "L7",
+    "order_in_line": 12
+  },
+  {
+    "station_global_id": "nyc_0048",
+    "line_id": "L7",
+    "order_in_line": 13
+  },
+  {
+    "station_global_id": "nyc_0041",
+    "line_id": "L7",
+    "order_in_line": 14
+  },
+  {
+    "station_global_id": "nyc_0135",
+    "line_id": "L7",
+    "order_in_line": 15
+  },
+  {
+    "station_global_id": "nyc_0099",
+    "line_id": "L7",
+    "order_in_line": 16
+  },
+  {
+    "station_global_id": "nyc_0115",
+    "line_id": "L7",
+    "order_in_line": 17
+  },
+  {
+    "station_global_id": "nyc_0148",
+    "line_id": "L7",
+    "order_in_line": 18
+  },
+  {
+    "station_global_id": "nyc_0110",
+    "line_id": "L7",
+    "order_in_line": 19
+  },
+  {
+    "station_global_id": "nyc_0062",
+    "line_id": "L7",
+    "order_in_line": 20
+  },
+  {
+    "station_global_id": "nyc_0144",
+    "line_id": "L7",
+    "order_in_line": 21
+  },
+  {
+    "station_global_id": "nyc_0043",
+    "line_id": "L7",
+    "order_in_line": 22
+  }
+]

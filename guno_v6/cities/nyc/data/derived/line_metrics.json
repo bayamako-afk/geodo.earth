@@ -1,0 +1,59 @@
+{
+  "dataset_meta": {
+    "city_id": "nyc",
+    "version": "1.0",
+    "line_count": 5
+  },
+  "lines": [
+    {
+      "line_id": "L1",
+      "line_name": "1 Train",
+      "color": "#EE352E",
+      "station_count": 38,
+      "transfer_count": 21,
+      "avg_composite_score": 1.8202,
+      "max_composite_score": 5.0,
+      "line_strength_score": 2.7741
+    },
+    {
+      "line_id": "LA",
+      "line_name": "A Train",
+      "color": "#2850AD",
+      "station_count": 45,
+      "transfer_count": 21,
+      "avg_composite_score": 1.6074,
+      "max_composite_score": 4.6667,
+      "line_strength_score": 2.5252
+    },
+    {
+      "line_id": "LN",
+      "line_name": "N Train",
+      "color": "#FCCC0A",
+      "station_count": 35,
+      "transfer_count": 9,
+      "avg_composite_score": 1.2905,
+      "max_composite_score": 5.0,
+      "line_strength_score": 2.4033
+    },
+    {
+      "line_id": "L7",
+      "line_name": "7 Train",
+      "color": "#B933AD",
+      "station_count": 22,
+      "transfer_count": 4,
+      "avg_composite_score": 1.1288,
+      "max_composite_score": 5.0,
+      "line_strength_score": 2.2902
+    },
+    {
+      "line_id": "L4",
+      "line_name": "4 Train",
+      "color": "#00933C",
+      "station_count": 44,
+      "transfer_count": 7,
+      "avg_composite_score": 0.9962,
+      "max_composite_score": 2.8333,
+      "line_strength_score": 1.5473
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+card_id,station_global_id,station_name,station_name_en,line_id,collection_id,order,rarity,composite_score
+NYC001,nyc_0144,Times Sq–42 St,Times Sq–42 St,L1,l1,2,legendary,5.0
+NYC002,nyc_0034,23 St,23 St,L1,l1,3,epic,4.6667
+NYC003,nyc_0030,207 St,207 St,L1,l1,4,epic,2.8333
+NYC004,nyc_0025,181 St,181 St,L1,l1,5,epic,2.8333
+NYC005,nyc_0021,168 St–Washington Heights,168 St–Washington Heights,L1,l1,6,epic,2.8333
+NYC006,nyc_0012,145 St,145 St,L1,l1,7,epic,2.8333
+NYC007,nyc_0068,72 St,72 St,L1,l1,8,epic,2.8333
+NYC008,nyc_0014,14 St,14 St,L1,l1,9,epic,2.8333
+NYC009,nyc_0061,59 St (Lex),59 St (Lex),L4,l4,2,epic,2.8333
+NYC010,nyc_0110,Grand Central–42 St,Grand Central–42 St,L4,l4,3,epic,2.8333
+NYC011,nyc_0015,14 St–Union Sq,14 St–Union Sq,L4,l4,4,rare,2.8333
+NYC012,nyc_0109,Fulton St,Fulton St,L4,l4,5,rare,2.8333
+NYC013,nyc_0084,Atlantic Av–Barclays Ctr,Atlantic Av–Barclays Ctr,L4,l4,6,rare,2.8333
+NYC014,nyc_0138,Rockaway Av,Rockaway Av,L4,l4,7,rare,2.8333
+NYC015,nyc_0147,Van Siclen Av,Van Siclen Av,L4,l4,8,rare,2.8333
+NYC016,nyc_0092,Canal St,Canal St,LA,la,9,rare,2.8333
+NYC017,nyc_0135,Queensboro Plaza,Queensboro Plaza,LN,ln,4,rare,2.8333
+NYC018,nyc_0037,28 St,28 St,LN,ln,8,rare,2.5
+NYC019,nyc_0098,Cortlandt St,Cortlandt St,LN,ln,9,rare,2.5
+NYC020,nyc_0043,34 St–Hudson Yards,34 St–Hudson Yards,L7,l7,10,rare,2.5
+NYC021,nyc_0127,Mosholu Pkwy,Mosholu Pkwy,L4,l4,9,common,0.6667
+NYC022,nyc_0126,Mets–Willets Point,Mets–Willets Point,L7,l7,5,common,0.6667
+NYC023,nyc_0004,111 St,111 St,L7,l7,6,common,0.6667
+NYC024,nyc_0119,Junction Blvd,Junction Blvd,L7,l7,7,common,0.6667
+NYC025,nyc_0117,Jackson Hts–Roosevelt Av,Jackson Hts–Roosevelt Av,L7,l7,8,common,0.6667
+NYC026,nyc_0079,90 St–Elmhurst Av,90 St–Elmhurst Av,L7,l7,9,common,0.6667
+NYC027,nyc_0146,Van Cortlandt Park–242 St,Van Cortlandt Park–242 St,L1,l1,1,common,0.3333
+NYC028,nyc_0141,South Ferry,South Ferry,L1,l1,10,common,0.3333
+NYC029,nyc_0152,Woodlawn,Woodlawn,L4,l4,1,common,0.3333
+NYC030,nyc_0129,New Lots Av,New Lots Av,L4,l4,10,common,0.3333
+NYC031,nyc_0116,Inwood–207 St,Inwood–207 St,LA,la,1,common,0.3333
+NYC032,nyc_0123,Ozone Park–Lefferts Blvd,Ozone Park–Lefferts Blvd,LA,la,10,common,0.3333
+NYC033,nyc_0083,Astoria–Ditmars Blvd,Astoria–Ditmars Blvd,LN,ln,1,common,0.3333
+NYC034,nyc_0085,Bay Ridge–95 St,Bay Ridge–95 St,LN,ln,10,common,0.3333
+NYC035,nyc_0105,Flushing–Main St,Flushing–Main St,L7,l7,1,common,0.3333

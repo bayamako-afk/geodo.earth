@@ -19,23 +19,24 @@
     "default_pack": "cities/nyc/data/packs/pack_v1.json"
   },
   "routes": {
-    "featured_lines": []
+    "featured_lines": ["L1", "L4", "LA", "LN", "L7"]
   },
   "ui": {
     "primary_label": "station_name_en",
     "secondary_label": "station_name_local"
   },
   "deck_defaults": {
+    "deck_name": "nyc_v1",
     "deck_size": 40,
     "rarity_targets": {
-      "Legendary": 1,
-      "Epic": 9,
-      "Rare": 10,
-      "Common": 20
+      "legendary": 1,
+      "epic": 9,
+      "rare": 10,
+      "common": 20
     }
   },
   "status": {
-    "data_ready": false,
-    "notes": "Profile scaffold only. NYC datasets not generated yet."
+    "data_ready": true,
+    "notes": "NYC initial playable city package generated. Lines: 1/4/A/N/7 Trains. 152 stations, 30 transfer stations."
   }
 }

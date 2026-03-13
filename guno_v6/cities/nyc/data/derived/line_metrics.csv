@@ -1,0 +1,6 @@
+line_id,line_name,color,station_count,transfer_count,avg_composite_score,max_composite_score,line_strength_score
+L1,1 Train,#EE352E,38,21,1.8202,5.0,2.7741
+LA,A Train,#2850AD,45,21,1.6074,4.6667,2.5252
+LN,N Train,#FCCC0A,35,9,1.2905,5.0,2.4033
+L7,7 Train,#B933AD,22,4,1.1288,5.0,2.2902
+L4,4 Train,#00933C,44,7,0.9962,2.8333,1.5473

@@ -1,0 +1,3909 @@
+{
+  "graph_meta": {
+    "city_id": "nyc",
+    "version": "1.0",
+    "node_count": 152,
+    "edge_count": 171
+  },
+  "nodes": [
+    {
+      "station_global_id": "nyc_0001",
+      "station_name": "103 St",
+      "station_name_en": "103 St",
+      "lat": 40.7999,
+      "lon": -73.9681,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0094",
+        "nyc_0080"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0002",
+      "station_name": "103 St (Lex)",
+      "station_name_en": "103 St (Lex)",
+      "lat": 40.7862,
+      "lon": -73.9479,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0003",
+        "nyc_0081"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0003",
+      "station_name": "110 St (Lex)",
+      "station_name_en": "110 St (Lex)",
+      "lat": 40.7924,
+      "lon": -73.9443,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0006",
+        "nyc_0002"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0004",
+      "station_name": "111 St",
+      "station_name_en": "111 St",
+      "lat": 40.7508,
+      "lon": -73.8558,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0126",
+        "nyc_0119"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0005",
+      "station_name": "116 St–Columbia University",
+      "station_name_en": "116 St–Columbia University",
+      "lat": 40.8079,
+      "lon": -73.9632,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0007",
+        "nyc_0094"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0006",
+      "station_name": "116 St (Lex)",
+      "station_name_en": "116 St (Lex)",
+      "lat": 40.7981,
+      "lon": -73.9418,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0008",
+        "nyc_0003"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0007",
+      "station_name": "125 St",
+      "station_name_en": "125 St",
+      "lat": 40.8157,
+      "lon": -73.9543,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "nyc_0010",
+        "nyc_0005",
+        "nyc_0009"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0008",
+      "station_name": "125 St (Lex)",
+      "station_name_en": "125 St (Lex)",
+      "lat": 40.8043,
+      "lon": -73.9377,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0011",
+        "nyc_0006"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0009",
+      "station_name": "135 St",
+      "station_name_en": "135 St",
+      "lat": 40.8175,
+      "lon": -73.9478,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0012",
+        "nyc_0007"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0010",
+      "station_name": "137 St–City College",
+      "station_name_en": "137 St–City College",
+      "lat": 40.8218,
+      "lon": -73.9499,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0012",
+        "nyc_0007"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0011",
+      "station_name": "138 St–Grand Concourse",
+      "station_name_en": "138 St–Grand Concourse",
+      "lat": 40.8131,
+      "lon": -73.9363,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0013",
+        "nyc_0008"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0012",
+      "station_name": "145 St",
+      "station_name_en": "145 St",
+      "lat": 40.8259,
+      "lon": -73.9481,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0017",
+        "nyc_0010",
+        "nyc_0016",
+        "nyc_0009"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0013",
+      "station_name": "149 St–Grand Concourse",
+      "station_name_en": "149 St–Grand Concourse",
+      "lat": 40.8189,
+      "lon": -73.9272,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0018",
+        "nyc_0011"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0014",
+      "station_name": "14 St",
+      "station_name_en": "14 St",
+      "lat": 40.7378,
+      "lon": -73.9996,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0027",
+        "nyc_0096",
+        "nyc_0034",
+        "nyc_0149"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0015",
+      "station_name": "14 St–Union Sq",
+      "station_name_en": "14 St–Union Sq",
+      "lat": 40.7352,
+      "lon": -73.9903,
+      "line_ids": [
+        "L4",
+        "LN"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0035",
+        "nyc_0091",
+        "nyc_0034",
+        "nyc_0078"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0016",
+      "station_name": "155 St",
+      "station_name_en": "155 St",
+      "lat": 40.8299,
+      "lon": -73.9416,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0019",
+        "nyc_0012"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0017",
+      "station_name": "157 St",
+      "station_name_en": "157 St",
+      "lat": 40.8341,
+      "lon": -73.9437,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0021",
+        "nyc_0012"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0018",
+      "station_name": "161 St–Yankee Stadium",
+      "station_name_en": "161 St–Yankee Stadium",
+      "lat": 40.8277,
+      "lon": -73.9258,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0020",
+        "nyc_0013"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0019",
+      "station_name": "163 St–Amsterdam Av",
+      "station_name_en": "163 St–Amsterdam Av",
+      "lat": 40.8358,
+      "lon": -73.9393,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0021",
+        "nyc_0016"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0020",
+      "station_name": "167 St",
+      "station_name_en": "167 St",
+      "lat": 40.8327,
+      "lon": -73.9028,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0022",
+        "nyc_0018"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0021",
+      "station_name": "168 St–Washington Heights",
+      "station_name_en": "168 St–Washington Heights",
+      "lat": 40.8402,
+      "lon": -73.9397,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0025",
+        "nyc_0017",
+        "nyc_0023",
+        "nyc_0019"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0022",
+      "station_name": "170 St",
+      "station_name_en": "170 St",
+      "lat": 40.84,
+      "lon": -73.8989,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0024",
+        "nyc_0020"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0023",
+      "station_name": "175 St",
+      "station_name_en": "175 St",
+      "lat": 40.847,
+      "lon": -73.937,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0025",
+        "nyc_0021"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0024",
+      "station_name": "176 St",
+      "station_name_en": "176 St",
+      "lat": 40.8487,
+      "lon": -73.8958,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0026",
+        "nyc_0022"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0025",
+      "station_name": "181 St",
+      "station_name_en": "181 St",
+      "lat": 40.8498,
+      "lon": -73.9332,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0029",
+        "nyc_0021",
+        "nyc_0028",
+        "nyc_0023"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0026",
+      "station_name": "183 St",
+      "station_name_en": "183 St",
+      "lat": 40.858,
+      "lon": -73.8961,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0106",
+        "nyc_0024"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0027",
+      "station_name": "18 St",
+      "station_name_en": "18 St",
+      "lat": 40.74,
+      "lon": -73.9977,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0034",
+        "nyc_0014"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0028",
+      "station_name": "190 St",
+      "station_name_en": "190 St",
+      "lat": 40.8581,
+      "lon": -73.934,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0030",
+        "nyc_0025"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0029",
+      "station_name": "191 St",
+      "station_name_en": "191 St",
+      "lat": 40.8557,
+      "lon": -73.9295,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0103",
+        "nyc_0025"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0030",
+      "station_name": "207 St",
+      "station_name_en": "207 St",
+      "lat": 40.8647,
+      "lon": -73.9191,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0031",
+        "nyc_0103",
+        "nyc_0116",
+        "nyc_0028"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0031",
+      "station_name": "215 St",
+      "station_name_en": "215 St",
+      "lat": 40.8694,
+      "lon": -73.9147,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0125",
+        "nyc_0030"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0032",
+      "station_name": "231 St",
+      "station_name_en": "231 St",
+      "lat": 40.8784,
+      "lon": -73.9042,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0033",
+        "nyc_0125"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0033",
+      "station_name": "238 St",
+      "station_name_en": "238 St",
+      "lat": 40.8843,
+      "lon": -73.9005,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0146",
+        "nyc_0032"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0034",
+      "station_name": "23 St",
+      "station_name_en": "23 St",
+      "lat": 40.7429,
+      "lon": -73.9958,
+      "line_ids": [
+        "L1",
+        "LA",
+        "LN"
+      ],
+      "degree": 5,
+      "neighbors": [
+        "nyc_0037",
+        "nyc_0027",
+        "nyc_0043",
+        "nyc_0014",
+        "nyc_0015"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0035",
+      "station_name": "23 St (Park)",
+      "station_name_en": "23 St (Park)",
+      "lat": 40.7398,
+      "lon": -73.9895,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0038",
+        "nyc_0015"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0036",
+      "station_name": "25 St",
+      "station_name_en": "25 St",
+      "lat": 40.6603,
+      "lon": -73.9985,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0134",
+        "nyc_0046"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0037",
+      "station_name": "28 St",
+      "station_name_en": "28 St",
+      "lat": 40.7472,
+      "lon": -73.9942,
+      "line_ids": [
+        "L1",
+        "LN"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "nyc_0044",
+        "nyc_0034",
+        "nyc_0042"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0038",
+      "station_name": "28 St (Park)",
+      "station_name_en": "28 St (Park)",
+      "lat": 40.7432,
+      "lon": -73.9878,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0040",
+        "nyc_0035"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0039",
+      "station_name": "30 Av",
+      "station_name_en": "30 Av",
+      "lat": 40.7663,
+      "lon": -73.9305,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0082",
+        "nyc_0089"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0040",
+      "station_name": "33 St (Park)",
+      "station_name_en": "33 St (Park)",
+      "lat": 40.7465,
+      "lon": -73.9843,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0110",
+        "nyc_0038"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0041",
+      "station_name": "33 St–Rawson St",
+      "station_name_en": "33 St–Rawson St",
+      "lat": 40.7467,
+      "lon": -73.9033,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0048",
+        "nyc_0135"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0042",
+      "station_name": "34 St–Herald Sq",
+      "station_name_en": "34 St–Herald Sq",
+      "lat": 40.749,
+      "lon": -73.9883,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0144",
+        "nyc_0037"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0043",
+      "station_name": "34 St–Hudson Yards",
+      "station_name_en": "34 St–Hudson Yards",
+      "lat": 40.7548,
+      "lon": -74.0019,
+      "line_ids": [
+        "LA",
+        "L7"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "nyc_0049",
+        "nyc_0034",
+        "nyc_0144"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0044",
+      "station_name": "34 St–Penn Station",
+      "station_name_en": "34 St–Penn Station",
+      "lat": 40.7506,
+      "lon": -73.9913,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0144",
+        "nyc_0037"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0045",
+      "station_name": "36 Av",
+      "station_name_en": "36 Av",
+      "lat": 40.7561,
+      "lon": -73.9299,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0089",
+        "nyc_0047"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0046",
+      "station_name": "36 St",
+      "station_name_en": "36 St",
+      "lat": 40.6551,
+      "lon": -74.0034,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0036",
+        "nyc_0050"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0047",
+      "station_name": "39 Av–Dutch Kills",
+      "station_name_en": "39 Av–Dutch Kills",
+      "lat": 40.7519,
+      "lon": -73.9299,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0045",
+        "nyc_0135"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0048",
+      "station_name": "40 St–Lowery St",
+      "station_name_en": "40 St–Lowery St",
+      "lat": 40.7467,
+      "lon": -73.9033,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0051",
+        "nyc_0041"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0049",
+      "station_name": "42 St–Port Authority Bus Terminal",
+      "station_name_en": "42 St–Port Authority Bus Terminal",
+      "lat": 40.7572,
+      "lon": -73.9903,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0054",
+        "nyc_0043"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0050",
+      "station_name": "45 St",
+      "station_name_en": "45 St",
+      "lat": 40.6487,
+      "lon": -74.0095,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0046",
+        "nyc_0057"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0051",
+      "station_name": "46 St–Bliss St",
+      "station_name_en": "46 St–Bliss St",
+      "lat": 40.7467,
+      "lon": -73.9033,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0056",
+        "nyc_0048"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0052",
+      "station_name": "49 St",
+      "station_name_en": "49 St",
+      "lat": 40.7596,
+      "lon": -73.9841,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0058",
+        "nyc_0144"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0053",
+      "station_name": "4 Av–9 St",
+      "station_name_en": "4 Av–9 St",
+      "lat": 40.6703,
+      "lon": -73.9884,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0145",
+        "nyc_0134"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0054",
+      "station_name": "50 St",
+      "station_name_en": "50 St",
+      "lat": 40.7612,
+      "lon": -73.9836,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "nyc_0060",
+        "nyc_0144",
+        "nyc_0049"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0055",
+      "station_name": "51 St",
+      "station_name_en": "51 St",
+      "lat": 40.7574,
+      "lon": -73.9718,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0061",
+        "nyc_0110"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0056",
+      "station_name": "52 St–Lincoln Av",
+      "station_name_en": "52 St–Lincoln Av",
+      "lat": 40.7467,
+      "lon": -73.9033,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0064",
+        "nyc_0051"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0057",
+      "station_name": "53 St",
+      "station_name_en": "53 St",
+      "lat": 40.6451,
+      "lon": -74.0144,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0050",
+        "nyc_0059"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0058",
+      "station_name": "57 St–7 Av",
+      "station_name_en": "57 St–7 Av",
+      "lat": 40.7638,
+      "lon": -73.9776,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0063",
+        "nyc_0052"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0059",
+      "station_name": "59 St (4 Av)",
+      "station_name_en": "59 St (4 Av)",
+      "lat": 40.6412,
+      "lon": -74.0175,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0057",
+        "nyc_0085"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0060",
+      "station_name": "59 St–Columbus Circle",
+      "station_name_en": "59 St–Columbus Circle",
+      "lat": 40.7682,
+      "lon": -73.9819,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "nyc_0065",
+        "nyc_0054",
+        "nyc_0068"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0061",
+      "station_name": "59 St (Lex)",
+      "station_name_en": "59 St (Lex)",
+      "lat": 40.7625,
+      "lon": -73.9675,
+      "line_ids": [
+        "L4",
+        "LN"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0066",
+        "nyc_0055",
+        "nyc_0135",
+        "nyc_0063"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0062",
+      "station_name": "5 Av",
+      "station_name_en": "5 Av",
+      "lat": 40.7545,
+      "lon": -73.9836,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0110",
+        "nyc_0144"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0063",
+      "station_name": "5 Av/59 St",
+      "station_name_en": "5 Av/59 St",
+      "lat": 40.7648,
+      "lon": -73.9731,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0061",
+        "nyc_0058"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0064",
+      "station_name": "61 St–Woodside",
+      "station_name_en": "61 St–Woodside",
+      "lat": 40.7467,
+      "lon": -73.9033,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0067",
+        "nyc_0056"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0065",
+      "station_name": "66 St–Lincoln Center",
+      "station_name_en": "66 St–Lincoln Center",
+      "lat": 40.7741,
+      "lon": -73.9823,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0068",
+        "nyc_0060"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0066",
+      "station_name": "68 St–Hunter College",
+      "station_name_en": "68 St–Hunter College",
+      "lat": 40.7683,
+      "lon": -73.9637,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0070",
+        "nyc_0061"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0067",
+      "station_name": "69 St–Fisk Av",
+      "station_name_en": "69 St–Fisk Av",
+      "lat": 40.7467,
+      "lon": -73.9001,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0069",
+        "nyc_0064"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0068",
+      "station_name": "72 St",
+      "station_name_en": "72 St",
+      "lat": 40.778,
+      "lon": -73.9823,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0071",
+        "nyc_0065",
+        "nyc_0073",
+        "nyc_0060"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0069",
+      "station_name": "74 St–Broadway",
+      "station_name_en": "74 St–Broadway",
+      "lat": 40.7467,
+      "lon": -73.8912,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0074",
+        "nyc_0067"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0070",
+      "station_name": "77 St",
+      "station_name_en": "77 St",
+      "lat": 40.7736,
+      "lon": -73.9596,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0076",
+        "nyc_0066"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0071",
+      "station_name": "79 St",
+      "station_name_en": "79 St",
+      "lat": 40.7835,
+      "lon": -73.98,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0075",
+        "nyc_0068"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0072",
+      "station_name": "80 St",
+      "station_name_en": "80 St",
+      "lat": 40.6791,
+      "lon": -73.8607,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0111",
+        "nyc_0077"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0073",
+      "station_name": "81 St–Museum of Natural History",
+      "station_name_en": "81 St–Museum of Natural History",
+      "lat": 40.7815,
+      "lon": -73.9797,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0075",
+        "nyc_0068"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0074",
+      "station_name": "82 St–Jackson Hts",
+      "station_name_en": "82 St–Jackson Hts",
+      "lat": 40.7462,
+      "lon": -73.8836,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0079",
+        "nyc_0069"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0075",
+      "station_name": "86 St",
+      "station_name_en": "86 St",
+      "lat": 40.7885,
+      "lon": -73.976,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "nyc_0080",
+        "nyc_0071",
+        "nyc_0073"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0076",
+      "station_name": "86 St (Lex)",
+      "station_name_en": "86 St (Lex)",
+      "lat": 40.7777,
+      "lon": -73.9553,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0081",
+        "nyc_0070"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0077",
+      "station_name": "88 St",
+      "station_name_en": "88 St",
+      "lat": 40.6804,
+      "lon": -73.8556,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0072",
+        "nyc_0123"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0078",
+      "station_name": "8 St–NYU",
+      "station_name_en": "8 St–NYU",
+      "lat": 40.7307,
+      "lon": -73.9921,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0015",
+        "nyc_0133"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0079",
+      "station_name": "90 St–Elmhurst Av",
+      "station_name_en": "90 St–Elmhurst Av",
+      "lat": 40.7453,
+      "lon": -73.8793,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0117",
+        "nyc_0074"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0080",
+      "station_name": "96 St",
+      "station_name_en": "96 St",
+      "lat": 40.794,
+      "lon": -73.9721,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0001",
+        "nyc_0075"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0081",
+      "station_name": "96 St (Lex)",
+      "station_name_en": "96 St (Lex)",
+      "lat": 40.7843,
+      "lon": -73.9475,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0002",
+        "nyc_0076"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0082",
+      "station_name": "Astoria Blvd",
+      "station_name_en": "Astoria Blvd",
+      "lat": 40.7706,
+      "lon": -73.9301,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0083",
+        "nyc_0039"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0083",
+      "station_name": "Astoria–Ditmars Blvd",
+      "station_name_en": "Astoria–Ditmars Blvd",
+      "lat": 40.7754,
+      "lon": -73.912,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0082"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0084",
+      "station_name": "Atlantic Av–Barclays Ctr",
+      "station_name_en": "Atlantic Av–Barclays Ctr",
+      "lat": 40.6843,
+      "lon": -73.9779,
+      "line_ids": [
+        "L4",
+        "LN"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0128",
+        "nyc_0107",
+        "nyc_0102",
+        "nyc_0145"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0085",
+      "station_name": "Bay Ridge–95 St",
+      "station_name_en": "Bay Ridge–95 St",
+      "lat": 40.6163,
+      "lon": -74.0305,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0059"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0086",
+      "station_name": "Bedford Park Blvd",
+      "station_name_en": "Bedford Park Blvd",
+      "lat": 40.8731,
+      "lon": -73.8831,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0130",
+        "nyc_0121"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0087",
+      "station_name": "Borough Hall",
+      "station_name_en": "Borough Hall",
+      "lat": 40.6925,
+      "lon": -73.9899,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0088",
+        "nyc_0128"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0088",
+      "station_name": "Bowling Green",
+      "station_name_en": "Bowling Green",
+      "lat": 40.7046,
+      "lon": -74.0141,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0150",
+        "nyc_0087"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0089",
+      "station_name": "Broadway (Astoria)",
+      "station_name_en": "Broadway (Astoria)",
+      "lat": 40.7614,
+      "lon": -73.9269,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0039",
+        "nyc_0045"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0090",
+      "station_name": "Broadway Junction",
+      "station_name_en": "Broadway Junction",
+      "lat": 40.6783,
+      "lon": -73.9049,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0138",
+        "nyc_0124"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0091",
+      "station_name": "Brooklyn Bridge–City Hall",
+      "station_name_en": "Brooklyn Bridge–City Hall",
+      "lat": 40.713,
+      "lon": -74.004,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0015",
+        "nyc_0109"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0092",
+      "station_name": "Canal St",
+      "station_name_en": "Canal St",
+      "lat": 40.7226,
+      "lon": -74.0056,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0113",
+        "nyc_0108",
+        "nyc_0142",
+        "nyc_0095"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0093",
+      "station_name": "Canal St (N)",
+      "station_name_en": "Canal St (N)",
+      "lat": 40.7196,
+      "lon": -74.0001,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0133",
+        "nyc_0097"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0094",
+      "station_name": "Cathedral Pkwy–110 St",
+      "station_name_en": "Cathedral Pkwy–110 St",
+      "lat": 40.8031,
+      "lon": -73.966,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0005",
+        "nyc_0001"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0095",
+      "station_name": "Chambers St",
+      "station_name_en": "Chambers St",
+      "lat": 40.7141,
+      "lon": -74.0087,
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0108",
+        "nyc_0098",
+        "nyc_0092",
+        "nyc_0109"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0096",
+      "station_name": "Christopher St–Sheridan Sq",
+      "station_name_en": "Christopher St–Sheridan Sq",
+      "lat": 40.7333,
+      "lon": -74.0027,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0014",
+        "nyc_0113"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0097",
+      "station_name": "City Hall (N)",
+      "station_name_en": "City Hall (N)",
+      "lat": 40.7131,
+      "lon": -74.0082,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0093",
+        "nyc_0098"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0098",
+      "station_name": "Cortlandt St",
+      "station_name_en": "Cortlandt St",
+      "lat": 40.7113,
+      "lon": -74.0133,
+      "line_ids": [
+        "L1",
+        "LN"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "nyc_0095",
+        "nyc_0137",
+        "nyc_0097"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0099",
+      "station_name": "Court Sq",
+      "station_name_en": "Court Sq",
+      "lat": 40.7472,
+      "lon": -73.9453,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0135",
+        "nyc_0115"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0100",
+      "station_name": "Court St",
+      "station_name_en": "Court St",
+      "lat": 40.6941,
+      "lon": -73.9918,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0151",
+        "nyc_0102"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0101",
+      "station_name": "Crown Heights–Utica Av",
+      "station_name_en": "Crown Heights–Utica Av",
+      "lat": 40.6696,
+      "lon": -73.9294,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0107",
+        "nyc_0143"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0102",
+      "station_name": "DeKalb Av",
+      "station_name_en": "DeKalb Av",
+      "lat": 40.6906,
+      "lon": -73.9818,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0100",
+        "nyc_0084"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0103",
+      "station_name": "Dyckman St",
+      "station_name_en": "Dyckman St",
+      "lat": 40.8605,
+      "lon": -73.9255,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0030",
+        "nyc_0029"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0104",
+      "station_name": "Euclid Av",
+      "station_name_en": "Euclid Av",
+      "lat": 40.6751,
+      "lon": -73.872,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0140",
+        "nyc_0111"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0105",
+      "station_name": "Flushing–Main St",
+      "station_name_en": "Flushing–Main St",
+      "lat": 40.7596,
+      "lon": -73.83,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0126"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0106",
+      "station_name": "Fordham Rd",
+      "station_name_en": "Fordham Rd",
+      "lat": 40.862,
+      "lon": -73.8972,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0121",
+        "nyc_0026"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0107",
+      "station_name": "Franklin Av",
+      "station_name_en": "Franklin Av",
+      "lat": 40.6818,
+      "lon": -73.9584,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0084",
+        "nyc_0101"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0108",
+      "station_name": "Franklin St",
+      "station_name_en": "Franklin St",
+      "lat": 40.7191,
+      "lon": -74.0076,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0092",
+        "nyc_0095"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0109",
+      "station_name": "Fulton St",
+      "station_name_en": "Fulton St",
+      "lat": 40.7093,
+      "lon": -74.0078,
+      "line_ids": [
+        "L4",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0091",
+        "nyc_0150",
+        "nyc_0095",
+        "nyc_0112"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0110",
+      "station_name": "Grand Central–42 St",
+      "station_name_en": "Grand Central–42 St",
+      "lat": 40.7527,
+      "lon": -73.9772,
+      "line_ids": [
+        "L4",
+        "L7"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0055",
+        "nyc_0040",
+        "nyc_0148",
+        "nyc_0062"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0111",
+      "station_name": "Grant Av",
+      "station_name_en": "Grant Av",
+      "lat": 40.6773,
+      "lon": -73.8659,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0104",
+        "nyc_0072"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0112",
+      "station_name": "High St–Brooklyn Bridge",
+      "station_name_en": "High St–Brooklyn Bridge",
+      "lat": 40.6993,
+      "lon": -73.99,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0109",
+        "nyc_0118"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0113",
+      "station_name": "Houston St",
+      "station_name_en": "Houston St",
+      "lat": 40.7282,
+      "lon": -74.005,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0096",
+        "nyc_0092"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0114",
+      "station_name": "Hoyt–Schermerhorn Sts",
+      "station_name_en": "Hoyt–Schermerhorn Sts",
+      "lat": 40.6882,
+      "lon": -73.9851,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0118",
+        "nyc_0131"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0115",
+      "station_name": "Hunters Point Av",
+      "station_name_en": "Hunters Point Av",
+      "lat": 40.7443,
+      "lon": -73.9482,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0099",
+        "nyc_0148"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0116",
+      "station_name": "Inwood–207 St",
+      "station_name_en": "Inwood–207 St",
+      "lat": 40.8679,
+      "lon": -73.9211,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0030"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0117",
+      "station_name": "Jackson Hts–Roosevelt Av",
+      "station_name_en": "Jackson Hts–Roosevelt Av",
+      "lat": 40.7463,
+      "lon": -73.8912,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0119",
+        "nyc_0079"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0118",
+      "station_name": "Jay St–MetroTech",
+      "station_name_en": "Jay St–MetroTech",
+      "lat": 40.6921,
+      "lon": -73.9851,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0112",
+        "nyc_0114"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0119",
+      "station_name": "Junction Blvd",
+      "station_name_en": "Junction Blvd",
+      "lat": 40.7487,
+      "lon": -73.8695,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0004",
+        "nyc_0117"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0120",
+      "station_name": "Junius St",
+      "station_name_en": "Junius St",
+      "lat": 40.6606,
+      "lon": -73.8929,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0138",
+        "nyc_0132"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0121",
+      "station_name": "Kingsbridge Rd",
+      "station_name_en": "Kingsbridge Rd",
+      "lat": 40.8683,
+      "lon": -73.8979,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0086",
+        "nyc_0106"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0122",
+      "station_name": "Kingston–Throop Avs",
+      "station_name_en": "Kingston–Throop Avs",
+      "lat": 40.668,
+      "lon": -73.9405,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0131",
+        "nyc_0136"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0123",
+      "station_name": "Ozone Park–Lefferts Blvd",
+      "station_name_en": "Ozone Park–Lefferts Blvd",
+      "lat": 40.6852,
+      "lon": -73.8486,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0077"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0124",
+      "station_name": "Liberty Av",
+      "station_name_en": "Liberty Av",
+      "lat": 40.6745,
+      "lon": -73.8866,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0090",
+        "nyc_0147"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0125",
+      "station_name": "Marble Hill–225 St",
+      "station_name_en": "Marble Hill–225 St",
+      "lat": 40.874,
+      "lon": -73.9099,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0032",
+        "nyc_0031"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0126",
+      "station_name": "Mets–Willets Point",
+      "station_name_en": "Mets–Willets Point",
+      "lat": 40.7543,
+      "lon": -73.8456,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0105",
+        "nyc_0004"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0127",
+      "station_name": "Mosholu Pkwy",
+      "station_name_en": "Mosholu Pkwy",
+      "lat": 40.8979,
+      "lon": -73.8912,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0152",
+        "nyc_0130"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0128",
+      "station_name": "Nevins St",
+      "station_name_en": "Nevins St",
+      "lat": 40.6883,
+      "lon": -73.9808,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0087",
+        "nyc_0084"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0129",
+      "station_name": "New Lots Av",
+      "station_name_en": "New Lots Av",
+      "lat": 40.6659,
+      "lon": -73.8744,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0147"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0130",
+      "station_name": "Norwood–205 St",
+      "station_name_en": "Norwood–205 St",
+      "lat": 40.8882,
+      "lon": -73.8806,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0127",
+        "nyc_0086"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0131",
+      "station_name": "Nostrand Av",
+      "station_name_en": "Nostrand Av",
+      "lat": 40.6698,
+      "lon": -73.9501,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0114",
+        "nyc_0122"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0132",
+      "station_name": "Pennsylvania Av",
+      "station_name_en": "Pennsylvania Av",
+      "lat": 40.664,
+      "lon": -73.8879,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0120",
+        "nyc_0147"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0133",
+      "station_name": "Prince St",
+      "station_name_en": "Prince St",
+      "lat": 40.7243,
+      "lon": -73.9974,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0078",
+        "nyc_0093"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0134",
+      "station_name": "Prospect Av",
+      "station_name_en": "Prospect Av",
+      "lat": 40.665,
+      "lon": -73.9924,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0053",
+        "nyc_0036"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0135",
+      "station_name": "Queensboro Plaza",
+      "station_name_en": "Queensboro Plaza",
+      "lat": 40.7506,
+      "lon": -73.9404,
+      "line_ids": [
+        "LN",
+        "L7"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0047",
+        "nyc_0061",
+        "nyc_0041",
+        "nyc_0099"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0136",
+      "station_name": "Ralph Av",
+      "station_name_en": "Ralph Av",
+      "lat": 40.6784,
+      "lon": -73.92,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0122",
+        "nyc_0138"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0137",
+      "station_name": "Rector St",
+      "station_name_en": "Rector St",
+      "lat": 40.7079,
+      "lon": -74.0132,
+      "line_ids": [
+        "L1",
+        "LN"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "nyc_0098",
+        "nyc_0141",
+        "nyc_0151"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0138",
+      "station_name": "Rockaway Av",
+      "station_name_en": "Rockaway Av",
+      "lat": 40.6624,
+      "lon": -73.9,
+      "line_ids": [
+        "L4",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0139",
+        "nyc_0120",
+        "nyc_0136",
+        "nyc_0090"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0139",
+      "station_name": "Saratoga Av",
+      "station_name_en": "Saratoga Av",
+      "lat": 40.6615,
+      "lon": -73.9094,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0143",
+        "nyc_0138"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0140",
+      "station_name": "Shepherd Av",
+      "station_name_en": "Shepherd Av",
+      "lat": 40.6742,
+      "lon": -73.8716,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0147",
+        "nyc_0104"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0141",
+      "station_name": "South Ferry",
+      "station_name_en": "South Ferry",
+      "lat": 40.7016,
+      "lon": -74.0131,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0137"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0142",
+      "station_name": "Spring St",
+      "station_name_en": "Spring St",
+      "lat": 40.7262,
+      "lon": -74.003,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0149",
+        "nyc_0092"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0143",
+      "station_name": "Sutter Av–Rutland Rd",
+      "station_name_en": "Sutter Av–Rutland Rd",
+      "lat": 40.6647,
+      "lon": -73.9153,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0101",
+        "nyc_0139"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0144",
+      "station_name": "Times Sq–42 St",
+      "station_name_en": "Times Sq–42 St",
+      "lat": 40.7556,
+      "lon": -73.9877,
+      "line_ids": [
+        "L1",
+        "LN",
+        "L7"
+      ],
+      "degree": 6,
+      "neighbors": [
+        "nyc_0054",
+        "nyc_0044",
+        "nyc_0052",
+        "nyc_0042",
+        "nyc_0062",
+        "nyc_0043"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0145",
+      "station_name": "Union St",
+      "station_name_en": "Union St",
+      "lat": 40.6773,
+      "lon": -73.9832,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0084",
+        "nyc_0053"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0146",
+      "station_name": "Van Cortlandt Park–242 St",
+      "station_name_en": "Van Cortlandt Park–242 St",
+      "lat": 40.8895,
+      "lon": -73.8988,
+      "line_ids": [
+        "L1"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0033"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0147",
+      "station_name": "Van Siclen Av",
+      "station_name_en": "Van Siclen Av",
+      "lat": 40.6649,
+      "lon": -73.8793,
+      "line_ids": [
+        "L4",
+        "LA"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "nyc_0132",
+        "nyc_0129",
+        "nyc_0124",
+        "nyc_0140"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0148",
+      "station_name": "Vernon Blvd–Jackson Av",
+      "station_name_en": "Vernon Blvd–Jackson Av",
+      "lat": 40.7424,
+      "lon": -73.9537,
+      "line_ids": [
+        "L7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0115",
+        "nyc_0110"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0149",
+      "station_name": "W 4 St–Washington Sq",
+      "station_name_en": "W 4 St–Washington Sq",
+      "lat": 40.7322,
+      "lon": -74.0001,
+      "line_ids": [
+        "LA"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0014",
+        "nyc_0142"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0150",
+      "station_name": "Wall St",
+      "station_name_en": "Wall St",
+      "lat": 40.7073,
+      "lon": -74.011,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0109",
+        "nyc_0088"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0151",
+      "station_name": "Whitehall St–South Ferry",
+      "station_name_en": "Whitehall St–South Ferry",
+      "lat": 40.7034,
+      "lon": -74.0138,
+      "line_ids": [
+        "LN"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "nyc_0137",
+        "nyc_0100"
+      ]
+    },
+    {
+      "station_global_id": "nyc_0152",
+      "station_name": "Woodlawn",
+      "station_name_en": "Woodlawn",
+      "lat": 40.9059,
+      "lon": -73.8987,
+      "line_ids": [
+        "L4"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "nyc_0127"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "nyc_0033",
+      "to": "nyc_0146",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.596,
+      "weight": 1.6789
+    },
+    {
+      "from": "nyc_0032",
+      "to": "nyc_0033",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.726,
+      "weight": 1.3773
+    },
+    {
+      "from": "nyc_0032",
+      "to": "nyc_0125",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.685,
+      "weight": 1.4601
+    },
+    {
+      "from": "nyc_0031",
+      "to": "nyc_0125",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.652,
+      "weight": 1.5348
+    },
+    {
+      "from": "nyc_0030",
+      "to": "nyc_0031",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.64,
+      "weight": 1.5617
+    },
+    {
+      "from": "nyc_0030",
+      "to": "nyc_0103",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.713,
+      "weight": 1.4033
+    },
+    {
+      "from": "nyc_0029",
+      "to": "nyc_0103",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.631,
+      "weight": 1.585
+    },
+    {
+      "from": "nyc_0025",
+      "to": "nyc_0029",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.726,
+      "weight": 1.3772
+    },
+    {
+      "from": "nyc_0021",
+      "to": "nyc_0025",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 1.199,
+      "weight": 0.8338
+    },
+    {
+      "from": "nyc_0017",
+      "to": "nyc_0021",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.757,
+      "weight": 1.3207
+    },
+    {
+      "from": "nyc_0012",
+      "to": "nyc_0017",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.984,
+      "weight": 1.0162
+    },
+    {
+      "from": "nyc_0010",
+      "to": "nyc_0012",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.48,
+      "weight": 2.0816
+    },
+    {
+      "from": "nyc_0007",
+      "to": "nyc_0010",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.773,
+      "weight": 1.2941
+    },
+    {
+      "from": "nyc_0005",
+      "to": "nyc_0007",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "distance_km": 1.146,
+      "weight": 0.8726
+    },
+    {
+      "from": "nyc_0005",
+      "to": "nyc_0094",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "distance_km": 0.583,
+      "weight": 1.7139
+    },
+    {
+      "from": "nyc_0001",
+      "to": "nyc_0094",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "distance_km": 0.397,
+      "weight": 2.5169
+    },
+    {
+      "from": "nyc_0001",
+      "to": "nyc_0080",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "distance_km": 0.737,
+      "weight": 1.3561
+    },
+    {
+      "from": "nyc_0075",
+      "to": "nyc_0080",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "distance_km": 0.694,
+      "weight": 1.4407
+    },
+    {
+      "from": "nyc_0071",
+      "to": "nyc_0075",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.65,
+      "weight": 1.5384
+    },
+    {
+      "from": "nyc_0068",
+      "to": "nyc_0071",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.642,
+      "weight": 1.5588
+    },
+    {
+      "from": "nyc_0065",
+      "to": "nyc_0068",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.434,
+      "weight": 2.306
+    },
+    {
+      "from": "nyc_0060",
+      "to": "nyc_0065",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.657,
+      "weight": 1.5223
+    },
+    {
+      "from": "nyc_0054",
+      "to": "nyc_0060",
+      "line_ids": [
+        "L1",
+        "LA"
+      ],
+      "distance_km": 0.791,
+      "weight": 1.2635
+    },
+    {
+      "from": "nyc_0054",
+      "to": "nyc_0144",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.712,
+      "weight": 1.4044
+    },
+    {
+      "from": "nyc_0044",
+      "to": "nyc_0144",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.633,
+      "weight": 1.579
+    },
+    {
+      "from": "nyc_0037",
+      "to": "nyc_0044",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.45,
+      "weight": 2.2216
+    },
+    {
+      "from": "nyc_0034",
+      "to": "nyc_0037",
+      "line_ids": [
+        "L1",
+        "LN"
+      ],
+      "distance_km": 0.497,
+      "weight": 2.013
+    },
+    {
+      "from": "nyc_0027",
+      "to": "nyc_0034",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.36,
+      "weight": 2.7777
+    },
+    {
+      "from": "nyc_0014",
+      "to": "nyc_0027",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.292,
+      "weight": 3.4206
+    },
+    {
+      "from": "nyc_0014",
+      "to": "nyc_0096",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.564,
+      "weight": 1.7716
+    },
+    {
+      "from": "nyc_0096",
+      "to": "nyc_0113",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.599,
+      "weight": 1.6686
+    },
+    {
+      "from": "nyc_0092",
+      "to": "nyc_0113",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.625,
+      "weight": 1.6007
+    },
+    {
+      "from": "nyc_0092",
+      "to": "nyc_0108",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.424,
+      "weight": 2.3579
+    },
+    {
+      "from": "nyc_0095",
+      "to": "nyc_0108",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.564,
+      "weight": 1.7741
+    },
+    {
+      "from": "nyc_0095",
+      "to": "nyc_0098",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.497,
+      "weight": 2.0111
+    },
+    {
+      "from": "nyc_0098",
+      "to": "nyc_0137",
+      "line_ids": [
+        "L1",
+        "LN"
+      ],
+      "distance_km": 0.378,
+      "weight": 2.6444
+    },
+    {
+      "from": "nyc_0137",
+      "to": "nyc_0141",
+      "line_ids": [
+        "L1"
+      ],
+      "distance_km": 0.701,
+      "weight": 1.4274
+    },
+    {
+      "from": "nyc_0127",
+      "to": "nyc_0152",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.09,
+      "weight": 0.9172
+    },
+    {
+      "from": "nyc_0127",
+      "to": "nyc_0130",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.399,
+      "weight": 0.7148
+    },
+    {
+      "from": "nyc_0086",
+      "to": "nyc_0130",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.692,
+      "weight": 0.591
+    },
+    {
+      "from": "nyc_0086",
+      "to": "nyc_0121",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.354,
+      "weight": 0.7385
+    },
+    {
+      "from": "nyc_0106",
+      "to": "nyc_0121",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.703,
+      "weight": 1.4225
+    },
+    {
+      "from": "nyc_0026",
+      "to": "nyc_0106",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.454,
+      "weight": 2.2012
+    },
+    {
+      "from": "nyc_0024",
+      "to": "nyc_0026",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.034,
+      "weight": 0.9667
+    },
+    {
+      "from": "nyc_0022",
+      "to": "nyc_0024",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.002,
+      "weight": 0.9981
+    },
+    {
+      "from": "nyc_0020",
+      "to": "nyc_0022",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.876,
+      "weight": 1.1422
+    },
+    {
+      "from": "nyc_0018",
+      "to": "nyc_0020",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 2.013,
+      "weight": 0.4967
+    },
+    {
+      "from": "nyc_0013",
+      "to": "nyc_0018",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.986,
+      "weight": 1.0146
+    },
+    {
+      "from": "nyc_0011",
+      "to": "nyc_0013",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.001,
+      "weight": 0.9988
+    },
+    {
+      "from": "nyc_0008",
+      "to": "nyc_0011",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.986,
+      "weight": 1.0146
+    },
+    {
+      "from": "nyc_0006",
+      "to": "nyc_0008",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.771,
+      "weight": 1.2971
+    },
+    {
+      "from": "nyc_0003",
+      "to": "nyc_0006",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.668,
+      "weight": 1.4974
+    },
+    {
+      "from": "nyc_0002",
+      "to": "nyc_0003",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.753,
+      "weight": 1.3279
+    },
+    {
+      "from": "nyc_0002",
+      "to": "nyc_0081",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.214,
+      "weight": 4.6743
+    },
+    {
+      "from": "nyc_0076",
+      "to": "nyc_0081",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.985,
+      "weight": 1.0154
+    },
+    {
+      "from": "nyc_0070",
+      "to": "nyc_0076",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.582,
+      "weight": 1.7176
+    },
+    {
+      "from": "nyc_0066",
+      "to": "nyc_0070",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.683,
+      "weight": 1.4641
+    },
+    {
+      "from": "nyc_0061",
+      "to": "nyc_0066",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.72,
+      "weight": 1.389
+    },
+    {
+      "from": "nyc_0055",
+      "to": "nyc_0061",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.673,
+      "weight": 1.4862
+    },
+    {
+      "from": "nyc_0055",
+      "to": "nyc_0110",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.693,
+      "weight": 1.4434
+    },
+    {
+      "from": "nyc_0040",
+      "to": "nyc_0110",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.913,
+      "weight": 1.0957
+    },
+    {
+      "from": "nyc_0038",
+      "to": "nyc_0040",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.471,
+      "weight": 2.1244
+    },
+    {
+      "from": "nyc_0035",
+      "to": "nyc_0038",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.404,
+      "weight": 2.4735
+    },
+    {
+      "from": "nyc_0015",
+      "to": "nyc_0035",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.516,
+      "weight": 1.9383
+    },
+    {
+      "from": "nyc_0015",
+      "to": "nyc_0091",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 2.725,
+      "weight": 0.367
+    },
+    {
+      "from": "nyc_0091",
+      "to": "nyc_0109",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.521,
+      "weight": 1.9179
+    },
+    {
+      "from": "nyc_0109",
+      "to": "nyc_0150",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.35,
+      "weight": 2.8605
+    },
+    {
+      "from": "nyc_0088",
+      "to": "nyc_0150",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.398,
+      "weight": 2.5125
+    },
+    {
+      "from": "nyc_0087",
+      "to": "nyc_0088",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 2.444,
+      "weight": 0.4092
+    },
+    {
+      "from": "nyc_0087",
+      "to": "nyc_0128",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.898,
+      "weight": 1.1133
+    },
+    {
+      "from": "nyc_0084",
+      "to": "nyc_0128",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.508,
+      "weight": 1.9702
+    },
+    {
+      "from": "nyc_0084",
+      "to": "nyc_0107",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.668,
+      "weight": 0.5997
+    },
+    {
+      "from": "nyc_0101",
+      "to": "nyc_0107",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 2.797,
+      "weight": 0.3576
+    },
+    {
+      "from": "nyc_0101",
+      "to": "nyc_0143",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 1.308,
+      "weight": 0.7645
+    },
+    {
+      "from": "nyc_0139",
+      "to": "nyc_0143",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.612,
+      "weight": 1.6346
+    },
+    {
+      "from": "nyc_0138",
+      "to": "nyc_0139",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.799,
+      "weight": 1.2513
+    },
+    {
+      "from": "nyc_0120",
+      "to": "nyc_0138",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.631,
+      "weight": 1.5837
+    },
+    {
+      "from": "nyc_0120",
+      "to": "nyc_0132",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.566,
+      "weight": 1.7656
+    },
+    {
+      "from": "nyc_0132",
+      "to": "nyc_0147",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.732,
+      "weight": 1.3657
+    },
+    {
+      "from": "nyc_0129",
+      "to": "nyc_0147",
+      "line_ids": [
+        "L4"
+      ],
+      "distance_km": 0.428,
+      "weight": 2.3365
+    },
+    {
+      "from": "nyc_0030",
+      "to": "nyc_0116",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.394,
+      "weight": 2.5409
+    },
+    {
+      "from": "nyc_0028",
+      "to": "nyc_0030",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.452,
+      "weight": 0.6886
+    },
+    {
+      "from": "nyc_0025",
+      "to": "nyc_0028",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.925,
+      "weight": 1.0807
+    },
+    {
+      "from": "nyc_0023",
+      "to": "nyc_0025",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.446,
+      "weight": 2.2411
+    },
+    {
+      "from": "nyc_0021",
+      "to": "nyc_0023",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.789,
+      "weight": 1.2666
+    },
+    {
+      "from": "nyc_0019",
+      "to": "nyc_0021",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.49,
+      "weight": 2.0391
+    },
+    {
+      "from": "nyc_0016",
+      "to": "nyc_0019",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.684,
+      "weight": 1.462
+    },
+    {
+      "from": "nyc_0012",
+      "to": "nyc_0016",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.705,
+      "weight": 1.4186
+    },
+    {
+      "from": "nyc_0009",
+      "to": "nyc_0012",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.934,
+      "weight": 1.0702
+    },
+    {
+      "from": "nyc_0007",
+      "to": "nyc_0009",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.582,
+      "weight": 1.7168
+    },
+    {
+      "from": "nyc_0073",
+      "to": "nyc_0075",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.838,
+      "weight": 1.1928
+    },
+    {
+      "from": "nyc_0068",
+      "to": "nyc_0073",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.447,
+      "weight": 2.2395
+    },
+    {
+      "from": "nyc_0060",
+      "to": "nyc_0068",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.09,
+      "weight": 0.9172
+    },
+    {
+      "from": "nyc_0049",
+      "to": "nyc_0054",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.719,
+      "weight": 1.3917
+    },
+    {
+      "from": "nyc_0043",
+      "to": "nyc_0049",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.013,
+      "weight": 0.9873
+    },
+    {
+      "from": "nyc_0034",
+      "to": "nyc_0043",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.419,
+      "weight": 0.7045
+    },
+    {
+      "from": "nyc_0014",
+      "to": "nyc_0034",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.651,
+      "weight": 1.5356
+    },
+    {
+      "from": "nyc_0014",
+      "to": "nyc_0149",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.624,
+      "weight": 1.6023
+    },
+    {
+      "from": "nyc_0142",
+      "to": "nyc_0149",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.711,
+      "weight": 1.4074
+    },
+    {
+      "from": "nyc_0092",
+      "to": "nyc_0142",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.456,
+      "weight": 2.1913
+    },
+    {
+      "from": "nyc_0092",
+      "to": "nyc_0095",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.981,
+      "weight": 1.0198
+    },
+    {
+      "from": "nyc_0095",
+      "to": "nyc_0109",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.539,
+      "weight": 1.8549
+    },
+    {
+      "from": "nyc_0109",
+      "to": "nyc_0112",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.868,
+      "weight": 0.5355
+    },
+    {
+      "from": "nyc_0112",
+      "to": "nyc_0118",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.901,
+      "weight": 1.11
+    },
+    {
+      "from": "nyc_0114",
+      "to": "nyc_0118",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.434,
+      "weight": 2.306
+    },
+    {
+      "from": "nyc_0114",
+      "to": "nyc_0131",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 3.591,
+      "weight": 0.2785
+    },
+    {
+      "from": "nyc_0122",
+      "to": "nyc_0131",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.834,
+      "weight": 1.199
+    },
+    {
+      "from": "nyc_0122",
+      "to": "nyc_0136",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 2.08,
+      "weight": 0.4808
+    },
+    {
+      "from": "nyc_0136",
+      "to": "nyc_0138",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 2.452,
+      "weight": 0.4079
+    },
+    {
+      "from": "nyc_0090",
+      "to": "nyc_0138",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.816,
+      "weight": 0.5508
+    },
+    {
+      "from": "nyc_0090",
+      "to": "nyc_0124",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.6,
+      "weight": 0.625
+    },
+    {
+      "from": "nyc_0124",
+      "to": "nyc_0147",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.232,
+      "weight": 0.8115
+    },
+    {
+      "from": "nyc_0140",
+      "to": "nyc_0147",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 1.221,
+      "weight": 0.8189
+    },
+    {
+      "from": "nyc_0104",
+      "to": "nyc_0140",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.106,
+      "weight": 9.469
+    },
+    {
+      "from": "nyc_0104",
+      "to": "nyc_0111",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.57,
+      "weight": 1.7556
+    },
+    {
+      "from": "nyc_0072",
+      "to": "nyc_0111",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.482,
+      "weight": 2.0746
+    },
+    {
+      "from": "nyc_0072",
+      "to": "nyc_0077",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.454,
+      "weight": 2.2041
+    },
+    {
+      "from": "nyc_0077",
+      "to": "nyc_0123",
+      "line_ids": [
+        "LA"
+      ],
+      "distance_km": 0.796,
+      "weight": 1.2566
+    },
+    {
+      "from": "nyc_0082",
+      "to": "nyc_0083",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 1.615,
+      "weight": 0.6192
+    },
+    {
+      "from": "nyc_0039",
+      "to": "nyc_0082",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.479,
+      "weight": 2.0863
+    },
+    {
+      "from": "nyc_0039",
+      "to": "nyc_0089",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.624,
+      "weight": 1.6038
+    },
+    {
+      "from": "nyc_0045",
+      "to": "nyc_0089",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.641,
+      "weight": 1.5595
+    },
+    {
+      "from": "nyc_0045",
+      "to": "nyc_0047",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.467,
+      "weight": 2.1412
+    },
+    {
+      "from": "nyc_0047",
+      "to": "nyc_0135",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.896,
+      "weight": 1.1158
+    },
+    {
+      "from": "nyc_0061",
+      "to": "nyc_0135",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 2.638,
+      "weight": 0.379
+    },
+    {
+      "from": "nyc_0061",
+      "to": "nyc_0063",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.537,
+      "weight": 1.8639
+    },
+    {
+      "from": "nyc_0058",
+      "to": "nyc_0063",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.395,
+      "weight": 2.5319
+    },
+    {
+      "from": "nyc_0052",
+      "to": "nyc_0058",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.72,
+      "weight": 1.3897
+    },
+    {
+      "from": "nyc_0052",
+      "to": "nyc_0144",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.538,
+      "weight": 1.8577
+    },
+    {
+      "from": "nyc_0042",
+      "to": "nyc_0144",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.736,
+      "weight": 1.3594
+    },
+    {
+      "from": "nyc_0037",
+      "to": "nyc_0042",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.536,
+      "weight": 1.8664
+    },
+    {
+      "from": "nyc_0015",
+      "to": "nyc_0034",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.974,
+      "weight": 1.0272
+    },
+    {
+      "from": "nyc_0015",
+      "to": "nyc_0078",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.523,
+      "weight": 1.9126
+    },
+    {
+      "from": "nyc_0078",
+      "to": "nyc_0133",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.84,
+      "weight": 1.1902
+    },
+    {
+      "from": "nyc_0093",
+      "to": "nyc_0133",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.57,
+      "weight": 1.7544
+    },
+    {
+      "from": "nyc_0093",
+      "to": "nyc_0097",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.994,
+      "weight": 1.0058
+    },
+    {
+      "from": "nyc_0097",
+      "to": "nyc_0098",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.474,
+      "weight": 2.109
+    },
+    {
+      "from": "nyc_0137",
+      "to": "nyc_0151",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.503,
+      "weight": 1.9884
+    },
+    {
+      "from": "nyc_0100",
+      "to": "nyc_0151",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 2.123,
+      "weight": 0.4709
+    },
+    {
+      "from": "nyc_0100",
+      "to": "nyc_0102",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.929,
+      "weight": 1.0769
+    },
+    {
+      "from": "nyc_0084",
+      "to": "nyc_0102",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.774,
+      "weight": 1.2922
+    },
+    {
+      "from": "nyc_0084",
+      "to": "nyc_0145",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.898,
+      "weight": 1.1141
+    },
+    {
+      "from": "nyc_0053",
+      "to": "nyc_0145",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.893,
+      "weight": 1.1193
+    },
+    {
+      "from": "nyc_0053",
+      "to": "nyc_0134",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.679,
+      "weight": 1.4726
+    },
+    {
+      "from": "nyc_0036",
+      "to": "nyc_0134",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.733,
+      "weight": 1.3635
+    },
+    {
+      "from": "nyc_0036",
+      "to": "nyc_0046",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.711,
+      "weight": 1.4069
+    },
+    {
+      "from": "nyc_0046",
+      "to": "nyc_0050",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.878,
+      "weight": 1.1387
+    },
+    {
+      "from": "nyc_0050",
+      "to": "nyc_0057",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.575,
+      "weight": 1.7378
+    },
+    {
+      "from": "nyc_0057",
+      "to": "nyc_0059",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 0.506,
+      "weight": 1.9746
+    },
+    {
+      "from": "nyc_0059",
+      "to": "nyc_0085",
+      "line_ids": [
+        "LN"
+      ],
+      "distance_km": 2.978,
+      "weight": 0.3358
+    },
+    {
+      "from": "nyc_0105",
+      "to": "nyc_0126",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 1.44,
+      "weight": 0.6944
+    },
+    {
+      "from": "nyc_0004",
+      "to": "nyc_0126",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.943,
+      "weight": 1.0602
+    },
+    {
+      "from": "nyc_0004",
+      "to": "nyc_0119",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 1.177,
+      "weight": 0.8493
+    },
+    {
+      "from": "nyc_0117",
+      "to": "nyc_0119",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 1.847,
+      "weight": 0.5413
+    },
+    {
+      "from": "nyc_0079",
+      "to": "nyc_0117",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 1.009,
+      "weight": 0.9914
+    },
+    {
+      "from": "nyc_0074",
+      "to": "nyc_0079",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.376,
+      "weight": 2.6609
+    },
+    {
+      "from": "nyc_0069",
+      "to": "nyc_0074",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.643,
+      "weight": 1.5561
+    },
+    {
+      "from": "nyc_0067",
+      "to": "nyc_0069",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.75,
+      "weight": 1.3338
+    },
+    {
+      "from": "nyc_0064",
+      "to": "nyc_0067",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.27,
+      "weight": 3.7096
+    },
+    {
+      "from": "nyc_0056",
+      "to": "nyc_0064",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.0,
+      "weight": 10.0
+    },
+    {
+      "from": "nyc_0051",
+      "to": "nyc_0056",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.0,
+      "weight": 10.0
+    },
+    {
+      "from": "nyc_0048",
+      "to": "nyc_0051",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.0,
+      "weight": 10.0
+    },
+    {
+      "from": "nyc_0041",
+      "to": "nyc_0048",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.0,
+      "weight": 10.0
+    },
+    {
+      "from": "nyc_0041",
+      "to": "nyc_0135",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 3.155,
+      "weight": 0.3169
+    },
+    {
+      "from": "nyc_0099",
+      "to": "nyc_0135",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.56,
+      "weight": 1.7865
+    },
+    {
+      "from": "nyc_0099",
+      "to": "nyc_0115",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.405,
+      "weight": 2.4718
+    },
+    {
+      "from": "nyc_0115",
+      "to": "nyc_0148",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.509,
+      "weight": 1.9637
+    },
+    {
+      "from": "nyc_0110",
+      "to": "nyc_0148",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 2.287,
+      "weight": 0.4372
+    },
+    {
+      "from": "nyc_0062",
+      "to": "nyc_0110",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.575,
+      "weight": 1.739
+    },
+    {
+      "from": "nyc_0062",
+      "to": "nyc_0144",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 0.366,
+      "weight": 2.7295
+    },
+    {
+      "from": "nyc_0043",
+      "to": "nyc_0144",
+      "line_ids": [
+        "L7"
+      ],
+      "distance_km": 1.199,
+      "weight": 0.8338
+    }
+  ]
+}
