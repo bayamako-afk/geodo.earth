@@ -51,6 +51,9 @@ The underlying master data reveals the structural differences between the modele
 *Note: The station counts represent the filtered master data for the 5 selected lines in each city, not the entire real-world network.*
 
 ### 7. Simulation results comparison
+
+*Note: The simulation metrics in this report are based on the current `game_simulator_v3.js` baseline and the city package versions available at report-generation time. These values are intended as comparative internal metrics, not immutable final balance values.*
+
 Running 50 automated games per city using `game_simulator_v3.js` yielded the following performance metrics:
 
 | City | Deck Size | Avg Turns | Top Strategy | Win Rate (Top) |
@@ -74,7 +77,7 @@ The breakdown of average scores highlights how different network topologies rewa
 - **London & NYC**: Higher network bonuses indicate that controlling key transfer hubs across expansive, sprawling networks yields significant rewards.
 - **Osaka**: A balanced environment where the "Greedy" strategy (focusing on immediate high-value grabs) slightly outperforms others.
 
-### 9. Top station comparison
+### 9. Top station comparison (simulation frequency / gameplay importance)
 The most frequently played and strategically valuable stations differ markedly by city:
 
 - **Tokyo → Otemachi / Ginza**: In the simulation, Ginza emerged as the top station (played 36 times). These central hubs connect multiple high-traffic lines, making them critical chokepoints.
