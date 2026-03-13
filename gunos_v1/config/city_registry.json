@@ -1,0 +1,31 @@
+{
+  "platform": "GUNOS V1",
+  "schema_version": "1.0",
+  "default_city": "tokyo",
+  "cities": [
+    {
+      "city_id": "tokyo",
+      "display_name": "Tokyo",
+      "display_label": "TOKYO",
+      "profile": "../guno_v6/cities/tokyo/city_profile.json"
+    },
+    {
+      "city_id": "osaka",
+      "display_name": "Osaka",
+      "display_label": "OSAKA",
+      "profile": "../guno_v6/cities/osaka/city_profile.json"
+    },
+    {
+      "city_id": "london",
+      "display_name": "London",
+      "display_label": "LONDON",
+      "profile": "../guno_v6/cities/london/city_profile.json"
+    },
+    {
+      "city_id": "nyc",
+      "display_name": "New York City",
+      "display_label": "NYC",
+      "profile": "../guno_v6/cities/nyc/city_profile.json"
+    }
+  ]
+}

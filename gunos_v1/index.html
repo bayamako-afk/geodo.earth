@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GUNOS V1</title>
+  <style>
+    /* ── Reset & Base ──────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg:          #0d1117;
+      --color-surface:     #161b22;
+      --color-surface-2:   #21262d;
+      --color-border:      #30363d;
+      --color-text:        #c9d1d9;
+      --color-text-muted:  #6e7681;
+      --color-accent:      #f0c040;
+      --color-accent-dim:  #b08820;
+      --color-city:        #58a6ff;
+      --color-placeholder: #1c2128;
+      --color-error:       #f85149;
+      --color-success:     #3fb950;
+      --font-mono:         'Courier New', Courier, monospace;
+      --font-sans:         -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --header-h:          48px;
+      --footer-h:          36px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.5;
+      overflow: hidden;
+    }
+
+    /* ── App Shell ─────────────────────────────────────────────────────────── */
+    #app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* ── Header ────────────────────────────────────────────────────────────── */
+    #app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-h);
+      padding: 0 16px;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      flex-shrink: 0;
+      gap: 12px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .header-brand__platform {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-accent);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .header-brand__sep {
+      color: var(--color-border);
+      font-size: 14px;
+    }
+
+    .header-brand__city {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-city);
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      min-width: 60px;
+    }
+
+    /* ── City Selector ─────────────────────────────────────────────────────── */
+    #city-selector {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .city-btn {
+      background: var(--color-surface-2);
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .city-btn:hover {
+      background: var(--color-surface);
+      color: var(--color-text);
+      border-color: var(--color-text-muted);
+    }
+
+    .city-btn--active {
+      background: var(--color-accent-dim);
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    /* ── Header Right ──────────────────────────────────────────────────────── */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    #shell-status {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ── Main Layout ───────────────────────────────────────────────────────── */
+    #app-main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 280px 1fr 200px;
+      grid-template-rows: 1fr auto;
+      gap: 1px;
+      background: var(--color-border);
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    /* ── Panels ────────────────────────────────────────────────────────────── */
+    .gs-panel {
+      background: var(--color-surface);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .gs-panel__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: var(--color-surface-2);
+      border-bottom: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+
+    .gs-panel__title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .gs-panel__body {
+      flex: 1;
+      overflow: auto;
+      min-height: 0;
+    }
+
+    /* ── Map Panel (center, full height) ───────────────────────────────────── */
+    #panel-map {
+      grid-column: 2;
+      grid-row: 1 / 3;
+    }
+
+    /* ── Hand Panel (left) ─────────────────────────────────────────────────── */
+    #panel-hand {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    /* ── Score Panel (right) ───────────────────────────────────────────────── */
+    #panel-score {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    /* ── Log Panel (bottom, spans left + right) ────────────────────────────── */
+    #panel-log {
+      grid-column: 1 / 2;
+      grid-row: 2;
+    }
+
+    #panel-log-right {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    /* ── Placeholder content ───────────────────────────────────────────────── */
+    .panel-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 120px;
+      gap: 6px;
+      padding: 16px;
+      background: var(--color-placeholder);
+    }
+
+    .panel-placeholder__icon {
+      font-size: 28px;
+      opacity: 0.4;
+    }
+
+    .panel-placeholder__label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      letter-spacing: 0.12em;
+    }
+
+    .panel-placeholder__note {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      opacity: 0.5;
+      text-align: center;
+    }
+
+    /* ── Footer ────────────────────────────────────────────────────────────── */
+    #app-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--footer-h);
+      padding: 0 16px;
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+
+    .footer-left {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-muted);
+    }
+
+    .footer-right {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-muted);
+    }
+
+    /* ── Boot error ────────────────────────────────────────────────────────── */
+    #boot-error {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #3d1a1a;
+      color: var(--color-error);
+      border: 1px solid var(--color-error);
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      z-index: 9999;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    /* ── Notice banner ─────────────────────────────────────────────────────── */
+    .gs-notice {
+      position: fixed;
+      top: 56px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      z-index: 9998;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .gs-notice--warn {
+      background: #3d2a00;
+      color: #f0c040;
+      border: 1px solid #8a6000;
+    }
+
+    /* ── Responsive: narrow screens ────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      #app-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+      }
+
+      #panel-map   { grid-column: 1; grid-row: 1; min-height: 240px; }
+      #panel-hand  { grid-column: 1; grid-row: 2; }
+      #panel-score { grid-column: 1; grid-row: 3; }
+      #panel-log   { grid-column: 1; grid-row: 4; }
+      #panel-log-right { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ── Header ────────────────────────────────────────────────────────────── -->
+  <header id="app-header">
+    <div class="header-brand">
+      <span class="header-brand__platform">GUNOS V1</span>
+      <span class="header-brand__sep">·</span>
+      <span class="header-brand__city" id="city-label">——</span>
+    </div>
+
+    <!-- City Selector -->
+    <div id="city-selector">
+      <!-- Populated by city_ui.js renderCitySelector() -->
+    </div>
+
+    <div class="header-right">
+      <span id="shell-status">Booting...</span>
+    </div>
+  </header>
+
+  <!-- ── Main Layout ────────────────────────────────────────────────────────── -->
+  <main id="app-main">
+
+    <!-- Hand Panel (left) -->
+    <section class="gs-panel" id="panel-hand">
+      <div class="gs-panel__header">
+        <span class="gs-panel__title">Hand</span>
+      </div>
+      <div class="gs-panel__body">
+        <div class="panel-placeholder">
+          <span class="panel-placeholder__icon">🃏</span>
+          <span class="panel-placeholder__label">HAND</span>
+          <span class="panel-placeholder__note">Phase 3: play engine integration</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Panel (center) -->
+    <section class="gs-panel" id="panel-map">
+      <div class="gs-panel__header">
+        <span class="gs-panel__title">Map</span>
+        <span class="gs-panel__title" id="city-name" style="color: var(--color-city);">——</span>
+      </div>
+      <div class="gs-panel__body">
+        <div class="panel-placeholder">
+          <span class="panel-placeholder__icon">🗺</span>
+          <span class="panel-placeholder__label">MAP</span>
+          <span class="panel-placeholder__note">Phase 4: map-first gameplay</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Score Panel (right) -->
+    <section class="gs-panel" id="panel-score">
+      <div class="gs-panel__header">
+        <span class="gs-panel__title">Score</span>
+      </div>
+      <div class="gs-panel__body">
+        <div class="panel-placeholder">
+          <span class="panel-placeholder__icon">📊</span>
+          <span class="panel-placeholder__label">SCORE</span>
+          <span class="panel-placeholder__note">Phase 5: scoring / result UX</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Log Panel (bottom-left) -->
+    <section class="gs-panel" id="panel-log">
+      <div class="gs-panel__header">
+        <span class="gs-panel__title">Log</span>
+      </div>
+      <div class="gs-panel__body">
+        <div class="panel-placeholder" style="min-height: 60px;">
+          <span class="panel-placeholder__label">LOG</span>
+          <span class="panel-placeholder__note">Phase 3: play engine integration</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Log Panel right placeholder (bottom-right) -->
+    <section class="gs-panel" id="panel-log-right">
+      <div class="gs-panel__header">
+        <span class="gs-panel__title">Info</span>
+      </div>
+      <div class="gs-panel__body">
+        <div class="panel-placeholder" style="min-height: 60px;">
+          <span class="panel-placeholder__label">INFO</span>
+          <span class="panel-placeholder__note">Phase 2: main play layout</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────────────────────────────── -->
+  <footer id="app-footer">
+    <span class="footer-left">GUNOS V1 — Phase 1 Scaffold</span>
+    <span class="footer-right">GUNO Tokyo · GUNO Osaka · GUNO London · GUNO NYC</span>
+  </footer>
+
+</div>
+
+<!-- Boot error banner (shown on fatal error) -->
+<div id="boot-error"></div>
+
+<!-- App entry point -->
+<script type="module" src="src/app/main.js"></script>
+
+</body>
+</html>
