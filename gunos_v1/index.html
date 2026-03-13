@@ -26,6 +26,7 @@
       --c-green:        #3fb950;
       --c-red:          #f85149;
       --c-orange:       #d29922;
+      --c-purple:       #bc8cff;
 
       /* Layout */
       --header-h:       44px;
@@ -289,7 +290,7 @@
       padding: 16px 20px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       height: 100%;
     }
 
@@ -332,6 +333,27 @@
       border-radius: 3px;
       background: transparent;
     }
+
+    /* ── Phase 3: Game indicator ─────────────────────────────────────────── */
+    .map-game-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      flex-shrink: 0;
+    }
+
+    .map-game-indicator__text {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--c-text-dim);
+    }
+
+    .map-game-indicator--running .map-game-indicator__text  { color: var(--c-green); }
+    .map-game-indicator--loading .map-game-indicator__text  { color: var(--c-orange); }
+    .map-game-indicator--finished .map-game-indicator__text { color: var(--c-accent); }
+    .map-game-indicator--error .map-game-indicator__text    { color: var(--c-red); }
 
     /* Map grid placeholder */
     .map-placeholder {
@@ -387,11 +409,15 @@
       border: 1px solid;
       border-radius: 3px;
       flex-shrink: 0;
-      transition: background 0.1s;
+      transition: background 0.15s;
     }
 
-    .map-slot:hover {
-      opacity: 0.7;
+    .map-slot:hover { opacity: 0.7; }
+
+    /* Phase 3: active slot highlight */
+    .map-slot--active {
+      box-shadow: 0 0 0 2px var(--c-accent);
+      background: rgba(240, 192, 64, 0.2) !important;
     }
 
     .map-grid-empty {
@@ -437,7 +463,7 @@
       padding: 8px 10px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       height: 100%;
     }
 
@@ -450,6 +476,7 @@
       padding-bottom: 2px;
     }
 
+    /* Phase 2: empty slot */
     .hand-card-slot {
       flex-shrink: 0;
       width: 52px;
@@ -470,11 +497,80 @@
       opacity: 0.4;
     }
 
+    /* Phase 3: filled card slot */
+    .hand-card-slot--filled {
+      border-style: solid;
+      border-color: var(--c-border);
+      background: var(--c-surface-3);
+      flex-direction: column;
+      padding: 4px;
+      cursor: default;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .hand-card-slot--filled .hand-card-slot__inner {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      gap: 2px;
+    }
+
+    .hand-card__name {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--c-text);
+      line-height: 1.3;
+      word-break: break-all;
+      flex: 1;
+    }
+
+    .hand-card__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hand-card__rarity {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 700;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+
+    .hand-card__score {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--c-text-muted);
+    }
+
+    /* Rarity colors */
+    .hand-card--legendary { border-color: #f0c040 !important; }
+    .hand-card--legendary .hand-card__rarity { background: #3a2a00; color: #f0c040; }
+    .hand-card--epic      { border-color: #bc8cff !important; }
+    .hand-card--epic      .hand-card__rarity { background: #2a1a3a; color: #bc8cff; }
+    .hand-card--rare      { border-color: #58a6ff !important; }
+    .hand-card--rare      .hand-card__rarity { background: #0d2040; color: #58a6ff; }
+    .hand-card--common    { border-color: var(--c-border) !important; }
+    .hand-card--common    .hand-card__rarity { background: var(--c-surface-2); color: var(--c-text-muted); }
+
+    .hand-empty-msg {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--c-text-dim);
+      padding: 8px 4px;
+    }
+
+    /* Meta row */
     .hand-panel-meta {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-shrink: 0;
+      flex-wrap: wrap;
     }
 
     .hand-meta-item {
@@ -497,11 +593,50 @@
       color: var(--c-text-muted);
     }
 
-    .hand-meta-note {
-      font-size: 9px;
-      color: var(--c-text-dim);
+    /* Phase 3: Turn controls */
+    .hand-turn-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .turn-btn {
       font-family: var(--font-mono);
-      margin-left: auto;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 3px;
+      border: 1px solid;
+      cursor: pointer;
+      transition: all 0.12s;
+      white-space: nowrap;
+    }
+
+    .turn-btn--play1 {
+      background: #0d2a14;
+      color: var(--c-green);
+      border-color: var(--c-green);
+    }
+
+    .turn-btn--play1:hover {
+      background: #1a4a24;
+    }
+
+    .turn-btn--auto {
+      background: #1a1a2a;
+      color: var(--c-city);
+      border-color: var(--c-city);
+    }
+
+    .turn-btn--auto:hover {
+      background: #1a3a5c;
+    }
+
+    .turn-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
     }
 
     /* ════════════════════════════════════════════════════════════════════════
@@ -541,24 +676,80 @@
       padding: 4px 10px 2px;
     }
 
-    /* Current card */
+    /* Phase 3: current card */
     .score-current-card {
       padding: 4px 10px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .score-current-card__slot {
-      width: 44px;
-      height: 60px;
-      border: 1px dashed var(--c-border);
-      border-radius: 4px;
-      background: var(--c-surface-2);
+    .score-current-card__name {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--c-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .score-current-card__meta {
       display: flex;
+      gap: 6px;
       align-items: center;
-      justify-content: center;
+    }
+
+    .score-card-rarity {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    .score-card-rarity--legendary { background: #3a2a00; color: #f0c040; }
+    .score-card-rarity--epic      { background: #2a1a3a; color: #bc8cff; }
+    .score-card-rarity--rare      { background: #0d2040; color: #58a6ff; }
+    .score-card-rarity--common    { background: var(--c-surface-2); color: var(--c-text-muted); }
+
+    .score-card-score {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--c-text-muted);
+    }
+
+    /* Phase 3: status rows */
+    .score-status-rows {
+      padding: 4px 10px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .score-status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .score-status-label {
+      font-size: 10px;
+      color: var(--c-text-muted);
+    }
+
+    .score-status-value {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--c-text-dim);
+      font-weight: 700;
+      color: var(--c-text);
     }
+
+    .score-status-value--idle     { color: var(--c-text-dim); }
+    .score-status-value--loading  { color: var(--c-orange); }
+    .score-status-value--running  { color: var(--c-green); }
+    .score-status-value--finished { color: var(--c-accent); }
+    .score-status-value--error    { color: var(--c-red); }
 
     /* Score rows */
     .score-rows {
@@ -617,6 +808,7 @@
     .score-log__entry--normal    { color: var(--c-text-muted); }
     .score-log__entry--highlight { color: var(--c-accent); }
     .score-log__entry--muted     { color: var(--c-text-dim); }
+    .score-log__entry--warn      { color: var(--c-orange); }
 
     /* ════════════════════════════════════════════════════════════════════════
        BOOT ERROR
@@ -736,7 +928,8 @@
       <section class="gs-panel" id="panel-hand">
         <div class="gs-panel__header">
           <span class="gs-panel__title">HAND</span>
-          <span class="gs-panel__title" style="color:var(--c-text-dim);">Phase 3</span>
+          <!-- Phase 3: turn controls injected here by main.js -->
+          <div id="hdr-turn-controls" style="display:flex;gap:4px;align-items:center;"></div>
         </div>
         <div class="gs-panel__body" id="hand-panel-body">
           <!-- Populated by hand_panel.js -->
@@ -747,7 +940,7 @@
       <section class="gs-panel" id="panel-score">
         <div class="gs-panel__header">
           <span class="gs-panel__title">STATUS</span>
-          <span class="gs-panel__title" style="color:var(--c-text-dim);">Phase 5</span>
+          <span class="gs-panel__title" id="panel-score-phase" style="color:var(--c-text-dim);">IDLE</span>
         </div>
         <div class="gs-panel__body" id="score-panel-body">
           <!-- Populated by score_panel.js -->
