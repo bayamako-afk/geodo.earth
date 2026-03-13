@@ -2,48 +2,49 @@
  * main.js — GUNOS V1 Application Entry Point
  *
  * Platform: GUNOS V1
- * Phase:    1 — City-aware application scaffold
+ * Phase:    2 — Main play layout
  *
  * Responsibilities:
  *   1. Boot the GUNOS V1 app
  *   2. Resolve active city from ?city= URL param or registry default
  *   3. Load city profile via city_loader
- *   4. Render the initial shell (title, city label, city selector, placeholder panels)
- *   5. Prepare app state for future phases
+ *   4. Render the full Phase 2 play layout via layout.js
+ *   5. Maintain app state for future phases
  *
  * Architecture:
- *   URL param / default → city_loader → city_ui → shell render → app_state
+ *   URL param / default → city_loader → layout.js → [header_bar, map_panel, hand_panel, score_panel]
  *
- * What is NOT done in Phase 1:
- *   - Full gameplay UI
- *   - Play engine integration
+ * What is NOT done in Phase 2:
+ *   - Full gameplay / play engine wiring
+ *   - Turn progression
+ *   - Route / network visualization
  *   - Online / Supabase layer
- *   - Map rendering
- *   - Card deck loading
+ *   - Final scoring UX
  */
 
 import { loadCityProfile, listAvailableCities } from '../city/city_loader.js';
-import { resolveActiveCityId, renderCitySelector, updateCityDisplay } from '../city/city_ui.js';
+import { resolveActiveCityId } from '../city/city_ui.js';
 import { setState, setActiveCity, setError, getState } from '../state/app_state.js';
+import { renderLayout } from '../ui/layout.js';
+import { setHeaderStatus, setStartButtonState } from '../ui/header_bar.js';
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
   boot().catch(err => {
     console.error('[GUNOS V1] Fatal boot error:', err);
-    showBootError(err.message);
+    _showBootError(err.message);
   });
 });
 
 async function boot() {
-  console.log('[GUNOS V1] Booting platform...');
+  console.log('[GUNOS V1] Booting platform (Phase 2)...');
   setState({ phase: 'booting' });
-
-  setShellStatus('Booting GUNOS V1...');
+  setHeaderStatus('Booting...', 'loading');
 
   // ── Step 1: Resolve active city ──────────────────────────────────────────
   setState({ phase: 'city_loading' });
-  setShellStatus('Loading city...');
+  setHeaderStatus('Loading city...', 'loading');
 
   let cityId, registry;
   try {
@@ -67,89 +68,47 @@ async function boot() {
   // ── Step 3: Update app state ─────────────────────────────────────────────
   setActiveCity(cityId, profile, registry);
 
-  // ── Step 4: Render shell ─────────────────────────────────────────────────
-  const registryEntry = registry.cities.find(c => c.city_id === cityId);
-  updateCityDisplay(profile, registryEntry);
-
+  // ── Step 4: Load available cities for selector ───────────────────────────
   const cities = await listAvailableCities();
-  renderCitySelector(cities, cityId);
 
-  renderShellPanels(profile);
-  setShellStatus('Ready');
+  // ── Step 5: Render full Phase 2 layout ───────────────────────────────────
+  const registryEntry = registry.cities.find(c => c.city_id === cityId);
 
-  console.log('[GUNOS V1] Shell ready.', getState());
+  renderLayout({
+    profile,
+    registryEntry,
+    cities,
+    onStart: _handleStart,
+    onReset: _handleReset,
+  });
+
+  console.log('[GUNOS V1] Phase 2 layout ready.', getState());
 }
 
-// ── Shell render helpers ──────────────────────────────────────────────────────
+// ── Action handlers (Phase 2 stubs — wired in Phase 3) ───────────────────────
 
-/**
- * Render placeholder panels with city-aware labels.
- * @param {Object} profile - Loaded city profile
- */
-function renderShellPanels(profile) {
-  const cityLabel = profile._display_label || profile.city_id.toUpperCase();
+function _handleStart() {
+  console.log('[GUNOS V1] START pressed — Phase 3 will wire play engine here.');
+  setHeaderStatus('Phase 3: play engine', 'loading');
+  setStartButtonState('playing');
 
-  // Map panel placeholder
-  const mapPanel = document.getElementById('panel-map');
-  if (mapPanel) {
-    mapPanel.innerHTML = `
-      <div class="panel-placeholder">
-        <span class="panel-placeholder__icon">🗺</span>
-        <span class="panel-placeholder__label">MAP — ${cityLabel}</span>
-        <span class="panel-placeholder__note">Phase 4: map-first gameplay</span>
-      </div>`;
-  }
-
-  // Hand panel placeholder
-  const handPanel = document.getElementById('panel-hand');
-  if (handPanel) {
-    handPanel.innerHTML = `
-      <div class="panel-placeholder">
-        <span class="panel-placeholder__icon">🃏</span>
-        <span class="panel-placeholder__label">HAND</span>
-        <span class="panel-placeholder__note">Phase 3: play engine integration</span>
-      </div>`;
-  }
-
-  // Score panel placeholder
-  const scorePanel = document.getElementById('panel-score');
-  if (scorePanel) {
-    scorePanel.innerHTML = `
-      <div class="panel-placeholder">
-        <span class="panel-placeholder__icon">📊</span>
-        <span class="panel-placeholder__label">SCORE</span>
-        <span class="panel-placeholder__note">Phase 5: scoring / result UX</span>
-      </div>`;
-  }
-
-  // Log panel placeholder
-  const logPanel = document.getElementById('panel-log');
-  if (logPanel) {
-    logPanel.innerHTML = `
-      <div class="panel-placeholder">
-        <span class="panel-placeholder__icon">📜</span>
-        <span class="panel-placeholder__label">LOG</span>
-        <span class="panel-placeholder__note">Phase 3: play engine integration</span>
-      </div>`;
-  }
+  // Phase 2 stub: show a brief message then revert
+  setTimeout(() => {
+    setHeaderStatus('Ready', 'idle');
+    setStartButtonState('ready');
+  }, 2000);
 }
 
-/**
- * Update the shell status bar text.
- * @param {string} text
- */
-function setShellStatus(text) {
-  const el = document.getElementById('shell-status');
-  if (el) el.textContent = text;
+function _handleReset() {
+  console.log('[GUNOS V1] RESET pressed — reloading city.');
+  window.location.reload();
 }
 
-/**
- * Show a fatal boot error in the shell.
- * @param {string} message
- */
-function showBootError(message) {
+// ── Error handling ────────────────────────────────────────────────────────────
+
+function _showBootError(message) {
   setError(message);
-  setShellStatus(`Error: ${message}`);
+  setHeaderStatus(`Error: ${message}`, 'error');
 
   const errorEl = document.getElementById('boot-error');
   if (errorEl) {
