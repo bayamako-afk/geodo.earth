@@ -30,9 +30,18 @@ export function showResultPanel(result) {
     const rank      = idx + 1;
     const whyLabel  = _whyWon(ps, isWinner && idx === 0);
 
-    const bestRoute = ps.route_details?.find(r => r.bonus > 0);
+    // Best route: prefer completed/partial (bonus > 0), fall back to highest progress
+    const bestRoute = ps.route_details?.find(r => r.bonus > 0)
+      || ps.route_progress?.sort((a, b) => b.pct - a.pct)?.[0]
+      || ps.route_details?.sort((a, b) => b.count - a.count)?.[0];
     const routeStr  = bestRoute
-      ? `${bestRoute.line_name_en || bestRoute.line_id} (${bestRoute.count}/${bestRoute.route_total})`
+      ? (() => {
+          const name  = bestRoute.line_name_en || bestRoute.line_name || bestRoute.line_id;
+          const count = bestRoute.count;
+          const total = bestRoute.route_total ?? bestRoute.total;
+          const bonus = bestRoute.bonus > 0 ? ` +${bestRoute.bonus}pt` : '';
+          return `${name} (${count}/${total})${bonus}`;
+        })()
       : '—';
 
     const topStation = ps.station_details?.[0];

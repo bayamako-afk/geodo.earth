@@ -343,6 +343,9 @@ function _computeHubBonusRelative(owned, stationMetrics) {
 /**
  * Compute route progress for each line (for UI progress bars).
  * Returns array of { line_id, line_name, count, total, pct, status }
+ *
+ * V1.1 Task 03: When lines_master.station_count is null/missing (e.g. NYC),
+ * fall back to counting unique stations in station_lines for that line.
  */
 function _computeRouteProgress(owned, stationLines, linesMaster) {
   if (!stationLines || !linesMaster || !owned.length) return [];
@@ -350,10 +353,22 @@ function _computeRouteProgress(owned, stationLines, linesMaster) {
   const sl = Array.isArray(stationLines) ? stationLines : [];
   const lm = Array.isArray(linesMaster) ? linesMaster : [];
 
+  // Build actual station count per line from station_lines (authoritative)
+  const lineActualCount = {};
+  for (const r of sl) {
+    if (!lineActualCount[r.line_id]) lineActualCount[r.line_id] = new Set();
+    lineActualCount[r.line_id].add(r.station_global_id);
+  }
+
   // line_id → { line_name, total }
+  // Prefer lines_master.station_count; fall back to actual count from station_lines
   const lineInfo = {};
   for (const l of lm) {
-    lineInfo[l.line_id] = { line_name: l.line_name_en || l.line_name, total: l.station_count || 0 };
+    const actualTotal = lineActualCount[l.line_id]?.size ?? 0;
+    const masterTotal = (typeof l.station_count === 'number' && l.station_count > 0)
+      ? l.station_count
+      : actualTotal;
+    lineInfo[l.line_id] = { line_name: l.line_name_en || l.line_name, total: masterTotal };
   }
 
   // station_global_id → [line_id]
