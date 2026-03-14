@@ -1,17 +1,17 @@
 /**
- * map_canvas.js — GUNOS V1 SVG Map Canvas
+ * map_canvas.js — GUNOS V1.1 SVG Map Canvas
  *
- * Phase 6: Network visibility + route growth polish
+ * V1.1 Task 01: Route / Network Visibility Polish
  *
- * Improvements over Phase 4/5:
- *   - Stronger owned-adjacency glow (opacity 0.45 → 0.65, stroke-width 4 → 6)
- *   - Owned edges rendered at full brightness (not dimmed)
- *   - Unowned edges more clearly dimmed (opacity 33%)
- *   - Player-colored edge segments for owned adjacency (separate layer)
- *   - Larger hub nodes for better readability (r=7 instead of 6)
- *   - Current card highlight: larger pulse ring + brighter ring
- *   - Legend shows station count + leading player highlight
- *   - Station labels always visible for owned/hub/current nodes
+ * New in V1.1:
+ *   - Route run detection: consecutive owned stations on the same line
+ *     are highlighted with a dedicated thick colored segment (Layer 2b)
+ *   - Network component detection: owned stations are grouped into
+ *     connected components; larger groups get stronger glow
+ *   - Isolated owned stations are visually distinct from connected groups
+ *   - Unowned nodes further dimmed (opacity 0.35 → 0.22) to increase contrast
+ *   - Owned isolated node: smaller r, dimmer glow
+ *   - Owned connected node: larger r, brighter glow, component-size ring
  */
 
 const SVG_W = 900;
@@ -44,11 +44,19 @@ export function renderMapCanvas(container, graph, renderOpts = {}) {
   const ownedSet       = new Set(Object.keys(ownerMap));
   const connectedPairs = _findConnectedOwnedPairs(graph.edges, ownedSet);
 
-  // Count owned stations per player for leading player detection
+  // V1.1: Connected components per player
+  const componentMap   = _buildComponentMap(graph.edges, ownerMap);
+
+  // V1.1: Route runs — consecutive owned segments on the same line
+  const routeRuns      = _findRouteRuns(graph.edges, ownerMap);
+
   const ownerCounts = _countByPlayer(ownerMap);
   const leaderId    = _findLeader(ownerCounts);
 
-  const svg = _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode, leaderId);
+  const svg = _buildSVG(
+    graph, proj, ownerMap, ownedSet, connectedPairs,
+    componentMap, routeRuns, currentCardId, uiMode, leaderId
+  );
 
   container.innerHTML = '';
   container.appendChild(svg);
@@ -56,7 +64,10 @@ export function renderMapCanvas(container, graph, renderOpts = {}) {
 
 // ── SVG construction ──────────────────────────────────────────────────────────
 
-function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode, leaderId) {
+function _buildSVG(
+  graph, proj, ownerMap, ownedSet, connectedPairs,
+  componentMap, routeRuns, currentCardId, uiMode, leaderId
+) {
   const svg = _el('svg', {
     viewBox: `0 0 ${SVG_W} ${SVG_H}`,
     preserveAspectRatio: 'xMidYMid meet',
@@ -64,8 +75,9 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
   });
 
   // ── Layer 1: Base edges ───────────────────────────────────────────────────
-  const edgeLayer    = _el('g', { class: 'map-layer map-layer--edges' });
-  const edgesByLine  = _groupEdgesByLine(graph.edges);
+  // Unowned edges are heavily dimmed; owned-adjacent edges are brighter
+  const edgeLayer   = _el('g', { class: 'map-layer map-layer--edges' });
+  const edgesByLine = _groupEdgesByLine(graph.edges);
 
   for (const [lineId, edges] of Object.entries(edgesByLine)) {
     const color     = LINE_COLORS[lineId] ?? '#3a3f47';
@@ -81,9 +93,9 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
       const line = _el('line', {
         x1: fromNode.x, y1: fromNode.y,
         x2: toNode.x,   y2: toNode.y,
-        // Phase 6: owned edges full brightness, unowned clearly dimmed
-        stroke:           isConnected ? color : `${color}44`,
-        'stroke-width':   isConnected ? 2.8   : 1.0,
+        // V1.1: unowned edges more aggressively dimmed for contrast
+        stroke:           isConnected ? color : `${color}33`,
+        'stroke-width':   isConnected ? 2.5   : 0.8,
         'stroke-linecap': 'round',
         class: isConnected ? 'map-edge map-edge--connected' : 'map-edge',
       });
@@ -93,8 +105,8 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
   }
   svg.appendChild(edgeLayer);
 
-  // ── Layer 2: Network emphasis (owned adjacency — player-colored glow) ─────
-  // Phase 6: stronger glow, player-colored edge segments
+  // ── Layer 2a: Network glow (owned adjacency — component-size scaled) ──────
+  // Larger connected components get stronger glow
   const networkLayer = _el('g', { class: 'map-layer map-layer--network' });
 
   for (const edge of graph.edges) {
@@ -107,31 +119,79 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
     const ownerTo    = ownerMap[edge.to];
     const glowColor  = PLAYER_COLORS[ownerFrom] ?? PLAYER_COLORS[ownerTo] ?? '#ffffff';
 
-    // Outer glow (wide, low opacity)
+    // V1.1: component size scales glow intensity
+    const compSizeFrom = componentMap.get(edge.from) ?? 1;
+    const compSizeTo   = componentMap.get(edge.to)   ?? 1;
+    const compSize     = Math.max(compSizeFrom, compSizeTo);
+    const glowOpacity  = Math.min(0.55, 0.12 + compSize * 0.04);
+    const glowWidth    = Math.min(14, 6 + compSize * 0.8);
+
+    // Outer glow (wide, component-scaled)
     const glow = _el('line', {
       x1: fromNode.x, y1: fromNode.y,
       x2: toNode.x,   y2: toNode.y,
       stroke:           glowColor,
-      'stroke-width':   8,
+      'stroke-width':   glowWidth,
       'stroke-linecap': 'round',
-      opacity:          '0.18',
+      opacity:          glowOpacity.toFixed(2),
       class:            'map-edge-glow',
     });
     networkLayer.appendChild(glow);
 
-    // Inner colored segment (narrow, higher opacity)
+    // Inner segment (narrow, high opacity)
+    const innerOpacity = Math.min(0.85, 0.45 + compSize * 0.04);
     const segment = _el('line', {
       x1: fromNode.x, y1: fromNode.y,
       x2: toNode.x,   y2: toNode.y,
       stroke:           glowColor,
-      'stroke-width':   2,
+      'stroke-width':   2.5,
       'stroke-linecap': 'round',
-      opacity:          '0.55',
+      opacity:          innerOpacity.toFixed(2),
       class:            'map-edge-segment',
     });
     networkLayer.appendChild(segment);
   }
   svg.appendChild(networkLayer);
+
+  // ── Layer 2b: Route runs (same-line consecutive ownership) ───────────────
+  // V1.1: NEW — thick colored stripe on top of route runs
+  if (routeRuns.length > 0) {
+    const routeLayer = _el('g', { class: 'map-layer map-layer--routes' });
+
+    for (const run of routeRuns) {
+      const fromNode = proj.get(run.from);
+      const toNode   = proj.get(run.to);
+      if (!fromNode || !toNode) continue;
+
+      const playerColor = PLAYER_COLORS[run.owner] ?? '#ffffff';
+      const lineColor   = LINE_COLORS[run.lineId]  ?? '#888888';
+
+      // Route run stripe — player-colored, thick, high opacity
+      const stripe = _el('line', {
+        x1: fromNode.x, y1: fromNode.y,
+        x2: toNode.x,   y2: toNode.y,
+        stroke:           playerColor,
+        'stroke-width':   4.5,
+        'stroke-linecap': 'round',
+        opacity:          '0.75',
+        class:            'map-route-run',
+      });
+      routeLayer.appendChild(stripe);
+
+      // Thin line color overlay to show which line it belongs to
+      const lineOverlay = _el('line', {
+        x1: fromNode.x, y1: fromNode.y,
+        x2: toNode.x,   y2: toNode.y,
+        stroke:           lineColor,
+        'stroke-width':   1.2,
+        'stroke-linecap': 'round',
+        opacity:          '0.45',
+        class:            'map-route-run-line',
+      });
+      routeLayer.appendChild(lineOverlay);
+    }
+    svg.appendChild(routeLayer);
+  }
 
   // ── Layer 3: Station nodes ────────────────────────────────────────────────
   const nodeLayer = _el('g', { class: 'map-layer map-layer--nodes' });
@@ -148,20 +208,48 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
     const isCurrent = nodeId === currentCardId;
     const isLeader  = isOwned && owner === leaderId;
 
-    // Phase 6: slightly larger nodes
-    const r = isCurrent ? 10 : isHub ? 7 : isOwned ? 5 : 3.5;
+    // V1.1: connected vs isolated owned nodes have different sizes
+    const compSize    = isOwned ? (componentMap.get(nodeId) ?? 1) : 0;
+    const isConnected = compSize >= 2;
+
+    // Size: current > connected-owned-hub > connected-owned > isolated-owned > hub > plain
+    let r;
+    if (isCurrent)              r = 10;
+    else if (isOwned && isHub && isConnected) r = 9;
+    else if (isOwned && isConnected) r = 6.5;
+    else if (isOwned && isHub)  r = 7;
+    else if (isOwned)           r = 4.5;
+    else if (isHub)             r = 5.5;
+    else                        r = 2.8;
 
     const g = _el('g', {
       class: [
         'map-node',
-        isOwned   ? `map-node--owned map-node--${owner}` : 'map-node--unowned',
-        isHub     ? 'map-node--hub'     : '',
-        isCurrent ? 'map-node--current' : '',
-        isLeader  ? 'map-node--leader'  : '',
+        isOwned     ? `map-node--owned map-node--${owner}` : 'map-node--unowned',
+        isHub       ? 'map-node--hub'       : '',
+        isCurrent   ? 'map-node--current'   : '',
+        isLeader    ? 'map-node--leader'     : '',
+        isConnected ? 'map-node--connected'  : (isOwned ? 'map-node--isolated' : ''),
       ].filter(Boolean).join(' '),
       'data-id':   nodeId,
       'data-name': node.station_name,
     });
+
+    // V1.1: component size ring for connected owned nodes (shows network scale)
+    if (isOwned && isConnected && !isCurrent && uiMode !== 'idle') {
+      const ringR   = r + Math.min(6, compSize * 0.8);
+      const ringOp  = Math.min(0.45, 0.15 + compSize * 0.03);
+      const compRing = _el('circle', {
+        cx: pt.x, cy: pt.y,
+        r:              ringR,
+        fill:           'none',
+        stroke:         PLAYER_COLORS[owner],
+        'stroke-width': 1.2,
+        opacity:        ringOp.toFixed(2),
+        class:          'map-node-comp-ring',
+      });
+      g.appendChild(compRing);
+    }
 
     // Pulse ring for current card
     if (isCurrent) {
@@ -175,8 +263,6 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
         class:          'map-node-pulse',
       });
       g.appendChild(pulse);
-
-      // Second ring (inner)
       const pulse2 = _el('circle', {
         cx: pt.x, cy: pt.y,
         r:              r + 4,
@@ -188,7 +274,7 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
       g.appendChild(pulse2);
     }
 
-    // Leader highlight ring (Phase 6)
+    // Leader highlight ring
     if (isLeader && !isCurrent && uiMode !== 'idle') {
       const leaderRing = _el('circle', {
         cx: pt.x, cy: pt.y,
@@ -202,6 +288,8 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
     }
 
     // Main circle
+    // V1.1: isolated owned nodes are slightly dimmer to distinguish from connected
+    const ownedOpacity = isConnected ? '1' : '0.7';
     const fill   = isOwned ? PLAYER_COLORS[owner] : (isHub ? '#3a4050' : '#252a32');
     const stroke = isOwned ? PLAYER_COLORS[owner] : (isHub ? '#5a6070' : '#3a4050');
 
@@ -211,7 +299,8 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
       fill,
       stroke,
       'stroke-width': isOwned ? 0 : 1,
-      opacity:        isOwned ? '1' : (isHub ? '0.8' : '0.55'),
+      // V1.1: unowned nodes more aggressively dimmed
+      opacity: isOwned ? ownedOpacity : (isHub ? '0.65' : '0.28'),
     });
     g.appendChild(circle);
 
@@ -221,9 +310,10 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
         x:             pt.x,
         y:             pt.y - r - 3,
         'text-anchor': 'middle',
-        'font-size':   isCurrent ? '9' : '7.5',
+        'font-size':   isCurrent ? '9' : (isConnected && isOwned ? '8' : '7.5'),
         fill:          isOwned ? PLAYER_COLORS[owner] : (isCurrent ? '#ffffff' : '#8b949e'),
-        'font-weight': isCurrent ? 'bold' : 'normal',
+        'font-weight': (isCurrent || (isConnected && isOwned)) ? 'bold' : 'normal',
+        opacity:       isOwned ? (isConnected ? '1' : '0.7') : '0.9',
         class:         'map-node-label',
       });
       label.textContent = node.station_name;
@@ -241,11 +331,11 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
       const highlightLayer = _el('g', { class: 'map-layer map-layer--highlight' });
       const ring = _el('circle', {
         cx: pt.x, cy: pt.y,
-        r:              20,
+        r:              22,
         fill:           'none',
         stroke:         '#ffffff',
         'stroke-width': 1,
-        opacity:        '0.2',
+        opacity:        '0.18',
         class:          'map-highlight-ring',
       });
       highlightLayer.appendChild(ring);
@@ -255,7 +345,7 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
 
   // ── Layer 5: Player legend ────────────────────────────────────────────────
   if (uiMode !== 'idle') {
-    const legendLayer = _buildLegend(ownerMap, leaderId);
+    const legendLayer = _buildLegend(ownerMap, leaderId, componentMap);
     svg.appendChild(legendLayer);
   }
 
@@ -264,7 +354,7 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode,
 
 // ── Legend ────────────────────────────────────────────────────────────────────
 
-function _buildLegend(ownerMap, leaderId) {
+function _buildLegend(ownerMap, leaderId, componentMap) {
   const g = _el('g', { class: 'map-legend' });
 
   const counts  = _countByPlayer(ownerMap);
@@ -272,18 +362,27 @@ function _buildLegend(ownerMap, leaderId) {
   const startX  = SVG_W - 10;
   const startY  = 10;
 
+  // V1.1: also show max component size per player
+  const maxCompByPlayer = {};
+  for (const [nodeId, pid] of Object.entries(ownerMap)) {
+    const cs = componentMap.get(nodeId) ?? 1;
+    if (!maxCompByPlayer[pid] || cs > maxCompByPlayer[pid]) {
+      maxCompByPlayer[pid] = cs;
+    }
+  }
+
   players.forEach((pid, i) => {
-    const y         = startY + i * 20;
+    const y         = startY + i * 22;
     const color     = PLAYER_COLORS[pid] ?? '#aaaaaa';
     const isLeading = pid === leaderId;
+    const maxComp   = maxCompByPlayer[pid] ?? 1;
 
-    // Background pill for leader
     if (isLeading) {
       const pill = _el('rect', {
-        x:      startX - 72,
+        x:      startX - 80,
         y:      y - 2,
-        width:  68,
-        height: 16,
+        width:  76,
+        height: 18,
         rx:     4,
         fill:   color,
         opacity: '0.12',
@@ -292,26 +391,98 @@ function _buildLegend(ownerMap, leaderId) {
     }
 
     const dot = _el('circle', {
-      cx: startX - 62, cy: y + 6,
+      cx: startX - 68, cy: y + 7,
       r:    isLeading ? 6 : 4,
       fill: color,
     });
 
     const label = _el('text', {
-      x:           startX - 52,
-      y:           y + 10,
-      'font-size': isLeading ? '11' : '10',
+      x:             startX - 58,
+      y:             y + 11,
+      'font-size':   isLeading ? '11' : '10',
       'font-weight': isLeading ? 'bold' : 'normal',
-      fill:        color,
-      class:       'map-legend-label',
+      fill:          color,
+      class:         'map-legend-label',
     });
-    label.textContent = `${pid}  ${counts[pid]}`;
+    // V1.1: show station count + max network size
+    label.textContent = `${pid}  ${counts[pid]}  (net:${maxComp})`;
 
     g.appendChild(dot);
     g.appendChild(label);
   });
 
   return g;
+}
+
+// ── V1.1: Connected component detection ───────────────────────────────────────
+
+/**
+ * Build a map from nodeId → size of its connected component (within same player's owned stations).
+ * Nodes not in any connected group (isolated) get size 1.
+ */
+function _buildComponentMap(edges, ownerMap) {
+  // Build adjacency within same-player owned stations
+  const adj = new Map();
+  for (const edge of edges) {
+    const ownerFrom = ownerMap[edge.from];
+    const ownerTo   = ownerMap[edge.to];
+    if (!ownerFrom || !ownerTo || ownerFrom !== ownerTo) continue;
+    if (!adj.has(edge.from)) adj.set(edge.from, []);
+    if (!adj.has(edge.to))   adj.set(edge.to,   []);
+    adj.get(edge.from).push(edge.to);
+    adj.get(edge.to).push(edge.from);
+  }
+
+  const visited    = new Set();
+  const compSizeMap = new Map();
+
+  for (const nodeId of Object.keys(ownerMap)) {
+    if (visited.has(nodeId)) continue;
+
+    // BFS to find all nodes in this component
+    const component = [];
+    const queue     = [nodeId];
+    visited.add(nodeId);
+
+    while (queue.length) {
+      const cur = queue.shift();
+      component.push(cur);
+      for (const neighbor of (adj.get(cur) ?? [])) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
+          queue.push(neighbor);
+        }
+      }
+    }
+
+    const size = component.length;
+    for (const id of component) {
+      compSizeMap.set(id, size);
+    }
+  }
+
+  return compSizeMap;
+}
+
+// ── V1.1: Route run detection ─────────────────────────────────────────────────
+
+/**
+ * Find edges where both endpoints are owned by the SAME player AND share the same line.
+ * Returns array of { from, to, owner, lineId }.
+ */
+function _findRouteRuns(edges, ownerMap) {
+  const runs = [];
+  for (const edge of edges) {
+    const ownerFrom = ownerMap[edge.from];
+    const ownerTo   = ownerMap[edge.to];
+    if (!ownerFrom || !ownerTo || ownerFrom !== ownerTo) continue;
+
+    const lineId = edge.line_id ?? (Array.isArray(edge.line_ids) ? edge.line_ids[0] : null);
+    if (!lineId) continue;
+
+    runs.push({ from: edge.from, to: edge.to, owner: ownerFrom, lineId });
+  }
+  return runs;
 }
 
 // ── Projection ────────────────────────────────────────────────────────────────
@@ -359,7 +530,7 @@ function _findConnectedOwnedPairs(edges, ownedSet) {
     if (ownedSet.has(edge.from) && ownedSet.has(edge.to)) {
       pairs.add(_edgeKey(edge.from, edge.to));
     }
-  }
+}
   return pairs;
 }
 

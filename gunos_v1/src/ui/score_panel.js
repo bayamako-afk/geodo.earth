@@ -134,13 +134,13 @@ export function updateLiveScores(playerScores) {
             </div>
             <span class="score-breakdown-value">${_fmt(station_score)}</span>
           </div>
-          <div class="score-breakdown-row">
-            <span class="score-breakdown-label">Route+</span>
-            <span class="score-breakdown-value score-breakdown-value--bonus">${_fmt(route_bonus)}</span>
+          <div class="score-breakdown-row score-breakdown-row--route">
+            <span class="score-breakdown-label score-breakdown-label--route" title="Route bonus: consecutive stations on the same line">Route+</span>
+            <span class="score-breakdown-value score-breakdown-value--bonus ${(route_bonus > 0) ? 'score-breakdown-value--active' : ''}">${_fmt(route_bonus)}</span>
           </div>
-          <div class="score-breakdown-row">
-            <span class="score-breakdown-label">Hub+</span>
-            <span class="score-breakdown-value score-breakdown-value--bonus">${_fmt(hub_bonus)}</span>
+          <div class="score-breakdown-row score-breakdown-row--network">
+            <span class="score-breakdown-label score-breakdown-label--network" title="Hub bonus: owning high-degree hub stations">Hub+</span>
+            <span class="score-breakdown-value score-breakdown-value--bonus ${(hub_bonus > 0) ? 'score-breakdown-value--active' : ''}">${_fmt(hub_bonus)}</span>
           </div>
         </div>
       </div>
