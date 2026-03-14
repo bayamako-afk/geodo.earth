@@ -4,18 +4,9 @@
  * Manages a single local game session for GUNOS V1.
  * Bridges the GUNOS V1 city layer with the guno_v6 play engine.
  *
- * Responsibilities:
- *   1. Generate a city-aware deck via guno_v6 deck_generator
- *   2. Create initial game state via guno_v6 play_engine.createInitialGameState
- *   3. Execute turns via play_engine.playTurn
- *   4. Maintain session state and log
- *   5. Expose clean session API to main.js / UI
- *
- * Engine source: guno_v6/src/core/play_engine.js
- * Deck source:   guno_v6/src/generators/deck_generator.js
- *
  * Phase 3: local session, 2 players (P1 vs P2 auto-play)
  * Phase 4: stationGraph exposed via getStationGraph() for map_panel.js
+ * Phase 5: live score computation via guno_v6 scoring engines (sync, preloaded data)
  */
 
 import {
@@ -25,9 +16,13 @@ import {
 
 import { generateDeck } from '../../../guno_v6/src/generators/deck_generator.js';
 
+import {
+  computeFinalScoreSync,
+} from '../../../guno_v6/src/scoring/final_score_engine.js';
+
 // ── Session state ─────────────────────────────────────────────────────────────
 
-let _session = null;   // { cityId, profile, stationGraph, stationLines, playerList }
+let _session = null;   // { cityId, profile, stationGraph, stationLines, playerList, scoringData }
 let _state   = null;   // current play_engine game state
 let _log     = [];     // string[]
 
@@ -39,7 +34,7 @@ let _log     = [];     // string[]
  * @param {Object} opts
  * @param {string}  opts.cityId      — Active city ID
  * @param {Object}  opts.profile     — Loaded city profile
- * @param {Object}  opts.datasets    — { station_metrics, station_lines, station_graph, ... }
+ * @param {Object}  opts.datasets    — { station_metrics, station_lines, station_graph, lines_master, ... }
  * @param {string}  opts.guno6Base   — Base URL for guno_v6 root (for deck_generator)
  * @param {Array}   [opts.players]   — Player list (default: [{id:'P1'},{id:'P2'}])
  * @returns {Promise<Object>} Initial game state
@@ -82,8 +77,15 @@ export async function initSession({ cityId, profile, datasets, guno6Base, player
   _log.push(`[CARD] Opening card: ${_cardLabel(_state.currentCard)}`);
   _log.push(`[TURN] ${_turnLabel(_state)}`);
 
-  // ── Step 4: Store session ─────────────────────────────────────────────────
-  _session = { cityId, profile, stationGraph, stationLines, playerList };
+  // ── Step 4: Prepare scoring data (Phase 5) ────────────────────────────────
+  const scoringData = {
+    stationMetrics: _normalizeMetrics(datasets?.station_metrics),
+    stationLines:   stationLines,
+    linesMaster:    _normalizeLinesMaster(datasets?.lines_master),
+  };
+
+  // ── Step 5: Store session ─────────────────────────────────────────────────
+  _session = { cityId, profile, stationGraph, stationLines, playerList, scoringData };
 
   return _state;
 }
@@ -157,14 +159,83 @@ export function resetSession() {
   _log     = ['[GUNOS V1] Session reset.'];
 }
 
+// ── Phase 5: Live Score API ───────────────────────────────────────────────────
+
+/**
+ * Compute live score for a single player using preloaded scoring data.
+ *
+ * @param {string} playerId — e.g. 'P1'
+ * @returns {Object} { station_score, route_bonus, hub_bonus, final_score, route_details, hub_stations, station_details }
+ */
+export function computeLiveScore(playerId) {
+  if (!_session || !_state) return _emptyScore();
+
+  const player = _state.players.find(p => p.id === playerId);
+  if (!player) return _emptyScore();
+
+  const owned = player.ownedStations || [];
+  if (!owned.length) return _emptyScore();
+
+  const { stationMetrics, stationLines, linesMaster } = _session.scoringData;
+
+  // Fall back gracefully if scoring data is missing
+  if (!stationMetrics || !stationLines || !linesMaster) {
+    return _fallbackScore(owned, stationMetrics);
+  }
+
+  try {
+    return computeFinalScoreSync(owned, {
+      stationMetrics,
+      stationLines,
+      linesMaster,
+    });
+  } catch (err) {
+    console.warn('[GUNOS V1] computeLiveScore error:', err.message);
+    return _fallbackScore(owned, stationMetrics);
+  }
+}
+
+/**
+ * Compute live scores for all players.
+ * @returns {Array<{ playerId, ...scoreResult }>}
+ */
+export function computeAllLiveScores() {
+  if (!_session || !_state) return [];
+  return _state.players.map(p => ({
+    playerId: p.id,
+    ...computeLiveScore(p.id),
+  }));
+}
+
+/**
+ * Compute final result summary for all players (for GAME OVER panel).
+ * Returns players sorted by final_score descending.
+ * @returns {Object} { winner, turnCount, players: [...], gameOver }
+ */
+export function computeFinalResults() {
+  if (!_session || !_state) return null;
+
+  const playerScores = computeAllLiveScores();
+
+  // Sort by final_score descending
+  const sorted = [...playerScores].sort((a, b) => b.final_score - a.final_score);
+
+  return {
+    winner:    _state.winner || (sorted[0]?.playerId ?? null),
+    turnCount: _state.turnCount,
+    gameOver:  _state.gameOver,
+    players:   sorted,
+  };
+}
+
 // ── Getters ───────────────────────────────────────────────────────────────────
 
-export function getGameState()  { return _state; }
-export function getSession()    { return _session; }
-export function getLog()        { return [..._log]; }
-export function isRunning()     { return !!_state && !_state.gameOver; }
-export function isFinished()    { return !!_state && _state.gameOver; }
-export function hasSession()    { return !!_session; }
+export function getGameState()    { return _state; }
+export function getSession()      { return _session; }
+export function getLog()          { return [..._log]; }
+export function isRunning()       { return !!_state && !_state.gameOver; }
+export function isFinished()      { return !!_state && _state.gameOver; }
+export function hasSession()      { return !!_session; }
 export function getStationGraph() { return _session?.stationGraph ?? null; }
 
 // ── Internal helpers ──────────────────────────────────────────────────────────
@@ -174,6 +245,81 @@ function _normalizeStationLines(raw) {
   if (Array.isArray(raw)) return raw;
   if (raw.station_lines && Array.isArray(raw.station_lines)) return raw.station_lines;
   return null;
+}
+
+function _normalizeMetrics(raw) {
+  if (!raw) return null;
+  let items = null;
+  if (Array.isArray(raw)) items = raw;
+  else if (raw.stations && Array.isArray(raw.stations)) items = raw.stations;
+  if (!items) return null;
+
+  // Normalize: ensure score_total exists (London uses composite_score)
+  return items.map(m => ({
+    ...m,
+    score_total: m.score_total ?? m.composite_score ?? m.hub_score ?? 0,
+  }));
+}
+
+function _normalizeLinesMaster(raw) {
+  if (!raw) return null;
+  if (Array.isArray(raw)) return raw;
+  return null;
+}
+
+function _emptyScore() {
+  return {
+    final_score:     0,
+    station_score:   0,
+    route_bonus:     0,
+    hub_bonus:       0,
+    routes:          [],
+    hubs:            [],
+    route_details:   [],
+    hub_stations:    [],
+    station_details: [],
+  };
+}
+
+function _fallbackScore(owned, stationMetrics) {
+  // Minimal score: sum station scores only, no route/hub bonus
+  const metrics = Array.isArray(stationMetrics)
+    ? stationMetrics
+    : (stationMetrics?.stations || []);
+
+  const normalized = metrics.map(m => ({
+    ...m,
+    score_total: m.score_total ?? m.composite_score ?? m.hub_score ?? 0,
+  }));
+  const metricsMap = new Map(normalized.map(m => [m.station_global_id, m]));
+  let station_score = 0;
+  const station_details = [];
+
+  for (const gid of owned) {
+    const m = metricsMap.get(gid);
+    if (m) {
+      station_score += m.score_total || 0;
+      station_details.push({
+        station_global_id: m.station_global_id,
+        station_name:      m.station_name,
+        score_total:       m.score_total || 0,
+      });
+    }
+  }
+
+  station_details.sort((a, b) => b.score_total - a.score_total);
+
+  return {
+    final_score:     station_score,
+    station_score,
+    route_bonus:     0,
+    hub_bonus:       0,
+    routes:          [],
+    hubs:            [],
+    route_details:   [],
+    hub_stations:    [],
+    station_details,
+  };
 }
 
 function _cardLabel(card) {

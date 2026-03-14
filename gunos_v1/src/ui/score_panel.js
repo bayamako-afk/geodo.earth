@@ -1,10 +1,11 @@
 /**
  * score_panel.js — GUNOS V1 Score / Status Panel
  *
- * Bottom-right panel: current card, player info, score summary, log.
+ * Bottom-right panel: current card, game status, live score summary, log.
  *
  * Phase 2: structured placeholder
  * Phase 3: wired to real game state — current card, player, turn, log
+ * Phase 5: live score display — station / route / hub / total per player
  */
 
 /**
@@ -51,22 +52,12 @@ export function renderScorePanel({ profile }) {
         </div>
       </div>
 
-      <!-- Score summary (Phase 5+) -->
-      <div class="score-section score-section--scores">
+      <!-- Live score summary (Phase 5) -->
+      <div class="score-section score-section--scores" id="score-section-scores">
         <div class="score-section__title">SCORE</div>
-        <div class="score-rows">
-          <div class="score-row">
-            <span class="score-row__label">Route</span>
-            <span class="score-row__value" id="score-route">—</span>
-          </div>
-          <div class="score-row">
-            <span class="score-row__label">Network</span>
-            <span class="score-row__value" id="score-network">—</span>
-          </div>
-          <div class="score-row score-row--total">
-            <span class="score-row__label">Total</span>
-            <span class="score-row__value" id="score-total">—</span>
-          </div>
+        <div id="score-live-area">
+          <!-- Populated by updateLiveScores() -->
+          <div class="score-placeholder">—</div>
         </div>
       </div>
 
@@ -131,6 +122,61 @@ export function updateStatusFromState(gameState, uiMode) {
 }
 
 /**
+ * Update the live score section with per-player score data.
+ * @param {Array<{playerId, station_score, route_bonus, hub_bonus, final_score, route_details}>} playerScores
+ */
+export function updateLiveScores(playerScores) {
+  const area = document.getElementById('score-live-area');
+  if (!area) return;
+
+  if (!playerScores || !playerScores.length) {
+    area.innerHTML = '<div class="score-placeholder">—</div>';
+    return;
+  }
+
+  const rows = playerScores.map(ps => {
+    const { playerId, station_score, route_bonus, hub_bonus, final_score, route_details } = ps;
+
+    // Best route label
+    const bestRoute = route_details?.find(r => r.bonus > 0);
+    const routeLabel = bestRoute
+      ? `${bestRoute.line_name_en || bestRoute.line_id} (${bestRoute.count}/${bestRoute.route_total})`
+      : '—';
+
+    const playerClass = playerId === 'P1' ? 'p1' : playerId === 'P2' ? 'p2' : 'pn';
+
+    return `
+      <div class="score-player-block score-player-block--${playerClass}">
+        <div class="score-player-header">
+          <span class="score-player-id score-player-id--${playerClass}">${playerId}</span>
+          <span class="score-player-total">${_fmt(final_score)}</span>
+        </div>
+        <div class="score-breakdown-rows">
+          <div class="score-breakdown-row">
+            <span class="score-breakdown-label">Station</span>
+            <span class="score-breakdown-value">${_fmt(station_score)}</span>
+          </div>
+          <div class="score-breakdown-row">
+            <span class="score-breakdown-label">Route</span>
+            <span class="score-breakdown-value score-breakdown-value--bonus">${_fmt(route_bonus)}</span>
+          </div>
+          <div class="score-breakdown-row">
+            <span class="score-breakdown-label">Hub</span>
+            <span class="score-breakdown-value score-breakdown-value--bonus">${_fmt(hub_bonus)}</span>
+          </div>
+          <div class="score-breakdown-row score-breakdown-row--route">
+            <span class="score-breakdown-label">Best route</span>
+            <span class="score-breakdown-value score-breakdown-value--route">${routeLabel}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  area.innerHTML = rows;
+}
+
+/**
  * Append a log entry to the log area.
  * @param {string} text
  * @param {'normal'|'highlight'|'muted'|'warn'} [type='normal']
@@ -166,17 +212,11 @@ export function clearLog() {
 }
 
 /**
- * Update score display values.
+ * Legacy updateScores shim (for backwards compat with Phase 3/4 callers).
  * @param {{ route?: number, network?: number, total?: number }} scores
  */
 export function updateScores({ route, network, total } = {}) {
-  const set = (id, val) => {
-    const el = document.getElementById(id);
-    if (el && val !== undefined) el.textContent = val;
-  };
-  set('score-route',   route);
-  set('score-network', network);
-  set('score-total',   total);
+  // No-op in Phase 5 — updateLiveScores() is the new API
 }
 
 // ── Internal helpers ──────────────────────────────────────────────────────────
@@ -193,9 +233,18 @@ function _resetStatus(mode) {
 
   const modeEl = document.getElementById('status-mode');
   if (modeEl) modeEl.className = 'score-status-value score-status-value--' + mode;
+
+  // Clear live scores
+  const area = document.getElementById('score-live-area');
+  if (area) area.innerHTML = '<div class="score-placeholder">—</div>';
 }
 
 function _setText(id, val) {
   const el = document.getElementById(id);
   if (el) el.textContent = val ?? '—';
+}
+
+function _fmt(val) {
+  if (val == null || val === 0) return '0';
+  return typeof val === 'number' ? val.toFixed(1) : val;
 }

@@ -16,7 +16,7 @@
  *   updateMapFromState() — called after each turn with live game state + graph
  */
 
-import { renderMapCanvas } from './map_canvas.js';
+import { renderMapCanvas } from './map_canvas.js?v=5';
 
 // Module-level graph cache (set once per city boot)
 let _stationGraph = null;
