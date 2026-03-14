@@ -1588,6 +1588,87 @@
         font-size: 20px;
       }
     }
+
+    /* ── Task 02: Route progress bars ─────────────────────────────────────── */
+    .score-route-progress {
+      display: grid;
+      grid-template-columns: 52px 1fr 28px;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 0;
+      margin-left: 8px;
+    }
+
+    .score-route-name {
+      font-size: 9px;
+      color: var(--c-text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .score-route-name--complete {
+      color: #a5d6a7;
+      font-weight: 600;
+    }
+
+    .score-route-name--partial {
+      color: #fff59d;
+    }
+
+    .score-route-bar-wrap {
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      height: 4px;
+      overflow: hidden;
+    }
+
+    .score-route-bar {
+      height: 100%;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.25);
+      transition: width 0.3s ease;
+    }
+
+    .score-route-bar--complete {
+      background: #a5d6a7;
+    }
+
+    .score-route-bar--partial {
+      background: #fff59d;
+    }
+
+    .score-route-bar--progress {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .score-route-pct {
+      font-size: 9px;
+      color: var(--c-text-muted);
+      text-align: right;
+      font-family: var(--font-mono);
+    }
+
+    /* ── Task 02: Hub station names ────────────────────────────────────────── */
+    .score-hub-names {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-left: 8px;
+      margin-bottom: 2px;
+    }
+
+    .score-hub-name {
+      font-size: 9px;
+      color: #ffcc80;
+      background: rgba(255,204,128,0.12);
+      border-radius: 3px;
+      padding: 1px 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100px;
+    }
   </style>
 </head>
 <body>
@@ -1682,7 +1763,7 @@
 <div id="boot-error"></div>
 
 <!-- App entry point -->
-<script type="module" src="src/app/main.js?v=7"></script>
+<script type="module" src="src/app/main.js?v=8"></script>
 
 </body>
 </html>

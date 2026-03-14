@@ -8,14 +8,14 @@
  *   - updateHeaderGameState() called on every state transition
  *   - Turn counter shown in header during play
  *   - Winner ID passed to header on GAME OVER
- *   - All module imports bumped to ?v=7
+ *   - All module imports bumped to ?v=8
  */
 
-import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=7';
-import { resolveActiveCityId } from '../city/city_ui.js?v=7';
-import { renderLayout } from '../ui/layout.js?v=7';
-import { setHeaderStatus, setStartButtonState, updateHeaderGameState } from '../ui/header_bar.js?v=7';
-import { updateHandFromState, resetHandDisplay } from '../ui/hand_panel.js?v=7';
+import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=8';
+import { resolveActiveCityId } from '../city/city_ui.js?v=8';
+import { renderLayout } from '../ui/layout.js?v=8';
+import { setHeaderStatus, setStartButtonState, updateHeaderGameState } from '../ui/header_bar.js?v=8';
+import { updateHandFromState, resetHandDisplay } from '../ui/hand_panel.js?v=8';
 import {
   renderScorePanel,
   updateStatusFromState,
@@ -23,9 +23,9 @@ import {
   appendLogEntry,
   setLogEntries,
   clearLog,
-} from '../ui/score_panel.js?v=7';
-import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=7';
-import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=7';
+} from '../ui/score_panel.js?v=8';
+import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=8';
+import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=8';
 import {
   initSession,
   playOneTurn,
@@ -39,7 +39,7 @@ import {
   getStationGraph,
   computeAllLiveScores,
   computeFinalResults,
-} from '../game/game_session.js?v=7';
+} from '../game/game_session.js?v=8';
 
 // ── App state ─────────────────────────────────────────────────────────────────
 

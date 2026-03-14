@@ -20,6 +20,10 @@ import {
   computeFinalScoreSync,
 } from '../../../guno_v6/src/scoring/final_score_engine.js';
 
+import {
+  computeRouteScoreSync,
+} from '../../../guno_v6/src/scoring/route_completion_score.js';
+
 // ── Session state ─────────────────────────────────────────────────────────────
 
 let _session = null;   // { cityId, profile, stationGraph, stationLines, playerList, scoringData }
@@ -179,16 +183,40 @@ export function computeLiveScore(playerId) {
   const { stationMetrics, stationLines, linesMaster } = _session.scoringData;
 
   // Fall back gracefully if scoring data is missing
-  if (!stationMetrics || !stationLines || !linesMaster) {
-    return _fallbackScore(owned, stationMetrics);
+  if (!stationMetrics) {
+    return _fallbackScore(owned, null);
   }
 
   try {
-    return computeFinalScoreSync(owned, {
-      stationMetrics,
-      stationLines,
-      linesMaster,
-    });
+    // Station score (always available)
+    const stationResult = _computeStationScore(owned, stationMetrics);
+
+    // Route bonus (requires stationLines + linesMaster)
+    let routeResult = { route_bonus: 0, completed_routes: [], partial_routes: [], route_details: [] };
+    if (stationLines && linesMaster) {
+      routeResult = computeRouteScoreSync(owned, stationLines, linesMaster);
+    }
+
+    // Hub bonus — use relative scoring for cross-city compatibility
+    const hubResult = _computeHubBonusRelative(owned, stationMetrics);
+
+    // Route progress (for UI display even when bonus is 0)
+    const routeProgress = _computeRouteProgress(owned, stationLines, linesMaster);
+
+    const final_score = stationResult.station_score + routeResult.route_bonus + hubResult.hub_bonus;
+
+    return {
+      final_score,
+      station_score:   stationResult.station_score,
+      route_bonus:     routeResult.route_bonus,
+      hub_bonus:       hubResult.hub_bonus,
+      routes:          routeResult.completed_routes || [],
+      hubs:            hubResult.hub_stations.map(h => h.station_name),
+      route_details:   routeResult.route_details || [],
+      hub_stations:    hubResult.hub_stations,
+      station_details: stationResult.station_details,
+      route_progress:  routeProgress,
+    };
   } catch (err) {
     console.warn('[GUNOS V1] computeLiveScore error:', err.message);
     return _fallbackScore(owned, stationMetrics);
@@ -239,6 +267,124 @@ export function hasSession()      { return !!_session; }
 export function getStationGraph() { return _session?.stationGraph ?? null; }
 
 // ── Internal helpers ──────────────────────────────────────────────────────────
+
+/**
+ * Compute station score sum from preloaded metrics.
+ */
+function _computeStationScore(owned, stationMetrics) {
+  const metrics = Array.isArray(stationMetrics) ? stationMetrics
+    : (stationMetrics?.stations || []);
+  const metricsMap = new Map(metrics.map(m => [m.station_global_id, m]));
+  let station_score = 0;
+  const station_details = [];
+  for (const gid of owned) {
+    const m = metricsMap.get(gid);
+    if (m) {
+      const s = m.score_total ?? m.composite_score ?? m.hub_score ?? 0;
+      station_score += s;
+      station_details.push({
+        station_global_id: m.station_global_id,
+        station_name:      m.station_name,
+        score_total:       s,
+        rank:              m.rank,
+        line_count:        m.line_count,
+      });
+    }
+  }
+  station_details.sort((a, b) => b.score_total - a.score_total);
+  return { station_score, station_details };
+}
+
+/**
+ * Compute hub bonus using relative thresholds (city-agnostic).
+ * Uses top 10% / 25% / 50% of the city's score distribution.
+ */
+function _computeHubBonusRelative(owned, stationMetrics) {
+  const metrics = Array.isArray(stationMetrics) ? stationMetrics
+    : (stationMetrics?.stations || []);
+  if (!metrics.length) return { hub_bonus: 0, hub_stations: [] };
+
+  // Build score array for all stations (for percentile calculation)
+  const allScores = metrics.map(m => m.score_total ?? m.composite_score ?? m.hub_score ?? 0);
+  allScores.sort((a, b) => a - b);
+  const n = allScores.length;
+  const p90 = allScores[Math.floor(n * 0.90)] ?? 0;  // top 10%
+  const p75 = allScores[Math.floor(n * 0.75)] ?? 0;  // top 25%
+  const p50 = allScores[Math.floor(n * 0.50)] ?? 0;  // top 50%
+
+  const metricsMap = new Map(metrics.map(m => [m.station_global_id, m]));
+  let hub_bonus = 0;
+  const hub_stations = [];
+
+  for (const gid of owned) {
+    const m = metricsMap.get(gid);
+    if (!m) continue;
+    const s = m.score_total ?? m.composite_score ?? m.hub_score ?? 0;
+    let bonus = 0;
+    if (s >= p90 && p90 > 0)      bonus = 5;
+    else if (s >= p75 && p75 > 0) bonus = 3;
+    else if (s >= p50 && p50 > 0) bonus = 1;
+    if (bonus > 0) {
+      hub_bonus += bonus;
+      hub_stations.push({
+        station_global_id: m.station_global_id,
+        station_name:      m.station_name,
+        score_total:       s,
+        hub_score:         m.hub_score,
+        line_count:        m.line_count,
+        bonus,
+      });
+    }
+  }
+  hub_stations.sort((a, b) => b.bonus - a.bonus || b.score_total - a.score_total);
+  return { hub_bonus, hub_stations };
+}
+
+/**
+ * Compute route progress for each line (for UI progress bars).
+ * Returns array of { line_id, line_name, count, total, pct, status }
+ */
+function _computeRouteProgress(owned, stationLines, linesMaster) {
+  if (!stationLines || !linesMaster || !owned.length) return [];
+
+  const sl = Array.isArray(stationLines) ? stationLines : [];
+  const lm = Array.isArray(linesMaster) ? linesMaster : [];
+
+  // line_id → { line_name, total }
+  const lineInfo = {};
+  for (const l of lm) {
+    lineInfo[l.line_id] = { line_name: l.line_name_en || l.line_name, total: l.station_count || 0 };
+  }
+
+  // station_global_id → [line_id]
+  const stationToLines = {};
+  for (const r of sl) {
+    const sid = r.station_global_id;
+    if (!stationToLines[sid]) stationToLines[sid] = [];
+    stationToLines[sid].push(r.line_id);
+  }
+
+  // line_id → count of owned stations
+  const lineCounts = {};
+  for (const gid of owned) {
+    const lines = stationToLines[gid] || [];
+    for (const lid of lines) {
+      lineCounts[lid] = (lineCounts[lid] || 0) + 1;
+    }
+  }
+
+  const progress = [];
+  for (const [lid, count] of Object.entries(lineCounts)) {
+    const info = lineInfo[lid] || { line_name: lid, total: 0 };
+    const total = info.total || 1;
+    const pct = Math.min(100, Math.round((count / total) * 100));
+    const threshold = total / 2;
+    const status = count >= total ? 'complete' : count >= threshold ? 'partial' : 'progress';
+    progress.push({ line_id: lid, line_name: info.line_name, count, total, pct, status });
+  }
+  progress.sort((a, b) => b.pct - a.pct);
+  return progress;
+}
 
 function _normalizeStationLines(raw) {
   if (!raw) return null;

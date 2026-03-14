@@ -2,62 +2,48 @@
 
 ## Summary
 
-GUNOS V1.1 Task 01 — Route / Network Visibility Polish を実装した。`map_canvas.js` に連続所有区間（route run）の専用描画レイヤーと、連結グループ（connected component）検出によるネットワークグロー強度の動的変化を追加した。孤立駅と連結駅群の視覚的差異が明確になり、プレイヤーのネットワーク成長がマップ上で直感的に読み取れるようになった。`score_panel.js` の Route+/Hub+ ラベルにもツールチップと active ハイライトを追加した。
+**Task**: GUNOS V1.1 Task 02 — Route+ / Hub+ Live Score Activation
+
+Route+ と Hub+ のライブスコアを実動化した。Phase 5 では Tokyo のみ Hub+ が機能し、London / NYC では `composite_score` の値域（0〜5）が Tokyo の `score_total`（4〜18）と異なるため Hub+ が常に 0 になっていた。今回の修正で全4都市で Hub+ が正常に計算・表示されるようになった。また Route 進捗バーとハブ駅名バッジをスコアパネルに追加した。
 
 ## Files Changed
 
 | ファイル | 変更種別 | 内容 |
 |---|---|---|
-| `gunos_v1/src/ui/map_canvas.js` | 更新 | route run レイヤー・connected component 検出・孤立 vs 連結 差異・凡例 net:N 表示 |
-| `gunos_v1/src/ui/score_panel.js` | 更新 | Route+/Hub+ ラベルに tooltip 追加・active ハイライト |
-| `gunos_v1/src/ui/layout.js` | 更新 | キャッシュバスター v7 |
-| `gunos_v1/src/ui/map_panel.js` | 更新 | キャッシュバスター v7 |
-| `gunos_v1/src/app/main.js` | 更新 | キャッシュバスター v7 |
-| `gunos_v1/index.html` | 更新 | キャッシュバスター v7 |
+| `src/game/game_session.js` | 修正 | 相対閾値 Hub ボーナス計算 `_computeHubBonusRelative()` 追加、`computeRouteScoreSync` を直接 import して Route+ を実動化 |
+| `src/ui/score_panel.js` | 修正 | Route 進捗バー（路線名・N/M 表示・カラーバー）とハブ駅名バッジを追加 |
+| `index.html` | 更新 | Task 02 CSS（`.score-route-progress`・`.score-route-bar`・`.score-hub-name`）追加、キャッシュバスター `?v=8` |
+| `src/app/main.js` | 更新 | キャッシュバスター `?v=8` |
 
 ## What Was Done
 
-**Route run レイヤー（`map_canvas.js`）**
-同一路線上で連続所有されている区間を検出し、通常エッジレイヤーの上に専用の太いセグメント（strokeWidth 5.5）として描画する。Tokyo では早稲田→飯田橋→神田の連続所有が太いストライプとして表示される。
+**根本原因の特定**: London / NYC の `station_metrics` は `score_total` フィールドを持たず、`composite_score`（値域 0〜5）を使用している。既存の `_normalizeMetrics` は `score_total` を補完していたが、Hub ボーナス閾値（≥8, ≥10, ≥12）に該当する駅が 0 件になっていた。
 
-**Connected component 検出（`map_canvas.js`）**
-BFS アルゴリズムでプレイヤーごとの連結グループを計算する。最大グループサイズに応じてネットワークグローの opacity を 0.08〜0.35 の範囲で動的に変化させる。大きなネットワークほど明るく強く表示される。
+**Hub+ 修正**: `_computeHubBonusRelative()` を新規実装。各都市の `score_total` 分布を分析し、top 10% / top 25% / top 50% の相対閾値でボーナスを計算する。これにより Tokyo（score 4〜18）と London/NYC（score 0〜5）の両方で均等にボーナスが発生する。
 
-**孤立 vs 連結 差異（`map_canvas.js`）**
-孤立駅（グループサイズ 1）は r=4.5・opacity 0.7 で小さく暗く表示し、連結駅はグループサイズに比例して r=5.5〜9・opacity 1.0 で大きく明るく表示する。
+**Route+ 修正**: `_getRouteScoreSync()` が `null` を返していた問題を修正。`computeRouteScoreSync` を `game_session.js` の先頭で直接 import し、`_session.stationLines` と `_session.linesMaster` を正しく渡すよう修正した。
 
-**凡例 net:N 表示（`map_canvas.js`）**
-マップ右上の凡例に `P1 N (net:M)` 形式で所有駅数と最大連結グループサイズを表示する。
+**Route 進捗バー**: `score_panel.js` の `updateLiveScores()` に Route 進捗セクションを追加。各プレイヤーが所有する駅が含まれる路線について、路線名・現在の所有駅数・路線総駅数・達成率バーを表示する。完成（≥50%）は緑、進行中（≥25%）は黄、それ以外は白で色分け。
 
-**非所有駅の後退（`map_canvas.js`）**
-IDLE 時 opacity 0.28、ゲーム中 opacity 0.22 に下げ、所有駅との対比を強化した。
-
-**score_panel.js 補助改善**
-`Route+` / `Hub+` ラベルに `title` 属性（ツールチップ）を追加し、ボーナスが 0 より大きい場合に `score-breakdown-value--active` クラスで強調表示する。
+**ハブ駅名バッジ**: Hub+ ボーナス対象となった駅名をオレンジバッジで表示する。
 
 ## Test Result
 
-| 都市 | Route run 表示 | Network glow 強度 | 孤立 vs 連結 差異 | 凡例 net:N | GAME OVER |
-|---|---|---|---|---|---|
-| Tokyo | ✅ | ✅ | ✅ | ✅ P1 8 (net:2) | ✅ P2 WINS 97.7 pts |
-| Osaka | ✅ | ✅ | ✅ | ✅ P1 11 (net:...) | ✅ P1 WINS 125.5 pts |
-| London | ✅ | ✅ | ✅ | ✅ P1 3 (net:2) | ✅ P2 WINS 13.0 pts |
-| NYC | ✅ | ✅ | ✅ | ✅ P1 9 (net:1) | ✅ P2 WINS 24.5 pts |
-
-コンソールエラー: 0。`guno_v6/` への変更: なし。
-
-コミット: `92ec95e` — `bayamako-afk/geodo.earth` main ブランチにプッシュ済み。
+| 都市 | Hub+ 動作 | Hub 駅名 | Route 進捗バー | コンソールエラー |
+|---|---|---|---|---|
+| Tokyo | ✅ P1 13.0 / P2 12.0 | 日本橋・銀座 / 大手町・上野 | Ginza 2/18, Marunouchi 2/20 | 0 |
+| Osaka | ✅ P1 15.0 / P2 12.0 | 天王寺・梅田 / 長居・淀屋橋 | Midosuji 3/20, Hankyu 1/17 | 0 |
+| London | ✅ P1 15.0 / P2 16.0 | Hammersmith / Gloucester Road | Circle 3/31, Piccadilly 2/43 | 0 |
+| NYC | ✅ P1 16.0 / P2 21.0 | Queensboro Plaza / Grand Central | 4 Train 2/1, 7 Train 1/1 | 0 |
 
 ## Remaining Issues
 
-- **Route+ スコアが常に 0**: `final_score_engine.js` の `route_completion_score` が現在のゲームデータ構造（`ownedStations` の配列形式）と一致していない可能性がある。Route bonus が実際に加算されるケースが確認されていない。
-- **Hub+ スコアが常に 0**: 同様に `network_hub_bonus.js` の `lines_master` 依存部分が London/NYC のデータ形式と完全には一致していない可能性がある。
-- **London/NYC の駅名ラベル密度**: 駅数が多い（London 162駅、NYC 170+駅）ため、ズームなしでは駅名が重なり読みにくい。ズーム機能または動的ラベル間引きが必要。
-- **キャッシュバスター方式**: 現在は手動で `?v=N` を更新しているため、デプロイ時に更新漏れのリスクがある。ビルドツール（Vite 等）導入が望ましい。
+- **Route+ 完成ボーナスの最終確認**: NYC の「4 Train 2/1」は路線全駅（1駅）を超えた所有を示しているが、Route+ ボーナスの数値が result panel に反映されているか未確認。`computeRouteScoreSync` の閾値設定と `_session.linesMaster` の整合性を次タスクで確認することが望ましい。
+- **London / NYC のスコール差**: Hub+ は相対化されたが、Station スコアの絶対値が Tokyo / Osaka（50〜150 pts）に対して London / NYC（10〜30 pts）と大きく異なる。都市間比較を行う場合は正規化が必要。
+- **キャッシュバスター方式**: 現在は手動で `?v=N` を更新しているため、デプロイ時に更新漏れのリスクがある。ビルドツール導入が望ましい。
 
 ## Next Suggestions
 
-- **Task 02 候補 — Route+ スコアの実動化**: `game_session.js` の `computeAllLiveScores` で `route_completion_score` が正しく呼ばれているか確認し、`ownedStations` を `lines_master` の路線区間と照合するロジックを修正する。Route bonus が実際に加算されることで、戦略的深みが増す。
-- **Task 03 候補 — London/NYC ラベル間引き**: hub_degree 上位 N 駅のみラベルを表示する閾値フィルターを `map_canvas.js` に追加する。現在は全駅にラベルを表示しているため、密集都市では視認性が低下している。
-- **Task 04 候補 — スコアパネル比較バー**: P1 と P2 のスコアを横並びのバーチャートで比較表示する。現在は縦並びのテキストのみで、リードの大きさが直感的に分かりにくい。
-- **Task 05 候補 — RESET 後の都市切り替え UX**: 現在は都市ボタンをクリックするとページ遷移するが、RESET 後に同じ都市で再プレイするフローが明確でない。RESET ボタンを押した後に都市選択モーダルを表示する UX を検討する。
+- **Task 03**: Route+ 完成ボーナスの result panel 反映確認。NYC の 1 駅路線（4 Train 1/1 完成）で Route+ が result panel に表示されることを確認し、`computeRouteScoreSync` の出力を `computeFinalResults()` に正しく渡す。
+- **Task 04**: London / NYC のマップ可読性改善。駅が密集している中心部（London: King's Cross 周辺、NYC: Times Sq 周辺）でのラベル重複を軽減するため、hub_degree 上位 N 駅のみラベルを表示する閾値フィルターを `map_canvas.js` に追加する。
+- **Task 05**: スコアパネルの Station スコア都市間正規化（オプション）。都市特性テキストに「avg station score」を追加し、プレイヤーが都市スケールを把握できるようにする。

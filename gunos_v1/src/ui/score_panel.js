@@ -111,13 +111,39 @@ export function updateLiveScores(playerScores) {
   const maxScore = Math.max(...playerScores.map(ps => ps.final_score ?? 0));
 
   const rows = playerScores.map(ps => {
-    const { playerId, station_score, route_bonus, hub_bonus, final_score } = ps;
+    const { playerId, station_score, route_bonus, hub_bonus, final_score,
+            route_progress, hub_stations } = ps;
     const isLeader    = final_score === maxScore && maxScore > 0;
     const playerClass = playerId === 'P1' ? 'p1' : playerId === 'P2' ? 'p2' : 'pn';
 
-    // Bar widths (relative to max component)
-    const maxComp = Math.max(station_score ?? 0, 1);
+    // Station bar width
+    const maxComp    = Math.max(station_score ?? 0, 1);
     const stationPct = Math.min(100, Math.round(((station_score ?? 0) / maxComp) * 100));
+
+    // Route progress: show top 2 lines with progress bars
+    let routeProgressHtml = '';
+    if (route_progress && route_progress.length > 0) {
+      const topRoutes = route_progress.slice(0, 2);
+      routeProgressHtml = topRoutes.map(r => {
+        const statusClass = r.status === 'complete' ? 'complete' : r.status === 'partial' ? 'partial' : 'progress';
+        return `
+          <div class="score-route-progress">
+            <span class="score-route-name score-route-name--${statusClass}">${r.line_name}</span>
+            <div class="score-route-bar-wrap">
+              <div class="score-route-bar score-route-bar--${statusClass}" style="width:${r.pct}%"></div>
+            </div>
+            <span class="score-route-pct">${r.count}/${r.total}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Hub stations: show top 2 hub names
+    let hubNamesHtml = '';
+    if (hub_stations && hub_stations.length > 0 && hub_bonus > 0) {
+      const topHubs = hub_stations.slice(0, 2);
+      hubNamesHtml = `<div class="score-hub-names">${topHubs.map(h => `<span class="score-hub-name">${h.station_name}</span>`).join(' ')}</div>`;
+    }
 
     return `
       <div class="score-player-block score-player-block--${playerClass} ${isLeader ? 'score-player-block--lead' : ''}">
@@ -135,13 +161,15 @@ export function updateLiveScores(playerScores) {
             <span class="score-breakdown-value">${_fmt(station_score)}</span>
           </div>
           <div class="score-breakdown-row score-breakdown-row--route">
-            <span class="score-breakdown-label score-breakdown-label--route" title="Route bonus: consecutive stations on the same line">Route+</span>
+            <span class="score-breakdown-label score-breakdown-label--route" title="Route bonus: own half or more of a line">Route+</span>
             <span class="score-breakdown-value score-breakdown-value--bonus ${(route_bonus > 0) ? 'score-breakdown-value--active' : ''}">${_fmt(route_bonus)}</span>
           </div>
+          ${routeProgressHtml}
           <div class="score-breakdown-row score-breakdown-row--network">
-            <span class="score-breakdown-label score-breakdown-label--network" title="Hub bonus: owning high-degree hub stations">Hub+</span>
+            <span class="score-breakdown-label score-breakdown-label--network" title="Hub bonus: owning top-ranked hub stations">Hub+</span>
             <span class="score-breakdown-value score-breakdown-value--bonus ${(hub_bonus > 0) ? 'score-breakdown-value--active' : ''}">${_fmt(hub_bonus)}</span>
           </div>
+          ${hubNamesHtml}
         </div>
       </div>
     `;
