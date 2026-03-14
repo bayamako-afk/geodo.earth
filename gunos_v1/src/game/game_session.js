@@ -15,7 +15,7 @@
  * Deck source:   guno_v6/src/generators/deck_generator.js
  *
  * Phase 3: local session, 2 players (P1 vs P2 auto-play)
- * Phase 4+: extend with map state, route tracking
+ * Phase 4: stationGraph exposed via getStationGraph() for map_panel.js
  */
 
 import {
@@ -165,6 +165,7 @@ export function getLog()        { return [..._log]; }
 export function isRunning()     { return !!_state && !_state.gameOver; }
 export function isFinished()    { return !!_state && _state.gameOver; }
 export function hasSession()    { return !!_session; }
+export function getStationGraph() { return _session?.stationGraph ?? null; }
 
 // ── Internal helpers ──────────────────────────────────────────────────────────
 

@@ -98,7 +98,9 @@ export async function listAvailableCities(baseUrl) {
  */
 export function resolveDatasetUrl(key, profile, baseUrl) {
   const base = _resolveBase(baseUrl);
-  const path = profile.dataset[key];
+  // Support both 'dataset' (London/NYC/Osaka) and 'datasets' (Tokyo) key names
+  const datasetMap = profile.dataset || profile.datasets || {};
+  const path = datasetMap[key];
   if (!path) throw new Error(`[GUNOS V1] city_loader: dataset key "${key}" not found in profile for city "${profile.city_id}"`);
   // Dataset paths in city_profile.json are relative to guno_v6 root.
   // We resolve them relative to gunos_v1 root via ../guno_v6/

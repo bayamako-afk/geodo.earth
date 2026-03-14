@@ -11,7 +11,8 @@
  * main.js calls renderLayout() after city data is loaded.
  *
  * Phase 2: full layout structure with city-aware placeholders
- * Phase 3+: individual panel modules will be updated in place
+ * Phase 3: individual panel modules updated in place
+ * Phase 4: stationGraph passed to renderMapPanel for geographic base map
  */
 
 import { renderHeaderBar, setHeaderStatus } from './header_bar.js';
@@ -29,9 +30,9 @@ import { renderScorePanel } from './score_panel.js';
  * @param {Function} opts.onStart        - Start button callback (stub in Phase 2)
  * @param {Function} opts.onReset        - Reset button callback (stub in Phase 2)
  */
-export function renderLayout({ profile, registryEntry, cities, onStart, onReset }) {
+export function renderLayout({ profile, registryEntry, cities, stationGraph, onStart, onReset }) {
   renderHeaderBar({ profile, registryEntry, cities, onStart, onReset });
-  renderMapPanel({ profile });
+  renderMapPanel({ profile, stationGraph: stationGraph ?? null });
   renderHandPanel({ profile });
   renderScorePanel({ profile });
 

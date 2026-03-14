@@ -2,21 +2,17 @@
  * main.js — GUNOS V1 Application Entry Point
  *
  * Platform: GUNOS V1
- * Phase:    3 — Play Engine Integration
+ * Phase:    4 — Map Gameplay Visualization
  *
- * Responsibilities:
- *   1. Boot: resolve city, load profile + datasets
- *   2. Render Phase 2 layout
- *   3. START: init game session via game_session.js, render initial state
- *   4. RESET: clear session, return to idle shell
- *   5. PLAY 1 TURN / AUTO PLAY: advance game state, update all UI panels
- *
- * Engine integration:
- *   game_session.js → play_engine.js (guno_v6) → deck_generator.js (guno_v6)
+ * Changes from Phase 3:
+ *   - renderMapPanel() now receives stationGraph for immediate base map render
+ *   - updateMapFromState() now passes stationGraph for live ownership overlay
+ *   - getStationGraph() imported from game_session.js
  *
  * UI update flow:
- *   game state → updateHandFromState() + updateStatusFromState() + updateMapFromState()
- *   log entries → setLogEntries() / appendLogEntry()
+ *   game state + stationGraph → updateMapFromState()
+ *                             → updateHandFromState()
+ *                             → updateStatusFromState()
  */
 
 import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js';
@@ -25,7 +21,7 @@ import { renderLayout } from '../ui/layout.js';
 import { setHeaderStatus, setStartButtonState } from '../ui/header_bar.js';
 import { updateHandFromState, resetHandDisplay } from '../ui/hand_panel.js';
 import { updateStatusFromState, appendLogEntry, setLogEntries, clearLog } from '../ui/score_panel.js';
-import { updateMapFromState } from '../ui/map_panel.js';
+import { updateMapFromState, setStationGraph } from '../ui/map_panel.js';
 import {
   initSession,
   playOneTurn,
@@ -36,6 +32,7 @@ import {
   hasSession,
   isRunning,
   isFinished,
+  getStationGraph,
 } from '../game/game_session.js';
 
 // ── App state ─────────────────────────────────────────────────────────────────
@@ -45,7 +42,7 @@ let _profile     = null;
 let _datasets    = null;
 let _registry    = null;
 let _cities      = [];
-let _uiMode      = 'idle';  // 'idle' | 'loading' | 'running' | 'finished' | 'error'
+let _uiMode      = 'idle';
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
@@ -57,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function boot() {
-  console.log('[GUNOS V1] Booting platform (Phase 3)...');
+  console.log('[GUNOS V1] Booting platform (Phase 4)...');
   setHeaderStatus('Booting...', 'loading');
 
   // ── Step 1: Resolve active city ──────────────────────────────────────────
@@ -69,7 +66,6 @@ async function boot() {
     cityId   = resolved.cityId;
     registry = resolved.registry;
     _registry = registry;
-    console.log(`[GUNOS V1] Active city: ${cityId}`);
   } catch (err) {
     throw new Error(`City registry load failed: ${err.message}`);
   }
@@ -78,20 +74,17 @@ async function boot() {
   let profile;
   try {
     profile = await loadCityProfile(cityId);
-    console.log(`[GUNOS V1] City profile loaded: ${profile.display_name}`);
   } catch (err) {
     throw new Error(`City profile load failed for "${cityId}": ${err.message}`);
   }
 
-  // ── Step 3: Pre-load city datasets (station_graph, station_lines) ────────
+  // ── Step 3: Pre-load city datasets ──────────────────────────────────────
   setHeaderStatus('Loading datasets...', 'loading');
   let datasets = {};
   try {
     datasets = await _loadCityDatasets(cityId, profile);
-    console.log(`[GUNOS V1] Datasets loaded for ${cityId}`);
   } catch (err) {
     console.warn(`[GUNOS V1] Dataset load warning for ${cityId}:`, err.message);
-    // Non-fatal: game can run without graph/lines (reduced playability)
   }
 
   // ── Step 4: Load available cities ────────────────────────────────────────
@@ -103,13 +96,14 @@ async function boot() {
   _datasets = datasets;
   _cities   = cities;
 
-  // ── Step 6: Render Phase 2 layout ────────────────────────────────────────
+  // ── Step 6: Render Phase 4 layout (pass stationGraph to map panel) ───────
   const registryEntry = registry.cities.find(c => c.city_id === cityId);
 
   renderLayout({
     profile,
     registryEntry,
     cities,
+    stationGraph: datasets.station_graph ?? null,   // Phase 4: pass graph
     onStart: _handleStart,
     onReset: _handleReset,
   });
@@ -121,25 +115,20 @@ async function boot() {
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
 
-  console.log('[GUNOS V1] Phase 3 shell ready.');
+  console.log('[GUNOS V1] Phase 4 shell ready.');
 }
 
 // ── START handler ─────────────────────────────────────────────────────────────
 
 async function _handleStart() {
-  if (_uiMode === 'running') {
-    console.log('[GUNOS V1] Game already running.');
-    return;
-  }
+  if (_uiMode === 'running') return;
 
-  console.log('[GUNOS V1] START pressed — initializing game session...');
   _setUiMode('loading');
   setHeaderStatus('Starting...', 'loading');
   setStartButtonState('playing');
   _setTurnButtonsEnabled(false);
 
   try {
-    // Resolve guno_v6 base URL for deck_generator
     const guno6Base = _resolveGuno6Base();
 
     const gameState = await initSession({
@@ -153,13 +142,8 @@ async function _handleStart() {
     setHeaderStatus('Running', 'playing');
     _setTurnButtonsEnabled(true);
 
-    // Update all UI panels
     _updateAllPanels(gameState);
-
-    // Sync log
     setLogEntries(getLog());
-
-    console.log('[GUNOS V1] Game session started.', gameState);
 
   } catch (err) {
     console.error('[GUNOS V1] Session init failed:', err);
@@ -173,17 +157,16 @@ async function _handleStart() {
 // ── RESET handler ─────────────────────────────────────────────────────────────
 
 function _handleReset() {
-  console.log('[GUNOS V1] RESET pressed.');
   resetSession();
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
   setStartButtonState('ready');
   _setTurnButtonsEnabled(false);
 
-  // Reset all UI panels to idle
   resetHandDisplay();
   updateStatusFromState(null, 'idle');
-  updateMapFromState(null, 'idle');
+  // Reset map to base (no ownership)
+  updateMapFromState(null, 'idle', _datasets?.station_graph ?? null);
   clearLog();
   appendLogEntry('Session reset.', 'muted');
 }
@@ -237,17 +220,14 @@ function _handleAutoPlay() {
 // ── UI update helpers ─────────────────────────────────────────────────────────
 
 function _updateAllPanels(gameState) {
+  // Phase 4: pass stationGraph from session to map panel
+  const graph = getStationGraph() ?? _datasets?.station_graph ?? null;
+  updateMapFromState(gameState, _uiMode, graph);
   updateHandFromState(gameState);
   updateStatusFromState(gameState, _uiMode);
-  updateMapFromState(gameState, _uiMode);
-
-  // Update panel-score phase badge
-  const phaseEl = document.getElementById('panel-score-phase');
-  if (phaseEl) phaseEl.textContent = _uiMode.toUpperCase();
 }
 
 function _syncLog() {
-  // Append only new log entries since last sync
   const allLog = getLog();
   const logArea = document.getElementById('log-area');
   if (!logArea) return;
@@ -285,10 +265,6 @@ function _setTurnButtonsEnabled(enabled) {
 
 // ── Dataset loading ───────────────────────────────────────────────────────────
 
-/**
- * Load station_graph and station_lines for the given city.
- * Returns a partial datasets object — missing keys are null.
- */
 async function _loadCityDatasets(cityId, profile) {
   const datasets = {};
   const keys = ['station_graph', 'station_lines'];
@@ -310,15 +286,10 @@ async function _loadCityDatasets(cityId, profile) {
 
 // ── URL helpers ───────────────────────────────────────────────────────────────
 
-/**
- * Resolve the guno_v6 base URL from the current page location.
- * gunos_v1 is at /gunos_v1/, guno_v6 is at /guno_v6/ (sibling).
- */
 function _resolveGuno6Base() {
-  const href = location.href;
+  const href  = location.href;
   const match = href.match(/^(.*\/)gunos_v1\//);
   if (match) return match[1] + 'guno_v6/';
-  // Fallback
   return location.origin + '/guno_v6/';
 }
 

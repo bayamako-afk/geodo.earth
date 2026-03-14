@@ -1,20 +1,38 @@
 /**
  * map_panel.js — GUNOS V1 Map Panel
  *
- * The map panel is the visual center of the GUNOS V1 play screen.
+ * Phase 4: Real gameplay visualization layer.
  *
- * Phase 2: city-aware placeholder with featured lines display
- * Phase 3: game-active state awareness — shows active game indicator
- * Phase 4: full route/network visualization
+ * Renders a geographic SVG map via map_canvas.js showing:
+ *   - Base route lines (city-specific colors)
+ *   - Station nodes (hub-sized)
+ *   - Owned station overlay (player colors: P1 cyan, P2 red, P3 green, P4 amber)
+ *   - Recent action highlight (pulse ring on current card station)
+ *   - Network connection emphasis (glow on adjacent owned pairs)
+ *   - Player legend (ownership counts)
+ *
+ * Data flow:
+ *   renderMapPanel()    — initial render (idle shell)
+ *   updateMapFromState() — called after each turn with live game state + graph
  */
 
+import { renderMapCanvas } from './map_canvas.js';
+
+// Module-level graph cache (set once per city boot)
+let _stationGraph = null;
+let _cityId       = null;
+
+// ── Public API ────────────────────────────────────────────────────────────────
+
 /**
- * Render the map panel with city-aware content.
+ * Initial render of the map panel (idle state).
+ * Stores the station graph for later use by updateMapFromState().
  *
  * @param {Object} opts
- * @param {Object} opts.profile  - Loaded city profile
+ * @param {Object}  opts.profile       - Loaded city profile
+ * @param {Object}  [opts.stationGraph] - Pre-loaded station_graph JSON
  */
-export function renderMapPanel({ profile }) {
+export function renderMapPanel({ profile, stationGraph }) {
   const container = document.getElementById('map-panel-body');
   if (!container) return;
 
@@ -23,53 +41,48 @@ export function renderMapPanel({ profile }) {
   const featuredLines = profile.routes?.featured_lines ?? [];
   const dataReady     = profile.status?.data_ready ?? false;
 
+  // Cache graph for later updates
+  _stationGraph = stationGraph ?? null;
+  _cityId       = profile.city_id;
+
   container.innerHTML = '';
 
-  // City identity block
-  const identity = document.createElement('div');
-  identity.className = 'map-city-identity';
-  identity.innerHTML = `
-    <div class="map-city-identity__label">${cityLabel}</div>
-    <div class="map-city-identity__name">${cityName}</div>
+  // ── Header row ──────────────────────────────────────────────────────────
+  const header = document.createElement('div');
+  header.className = 'map-header';
+  header.innerHTML = `
+    <div class="map-header__left">
+      <span class="map-city-label">${cityLabel}</span>
+      <span class="map-city-name">${cityName}</span>
+    </div>
+    <div class="map-header__lines" id="map-lines-row">
+      ${featuredLines.map(lc => `<span class="map-line-badge" style="border-color:${_lineColor(lc)};color:${_lineColor(lc)}">${lc}</span>`).join('')}
+    </div>
+    <div class="map-header__right">
+      <span class="map-game-indicator" id="map-game-indicator">IDLE</span>
+    </div>
   `;
-  container.appendChild(identity);
+  container.appendChild(header);
 
-  // Featured lines badge row
-  if (featuredLines.length > 0) {
-    const linesRow = document.createElement('div');
-    linesRow.className = 'map-lines-row';
-    featuredLines.forEach(lc => {
-      const badge = document.createElement('span');
-      badge.className = 'map-line-badge';
-      badge.textContent = lc;
-      badge.style.borderColor = _lineColor(lc);
-      badge.style.color = _lineColor(lc);
-      linesRow.appendChild(badge);
+  // ── SVG canvas area ──────────────────────────────────────────────────────
+  const canvasWrap = document.createElement('div');
+  canvasWrap.className = 'map-canvas-wrap';
+  canvasWrap.id = 'map-canvas-wrap';
+  container.appendChild(canvasWrap);
+
+  // ── Initial render: base map (no ownership) ──────────────────────────────
+  if (_stationGraph) {
+    renderMapCanvas(canvasWrap, _stationGraph, {
+      players:       [],
+      currentCardId: null,
+      uiMode:        'idle',
+      cityId:        _cityId,
     });
-    container.appendChild(linesRow);
+  } else {
+    canvasWrap.innerHTML = `<div class="map-no-graph">Graph data loading...</div>`;
   }
 
-  // Game state indicator (Phase 3)
-  const gameIndicator = document.createElement('div');
-  gameIndicator.className = 'map-game-indicator';
-  gameIndicator.id = 'map-game-indicator';
-  gameIndicator.innerHTML = `<span class="map-game-indicator__text" id="map-game-status-text">IDLE — press START to begin</span>`;
-  container.appendChild(gameIndicator);
-
-  // Grid area
-  const placeholder = document.createElement('div');
-  placeholder.className = 'map-placeholder';
-  placeholder.innerHTML = `
-    <div class="map-placeholder__grid" id="map-grid-area">
-      ${_buildGridPlaceholder(featuredLines)}
-    </div>
-    <div class="map-placeholder__note" id="map-phase-note">
-      Phase 4 — route network visualization
-    </div>
-  `;
-  container.appendChild(placeholder);
-
-  // Data status badge
+  // ── Data status badge ────────────────────────────────────────────────────
   const statusBadge = document.createElement('div');
   statusBadge.className = 'map-data-status map-data-status--' + (dataReady ? 'ready' : 'pending');
   statusBadge.textContent = dataReady ? 'DATA READY' : 'DATA PENDING';
@@ -77,104 +90,83 @@ export function renderMapPanel({ profile }) {
 }
 
 /**
- * Update the map panel to reflect game-active state.
- * Phase 3: minimal — shows running indicator and current card station.
+ * Update the map panel to reflect the current game state.
+ * Called after every turn by main.js.
  *
- * @param {Object} gameState - play_engine game state (or null for idle)
- * @param {string} [uiMode]  - 'idle' | 'loading' | 'running' | 'finished'
+ * @param {Object} gameState  - play_engine game state (or null for idle)
+ * @param {string} [uiMode]   - 'idle' | 'loading' | 'running' | 'finished' | 'error'
+ * @param {Object} [graph]    - station_graph (optional override; uses cached if omitted)
  */
-export function updateMapFromState(gameState, uiMode) {
-  const statusText = document.getElementById('map-game-status-text');
+export function updateMapFromState(gameState, uiMode, graph) {
   const indicator  = document.getElementById('map-game-indicator');
-  const gridArea   = document.getElementById('map-grid-area');
+  const canvasWrap = document.getElementById('map-canvas-wrap');
+
+  // Use provided graph or fall back to cached
+  const activeGraph = graph ?? _stationGraph;
+
+  // ── Update indicator text ────────────────────────────────────────────────
+  if (indicator) {
+    indicator.className = 'map-game-indicator';
+
+    if (!gameState || uiMode === 'idle') {
+      indicator.textContent = 'IDLE';
+    } else if (uiMode === 'loading') {
+      indicator.textContent = 'LOADING';
+      indicator.classList.add('map-game-indicator--loading');
+    } else if (uiMode === 'error') {
+      indicator.textContent = 'ERROR';
+      indicator.classList.add('map-game-indicator--error');
+    } else if (gameState.gameOver) {
+      const winner = gameState.winner ? `${gameState.winner} WINS` : 'DRAW';
+      indicator.textContent = `GAME OVER · ${winner} · T${gameState.turnCount}`;
+      indicator.classList.add('map-game-indicator--finished');
+    } else {
+      const currentPlayer = gameState.players[gameState.turnIndex];
+      indicator.textContent = `T${gameState.turnCount} · ${currentPlayer?.id}`;
+      indicator.classList.add('map-game-indicator--running');
+    }
+  }
+
+  // ── Re-render SVG map ────────────────────────────────────────────────────
+  if (!canvasWrap || !activeGraph) return;
 
   if (!gameState || uiMode === 'idle') {
-    if (statusText) statusText.textContent = 'IDLE — press START to begin';
-    if (indicator)  indicator.className = 'map-game-indicator';
+    renderMapCanvas(canvasWrap, activeGraph, {
+      players:       [],
+      currentCardId: null,
+      uiMode:        'idle',
+      cityId:        _cityId,
+    });
     return;
   }
 
-  if (uiMode === 'loading') {
-    if (statusText) statusText.textContent = 'Loading...';
-    if (indicator)  indicator.className = 'map-game-indicator map-game-indicator--loading';
-    return;
-  }
+  const currentCardId = gameState.currentCard?.station_global_id ?? null;
+  const effectiveMode = gameState.gameOver ? 'finished' : (uiMode ?? 'running');
 
-  if (uiMode === 'error') {
-    if (statusText) statusText.textContent = 'Error — check log';
-    if (indicator)  indicator.className = 'map-game-indicator map-game-indicator--error';
-    return;
-  }
+  renderMapCanvas(canvasWrap, activeGraph, {
+    players:       gameState.players,
+    currentCardId,
+    uiMode:        effectiveMode,
+    cityId:        _cityId,
+  });
+}
 
-  if (gameState.gameOver) {
-    const winner = gameState.winner ? `Winner: ${gameState.winner}` : 'Turn limit reached';
-    if (statusText) statusText.textContent = `GAME OVER — ${winner} (${gameState.turnCount} turns)`;
-    if (indicator)  indicator.className = 'map-game-indicator map-game-indicator--finished';
-    return;
-  }
-
-  // Running
-  const currentCard   = gameState.currentCard;
-  const currentPlayer = gameState.players[gameState.turnIndex];
-  const cardName      = currentCard?.station_name || '—';
-  if (statusText) {
-    statusText.textContent = `RUNNING — T${gameState.turnCount} · ${currentPlayer?.id} · ${cardName}`;
-  }
-  if (indicator) indicator.className = 'map-game-indicator map-game-indicator--running';
-
-  // Phase 3: highlight the current card's line in the grid
-  if (gridArea && currentCard) {
-    _highlightCurrentCard(gridArea, currentCard);
-  }
+/**
+ * Inject the station graph after boot (called from main.js once datasets load).
+ * @param {Object} graph
+ */
+export function setStationGraph(graph) {
+  _stationGraph = graph;
 }
 
 // ── Internal helpers ──────────────────────────────────────────────────────────
 
-function _buildGridPlaceholder(featuredLines) {
-  if (featuredLines.length === 0) {
-    return '<div class="map-grid-empty">No featured lines configured</div>';
-  }
-  return featuredLines.map(lc => {
-    const color = _lineColor(lc);
-    const slots = Array.from({ length: 10 }, (_, i) =>
-      `<div class="map-slot" data-line="${lc}" data-slot="${i}" style="border-color:${color}22; background:${color}11;" title="${lc}-${i + 1}"></div>`
-    ).join('');
-    return `
-      <div class="map-line-row">
-        <div class="map-line-row__label" style="color:${color};">${lc}</div>
-        <div class="map-line-row__slots">${slots}</div>
-      </div>`;
-  }).join('');
-}
-
-/**
- * Phase 3: Highlight the current card's slot in the grid.
- * Uses card_id index as a proxy for slot position until Phase 4 adds real routing.
- */
-function _highlightCurrentCard(gridArea, currentCard) {
-  // Remove previous highlights
-  gridArea.querySelectorAll('.map-slot--active').forEach(el => {
-    el.classList.remove('map-slot--active');
-  });
-
-  // card_id is "card_001" format — use index to pick a slot
-  const match = currentCard.card_id?.match(/card_(\d+)/);
-  if (!match) return;
-  const idx = (parseInt(match[1], 10) - 1) % 10;
-
-  // Highlight the slot in the first line row (proxy for Phase 3)
-  const slots = gridArea.querySelectorAll(`.map-slot[data-slot="${idx}"]`);
-  if (slots.length > 0) {
-    slots[0].classList.add('map-slot--active');
-  }
-}
-
 function _lineColor(lc) {
   const palette = {
     JY: '#80c080', G: '#f0a020', M: '#e04040', T: '#40a0c0', Z: '#8060c0',
-    Y: '#40b0a0', HK: '#c08040', OC: '#e06060',
+    Y: '#40b0a0',  HK: '#c08040', OC: '#e06060',
     CEN: '#e05020', NOR: '#404040', PIC: '#2040a0', DIS: '#408040', CIR: '#c0c020',
-    L1: '#c04040', L4: '#408040', LA: '#4060c0', LN: '#c0c040', L7: '#8040c0',
+    L1: '#c04040',  L4: '#408040', LA: '#4060c0', LN: '#c0c040', L7: '#8040c0',
   };
   return palette[lc] ?? '#6e7681';
 }
