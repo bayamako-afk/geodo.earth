@@ -67,7 +67,7 @@ export function renderMapCanvas(container, graph, renderOpts = {}) {
 
   const svg = _buildSVG(
     graph, proj, ownerMap, ownedSet, connectedPairs,
-    componentMap, routeRuns, currentCardId, uiMode, leaderId
+    componentMap, routeRuns, currentCardId, uiMode, leaderId, labelMinDeg
   );
 
   container.innerHTML = '';
@@ -78,7 +78,7 @@ export function renderMapCanvas(container, graph, renderOpts = {}) {
 
 function _buildSVG(
   graph, proj, ownerMap, ownedSet, connectedPairs,
-  componentMap, routeRuns, currentCardId, uiMode, leaderId
+  componentMap, routeRuns, currentCardId, uiMode, leaderId, labelMinDeg
 ) {
   const svg = _el('svg', {
     viewBox: `0 0 ${SVG_W} ${SVG_H}`,
