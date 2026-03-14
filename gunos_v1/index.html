@@ -1273,6 +1273,307 @@
       margin-top: auto;
     }
 
+    /* ════════════════════════════════════════════════════════════════════════
+       PHASE 6: RUNTIME CLARITY & CROSS-CITY POLISH
+    ════════════════════════════════════════════════════════════════════════ */
+
+    /* Header game badge */
+    .hdr-game-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--c-border);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .hdr-game-badge--idle     { color: var(--c-text-dim);  border-color: var(--c-border); }
+    .hdr-game-badge--loading  { color: var(--c-orange);    border-color: var(--c-orange); background: rgba(210,153,34,0.08); }
+    .hdr-game-badge--running  { color: var(--c-green);     border-color: var(--c-green);  background: rgba(63,185,80,0.08); }
+    .hdr-game-badge--finished { color: var(--c-accent);    border-color: var(--c-accent); background: rgba(240,192,64,0.1); }
+    .hdr-game-badge--error    { color: var(--c-red);       border-color: var(--c-red);    background: rgba(248,81,73,0.08); }
+
+    /* Header turn counter */
+    #hdr-turn-counter {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--c-text-muted);
+      flex-shrink: 0;
+    }
+
+    /* City button with station count */
+    .hdr-city-btn__label { display: block; }
+    .hdr-city-btn__count {
+      display: block;
+      font-size: 8px;
+      color: var(--c-text-dim);
+      letter-spacing: 0;
+      font-weight: 400;
+      margin-top: 1px;
+    }
+    .hdr-city-btn--active .hdr-city-btn__count { color: var(--c-city); opacity: 0.7; }
+
+    /* Map header (Phase 6 redesign) */
+    .map-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px;
+      background: var(--c-surface-2);
+      border-bottom: 1px solid var(--c-border-soft);
+      flex-shrink: 0;
+    }
+
+    .map-header__identity {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .map-city-label {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--c-city);
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+    }
+
+    .map-city-name {
+      font-size: 11px;
+      color: var(--c-text-muted);
+      flex-shrink: 0;
+    }
+
+    .map-city-descriptor {
+      font-size: 10px;
+      color: var(--c-text-dim);
+      font-style: italic;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .map-city-summary {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--c-text-dim);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .map-header__lines {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .map-header__right {
+      flex-shrink: 0;
+    }
+
+    /* Map game indicator (Phase 6 — inline text, not icon) */
+    .map-game-indicator {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--c-text-dim);
+      padding: 2px 6px;
+      border: 1px solid var(--c-border);
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .map-game-indicator--running  { color: var(--c-green);  border-color: var(--c-green);  background: rgba(63,185,80,0.06); }
+    .map-game-indicator--loading  { color: var(--c-orange); border-color: var(--c-orange); }
+    .map-game-indicator--finished { color: var(--c-accent); border-color: var(--c-accent); background: rgba(240,192,64,0.08); }
+    .map-game-indicator--error    { color: var(--c-red);    border-color: var(--c-red); }
+
+    /* Map canvas wrap */
+    .map-canvas-wrap {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .map-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-data-status {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      padding: 2px 8px;
+      flex-shrink: 0;
+    }
+
+    .map-data-status--ready   { color: var(--c-green); }
+    .map-data-status--pending { color: var(--c-text-dim); }
+
+    .map-no-graph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--c-text-dim);
+      font-size: 11px;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Score panel Phase 6: compact status inline */
+    .score-status-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 8px;
+    }
+
+    .score-status-chip {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid var(--c-border);
+      color: var(--c-text-dim);
+    }
+
+    .score-status-chip--idle     { color: var(--c-text-dim); border-color: var(--c-border); }
+    .score-status-chip--loading  { color: var(--c-orange);   border-color: var(--c-orange); }
+    .score-status-chip--running  { color: var(--c-green);    border-color: var(--c-green);  background: rgba(63,185,80,0.08); }
+    .score-status-chip--finished { color: var(--c-accent);   border-color: var(--c-accent); }
+    .score-status-chip--error    { color: var(--c-red);      border-color: var(--c-red); }
+
+    .score-status-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+    }
+
+    .score-status-item .score-status-label {
+      color: var(--c-text-dim);
+      font-size: 9px;
+    }
+
+    /* Score player block Phase 6: lead indicator */
+    .score-player-block--lead {
+      border-left: 2px solid var(--c-accent) !important;
+      background: rgba(240,192,64,0.04);
+    }
+
+    .score-lead-badge {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--c-accent);
+      letter-spacing: 0.08em;
+      flex: 1;
+    }
+
+    /* Score bar visualization */
+    .score-breakdown-compact {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 0 6px 6px;
+    }
+
+    .score-breakdown-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+    }
+
+    .score-bar-wrap {
+      flex: 1;
+      height: 4px;
+      background: var(--c-surface-3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .score-bar {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .score-bar--station { background: var(--c-city); }
+
+    /* Result panel Phase 6: winner prominence */
+    .result-winner-announce {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 8px 12px;
+      background: rgba(240,192,64,0.06);
+      border-bottom: 1px solid var(--c-border-soft);
+    }
+
+    .result-winner-announce__label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--c-text-muted);
+    }
+
+    .result-winner-announce__name {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1;
+    }
+
+    .result-winner-announce__score {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .result-winner-announce__draw {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--c-text-muted);
+      letter-spacing: 0.14em;
+    }
+
+    /* Result breakdown grid (Phase 6: 2-column) */
+    .result-breakdown-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2px 8px;
+      font-size: 11px;
+      padding: 4px 0;
+    }
+
+    .result-breakdown-grid .result-breakdown-label {
+      color: var(--c-text-muted);
+      white-space: nowrap;
+    }
+
+    .result-breakdown-grid .result-breakdown-value {
+      font-family: var(--font-mono);
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     @media (max-width: 680px) {
       #bottom-area {
         flex-direction: column;
@@ -1312,6 +1613,12 @@
 
     <div class="hdr-spacer"></div>
 
+    <!-- Game state badge + turn counter (Phase 6) -->
+    <span class="hdr-game-badge hdr-game-badge--idle" id="hdr-game-badge">IDLE</span>
+    <span id="hdr-turn-counter" style="display:none"></span>
+
+    <!-- Turn controls (injected by main.js — Phase 6: moved to header) -->
+
     <!-- Action Buttons -->
     <div class="hdr-actions">
       <span class="hdr-status hdr-status--loading" id="hdr-status">Booting...</span>
@@ -1346,7 +1653,7 @@
       <section class="gs-panel" id="panel-hand">
         <div class="gs-panel__header">
           <span class="gs-panel__title">HAND</span>
-          <!-- Phase 3: turn controls injected here by main.js -->
+          <!-- Phase 6: turn controls now in header -->
           <div id="hdr-turn-controls" style="display:flex;gap:4px;align-items:center;"></div>
         </div>
         <div class="gs-panel__body" id="hand-panel-body">

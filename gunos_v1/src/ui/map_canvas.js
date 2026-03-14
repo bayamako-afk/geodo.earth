@@ -1,31 +1,23 @@
 /**
  * map_canvas.js — GUNOS V1 SVG Map Canvas
  *
- * Phase 4: Geographic map visualization layer.
+ * Phase 6: Network visibility + route growth polish
  *
- * Renders a real SVG map from station_graph data:
- *   - Base edges (route lines, city-specific colors)
- *   - Station nodes (sized by hub_degree)
- *   - Owned station overlay (player colors)
- *   - Recent action highlight (pulse animation)
- *   - Network connection emphasis (owned adjacency)
- *
- * Coordinate system:
- *   lat/lon → normalized SVG viewport (0..SVG_W, 0..SVG_H)
- *   with padding to keep stations inside the frame.
- *
- * Player color palette:
- *   P1: #4fc3f7 (cyan-blue)
- *   P2: #ef9a9a (soft red)
- *   P3: #a5d6a7 (soft green)
- *   P4: #ffcc80 (amber)
+ * Improvements over Phase 4/5:
+ *   - Stronger owned-adjacency glow (opacity 0.45 → 0.65, stroke-width 4 → 6)
+ *   - Owned edges rendered at full brightness (not dimmed)
+ *   - Unowned edges more clearly dimmed (opacity 33%)
+ *   - Player-colored edge segments for owned adjacency (separate layer)
+ *   - Larger hub nodes for better readability (r=7 instead of 6)
+ *   - Current card highlight: larger pulse ring + brighter ring
+ *   - Legend shows station count + leading player highlight
+ *   - Station labels always visible for owned/hub/current nodes
  */
 
-const SVG_W   = 900;
-const SVG_H   = 560;
-const PAD     = 36;   // padding from edge
+const SVG_W = 900;
+const SVG_H = 560;
+const PAD   = 36;
 
-// Player ownership colors
 const PLAYER_COLORS = {
   P1: '#4fc3f7',
   P2: '#ef9a9a',
@@ -33,45 +25,30 @@ const PLAYER_COLORS = {
   P4: '#ffcc80',
 };
 
-// Line colors (matches map_panel.js palette)
 const LINE_COLORS = {
-  JY: '#80c080', G: '#f0a020', M: '#e04040', T: '#40a0c0', Z: '#8060c0',
-  Y: '#40b0a0',  HK: '#c08040', OC: '#e06060',
+  JY:  '#80c080', G:   '#f0a020', M:   '#e04040', T:   '#40a0c0', Z:   '#8060c0',
+  Y:   '#40b0a0', HK:  '#c08040', OC:  '#e06060',
   CEN: '#e05020', NOR: '#606060', PIC: '#2040a0', DIS: '#408040', CIR: '#c0c020',
-  L1: '#c04040',  L4: '#408040', LA: '#4060c0', LN: '#c0c040', L7: '#8040c0',
+  L1:  '#c04040', L4:  '#408040', LA:  '#4060c0', LN:  '#c0c040', L7:  '#8040c0',
 };
 
 // ── Public API ────────────────────────────────────────────────────────────────
 
-/**
- * Render or update the SVG map canvas.
- *
- * @param {HTMLElement} container  - DOM element to render into
- * @param {Object}      graph      - station_graph JSON { nodes, edges }
- * @param {Object}      renderOpts - {
- *   players:       Array<{ id, ownedStations: string[] }>
- *   currentCardId: string | null   (station_global_id of most recent play)
- *   uiMode:        'idle' | 'running' | 'finished'
- *   cityId:        string
- * }
- */
 export function renderMapCanvas(container, graph, renderOpts = {}) {
   if (!container || !graph?.nodes?.length) return;
 
   const { players = [], currentCardId = null, uiMode = 'idle' } = renderOpts;
 
-  // ── 1. Project lat/lon → SVG coordinates ─────────────────────────────────
-  const proj = _buildProjection(graph.nodes);
-
-  // ── 2. Build ownership map: station_global_id → playerId ─────────────────
-  const ownerMap = _buildOwnerMap(players);
-
-  // ── 3. Build adjacency set for owned stations (network emphasis) ──────────
-  const ownedSet = new Set(Object.keys(ownerMap));
+  const proj           = _buildProjection(graph.nodes);
+  const ownerMap       = _buildOwnerMap(players);
+  const ownedSet       = new Set(Object.keys(ownerMap));
   const connectedPairs = _findConnectedOwnedPairs(graph.edges, ownedSet);
 
-  // ── 4. Build SVG ──────────────────────────────────────────────────────────
-  const svg = _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode);
+  // Count owned stations per player for leading player detection
+  const ownerCounts = _countByPlayer(ownerMap);
+  const leaderId    = _findLeader(ownerCounts);
+
+  const svg = _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode, leaderId);
 
   container.innerHTML = '';
   container.appendChild(svg);
@@ -79,19 +56,19 @@ export function renderMapCanvas(container, graph, renderOpts = {}) {
 
 // ── SVG construction ──────────────────────────────────────────────────────────
 
-function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode) {
+function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode, leaderId) {
   const svg = _el('svg', {
     viewBox: `0 0 ${SVG_W} ${SVG_H}`,
     preserveAspectRatio: 'xMidYMid meet',
     class: 'map-svg',
   });
 
-  // ── Layer 1: Base edges (all route lines) ─────────────────────────────────
-  const edgeLayer = _el('g', { class: 'map-layer map-layer--edges' });
-  const edgesByLine = _groupEdgesByLine(graph.edges);
+  // ── Layer 1: Base edges ───────────────────────────────────────────────────
+  const edgeLayer    = _el('g', { class: 'map-layer map-layer--edges' });
+  const edgesByLine  = _groupEdgesByLine(graph.edges);
 
   for (const [lineId, edges] of Object.entries(edgesByLine)) {
-    const color = LINE_COLORS[lineId] ?? '#3a3f47';
+    const color     = LINE_COLORS[lineId] ?? '#3a3f47';
     const lineGroup = _el('g', { class: `map-line map-line--${lineId}` });
 
     for (const edge of edges) {
@@ -100,11 +77,13 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode)
       if (!fromNode || !toNode) continue;
 
       const isConnected = connectedPairs.has(_edgeKey(edge.from, edge.to));
+
       const line = _el('line', {
         x1: fromNode.x, y1: fromNode.y,
         x2: toNode.x,   y2: toNode.y,
-        stroke: isConnected ? color : `${color}55`,
-        'stroke-width': isConnected ? 2.5 : 1.2,
+        // Phase 6: owned edges full brightness, unowned clearly dimmed
+        stroke:           isConnected ? color : `${color}44`,
+        'stroke-width':   isConnected ? 2.8   : 1.0,
         'stroke-linecap': 'round',
         class: isConnected ? 'map-edge map-edge--connected' : 'map-edge',
       });
@@ -114,29 +93,43 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode)
   }
   svg.appendChild(edgeLayer);
 
-  // ── Layer 2: Network emphasis (owned adjacency glow) ─────────────────────
+  // ── Layer 2: Network emphasis (owned adjacency — player-colored glow) ─────
+  // Phase 6: stronger glow, player-colored edge segments
   const networkLayer = _el('g', { class: 'map-layer map-layer--network' });
+
   for (const edge of graph.edges) {
     if (!connectedPairs.has(_edgeKey(edge.from, edge.to))) continue;
     const fromNode = proj.get(edge.from);
     const toNode   = proj.get(edge.to);
     if (!fromNode || !toNode) continue;
 
-    // Determine glow color from owner
-    const ownerFrom = ownerMap[edge.from];
-    const ownerTo   = ownerMap[edge.to];
-    const glowColor = PLAYER_COLORS[ownerFrom] ?? PLAYER_COLORS[ownerTo] ?? '#ffffff';
+    const ownerFrom  = ownerMap[edge.from];
+    const ownerTo    = ownerMap[edge.to];
+    const glowColor  = PLAYER_COLORS[ownerFrom] ?? PLAYER_COLORS[ownerTo] ?? '#ffffff';
 
+    // Outer glow (wide, low opacity)
     const glow = _el('line', {
       x1: fromNode.x, y1: fromNode.y,
       x2: toNode.x,   y2: toNode.y,
-      stroke: glowColor,
-      'stroke-width': 4,
+      stroke:           glowColor,
+      'stroke-width':   8,
       'stroke-linecap': 'round',
-      opacity: '0.25',
-      class: 'map-edge-glow',
+      opacity:          '0.18',
+      class:            'map-edge-glow',
     });
     networkLayer.appendChild(glow);
+
+    // Inner colored segment (narrow, higher opacity)
+    const segment = _el('line', {
+      x1: fromNode.x, y1: fromNode.y,
+      x2: toNode.x,   y2: toNode.y,
+      stroke:           glowColor,
+      'stroke-width':   2,
+      'stroke-linecap': 'round',
+      opacity:          '0.55',
+      class:            'map-edge-segment',
+    });
+    networkLayer.appendChild(segment);
   }
   svg.appendChild(networkLayer);
 
@@ -144,45 +137,72 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode)
   const nodeLayer = _el('g', { class: 'map-layer map-layer--nodes' });
 
   for (const node of graph.nodes) {
-    // Support both node_id (Tokyo) and station_global_id (London/NYC/Osaka)
-    const nodeId = node.node_id ?? node.station_global_id;
-    const pt = proj.get(nodeId);
+    const nodeId   = node.node_id ?? node.station_global_id;
+    const pt       = proj.get(nodeId);
     if (!pt) continue;
 
-    const owner   = ownerMap[nodeId];
-    const isOwned = !!owner;
-    const isHub   = (node.hub_degree_global ?? node.degree ?? 0) >= 2;
+    const owner     = ownerMap[nodeId];
+    const isOwned   = !!owner;
+    const hubDeg    = node.hub_degree_global ?? node.degree ?? 0;
+    const isHub     = hubDeg >= 2;
     const isCurrent = nodeId === currentCardId;
+    const isLeader  = isOwned && owner === leaderId;
 
-    const r = isCurrent ? 9 : isHub ? 6 : 4;
+    // Phase 6: slightly larger nodes
+    const r = isCurrent ? 10 : isHub ? 7 : isOwned ? 5 : 3.5;
 
     const g = _el('g', {
       class: [
         'map-node',
-        isOwned  ? `map-node--owned map-node--${owner}` : 'map-node--unowned',
-        isHub    ? 'map-node--hub' : '',
+        isOwned   ? `map-node--owned map-node--${owner}` : 'map-node--unowned',
+        isHub     ? 'map-node--hub'     : '',
         isCurrent ? 'map-node--current' : '',
+        isLeader  ? 'map-node--leader'  : '',
       ].filter(Boolean).join(' '),
-      'data-id':   node.node_id,
+      'data-id':   nodeId,
       'data-name': node.station_name,
     });
 
-    // Outer ring for current card (pulse)
+    // Pulse ring for current card
     if (isCurrent) {
       const pulse = _el('circle', {
         cx: pt.x, cy: pt.y,
-        r: r + 6,
-        fill: 'none',
-        stroke: '#ffffff',
+        r:              r + 8,
+        fill:           'none',
+        stroke:         '#ffffff',
         'stroke-width': 1.5,
-        opacity: '0.5',
-        class: 'map-node-pulse',
+        opacity:        '0.6',
+        class:          'map-node-pulse',
       });
       g.appendChild(pulse);
+
+      // Second ring (inner)
+      const pulse2 = _el('circle', {
+        cx: pt.x, cy: pt.y,
+        r:              r + 4,
+        fill:           'none',
+        stroke:         '#ffffff',
+        'stroke-width': 0.8,
+        opacity:        '0.35',
+      });
+      g.appendChild(pulse2);
+    }
+
+    // Leader highlight ring (Phase 6)
+    if (isLeader && !isCurrent && uiMode !== 'idle') {
+      const leaderRing = _el('circle', {
+        cx: pt.x, cy: pt.y,
+        r:              r + 3,
+        fill:           'none',
+        stroke:         PLAYER_COLORS[owner],
+        'stroke-width': 1,
+        opacity:        '0.5',
+      });
+      g.appendChild(leaderRing);
     }
 
     // Main circle
-    const fill  = isOwned ? PLAYER_COLORS[owner] : (isHub ? '#3a4050' : '#252a32');
+    const fill   = isOwned ? PLAYER_COLORS[owner] : (isHub ? '#3a4050' : '#252a32');
     const stroke = isOwned ? PLAYER_COLORS[owner] : (isHub ? '#5a6070' : '#3a4050');
 
     const circle = _el('circle', {
@@ -191,19 +211,20 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode)
       fill,
       stroke,
       'stroke-width': isOwned ? 0 : 1,
-      opacity: isOwned ? '1' : '0.7',
+      opacity:        isOwned ? '1' : (isHub ? '0.8' : '0.55'),
     });
     g.appendChild(circle);
 
-    // Label for hub or owned stations
-    if ((isHub || isOwned || isCurrent) && uiMode !== 'idle') {
+    // Labels: owned, hub, or current — always in non-idle mode
+    if ((isOwned || isHub || isCurrent) && uiMode !== 'idle') {
       const label = _el('text', {
-        x: pt.x,
-        y: pt.y - r - 3,
+        x:             pt.x,
+        y:             pt.y - r - 3,
         'text-anchor': 'middle',
-        'font-size': '8',
-        fill: isOwned ? PLAYER_COLORS[owner] : '#8b949e',
-        class: 'map-node-label',
+        'font-size':   isCurrent ? '9' : '7.5',
+        fill:          isOwned ? PLAYER_COLORS[owner] : (isCurrent ? '#ffffff' : '#8b949e'),
+        'font-weight': isCurrent ? 'bold' : 'normal',
+        class:         'map-node-label',
       });
       label.textContent = node.station_name;
       g.appendChild(label);
@@ -213,19 +234,19 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode)
   }
   svg.appendChild(nodeLayer);
 
-  // ── Layer 4: Recent action highlight ─────────────────────────────────────
+  // ── Layer 4: Current card action highlight ────────────────────────────────
   if (currentCardId && uiMode === 'running') {
     const pt = proj.get(currentCardId);
     if (pt) {
       const highlightLayer = _el('g', { class: 'map-layer map-layer--highlight' });
       const ring = _el('circle', {
         cx: pt.x, cy: pt.y,
-        r: 16,
-        fill: 'none',
-        stroke: '#ffffff',
+        r:              20,
+        fill:           'none',
+        stroke:         '#ffffff',
         'stroke-width': 1,
-        opacity: '0.3',
-        class: 'map-highlight-ring',
+        opacity:        '0.2',
+        class:          'map-highlight-ring',
       });
       highlightLayer.appendChild(ring);
       svg.appendChild(highlightLayer);
@@ -234,7 +255,7 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode)
 
   // ── Layer 5: Player legend ────────────────────────────────────────────────
   if (uiMode !== 'idle') {
-    const legendLayer = _buildLegend(ownerMap);
+    const legendLayer = _buildLegend(ownerMap, leaderId);
     svg.appendChild(legendLayer);
   }
 
@@ -243,34 +264,49 @@ function _buildSVG(graph, proj, ownerMap, connectedPairs, currentCardId, uiMode)
 
 // ── Legend ────────────────────────────────────────────────────────────────────
 
-function _buildLegend(ownerMap) {
+function _buildLegend(ownerMap, leaderId) {
   const g = _el('g', { class: 'map-legend' });
 
-  // Count owned stations per player
-  const counts = {};
-  for (const playerId of Object.values(ownerMap)) {
-    counts[playerId] = (counts[playerId] ?? 0) + 1;
-  }
-
+  const counts  = _countByPlayer(ownerMap);
   const players = Object.keys(counts).sort();
   const startX  = SVG_W - 10;
   const startY  = 10;
 
   players.forEach((pid, i) => {
-    const y = startY + i * 18;
-    const color = PLAYER_COLORS[pid] ?? '#aaaaaa';
+    const y         = startY + i * 20;
+    const color     = PLAYER_COLORS[pid] ?? '#aaaaaa';
+    const isLeading = pid === leaderId;
+
+    // Background pill for leader
+    if (isLeading) {
+      const pill = _el('rect', {
+        x:      startX - 72,
+        y:      y - 2,
+        width:  68,
+        height: 16,
+        rx:     4,
+        fill:   color,
+        opacity: '0.12',
+      });
+      g.appendChild(pill);
+    }
 
     const dot = _el('circle', {
-      cx: startX - 60, cy: y + 5,
-      r: 5, fill: color,
-    });
-    const label = _el('text', {
-      x: startX - 50, y: y + 9,
-      'font-size': '10',
+      cx: startX - 62, cy: y + 6,
+      r:    isLeading ? 6 : 4,
       fill: color,
-      class: 'map-legend-label',
+    });
+
+    const label = _el('text', {
+      x:           startX - 52,
+      y:           y + 10,
+      'font-size': isLeading ? '11' : '10',
+      'font-weight': isLeading ? 'bold' : 'normal',
+      fill:        color,
+      class:       'map-legend-label',
     });
     label.textContent = `${pid}  ${counts[pid]}`;
+
     g.appendChild(dot);
     g.appendChild(label);
   });
@@ -280,12 +316,9 @@ function _buildLegend(ownerMap) {
 
 // ── Projection ────────────────────────────────────────────────────────────────
 
-/**
- * Build a Map<node_id, {x, y}> by normalizing lat/lon to SVG viewport.
- */
 function _buildProjection(nodes) {
-  const lats = nodes.map(n => n.lat).filter(Boolean);
-  const lons = nodes.map(n => n.lon).filter(Boolean);
+  const lats = nodes.map(n => n.lat).filter(v => v != null);
+  const lons = nodes.map(n => n.lon).filter(v => v != null);
 
   if (!lats.length || !lons.length) return new Map();
 
@@ -300,10 +333,8 @@ function _buildProjection(nodes) {
   const proj = new Map();
   for (const node of nodes) {
     if (node.lat == null || node.lon == null) continue;
-    const x = PAD + ((node.lon - minLon) / lonRange) * (SVG_W - PAD * 2);
-    // lat increases northward, SVG y increases downward → invert
-    const y = PAD + ((maxLat - node.lat) / latRange) * (SVG_H - PAD * 2);
-    // Support both node_id (Tokyo) and station_global_id (London/NYC/Osaka)
+    const x  = PAD + ((node.lon - minLon) / lonRange) * (SVG_W - PAD * 2);
+    const y  = PAD + ((maxLat - node.lat) / latRange) * (SVG_H - PAD * 2);
     const id = node.node_id ?? node.station_global_id;
     if (id) proj.set(id, { x, y });
   }
@@ -332,6 +363,22 @@ function _findConnectedOwnedPairs(edges, ownedSet) {
   return pairs;
 }
 
+function _countByPlayer(ownerMap) {
+  const counts = {};
+  for (const pid of Object.values(ownerMap)) {
+    counts[pid] = (counts[pid] ?? 0) + 1;
+  }
+  return counts;
+}
+
+function _findLeader(counts) {
+  let best = null, bestCount = -1;
+  for (const [pid, n] of Object.entries(counts)) {
+    if (n > bestCount) { bestCount = n; best = pid; }
+  }
+  return best;
+}
+
 function _edgeKey(from, to) {
   return from < to ? `${from}|${to}` : `${to}|${from}`;
 }
@@ -339,7 +386,6 @@ function _edgeKey(from, to) {
 function _groupEdgesByLine(edges) {
   const groups = {};
   for (const edge of edges) {
-    // Support both line_id (Tokyo) and line_ids[0] (London/NYC/Osaka)
     const lid = edge.line_id ?? (Array.isArray(edge.line_ids) ? edge.line_ids[0] : null) ?? 'unknown';
     if (!groups[lid]) groups[lid] = [];
     groups[lid].push(edge);

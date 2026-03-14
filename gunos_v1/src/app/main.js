@@ -2,20 +2,20 @@
  * main.js — GUNOS V1 Application Entry Point
  *
  * Platform: GUNOS V1
- * Phase:    5 — Score Presentation & Result Experience
+ * Phase:    6 — Runtime Clarity & Cross-City Polish
  *
- * Changes from Phase 4:
- *   - _loadCityDatasets() now also loads station_metrics + lines_master
- *   - _updateAllPanels() calls updateLiveScores() after each turn
- *   - _handleGameOver() shows result_panel when game ends
- *   - _handleReset() restores score_panel after result_panel
+ * Changes from Phase 5:
+ *   - updateHeaderGameState() called on every state transition
+ *   - Turn counter shown in header during play
+ *   - Winner ID passed to header on GAME OVER
+ *   - All module imports bumped to ?v=6
  */
 
-import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=5';
-import { resolveActiveCityId } from '../city/city_ui.js?v=5';
-import { renderLayout } from '../ui/layout.js?v=5';
-import { setHeaderStatus, setStartButtonState } from '../ui/header_bar.js?v=5';
-import { updateHandFromState, resetHandDisplay } from '../ui/hand_panel.js?v=5';
+import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=6';
+import { resolveActiveCityId } from '../city/city_ui.js?v=6';
+import { renderLayout } from '../ui/layout.js?v=6';
+import { setHeaderStatus, setStartButtonState, updateHeaderGameState } from '../ui/header_bar.js?v=6';
+import { updateHandFromState, resetHandDisplay } from '../ui/hand_panel.js?v=6';
 import {
   renderScorePanel,
   updateStatusFromState,
@@ -23,9 +23,9 @@ import {
   appendLogEntry,
   setLogEntries,
   clearLog,
-} from '../ui/score_panel.js?v=5';
-import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=5';
-import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=5';
+} from '../ui/score_panel.js?v=6';
+import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=6';
+import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=6';
 import {
   initSession,
   playOneTurn,
@@ -43,12 +43,12 @@ import {
 
 // ── App state ─────────────────────────────────────────────────────────────────
 
-let _cityId      = null;
-let _profile     = null;
-let _datasets    = null;
-let _registry    = null;
-let _cities      = [];
-let _uiMode      = 'idle';
+let _cityId   = null;
+let _profile  = null;
+let _datasets = null;
+let _registry = null;
+let _cities   = [];
+let _uiMode   = 'idle';
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
@@ -60,10 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function boot() {
-  console.log('[GUNOS V1] Booting platform (Phase 5)...');
+  console.log('[GUNOS V1] Booting platform (Phase 6)...');
   setHeaderStatus('Booting...', 'loading');
 
-  // ── Step 1: Resolve active city ──────────────────────────────────────────
   setHeaderStatus('Loading city...', 'loading');
 
   let cityId, registry;
@@ -76,7 +75,6 @@ async function boot() {
     throw new Error(`City registry load failed: ${err.message}`);
   }
 
-  // ── Step 2: Load city profile ────────────────────────────────────────────
   let profile;
   try {
     profile = await loadCityProfile(cityId);
@@ -84,7 +82,6 @@ async function boot() {
     throw new Error(`City profile load failed for "${cityId}": ${err.message}`);
   }
 
-  // ── Step 3: Pre-load city datasets (Phase 5: includes metrics + lines_master) ──
   setHeaderStatus('Loading datasets...', 'loading');
   let datasets = {};
   try {
@@ -93,16 +90,13 @@ async function boot() {
     console.warn(`[GUNOS V1] Dataset load warning for ${cityId}:`, err.message);
   }
 
-  // ── Step 4: Load available cities ────────────────────────────────────────
   const cities = await listAvailableCities();
 
-  // ── Step 5: Store in module state ────────────────────────────────────────
   _cityId   = cityId;
   _profile  = profile;
   _datasets = datasets;
   _cities   = cities;
 
-  // ── Step 6: Render layout (pass stationGraph to map panel) ───────────────
   const registryEntry = registry.cities.find(c => c.city_id === cityId);
 
   renderLayout({
@@ -114,14 +108,12 @@ async function boot() {
     onReset: _handleReset,
   });
 
-  // ── Step 7: Inject turn controls ─────────────────────────────────────────
   _injectTurnControls();
-
-  // ── Step 8: Set idle state ────────────────────────────────────────────────
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
+  updateHeaderGameState('idle', null, null);
 
-  console.log('[GUNOS V1] Phase 5 shell ready.');
+  console.log('[GUNOS V1] Phase 6 shell ready.');
 }
 
 // ── START handler ─────────────────────────────────────────────────────────────
@@ -129,7 +121,6 @@ async function boot() {
 async function _handleStart() {
   if (_uiMode === 'running') return;
 
-  // If result panel is showing, restore score panel first
   if (_uiMode === 'finished') {
     hideResultPanel();
     renderScorePanel({ profile: _profile });
@@ -139,6 +130,7 @@ async function _handleStart() {
   setHeaderStatus('Starting...', 'loading');
   setStartButtonState('playing');
   _setTurnButtonsEnabled(false);
+  updateHeaderGameState('loading', null, null);
 
   try {
     const guno6Base = _resolveGuno6Base();
@@ -153,6 +145,7 @@ async function _handleStart() {
     _setUiMode('running');
     setHeaderStatus('Running', 'playing');
     _setTurnButtonsEnabled(true);
+    updateHeaderGameState('running', gameState.turnCount, null);
 
     _updateAllPanels(gameState);
     setLogEntries(getLog());
@@ -162,6 +155,7 @@ async function _handleStart() {
     _setUiMode('error');
     setHeaderStatus(`Error: ${err.message}`, 'error');
     setStartButtonState('ready');
+    updateHeaderGameState('error', null, null);
     appendLogEntry(`[ERROR] ${err.message}`, 'warn');
   }
 }
@@ -171,7 +165,6 @@ async function _handleStart() {
 function _handleReset() {
   resetSession();
 
-  // If result panel is showing, restore score panel
   if (_uiMode === 'finished') {
     hideResultPanel();
     renderScorePanel({ profile: _profile });
@@ -181,6 +174,7 @@ function _handleReset() {
   setHeaderStatus('Ready', 'idle');
   setStartButtonState('ready');
   _setTurnButtonsEnabled(false);
+  updateHeaderGameState('idle', null, null);
 
   resetHandDisplay();
   updateStatusFromState(null, 'idle');
@@ -223,6 +217,7 @@ function _handleAutoPlay() {
       _handleGameOver();
     } else {
       _setTurnButtonsEnabled(true);
+      updateHeaderGameState('running', gameState.turnCount, null);
     }
   } catch (err) {
     console.error('[GUNOS V1] autoPlay error:', err);
@@ -231,7 +226,7 @@ function _handleAutoPlay() {
   }
 }
 
-// ── GAME OVER handler (Phase 5) ───────────────────────────────────────────────
+// ── GAME OVER handler ─────────────────────────────────────────────────────────
 
 function _handleGameOver() {
   _setUiMode('finished');
@@ -239,32 +234,31 @@ function _handleGameOver() {
   setStartButtonState('ready');
   _setTurnButtonsEnabled(false);
 
-  // Compute final results and show result panel
   try {
     const results = computeFinalResults();
     if (results) {
+      updateHeaderGameState('finished', results.turnCount, results.winner ?? null);
       showResultPanel(results);
     }
   } catch (err) {
     console.warn('[GUNOS V1] Result panel error:', err.message);
-    // Fall back gracefully — score panel stays visible
+    updateHeaderGameState('finished', null, null);
   }
 }
 
 // ── UI update helpers ─────────────────────────────────────────────────────────
 
 function _updateAllPanels(gameState) {
-  // Map panel
   const graph = getStationGraph() ?? _datasets?.station_graph ?? null;
   updateMapFromState(gameState, _uiMode, graph);
-
-  // Hand panel
   updateHandFromState(gameState);
-
-  // Status panel
   updateStatusFromState(gameState, _uiMode);
 
-  // Phase 5: live score panel
+  // Phase 6: update header turn counter during play
+  if (_uiMode === 'running' && gameState) {
+    updateHeaderGameState('running', gameState.turnCount, null);
+  }
+
   try {
     const scores = computeAllLiveScores();
     updateLiveScores(scores);
@@ -274,7 +268,7 @@ function _updateAllPanels(gameState) {
 }
 
 function _syncLog() {
-  const allLog = getLog();
+  const allLog  = getLog();
   const logArea = document.getElementById('log-area');
   if (!logArea) return;
 
@@ -309,24 +303,16 @@ function _setTurnButtonsEnabled(enabled) {
   if (auto)  auto.disabled  = !enabled;
 }
 
-// ── Dataset loading (Phase 5: adds station_metrics + lines_master) ────────────
+// ── Dataset loading ───────────────────────────────────────────────────────────
 
 async function _loadCityDatasets(cityId, profile) {
   const datasets = {};
-
-  // Phase 4 keys + Phase 5 scoring keys
-  const keys = [
-    'station_graph',
-    'station_lines',
-    'station_metrics',
-    'lines_master',
-  ];
+  const keys = ['station_graph', 'station_lines', 'station_metrics', 'lines_master'];
 
   await Promise.all(keys.map(async key => {
     try {
       const url = resolveDatasetUrl(key, profile);
       if (!url) {
-        console.warn(`[GUNOS V1] No URL for dataset "${key}" in ${cityId} — skipping`);
         datasets[key] = null;
         return;
       }

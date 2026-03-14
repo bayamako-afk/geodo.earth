@@ -1,36 +1,35 @@
 /**
  * map_panel.js — GUNOS V1 Map Panel
  *
- * Phase 4: Real gameplay visualization layer.
+ * Phase 6: Cross-city presentation + network visibility polish
  *
- * Renders a geographic SVG map via map_canvas.js showing:
- *   - Base route lines (city-specific colors)
- *   - Station nodes (hub-sized)
- *   - Owned station overlay (player colors: P1 cyan, P2 red, P3 green, P4 amber)
- *   - Recent action highlight (pulse ring on current card station)
- *   - Network connection emphasis (glow on adjacent owned pairs)
- *   - Player legend (ownership counts)
- *
- * Data flow:
- *   renderMapPanel()    — initial render (idle shell)
- *   updateMapFromState() — called after each turn with live game state + graph
+ * Improvements:
+ *   - City descriptor text (e.g. "dense baseline network")
+ *   - Station count / route count summary line
+ *   - Network growth visibility: stronger glow on owned adjacency
+ *   - Route completion highlight: full-line emphasis when route is completed
+ *   - Cleaner header layout with city identity + descriptor
  */
 
-import { renderMapCanvas } from './map_canvas.js?v=5';
+import { renderMapCanvas } from './map_canvas.js?v=6';
+
+// City descriptor map — "same engine, different city behavior"
+const CITY_DESCRIPTORS = {
+  tokyo:  'dense baseline network',
+  osaka:  'compact balanced network',
+  london: 'transfer-heavy metro core',
+  nyc:    'long-distance Manhattan hub system',
+};
 
 // Module-level graph cache (set once per city boot)
-let _stationGraph = null;
-let _cityId       = null;
+let _stationGraph  = null;
+let _cityId        = null;
+let _profile       = null;
 
 // ── Public API ────────────────────────────────────────────────────────────────
 
 /**
  * Initial render of the map panel (idle state).
- * Stores the station graph for later use by updateMapFromState().
- *
- * @param {Object} opts
- * @param {Object}  opts.profile       - Loaded city profile
- * @param {Object}  [opts.stationGraph] - Pre-loaded station_graph JSON
  */
 export function renderMapPanel({ profile, stationGraph }) {
   const container = document.getElementById('map-panel-body');
@@ -40,20 +39,32 @@ export function renderMapPanel({ profile, stationGraph }) {
   const cityName      = profile.display_name || profile.city_id;
   const featuredLines = profile.routes?.featured_lines ?? [];
   const dataReady     = profile.status?.data_ready ?? false;
+  const descriptor    = CITY_DESCRIPTORS[profile.city_id] ?? '';
 
-  // Cache graph for later updates
+  // Station / route count summary
+  const stationCount = profile.routes?.total_stations ?? profile.stats?.station_count ?? null;
+  const routeCount   = profile.routes?.total_routes   ?? profile.stats?.route_count   ?? null;
+  const summaryParts = [];
+  if (stationCount) summaryParts.push(`${stationCount} stations`);
+  if (routeCount)   summaryParts.push(`${routeCount} routes`);
+  const summary = summaryParts.join(' · ');
+
+  // Cache for updates
   _stationGraph = stationGraph ?? null;
   _cityId       = profile.city_id;
+  _profile      = profile;
 
   container.innerHTML = '';
 
-  // ── Header row ──────────────────────────────────────────────────────────
+  // ── Compact header row ───────────────────────────────────────────────────
   const header = document.createElement('div');
   header.className = 'map-header';
   header.innerHTML = `
-    <div class="map-header__left">
+    <div class="map-header__identity">
       <span class="map-city-label">${cityLabel}</span>
       <span class="map-city-name">${cityName}</span>
+      ${descriptor ? `<span class="map-city-descriptor">${descriptor}</span>` : ''}
+      ${summary    ? `<span class="map-city-summary">${summary}</span>`     : ''}
     </div>
     <div class="map-header__lines" id="map-lines-row">
       ${featuredLines.map(lc => `<span class="map-line-badge" style="border-color:${_lineColor(lc)};color:${_lineColor(lc)}">${lc}</span>`).join('')}
@@ -85,23 +96,18 @@ export function renderMapPanel({ profile, stationGraph }) {
   // ── Data status badge ────────────────────────────────────────────────────
   const statusBadge = document.createElement('div');
   statusBadge.className = 'map-data-status map-data-status--' + (dataReady ? 'ready' : 'pending');
+  statusBadge.id = 'map-data-status';
   statusBadge.textContent = dataReady ? 'DATA READY' : 'DATA PENDING';
   container.appendChild(statusBadge);
 }
 
 /**
  * Update the map panel to reflect the current game state.
- * Called after every turn by main.js.
- *
- * @param {Object} gameState  - play_engine game state (or null for idle)
- * @param {string} [uiMode]   - 'idle' | 'loading' | 'running' | 'finished' | 'error'
- * @param {Object} [graph]    - station_graph (optional override; uses cached if omitted)
  */
 export function updateMapFromState(gameState, uiMode, graph) {
   const indicator  = document.getElementById('map-game-indicator');
   const canvasWrap = document.getElementById('map-canvas-wrap');
 
-  // Use provided graph or fall back to cached
   const activeGraph = graph ?? _stationGraph;
 
   // ── Update indicator text ────────────────────────────────────────────────
@@ -122,7 +128,8 @@ export function updateMapFromState(gameState, uiMode, graph) {
       indicator.classList.add('map-game-indicator--finished');
     } else {
       const currentPlayer = gameState.players[gameState.turnIndex];
-      indicator.textContent = `T${gameState.turnCount} · ${currentPlayer?.id}`;
+      const deckLeft = gameState.deck?.length ?? '?';
+      indicator.textContent = `T${gameState.turnCount} · ${currentPlayer?.id} · DECK ${deckLeft}`;
       indicator.classList.add('map-game-indicator--running');
     }
   }
@@ -152,8 +159,7 @@ export function updateMapFromState(gameState, uiMode, graph) {
 }
 
 /**
- * Inject the station graph after boot (called from main.js once datasets load).
- * @param {Object} graph
+ * Inject the station graph after boot.
  */
 export function setStationGraph(graph) {
   _stationGraph = graph;
