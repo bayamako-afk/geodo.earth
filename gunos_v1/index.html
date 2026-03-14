@@ -984,6 +984,20 @@
       font-family: var(--font-sans);
     }
 
+    /* V1.1 Task 04: hidden labels — revealed on parent node hover */
+    .map-node {
+      pointer-events: all;
+      cursor: default;
+    }
+    .map-node-label--hidden {
+      opacity: 0 !important;
+      transition: opacity 0.15s ease;
+      pointer-events: none;
+    }
+    .map-node:hover .map-node-label--hidden {
+      opacity: 0.85 !important;
+    }
+
     .map-legend-label {
       font-family: var(--font-mono);
     }
@@ -1763,7 +1777,7 @@
 <div id="boot-error"></div>
 
 <!-- App entry point -->
-<script type="module" src="src/app/main.js?v=9"></script>
+<script type="module" src="src/app/main.js?v=10"></script>
 
 </body>
 </html>

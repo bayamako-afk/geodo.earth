@@ -34,12 +34,24 @@ const LINE_COLORS = {
 
 // ── Public API ────────────────────────────────────────────────────────────────
 
+// V1.1 Task 04: label visibility threshold by city size
+// Calibrated to actual hub_degree distributions per city:
+//   Tokyo  (86 nodes):  max deg 3 → show deg≥2 (16 hubs)
+//   Osaka  (85 nodes):  max deg 3 → show deg≥2  (7 hubs)
+//   London (162 nodes): max deg 4 → show deg≥3 (13 hubs)
+//   NYC    (152 nodes): max deg 6 → show deg≥3 (25 hubs)
+function _labelThreshold(nodeCount) {
+  if (nodeCount >= 100) return 3;  // London / NYC: only degree ≥3
+  return 2;                         // Tokyo / Osaka: degree ≥2
+}
+
 export function renderMapCanvas(container, graph, renderOpts = {}) {
   if (!container || !graph?.nodes?.length) return;
 
   const { players = [], currentCardId = null, uiMode = 'idle' } = renderOpts;
 
   const proj           = _buildProjection(graph.nodes);
+  const labelMinDeg    = _labelThreshold(graph.nodes.length);
   const ownerMap       = _buildOwnerMap(players);
   const ownedSet       = new Set(Object.keys(ownerMap));
   const connectedPairs = _findConnectedOwnedPairs(graph.edges, ownedSet);
@@ -304,8 +316,12 @@ function _buildSVG(
     });
     g.appendChild(circle);
 
-    // Labels: owned, hub, or current — always in non-idle mode
-    if ((isOwned || isHub || isCurrent) && uiMode !== 'idle') {
+    // V1.1 Task 04: Labels — always show owned/current; hub labels filtered by degree threshold
+    // Non-qualifying hub labels are rendered hidden and revealed on node hover via CSS
+    const showLabel = isOwned || isCurrent || (isHub && hubDeg >= labelMinDeg);
+    const hideLabel = !showLabel && isHub && uiMode !== 'idle';
+
+    if ((showLabel || hideLabel) && uiMode !== 'idle') {
       const label = _el('text', {
         x:             pt.x,
         y:             pt.y - r - 3,
@@ -314,7 +330,7 @@ function _buildSVG(
         fill:          isOwned ? PLAYER_COLORS[owner] : (isCurrent ? '#ffffff' : '#8b949e'),
         'font-weight': (isCurrent || (isConnected && isOwned)) ? 'bold' : 'normal',
         opacity:       isOwned ? (isConnected ? '1' : '0.7') : '0.9',
-        class:         'map-node-label',
+        class:         hideLabel ? 'map-node-label map-node-label--hidden' : 'map-node-label',
       });
       label.textContent = node.station_name;
       g.appendChild(label);
