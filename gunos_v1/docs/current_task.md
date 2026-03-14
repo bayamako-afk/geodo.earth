@@ -1,140 +1,103 @@
 # Task
-GUNOS V1.1 Task 02 — Live Route / Hub Score Integration
+GUNOS V1.1 Task 03 — Route+ Completion Bonus Result Panel Verification
 
 ## Goal
-- GUNOS V1 main runtime で、`Route+` と `Hub+` が見た目だけでなく **実際の live score として動作する状態** にする
-- score panel / result panel / current game state の数値整合を取る
-- Task 01 で改善した route / network visibility と、score 側の意味づけを一致させる
-
-完了条件:
-- `Route+` が live score として非ゼロで変化し得る
-- `Hub+` が live score として非ゼロで変化し得る
-- score panel に表示される `Station / Route / Hub / Total` が current owned state と整合する
-- result panel の最終内訳が live score と矛盾しない
-- Tokyo / Osaka / London / NYC の4都市で破綻せず動く
-- `guno_v6/` は無変更のまま維持する
+- `Route+` の完成ボーナスが live score だけでなく result panel にも正しく反映されることを確認・修正する
+- 特に NYC の 1駅路線のような極端なケースでも、路線完成判定と最終集計が破綻しない状態にする
+- `computeRouteScoreSync` の出力が `computeFinalResults()` に正しく受け渡され、UI 上で確認できる状態にする
 
 ## Current State
-- プロジェクト:
-  - `guno_v6/` = source-of-truth engine / data environment
-  - `gunos_v1/` = platform-facing playable runtime
+- プロジェクト: `geodo.earth/gunos_v1`
 - 現在の状況:
-  - GUNOS V1 milestone は完成済み
-  - V1.1 Task 01 で route / network visibility polish を実施済み
-  - `current_result.md` 上では、route/network の見え方は改善された
-  - ただし、`Route+` / `Hub+` の live score は未解決の可能性がある
-- 既知課題:
-  - score panel 上の `Route+` / `Hub+` が 0 固定、または実状態と乖離している可能性
-  - result panel の最終内訳と in-game live score の関係が十分明確でない
-  - 都市ごとの score schema 差異があるため、adapter 層での吸収が必要
+  - V1 milestone 完了
+  - V1.1 backlog 作成済み
+  - Task 01 完了
+  - Task 02 完了
+- 最新結果:
+  - `docs/current_result.md` は `GUNOS V1.1 Task 02 — Route+ / Hub+ Live Score Activation`
+  - commit は `679dc4c`
+- 現在の実装状況:
+  - `Route+` は live score 上では実動化済み
+  - `Hub+` は全4都市（Tokyo / Osaka / London / NYC）で動作済み
+  - score panel に Route 進捗バーと Hub 駅名バッジは追加済み
+- 残課題:
+  - NYC の `4 Train 2/1` のように、所有駅数が路線総駅数を超えて見えるケースがある
+  - `Route+` の完成ボーナスが result panel に最終反映されているか未確認
+  - `computeRouteScoreSync` と `computeFinalResults()` の接続確認が必要
 - 対象URL:
-  - `http://localhost:8080/gunos_v1/`
-  - `http://localhost:8080/gunos_v1/?city=tokyo`
-  - `http://localhost:8080/gunos_v1/?city=osaka`
-  - `http://localhost:8080/gunos_v1/?city=london`
-  - `http://localhost:8080/gunos_v1/?city=nyc`
-- 関連ファイル:
-  - `gunos_v1/src/game/game_session.js`
-  - `gunos_v1/src/ui/score_panel.js`
-  - `gunos_v1/src/ui/result_panel.js`
-  - `gunos_v1/src/app/main.js`
-  - `gunos_v1/src/state/store.js`
-  - 必要なら `gunos_v1/src/ui/map_panel.js`（scoreとの対応確認用）
-- 参照元:
-  - `guno_v6/` 側の scoring / engine ロジック
-  - `gunos_v1/docs/current_result.md`
+  - `https://geodo.earth/gunos_v1/`
+- 関連ファイル候補:
+  - `src/game/game_session.js`
+  - `src/game/final_score_engine.js`
+  - `src/game/network_hub_bonus.js`
+  - `src/ui/score_panel.js`
+  - `src/ui/result_panel.js` または result panel 関連ファイル
+  - `src/app/main.js`
+  - `index.html`
 - 前提メモ:
-  - scoring truth は `guno_v6/` 側を優先する
-  - GUNOS V1 側で parallel scoring system を新設しない
-  - 必要なら `game_session.js` に adapter を追加して bridge する
+  - Task 02 では `computeRouteScoreSync` を `game_session.js` に直接 import して live score 側を実動化済み
+  - 今回は「Route+ の完成ボーナスが result panel に正しく載るか」の検証と修正が主目的
+  - 必要なら NYC の 1駅路線データも含めて原因を追うこと
 
 ## Constraints
-- 触ってよい範囲:
-  - `gunos_v1/src/game/`
-  - `gunos_v1/src/ui/`
-  - `gunos_v1/src/app/`
-  - `gunos_v1/src/state/`
-  - 必要最小限の CSS
-- 触らない範囲:
-  - `guno_v6/` の engine / scoring / city data / docs
-  - online architecture
-  - city package データ自体
-- デザイン維持条件:
-  - 既存の map-first UI を壊さない
-  - product-like layout を維持する
-  - score panel は見やすく、debug化しすぎない
-- 既存機能を壊さない:
-  - city switching
-  - START / RESET / PLAY 1 / AUTO
-  - GAME OVER / result panel
-  - 4都市対応
-- 今回やらないこと:
-  - score engine の大幅再設計
-  - replay
-  - online stabilization
-  - city comparison dashboard
-  - special cards
-  - 新しい gameplay rule 追加
+- 既存機能を壊さない
+- Task 02 で完成した live score / Hub+ / Route progress 表示は壊さない
+- UI 全体のデザイン変更は最小限にする
+- 今回の主対象は `Route+` の最終集計と result panel 反映
+- London / NYC のラベル可読性改善やスコア正規化は今回やらない
+- 指定のない範囲は極力触らない
+- キャッシュバスターを更新した場合は、更新箇所を明示する
 
 ## Work Items
-1. `game_session.js` で live score 計算の source を整理する
-   - `Station`
-   - `Route`
-   - `Hub`
-   - `Network`
-   - `Total`
-   の current values を、現在の owned state から取得できるようにする
-   - scoring truth は既存 `guno_v6/` ロジックを優先する
-   - 必要なら adapter 関数を追加する
-   - 4都市スキーマ差異をここで吸収する
-
-2. `Route+` の live score を実動化する
-   - current owned state に応じて route contribution が非ゼロで出るか確認する
-   - 0固定になっている場合は原因を特定し、V1 側 adapter で安全に修正する
-   - live score と final result の route contribution が矛盾しないようにする
-
-3. `Hub+` の live score を実動化する
-   - current owned state に応じて hub contribution が非ゼロで出るか確認する
-   - 0固定や city差異がある場合は原因を整理する
-   - Tokyo / Osaka / London / NYC のメトリクス差異を adapter 側で吸収する
-
-4. `score_panel.js` を live score 前提で整理する
-   - `Station / Route / Hub / Network / Total` を current state に応じて表示する
-   - 値が変化したときに panel が自然に更新されるようにする
-   - どのプレイヤーが何でリードしているか分かりやすくする
-   - ただし全面 redesign ではなく、既存UIの延長でよい
-
-5. `result_panel.js` との整合を取る
-   - GAME OVER 時の最終スコア内訳と、live score の最終状態が大きく矛盾しないようにする
-   - winner explanation に `Route+` / `Hub+` が本当に効いているなら、それが読めるようにする
-   - “why won” 表示が実数値と一致するようにする
-
-6. 4都市で検証する
-   - Tokyo
-   - Osaka
-   - London
-   - NYC
-   で、
-   - START
-   - PLAY 1
-   - AUTO
-   - GAME OVER
-   を確認する
-   - `Route+` / `Hub+` がずっと 0 のままではないか確認する
-   - コンソールエラーがないか確認する
-
-7. `current_result.md` に対応した実測の整合を取る
-   - Task 01 の残課題だった `Route+ / Hub+ unresolved` を今回解消できたか明記できるようにする
-   - もし一部都市でまだ制約が残るなら、正直に残課題として整理する
+1. `Route+` の live score 計算系と final result 計算系の経路を整理する  
+   - `computeRouteScoreSync`
+   - `computeFinalResults()`
+   - result panel 表示処理
+   のつながりを確認する
+2. `Route+` の完成ボーナスが最終結果に含まれていない場合、どこで欠落しているか特定する  
+   - 計算自体はできているが UI に出ていないのか
+   - そもそも final result 側で再計算されていないのか
+   - データ引き渡し時に欠落しているのか
+   を切り分ける
+3. NYC の 1駅路線ケースを重点確認する  
+   - `4 Train 2/1`
+   - `7 Train 1/1`
+   のような表示がなぜ起きるか確認する
+4. 路線進捗の分母・分子の整合性を確認する  
+   - 路線総駅数
+   - プレイヤー所有駅数
+   - 重複カウント
+   - 同一駅の複数路線所属
+   を点検する
+5. 必要に応じて `computeRouteScoreSync` 側または result 集計側を修正する  
+   - 1駅路線でも正しく完成判定できること
+   - 同一駅の重複加算で分子が分母を不自然に超えないこと
+   - result panel に `Route+` が正しく表示されること
+6. result panel に `Route+` の値が見える形で反映されているか確認する  
+   - プレイヤー別に Route+ が判読できること
+   - live score と final result の解釈が大きくズレないこと
+7. Tokyo / Osaka / London / NYC の4都市で再テストする  
+   - 少なくともコンソールエラー 0
+   - result panel 表示破綻なし
+   - Task 02 の UI 要素が維持されていること
 
 ## Expected Output
 - 変更ファイル一覧
-- live score の計算元をどう整理したか
-- `Route+` の問題の原因と修正内容
-- `Hub+` の問題の原因と修正内容
-- `score_panel.js` でどう見せ方を改善したか
-- `result_panel.js` との整合をどう取ったか
-- Tokyo / Osaka / London / NYC の確認結果
-- コンソールエラー有無
+- 変更内容要約
+- `Route+` が result panel に反映されたかどうかの明記
+- NYC の 1駅路線ケースの原因と対処内容
+- 4都市テスト結果
+- コンソールエラー件数
 - 未解決点
 - 次の推奨アクション
+
+## Completion Report に必ず書いてほしいこと
+- `Route+` の live score と result panel の関係をどう整理したか
+- `computeRouteScoreSync` と `computeFinalResults()` の接続をどう確認・修正したか
+- NYC の `4 Train 2/1` が
+  - 表示上の問題なのか
+  - データ構造上の問題なのか
+  - カウントロジック上の問題なのか
+  を明記すること
+- 修正後、result panel 上で `Route+` が確認できた具体例を1つ以上書くこと
+- 次タスク候補があれば `Task 04` 以降として提案すること
