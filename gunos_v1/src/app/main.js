@@ -13,7 +13,7 @@
 
 import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=8';
 import { resolveActiveCityId } from '../city/city_ui.js?v=8';
-import { renderLayout } from '../ui/layout.js?v=8';
+import { renderLayout } from '../ui/layout.js?v=12';
 import { setHeaderStatus, setStartButtonState, updateHeaderGameState } from '../ui/header_bar.js?v=8';
 import { updateHandFromState, resetHandDisplay } from '../ui/hand_panel.js?v=8';
 import {
@@ -24,6 +24,7 @@ import {
   setLogEntries,
   clearLog,
 } from '../ui/score_panel.js?v=8';
+import { renderCityComparePanel } from '../ui/city_compare_panel.js?v=1';
 import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=8';
 import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=8';
 import {
@@ -124,6 +125,7 @@ async function _handleStart() {
   if (_uiMode === 'finished') {
     hideResultPanel();
     renderScorePanel({ profile: _profile });
+    renderCityComparePanel(_cityId);
   }
 
   _setUiMode('loading');
@@ -168,6 +170,7 @@ function _handleReset() {
   if (_uiMode === 'finished') {
     hideResultPanel();
     renderScorePanel({ profile: _profile });
+    renderCityComparePanel(_cityId);
   }
 
   _setUiMode('idle');
@@ -239,6 +242,7 @@ function _handleGameOver() {
     if (results) {
       updateHeaderGameState('finished', results.turnCount, results.winner ?? null);
       showResultPanel(results);
+      renderCityComparePanel(_cityId);
     }
   } catch (err) {
     console.warn('[GUNOS V1] Result panel error:', err.message);

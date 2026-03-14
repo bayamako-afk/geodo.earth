@@ -1603,6 +1603,145 @@
       }
     }
 
+    /* ── Task 05: Responsive score / result panel polish ──────────────────── */
+
+    /* Narrow screens: tighten score panel */
+    @media (max-width: 480px) {
+      .score-player-block {
+        padding: 4px 6px;
+        margin-bottom: 4px;
+      }
+
+      .score-player-total {
+        font-size: 11px;
+      }
+
+      .score-breakdown-compact {
+        gap: 2px;
+        padding: 0 4px 4px;
+      }
+
+      .score-breakdown-bar-row {
+        font-size: 10px;
+      }
+
+      .score-route-progress {
+        grid-template-columns: 44px 1fr 24px;
+        gap: 3px;
+      }
+
+      .score-route-name {
+        font-size: 8px;
+      }
+
+      .score-route-pct {
+        font-size: 8px;
+      }
+
+      .score-hub-names {
+        gap: 2px;
+        margin-left: 4px;
+      }
+
+      .score-hub-name {
+        font-size: 8px;
+        max-width: 80px;
+        padding: 1px 3px;
+      }
+
+      /* Result panel narrow */
+      .result-breakdown-value--route,
+      .result-breakdown-value--station {
+        max-width: 55%;
+        font-size: 9px;
+      }
+
+      .result-winner-announce__name {
+        font-size: 16px;
+      }
+
+      .result-winner-announce__score {
+        font-size: 11px;
+      }
+    }
+
+    /* ── Task 05: City Comparison Mini-panel ─────────────────────────────── */
+    .city-compare-panel {
+      border-top: 1px solid var(--c-border-soft);
+      padding: 6px 10px;
+      flex-shrink: 0;
+    }
+
+    .city-compare-panel__title {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--c-text-dim);
+      margin-bottom: 5px;
+    }
+
+    .city-compare-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .city-compare-cell {
+      background: var(--c-surface-2);
+      border: 1px solid var(--c-border);
+      border-radius: 3px;
+      padding: 4px 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .city-compare-cell--active {
+      border-color: var(--c-city);
+      background: rgba(88,166,255,0.06);
+    }
+
+    .city-compare-cell__name {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--c-city);
+    }
+
+    .city-compare-cell--active .city-compare-cell__name {
+      color: var(--c-city);
+    }
+
+    .city-compare-cell__stat {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--c-text);
+      white-space: nowrap;
+    }
+
+    .city-compare-cell__stat--muted {
+      font-size: 8px;
+      color: var(--c-text-dim);
+    }
+
+    .city-compare-cell__trait {
+      font-size: 8px;
+      color: var(--c-text-dim);
+      font-style: italic;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Narrow: stack comparison cells 2x2 */
+    @media (max-width: 480px) {
+      .city-compare-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     /* ── Task 02: Route progress bars ─────────────────────────────────────── */
     .score-route-progress {
       display: grid;
@@ -1777,7 +1916,7 @@
 <div id="boot-error"></div>
 
 <!-- App entry point -->
-<script type="module" src="src/app/main.js?v=10"></script>
+<script type="module" src="src/app/main.js?v=12"></script>
 
 </body>
 </html>

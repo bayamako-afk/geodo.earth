@@ -19,6 +19,7 @@ import { renderHeaderBar, setHeaderStatus } from './header_bar.js?v=5';
 import { renderMapPanel }   from './map_panel.js?v=5';
 import { renderHandPanel }  from './hand_panel.js?v=5';
 import { renderScorePanel } from './score_panel.js?v=7';
+import { renderCityComparePanel } from './city_compare_panel.js?v=1';
 
 /**
  * Render the complete GUNOS V1 play screen layout.
@@ -35,6 +36,7 @@ export function renderLayout({ profile, registryEntry, cities, stationGraph, onS
   renderMapPanel({ profile, stationGraph: stationGraph ?? null });
   renderHandPanel({ profile });
   renderScorePanel({ profile });
+  renderCityComparePanel(profile.city_id);
 
   setHeaderStatus('Ready', 'idle');
 
