@@ -1,5 +1,11 @@
 # Completion Report
 
+| Key | Value |
+|---|---|
+| **Updated At** | 2026-03-14 (JST) |
+| **Commit** | `679dc4c` |
+| **Scope** | GUNOS V1.1 Task 02 — Route+ / Hub+ Live Score Activation |
+
 ## Summary
 
 **Task**: GUNOS V1.1 Task 02 — Route+ / Hub+ Live Score Activation
