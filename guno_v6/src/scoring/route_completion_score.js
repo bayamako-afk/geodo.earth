@@ -44,12 +44,17 @@ function resolveDataUrls(baseUrl) {
  * Look up bonus values based on route_total (number of stations on the route).
  * @param {number} routeTotal
  * @returns {{ full: number, partial: number }}
+ *
+ * V1.2 Task 02: Added bonus for shorter routes (4-5 stations) to make
+ * Route+ more accessible. Previously routes < 6 stations gave no bonus,
+ * which meant Route+ was rarely achievable in a typical 12-20 turn game.
  */
 function getBonusValues(routeTotal) {
   if (routeTotal >= 10) return { full: 20, partial: 5 };
   if (routeTotal >= 8)  return { full: 15, partial: 4 };
   if (routeTotal >= 6)  return { full: 10, partial: 3 };
-  // Shorter routes (< 6): no bonus defined in spec; return 0
+  if (routeTotal >= 4)  return { full: 6,  partial: 2 };  // V1.2: short route bonus
+  // Very short routes (< 4): no bonus
   return { full: 0, partial: 0 };
 }
 
@@ -153,7 +158,13 @@ async function computeRouteScore(playerStations, options) {
     const routeTotal = routeStations[lineId] ? routeStations[lineId].size : 0;
     const info       = lineInfo[lineId] || {};
     const bonuses    = getBonusValues(routeTotal);
-    const threshold  = routeTotal / 2;
+    // V1.2 Task 02: Lowered partial threshold from 50% to 33%
+    // Old: threshold = routeTotal / 2  (need half the route for partial bonus)
+    // New: threshold = routeTotal / 3  (need 1/3 of the route for partial bonus)
+    // Rationale: In a typical 12-20 turn game, completing half a 30-station route
+    // is nearly impossible, making Route+ effectively decorative. 1/3 threshold
+    // makes partial bonuses achievable while full completion remains a stretch goal.
+    const threshold  = routeTotal / 3;
 
     let bonus = 0;
     let status = 'none';
@@ -251,7 +262,8 @@ function computeRouteScoreSync(playerStations, stationLines, linesMaster) {
     const routeTotal = routeStations[lineId] ? routeStations[lineId].size : 0;
     const info       = lineInfo[lineId] || {};
     const bonuses    = getBonusValues(routeTotal);
-    const threshold  = routeTotal / 2;
+    // V1.2 Task 02: Lowered partial threshold from 50% to 33%
+    const threshold  = routeTotal / 3;
 
     let bonus = 0;
     let status = 'none';

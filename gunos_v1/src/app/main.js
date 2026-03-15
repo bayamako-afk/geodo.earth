@@ -40,7 +40,7 @@ import {
   getStationGraph,
   computeAllLiveScores,
   computeFinalResults,
-} from '../game/game_session.js?v=8';
+} from '../game/game_session.js?v=13';
 
 // ── App state ─────────────────────────────────────────────────────────────────
 

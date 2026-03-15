@@ -22,7 +22,7 @@ import {
 
 import {
   computeRouteScoreSync,
-} from '../../../guno_v6/src/scoring/route_completion_score.js';
+} from '../../../guno_v6/src/scoring/route_completion_score.js?v=2';
 
 // ── Session state ─────────────────────────────────────────────────────────────
 
@@ -270,47 +270,81 @@ export function getStationGraph() { return _session?.stationGraph ?? null; }
 
 /**
  * Compute station score sum from preloaded metrics.
+ *
+ * V1.2 Task 02: Added city-scale normalization.
+ * London/NYC station scores are ~5x smaller than Tokyo/Osaka (avg 1.1-1.4 vs 6.8).
+ * Without normalization, Hub+ (fixed +4/+2/+1 pts) dominates London/NYC scoring
+ * (66-74% of total vs ~20% for Tokyo/Osaka).
+ *
+ * Normalization: multiply station scores by (TARGET_AVG / city_avg_score)
+ * where TARGET_AVG = 6.0 (close to Tokyo/Osaka average).
+ * This keeps the scoring scale consistent across all cities.
  */
+const STATION_SCORE_TARGET_AVG = 6.0;
+
 function _computeStationScore(owned, stationMetrics) {
   const metrics = Array.isArray(stationMetrics) ? stationMetrics
     : (stationMetrics?.stations || []);
   const metricsMap = new Map(metrics.map(m => [m.station_global_id, m]));
+
+  // Compute city average score for normalization
+  const allRawScores = metrics.map(m => m.score_total ?? m.composite_score ?? m.hub_score ?? 0);
+  const cityAvg = allRawScores.length > 0
+    ? allRawScores.reduce((a, b) => a + b, 0) / allRawScores.length
+    : 1;
+  // Scale factor: normalize to TARGET_AVG; cap at 5x to avoid extreme scaling
+  const scaleFactor = cityAvg > 0
+    ? Math.min(5.0, STATION_SCORE_TARGET_AVG / cityAvg)
+    : 1.0;
+
   let station_score = 0;
   const station_details = [];
   for (const gid of owned) {
     const m = metricsMap.get(gid);
     if (m) {
-      const s = m.score_total ?? m.composite_score ?? m.hub_score ?? 0;
+      const rawScore = m.score_total ?? m.composite_score ?? m.hub_score ?? 0;
+      const s = Math.round(rawScore * scaleFactor * 10) / 10;  // normalize + round to 1dp
       station_score += s;
       station_details.push({
         station_global_id: m.station_global_id,
         station_name:      m.station_name,
         score_total:       s,
+        score_raw:         rawScore,
         rank:              m.rank,
         line_count:        m.line_count,
       });
     }
   }
   station_details.sort((a, b) => b.score_total - a.score_total);
-  return { station_score, station_details };
+  return { station_score, station_details, scaleFactor };
 }
 
 /**
- * Compute hub bonus using relative thresholds (city-agnostic).
- * Uses top 10% / 25% / 50% of the city's score distribution.
+ * Compute hub bonus using relative score thresholds (city-agnostic).
+ *
+ * V1.2 Task 02: Changed from percentile-based (p90/p75/p50) to
+ * relative-score-based (score / max_score) thresholds.
+ *
+ * Problem with old approach: London/NYC have very flat score distributions
+ * (e.g. p75 = 1.0 for London, meaning 78% of stations qualified as "hub").
+ * This caused Hub+ to dominate scoring (66-74% of total score) in those cities.
+ *
+ * New thresholds (score / city_max_score):
+ *   >= 0.70 → +4 pts  (top ~5-10%, true interchange hubs)
+ *   >= 0.45 → +2 pts  (top ~15-25%, major stations)
+ *   >= 0.25 → +1 pt   (top ~30-40%, secondary hubs)
+ *
+ * This ensures Hub+ contributes ~15-25% of total score across all cities.
  */
 function _computeHubBonusRelative(owned, stationMetrics) {
   const metrics = Array.isArray(stationMetrics) ? stationMetrics
     : (stationMetrics?.stations || []);
   if (!metrics.length) return { hub_bonus: 0, hub_stations: [] };
 
-  // Build score array for all stations (for percentile calculation)
+  // Compute max score for relative threshold calculation
   const allScores = metrics.map(m => m.score_total ?? m.composite_score ?? m.hub_score ?? 0);
-  allScores.sort((a, b) => a - b);
-  const n = allScores.length;
-  const p90 = allScores[Math.floor(n * 0.90)] ?? 0;  // top 10%
-  const p75 = allScores[Math.floor(n * 0.75)] ?? 0;  // top 25%
-  const p50 = allScores[Math.floor(n * 0.50)] ?? 0;  // top 50%
+  const maxScore = Math.max(...allScores);
+  if (maxScore <= 0) return { hub_bonus: 0, hub_stations: [] };
 
   const metricsMap = new Map(metrics.map(m => [m.station_global_id, m]));
   let hub_bonus = 0;
@@ -320,10 +354,11 @@ function _computeHubBonusRelative(owned, stationMetrics) {
     const m = metricsMap.get(gid);
     if (!m) continue;
     const s = m.score_total ?? m.composite_score ?? m.hub_score ?? 0;
+    const rel = s / maxScore;  // relative score: 0.0 - 1.0
     let bonus = 0;
-    if (s >= p90 && p90 > 0)      bonus = 5;
-    else if (s >= p75 && p75 > 0) bonus = 3;
-    else if (s >= p50 && p50 > 0) bonus = 1;
+    if (rel >= 0.70)      bonus = 4;  // top ~5-10%: true interchange hubs
+    else if (rel >= 0.45) bonus = 2;  // top ~15-25%: major stations
+    else if (rel >= 0.25) bonus = 1;  // top ~30-40%: secondary hubs
     if (bonus > 0) {
       hub_bonus += bonus;
       hub_stations.push({
