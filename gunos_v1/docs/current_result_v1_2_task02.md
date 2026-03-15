@@ -4,9 +4,14 @@
 V1.2 Task 02 "Gameplay Balance Tuning" has been successfully completed. The scoring engine was fundamentally restructured to address severe imbalances in London and NYC, where the `Hub+` bonus was disproportionately dominating the total score due to flat and low station score distributions. By introducing city-scale normalization for station scores and switching to relative thresholds for `Hub+`, the scoring mechanics are now consistent and balanced across all four cities. Additionally, `Route+` mechanics were relaxed to make partial route completions viable in standard game lengths.
 
 ## Files Changed
-- `gunos_v1/src/game/game_session.js` (Updated `_computeStationScore` and `_computeHubBonusRelative`)
-- `guno_v6/src/scoring/route_completion_score.js` (Lowered partial route threshold and added short route bonuses)
-- `gunos_v1/src/app/main.js` (Bumped cache buster for `game_session.js` to `v=13`)
+
+| File | Location | Change |
+|------|----------|--------|
+| `gunos_v1/src/game/game_session.js` | gunos_v1 (game logic) | Updated `_computeStationScore` (added scale normalization) and `_computeHubBonusRelative` (switched to relative score thresholds) |
+| `guno_v6/src/scoring/route_completion_score.js` | **guno_v6 (shared scoring engine)** | Lowered partial route threshold from 50% to 33%; added bonus tier for short routes (4-5 stations) |
+| `gunos_v1/src/app/main.js` | gunos_v1 (app entry) | Bumped cache buster for `game_session.js` import to `?v=13` |
+
+**Note on cross-directory edit:** `guno_v6/src/scoring/route_completion_score.js` is a **shared scoring engine** that lives in the `guno_v6/` directory at the repository root. `gunos_v1` does not have its own copy of this file — instead, `gunos_v1/src/game/game_session.js` imports it directly via a relative path (`../../../guno_v6/src/scoring/route_completion_score.js`). Editing the `guno_v6` file was therefore the correct and necessary approach to change Route+ logic for `gunos_v1`. This is not a documentation typo or a wrong path — it is an intentional cross-directory dependency within the same repository.
 
 ## What Was Done
 1. **Station Score Normalization**:
