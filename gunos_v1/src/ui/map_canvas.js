@@ -72,6 +72,9 @@ export function renderMapCanvas(container, graph, renderOpts = {}) {
 
   container.innerHTML = '';
   container.appendChild(svg);
+
+  // V1.2 Task 01: Touch pan/zoom support
+  _attachTouchPanZoom(svg);
 }
 
 // ── SVG construction ──────────────────────────────────────────────────────────
@@ -586,4 +589,105 @@ function _el(tag, attrs = {}) {
     el.setAttribute(k, v);
   }
   return el;
+}
+
+// ── V1.2 Task 01: Touch pan / zoom ───────────────────────────────────────────
+
+/**
+ * Attach touch-based pan and pinch-zoom to an SVG element.
+ * Uses viewBox manipulation so no CSS transforms are needed.
+ */
+function _attachTouchPanZoom(svg) {
+  let vx = 0, vy = 0, vw = SVG_W, vh = SVG_H;
+  let lastTouches = null;
+
+  function _getViewBox() {
+    const vb = svg.getAttribute('viewBox').split(' ').map(Number);
+    return { x: vb[0], y: vb[1], w: vb[2], h: vb[3] };
+  }
+
+  function _setViewBox(x, y, w, h) {
+    // Clamp: don't pan outside 2x the original bounds
+    const maxW = SVG_W * 2, maxH = SVG_H * 2;
+    const minW = SVG_W * 0.25, minH = SVG_H * 0.25;
+    w = Math.max(minW, Math.min(maxW, w));
+    h = Math.max(minH, Math.min(maxH, h));
+    x = Math.max(-SVG_W * 0.5, Math.min(SVG_W * 1.5 - w, x));
+    y = Math.max(-SVG_H * 0.5, Math.min(SVG_H * 1.5 - h, y));
+    svg.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
+  }
+
+  function _dist(t1, t2) {
+    const dx = t1.clientX - t2.clientX;
+    const dy = t1.clientY - t2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  function _midpoint(t1, t2) {
+    return {
+      x: (t1.clientX + t2.clientX) / 2,
+      y: (t1.clientY + t2.clientY) / 2,
+    };
+  }
+
+  svg.addEventListener('touchstart', (e) => {
+    lastTouches = Array.from(e.touches);
+    e.preventDefault();
+  }, { passive: false });
+
+  svg.addEventListener('touchmove', (e) => {
+    if (!lastTouches) return;
+    e.preventDefault();
+
+    const touches = Array.from(e.touches);
+    const vb = _getViewBox();
+
+    if (touches.length === 1 && lastTouches.length === 1) {
+      // Single-finger pan
+      const rect = svg.getBoundingClientRect();
+      const scaleX = vb.w / rect.width;
+      const scaleY = vb.h / rect.height;
+      const dx = (touches[0].clientX - lastTouches[0].clientX) * scaleX;
+      const dy = (touches[0].clientY - lastTouches[0].clientY) * scaleY;
+      _setViewBox(vb.x - dx, vb.y - dy, vb.w, vb.h);
+
+    } else if (touches.length === 2 && lastTouches.length >= 2) {
+      // Pinch zoom
+      const prevDist = _dist(lastTouches[0], lastTouches[1]);
+      const currDist = _dist(touches[0], touches[1]);
+      if (prevDist === 0) return;
+
+      const scale = prevDist / currDist;
+      const mid   = _midpoint(touches[0], touches[1]);
+      const rect  = svg.getBoundingClientRect();
+
+      // Convert midpoint to SVG coordinates
+      const svgMidX = vb.x + ((mid.x - rect.left) / rect.width)  * vb.w;
+      const svgMidY = vb.y + ((mid.y - rect.top)  / rect.height) * vb.h;
+
+      const newW = vb.w * scale;
+      const newH = vb.h * scale;
+      const newX = svgMidX - (svgMidX - vb.x) * scale;
+      const newY = svgMidY - (svgMidY - vb.y) * scale;
+
+      _setViewBox(newX, newY, newW, newH);
+    }
+
+    lastTouches = touches;
+  }, { passive: false });
+
+  svg.addEventListener('touchend', (e) => {
+    lastTouches = Array.from(e.touches);
+    if (lastTouches.length === 0) lastTouches = null;
+  }, { passive: false });
+
+  // Double-tap to reset view
+  let lastTap = 0;
+  svg.addEventListener('touchend', (e) => {
+    const now = Date.now();
+    if (now - lastTap < 300 && e.changedTouches.length === 1) {
+      _setViewBox(0, 0, SVG_W, SVG_H);
+    }
+    lastTap = now;
+  }, { passive: false });
 }

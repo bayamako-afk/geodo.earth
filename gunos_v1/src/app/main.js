@@ -26,7 +26,7 @@ import {
 } from '../ui/score_panel.js?v=8';
 import { renderCityComparePanel } from '../ui/city_compare_panel.js?v=1';
 import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=8';
-import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=8';
+import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=12';
 import {
   initSession,
   playOneTurn,
