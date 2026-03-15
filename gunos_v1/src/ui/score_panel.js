@@ -161,12 +161,16 @@ export function updateLiveScores(playerScores) {
             <span class="score-breakdown-value">${_fmt(station_score)}</span>
           </div>
           <div class="score-breakdown-row score-breakdown-row--route">
-            <span class="score-breakdown-label score-breakdown-label--route" title="Route bonus: own half or more of a line">Route+</span>
+            <span class="score-breakdown-label score-breakdown-label--route">Route+
+              <span class="score-info-icon">i<span class="score-info-tooltip">Own ⅓ or more of a metro line to earn a Route bonus. Complete the whole line for maximum points.</span></span>
+            </span>
             <span class="score-breakdown-value score-breakdown-value--bonus ${(route_bonus > 0) ? 'score-breakdown-value--active' : ''}">${_fmt(route_bonus)}</span>
           </div>
           ${routeProgressHtml}
           <div class="score-breakdown-row score-breakdown-row--network">
-            <span class="score-breakdown-label score-breakdown-label--network" title="Hub bonus: owning top-ranked hub stations">Hub+</span>
+            <span class="score-breakdown-label score-breakdown-label--network">Hub+
+              <span class="score-info-icon">i<span class="score-info-tooltip">Owning major interchange stations (where many lines cross) earns a Hub bonus. Higher-ranked hubs give more points.</span></span>
+            </span>
             <span class="score-breakdown-value score-breakdown-value--bonus ${(hub_bonus > 0) ? 'score-breakdown-value--active' : ''}">${_fmt(hub_bonus)}</span>
           </div>
           ${hubNamesHtml}

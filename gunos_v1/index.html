@@ -1962,6 +1962,194 @@
       text-overflow: ellipsis;
       max-width: 100px;
     }
+
+    /* ════════════════════════════════════════════════════════════════════════
+       V1.2 Task 03: HELP MODAL
+    ════════════════════════════════════════════════════════════════════════ */
+    #help-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+    }
+    #help-modal-overlay.help-modal--open {
+      display: flex;
+    }
+    #help-modal {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 10px;
+      width: min(420px, 92vw);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    }
+    #help-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px 10px;
+      border-bottom: 1px solid var(--c-border);
+      flex-shrink: 0;
+    }
+    #help-modal-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--c-accent);
+    }
+    #help-modal-close {
+      background: none;
+      border: none;
+      color: var(--c-text-muted);
+      cursor: pointer;
+      font-size: 14px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      line-height: 1;
+    }
+    #help-modal-close:hover { color: var(--c-text); background: var(--c-surface-2); }
+    #help-modal-body {
+      flex: 1;
+      padding: 20px 20px 16px;
+      overflow-y: auto;
+      text-align: center;
+    }
+    #help-step-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+    #help-step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--c-text);
+      margin-bottom: 10px;
+    }
+    #help-step-body {
+      font-size: 12px;
+      color: var(--c-text-muted);
+      line-height: 1.7;
+      text-align: left;
+    }
+    #help-step-body strong { color: var(--c-text); }
+    #help-modal-footer {
+      padding: 10px 16px 14px;
+      border-top: 1px solid var(--c-border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    #help-step-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .help-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--c-border);
+      transition: background 0.2s;
+    }
+    .help-dot--active { background: var(--c-accent); }
+    #help-modal-nav {
+      display: flex;
+      gap: 8px;
+    }
+    #help-modal-nav button {
+      background: var(--c-surface-2);
+      border: 1px solid var(--c-border);
+      color: var(--c-text);
+      border-radius: 6px;
+      padding: 6px 16px;
+      font-size: 11px;
+      cursor: pointer;
+      min-height: 32px;
+    }
+    #help-modal-nav button:hover { background: var(--c-surface-3); }
+    #help-btn-done {
+      background: var(--c-accent-dim) !important;
+      border-color: var(--c-accent) !important;
+      color: var(--c-accent) !important;
+    }
+    #help-btn-done:hover { opacity: 0.85; }
+
+    /* HELP button in header */
+    #btn-help {
+      background: none;
+      border: 1px solid var(--c-border);
+      color: var(--c-text-muted);
+      border-radius: 5px;
+      padding: 4px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      min-height: 28px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    #btn-help:hover { color: var(--c-text); border-color: var(--c-text-muted); }
+
+    /* ── Info icon tooltip (score panel) ───────────────────────────────────── */
+    .score-info-icon {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      line-height: 13px;
+      text-align: center;
+      font-size: 9px;
+      border-radius: 50%;
+      border: 1px solid var(--c-border);
+      color: var(--c-text-muted);
+      cursor: help;
+      margin-left: 3px;
+      position: relative;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .score-info-icon:hover { border-color: var(--c-text-muted); color: var(--c-text); }
+    .score-info-icon .score-info-tooltip {
+      display: none;
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 6px);
+      transform: translateX(-50%);
+      background: var(--c-surface-3);
+      border: 1px solid var(--c-border);
+      border-radius: 6px;
+      padding: 6px 9px;
+      font-size: 10px;
+      color: var(--c-text);
+      white-space: nowrap;
+      z-index: 500;
+      pointer-events: none;
+      line-height: 1.5;
+      min-width: 180px;
+      max-width: 220px;
+      white-space: normal;
+      text-align: left;
+    }
+    .score-info-icon:hover .score-info-tooltip { display: block; }
+
+    /* ── Result panel score explanation ────────────────────────────────────── */
+    .result-score-explain {
+      font-size: 9px;
+      color: var(--c-text-dim);
+      grid-column: 1 / -1;
+      margin-bottom: 3px;
+      padding: 3px 6px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 4px;
+      line-height: 1.4;
+    }
+    .result-score-explain strong { color: var(--c-text-muted); }
   </style>
 </head>
 <body>
@@ -1996,6 +2184,7 @@
     <!-- Action Buttons -->
     <div class="hdr-actions">
       <span class="hdr-status hdr-status--loading" id="hdr-status">Booting...</span>
+      <button id="btn-help" title="How to Play">? HELP</button>
       <button class="hdr-action-btn hdr-action-btn--reset" id="btn-reset">RESET</button>
       <button class="hdr-action-btn hdr-action-btn--start hdr-action-btn--ready" id="btn-start">START</button>
     </div>

@@ -59,10 +59,13 @@ export function showResultPanel(result) {
           <div class="result-breakdown-grid">
             <span class="result-breakdown-label">Station</span>
             <span class="result-breakdown-value">${_fmt(ps.station_score)}</span>
+            <span class="result-score-explain"><strong>Station</strong>: points from all owned stations</span>
             <span class="result-breakdown-label">Route+</span>
             <span class="result-breakdown-value result-breakdown-value--bonus">${_fmt(ps.route_bonus)}</span>
+            <span class="result-score-explain"><strong>Route+</strong>: bonus for owning ⅓+ of a metro line</span>
             <span class="result-breakdown-label">Hub+</span>
             <span class="result-breakdown-value result-breakdown-value--bonus">${_fmt(ps.hub_bonus)}</span>
+            <span class="result-score-explain"><strong>Hub+</strong>: bonus for owning major interchange stations</span>
             <span class="result-breakdown-label">Owned</span>
             <span class="result-breakdown-value">${ps.station_details?.length ?? 0}</span>
             <span class="result-breakdown-label">Best route</span>

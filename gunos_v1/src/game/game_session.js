@@ -120,10 +120,16 @@ export function playOneTurn() {
     _log.push(`[T${_state.turnCount}] ${prevPlayer.id} drew a card`);
   }
 
+  // V1.2 patch: enforce 20-turn limit for gunos_v1 UI
+  if (!_state.gameOver && _state.turnCount >= 20) {
+    _state.gameOver = true;
+    _log.push(`[END] Turn limit reached (${_state.turnCount} turns)`);
+  }
+
   if (_state.gameOver) {
     if (_state.winner) {
       _log.push(`[END] Winner: ${_state.winner} after ${_state.turnCount} turns`);
-    } else {
+    } else if (!_log.some(l => l.startsWith('[END]'))) {
       _log.push(`[END] Turn limit reached (${_state.turnCount} turns)`);
     }
   } else {

@@ -23,9 +23,10 @@ import {
   appendLogEntry,
   setLogEntries,
   clearLog,
-} from '../ui/score_panel.js?v=8';
+} from '../ui/score_panel.js?v=14';
 import { renderCityComparePanel } from '../ui/city_compare_panel.js?v=1';
-import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=8';
+import { initHelpModal, openHelpModal } from '../ui/help_modal.js?v=1';
+import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=14';
 import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=12';
 import {
   initSession,
@@ -40,7 +41,7 @@ import {
   getStationGraph,
   computeAllLiveScores,
   computeFinalResults,
-} from '../game/game_session.js?v=13';
+} from '../game/game_session.js?v=14';
 
 // ── App state ─────────────────────────────────────────────────────────────────
 
@@ -113,6 +114,11 @@ async function boot() {
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
   updateHeaderGameState('idle', null, null);
+
+  // V1.2 Task 03: Initialize help modal
+  initHelpModal();
+  const helpBtn = document.getElementById('btn-help');
+  if (helpBtn) helpBtn.addEventListener('click', openHelpModal);
 
   console.log('[GUNOS V1] Phase 6 shell ready.');
 }
