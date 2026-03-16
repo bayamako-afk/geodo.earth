@@ -12,7 +12,7 @@
  */
 
 import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=10';
-import { resolveActiveCityId } from '../city/city_ui.js?v=8';
+import { resolveActiveCityId } from '../city/city_ui.js?v=9';
 import { renderLayout } from '../ui/layout.js?v=13';
 import { setHeaderStatus, setStartButtonState, updateHeaderGameState } from '../ui/header_bar.js?v=8';
 import { updateHandFromState, resetHandDisplay } from '../ui/hand_panel.js?v=8';
