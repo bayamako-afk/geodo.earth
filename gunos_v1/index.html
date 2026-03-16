@@ -68,6 +68,7 @@
       border-bottom: 1px solid var(--c-border);
       flex-shrink: 0;
       gap: 10px;
+      position: relative;  /* REQUIRED: makes z-index effective */
       z-index: 100;
     }
 
@@ -1939,6 +1940,72 @@
 
       .map-city-summary {
         display: none;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════
+       V1.2 TASK 06 FIX — MOBILE START BUTTON ALWAYS TAPPABLE
+       Root cause: at ≤480px, hdr-city-selector (5 cities, flex-shrink:0)
+       pushes hdr-actions (HELP/RESET/START) off-screen to the right.
+       Fix: wrap header into two rows so action buttons are always visible.
+    ════════════════════════════════════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      /* Allow header to wrap into two rows */
+      #app-header {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: var(--header-h);
+        padding: 4px 8px;
+        gap: 4px;
+        align-items: center;
+      }
+
+      /* Row 1: brand + city selector (take full width) */
+      .hdr-brand {
+        flex-shrink: 0;
+      }
+
+      #hdr-city-selector {
+        flex: 1;
+        flex-wrap: wrap;
+        gap: 3px;
+        overflow: hidden;
+      }
+
+      /* Spacer collapses on mobile — row break happens naturally */
+      .hdr-spacer {
+        display: none;
+      }
+
+      /* Row 2: game badge + action buttons — pushed to own row */
+      #hdr-game-badge {
+        order: 10;
+        margin-left: auto;
+      }
+
+      #hdr-turn-counter {
+        order: 11;
+      }
+
+      .hdr-actions {
+        order: 12;
+        width: 100%;
+        justify-content: flex-end;
+        padding-bottom: 4px;
+      }
+
+      /* Compact action buttons on mobile */
+      .hdr-action-btn {
+        min-height: 40px;
+        padding: 8px 14px;
+        font-size: 10px;
+      }
+
+      /* Compact city buttons to fit 5 in a row */
+      .hdr-city-btn {
+        padding: 4px 7px;
+        font-size: 9px;
+        min-height: 30px;
       }
     }
 
