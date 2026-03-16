@@ -1,0 +1,6085 @@
+{
+  "graph_meta": {
+    "city_id": "paris",
+    "version": "1.0",
+    "node_count": 231,
+    "edge_count": 272
+  },
+  "nodes": [
+    {
+      "station_global_id": "ST_PAR_001",
+      "station_name": "La Défense",
+      "station_name_en": "La Défense",
+      "lat": 48.8921,
+      "lon": 2.2381,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_002"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_002",
+      "station_name": "Esplanade de La Défense",
+      "station_name_en": "Esplanade de La Défense",
+      "lat": 48.8894,
+      "lon": 2.2478,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_001",
+        "ST_PAR_003"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_003",
+      "station_name": "Pont de Neuilly",
+      "station_name_en": "Pont de Neuilly",
+      "lat": 48.8848,
+      "lon": 2.2598,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_002",
+        "ST_PAR_004"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_004",
+      "station_name": "Les Sablons",
+      "station_name_en": "Les Sablons",
+      "lat": 48.8801,
+      "lon": 2.2703,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_003",
+        "ST_PAR_005"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_005",
+      "station_name": "Porte Maillot",
+      "station_name_en": "Porte Maillot",
+      "lat": 48.8786,
+      "lon": 2.2827,
+      "line_ids": [
+        "M1",
+        "M2"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_004",
+        "ST_PAR_006",
+        "ST_PAR_024",
+        "ST_PAR_007"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_006",
+      "station_name": "Argentine",
+      "station_name_en": "Argentine",
+      "lat": 48.8759,
+      "lon": 2.2909,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_005",
+        "ST_PAR_007"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_007",
+      "station_name": "Charles de Gaulle–Étoile",
+      "station_name_en": "Charles de Gaulle–Étoile",
+      "lat": 48.8738,
+      "lon": 2.295,
+      "line_ids": [
+        "M1",
+        "M2",
+        "M6"
+      ],
+      "degree": 5,
+      "neighbors": [
+        "ST_PAR_006",
+        "ST_PAR_008",
+        "ST_PAR_005",
+        "ST_PAR_046",
+        "ST_PAR_108"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_008",
+      "station_name": "George V",
+      "station_name_en": "George V",
+      "lat": 48.8726,
+      "lon": 2.3016,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_007",
+        "ST_PAR_009"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_009",
+      "station_name": "Franklin D. Roosevelt",
+      "station_name_en": "Franklin D. Roosevelt",
+      "lat": 48.8695,
+      "lon": 2.3083,
+      "line_ids": [
+        "M1",
+        "M9"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_008",
+        "ST_PAR_010",
+        "ST_PAR_027",
+        "ST_PAR_170"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_010",
+      "station_name": "Champs-Élysées–Clemenceau",
+      "station_name_en": "Champs-Élysées–Clemenceau",
+      "lat": 48.8672,
+      "lon": 2.3127,
+      "line_ids": [
+        "M1",
+        "M13"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_009",
+        "ST_PAR_011",
+        "ST_PAR_149",
+        "ST_PAR_148"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_011",
+      "station_name": "Concorde",
+      "station_name_en": "Concorde",
+      "lat": 48.8655,
+      "lon": 2.3214,
+      "line_ids": [
+        "M1",
+        "M12",
+        "M8"
+      ],
+      "degree": 5,
+      "neighbors": [
+        "ST_PAR_010",
+        "ST_PAR_012",
+        "ST_PAR_148",
+        "ST_PAR_149",
+        "ST_PAR_203"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_012",
+      "station_name": "Tuileries",
+      "station_name_en": "Tuileries",
+      "lat": 48.8638,
+      "lon": 2.3306,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_011",
+        "ST_PAR_013"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_013",
+      "station_name": "Palais Royal–Musée du Louvre",
+      "station_name_en": "Palais Royal–Musée du Louvre",
+      "lat": 48.8637,
+      "lon": 2.3366,
+      "line_ids": [
+        "M1",
+        "M7"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_012",
+        "ST_PAR_014",
+        "ST_PAR_052",
+        "ST_PAR_131"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_014",
+      "station_name": "Châtelet",
+      "station_name_en": "Châtelet",
+      "lat": 48.8601,
+      "lon": 2.3465,
+      "line_ids": [
+        "M1",
+        "M11",
+        "M14",
+        "M4",
+        "M7"
+      ],
+      "degree": 7,
+      "neighbors": [
+        "ST_PAR_013",
+        "ST_PAR_015",
+        "ST_PAR_076",
+        "ST_PAR_077",
+        "ST_PAR_183",
+        "ST_PAR_018",
+        "ST_PAR_131"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_015",
+      "station_name": "Hôtel de Ville",
+      "station_name_en": "Hôtel de Ville",
+      "lat": 48.8573,
+      "lon": 2.3519,
+      "line_ids": [
+        "M1",
+        "M11"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_014",
+        "ST_PAR_016",
+        "ST_PAR_057",
+        "ST_PAR_034"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_016",
+      "station_name": "Saint-Paul",
+      "station_name_en": "Saint-Paul",
+      "lat": 48.8549,
+      "lon": 2.3614,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_015",
+        "ST_PAR_017"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_017",
+      "station_name": "Bastille",
+      "station_name_en": "Bastille",
+      "lat": 48.8533,
+      "lon": 2.3692,
+      "line_ids": [
+        "M1",
+        "M5",
+        "M8"
+      ],
+      "degree": 8,
+      "neighbors": [
+        "ST_PAR_016",
+        "ST_PAR_018",
+        "ST_PAR_103",
+        "ST_PAR_104",
+        "ST_PAR_107",
+        "ST_PAR_229",
+        "ST_PAR_059",
+        "ST_PAR_019"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_018",
+      "station_name": "Gare de Lyon",
+      "station_name_en": "Gare de Lyon",
+      "lat": 48.8445,
+      "lon": 2.3737,
+      "line_ids": [
+        "M1",
+        "M14"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_017",
+        "ST_PAR_019",
+        "ST_PAR_229",
+        "ST_PAR_014"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_019",
+      "station_name": "Reuilly–Diderot",
+      "station_name_en": "Reuilly–Diderot",
+      "lat": 48.8474,
+      "lon": 2.3877,
+      "line_ids": [
+        "M1",
+        "M8"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_018",
+        "ST_PAR_020",
+        "ST_PAR_017",
+        "ST_PAR_153"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_020",
+      "station_name": "Nation",
+      "station_name_en": "Nation",
+      "lat": 48.8484,
+      "lon": 2.396,
+      "line_ids": [
+        "M1",
+        "M2",
+        "M6",
+        "M9"
+      ],
+      "degree": 6,
+      "neighbors": [
+        "ST_PAR_019",
+        "ST_PAR_021",
+        "ST_PAR_038",
+        "ST_PAR_229",
+        "ST_PAR_060",
+        "ST_PAR_173"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_021",
+      "station_name": "Château de Vincennes",
+      "station_name_en": "Château de Vincennes",
+      "lat": 48.8447,
+      "lon": 2.4396,
+      "line_ids": [
+        "M1"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_020"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_022",
+      "station_name": "Porte Dauphine",
+      "station_name_en": "Porte Dauphine",
+      "lat": 48.8712,
+      "lon": 2.2748,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_023"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_023",
+      "station_name": "Victor Hugo",
+      "station_name_en": "Victor Hugo",
+      "lat": 48.873,
+      "lon": 2.284,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_022",
+        "ST_PAR_024"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_024",
+      "station_name": "Kleber",
+      "station_name_en": "Kleber",
+      "lat": 48.8734,
+      "lon": 2.2906,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_023",
+        "ST_PAR_005"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_025",
+      "station_name": "Trocadéro",
+      "station_name_en": "Trocadéro",
+      "lat": 48.8633,
+      "lon": 2.2881,
+      "line_ids": [
+        "M6",
+        "M9"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_109",
+        "ST_PAR_110",
+        "ST_PAR_169",
+        "ST_PAR_026"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_026",
+      "station_name": "Iéna",
+      "station_name_en": "Iéna",
+      "lat": 48.8636,
+      "lon": 2.2951,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_025",
+        "ST_PAR_027"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_027",
+      "station_name": "Alma–Marceau",
+      "station_name_en": "Alma–Marceau",
+      "lat": 48.8641,
+      "lon": 2.3026,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_026",
+        "ST_PAR_009"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_028",
+      "station_name": "Anvers",
+      "station_name_en": "Anvers",
+      "lat": 48.8829,
+      "lon": 2.344,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_199",
+        "ST_PAR_029"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_029",
+      "station_name": "Barbès–Rochechouart",
+      "station_name_en": "Barbès–Rochechouart",
+      "lat": 48.8837,
+      "lon": 2.3499,
+      "line_ids": [
+        "M2",
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_028",
+        "ST_PAR_030"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_030",
+      "station_name": "La Chapelle",
+      "station_name_en": "La Chapelle",
+      "lat": 48.8848,
+      "lon": 2.3572,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_029",
+        "ST_PAR_031"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_031",
+      "station_name": "Stalingrad",
+      "station_name_en": "Stalingrad",
+      "lat": 48.8843,
+      "lon": 2.3671,
+      "line_ids": [
+        "M2",
+        "M5",
+        "M7"
+      ],
+      "degree": 5,
+      "neighbors": [
+        "ST_PAR_030",
+        "ST_PAR_032",
+        "ST_PAR_096",
+        "ST_PAR_099",
+        "ST_PAR_073"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_032",
+      "station_name": "Jaurès",
+      "station_name_en": "Jaurès",
+      "lat": 48.8836,
+      "lon": 2.3713,
+      "line_ids": [
+        "M2",
+        "M5",
+        "M7bis"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_031",
+        "ST_PAR_033",
+        "ST_PAR_099"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_033",
+      "station_name": "Colonel Fabien",
+      "station_name_en": "Colonel Fabien",
+      "lat": 48.8793,
+      "lon": 2.3726,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_032",
+        "ST_PAR_034"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_034",
+      "station_name": "Belleville",
+      "station_name_en": "Belleville",
+      "lat": 48.8718,
+      "lon": 2.3751,
+      "line_ids": [
+        "M11",
+        "M2"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_033",
+        "ST_PAR_064",
+        "ST_PAR_015",
+        "ST_PAR_186"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_035",
+      "station_name": "Père Lachaise",
+      "station_name_en": "Père Lachaise",
+      "lat": 48.8626,
+      "lon": 2.3876,
+      "line_ids": [
+        "M2",
+        "M3"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_064",
+        "ST_PAR_036",
+        "ST_PAR_065",
+        "ST_PAR_066"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_036",
+      "station_name": "Philippe Auguste",
+      "station_name_en": "Philippe Auguste",
+      "lat": 48.8581,
+      "lon": 2.3921,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_035",
+        "ST_PAR_037"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_037",
+      "station_name": "Alexandre Dumas",
+      "station_name_en": "Alexandre Dumas",
+      "lat": 48.8545,
+      "lon": 2.3966,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_036",
+        "ST_PAR_038"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_038",
+      "station_name": "Avron",
+      "station_name_en": "Avron",
+      "lat": 48.8511,
+      "lon": 2.4002,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_037",
+        "ST_PAR_020"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_039",
+      "station_name": "Pont de Levallois–Bécon",
+      "station_name_en": "Pont de Levallois–Bécon",
+      "lat": 48.8977,
+      "lon": 2.2836,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_040"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_040",
+      "station_name": "Anatole France",
+      "station_name_en": "Anatole France",
+      "lat": 48.8955,
+      "lon": 2.2918,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_039",
+        "ST_PAR_041"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_041",
+      "station_name": "Louise Michel",
+      "station_name_en": "Louise Michel",
+      "lat": 48.893,
+      "lon": 2.2984,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_040",
+        "ST_PAR_042"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_042",
+      "station_name": "Porte de Champerret",
+      "station_name_en": "Porte de Champerret",
+      "lat": 48.8898,
+      "lon": 2.305,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_041",
+        "ST_PAR_043"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_043",
+      "station_name": "Pereire",
+      "station_name_en": "Pereire",
+      "lat": 48.887,
+      "lon": 2.3071,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_042",
+        "ST_PAR_044"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_044",
+      "station_name": "Wagram",
+      "station_name_en": "Wagram",
+      "lat": 48.8839,
+      "lon": 2.3103,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_043",
+        "ST_PAR_045"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_045",
+      "station_name": "Malesherbes",
+      "station_name_en": "Malesherbes",
+      "lat": 48.881,
+      "lon": 2.3139,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_044",
+        "ST_PAR_046"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_046",
+      "station_name": "Villiers",
+      "station_name_en": "Villiers",
+      "lat": 48.8819,
+      "lon": 2.3224,
+      "line_ids": [
+        "M2",
+        "M3"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_007",
+        "ST_PAR_047",
+        "ST_PAR_045",
+        "ST_PAR_049"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_047",
+      "station_name": "Rome",
+      "station_name_en": "Rome",
+      "lat": 48.8793,
+      "lon": 2.3271,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_046",
+        "ST_PAR_048"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_048",
+      "station_name": "Place de Clichy",
+      "station_name_en": "Place de Clichy",
+      "lat": 48.8836,
+      "lon": 2.3324,
+      "line_ids": [
+        "M13",
+        "M2"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_047",
+        "ST_PAR_199",
+        "ST_PAR_221",
+        "ST_PAR_170"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_049",
+      "station_name": "Liège",
+      "station_name_en": "Liège",
+      "lat": 48.8793,
+      "lon": 2.3271,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_046",
+        "ST_PAR_050"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_050",
+      "station_name": "Saint-Lazare",
+      "station_name_en": "Saint-Lazare",
+      "lat": 48.8756,
+      "lon": 2.3244,
+      "line_ids": [
+        "M12",
+        "M13",
+        "M14",
+        "M3",
+        "M9"
+      ],
+      "degree": 7,
+      "neighbors": [
+        "ST_PAR_049",
+        "ST_PAR_051",
+        "ST_PAR_171",
+        "ST_PAR_130",
+        "ST_PAR_202",
+        "ST_PAR_149",
+        "ST_PAR_170"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_051",
+      "station_name": "Havre–Caumartin",
+      "station_name_en": "Havre–Caumartin",
+      "lat": 48.8741,
+      "lon": 2.3293,
+      "line_ids": [
+        "M3",
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_050",
+        "ST_PAR_052"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_052",
+      "station_name": "Opéra",
+      "station_name_en": "Opéra",
+      "lat": 48.871,
+      "lon": 2.3319,
+      "line_ids": [
+        "M3",
+        "M7",
+        "M8"
+      ],
+      "degree": 6,
+      "neighbors": [
+        "ST_PAR_051",
+        "ST_PAR_053",
+        "ST_PAR_130",
+        "ST_PAR_013",
+        "ST_PAR_149",
+        "ST_PAR_074"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_053",
+      "station_name": "Quatre-Septembre",
+      "station_name_en": "Quatre-Septembre",
+      "lat": 48.8698,
+      "lon": 2.339,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_052",
+        "ST_PAR_054"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_054",
+      "station_name": "Bourse",
+      "station_name_en": "Bourse",
+      "lat": 48.8683,
+      "lon": 2.3412,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_053",
+        "ST_PAR_055"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_055",
+      "station_name": "Sentier",
+      "station_name_en": "Sentier",
+      "lat": 48.8661,
+      "lon": 2.3471,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_054",
+        "ST_PAR_056"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_056",
+      "station_name": "Réaumur–Sébastopol",
+      "station_name_en": "Réaumur–Sébastopol",
+      "lat": 48.864,
+      "lon": 2.3519,
+      "line_ids": [
+        "M3",
+        "M4"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_055",
+        "ST_PAR_057",
+        "ST_PAR_074",
+        "ST_PAR_075"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_057",
+      "station_name": "Arts et Métiers",
+      "station_name_en": "Arts et Métiers",
+      "lat": 48.8631,
+      "lon": 2.3562,
+      "line_ids": [
+        "M11",
+        "M3"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_056",
+        "ST_PAR_058",
+        "ST_PAR_183",
+        "ST_PAR_015"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_058",
+      "station_name": "Temple",
+      "station_name_en": "Temple",
+      "lat": 48.8633,
+      "lon": 2.3607,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_057",
+        "ST_PAR_059"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_059",
+      "station_name": "République",
+      "station_name_en": "République",
+      "lat": 48.8673,
+      "lon": 2.3629,
+      "line_ids": [
+        "M11",
+        "M3",
+        "M5",
+        "M8",
+        "M9"
+      ],
+      "degree": 9,
+      "neighbors": [
+        "ST_PAR_058",
+        "ST_PAR_063",
+        "ST_PAR_100",
+        "ST_PAR_060",
+        "ST_PAR_151",
+        "ST_PAR_017",
+        "ST_PAR_074",
+        "ST_PAR_186",
+        "ST_PAR_187"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_060",
+      "station_name": "Oberkampf",
+      "station_name_en": "Oberkampf",
+      "lat": 48.8643,
+      "lon": 2.3684,
+      "line_ids": [
+        "M5",
+        "M9"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_059",
+        "ST_PAR_102",
+        "ST_PAR_020"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_061",
+      "station_name": "Saint-Maur",
+      "station_name_en": "Saint-Maur",
+      "lat": 48.8617,
+      "lon": 2.3804,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_063",
+        "ST_PAR_062"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_062",
+      "station_name": "Rue Saint-Maur",
+      "station_name_en": "Rue Saint-Maur",
+      "lat": 48.8608,
+      "lon": 2.3841,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_061",
+        "ST_PAR_065"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_063",
+      "station_name": "Parmentier",
+      "station_name_en": "Parmentier",
+      "lat": 48.8632,
+      "lon": 2.3775,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_059",
+        "ST_PAR_061"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_064",
+      "station_name": "Ménilmontant",
+      "station_name_en": "Ménilmontant",
+      "lat": 48.8668,
+      "lon": 2.3842,
+      "line_ids": [
+        "M2"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_034",
+        "ST_PAR_035"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_065",
+      "station_name": "Gambetta",
+      "station_name_en": "Gambetta",
+      "lat": 48.8655,
+      "lon": 2.3979,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_062",
+        "ST_PAR_035"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_066",
+      "station_name": "Porte de Bagnolet",
+      "station_name_en": "Porte de Bagnolet",
+      "lat": 48.8626,
+      "lon": 2.4133,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_035",
+        "ST_PAR_067"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_067",
+      "station_name": "Gallieni",
+      "station_name_en": "Gallieni",
+      "lat": 48.8595,
+      "lon": 2.4198,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_066"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_068",
+      "station_name": "Porte de Clignancourt",
+      "station_name_en": "Porte de Clignancourt",
+      "lat": 48.8975,
+      "lon": 2.3447,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_069"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_069",
+      "station_name": "Simplon",
+      "station_name_en": "Simplon",
+      "lat": 48.894,
+      "lon": 2.3476,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_068",
+        "ST_PAR_070"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_070",
+      "station_name": "Marcadet–Poissonniers",
+      "station_name_en": "Marcadet–Poissonniers",
+      "lat": 48.8906,
+      "lon": 2.3491,
+      "line_ids": [
+        "M12",
+        "M4"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_069",
+        "ST_PAR_071",
+        "ST_PAR_195",
+        "ST_PAR_196"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_071",
+      "station_name": "Château Rouge",
+      "station_name_en": "Château Rouge",
+      "lat": 48.8866,
+      "lon": 2.3496,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_070",
+        "ST_PAR_072"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_072",
+      "station_name": "Gare du Nord",
+      "station_name_en": "Gare du Nord",
+      "lat": 48.8809,
+      "lon": 2.3553,
+      "line_ids": [
+        "M4",
+        "M5"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_071",
+        "ST_PAR_073",
+        "ST_PAR_099"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_073",
+      "station_name": "Gare de l'Est",
+      "station_name_en": "Gare de l'Est",
+      "lat": 48.8768,
+      "lon": 2.3591,
+      "line_ids": [
+        "M4",
+        "M5",
+        "M7"
+      ],
+      "degree": 5,
+      "neighbors": [
+        "ST_PAR_072",
+        "ST_PAR_074",
+        "ST_PAR_100",
+        "ST_PAR_031",
+        "ST_PAR_128"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_074",
+      "station_name": "Strasbourg–Saint-Denis",
+      "station_name_en": "Strasbourg–Saint-Denis",
+      "lat": 48.8694,
+      "lon": 2.3548,
+      "line_ids": [
+        "M4",
+        "M8",
+        "M9"
+      ],
+      "degree": 6,
+      "neighbors": [
+        "ST_PAR_073",
+        "ST_PAR_056",
+        "ST_PAR_052",
+        "ST_PAR_150",
+        "ST_PAR_151",
+        "ST_PAR_059"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_075",
+      "station_name": "Étienne Marcel",
+      "station_name_en": "Étienne Marcel",
+      "lat": 48.8626,
+      "lon": 2.3487,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_056",
+        "ST_PAR_076"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_076",
+      "station_name": "Les Halles",
+      "station_name_en": "Les Halles",
+      "lat": 48.8619,
+      "lon": 2.3468,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_075",
+        "ST_PAR_014"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_077",
+      "station_name": "Saint-Michel",
+      "station_name_en": "Saint-Michel",
+      "lat": 48.8529,
+      "lon": 2.3451,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_014",
+        "ST_PAR_078"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_078",
+      "station_name": "Odéon",
+      "station_name_en": "Odéon",
+      "lat": 48.8519,
+      "lon": 2.3417,
+      "line_ids": [
+        "M10",
+        "M4"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_077",
+        "ST_PAR_079",
+        "ST_PAR_181",
+        "ST_PAR_177"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_079",
+      "station_name": "Saint-Germain-des-Prés",
+      "station_name_en": "Saint-Germain-des-Prés",
+      "lat": 48.8536,
+      "lon": 2.3332,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_078",
+        "ST_PAR_080"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_080",
+      "station_name": "Saint-Sulpice",
+      "station_name_en": "Saint-Sulpice",
+      "lat": 48.8511,
+      "lon": 2.3301,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_079",
+        "ST_PAR_081"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_081",
+      "station_name": "Saint-Placide",
+      "station_name_en": "Saint-Placide",
+      "lat": 48.8476,
+      "lon": 2.3262,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_080",
+        "ST_PAR_082"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_082",
+      "station_name": "Montparnasse–Bienvenüe",
+      "station_name_en": "Montparnasse–Bienvenüe",
+      "lat": 48.8424,
+      "lon": 2.3208,
+      "line_ids": [
+        "M12",
+        "M13",
+        "M4",
+        "M6"
+      ],
+      "degree": 7,
+      "neighbors": [
+        "ST_PAR_081",
+        "ST_PAR_118",
+        "ST_PAR_116",
+        "ST_PAR_117",
+        "ST_PAR_205",
+        "ST_PAR_224",
+        "ST_PAR_178"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_083",
+      "station_name": "Alésia",
+      "station_name_en": "Alésia",
+      "lat": 48.8289,
+      "lon": 2.3264,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_084",
+        "ST_PAR_086"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_084",
+      "station_name": "Mouton-Duvernet",
+      "station_name_en": "Mouton-Duvernet",
+      "lat": 48.8319,
+      "lon": 2.3249,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_085",
+        "ST_PAR_083"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_085",
+      "station_name": "Denfert-Rochereau",
+      "station_name_en": "Denfert-Rochereau",
+      "lat": 48.8343,
+      "lon": 2.3327,
+      "line_ids": [
+        "M4",
+        "M6"
+      ],
+      "degree": 6,
+      "neighbors": [
+        "ST_PAR_118",
+        "ST_PAR_084",
+        "ST_PAR_117",
+        "ST_PAR_119",
+        "ST_PAR_178",
+        "ST_PAR_225"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_086",
+      "station_name": "Montrouge",
+      "station_name_en": "Montrouge",
+      "lat": 48.8188,
+      "lon": 2.321,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_083"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_087",
+      "station_name": "Bobigny–Pablo Picasso",
+      "station_name_en": "Bobigny–Pablo Picasso",
+      "lat": 48.9099,
+      "lon": 2.4498,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_088"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_088",
+      "station_name": "Bobigny–Pantin–Raymond Queneau",
+      "station_name_en": "Bobigny–Pantin–Raymond Queneau",
+      "lat": 48.9019,
+      "lon": 2.4244,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_087",
+        "ST_PAR_089"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_089",
+      "station_name": "Église de Pantin",
+      "station_name_en": "Église de Pantin",
+      "lat": 48.8967,
+      "lon": 2.4105,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_088",
+        "ST_PAR_090"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_090",
+      "station_name": "Hoche",
+      "station_name_en": "Hoche",
+      "lat": 48.892,
+      "lon": 2.3996,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_089",
+        "ST_PAR_091"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_091",
+      "station_name": "Porte de Pantin",
+      "station_name_en": "Porte de Pantin",
+      "lat": 48.8875,
+      "lon": 2.3895,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_090",
+        "ST_PAR_092"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_092",
+      "station_name": "Ourcq",
+      "station_name_en": "Ourcq",
+      "lat": 48.8867,
+      "lon": 2.3818,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_091",
+        "ST_PAR_093"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_093",
+      "station_name": "Laumière",
+      "station_name_en": "Laumière",
+      "lat": 48.8852,
+      "lon": 2.3773,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_092",
+        "ST_PAR_094"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_094",
+      "station_name": "Quai de la Loire",
+      "station_name_en": "Quai de la Loire",
+      "lat": 48.8843,
+      "lon": 2.3741,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_093",
+        "ST_PAR_095"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_095",
+      "station_name": "Quai de l'Oise",
+      "station_name_en": "Quai de l'Oise",
+      "lat": 48.885,
+      "lon": 2.3693,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_094",
+        "ST_PAR_096"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_096",
+      "station_name": "Corentin Cariou",
+      "station_name_en": "Corentin Cariou",
+      "lat": 48.8853,
+      "lon": 2.3645,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_095",
+        "ST_PAR_031"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_097",
+      "station_name": "Crimée",
+      "station_name_en": "Crimée",
+      "lat": 48.8851,
+      "lon": 2.3611,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_125",
+        "ST_PAR_098"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_098",
+      "station_name": "Riquet",
+      "station_name_en": "Riquet",
+      "lat": 48.8836,
+      "lon": 2.3567,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_097",
+        "ST_PAR_099"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_099",
+      "station_name": "Louis Blanc",
+      "station_name_en": "Louis Blanc",
+      "lat": 48.8816,
+      "lon": 2.3617,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_032",
+        "ST_PAR_072",
+        "ST_PAR_098",
+        "ST_PAR_031"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_100",
+      "station_name": "Jacques Bonsergent",
+      "station_name_en": "Jacques Bonsergent",
+      "lat": 48.8699,
+      "lon": 2.3619,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_073",
+        "ST_PAR_059"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_101",
+      "station_name": "Oberkampf",
+      "station_name_en": "Oberkampf",
+      "lat": 48.8643,
+      "lon": 2.3684,
+      "line_ids": [
+        "M5",
+        "M9"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_102",
+      "station_name": "Richard-Lenoir",
+      "station_name_en": "Richard-Lenoir",
+      "lat": 48.8585,
+      "lon": 2.37,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_060",
+        "ST_PAR_103"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_103",
+      "station_name": "Bréguet–Sabin",
+      "station_name_en": "Bréguet–Sabin",
+      "lat": 48.8558,
+      "lon": 2.3706,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_102",
+        "ST_PAR_017"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_104",
+      "station_name": "Quai de la Rapée",
+      "station_name_en": "Quai de la Rapée",
+      "lat": 48.848,
+      "lon": 2.366,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_017",
+        "ST_PAR_105"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_105",
+      "station_name": "Gare d'Austerlitz",
+      "station_name_en": "Gare d'Austerlitz",
+      "lat": 48.8441,
+      "lon": 2.3656,
+      "line_ids": [
+        "M10",
+        "M5"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_104",
+        "ST_PAR_106",
+        "ST_PAR_134"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_106",
+      "station_name": "Campo-Formio",
+      "station_name_en": "Campo-Formio",
+      "lat": 48.84,
+      "lon": 2.362,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_105",
+        "ST_PAR_107"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_107",
+      "station_name": "Place d'Italie",
+      "station_name_en": "Place d'Italie",
+      "lat": 48.831,
+      "lon": 2.3558,
+      "line_ids": [
+        "M5",
+        "M6",
+        "M7"
+      ],
+      "degree": 5,
+      "neighbors": [
+        "ST_PAR_106",
+        "ST_PAR_120",
+        "ST_PAR_017",
+        "ST_PAR_137",
+        "ST_PAR_138"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_108",
+      "station_name": "Kléber",
+      "station_name_en": "Kléber",
+      "lat": 48.8734,
+      "lon": 2.2906,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_007",
+        "ST_PAR_109"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_109",
+      "station_name": "Boissière",
+      "station_name_en": "Boissière",
+      "lat": 48.8671,
+      "lon": 2.2966,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_108",
+        "ST_PAR_025"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_110",
+      "station_name": "Passy",
+      "station_name_en": "Passy",
+      "lat": 48.8581,
+      "lon": 2.2896,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_025",
+        "ST_PAR_111"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_111",
+      "station_name": "Bir-Hakeim",
+      "station_name_en": "Bir-Hakeim",
+      "lat": 48.8543,
+      "lon": 2.2898,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_110",
+        "ST_PAR_112"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_112",
+      "station_name": "Dupleix",
+      "station_name_en": "Dupleix",
+      "lat": 48.8501,
+      "lon": 2.2961,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_111",
+        "ST_PAR_113"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_113",
+      "station_name": "La Motte-Picquet–Grenelle",
+      "station_name_en": "La Motte-Picquet–Grenelle",
+      "lat": 48.8488,
+      "lon": 2.2993,
+      "line_ids": [
+        "M10",
+        "M6",
+        "M8"
+      ],
+      "degree": 6,
+      "neighbors": [
+        "ST_PAR_112",
+        "ST_PAR_114",
+        "ST_PAR_145",
+        "ST_PAR_146",
+        "ST_PAR_164",
+        "ST_PAR_178"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_114",
+      "station_name": "Cambronne",
+      "station_name_en": "Cambronne",
+      "lat": 48.8481,
+      "lon": 2.3076,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_113",
+        "ST_PAR_115"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_115",
+      "station_name": "Sèvres–Lecourbe",
+      "station_name_en": "Sèvres–Lecourbe",
+      "lat": 48.8456,
+      "lon": 2.3125,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_114",
+        "ST_PAR_116"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_116",
+      "station_name": "Pasteur",
+      "station_name_en": "Pasteur",
+      "lat": 48.8427,
+      "lon": 2.3126,
+      "line_ids": [
+        "M12",
+        "M6"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_115",
+        "ST_PAR_082",
+        "ST_PAR_204"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_117",
+      "station_name": "Edgar Quinet",
+      "station_name_en": "Edgar Quinet",
+      "lat": 48.8418,
+      "lon": 2.3241,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_082",
+        "ST_PAR_085"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_118",
+      "station_name": "Raspail",
+      "station_name_en": "Raspail",
+      "lat": 48.8393,
+      "lon": 2.3288,
+      "line_ids": [
+        "M4",
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_082",
+        "ST_PAR_085"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_119",
+      "station_name": "Glacière",
+      "station_name_en": "Glacière",
+      "lat": 48.8325,
+      "lon": 2.3411,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_085",
+        "ST_PAR_120"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_120",
+      "station_name": "Corvisart",
+      "station_name_en": "Corvisart",
+      "lat": 48.8297,
+      "lon": 2.3497,
+      "line_ids": [
+        "M6"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_119",
+        "ST_PAR_107"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_121",
+      "station_name": "La Courneuve–8 Mai 1945",
+      "station_name_en": "La Courneuve–8 Mai 1945",
+      "lat": 48.9218,
+      "lon": 2.3948,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_122"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_122",
+      "station_name": "Fort d'Aubervilliers",
+      "station_name_en": "Fort d'Aubervilliers",
+      "lat": 48.9138,
+      "lon": 2.3879,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_121",
+        "ST_PAR_123"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_123",
+      "station_name": "Aubervilliers–Pantin–Quatre Chemins",
+      "station_name_en": "Aubervilliers–Pantin–Quatre Chemins",
+      "lat": 48.9065,
+      "lon": 2.3837,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_122",
+        "ST_PAR_124"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_124",
+      "station_name": "Porte de la Villette",
+      "station_name_en": "Porte de la Villette",
+      "lat": 48.8969,
+      "lon": 2.384,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_123",
+        "ST_PAR_125"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_125",
+      "station_name": "Corentin Cariou",
+      "station_name_en": "Corentin Cariou",
+      "lat": 48.8853,
+      "lon": 2.3645,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_124",
+        "ST_PAR_097"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_126",
+      "station_name": "Pont de Levallois",
+      "station_name_en": "Pont de Levallois",
+      "lat": 48.8977,
+      "lon": 2.2836,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_127",
+      "station_name": "Pont de Flandre",
+      "station_name_en": "Pont de Flandre",
+      "lat": 48.894,
+      "lon": 2.3793,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_128",
+      "station_name": "Cadet",
+      "station_name_en": "Cadet",
+      "lat": 48.8769,
+      "lon": 2.3458,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_073",
+        "ST_PAR_129"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_129",
+      "station_name": "Le Peletier",
+      "station_name_en": "Le Peletier",
+      "lat": 48.8752,
+      "lon": 2.3424,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_128",
+        "ST_PAR_130"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_130",
+      "station_name": "Chaussée d'Antin–La Fayette",
+      "station_name_en": "Chaussée d'Antin–La Fayette",
+      "lat": 48.873,
+      "lon": 2.3359,
+      "line_ids": [
+        "M7",
+        "M9"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_129",
+        "ST_PAR_052",
+        "ST_PAR_050",
+        "ST_PAR_172"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_131",
+      "station_name": "Pyramides",
+      "station_name_en": "Pyramides",
+      "lat": 48.8641,
+      "lon": 2.3354,
+      "line_ids": [
+        "M14",
+        "M7"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_013",
+        "ST_PAR_132",
+        "ST_PAR_014",
+        "ST_PAR_149"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_132",
+      "station_name": "Pont Marie",
+      "station_name_en": "Pont Marie",
+      "lat": 48.8528,
+      "lon": 2.3548,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_131",
+        "ST_PAR_133"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_133",
+      "station_name": "Sully–Morland",
+      "station_name_en": "Sully–Morland",
+      "lat": 48.8509,
+      "lon": 2.3571,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_132",
+        "ST_PAR_134"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_134",
+      "station_name": "Jussieu",
+      "station_name_en": "Jussieu",
+      "lat": 48.8455,
+      "lon": 2.3545,
+      "line_ids": [
+        "M10",
+        "M7"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_133",
+        "ST_PAR_135",
+        "ST_PAR_175",
+        "ST_PAR_105"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_135",
+      "station_name": "Place Monge",
+      "station_name_en": "Place Monge",
+      "lat": 48.8441,
+      "lon": 2.3519,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_134",
+        "ST_PAR_136"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_136",
+      "station_name": "Censier–Daubenton",
+      "station_name_en": "Censier–Daubenton",
+      "lat": 48.8408,
+      "lon": 2.3524,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_135",
+        "ST_PAR_137"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_137",
+      "station_name": "Les Gobelins",
+      "station_name_en": "Les Gobelins",
+      "lat": 48.8363,
+      "lon": 2.3535,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_136",
+        "ST_PAR_107"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_138",
+      "station_name": "Tolbiac",
+      "station_name_en": "Tolbiac",
+      "lat": 48.8286,
+      "lon": 2.3565,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_107",
+        "ST_PAR_139"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_139",
+      "station_name": "Kremlin-Bicêtre",
+      "station_name_en": "Kremlin-Bicêtre",
+      "lat": 48.8137,
+      "lon": 2.3612,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_138",
+        "ST_PAR_140"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_140",
+      "station_name": "Villejuif–Louis Aragon",
+      "station_name_en": "Villejuif–Louis Aragon",
+      "lat": 48.7927,
+      "lon": 2.3657,
+      "line_ids": [
+        "M7"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_139"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_141",
+      "station_name": "Balard",
+      "station_name_en": "Balard",
+      "lat": 48.8382,
+      "lon": 2.2783,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_142"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_142",
+      "station_name": "Lourmel",
+      "station_name_en": "Lourmel",
+      "lat": 48.8393,
+      "lon": 2.2869,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_141",
+        "ST_PAR_143"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_143",
+      "station_name": "Boucicaut",
+      "station_name_en": "Boucicaut",
+      "lat": 48.8404,
+      "lon": 2.295,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_142",
+        "ST_PAR_144"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_144",
+      "station_name": "Félix Faure",
+      "station_name_en": "Félix Faure",
+      "lat": 48.8416,
+      "lon": 2.3028,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_143",
+        "ST_PAR_145"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_145",
+      "station_name": "Commerce",
+      "station_name_en": "Commerce",
+      "lat": 48.8427,
+      "lon": 2.3072,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_144",
+        "ST_PAR_113"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_146",
+      "station_name": "École Militaire",
+      "station_name_en": "École Militaire",
+      "lat": 48.8557,
+      "lon": 2.3055,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_113",
+        "ST_PAR_147"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_147",
+      "station_name": "La Tour-Maubourg",
+      "station_name_en": "La Tour-Maubourg",
+      "lat": 48.8572,
+      "lon": 2.3092,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_146",
+        "ST_PAR_148"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_148",
+      "station_name": "Invalides",
+      "station_name_en": "Invalides",
+      "lat": 48.8617,
+      "lon": 2.3137,
+      "line_ids": [
+        "M13",
+        "M8"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_147",
+        "ST_PAR_011",
+        "ST_PAR_010",
+        "ST_PAR_223"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_149",
+      "station_name": "Madeleine",
+      "station_name_en": "Madeleine",
+      "lat": 48.8697,
+      "lon": 2.3253,
+      "line_ids": [
+        "M12",
+        "M14",
+        "M8"
+      ],
+      "degree": 5,
+      "neighbors": [
+        "ST_PAR_011",
+        "ST_PAR_052",
+        "ST_PAR_050",
+        "ST_PAR_010",
+        "ST_PAR_131"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_150",
+      "station_name": "Grands Boulevards",
+      "station_name_en": "Grands Boulevards",
+      "lat": 48.8716,
+      "lon": 2.3455,
+      "line_ids": [
+        "M8",
+        "M9"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_074",
+        "ST_PAR_151",
+        "ST_PAR_172"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_151",
+      "station_name": "Bonne Nouvelle",
+      "station_name_en": "Bonne Nouvelle",
+      "lat": 48.8706,
+      "lon": 2.3503,
+      "line_ids": [
+        "M8",
+        "M9"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_150",
+        "ST_PAR_059",
+        "ST_PAR_074"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_152",
+      "station_name": "Oberkampf",
+      "station_name_en": "Oberkampf",
+      "lat": 48.8643,
+      "lon": 2.3684,
+      "line_ids": [
+        "M5",
+        "M9"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_153",
+      "station_name": "Faidherbe–Chaligny",
+      "station_name_en": "Faidherbe–Chaligny",
+      "lat": 48.8509,
+      "lon": 2.3782,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_019",
+        "ST_PAR_154"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_154",
+      "station_name": "Charenton–Écoles",
+      "station_name_en": "Charenton–Écoles",
+      "lat": 48.838,
+      "lon": 2.4047,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_153",
+        "ST_PAR_155"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_155",
+      "station_name": "Liberté",
+      "station_name_en": "Liberté",
+      "lat": 48.828,
+      "lon": 2.4131,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_154",
+        "ST_PAR_156"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_156",
+      "station_name": "Créteil–Préfecture",
+      "station_name_en": "Créteil–Préfecture",
+      "lat": 48.7939,
+      "lon": 2.4562,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_155"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_157",
+      "station_name": "Pont de Sèvres",
+      "station_name_en": "Pont de Sèvres",
+      "lat": 48.8277,
+      "lon": 2.2346,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_158",
+        "ST_PAR_163"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_158",
+      "station_name": "Billancourt",
+      "station_name_en": "Billancourt",
+      "lat": 48.8303,
+      "lon": 2.2455,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_157",
+        "ST_PAR_159"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_159",
+      "station_name": "Marcel Sembat",
+      "station_name_en": "Marcel Sembat",
+      "lat": 48.8335,
+      "lon": 2.2534,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_158",
+        "ST_PAR_160"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_160",
+      "station_name": "Boulogne–Jean Jaurès",
+      "station_name_en": "Boulogne–Jean Jaurès",
+      "lat": 48.8374,
+      "lon": 2.259,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_159",
+        "ST_PAR_161"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_161",
+      "station_name": "Boulogne–Pont de Saint-Cloud",
+      "station_name_en": "Boulogne–Pont de Saint-Cloud",
+      "lat": 48.8406,
+      "lon": 2.2631,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_160",
+        "ST_PAR_162"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_162",
+      "station_name": "Exelmans",
+      "station_name_en": "Exelmans",
+      "lat": 48.8428,
+      "lon": 2.2733,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_161",
+        "ST_PAR_163"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_163",
+      "station_name": "Michel-Ange–Molitor",
+      "station_name_en": "Michel-Ange–Molitor",
+      "lat": 48.8445,
+      "lon": 2.2799,
+      "line_ids": [
+        "M10",
+        "M9"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_162",
+        "ST_PAR_164",
+        "ST_PAR_157"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_164",
+      "station_name": "Michel-Ange–Auteuil",
+      "station_name_en": "Michel-Ange–Auteuil",
+      "lat": 48.8476,
+      "lon": 2.2808,
+      "line_ids": [
+        "M10",
+        "M9"
+      ],
+      "degree": 3,
+      "neighbors": [
+        "ST_PAR_163",
+        "ST_PAR_165",
+        "ST_PAR_113"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_165",
+      "station_name": "Jasmin",
+      "station_name_en": "Jasmin",
+      "lat": 48.8513,
+      "lon": 2.2815,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_164",
+        "ST_PAR_166"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_166",
+      "station_name": "Ranelagh",
+      "station_name_en": "Ranelagh",
+      "lat": 48.8558,
+      "lon": 2.2817,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_165",
+        "ST_PAR_167"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_167",
+      "station_name": "La Muette",
+      "station_name_en": "La Muette",
+      "lat": 48.8601,
+      "lon": 2.2779,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_166",
+        "ST_PAR_168"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_168",
+      "station_name": "Rue de la Pompe",
+      "station_name_en": "Rue de la Pompe",
+      "lat": 48.8641,
+      "lon": 2.2773,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_167",
+        "ST_PAR_169"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_169",
+      "station_name": "Pompe",
+      "station_name_en": "Pompe",
+      "lat": 48.868,
+      "lon": 2.276,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_168",
+        "ST_PAR_025"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_170",
+      "station_name": "Miromesnil",
+      "station_name_en": "Miromesnil",
+      "lat": 48.8763,
+      "lon": 2.3126,
+      "line_ids": [
+        "M13",
+        "M9"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_009",
+        "ST_PAR_171",
+        "ST_PAR_048",
+        "ST_PAR_050"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_171",
+      "station_name": "Saint-Augustin",
+      "station_name_en": "Saint-Augustin",
+      "lat": 48.8762,
+      "lon": 2.3182,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_170",
+        "ST_PAR_050"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_172",
+      "station_name": "Richelieu–Drouot",
+      "station_name_en": "Richelieu–Drouot",
+      "lat": 48.8726,
+      "lon": 2.3405,
+      "line_ids": [
+        "M8",
+        "M9"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_130",
+        "ST_PAR_150"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_173",
+      "station_name": "Mairie de Montreuil",
+      "station_name_en": "Mairie de Montreuil",
+      "lat": 48.8625,
+      "lon": 2.4444,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_020"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_174",
+      "station_name": "Gare d'Austerlitz",
+      "station_name_en": "Gare d'Austerlitz",
+      "lat": 48.8441,
+      "lon": 2.3656,
+      "line_ids": [
+        "M10",
+        "M5"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_175",
+      "station_name": "Cardinal Lemoine",
+      "station_name_en": "Cardinal Lemoine",
+      "lat": 48.8481,
+      "lon": 2.3519,
+      "line_ids": [
+        "M10"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_176",
+        "ST_PAR_134"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_176",
+      "station_name": "Maubert–Mutualité",
+      "station_name_en": "Maubert–Mutualité",
+      "lat": 48.8498,
+      "lon": 2.3488,
+      "line_ids": [
+        "M10"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_177",
+        "ST_PAR_175"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_177",
+      "station_name": "Cluny–La Sorbonne",
+      "station_name_en": "Cluny–La Sorbonne",
+      "lat": 48.8509,
+      "lon": 2.3451,
+      "line_ids": [
+        "M10"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_078",
+        "ST_PAR_176"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_178",
+      "station_name": "Duroc",
+      "station_name_en": "Duroc",
+      "lat": 48.8454,
+      "lon": 2.3145,
+      "line_ids": [
+        "M10",
+        "M13"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_113",
+        "ST_PAR_179",
+        "ST_PAR_082",
+        "ST_PAR_085"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_179",
+      "station_name": "Vaneau",
+      "station_name_en": "Vaneau",
+      "lat": 48.8461,
+      "lon": 2.3194,
+      "line_ids": [
+        "M10"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_178",
+        "ST_PAR_180"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_180",
+      "station_name": "Sèvres–Babylone",
+      "station_name_en": "Sèvres–Babylone",
+      "lat": 48.8507,
+      "lon": 2.3226,
+      "line_ids": [
+        "M10",
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_179",
+        "ST_PAR_181"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_181",
+      "station_name": "Mabillon",
+      "station_name_en": "Mabillon",
+      "lat": 48.8529,
+      "lon": 2.334,
+      "line_ids": [
+        "M10"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_180",
+        "ST_PAR_078"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_182",
+      "station_name": "Cité Universitaire",
+      "station_name_en": "Cité Universitaire",
+      "lat": 48.8195,
+      "lon": 2.3368,
+      "line_ids": [
+        "M4"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_183",
+      "station_name": "Rambuteau",
+      "station_name_en": "Rambuteau",
+      "lat": 48.8619,
+      "lon": 2.3519,
+      "line_ids": [
+        "M11"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_014",
+        "ST_PAR_057"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_184",
+      "station_name": "Filles du Calvaire",
+      "station_name_en": "Filles du Calvaire",
+      "lat": 48.8631,
+      "lon": 2.3668,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_185",
+      "station_name": "Saint-Sébastien–Froissart",
+      "station_name_en": "Saint-Sébastien–Froissart",
+      "lat": 48.8601,
+      "lon": 2.3693,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_186",
+      "station_name": "Goncourt",
+      "station_name_en": "Goncourt",
+      "lat": 48.87,
+      "lon": 2.3731,
+      "line_ids": [
+        "M11"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_034",
+        "ST_PAR_059"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_187",
+      "station_name": "Pyrénées",
+      "station_name_en": "Pyrénées",
+      "lat": 48.8743,
+      "lon": 2.3853,
+      "line_ids": [
+        "M11"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_059",
+        "ST_PAR_188"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_188",
+      "station_name": "Jourdain",
+      "station_name_en": "Jourdain",
+      "lat": 48.8759,
+      "lon": 2.3912,
+      "line_ids": [
+        "M11"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_187",
+        "ST_PAR_189"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_189",
+      "station_name": "Place des Fêtes",
+      "station_name_en": "Place des Fêtes",
+      "lat": 48.8784,
+      "lon": 2.3942,
+      "line_ids": [
+        "M11"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_188",
+        "ST_PAR_190"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_190",
+      "station_name": "Télégraphe",
+      "station_name_en": "Télégraphe",
+      "lat": 48.879,
+      "lon": 2.3983,
+      "line_ids": [
+        "M11"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_189",
+        "ST_PAR_191"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_191",
+      "station_name": "Porte des Lilas",
+      "station_name_en": "Porte des Lilas",
+      "lat": 48.8797,
+      "lon": 2.4021,
+      "line_ids": [
+        "M11"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_190",
+        "ST_PAR_192"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_192",
+      "station_name": "Mairie des Lilas",
+      "station_name_en": "Mairie des Lilas",
+      "lat": 48.8804,
+      "lon": 2.4154,
+      "line_ids": [
+        "M11"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_191"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_193",
+      "station_name": "Aubervilliers–Front Populaire",
+      "station_name_en": "Aubervilliers–Front Populaire",
+      "lat": 48.9175,
+      "lon": 2.369,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_194"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_194",
+      "station_name": "Porte de la Chapelle",
+      "station_name_en": "Porte de la Chapelle",
+      "lat": 48.8987,
+      "lon": 2.3594,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_193",
+        "ST_PAR_195"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_195",
+      "station_name": "Marx Dormoy",
+      "station_name_en": "Marx Dormoy",
+      "lat": 48.8932,
+      "lon": 2.3548,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_194",
+        "ST_PAR_070"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_196",
+      "station_name": "Lamarck–Caulaincourt",
+      "station_name_en": "Lamarck–Caulaincourt",
+      "lat": 48.8875,
+      "lon": 2.3395,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_070",
+        "ST_PAR_197"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_197",
+      "station_name": "Jules Joffrin",
+      "station_name_en": "Jules Joffrin",
+      "lat": 48.8868,
+      "lon": 2.3452,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_196",
+        "ST_PAR_198"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_198",
+      "station_name": "Abbesses",
+      "station_name_en": "Abbesses",
+      "lat": 48.8843,
+      "lon": 2.3381,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_197",
+        "ST_PAR_199"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_199",
+      "station_name": "Pigalle",
+      "station_name_en": "Pigalle",
+      "lat": 48.8829,
+      "lon": 2.3327,
+      "line_ids": [
+        "M12",
+        "M2"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_048",
+        "ST_PAR_028",
+        "ST_PAR_198",
+        "ST_PAR_200"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_200",
+      "station_name": "Notre-Dame-de-Lorette",
+      "station_name_en": "Notre-Dame-de-Lorette",
+      "lat": 48.8783,
+      "lon": 2.3358,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_199",
+        "ST_PAR_201"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_201",
+      "station_name": "Saint-Georges",
+      "station_name_en": "Saint-Georges",
+      "lat": 48.8771,
+      "lon": 2.3341,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_200",
+        "ST_PAR_202"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_202",
+      "station_name": "Trinité–d'Estienne d'Orves",
+      "station_name_en": "Trinité–d'Estienne d'Orves",
+      "lat": 48.8764,
+      "lon": 2.3305,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_201",
+        "ST_PAR_050"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_203",
+      "station_name": "Rennes",
+      "station_name_en": "Rennes",
+      "lat": 48.8484,
+      "lon": 2.3295,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_011",
+        "ST_PAR_204"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_204",
+      "station_name": "Notre-Dame-des-Champs",
+      "station_name_en": "Notre-Dame-des-Champs",
+      "lat": 48.8449,
+      "lon": 2.3289,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_203",
+        "ST_PAR_116"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_205",
+      "station_name": "Falguière",
+      "station_name_en": "Falguière",
+      "lat": 48.8437,
+      "lon": 2.3173,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_082",
+        "ST_PAR_206"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_206",
+      "station_name": "Volontaires",
+      "station_name_en": "Volontaires",
+      "lat": 48.8418,
+      "lon": 2.3115,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_205",
+        "ST_PAR_207"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_207",
+      "station_name": "Vaugirard",
+      "station_name_en": "Vaugirard",
+      "lat": 48.8406,
+      "lon": 2.3059,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_206",
+        "ST_PAR_208"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_208",
+      "station_name": "Convention",
+      "station_name_en": "Convention",
+      "lat": 48.8393,
+      "lon": 2.2997,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_207",
+        "ST_PAR_210"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_209",
+      "station_name": "Boucicaut",
+      "station_name_en": "Boucicaut",
+      "lat": 48.8404,
+      "lon": 2.295,
+      "line_ids": [
+        "M8"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_210",
+      "station_name": "Corentin Celton",
+      "station_name_en": "Corentin Celton",
+      "lat": 48.8328,
+      "lon": 2.2753,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_208",
+        "ST_PAR_211"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_211",
+      "station_name": "Mairie d'Issy",
+      "station_name_en": "Mairie d'Issy",
+      "lat": 48.8234,
+      "lon": 2.2711,
+      "line_ids": [
+        "M12"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_210"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_212",
+      "station_name": "Saint-Denis–Université",
+      "station_name_en": "Saint-Denis–Université",
+      "lat": 48.9395,
+      "lon": 2.3582,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_213"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_213",
+      "station_name": "Basilique de Saint-Denis",
+      "station_name_en": "Basilique de Saint-Denis",
+      "lat": 48.9355,
+      "lon": 2.3596,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_212",
+        "ST_PAR_214"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_214",
+      "station_name": "Saint-Denis–Porte de Paris",
+      "station_name_en": "Saint-Denis–Porte de Paris",
+      "lat": 48.9248,
+      "lon": 2.3599,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_213",
+        "ST_PAR_215"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_215",
+      "station_name": "Carrefour Pleyel",
+      "station_name_en": "Carrefour Pleyel",
+      "lat": 48.9167,
+      "lon": 2.3451,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_214",
+        "ST_PAR_216"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_216",
+      "station_name": "Mairie de Saint-Ouen",
+      "station_name_en": "Mairie de Saint-Ouen",
+      "lat": 48.912,
+      "lon": 2.3378,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_215",
+        "ST_PAR_217"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_217",
+      "station_name": "Garibaldi",
+      "station_name_en": "Garibaldi",
+      "lat": 48.9059,
+      "lon": 2.3348,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_216",
+        "ST_PAR_218"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_218",
+      "station_name": "Porte de Saint-Ouen",
+      "station_name_en": "Porte de Saint-Ouen",
+      "lat": 48.8988,
+      "lon": 2.332,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_217",
+        "ST_PAR_219"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_219",
+      "station_name": "Guy Môquet",
+      "station_name_en": "Guy Môquet",
+      "lat": 48.8944,
+      "lon": 2.3318,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_218",
+        "ST_PAR_220"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_220",
+      "station_name": "La Fourche",
+      "station_name_en": "La Fourche",
+      "lat": 48.8895,
+      "lon": 2.3299,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_219",
+        "ST_PAR_221"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_221",
+      "station_name": "Brochant",
+      "station_name_en": "Brochant",
+      "lat": 48.8913,
+      "lon": 2.3271,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_220",
+        "ST_PAR_048"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_222",
+      "station_name": "Liège",
+      "station_name_en": "Liège",
+      "lat": 48.8793,
+      "lon": 2.3271,
+      "line_ids": [
+        "M3"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_223",
+      "station_name": "Varenne",
+      "station_name_en": "Varenne",
+      "lat": 48.8581,
+      "lon": 2.3145,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_148",
+        "ST_PAR_224"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_224",
+      "station_name": "Saint-François-Xavier",
+      "station_name_en": "Saint-François-Xavier",
+      "lat": 48.8508,
+      "lon": 2.312,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_223",
+        "ST_PAR_082"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_225",
+      "station_name": "Châtillon–Montrouge",
+      "station_name_en": "Châtillon–Montrouge",
+      "lat": 48.8014,
+      "lon": 2.3015,
+      "line_ids": [
+        "M13"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_085"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_226",
+      "station_name": "Olympiades",
+      "station_name_en": "Olympiades",
+      "lat": 48.8268,
+      "lon": 2.3641,
+      "line_ids": [
+        "M14"
+      ],
+      "degree": 1,
+      "neighbors": [
+        "ST_PAR_227"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_227",
+      "station_name": "Bibliothèque François Mitterrand",
+      "station_name_en": "Bibliothèque François Mitterrand",
+      "lat": 48.8295,
+      "lon": 2.3766,
+      "line_ids": [
+        "M14"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_226",
+        "ST_PAR_228"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_228",
+      "station_name": "Cour Saint-Émilion",
+      "station_name_en": "Cour Saint-Émilion",
+      "lat": 48.8334,
+      "lon": 2.3888,
+      "line_ids": [
+        "M14"
+      ],
+      "degree": 2,
+      "neighbors": [
+        "ST_PAR_227",
+        "ST_PAR_229"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_229",
+      "station_name": "Bercy",
+      "station_name_en": "Bercy",
+      "lat": 48.8399,
+      "lon": 2.3793,
+      "line_ids": [
+        "M14",
+        "M6"
+      ],
+      "degree": 4,
+      "neighbors": [
+        "ST_PAR_017",
+        "ST_PAR_020",
+        "ST_PAR_228",
+        "ST_PAR_018"
+      ]
+    },
+    {
+      "station_global_id": "ST_PAR_230",
+      "station_name": "Quai de la Rapée",
+      "station_name_en": "Quai de la Rapée",
+      "lat": 48.848,
+      "lon": 2.366,
+      "line_ids": [
+        "M5"
+      ],
+      "degree": 0,
+      "neighbors": []
+    },
+    {
+      "station_global_id": "ST_PAR_231",
+      "station_name": "Pont de Sèvres",
+      "station_name_en": "Pont de Sèvres",
+      "lat": 48.8277,
+      "lon": 2.2346,
+      "line_ids": [
+        "M9"
+      ],
+      "degree": 0,
+      "neighbors": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "ST_PAR_001",
+      "to": "ST_PAR_002",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.77,
+      "weight": 1.2985
+    },
+    {
+      "from": "ST_PAR_002",
+      "to": "ST_PAR_003",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 1.016,
+      "weight": 0.9846
+    },
+    {
+      "from": "ST_PAR_003",
+      "to": "ST_PAR_004",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.929,
+      "weight": 1.0767
+    },
+    {
+      "from": "ST_PAR_004",
+      "to": "ST_PAR_005",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.922,
+      "weight": 1.0846
+    },
+    {
+      "from": "ST_PAR_005",
+      "to": "ST_PAR_006",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.671,
+      "weight": 1.4911
+    },
+    {
+      "from": "ST_PAR_006",
+      "to": "ST_PAR_007",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.38,
+      "weight": 2.6313
+    },
+    {
+      "from": "ST_PAR_007",
+      "to": "ST_PAR_008",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.501,
+      "weight": 1.9968
+    },
+    {
+      "from": "ST_PAR_008",
+      "to": "ST_PAR_009",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.599,
+      "weight": 1.6691
+    },
+    {
+      "from": "ST_PAR_009",
+      "to": "ST_PAR_010",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.411,
+      "weight": 2.4327
+    },
+    {
+      "from": "ST_PAR_010",
+      "to": "ST_PAR_011",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.664,
+      "weight": 1.5064
+    },
+    {
+      "from": "ST_PAR_011",
+      "to": "ST_PAR_012",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.699,
+      "weight": 1.4306
+    },
+    {
+      "from": "ST_PAR_012",
+      "to": "ST_PAR_013",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.439,
+      "weight": 2.2777
+    },
+    {
+      "from": "ST_PAR_013",
+      "to": "ST_PAR_014",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.827,
+      "weight": 1.2085
+    },
+    {
+      "from": "ST_PAR_014",
+      "to": "ST_PAR_015",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.503,
+      "weight": 1.9881
+    },
+    {
+      "from": "ST_PAR_015",
+      "to": "ST_PAR_016",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.745,
+      "weight": 1.3432
+    },
+    {
+      "from": "ST_PAR_016",
+      "to": "ST_PAR_017",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.598,
+      "weight": 1.6729
+    },
+    {
+      "from": "ST_PAR_017",
+      "to": "ST_PAR_018",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 1.032,
+      "weight": 0.9686
+    },
+    {
+      "from": "ST_PAR_018",
+      "to": "ST_PAR_019",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 1.074,
+      "weight": 0.9311
+    },
+    {
+      "from": "ST_PAR_019",
+      "to": "ST_PAR_020",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 0.617,
+      "weight": 1.6196
+    },
+    {
+      "from": "ST_PAR_020",
+      "to": "ST_PAR_021",
+      "line_ids": [
+        "M1"
+      ],
+      "distance_km": 3.217,
+      "weight": 0.3109
+    },
+    {
+      "from": "ST_PAR_022",
+      "to": "ST_PAR_023",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.702,
+      "weight": 1.4245
+    },
+    {
+      "from": "ST_PAR_023",
+      "to": "ST_PAR_024",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.485,
+      "weight": 2.063
+    },
+    {
+      "from": "ST_PAR_005",
+      "to": "ST_PAR_024",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.817,
+      "weight": 1.2234
+    },
+    {
+      "from": "ST_PAR_005",
+      "to": "ST_PAR_007",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 1.046,
+      "weight": 0.9561
+    },
+    {
+      "from": "ST_PAR_007",
+      "to": "ST_PAR_046",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 2.197,
+      "weight": 0.4552
+    },
+    {
+      "from": "ST_PAR_046",
+      "to": "ST_PAR_047",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.449,
+      "weight": 2.2266
+    },
+    {
+      "from": "ST_PAR_047",
+      "to": "ST_PAR_048",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.615,
+      "weight": 1.6247
+    },
+    {
+      "from": "ST_PAR_048",
+      "to": "ST_PAR_199",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.081,
+      "weight": 10.0
+    },
+    {
+      "from": "ST_PAR_028",
+      "to": "ST_PAR_199",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.826,
+      "weight": 1.2102
+    },
+    {
+      "from": "ST_PAR_028",
+      "to": "ST_PAR_029",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.44,
+      "weight": 2.2702
+    },
+    {
+      "from": "ST_PAR_029",
+      "to": "ST_PAR_030",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.548,
+      "weight": 1.8261
+    },
+    {
+      "from": "ST_PAR_030",
+      "to": "ST_PAR_031",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.726,
+      "weight": 1.3774
+    },
+    {
+      "from": "ST_PAR_031",
+      "to": "ST_PAR_032",
+      "line_ids": [
+        "M2",
+        "M5"
+      ],
+      "distance_km": 0.317,
+      "weight": 3.1564
+    },
+    {
+      "from": "ST_PAR_032",
+      "to": "ST_PAR_033",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.487,
+      "weight": 2.0513
+    },
+    {
+      "from": "ST_PAR_033",
+      "to": "ST_PAR_034",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.854,
+      "weight": 1.1713
+    },
+    {
+      "from": "ST_PAR_034",
+      "to": "ST_PAR_064",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.867,
+      "weight": 1.1531
+    },
+    {
+      "from": "ST_PAR_035",
+      "to": "ST_PAR_064",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.529,
+      "weight": 1.89
+    },
+    {
+      "from": "ST_PAR_035",
+      "to": "ST_PAR_036",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.599,
+      "weight": 1.6696
+    },
+    {
+      "from": "ST_PAR_036",
+      "to": "ST_PAR_037",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.518,
+      "weight": 1.9294
+    },
+    {
+      "from": "ST_PAR_037",
+      "to": "ST_PAR_038",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.461,
+      "weight": 2.1703
+    },
+    {
+      "from": "ST_PAR_020",
+      "to": "ST_PAR_038",
+      "line_ids": [
+        "M2"
+      ],
+      "distance_km": 0.43,
+      "weight": 2.3276
+    },
+    {
+      "from": "ST_PAR_039",
+      "to": "ST_PAR_040",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.647,
+      "weight": 1.5446
+    },
+    {
+      "from": "ST_PAR_040",
+      "to": "ST_PAR_041",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.557,
+      "weight": 1.7958
+    },
+    {
+      "from": "ST_PAR_041",
+      "to": "ST_PAR_042",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.6,
+      "weight": 1.668
+    },
+    {
+      "from": "ST_PAR_042",
+      "to": "ST_PAR_043",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.347,
+      "weight": 2.8806
+    },
+    {
+      "from": "ST_PAR_043",
+      "to": "ST_PAR_044",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.417,
+      "weight": 2.4003
+    },
+    {
+      "from": "ST_PAR_044",
+      "to": "ST_PAR_045",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.416,
+      "weight": 2.4023
+    },
+    {
+      "from": "ST_PAR_045",
+      "to": "ST_PAR_046",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.63,
+      "weight": 1.5884
+    },
+    {
+      "from": "ST_PAR_046",
+      "to": "ST_PAR_049",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.449,
+      "weight": 2.2266
+    },
+    {
+      "from": "ST_PAR_049",
+      "to": "ST_PAR_050",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.456,
+      "weight": 2.1913
+    },
+    {
+      "from": "ST_PAR_050",
+      "to": "ST_PAR_051",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.395,
+      "weight": 2.5299
+    },
+    {
+      "from": "ST_PAR_051",
+      "to": "ST_PAR_052",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.394,
+      "weight": 2.5402
+    },
+    {
+      "from": "ST_PAR_052",
+      "to": "ST_PAR_053",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.536,
+      "weight": 1.8651
+    },
+    {
+      "from": "ST_PAR_053",
+      "to": "ST_PAR_054",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.232,
+      "weight": 4.3148
+    },
+    {
+      "from": "ST_PAR_054",
+      "to": "ST_PAR_055",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.496,
+      "weight": 2.0159
+    },
+    {
+      "from": "ST_PAR_055",
+      "to": "ST_PAR_056",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.422,
+      "weight": 2.3715
+    },
+    {
+      "from": "ST_PAR_056",
+      "to": "ST_PAR_057",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.33,
+      "weight": 3.0296
+    },
+    {
+      "from": "ST_PAR_057",
+      "to": "ST_PAR_058",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.33,
+      "weight": 3.031
+    },
+    {
+      "from": "ST_PAR_058",
+      "to": "ST_PAR_059",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.473,
+      "weight": 2.1142
+    },
+    {
+      "from": "ST_PAR_059",
+      "to": "ST_PAR_063",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 1.161,
+      "weight": 0.8612
+    },
+    {
+      "from": "ST_PAR_061",
+      "to": "ST_PAR_063",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.27,
+      "weight": 3.7057
+    },
+    {
+      "from": "ST_PAR_061",
+      "to": "ST_PAR_062",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.289,
+      "weight": 3.4653
+    },
+    {
+      "from": "ST_PAR_062",
+      "to": "ST_PAR_065",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 1.137,
+      "weight": 0.8797
+    },
+    {
+      "from": "ST_PAR_035",
+      "to": "ST_PAR_065",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.82,
+      "weight": 1.2202
+    },
+    {
+      "from": "ST_PAR_035",
+      "to": "ST_PAR_066",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 1.88,
+      "weight": 0.5319
+    },
+    {
+      "from": "ST_PAR_066",
+      "to": "ST_PAR_067",
+      "line_ids": [
+        "M3"
+      ],
+      "distance_km": 0.587,
+      "weight": 1.7027
+    },
+    {
+      "from": "ST_PAR_068",
+      "to": "ST_PAR_069",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.443,
+      "weight": 2.2564
+    },
+    {
+      "from": "ST_PAR_069",
+      "to": "ST_PAR_070",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.394,
+      "weight": 2.5404
+    },
+    {
+      "from": "ST_PAR_070",
+      "to": "ST_PAR_071",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.446,
+      "weight": 2.2407
+    },
+    {
+      "from": "ST_PAR_071",
+      "to": "ST_PAR_072",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.759,
+      "weight": 1.3183
+    },
+    {
+      "from": "ST_PAR_072",
+      "to": "ST_PAR_073",
+      "line_ids": [
+        "M4",
+        "M5"
+      ],
+      "distance_km": 0.534,
+      "weight": 1.873
+    },
+    {
+      "from": "ST_PAR_073",
+      "to": "ST_PAR_074",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.881,
+      "weight": 1.1352
+    },
+    {
+      "from": "ST_PAR_056",
+      "to": "ST_PAR_074",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.637,
+      "weight": 1.5703
+    },
+    {
+      "from": "ST_PAR_056",
+      "to": "ST_PAR_075",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.281,
+      "weight": 3.5572
+    },
+    {
+      "from": "ST_PAR_075",
+      "to": "ST_PAR_076",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.159,
+      "weight": 6.2775
+    },
+    {
+      "from": "ST_PAR_014",
+      "to": "ST_PAR_076",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.201,
+      "weight": 4.9665
+    },
+    {
+      "from": "ST_PAR_014",
+      "to": "ST_PAR_077",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.807,
+      "weight": 1.239
+    },
+    {
+      "from": "ST_PAR_077",
+      "to": "ST_PAR_078",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.272,
+      "weight": 3.6699
+    },
+    {
+      "from": "ST_PAR_078",
+      "to": "ST_PAR_079",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.65,
+      "weight": 1.5385
+    },
+    {
+      "from": "ST_PAR_079",
+      "to": "ST_PAR_080",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.359,
+      "weight": 2.7872
+    },
+    {
+      "from": "ST_PAR_080",
+      "to": "ST_PAR_081",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.483,
+      "weight": 2.0721
+    },
+    {
+      "from": "ST_PAR_081",
+      "to": "ST_PAR_082",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.7,
+      "weight": 1.4279
+    },
+    {
+      "from": "ST_PAR_082",
+      "to": "ST_PAR_118",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.679,
+      "weight": 1.4719
+    },
+    {
+      "from": "ST_PAR_085",
+      "to": "ST_PAR_118",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.625,
+      "weight": 1.6001
+    },
+    {
+      "from": "ST_PAR_084",
+      "to": "ST_PAR_085",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.63,
+      "weight": 1.5868
+    },
+    {
+      "from": "ST_PAR_083",
+      "to": "ST_PAR_084",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 0.351,
+      "weight": 2.8475
+    },
+    {
+      "from": "ST_PAR_083",
+      "to": "ST_PAR_086",
+      "line_ids": [
+        "M4"
+      ],
+      "distance_km": 1.191,
+      "weight": 0.8399
+    },
+    {
+      "from": "ST_PAR_087",
+      "to": "ST_PAR_088",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 2.059,
+      "weight": 0.4858
+    },
+    {
+      "from": "ST_PAR_088",
+      "to": "ST_PAR_089",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 1.169,
+      "weight": 0.8554
+    },
+    {
+      "from": "ST_PAR_089",
+      "to": "ST_PAR_090",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.953,
+      "weight": 1.0494
+    },
+    {
+      "from": "ST_PAR_090",
+      "to": "ST_PAR_091",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.892,
+      "weight": 1.1211
+    },
+    {
+      "from": "ST_PAR_091",
+      "to": "ST_PAR_092",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.57,
+      "weight": 1.7545
+    },
+    {
+      "from": "ST_PAR_092",
+      "to": "ST_PAR_093",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.369,
+      "weight": 2.7108
+    },
+    {
+      "from": "ST_PAR_093",
+      "to": "ST_PAR_094",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.254,
+      "weight": 3.9295
+    },
+    {
+      "from": "ST_PAR_094",
+      "to": "ST_PAR_095",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.359,
+      "weight": 2.7816
+    },
+    {
+      "from": "ST_PAR_095",
+      "to": "ST_PAR_096",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.353,
+      "weight": 2.8365
+    },
+    {
+      "from": "ST_PAR_031",
+      "to": "ST_PAR_096",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.22,
+      "weight": 4.5405
+    },
+    {
+      "from": "ST_PAR_032",
+      "to": "ST_PAR_099",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.736,
+      "weight": 1.358
+    },
+    {
+      "from": "ST_PAR_072",
+      "to": "ST_PAR_099",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.474,
+      "weight": 2.1078
+    },
+    {
+      "from": "ST_PAR_073",
+      "to": "ST_PAR_100",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.794,
+      "weight": 1.2593
+    },
+    {
+      "from": "ST_PAR_059",
+      "to": "ST_PAR_100",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.298,
+      "weight": 3.3533
+    },
+    {
+      "from": "ST_PAR_059",
+      "to": "ST_PAR_060",
+      "line_ids": [
+        "M5",
+        "M9"
+      ],
+      "distance_km": 0.523,
+      "weight": 1.9134
+    },
+    {
+      "from": "ST_PAR_060",
+      "to": "ST_PAR_102",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.655,
+      "weight": 1.5256
+    },
+    {
+      "from": "ST_PAR_102",
+      "to": "ST_PAR_103",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.303,
+      "weight": 3.2958
+    },
+    {
+      "from": "ST_PAR_017",
+      "to": "ST_PAR_103",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.296,
+      "weight": 3.3754
+    },
+    {
+      "from": "ST_PAR_017",
+      "to": "ST_PAR_104",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.634,
+      "weight": 1.5769
+    },
+    {
+      "from": "ST_PAR_104",
+      "to": "ST_PAR_105",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.435,
+      "weight": 2.3007
+    },
+    {
+      "from": "ST_PAR_105",
+      "to": "ST_PAR_106",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 0.527,
+      "weight": 1.8992
+    },
+    {
+      "from": "ST_PAR_106",
+      "to": "ST_PAR_107",
+      "line_ids": [
+        "M5"
+      ],
+      "distance_km": 1.099,
+      "weight": 0.9101
+    },
+    {
+      "from": "ST_PAR_007",
+      "to": "ST_PAR_108",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.325,
+      "weight": 3.0783
+    },
+    {
+      "from": "ST_PAR_108",
+      "to": "ST_PAR_109",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.827,
+      "weight": 1.2097
+    },
+    {
+      "from": "ST_PAR_025",
+      "to": "ST_PAR_109",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.752,
+      "weight": 1.3302
+    },
+    {
+      "from": "ST_PAR_025",
+      "to": "ST_PAR_110",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.589,
+      "weight": 1.6991
+    },
+    {
+      "from": "ST_PAR_110",
+      "to": "ST_PAR_111",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.423,
+      "weight": 2.3652
+    },
+    {
+      "from": "ST_PAR_111",
+      "to": "ST_PAR_112",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.656,
+      "weight": 1.524
+    },
+    {
+      "from": "ST_PAR_112",
+      "to": "ST_PAR_113",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.275,
+      "weight": 3.6341
+    },
+    {
+      "from": "ST_PAR_113",
+      "to": "ST_PAR_114",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.612,
+      "weight": 1.6332
+    },
+    {
+      "from": "ST_PAR_114",
+      "to": "ST_PAR_115",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.454,
+      "weight": 2.2041
+    },
+    {
+      "from": "ST_PAR_115",
+      "to": "ST_PAR_116",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.323,
+      "weight": 3.1003
+    },
+    {
+      "from": "ST_PAR_082",
+      "to": "ST_PAR_116",
+      "line_ids": [
+        "M6",
+        "M12"
+      ],
+      "distance_km": 0.601,
+      "weight": 1.6639
+    },
+    {
+      "from": "ST_PAR_082",
+      "to": "ST_PAR_117",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.251,
+      "weight": 3.9913
+    },
+    {
+      "from": "ST_PAR_085",
+      "to": "ST_PAR_117",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 1.045,
+      "weight": 0.9571
+    },
+    {
+      "from": "ST_PAR_085",
+      "to": "ST_PAR_119",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.647,
+      "weight": 1.5466
+    },
+    {
+      "from": "ST_PAR_119",
+      "to": "ST_PAR_120",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.702,
+      "weight": 1.4239
+    },
+    {
+      "from": "ST_PAR_107",
+      "to": "ST_PAR_120",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 0.469,
+      "weight": 2.1307
+    },
+    {
+      "from": "ST_PAR_017",
+      "to": "ST_PAR_107",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 2.667,
+      "weight": 0.375
+    },
+    {
+      "from": "ST_PAR_017",
+      "to": "ST_PAR_229",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 1.663,
+      "weight": 0.6012
+    },
+    {
+      "from": "ST_PAR_020",
+      "to": "ST_PAR_229",
+      "line_ids": [
+        "M6"
+      ],
+      "distance_km": 1.545,
+      "weight": 0.6473
+    },
+    {
+      "from": "ST_PAR_121",
+      "to": "ST_PAR_122",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 1.023,
+      "weight": 0.978
+    },
+    {
+      "from": "ST_PAR_122",
+      "to": "ST_PAR_123",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.868,
+      "weight": 1.1523
+    },
+    {
+      "from": "ST_PAR_123",
+      "to": "ST_PAR_124",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 1.068,
+      "weight": 0.9366
+    },
+    {
+      "from": "ST_PAR_124",
+      "to": "ST_PAR_125",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 1.923,
+      "weight": 0.5201
+    },
+    {
+      "from": "ST_PAR_097",
+      "to": "ST_PAR_125",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.25,
+      "weight": 4.0065
+    },
+    {
+      "from": "ST_PAR_097",
+      "to": "ST_PAR_098",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.362,
+      "weight": 2.7594
+    },
+    {
+      "from": "ST_PAR_098",
+      "to": "ST_PAR_099",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.428,
+      "weight": 2.3368
+    },
+    {
+      "from": "ST_PAR_031",
+      "to": "ST_PAR_099",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.496,
+      "weight": 2.016
+    },
+    {
+      "from": "ST_PAR_031",
+      "to": "ST_PAR_073",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 1.019,
+      "weight": 0.9817
+    },
+    {
+      "from": "ST_PAR_073",
+      "to": "ST_PAR_128",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.973,
+      "weight": 1.0281
+    },
+    {
+      "from": "ST_PAR_128",
+      "to": "ST_PAR_129",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.312,
+      "weight": 3.2016
+    },
+    {
+      "from": "ST_PAR_129",
+      "to": "ST_PAR_130",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.535,
+      "weight": 1.8705
+    },
+    {
+      "from": "ST_PAR_052",
+      "to": "ST_PAR_130",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.367,
+      "weight": 2.7212
+    },
+    {
+      "from": "ST_PAR_013",
+      "to": "ST_PAR_052",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.882,
+      "weight": 1.1344
+    },
+    {
+      "from": "ST_PAR_013",
+      "to": "ST_PAR_131",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.098,
+      "weight": 10.0
+    },
+    {
+      "from": "ST_PAR_131",
+      "to": "ST_PAR_132",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 1.896,
+      "weight": 0.5276
+    },
+    {
+      "from": "ST_PAR_132",
+      "to": "ST_PAR_133",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.27,
+      "weight": 3.7023
+    },
+    {
+      "from": "ST_PAR_133",
+      "to": "ST_PAR_134",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.63,
+      "weight": 1.5876
+    },
+    {
+      "from": "ST_PAR_134",
+      "to": "ST_PAR_135",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.246,
+      "weight": 4.0678
+    },
+    {
+      "from": "ST_PAR_135",
+      "to": "ST_PAR_136",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.369,
+      "weight": 2.7118
+    },
+    {
+      "from": "ST_PAR_136",
+      "to": "ST_PAR_137",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.507,
+      "weight": 1.9731
+    },
+    {
+      "from": "ST_PAR_107",
+      "to": "ST_PAR_137",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.613,
+      "weight": 1.6316
+    },
+    {
+      "from": "ST_PAR_107",
+      "to": "ST_PAR_138",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 0.272,
+      "weight": 3.68
+    },
+    {
+      "from": "ST_PAR_138",
+      "to": "ST_PAR_139",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 1.692,
+      "weight": 0.591
+    },
+    {
+      "from": "ST_PAR_139",
+      "to": "ST_PAR_140",
+      "line_ids": [
+        "M7"
+      ],
+      "distance_km": 2.358,
+      "weight": 0.424
+    },
+    {
+      "from": "ST_PAR_141",
+      "to": "ST_PAR_142",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.641,
+      "weight": 1.5596
+    },
+    {
+      "from": "ST_PAR_142",
+      "to": "ST_PAR_143",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.605,
+      "weight": 1.6521
+    },
+    {
+      "from": "ST_PAR_143",
+      "to": "ST_PAR_144",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.586,
+      "weight": 1.7059
+    },
+    {
+      "from": "ST_PAR_144",
+      "to": "ST_PAR_145",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.344,
+      "weight": 2.9032
+    },
+    {
+      "from": "ST_PAR_113",
+      "to": "ST_PAR_145",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.891,
+      "weight": 1.1221
+    },
+    {
+      "from": "ST_PAR_113",
+      "to": "ST_PAR_146",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.891,
+      "weight": 1.1219
+    },
+    {
+      "from": "ST_PAR_146",
+      "to": "ST_PAR_147",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.318,
+      "weight": 3.1451
+    },
+    {
+      "from": "ST_PAR_147",
+      "to": "ST_PAR_148",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.599,
+      "weight": 1.6696
+    },
+    {
+      "from": "ST_PAR_011",
+      "to": "ST_PAR_148",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.704,
+      "weight": 1.4202
+    },
+    {
+      "from": "ST_PAR_011",
+      "to": "ST_PAR_149",
+      "line_ids": [
+        "M8",
+        "M12"
+      ],
+      "distance_km": 0.547,
+      "weight": 1.8273
+    },
+    {
+      "from": "ST_PAR_052",
+      "to": "ST_PAR_149",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.504,
+      "weight": 1.9845
+    },
+    {
+      "from": "ST_PAR_052",
+      "to": "ST_PAR_074",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 1.684,
+      "weight": 0.5937
+    },
+    {
+      "from": "ST_PAR_074",
+      "to": "ST_PAR_150",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.723,
+      "weight": 1.3834
+    },
+    {
+      "from": "ST_PAR_150",
+      "to": "ST_PAR_151",
+      "line_ids": [
+        "M8",
+        "M9"
+      ],
+      "distance_km": 0.368,
+      "weight": 2.7155
+    },
+    {
+      "from": "ST_PAR_059",
+      "to": "ST_PAR_151",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.992,
+      "weight": 1.0081
+    },
+    {
+      "from": "ST_PAR_017",
+      "to": "ST_PAR_059",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 1.624,
+      "weight": 0.6159
+    },
+    {
+      "from": "ST_PAR_017",
+      "to": "ST_PAR_019",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 1.504,
+      "weight": 0.6648
+    },
+    {
+      "from": "ST_PAR_019",
+      "to": "ST_PAR_153",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 0.797,
+      "weight": 1.2552
+    },
+    {
+      "from": "ST_PAR_153",
+      "to": "ST_PAR_154",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 2.412,
+      "weight": 0.4146
+    },
+    {
+      "from": "ST_PAR_154",
+      "to": "ST_PAR_155",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 1.271,
+      "weight": 0.787
+    },
+    {
+      "from": "ST_PAR_155",
+      "to": "ST_PAR_156",
+      "line_ids": [
+        "M8"
+      ],
+      "distance_km": 4.933,
+      "weight": 0.2027
+    },
+    {
+      "from": "ST_PAR_157",
+      "to": "ST_PAR_158",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.849,
+      "weight": 1.1783
+    },
+    {
+      "from": "ST_PAR_158",
+      "to": "ST_PAR_159",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.679,
+      "weight": 1.4728
+    },
+    {
+      "from": "ST_PAR_159",
+      "to": "ST_PAR_160",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.597,
+      "weight": 1.6759
+    },
+    {
+      "from": "ST_PAR_160",
+      "to": "ST_PAR_161",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.465,
+      "weight": 2.1484
+    },
+    {
+      "from": "ST_PAR_161",
+      "to": "ST_PAR_162",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.786,
+      "weight": 1.273
+    },
+    {
+      "from": "ST_PAR_162",
+      "to": "ST_PAR_163",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.519,
+      "weight": 1.9281
+    },
+    {
+      "from": "ST_PAR_163",
+      "to": "ST_PAR_164",
+      "line_ids": [
+        "M9",
+        "M10"
+      ],
+      "distance_km": 0.351,
+      "weight": 2.8495
+    },
+    {
+      "from": "ST_PAR_164",
+      "to": "ST_PAR_165",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.415,
+      "weight": 2.412
+    },
+    {
+      "from": "ST_PAR_165",
+      "to": "ST_PAR_166",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.501,
+      "weight": 1.9976
+    },
+    {
+      "from": "ST_PAR_166",
+      "to": "ST_PAR_167",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.553,
+      "weight": 1.808
+    },
+    {
+      "from": "ST_PAR_167",
+      "to": "ST_PAR_168",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.447,
+      "weight": 2.2374
+    },
+    {
+      "from": "ST_PAR_168",
+      "to": "ST_PAR_169",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.444,
+      "weight": 2.2524
+    },
+    {
+      "from": "ST_PAR_025",
+      "to": "ST_PAR_169",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 1.028,
+      "weight": 0.9729
+    },
+    {
+      "from": "ST_PAR_025",
+      "to": "ST_PAR_026",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.513,
+      "weight": 1.9488
+    },
+    {
+      "from": "ST_PAR_026",
+      "to": "ST_PAR_027",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.551,
+      "weight": 1.8135
+    },
+    {
+      "from": "ST_PAR_009",
+      "to": "ST_PAR_027",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.731,
+      "weight": 1.368
+    },
+    {
+      "from": "ST_PAR_009",
+      "to": "ST_PAR_170",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.819,
+      "weight": 1.2211
+    },
+    {
+      "from": "ST_PAR_170",
+      "to": "ST_PAR_171",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.41,
+      "weight": 2.4409
+    },
+    {
+      "from": "ST_PAR_050",
+      "to": "ST_PAR_171",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.458,
+      "weight": 2.182
+    },
+    {
+      "from": "ST_PAR_050",
+      "to": "ST_PAR_130",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.889,
+      "weight": 1.1244
+    },
+    {
+      "from": "ST_PAR_130",
+      "to": "ST_PAR_172",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.339,
+      "weight": 2.9468
+    },
+    {
+      "from": "ST_PAR_150",
+      "to": "ST_PAR_172",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.382,
+      "weight": 2.6163
+    },
+    {
+      "from": "ST_PAR_074",
+      "to": "ST_PAR_151",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.355,
+      "weight": 2.8157
+    },
+    {
+      "from": "ST_PAR_059",
+      "to": "ST_PAR_074",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 0.637,
+      "weight": 1.5703
+    },
+    {
+      "from": "ST_PAR_020",
+      "to": "ST_PAR_060",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 2.684,
+      "weight": 0.3726
+    },
+    {
+      "from": "ST_PAR_020",
+      "to": "ST_PAR_173",
+      "line_ids": [
+        "M9"
+      ],
+      "distance_km": 3.873,
+      "weight": 0.2582
+    },
+    {
+      "from": "ST_PAR_157",
+      "to": "ST_PAR_163",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 3.806,
+      "weight": 0.2628
+    },
+    {
+      "from": "ST_PAR_113",
+      "to": "ST_PAR_164",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 1.36,
+      "weight": 0.7352
+    },
+    {
+      "from": "ST_PAR_113",
+      "to": "ST_PAR_178",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 1.175,
+      "weight": 0.8512
+    },
+    {
+      "from": "ST_PAR_178",
+      "to": "ST_PAR_179",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.367,
+      "weight": 2.7254
+    },
+    {
+      "from": "ST_PAR_179",
+      "to": "ST_PAR_180",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.563,
+      "weight": 1.7776
+    },
+    {
+      "from": "ST_PAR_180",
+      "to": "ST_PAR_181",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.869,
+      "weight": 1.1504
+    },
+    {
+      "from": "ST_PAR_078",
+      "to": "ST_PAR_181",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.574,
+      "weight": 1.7414
+    },
+    {
+      "from": "ST_PAR_078",
+      "to": "ST_PAR_177",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.272,
+      "weight": 3.6699
+    },
+    {
+      "from": "ST_PAR_176",
+      "to": "ST_PAR_177",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.297,
+      "weight": 3.3661
+    },
+    {
+      "from": "ST_PAR_175",
+      "to": "ST_PAR_176",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.295,
+      "weight": 3.3867
+    },
+    {
+      "from": "ST_PAR_134",
+      "to": "ST_PAR_175",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.346,
+      "weight": 2.8894
+    },
+    {
+      "from": "ST_PAR_105",
+      "to": "ST_PAR_134",
+      "line_ids": [
+        "M10"
+      ],
+      "distance_km": 0.827,
+      "weight": 1.2091
+    },
+    {
+      "from": "ST_PAR_014",
+      "to": "ST_PAR_183",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.443,
+      "weight": 2.2581
+    },
+    {
+      "from": "ST_PAR_057",
+      "to": "ST_PAR_183",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.342,
+      "weight": 2.9267
+    },
+    {
+      "from": "ST_PAR_015",
+      "to": "ST_PAR_057",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.718,
+      "weight": 1.3936
+    },
+    {
+      "from": "ST_PAR_015",
+      "to": "ST_PAR_034",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 2.341,
+      "weight": 0.4272
+    },
+    {
+      "from": "ST_PAR_034",
+      "to": "ST_PAR_186",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.248,
+      "weight": 4.0338
+    },
+    {
+      "from": "ST_PAR_059",
+      "to": "ST_PAR_186",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.804,
+      "weight": 1.2435
+    },
+    {
+      "from": "ST_PAR_059",
+      "to": "ST_PAR_187",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 1.814,
+      "weight": 0.5513
+    },
+    {
+      "from": "ST_PAR_187",
+      "to": "ST_PAR_188",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.467,
+      "weight": 2.1426
+    },
+    {
+      "from": "ST_PAR_188",
+      "to": "ST_PAR_189",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.354,
+      "weight": 2.8238
+    },
+    {
+      "from": "ST_PAR_189",
+      "to": "ST_PAR_190",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.307,
+      "weight": 3.2557
+    },
+    {
+      "from": "ST_PAR_190",
+      "to": "ST_PAR_191",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.289,
+      "weight": 3.4653
+    },
+    {
+      "from": "ST_PAR_191",
+      "to": "ST_PAR_192",
+      "line_ids": [
+        "M11"
+      ],
+      "distance_km": 0.976,
+      "weight": 1.0249
+    },
+    {
+      "from": "ST_PAR_193",
+      "to": "ST_PAR_194",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 2.205,
+      "weight": 0.4535
+    },
+    {
+      "from": "ST_PAR_194",
+      "to": "ST_PAR_195",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.698,
+      "weight": 1.4328
+    },
+    {
+      "from": "ST_PAR_070",
+      "to": "ST_PAR_195",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.507,
+      "weight": 1.9717
+    },
+    {
+      "from": "ST_PAR_070",
+      "to": "ST_PAR_196",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.782,
+      "weight": 1.2788
+    },
+    {
+      "from": "ST_PAR_196",
+      "to": "ST_PAR_197",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.424,
+      "weight": 2.3587
+    },
+    {
+      "from": "ST_PAR_197",
+      "to": "ST_PAR_198",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.589,
+      "weight": 1.6981
+    },
+    {
+      "from": "ST_PAR_198",
+      "to": "ST_PAR_199",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.424,
+      "weight": 2.3561
+    },
+    {
+      "from": "ST_PAR_199",
+      "to": "ST_PAR_200",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.559,
+      "weight": 1.7874
+    },
+    {
+      "from": "ST_PAR_200",
+      "to": "ST_PAR_201",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.182,
+      "weight": 5.4833
+    },
+    {
+      "from": "ST_PAR_201",
+      "to": "ST_PAR_202",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.275,
+      "weight": 3.6425
+    },
+    {
+      "from": "ST_PAR_050",
+      "to": "ST_PAR_202",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.455,
+      "weight": 2.1983
+    },
+    {
+      "from": "ST_PAR_050",
+      "to": "ST_PAR_149",
+      "line_ids": [
+        "M12",
+        "M13",
+        "M14"
+      ],
+      "distance_km": 0.659,
+      "weight": 1.5167
+    },
+    {
+      "from": "ST_PAR_011",
+      "to": "ST_PAR_203",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 1.992,
+      "weight": 0.5021
+    },
+    {
+      "from": "ST_PAR_203",
+      "to": "ST_PAR_204",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.392,
+      "weight": 2.5533
+    },
+    {
+      "from": "ST_PAR_116",
+      "to": "ST_PAR_204",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 1.218,
+      "weight": 0.8213
+    },
+    {
+      "from": "ST_PAR_082",
+      "to": "ST_PAR_205",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.294,
+      "weight": 3.4001
+    },
+    {
+      "from": "ST_PAR_205",
+      "to": "ST_PAR_206",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.474,
+      "weight": 2.1092
+    },
+    {
+      "from": "ST_PAR_206",
+      "to": "ST_PAR_207",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.431,
+      "weight": 2.3202
+    },
+    {
+      "from": "ST_PAR_207",
+      "to": "ST_PAR_208",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 0.476,
+      "weight": 2.0999
+    },
+    {
+      "from": "ST_PAR_208",
+      "to": "ST_PAR_210",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 1.927,
+      "weight": 0.5191
+    },
+    {
+      "from": "ST_PAR_210",
+      "to": "ST_PAR_211",
+      "line_ids": [
+        "M12"
+      ],
+      "distance_km": 1.09,
+      "weight": 0.9178
+    },
+    {
+      "from": "ST_PAR_212",
+      "to": "ST_PAR_213",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.456,
+      "weight": 2.1911
+    },
+    {
+      "from": "ST_PAR_213",
+      "to": "ST_PAR_214",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 1.19,
+      "weight": 0.8403
+    },
+    {
+      "from": "ST_PAR_214",
+      "to": "ST_PAR_215",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 1.407,
+      "weight": 0.7106
+    },
+    {
+      "from": "ST_PAR_215",
+      "to": "ST_PAR_216",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.747,
+      "weight": 1.3391
+    },
+    {
+      "from": "ST_PAR_216",
+      "to": "ST_PAR_217",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.713,
+      "weight": 1.4028
+    },
+    {
+      "from": "ST_PAR_217",
+      "to": "ST_PAR_218",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.816,
+      "weight": 1.2261
+    },
+    {
+      "from": "ST_PAR_218",
+      "to": "ST_PAR_219",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.489,
+      "weight": 2.043
+    },
+    {
+      "from": "ST_PAR_219",
+      "to": "ST_PAR_220",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.562,
+      "weight": 1.7785
+    },
+    {
+      "from": "ST_PAR_220",
+      "to": "ST_PAR_221",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.286,
+      "weight": 3.4929
+    },
+    {
+      "from": "ST_PAR_048",
+      "to": "ST_PAR_221",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.94,
+      "weight": 1.064
+    },
+    {
+      "from": "ST_PAR_048",
+      "to": "ST_PAR_170",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 1.66,
+      "weight": 0.6024
+    },
+    {
+      "from": "ST_PAR_050",
+      "to": "ST_PAR_170",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.866,
+      "weight": 1.1541
+    },
+    {
+      "from": "ST_PAR_010",
+      "to": "ST_PAR_149",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.963,
+      "weight": 1.0388
+    },
+    {
+      "from": "ST_PAR_010",
+      "to": "ST_PAR_148",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.616,
+      "weight": 1.6236
+    },
+    {
+      "from": "ST_PAR_148",
+      "to": "ST_PAR_223",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.405,
+      "weight": 2.4718
+    },
+    {
+      "from": "ST_PAR_223",
+      "to": "ST_PAR_224",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.832,
+      "weight": 1.2018
+    },
+    {
+      "from": "ST_PAR_082",
+      "to": "ST_PAR_224",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 1.134,
+      "weight": 0.8814
+    },
+    {
+      "from": "ST_PAR_082",
+      "to": "ST_PAR_178",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 0.569,
+      "weight": 1.7573
+    },
+    {
+      "from": "ST_PAR_085",
+      "to": "ST_PAR_178",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 1.816,
+      "weight": 0.5507
+    },
+    {
+      "from": "ST_PAR_085",
+      "to": "ST_PAR_225",
+      "line_ids": [
+        "M13"
+      ],
+      "distance_km": 4.313,
+      "weight": 0.2319
+    },
+    {
+      "from": "ST_PAR_226",
+      "to": "ST_PAR_227",
+      "line_ids": [
+        "M14"
+      ],
+      "distance_km": 0.963,
+      "weight": 1.0384
+    },
+    {
+      "from": "ST_PAR_227",
+      "to": "ST_PAR_228",
+      "line_ids": [
+        "M14"
+      ],
+      "distance_km": 0.993,
+      "weight": 1.0073
+    },
+    {
+      "from": "ST_PAR_228",
+      "to": "ST_PAR_229",
+      "line_ids": [
+        "M14"
+      ],
+      "distance_km": 1.003,
+      "weight": 0.9971
+    },
+    {
+      "from": "ST_PAR_018",
+      "to": "ST_PAR_229",
+      "line_ids": [
+        "M14"
+      ],
+      "distance_km": 0.655,
+      "weight": 1.5257
+    },
+    {
+      "from": "ST_PAR_014",
+      "to": "ST_PAR_018",
+      "line_ids": [
+        "M14"
+      ],
+      "distance_km": 2.64,
+      "weight": 0.3788
+    },
+    {
+      "from": "ST_PAR_014",
+      "to": "ST_PAR_131",
+      "line_ids": [
+        "M14"
+      ],
+      "distance_km": 0.926,
+      "weight": 1.0801
+    },
+    {
+      "from": "ST_PAR_131",
+      "to": "ST_PAR_149",
+      "line_ids": [
+        "M14"
+      ],
+      "distance_km": 0.966,
+      "weight": 1.035
+    }
+  ]
+}

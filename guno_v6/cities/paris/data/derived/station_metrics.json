@@ -1,0 +1,4017 @@
+{
+  "dataset_meta": {
+    "city_id": "paris",
+    "version": "1.0",
+    "station_count": 231
+  },
+  "stations": [
+    {
+      "station_global_id": "ST_PAR_059",
+      "station_name": "République",
+      "station_name_en": "République",
+      "station_slug": "republique",
+      "line_ids": [
+        "M11",
+        "M3",
+        "M5",
+        "M8",
+        "M9"
+      ],
+      "line_count": 5,
+      "hub_score": 5.0,
+      "centrality_score": 5.0,
+      "composite_score": 5.0,
+      "score_total": 17.5,
+      "rarity": "legendary",
+      "degree": 9,
+      "rank": 1
+    },
+    {
+      "station_global_id": "ST_PAR_014",
+      "station_name": "Châtelet",
+      "station_name_en": "Châtelet",
+      "station_slug": "chatelet",
+      "line_ids": [
+        "M1",
+        "M11",
+        "M14",
+        "M4",
+        "M7"
+      ],
+      "line_count": 5,
+      "hub_score": 5.0,
+      "centrality_score": 3.8889,
+      "composite_score": 4.5556,
+      "score_total": 15.9446,
+      "rarity": "legendary",
+      "degree": 7,
+      "rank": 2
+    },
+    {
+      "station_global_id": "ST_PAR_050",
+      "station_name": "Saint-Lazare",
+      "station_name_en": "Saint-Lazare",
+      "station_slug": "saint_lazare",
+      "line_ids": [
+        "M12",
+        "M13",
+        "M14",
+        "M3",
+        "M9"
+      ],
+      "line_count": 5,
+      "hub_score": 5.0,
+      "centrality_score": 3.8889,
+      "composite_score": 4.5556,
+      "score_total": 15.9446,
+      "rarity": "legendary",
+      "degree": 7,
+      "rank": 3
+    },
+    {
+      "station_global_id": "ST_PAR_082",
+      "station_name": "Montparnasse–Bienvenüe",
+      "station_name_en": "Montparnasse–Bienvenüe",
+      "station_slug": "montparnasse_bienvenue",
+      "line_ids": [
+        "M12",
+        "M13",
+        "M4",
+        "M6"
+      ],
+      "line_count": 4,
+      "hub_score": 3.75,
+      "centrality_score": 3.8889,
+      "composite_score": 3.8056,
+      "score_total": 13.3196,
+      "rarity": "legendary",
+      "degree": 7,
+      "rank": 4
+    },
+    {
+      "station_global_id": "ST_PAR_020",
+      "station_name": "Nation",
+      "station_name_en": "Nation",
+      "station_slug": "nation",
+      "line_ids": [
+        "M1",
+        "M2",
+        "M6",
+        "M9"
+      ],
+      "line_count": 4,
+      "hub_score": 3.75,
+      "centrality_score": 3.3333,
+      "composite_score": 3.5833,
+      "score_total": 12.5415,
+      "rarity": "legendary",
+      "degree": 6,
+      "rank": 5
+    },
+    {
+      "station_global_id": "ST_PAR_017",
+      "station_name": "Bastille",
+      "station_name_en": "Bastille",
+      "station_slug": "bastille",
+      "line_ids": [
+        "M1",
+        "M5",
+        "M8"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 4.4444,
+      "composite_score": 3.2778,
+      "score_total": 11.4723,
+      "rarity": "legendary",
+      "degree": 8,
+      "rank": 6
+    },
+    {
+      "station_global_id": "ST_PAR_052",
+      "station_name": "Opéra",
+      "station_name_en": "Opéra",
+      "station_slug": "opera",
+      "line_ids": [
+        "M3",
+        "M7",
+        "M8"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "score_total": 9.9165,
+      "rarity": "legendary",
+      "degree": 6,
+      "rank": 7
+    },
+    {
+      "station_global_id": "ST_PAR_074",
+      "station_name": "Strasbourg–Saint-Denis",
+      "station_name_en": "Strasbourg–Saint-Denis",
+      "station_slug": "strasbourg_saint_denis",
+      "line_ids": [
+        "M4",
+        "M8",
+        "M9"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "score_total": 9.9165,
+      "rarity": "legendary",
+      "degree": 6,
+      "rank": 8
+    },
+    {
+      "station_global_id": "ST_PAR_113",
+      "station_name": "La Motte-Picquet–Grenelle",
+      "station_name_en": "La Motte-Picquet–Grenelle",
+      "station_slug": "la_motte_picquet_grenelle",
+      "line_ids": [
+        "M10",
+        "M6",
+        "M8"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 3.3333,
+      "composite_score": 2.8333,
+      "score_total": 9.9165,
+      "rarity": "legendary",
+      "degree": 6,
+      "rank": 9
+    },
+    {
+      "station_global_id": "ST_PAR_007",
+      "station_name": "Charles de Gaulle–Étoile",
+      "station_name_en": "Charles de Gaulle–Étoile",
+      "station_slug": "charles_de_gaulle_etoile",
+      "line_ids": [
+        "M1",
+        "M2",
+        "M6"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 2.7778,
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "degree": 5,
+      "rank": 10
+    },
+    {
+      "station_global_id": "ST_PAR_011",
+      "station_name": "Concorde",
+      "station_name_en": "Concorde",
+      "station_slug": "concorde",
+      "line_ids": [
+        "M1",
+        "M12",
+        "M8"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 2.7778,
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "degree": 5,
+      "rank": 11
+    },
+    {
+      "station_global_id": "ST_PAR_031",
+      "station_name": "Stalingrad",
+      "station_name_en": "Stalingrad",
+      "station_slug": "stalingrad",
+      "line_ids": [
+        "M2",
+        "M5",
+        "M7"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 2.7778,
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "degree": 5,
+      "rank": 12
+    },
+    {
+      "station_global_id": "ST_PAR_073",
+      "station_name": "Gare de l'Est",
+      "station_name_en": "Gare de l'Est",
+      "station_slug": "gare_de_lest",
+      "line_ids": [
+        "M4",
+        "M5",
+        "M7"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 2.7778,
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "degree": 5,
+      "rank": 13
+    },
+    {
+      "station_global_id": "ST_PAR_107",
+      "station_name": "Place d'Italie",
+      "station_name_en": "Place d'Italie",
+      "station_slug": "place_ditalie",
+      "line_ids": [
+        "M5",
+        "M6",
+        "M7"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 2.7778,
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "degree": 5,
+      "rank": 14
+    },
+    {
+      "station_global_id": "ST_PAR_149",
+      "station_name": "Madeleine",
+      "station_name_en": "Madeleine",
+      "station_slug": "madeleine",
+      "line_ids": [
+        "M12",
+        "M14",
+        "M8"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 2.7778,
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "degree": 5,
+      "rank": 15
+    },
+    {
+      "station_global_id": "ST_PAR_032",
+      "station_name": "Jaurès",
+      "station_name_en": "Jaurès",
+      "station_slug": "jaures",
+      "line_ids": [
+        "M2",
+        "M5",
+        "M7bis"
+      ],
+      "line_count": 3,
+      "hub_score": 2.5,
+      "centrality_score": 1.6667,
+      "composite_score": 2.1667,
+      "score_total": 7.5835,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 16
+    },
+    {
+      "station_global_id": "ST_PAR_085",
+      "station_name": "Denfert-Rochereau",
+      "station_name_en": "Denfert-Rochereau",
+      "station_slug": "denfert_rochereau",
+      "line_ids": [
+        "M4",
+        "M6"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 3.3333,
+      "composite_score": 2.0833,
+      "score_total": 7.2915,
+      "rarity": "epic",
+      "degree": 6,
+      "rank": 17
+    },
+    {
+      "station_global_id": "ST_PAR_005",
+      "station_name": "Porte Maillot",
+      "station_name_en": "Porte Maillot",
+      "station_slug": "porte_maillot",
+      "line_ids": [
+        "M1",
+        "M2"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 18
+    },
+    {
+      "station_global_id": "ST_PAR_009",
+      "station_name": "Franklin D. Roosevelt",
+      "station_name_en": "Franklin D. Roosevelt",
+      "station_slug": "franklin_d_roosevelt",
+      "line_ids": [
+        "M1",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 19
+    },
+    {
+      "station_global_id": "ST_PAR_010",
+      "station_name": "Champs-Élysées–Clemenceau",
+      "station_name_en": "Champs-Élysées–Clemenceau",
+      "station_slug": "champs_elysees_clemenceau",
+      "line_ids": [
+        "M1",
+        "M13"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 20
+    },
+    {
+      "station_global_id": "ST_PAR_013",
+      "station_name": "Palais Royal–Musée du Louvre",
+      "station_name_en": "Palais Royal–Musée du Louvre",
+      "station_slug": "palais_royal_musee_du_louvre",
+      "line_ids": [
+        "M1",
+        "M7"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 21
+    },
+    {
+      "station_global_id": "ST_PAR_015",
+      "station_name": "Hôtel de Ville",
+      "station_name_en": "Hôtel de Ville",
+      "station_slug": "hotel_de_ville",
+      "line_ids": [
+        "M1",
+        "M11"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 22
+    },
+    {
+      "station_global_id": "ST_PAR_018",
+      "station_name": "Gare de Lyon",
+      "station_name_en": "Gare de Lyon",
+      "station_slug": "gare_de_lyon",
+      "line_ids": [
+        "M1",
+        "M14"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 23
+    },
+    {
+      "station_global_id": "ST_PAR_019",
+      "station_name": "Reuilly–Diderot",
+      "station_name_en": "Reuilly–Diderot",
+      "station_slug": "reuilly_diderot",
+      "line_ids": [
+        "M1",
+        "M8"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 24
+    },
+    {
+      "station_global_id": "ST_PAR_025",
+      "station_name": "Trocadéro",
+      "station_name_en": "Trocadéro",
+      "station_slug": "trocadero",
+      "line_ids": [
+        "M6",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 25
+    },
+    {
+      "station_global_id": "ST_PAR_034",
+      "station_name": "Belleville",
+      "station_name_en": "Belleville",
+      "station_slug": "belleville",
+      "line_ids": [
+        "M11",
+        "M2"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 26
+    },
+    {
+      "station_global_id": "ST_PAR_035",
+      "station_name": "Père Lachaise",
+      "station_name_en": "Père Lachaise",
+      "station_slug": "pere_lachaise",
+      "line_ids": [
+        "M2",
+        "M3"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 27
+    },
+    {
+      "station_global_id": "ST_PAR_046",
+      "station_name": "Villiers",
+      "station_name_en": "Villiers",
+      "station_slug": "villiers",
+      "line_ids": [
+        "M2",
+        "M3"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 28
+    },
+    {
+      "station_global_id": "ST_PAR_048",
+      "station_name": "Place de Clichy",
+      "station_name_en": "Place de Clichy",
+      "station_slug": "place_de_clichy",
+      "line_ids": [
+        "M13",
+        "M2"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 29
+    },
+    {
+      "station_global_id": "ST_PAR_056",
+      "station_name": "Réaumur–Sébastopol",
+      "station_name_en": "Réaumur–Sébastopol",
+      "station_slug": "reaumur_sebastopol",
+      "line_ids": [
+        "M3",
+        "M4"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 30
+    },
+    {
+      "station_global_id": "ST_PAR_057",
+      "station_name": "Arts et Métiers",
+      "station_name_en": "Arts et Métiers",
+      "station_slug": "arts_et_metiers",
+      "line_ids": [
+        "M11",
+        "M3"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 31
+    },
+    {
+      "station_global_id": "ST_PAR_070",
+      "station_name": "Marcadet–Poissonniers",
+      "station_name_en": "Marcadet–Poissonniers",
+      "station_slug": "marcadet_poissonniers",
+      "line_ids": [
+        "M12",
+        "M4"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 32
+    },
+    {
+      "station_global_id": "ST_PAR_078",
+      "station_name": "Odéon",
+      "station_name_en": "Odéon",
+      "station_slug": "odeon",
+      "line_ids": [
+        "M10",
+        "M4"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 33
+    },
+    {
+      "station_global_id": "ST_PAR_130",
+      "station_name": "Chaussée d'Antin–La Fayette",
+      "station_name_en": "Chaussée d'Antin–La Fayette",
+      "station_slug": "chaussee_dantin_la_fayette",
+      "line_ids": [
+        "M7",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 34
+    },
+    {
+      "station_global_id": "ST_PAR_131",
+      "station_name": "Pyramides",
+      "station_name_en": "Pyramides",
+      "station_slug": "pyramides",
+      "line_ids": [
+        "M14",
+        "M7"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 35
+    },
+    {
+      "station_global_id": "ST_PAR_134",
+      "station_name": "Jussieu",
+      "station_name_en": "Jussieu",
+      "station_slug": "jussieu",
+      "line_ids": [
+        "M10",
+        "M7"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 36
+    },
+    {
+      "station_global_id": "ST_PAR_148",
+      "station_name": "Invalides",
+      "station_name_en": "Invalides",
+      "station_slug": "invalides",
+      "line_ids": [
+        "M13",
+        "M8"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 37
+    },
+    {
+      "station_global_id": "ST_PAR_170",
+      "station_name": "Miromesnil",
+      "station_name_en": "Miromesnil",
+      "station_slug": "miromesnil",
+      "line_ids": [
+        "M13",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 38
+    },
+    {
+      "station_global_id": "ST_PAR_178",
+      "station_name": "Duroc",
+      "station_name_en": "Duroc",
+      "station_slug": "duroc",
+      "line_ids": [
+        "M10",
+        "M13"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 39
+    },
+    {
+      "station_global_id": "ST_PAR_199",
+      "station_name": "Pigalle",
+      "station_name_en": "Pigalle",
+      "station_slug": "pigalle",
+      "line_ids": [
+        "M12",
+        "M2"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 40
+    },
+    {
+      "station_global_id": "ST_PAR_229",
+      "station_name": "Bercy",
+      "station_name_en": "Bercy",
+      "station_slug": "bercy",
+      "line_ids": [
+        "M14",
+        "M6"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 2.2222,
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "degree": 4,
+      "rank": 41
+    },
+    {
+      "station_global_id": "ST_PAR_060",
+      "station_name": "Oberkampf",
+      "station_name_en": "Oberkampf",
+      "station_slug": "oberkampf",
+      "line_ids": [
+        "M5",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.6667,
+      "composite_score": 1.4167,
+      "score_total": 4.9585,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 42
+    },
+    {
+      "station_global_id": "ST_PAR_072",
+      "station_name": "Gare du Nord",
+      "station_name_en": "Gare du Nord",
+      "station_slug": "gare_du_nord",
+      "line_ids": [
+        "M4",
+        "M5"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.6667,
+      "composite_score": 1.4167,
+      "score_total": 4.9585,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 43
+    },
+    {
+      "station_global_id": "ST_PAR_105",
+      "station_name": "Gare d'Austerlitz",
+      "station_name_en": "Gare d'Austerlitz",
+      "station_slug": "gare_dausterlitz",
+      "line_ids": [
+        "M10",
+        "M5"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.6667,
+      "composite_score": 1.4167,
+      "score_total": 4.9585,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 44
+    },
+    {
+      "station_global_id": "ST_PAR_116",
+      "station_name": "Pasteur",
+      "station_name_en": "Pasteur",
+      "station_slug": "pasteur",
+      "line_ids": [
+        "M12",
+        "M6"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.6667,
+      "composite_score": 1.4167,
+      "score_total": 4.9585,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 45
+    },
+    {
+      "station_global_id": "ST_PAR_150",
+      "station_name": "Grands Boulevards",
+      "station_name_en": "Grands Boulevards",
+      "station_slug": "grands_boulevards",
+      "line_ids": [
+        "M8",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.6667,
+      "composite_score": 1.4167,
+      "score_total": 4.9585,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 46
+    },
+    {
+      "station_global_id": "ST_PAR_151",
+      "station_name": "Bonne Nouvelle",
+      "station_name_en": "Bonne Nouvelle",
+      "station_slug": "bonne_nouvelle",
+      "line_ids": [
+        "M8",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.6667,
+      "composite_score": 1.4167,
+      "score_total": 4.9585,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 47
+    },
+    {
+      "station_global_id": "ST_PAR_163",
+      "station_name": "Michel-Ange–Molitor",
+      "station_name_en": "Michel-Ange–Molitor",
+      "station_slug": "michel_ange_molitor",
+      "line_ids": [
+        "M10",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.6667,
+      "composite_score": 1.4167,
+      "score_total": 4.9585,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 48
+    },
+    {
+      "station_global_id": "ST_PAR_164",
+      "station_name": "Michel-Ange–Auteuil",
+      "station_name_en": "Michel-Ange–Auteuil",
+      "station_slug": "michel_ange_auteuil",
+      "line_ids": [
+        "M10",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.6667,
+      "composite_score": 1.4167,
+      "score_total": 4.9585,
+      "rarity": "epic",
+      "degree": 3,
+      "rank": 49
+    },
+    {
+      "station_global_id": "ST_PAR_029",
+      "station_name": "Barbès–Rochechouart",
+      "station_name_en": "Barbès–Rochechouart",
+      "station_slug": "barbes_rochechouart",
+      "line_ids": [
+        "M2",
+        "M4"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.1111,
+      "composite_score": 1.1944,
+      "score_total": 4.1804,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 50
+    },
+    {
+      "station_global_id": "ST_PAR_051",
+      "station_name": "Havre–Caumartin",
+      "station_name_en": "Havre–Caumartin",
+      "station_slug": "havre_caumartin",
+      "line_ids": [
+        "M3",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.1111,
+      "composite_score": 1.1944,
+      "score_total": 4.1804,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 51
+    },
+    {
+      "station_global_id": "ST_PAR_118",
+      "station_name": "Raspail",
+      "station_name_en": "Raspail",
+      "station_slug": "raspail",
+      "line_ids": [
+        "M4",
+        "M6"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.1111,
+      "composite_score": 1.1944,
+      "score_total": 4.1804,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 52
+    },
+    {
+      "station_global_id": "ST_PAR_172",
+      "station_name": "Richelieu–Drouot",
+      "station_name_en": "Richelieu–Drouot",
+      "station_slug": "richelieu_drouot",
+      "line_ids": [
+        "M8",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.1111,
+      "composite_score": 1.1944,
+      "score_total": 4.1804,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 53
+    },
+    {
+      "station_global_id": "ST_PAR_180",
+      "station_name": "Sèvres–Babylone",
+      "station_name_en": "Sèvres–Babylone",
+      "station_slug": "sevres_babylone",
+      "line_ids": [
+        "M10",
+        "M12"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 1.1111,
+      "composite_score": 1.1944,
+      "score_total": 4.1804,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 54
+    },
+    {
+      "station_global_id": "ST_PAR_099",
+      "station_name": "Louis Blanc",
+      "station_name_en": "Louis Blanc",
+      "station_slug": "louis_blanc",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 2.2222,
+      "composite_score": 0.8889,
+      "score_total": 3.1112,
+      "rarity": "rare",
+      "degree": 4,
+      "rank": 55
+    },
+    {
+      "station_global_id": "ST_PAR_101",
+      "station_name": "Oberkampf",
+      "station_name_en": "Oberkampf",
+      "station_slug": "oberkampf",
+      "line_ids": [
+        "M5",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 0.0,
+      "composite_score": 0.75,
+      "score_total": 2.625,
+      "rarity": "rare",
+      "degree": 0,
+      "rank": 56
+    },
+    {
+      "station_global_id": "ST_PAR_152",
+      "station_name": "Oberkampf",
+      "station_name_en": "Oberkampf",
+      "station_slug": "oberkampf",
+      "line_ids": [
+        "M5",
+        "M9"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 0.0,
+      "composite_score": 0.75,
+      "score_total": 2.625,
+      "rarity": "rare",
+      "degree": 0,
+      "rank": 57
+    },
+    {
+      "station_global_id": "ST_PAR_174",
+      "station_name": "Gare d'Austerlitz",
+      "station_name_en": "Gare d'Austerlitz",
+      "station_slug": "gare_dausterlitz",
+      "line_ids": [
+        "M10",
+        "M5"
+      ],
+      "line_count": 2,
+      "hub_score": 1.25,
+      "centrality_score": 0.0,
+      "composite_score": 0.75,
+      "score_total": 2.625,
+      "rarity": "rare",
+      "degree": 0,
+      "rank": 58
+    },
+    {
+      "station_global_id": "ST_PAR_002",
+      "station_name": "Esplanade de La Défense",
+      "station_name_en": "Esplanade de La Défense",
+      "station_slug": "esplanade_de_la_defense",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 59
+    },
+    {
+      "station_global_id": "ST_PAR_003",
+      "station_name": "Pont de Neuilly",
+      "station_name_en": "Pont de Neuilly",
+      "station_slug": "pont_de_neuilly",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 60
+    },
+    {
+      "station_global_id": "ST_PAR_004",
+      "station_name": "Les Sablons",
+      "station_name_en": "Les Sablons",
+      "station_slug": "les_sablons",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 61
+    },
+    {
+      "station_global_id": "ST_PAR_006",
+      "station_name": "Argentine",
+      "station_name_en": "Argentine",
+      "station_slug": "argentine",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 62
+    },
+    {
+      "station_global_id": "ST_PAR_008",
+      "station_name": "George V",
+      "station_name_en": "George V",
+      "station_slug": "george_v",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 63
+    },
+    {
+      "station_global_id": "ST_PAR_012",
+      "station_name": "Tuileries",
+      "station_name_en": "Tuileries",
+      "station_slug": "tuileries",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 64
+    },
+    {
+      "station_global_id": "ST_PAR_016",
+      "station_name": "Saint-Paul",
+      "station_name_en": "Saint-Paul",
+      "station_slug": "saint_paul",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 65
+    },
+    {
+      "station_global_id": "ST_PAR_023",
+      "station_name": "Victor Hugo",
+      "station_name_en": "Victor Hugo",
+      "station_slug": "victor_hugo",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 66
+    },
+    {
+      "station_global_id": "ST_PAR_024",
+      "station_name": "Kleber",
+      "station_name_en": "Kleber",
+      "station_slug": "kleber",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 67
+    },
+    {
+      "station_global_id": "ST_PAR_026",
+      "station_name": "Iéna",
+      "station_name_en": "Iéna",
+      "station_slug": "iena",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 68
+    },
+    {
+      "station_global_id": "ST_PAR_027",
+      "station_name": "Alma–Marceau",
+      "station_name_en": "Alma–Marceau",
+      "station_slug": "alma_marceau",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 69
+    },
+    {
+      "station_global_id": "ST_PAR_028",
+      "station_name": "Anvers",
+      "station_name_en": "Anvers",
+      "station_slug": "anvers",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 70
+    },
+    {
+      "station_global_id": "ST_PAR_030",
+      "station_name": "La Chapelle",
+      "station_name_en": "La Chapelle",
+      "station_slug": "la_chapelle",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 71
+    },
+    {
+      "station_global_id": "ST_PAR_033",
+      "station_name": "Colonel Fabien",
+      "station_name_en": "Colonel Fabien",
+      "station_slug": "colonel_fabien",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 72
+    },
+    {
+      "station_global_id": "ST_PAR_036",
+      "station_name": "Philippe Auguste",
+      "station_name_en": "Philippe Auguste",
+      "station_slug": "philippe_auguste",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 73
+    },
+    {
+      "station_global_id": "ST_PAR_037",
+      "station_name": "Alexandre Dumas",
+      "station_name_en": "Alexandre Dumas",
+      "station_slug": "alexandre_dumas",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 74
+    },
+    {
+      "station_global_id": "ST_PAR_038",
+      "station_name": "Avron",
+      "station_name_en": "Avron",
+      "station_slug": "avron",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 75
+    },
+    {
+      "station_global_id": "ST_PAR_040",
+      "station_name": "Anatole France",
+      "station_name_en": "Anatole France",
+      "station_slug": "anatole_france",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 76
+    },
+    {
+      "station_global_id": "ST_PAR_041",
+      "station_name": "Louise Michel",
+      "station_name_en": "Louise Michel",
+      "station_slug": "louise_michel",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 77
+    },
+    {
+      "station_global_id": "ST_PAR_042",
+      "station_name": "Porte de Champerret",
+      "station_name_en": "Porte de Champerret",
+      "station_slug": "porte_de_champerret",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 78
+    },
+    {
+      "station_global_id": "ST_PAR_043",
+      "station_name": "Pereire",
+      "station_name_en": "Pereire",
+      "station_slug": "pereire",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 79
+    },
+    {
+      "station_global_id": "ST_PAR_044",
+      "station_name": "Wagram",
+      "station_name_en": "Wagram",
+      "station_slug": "wagram",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 80
+    },
+    {
+      "station_global_id": "ST_PAR_045",
+      "station_name": "Malesherbes",
+      "station_name_en": "Malesherbes",
+      "station_slug": "malesherbes",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 81
+    },
+    {
+      "station_global_id": "ST_PAR_047",
+      "station_name": "Rome",
+      "station_name_en": "Rome",
+      "station_slug": "rome",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 82
+    },
+    {
+      "station_global_id": "ST_PAR_049",
+      "station_name": "Liège",
+      "station_name_en": "Liège",
+      "station_slug": "liege",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 83
+    },
+    {
+      "station_global_id": "ST_PAR_053",
+      "station_name": "Quatre-Septembre",
+      "station_name_en": "Quatre-Septembre",
+      "station_slug": "quatre_septembre",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 84
+    },
+    {
+      "station_global_id": "ST_PAR_054",
+      "station_name": "Bourse",
+      "station_name_en": "Bourse",
+      "station_slug": "bourse",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 85
+    },
+    {
+      "station_global_id": "ST_PAR_055",
+      "station_name": "Sentier",
+      "station_name_en": "Sentier",
+      "station_slug": "sentier",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 86
+    },
+    {
+      "station_global_id": "ST_PAR_058",
+      "station_name": "Temple",
+      "station_name_en": "Temple",
+      "station_slug": "temple",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 87
+    },
+    {
+      "station_global_id": "ST_PAR_061",
+      "station_name": "Saint-Maur",
+      "station_name_en": "Saint-Maur",
+      "station_slug": "saint_maur",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 88
+    },
+    {
+      "station_global_id": "ST_PAR_062",
+      "station_name": "Rue Saint-Maur",
+      "station_name_en": "Rue Saint-Maur",
+      "station_slug": "rue_saint_maur",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 89
+    },
+    {
+      "station_global_id": "ST_PAR_063",
+      "station_name": "Parmentier",
+      "station_name_en": "Parmentier",
+      "station_slug": "parmentier",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 90
+    },
+    {
+      "station_global_id": "ST_PAR_064",
+      "station_name": "Ménilmontant",
+      "station_name_en": "Ménilmontant",
+      "station_slug": "menilmontant",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 91
+    },
+    {
+      "station_global_id": "ST_PAR_065",
+      "station_name": "Gambetta",
+      "station_name_en": "Gambetta",
+      "station_slug": "gambetta",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 92
+    },
+    {
+      "station_global_id": "ST_PAR_066",
+      "station_name": "Porte de Bagnolet",
+      "station_name_en": "Porte de Bagnolet",
+      "station_slug": "porte_de_bagnolet",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 93
+    },
+    {
+      "station_global_id": "ST_PAR_069",
+      "station_name": "Simplon",
+      "station_name_en": "Simplon",
+      "station_slug": "simplon",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 94
+    },
+    {
+      "station_global_id": "ST_PAR_071",
+      "station_name": "Château Rouge",
+      "station_name_en": "Château Rouge",
+      "station_slug": "chateau_rouge",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 95
+    },
+    {
+      "station_global_id": "ST_PAR_075",
+      "station_name": "Étienne Marcel",
+      "station_name_en": "Étienne Marcel",
+      "station_slug": "etienne_marcel",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 96
+    },
+    {
+      "station_global_id": "ST_PAR_076",
+      "station_name": "Les Halles",
+      "station_name_en": "Les Halles",
+      "station_slug": "les_halles",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 97
+    },
+    {
+      "station_global_id": "ST_PAR_077",
+      "station_name": "Saint-Michel",
+      "station_name_en": "Saint-Michel",
+      "station_slug": "saint_michel",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 98
+    },
+    {
+      "station_global_id": "ST_PAR_079",
+      "station_name": "Saint-Germain-des-Prés",
+      "station_name_en": "Saint-Germain-des-Prés",
+      "station_slug": "saint_germain_des_pres",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 99
+    },
+    {
+      "station_global_id": "ST_PAR_080",
+      "station_name": "Saint-Sulpice",
+      "station_name_en": "Saint-Sulpice",
+      "station_slug": "saint_sulpice",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 100
+    },
+    {
+      "station_global_id": "ST_PAR_081",
+      "station_name": "Saint-Placide",
+      "station_name_en": "Saint-Placide",
+      "station_slug": "saint_placide",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 101
+    },
+    {
+      "station_global_id": "ST_PAR_083",
+      "station_name": "Alésia",
+      "station_name_en": "Alésia",
+      "station_slug": "alesia",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 102
+    },
+    {
+      "station_global_id": "ST_PAR_084",
+      "station_name": "Mouton-Duvernet",
+      "station_name_en": "Mouton-Duvernet",
+      "station_slug": "mouton_duvernet",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 103
+    },
+    {
+      "station_global_id": "ST_PAR_088",
+      "station_name": "Bobigny–Pantin–Raymond Queneau",
+      "station_name_en": "Bobigny–Pantin–Raymond Queneau",
+      "station_slug": "bobigny_pantin_raymond_queneau",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 104
+    },
+    {
+      "station_global_id": "ST_PAR_089",
+      "station_name": "Église de Pantin",
+      "station_name_en": "Église de Pantin",
+      "station_slug": "eglise_de_pantin",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 105
+    },
+    {
+      "station_global_id": "ST_PAR_090",
+      "station_name": "Hoche",
+      "station_name_en": "Hoche",
+      "station_slug": "hoche",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 106
+    },
+    {
+      "station_global_id": "ST_PAR_091",
+      "station_name": "Porte de Pantin",
+      "station_name_en": "Porte de Pantin",
+      "station_slug": "porte_de_pantin",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 107
+    },
+    {
+      "station_global_id": "ST_PAR_092",
+      "station_name": "Ourcq",
+      "station_name_en": "Ourcq",
+      "station_slug": "ourcq",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 108
+    },
+    {
+      "station_global_id": "ST_PAR_093",
+      "station_name": "Laumière",
+      "station_name_en": "Laumière",
+      "station_slug": "laumiere",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 109
+    },
+    {
+      "station_global_id": "ST_PAR_094",
+      "station_name": "Quai de la Loire",
+      "station_name_en": "Quai de la Loire",
+      "station_slug": "quai_de_la_loire",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 110
+    },
+    {
+      "station_global_id": "ST_PAR_095",
+      "station_name": "Quai de l'Oise",
+      "station_name_en": "Quai de l'Oise",
+      "station_slug": "quai_de_loise",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 111
+    },
+    {
+      "station_global_id": "ST_PAR_096",
+      "station_name": "Corentin Cariou",
+      "station_name_en": "Corentin Cariou",
+      "station_slug": "corentin_cariou",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 112
+    },
+    {
+      "station_global_id": "ST_PAR_097",
+      "station_name": "Crimée",
+      "station_name_en": "Crimée",
+      "station_slug": "crimee",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 113
+    },
+    {
+      "station_global_id": "ST_PAR_098",
+      "station_name": "Riquet",
+      "station_name_en": "Riquet",
+      "station_slug": "riquet",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 114
+    },
+    {
+      "station_global_id": "ST_PAR_100",
+      "station_name": "Jacques Bonsergent",
+      "station_name_en": "Jacques Bonsergent",
+      "station_slug": "jacques_bonsergent",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 115
+    },
+    {
+      "station_global_id": "ST_PAR_102",
+      "station_name": "Richard-Lenoir",
+      "station_name_en": "Richard-Lenoir",
+      "station_slug": "richard_lenoir",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 116
+    },
+    {
+      "station_global_id": "ST_PAR_103",
+      "station_name": "Bréguet–Sabin",
+      "station_name_en": "Bréguet–Sabin",
+      "station_slug": "breguet_sabin",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 117
+    },
+    {
+      "station_global_id": "ST_PAR_104",
+      "station_name": "Quai de la Rapée",
+      "station_name_en": "Quai de la Rapée",
+      "station_slug": "quai_de_la_rapee",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 118
+    },
+    {
+      "station_global_id": "ST_PAR_106",
+      "station_name": "Campo-Formio",
+      "station_name_en": "Campo-Formio",
+      "station_slug": "campo_formio",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 119
+    },
+    {
+      "station_global_id": "ST_PAR_108",
+      "station_name": "Kléber",
+      "station_name_en": "Kléber",
+      "station_slug": "kleber",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 120
+    },
+    {
+      "station_global_id": "ST_PAR_109",
+      "station_name": "Boissière",
+      "station_name_en": "Boissière",
+      "station_slug": "boissiere",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 121
+    },
+    {
+      "station_global_id": "ST_PAR_110",
+      "station_name": "Passy",
+      "station_name_en": "Passy",
+      "station_slug": "passy",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 122
+    },
+    {
+      "station_global_id": "ST_PAR_111",
+      "station_name": "Bir-Hakeim",
+      "station_name_en": "Bir-Hakeim",
+      "station_slug": "bir_hakeim",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 123
+    },
+    {
+      "station_global_id": "ST_PAR_112",
+      "station_name": "Dupleix",
+      "station_name_en": "Dupleix",
+      "station_slug": "dupleix",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 124
+    },
+    {
+      "station_global_id": "ST_PAR_114",
+      "station_name": "Cambronne",
+      "station_name_en": "Cambronne",
+      "station_slug": "cambronne",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 125
+    },
+    {
+      "station_global_id": "ST_PAR_115",
+      "station_name": "Sèvres–Lecourbe",
+      "station_name_en": "Sèvres–Lecourbe",
+      "station_slug": "sevres_lecourbe",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 126
+    },
+    {
+      "station_global_id": "ST_PAR_117",
+      "station_name": "Edgar Quinet",
+      "station_name_en": "Edgar Quinet",
+      "station_slug": "edgar_quinet",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 127
+    },
+    {
+      "station_global_id": "ST_PAR_119",
+      "station_name": "Glacière",
+      "station_name_en": "Glacière",
+      "station_slug": "glaciere",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 128
+    },
+    {
+      "station_global_id": "ST_PAR_120",
+      "station_name": "Corvisart",
+      "station_name_en": "Corvisart",
+      "station_slug": "corvisart",
+      "line_ids": [
+        "M6"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 129
+    },
+    {
+      "station_global_id": "ST_PAR_122",
+      "station_name": "Fort d'Aubervilliers",
+      "station_name_en": "Fort d'Aubervilliers",
+      "station_slug": "fort_daubervilliers",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 130
+    },
+    {
+      "station_global_id": "ST_PAR_123",
+      "station_name": "Aubervilliers–Pantin–Quatre Chemins",
+      "station_name_en": "Aubervilliers–Pantin–Quatre Chemins",
+      "station_slug": "aubervilliers_pantin_quatre_chemins",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 131
+    },
+    {
+      "station_global_id": "ST_PAR_124",
+      "station_name": "Porte de la Villette",
+      "station_name_en": "Porte de la Villette",
+      "station_slug": "porte_de_la_villette",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 132
+    },
+    {
+      "station_global_id": "ST_PAR_125",
+      "station_name": "Corentin Cariou",
+      "station_name_en": "Corentin Cariou",
+      "station_slug": "corentin_cariou",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 133
+    },
+    {
+      "station_global_id": "ST_PAR_128",
+      "station_name": "Cadet",
+      "station_name_en": "Cadet",
+      "station_slug": "cadet",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 134
+    },
+    {
+      "station_global_id": "ST_PAR_129",
+      "station_name": "Le Peletier",
+      "station_name_en": "Le Peletier",
+      "station_slug": "le_peletier",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 135
+    },
+    {
+      "station_global_id": "ST_PAR_132",
+      "station_name": "Pont Marie",
+      "station_name_en": "Pont Marie",
+      "station_slug": "pont_marie",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 136
+    },
+    {
+      "station_global_id": "ST_PAR_133",
+      "station_name": "Sully–Morland",
+      "station_name_en": "Sully–Morland",
+      "station_slug": "sully_morland",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 137
+    },
+    {
+      "station_global_id": "ST_PAR_135",
+      "station_name": "Place Monge",
+      "station_name_en": "Place Monge",
+      "station_slug": "place_monge",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 138
+    },
+    {
+      "station_global_id": "ST_PAR_136",
+      "station_name": "Censier–Daubenton",
+      "station_name_en": "Censier–Daubenton",
+      "station_slug": "censier_daubenton",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 139
+    },
+    {
+      "station_global_id": "ST_PAR_137",
+      "station_name": "Les Gobelins",
+      "station_name_en": "Les Gobelins",
+      "station_slug": "les_gobelins",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 140
+    },
+    {
+      "station_global_id": "ST_PAR_138",
+      "station_name": "Tolbiac",
+      "station_name_en": "Tolbiac",
+      "station_slug": "tolbiac",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 141
+    },
+    {
+      "station_global_id": "ST_PAR_139",
+      "station_name": "Kremlin-Bicêtre",
+      "station_name_en": "Kremlin-Bicêtre",
+      "station_slug": "kremlin_bicetre",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 142
+    },
+    {
+      "station_global_id": "ST_PAR_142",
+      "station_name": "Lourmel",
+      "station_name_en": "Lourmel",
+      "station_slug": "lourmel",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 143
+    },
+    {
+      "station_global_id": "ST_PAR_143",
+      "station_name": "Boucicaut",
+      "station_name_en": "Boucicaut",
+      "station_slug": "boucicaut",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 144
+    },
+    {
+      "station_global_id": "ST_PAR_144",
+      "station_name": "Félix Faure",
+      "station_name_en": "Félix Faure",
+      "station_slug": "felix_faure",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 145
+    },
+    {
+      "station_global_id": "ST_PAR_145",
+      "station_name": "Commerce",
+      "station_name_en": "Commerce",
+      "station_slug": "commerce",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 146
+    },
+    {
+      "station_global_id": "ST_PAR_146",
+      "station_name": "École Militaire",
+      "station_name_en": "École Militaire",
+      "station_slug": "ecole_militaire",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 147
+    },
+    {
+      "station_global_id": "ST_PAR_147",
+      "station_name": "La Tour-Maubourg",
+      "station_name_en": "La Tour-Maubourg",
+      "station_slug": "la_tour_maubourg",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 148
+    },
+    {
+      "station_global_id": "ST_PAR_153",
+      "station_name": "Faidherbe–Chaligny",
+      "station_name_en": "Faidherbe–Chaligny",
+      "station_slug": "faidherbe_chaligny",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 149
+    },
+    {
+      "station_global_id": "ST_PAR_154",
+      "station_name": "Charenton–Écoles",
+      "station_name_en": "Charenton–Écoles",
+      "station_slug": "charenton_ecoles",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 150
+    },
+    {
+      "station_global_id": "ST_PAR_155",
+      "station_name": "Liberté",
+      "station_name_en": "Liberté",
+      "station_slug": "liberte",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 151
+    },
+    {
+      "station_global_id": "ST_PAR_157",
+      "station_name": "Pont de Sèvres",
+      "station_name_en": "Pont de Sèvres",
+      "station_slug": "pont_de_sevres",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 152
+    },
+    {
+      "station_global_id": "ST_PAR_158",
+      "station_name": "Billancourt",
+      "station_name_en": "Billancourt",
+      "station_slug": "billancourt",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 153
+    },
+    {
+      "station_global_id": "ST_PAR_159",
+      "station_name": "Marcel Sembat",
+      "station_name_en": "Marcel Sembat",
+      "station_slug": "marcel_sembat",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 154
+    },
+    {
+      "station_global_id": "ST_PAR_160",
+      "station_name": "Boulogne–Jean Jaurès",
+      "station_name_en": "Boulogne–Jean Jaurès",
+      "station_slug": "boulogne_jean_jaures",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 155
+    },
+    {
+      "station_global_id": "ST_PAR_161",
+      "station_name": "Boulogne–Pont de Saint-Cloud",
+      "station_name_en": "Boulogne–Pont de Saint-Cloud",
+      "station_slug": "boulogne_pont_de_saint_cloud",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 156
+    },
+    {
+      "station_global_id": "ST_PAR_162",
+      "station_name": "Exelmans",
+      "station_name_en": "Exelmans",
+      "station_slug": "exelmans",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 157
+    },
+    {
+      "station_global_id": "ST_PAR_165",
+      "station_name": "Jasmin",
+      "station_name_en": "Jasmin",
+      "station_slug": "jasmin",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 158
+    },
+    {
+      "station_global_id": "ST_PAR_166",
+      "station_name": "Ranelagh",
+      "station_name_en": "Ranelagh",
+      "station_slug": "ranelagh",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 159
+    },
+    {
+      "station_global_id": "ST_PAR_167",
+      "station_name": "La Muette",
+      "station_name_en": "La Muette",
+      "station_slug": "la_muette",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 160
+    },
+    {
+      "station_global_id": "ST_PAR_168",
+      "station_name": "Rue de la Pompe",
+      "station_name_en": "Rue de la Pompe",
+      "station_slug": "rue_de_la_pompe",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 161
+    },
+    {
+      "station_global_id": "ST_PAR_169",
+      "station_name": "Pompe",
+      "station_name_en": "Pompe",
+      "station_slug": "pompe",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 162
+    },
+    {
+      "station_global_id": "ST_PAR_171",
+      "station_name": "Saint-Augustin",
+      "station_name_en": "Saint-Augustin",
+      "station_slug": "saint_augustin",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 163
+    },
+    {
+      "station_global_id": "ST_PAR_175",
+      "station_name": "Cardinal Lemoine",
+      "station_name_en": "Cardinal Lemoine",
+      "station_slug": "cardinal_lemoine",
+      "line_ids": [
+        "M10"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 164
+    },
+    {
+      "station_global_id": "ST_PAR_176",
+      "station_name": "Maubert–Mutualité",
+      "station_name_en": "Maubert–Mutualité",
+      "station_slug": "maubert_mutualite",
+      "line_ids": [
+        "M10"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 165
+    },
+    {
+      "station_global_id": "ST_PAR_177",
+      "station_name": "Cluny–La Sorbonne",
+      "station_name_en": "Cluny–La Sorbonne",
+      "station_slug": "cluny_la_sorbonne",
+      "line_ids": [
+        "M10"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 166
+    },
+    {
+      "station_global_id": "ST_PAR_179",
+      "station_name": "Vaneau",
+      "station_name_en": "Vaneau",
+      "station_slug": "vaneau",
+      "line_ids": [
+        "M10"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 167
+    },
+    {
+      "station_global_id": "ST_PAR_181",
+      "station_name": "Mabillon",
+      "station_name_en": "Mabillon",
+      "station_slug": "mabillon",
+      "line_ids": [
+        "M10"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 168
+    },
+    {
+      "station_global_id": "ST_PAR_183",
+      "station_name": "Rambuteau",
+      "station_name_en": "Rambuteau",
+      "station_slug": "rambuteau",
+      "line_ids": [
+        "M11"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 169
+    },
+    {
+      "station_global_id": "ST_PAR_186",
+      "station_name": "Goncourt",
+      "station_name_en": "Goncourt",
+      "station_slug": "goncourt",
+      "line_ids": [
+        "M11"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 170
+    },
+    {
+      "station_global_id": "ST_PAR_187",
+      "station_name": "Pyrénées",
+      "station_name_en": "Pyrénées",
+      "station_slug": "pyrenees",
+      "line_ids": [
+        "M11"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 171
+    },
+    {
+      "station_global_id": "ST_PAR_188",
+      "station_name": "Jourdain",
+      "station_name_en": "Jourdain",
+      "station_slug": "jourdain",
+      "line_ids": [
+        "M11"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 172
+    },
+    {
+      "station_global_id": "ST_PAR_189",
+      "station_name": "Place des Fêtes",
+      "station_name_en": "Place des Fêtes",
+      "station_slug": "place_des_fetes",
+      "line_ids": [
+        "M11"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 173
+    },
+    {
+      "station_global_id": "ST_PAR_190",
+      "station_name": "Télégraphe",
+      "station_name_en": "Télégraphe",
+      "station_slug": "telegraphe",
+      "line_ids": [
+        "M11"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 174
+    },
+    {
+      "station_global_id": "ST_PAR_191",
+      "station_name": "Porte des Lilas",
+      "station_name_en": "Porte des Lilas",
+      "station_slug": "porte_des_lilas",
+      "line_ids": [
+        "M11"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 175
+    },
+    {
+      "station_global_id": "ST_PAR_194",
+      "station_name": "Porte de la Chapelle",
+      "station_name_en": "Porte de la Chapelle",
+      "station_slug": "porte_de_la_chapelle",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 176
+    },
+    {
+      "station_global_id": "ST_PAR_195",
+      "station_name": "Marx Dormoy",
+      "station_name_en": "Marx Dormoy",
+      "station_slug": "marx_dormoy",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 177
+    },
+    {
+      "station_global_id": "ST_PAR_196",
+      "station_name": "Lamarck–Caulaincourt",
+      "station_name_en": "Lamarck–Caulaincourt",
+      "station_slug": "lamarck_caulaincourt",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 178
+    },
+    {
+      "station_global_id": "ST_PAR_197",
+      "station_name": "Jules Joffrin",
+      "station_name_en": "Jules Joffrin",
+      "station_slug": "jules_joffrin",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 179
+    },
+    {
+      "station_global_id": "ST_PAR_198",
+      "station_name": "Abbesses",
+      "station_name_en": "Abbesses",
+      "station_slug": "abbesses",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 180
+    },
+    {
+      "station_global_id": "ST_PAR_200",
+      "station_name": "Notre-Dame-de-Lorette",
+      "station_name_en": "Notre-Dame-de-Lorette",
+      "station_slug": "notre_dame_de_lorette",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 181
+    },
+    {
+      "station_global_id": "ST_PAR_201",
+      "station_name": "Saint-Georges",
+      "station_name_en": "Saint-Georges",
+      "station_slug": "saint_georges",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 182
+    },
+    {
+      "station_global_id": "ST_PAR_202",
+      "station_name": "Trinité–d'Estienne d'Orves",
+      "station_name_en": "Trinité–d'Estienne d'Orves",
+      "station_slug": "trinite_destienne_dorves",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 183
+    },
+    {
+      "station_global_id": "ST_PAR_203",
+      "station_name": "Rennes",
+      "station_name_en": "Rennes",
+      "station_slug": "rennes",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 184
+    },
+    {
+      "station_global_id": "ST_PAR_204",
+      "station_name": "Notre-Dame-des-Champs",
+      "station_name_en": "Notre-Dame-des-Champs",
+      "station_slug": "notre_dame_des_champs",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 185
+    },
+    {
+      "station_global_id": "ST_PAR_205",
+      "station_name": "Falguière",
+      "station_name_en": "Falguière",
+      "station_slug": "falguiere",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 186
+    },
+    {
+      "station_global_id": "ST_PAR_206",
+      "station_name": "Volontaires",
+      "station_name_en": "Volontaires",
+      "station_slug": "volontaires",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 187
+    },
+    {
+      "station_global_id": "ST_PAR_207",
+      "station_name": "Vaugirard",
+      "station_name_en": "Vaugirard",
+      "station_slug": "vaugirard",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 188
+    },
+    {
+      "station_global_id": "ST_PAR_208",
+      "station_name": "Convention",
+      "station_name_en": "Convention",
+      "station_slug": "convention",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 189
+    },
+    {
+      "station_global_id": "ST_PAR_210",
+      "station_name": "Corentin Celton",
+      "station_name_en": "Corentin Celton",
+      "station_slug": "corentin_celton",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 190
+    },
+    {
+      "station_global_id": "ST_PAR_213",
+      "station_name": "Basilique de Saint-Denis",
+      "station_name_en": "Basilique de Saint-Denis",
+      "station_slug": "basilique_de_saint_denis",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 191
+    },
+    {
+      "station_global_id": "ST_PAR_214",
+      "station_name": "Saint-Denis–Porte de Paris",
+      "station_name_en": "Saint-Denis–Porte de Paris",
+      "station_slug": "saint_denis_porte_de_paris",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 192
+    },
+    {
+      "station_global_id": "ST_PAR_215",
+      "station_name": "Carrefour Pleyel",
+      "station_name_en": "Carrefour Pleyel",
+      "station_slug": "carrefour_pleyel",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 193
+    },
+    {
+      "station_global_id": "ST_PAR_216",
+      "station_name": "Mairie de Saint-Ouen",
+      "station_name_en": "Mairie de Saint-Ouen",
+      "station_slug": "mairie_de_saint_ouen",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 194
+    },
+    {
+      "station_global_id": "ST_PAR_217",
+      "station_name": "Garibaldi",
+      "station_name_en": "Garibaldi",
+      "station_slug": "garibaldi",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 195
+    },
+    {
+      "station_global_id": "ST_PAR_218",
+      "station_name": "Porte de Saint-Ouen",
+      "station_name_en": "Porte de Saint-Ouen",
+      "station_slug": "porte_de_saint_ouen",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 196
+    },
+    {
+      "station_global_id": "ST_PAR_219",
+      "station_name": "Guy Môquet",
+      "station_name_en": "Guy Môquet",
+      "station_slug": "guy_moquet",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 197
+    },
+    {
+      "station_global_id": "ST_PAR_220",
+      "station_name": "La Fourche",
+      "station_name_en": "La Fourche",
+      "station_slug": "la_fourche",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 198
+    },
+    {
+      "station_global_id": "ST_PAR_221",
+      "station_name": "Brochant",
+      "station_name_en": "Brochant",
+      "station_slug": "brochant",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 199
+    },
+    {
+      "station_global_id": "ST_PAR_223",
+      "station_name": "Varenne",
+      "station_name_en": "Varenne",
+      "station_slug": "varenne",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 200
+    },
+    {
+      "station_global_id": "ST_PAR_224",
+      "station_name": "Saint-François-Xavier",
+      "station_name_en": "Saint-François-Xavier",
+      "station_slug": "saint_françois_xavier",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 201
+    },
+    {
+      "station_global_id": "ST_PAR_227",
+      "station_name": "Bibliothèque François Mitterrand",
+      "station_name_en": "Bibliothèque François Mitterrand",
+      "station_slug": "bibliotheque_françois_mitterrand",
+      "line_ids": [
+        "M14"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 202
+    },
+    {
+      "station_global_id": "ST_PAR_228",
+      "station_name": "Cour Saint-Émilion",
+      "station_name_en": "Cour Saint-Émilion",
+      "station_slug": "cour_saint_emilion",
+      "line_ids": [
+        "M14"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 1.1111,
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "degree": 2,
+      "rank": 203
+    },
+    {
+      "station_global_id": "ST_PAR_001",
+      "station_name": "La Défense",
+      "station_name_en": "La Défense",
+      "station_slug": "la_defense",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 204
+    },
+    {
+      "station_global_id": "ST_PAR_021",
+      "station_name": "Château de Vincennes",
+      "station_name_en": "Château de Vincennes",
+      "station_slug": "chateau_de_vincennes",
+      "line_ids": [
+        "M1"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 205
+    },
+    {
+      "station_global_id": "ST_PAR_022",
+      "station_name": "Porte Dauphine",
+      "station_name_en": "Porte Dauphine",
+      "station_slug": "porte_dauphine",
+      "line_ids": [
+        "M2"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 206
+    },
+    {
+      "station_global_id": "ST_PAR_039",
+      "station_name": "Pont de Levallois–Bécon",
+      "station_name_en": "Pont de Levallois–Bécon",
+      "station_slug": "pont_de_levallois_becon",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 207
+    },
+    {
+      "station_global_id": "ST_PAR_067",
+      "station_name": "Gallieni",
+      "station_name_en": "Gallieni",
+      "station_slug": "gallieni",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 208
+    },
+    {
+      "station_global_id": "ST_PAR_068",
+      "station_name": "Porte de Clignancourt",
+      "station_name_en": "Porte de Clignancourt",
+      "station_slug": "porte_de_clignancourt",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 209
+    },
+    {
+      "station_global_id": "ST_PAR_086",
+      "station_name": "Montrouge",
+      "station_name_en": "Montrouge",
+      "station_slug": "montrouge",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 210
+    },
+    {
+      "station_global_id": "ST_PAR_087",
+      "station_name": "Bobigny–Pablo Picasso",
+      "station_name_en": "Bobigny–Pablo Picasso",
+      "station_slug": "bobigny_pablo_picasso",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 211
+    },
+    {
+      "station_global_id": "ST_PAR_121",
+      "station_name": "La Courneuve–8 Mai 1945",
+      "station_name_en": "La Courneuve–8 Mai 1945",
+      "station_slug": "la_courneuve_8_mai_1945",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 212
+    },
+    {
+      "station_global_id": "ST_PAR_140",
+      "station_name": "Villejuif–Louis Aragon",
+      "station_name_en": "Villejuif–Louis Aragon",
+      "station_slug": "villejuif_louis_aragon",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 213
+    },
+    {
+      "station_global_id": "ST_PAR_141",
+      "station_name": "Balard",
+      "station_name_en": "Balard",
+      "station_slug": "balard",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 214
+    },
+    {
+      "station_global_id": "ST_PAR_156",
+      "station_name": "Créteil–Préfecture",
+      "station_name_en": "Créteil–Préfecture",
+      "station_slug": "creteil_prefecture",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 215
+    },
+    {
+      "station_global_id": "ST_PAR_173",
+      "station_name": "Mairie de Montreuil",
+      "station_name_en": "Mairie de Montreuil",
+      "station_slug": "mairie_de_montreuil",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 216
+    },
+    {
+      "station_global_id": "ST_PAR_192",
+      "station_name": "Mairie des Lilas",
+      "station_name_en": "Mairie des Lilas",
+      "station_slug": "mairie_des_lilas",
+      "line_ids": [
+        "M11"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 217
+    },
+    {
+      "station_global_id": "ST_PAR_193",
+      "station_name": "Aubervilliers–Front Populaire",
+      "station_name_en": "Aubervilliers–Front Populaire",
+      "station_slug": "aubervilliers_front_populaire",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 218
+    },
+    {
+      "station_global_id": "ST_PAR_211",
+      "station_name": "Mairie d'Issy",
+      "station_name_en": "Mairie d'Issy",
+      "station_slug": "mairie_dissy",
+      "line_ids": [
+        "M12"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 219
+    },
+    {
+      "station_global_id": "ST_PAR_212",
+      "station_name": "Saint-Denis–Université",
+      "station_name_en": "Saint-Denis–Université",
+      "station_slug": "saint_denis_universite",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 220
+    },
+    {
+      "station_global_id": "ST_PAR_225",
+      "station_name": "Châtillon–Montrouge",
+      "station_name_en": "Châtillon–Montrouge",
+      "station_slug": "chatillon_montrouge",
+      "line_ids": [
+        "M13"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 221
+    },
+    {
+      "station_global_id": "ST_PAR_226",
+      "station_name": "Olympiades",
+      "station_name_en": "Olympiades",
+      "station_slug": "olympiades",
+      "line_ids": [
+        "M14"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.5556,
+      "composite_score": 0.2222,
+      "score_total": 0.7777,
+      "rarity": "common",
+      "degree": 1,
+      "rank": 222
+    },
+    {
+      "station_global_id": "ST_PAR_126",
+      "station_name": "Pont de Levallois",
+      "station_name_en": "Pont de Levallois",
+      "station_slug": "pont_de_levallois",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 223
+    },
+    {
+      "station_global_id": "ST_PAR_127",
+      "station_name": "Pont de Flandre",
+      "station_name_en": "Pont de Flandre",
+      "station_slug": "pont_de_flandre",
+      "line_ids": [
+        "M7"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 224
+    },
+    {
+      "station_global_id": "ST_PAR_182",
+      "station_name": "Cité Universitaire",
+      "station_name_en": "Cité Universitaire",
+      "station_slug": "cite_universitaire",
+      "line_ids": [
+        "M4"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 225
+    },
+    {
+      "station_global_id": "ST_PAR_184",
+      "station_name": "Filles du Calvaire",
+      "station_name_en": "Filles du Calvaire",
+      "station_slug": "filles_du_calvaire",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 226
+    },
+    {
+      "station_global_id": "ST_PAR_185",
+      "station_name": "Saint-Sébastien–Froissart",
+      "station_name_en": "Saint-Sébastien–Froissart",
+      "station_slug": "saint_sebastien_froissart",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 227
+    },
+    {
+      "station_global_id": "ST_PAR_209",
+      "station_name": "Boucicaut",
+      "station_name_en": "Boucicaut",
+      "station_slug": "boucicaut",
+      "line_ids": [
+        "M8"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 228
+    },
+    {
+      "station_global_id": "ST_PAR_222",
+      "station_name": "Liège",
+      "station_name_en": "Liège",
+      "station_slug": "liege",
+      "line_ids": [
+        "M3"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 229
+    },
+    {
+      "station_global_id": "ST_PAR_230",
+      "station_name": "Quai de la Rapée",
+      "station_name_en": "Quai de la Rapée",
+      "station_slug": "quai_de_la_rapee",
+      "line_ids": [
+        "M5"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 230
+    },
+    {
+      "station_global_id": "ST_PAR_231",
+      "station_name": "Pont de Sèvres",
+      "station_name_en": "Pont de Sèvres",
+      "station_slug": "pont_de_sevres",
+      "line_ids": [
+        "M9"
+      ],
+      "line_count": 1,
+      "hub_score": 0.0,
+      "centrality_score": 0.0,
+      "composite_score": 0.0,
+      "score_total": 0.0,
+      "rarity": "common",
+      "degree": 0,
+      "rank": 231
+    }
+  ]
+}

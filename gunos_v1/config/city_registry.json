@@ -54,6 +54,19 @@
         "max_score": 5.0,
         "hub_pct": 94
       }
+    },
+    {
+      "city_id": "paris",
+      "display_name": "Paris",
+      "display_label": "PARIS",
+      "profile": "../guno_v6/cities/paris/city_profile.json",
+      "ui_trait": "multi-line radial hub network",
+      "stats": {
+        "node_count": 231,
+        "avg_score": 2.8,
+        "max_score": 17.5,
+        "hub_pct": 25
+      }
     }
   ]
 }

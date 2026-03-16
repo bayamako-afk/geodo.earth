@@ -1,0 +1,15 @@
+line_id,line_name,line_name_en,color,is_loop,station_count,transfer_count,avg_composite_score,max_composite_score,line_strength_score
+M14,Ligne 14,Line 14,#62259D,False,9,6,1.9722,4.5556,2.7472
+M11,Ligne 11,Line 11,#704B1C,False,13,5,1.3696,5.0,2.4587
+M1,Ligne 1,Line 1,#FFBE00,False,21,12,1.5079,4.5556,2.4222
+M8,Ligne 8,Line 8,#E19BDF,False,26,12,1.2981,5.0,2.4087
+M9,Ligne 9,Line 9,#B6BD00,False,33,17,1.2104,5.0,2.3473
+M5,Ligne 5,Line 5,#FF7E2E,False,28,12,1.1151,5.0,2.2806
+M4,Ligne 4,Line 4,#CF009E,False,24,11,1.2291,4.5556,2.227
+M3,Ligne 3,Line 3,#6E6E00,False,28,8,0.9891,5.0,2.1924
+M13,Ligne 13,Line 13,#6EC4E8,False,20,7,1.0944,4.5556,2.1328
+M6,Ligne 6,Line 6,#6ECA97,False,20,10,1.393,3.8056,2.1168
+M7,Ligne 7,Line 7,#FA9ABA,False,28,9,1.0635,4.5556,2.1111
+M12,Ligne 12,Line 12,#007852,False,25,8,1.0633,4.5556,2.111
+M2,Ligne 2,Line 2,#003CA6,False,22,11,1.2121,3.5833,1.9235
+M10,Ligne 10,Line 10,#C9910A,False,14,9,1.1547,2.8333,1.6583

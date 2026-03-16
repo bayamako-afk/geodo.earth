@@ -1,0 +1,43 @@
+{
+  "city_id": "paris",
+  "display_name": "Paris",
+  "country": "France",
+  "language": "fr",
+  "timezone": "Europe/Paris",
+  "map": {
+    "center": [48.8566, 2.3522],
+    "zoom": 12
+  },
+  "dataset": {
+    "station_master": "cities/paris/data/master/stations_master.json",
+    "station_lines": "cities/paris/data/master/station_lines.json",
+    "lines_master": "cities/paris/data/master/lines_master.json",
+    "station_graph": "cities/paris/data/graph/station_graph.json",
+    "station_metrics": "cities/paris/data/derived/station_metrics.json",
+    "line_metrics": "cities/paris/data/derived/line_metrics.json",
+    "default_deck": "cities/paris/data/decks/deck_v1.json",
+    "default_pack": "cities/paris/data/packs/pack_v1.json"
+  },
+  "routes": {
+    "featured_lines": ["M1", "M4", "M9", "M13", "M14"]
+  },
+  "ui": {
+    "primary_label": "station_name_en",
+    "secondary_label": "station_name_en"
+  },
+  "deck_defaults": {
+    "deck_size": 30,
+    "rarity_targets": {
+      "legendary": 1,
+      "epic": 6,
+      "rare": 8,
+      "common": 15
+    },
+    "deck_name": "paris_v1",
+    "tuning_note": "Initial config — 14-line RATP Métro, 231 stations, 5 featured lines"
+  },
+  "status": {
+    "data_ready": true,
+    "notes": "v1 package: 14 lines (M1-M14), 231 unique stations, 5 featured lines (M1/M4/M9/M13/M14), deck_size=30."
+  }
+}

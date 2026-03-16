@@ -27,7 +27,7 @@ import {
 import { renderCityComparePanel, initCityCompareData } from '../ui/city_compare_panel.js?v=2';
 import { initHelpModal, openHelpModal } from '../ui/help_modal.js?v=1';
 import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=15';
-import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=14';
+import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=15';
 import {
   initSession,
   playOneTurn,

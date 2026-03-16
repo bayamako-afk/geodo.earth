@@ -1,0 +1,184 @@
+[
+  {
+    "line_id": "M1",
+    "line_name": "Ligne 1",
+    "line_name_en": "Line 1",
+    "operator_name": "RATP",
+    "color": "#FFBE00",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 21,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M2",
+    "line_name": "Ligne 2",
+    "line_name_en": "Line 2",
+    "operator_name": "RATP",
+    "color": "#003CA6",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 22,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M3",
+    "line_name": "Ligne 3",
+    "line_name_en": "Line 3",
+    "operator_name": "RATP",
+    "color": "#6E6E00",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 28,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M4",
+    "line_name": "Ligne 4",
+    "line_name_en": "Line 4",
+    "operator_name": "RATP",
+    "color": "#CF009E",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 24,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M5",
+    "line_name": "Ligne 5",
+    "line_name_en": "Line 5",
+    "operator_name": "RATP",
+    "color": "#FF7E2E",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 28,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M6",
+    "line_name": "Ligne 6",
+    "line_name_en": "Line 6",
+    "operator_name": "RATP",
+    "color": "#6ECA97",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 20,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M7",
+    "line_name": "Ligne 7",
+    "line_name_en": "Line 7",
+    "operator_name": "RATP",
+    "color": "#FA9ABA",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 28,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M8",
+    "line_name": "Ligne 8",
+    "line_name_en": "Line 8",
+    "operator_name": "RATP",
+    "color": "#E19BDF",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 26,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M9",
+    "line_name": "Ligne 9",
+    "line_name_en": "Line 9",
+    "operator_name": "RATP",
+    "color": "#B6BD00",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 33,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M10",
+    "line_name": "Ligne 10",
+    "line_name_en": "Line 10",
+    "operator_name": "RATP",
+    "color": "#C9910A",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 14,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M11",
+    "line_name": "Ligne 11",
+    "line_name_en": "Line 11",
+    "operator_name": "RATP",
+    "color": "#704B1C",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 13,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M12",
+    "line_name": "Ligne 12",
+    "line_name_en": "Line 12",
+    "operator_name": "RATP",
+    "color": "#007852",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 25,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M13",
+    "line_name": "Ligne 13",
+    "line_name_en": "Line 13",
+    "operator_name": "RATP",
+    "color": "#6EC4E8",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 20,
+    "is_loop": false,
+    "status": "active"
+  },
+  {
+    "line_id": "M14",
+    "line_name": "Ligne 14",
+    "line_name_en": "Line 14",
+    "operator_name": "RATP",
+    "color": "#62259D",
+    "prefectures": [
+      "Île-de-France"
+    ],
+    "station_count": 9,
+    "is_loop": false,
+    "status": "active"
+  }
+]

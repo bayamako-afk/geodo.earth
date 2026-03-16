@@ -1,0 +1,5627 @@
+[
+  {
+    "station_global_id": "ST_PAR_001",
+    "station_slug": "la_defense",
+    "station_name": "La Défense",
+    "station_name_kana": "",
+    "station_name_en": "La Défense",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8921,
+    "lon": 2.2381,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "La Défense"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_002",
+    "station_slug": "esplanade_de_la_defense",
+    "station_name": "Esplanade de La Défense",
+    "station_name_kana": "",
+    "station_name_en": "Esplanade de La Défense",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8894,
+    "lon": 2.2478,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Esplanade de La Défense"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_003",
+    "station_slug": "pont_de_neuilly",
+    "station_name": "Pont de Neuilly",
+    "station_name_kana": "",
+    "station_name_en": "Pont de Neuilly",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8848,
+    "lon": 2.2598,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pont de Neuilly"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_004",
+    "station_slug": "les_sablons",
+    "station_name": "Les Sablons",
+    "station_name_kana": "",
+    "station_name_en": "Les Sablons",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8801,
+    "lon": 2.2703,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Les Sablons"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_005",
+    "station_slug": "porte_maillot",
+    "station_name": "Porte Maillot",
+    "station_name_kana": "",
+    "station_name_en": "Porte Maillot",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8786,
+    "lon": 2.2827,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M2"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Porte Maillot"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_006",
+    "station_slug": "argentine",
+    "station_name": "Argentine",
+    "station_name_kana": "",
+    "station_name_en": "Argentine",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8759,
+    "lon": 2.2909,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Argentine"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_007",
+    "station_slug": "charles_de_gaulle_etoile",
+    "station_name": "Charles de Gaulle–Étoile",
+    "station_name_kana": "",
+    "station_name_en": "Charles de Gaulle–Étoile",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8738,
+    "lon": 2.295,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M2",
+      "M6"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Charles de Gaulle–Étoile"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_008",
+    "station_slug": "george_v",
+    "station_name": "George V",
+    "station_name_kana": "",
+    "station_name_en": "George V",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8726,
+    "lon": 2.3016,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "George V"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_009",
+    "station_slug": "franklin_d_roosevelt",
+    "station_name": "Franklin D. Roosevelt",
+    "station_name_kana": "",
+    "station_name_en": "Franklin D. Roosevelt",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8695,
+    "lon": 2.3083,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Franklin D. Roosevelt"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_010",
+    "station_slug": "champs_elysees_clemenceau",
+    "station_name": "Champs-Élysées–Clemenceau",
+    "station_name_kana": "",
+    "station_name_en": "Champs-Élysées–Clemenceau",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8672,
+    "lon": 2.3127,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M13"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Champs-Élysées–Clemenceau"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_011",
+    "station_slug": "concorde",
+    "station_name": "Concorde",
+    "station_name_kana": "",
+    "station_name_en": "Concorde",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8655,
+    "lon": 2.3214,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M12",
+      "M8"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Concorde"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_012",
+    "station_slug": "tuileries",
+    "station_name": "Tuileries",
+    "station_name_kana": "",
+    "station_name_en": "Tuileries",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8638,
+    "lon": 2.3306,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Tuileries"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_013",
+    "station_slug": "palais_royal_musee_du_louvre",
+    "station_name": "Palais Royal–Musée du Louvre",
+    "station_name_kana": "",
+    "station_name_en": "Palais Royal–Musée du Louvre",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8637,
+    "lon": 2.3366,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M7"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Palais Royal–Musée du Louvre"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_014",
+    "station_slug": "chatelet",
+    "station_name": "Châtelet",
+    "station_name_kana": "",
+    "station_name_en": "Châtelet",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8601,
+    "lon": 2.3465,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M11",
+      "M14",
+      "M4",
+      "M7"
+    ],
+    "line_count": 5,
+    "hub_degree_global": 5,
+    "source_names": [
+      "Châtelet"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_015",
+    "station_slug": "hotel_de_ville",
+    "station_name": "Hôtel de Ville",
+    "station_name_kana": "",
+    "station_name_en": "Hôtel de Ville",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8573,
+    "lon": 2.3519,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M11"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Hôtel de Ville"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_016",
+    "station_slug": "saint_paul",
+    "station_name": "Saint-Paul",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Paul",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8549,
+    "lon": 2.3614,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Paul"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_017",
+    "station_slug": "bastille",
+    "station_name": "Bastille",
+    "station_name_kana": "",
+    "station_name_en": "Bastille",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8533,
+    "lon": 2.3692,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M5",
+      "M8"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Bastille"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_018",
+    "station_slug": "gare_de_lyon",
+    "station_name": "Gare de Lyon",
+    "station_name_kana": "",
+    "station_name_en": "Gare de Lyon",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8445,
+    "lon": 2.3737,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M14"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Gare de Lyon"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_019",
+    "station_slug": "reuilly_diderot",
+    "station_name": "Reuilly–Diderot",
+    "station_name_kana": "",
+    "station_name_en": "Reuilly–Diderot",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8474,
+    "lon": 2.3877,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M8"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Reuilly–Diderot"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_020",
+    "station_slug": "nation",
+    "station_name": "Nation",
+    "station_name_kana": "",
+    "station_name_en": "Nation",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8484,
+    "lon": 2.396,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1",
+      "M2",
+      "M6",
+      "M9"
+    ],
+    "line_count": 4,
+    "hub_degree_global": 4,
+    "source_names": [
+      "Nation"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_021",
+    "station_slug": "chateau_de_vincennes",
+    "station_name": "Château de Vincennes",
+    "station_name_kana": "",
+    "station_name_en": "Château de Vincennes",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8447,
+    "lon": 2.4396,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M1"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Château de Vincennes"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_022",
+    "station_slug": "porte_dauphine",
+    "station_name": "Porte Dauphine",
+    "station_name_kana": "",
+    "station_name_en": "Porte Dauphine",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8712,
+    "lon": 2.2748,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte Dauphine"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_023",
+    "station_slug": "victor_hugo",
+    "station_name": "Victor Hugo",
+    "station_name_kana": "",
+    "station_name_en": "Victor Hugo",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.873,
+    "lon": 2.284,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Victor Hugo"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_024",
+    "station_slug": "kleber",
+    "station_name": "Kleber",
+    "station_name_kana": "",
+    "station_name_en": "Kleber",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8734,
+    "lon": 2.2906,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Kleber"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_025",
+    "station_slug": "trocadero",
+    "station_name": "Trocadéro",
+    "station_name_kana": "",
+    "station_name_en": "Trocadéro",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8633,
+    "lon": 2.2881,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Trocadéro"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_026",
+    "station_slug": "iena",
+    "station_name": "Iéna",
+    "station_name_kana": "",
+    "station_name_en": "Iéna",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8636,
+    "lon": 2.2951,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Iéna"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_027",
+    "station_slug": "alma_marceau",
+    "station_name": "Alma–Marceau",
+    "station_name_kana": "",
+    "station_name_en": "Alma–Marceau",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8641,
+    "lon": 2.3026,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Alma–Marceau"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_028",
+    "station_slug": "anvers",
+    "station_name": "Anvers",
+    "station_name_kana": "",
+    "station_name_en": "Anvers",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8829,
+    "lon": 2.344,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Anvers"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_029",
+    "station_slug": "barbes_rochechouart",
+    "station_name": "Barbès–Rochechouart",
+    "station_name_kana": "",
+    "station_name_en": "Barbès–Rochechouart",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8837,
+    "lon": 2.3499,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2",
+      "M4"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Barbès–Rochechouart"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_030",
+    "station_slug": "la_chapelle",
+    "station_name": "La Chapelle",
+    "station_name_kana": "",
+    "station_name_en": "La Chapelle",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8848,
+    "lon": 2.3572,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "La Chapelle"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_031",
+    "station_slug": "stalingrad",
+    "station_name": "Stalingrad",
+    "station_name_kana": "",
+    "station_name_en": "Stalingrad",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8843,
+    "lon": 2.3671,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2",
+      "M5",
+      "M7"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Stalingrad"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_032",
+    "station_slug": "jaures",
+    "station_name": "Jaurès",
+    "station_name_kana": "",
+    "station_name_en": "Jaurès",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8836,
+    "lon": 2.3713,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2",
+      "M5",
+      "M7bis"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Jaurès"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_033",
+    "station_slug": "colonel_fabien",
+    "station_name": "Colonel Fabien",
+    "station_name_kana": "",
+    "station_name_en": "Colonel Fabien",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8793,
+    "lon": 2.3726,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Colonel Fabien"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_034",
+    "station_slug": "belleville",
+    "station_name": "Belleville",
+    "station_name_kana": "",
+    "station_name_en": "Belleville",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8718,
+    "lon": 2.3751,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11",
+      "M2"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Belleville"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_035",
+    "station_slug": "pere_lachaise",
+    "station_name": "Père Lachaise",
+    "station_name_kana": "",
+    "station_name_en": "Père Lachaise",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8626,
+    "lon": 2.3876,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2",
+      "M3"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Père Lachaise"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_036",
+    "station_slug": "philippe_auguste",
+    "station_name": "Philippe Auguste",
+    "station_name_kana": "",
+    "station_name_en": "Philippe Auguste",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8581,
+    "lon": 2.3921,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Philippe Auguste"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_037",
+    "station_slug": "alexandre_dumas",
+    "station_name": "Alexandre Dumas",
+    "station_name_kana": "",
+    "station_name_en": "Alexandre Dumas",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8545,
+    "lon": 2.3966,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Alexandre Dumas"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_038",
+    "station_slug": "avron",
+    "station_name": "Avron",
+    "station_name_kana": "",
+    "station_name_en": "Avron",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8511,
+    "lon": 2.4002,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Avron"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_039",
+    "station_slug": "pont_de_levallois_becon",
+    "station_name": "Pont de Levallois–Bécon",
+    "station_name_kana": "",
+    "station_name_en": "Pont de Levallois–Bécon",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8977,
+    "lon": 2.2836,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pont de Levallois–Bécon"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_040",
+    "station_slug": "anatole_france",
+    "station_name": "Anatole France",
+    "station_name_kana": "",
+    "station_name_en": "Anatole France",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8955,
+    "lon": 2.2918,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Anatole France"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_041",
+    "station_slug": "louise_michel",
+    "station_name": "Louise Michel",
+    "station_name_kana": "",
+    "station_name_en": "Louise Michel",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.893,
+    "lon": 2.2984,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Louise Michel"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_042",
+    "station_slug": "porte_de_champerret",
+    "station_name": "Porte de Champerret",
+    "station_name_kana": "",
+    "station_name_en": "Porte de Champerret",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8898,
+    "lon": 2.305,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte de Champerret"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_043",
+    "station_slug": "pereire",
+    "station_name": "Pereire",
+    "station_name_kana": "",
+    "station_name_en": "Pereire",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.887,
+    "lon": 2.3071,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pereire"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_044",
+    "station_slug": "wagram",
+    "station_name": "Wagram",
+    "station_name_kana": "",
+    "station_name_en": "Wagram",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8839,
+    "lon": 2.3103,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Wagram"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_045",
+    "station_slug": "malesherbes",
+    "station_name": "Malesherbes",
+    "station_name_kana": "",
+    "station_name_en": "Malesherbes",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.881,
+    "lon": 2.3139,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Malesherbes"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_046",
+    "station_slug": "villiers",
+    "station_name": "Villiers",
+    "station_name_kana": "",
+    "station_name_en": "Villiers",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8819,
+    "lon": 2.3224,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2",
+      "M3"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Villiers"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_047",
+    "station_slug": "rome",
+    "station_name": "Rome",
+    "station_name_kana": "",
+    "station_name_en": "Rome",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8793,
+    "lon": 2.3271,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Rome"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_048",
+    "station_slug": "place_de_clichy",
+    "station_name": "Place de Clichy",
+    "station_name_kana": "",
+    "station_name_en": "Place de Clichy",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8836,
+    "lon": 2.3324,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13",
+      "M2"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Place de Clichy"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_049",
+    "station_slug": "liege",
+    "station_name": "Liège",
+    "station_name_kana": "",
+    "station_name_en": "Liège",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8793,
+    "lon": 2.3271,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Liège"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_050",
+    "station_slug": "saint_lazare",
+    "station_name": "Saint-Lazare",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Lazare",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8756,
+    "lon": 2.3244,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12",
+      "M13",
+      "M14",
+      "M3",
+      "M9"
+    ],
+    "line_count": 5,
+    "hub_degree_global": 5,
+    "source_names": [
+      "Saint-Lazare"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_051",
+    "station_slug": "havre_caumartin",
+    "station_name": "Havre–Caumartin",
+    "station_name_kana": "",
+    "station_name_en": "Havre–Caumartin",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8741,
+    "lon": 2.3293,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Havre–Caumartin"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_052",
+    "station_slug": "opera",
+    "station_name": "Opéra",
+    "station_name_kana": "",
+    "station_name_en": "Opéra",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.871,
+    "lon": 2.3319,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3",
+      "M7",
+      "M8"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Opéra"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_053",
+    "station_slug": "quatre_septembre",
+    "station_name": "Quatre-Septembre",
+    "station_name_kana": "",
+    "station_name_en": "Quatre-Septembre",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8698,
+    "lon": 2.339,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Quatre-Septembre"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_054",
+    "station_slug": "bourse",
+    "station_name": "Bourse",
+    "station_name_kana": "",
+    "station_name_en": "Bourse",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8683,
+    "lon": 2.3412,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bourse"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_055",
+    "station_slug": "sentier",
+    "station_name": "Sentier",
+    "station_name_kana": "",
+    "station_name_en": "Sentier",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8661,
+    "lon": 2.3471,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Sentier"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_056",
+    "station_slug": "reaumur_sebastopol",
+    "station_name": "Réaumur–Sébastopol",
+    "station_name_kana": "",
+    "station_name_en": "Réaumur–Sébastopol",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.864,
+    "lon": 2.3519,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3",
+      "M4"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Réaumur–Sébastopol"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_057",
+    "station_slug": "arts_et_metiers",
+    "station_name": "Arts et Métiers",
+    "station_name_kana": "",
+    "station_name_en": "Arts et Métiers",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8631,
+    "lon": 2.3562,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11",
+      "M3"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Arts et Métiers"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_058",
+    "station_slug": "temple",
+    "station_name": "Temple",
+    "station_name_kana": "",
+    "station_name_en": "Temple",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8633,
+    "lon": 2.3607,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Temple"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_059",
+    "station_slug": "republique",
+    "station_name": "République",
+    "station_name_kana": "",
+    "station_name_en": "République",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8673,
+    "lon": 2.3629,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11",
+      "M3",
+      "M5",
+      "M8",
+      "M9"
+    ],
+    "line_count": 5,
+    "hub_degree_global": 5,
+    "source_names": [
+      "République"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_060",
+    "station_slug": "oberkampf",
+    "station_name": "Oberkampf",
+    "station_name_kana": "",
+    "station_name_en": "Oberkampf",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8643,
+    "lon": 2.3684,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Oberkampf"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_061",
+    "station_slug": "saint_maur",
+    "station_name": "Saint-Maur",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Maur",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8617,
+    "lon": 2.3804,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Maur"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_062",
+    "station_slug": "rue_saint_maur",
+    "station_name": "Rue Saint-Maur",
+    "station_name_kana": "",
+    "station_name_en": "Rue Saint-Maur",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8608,
+    "lon": 2.3841,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Rue Saint-Maur"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_063",
+    "station_slug": "parmentier",
+    "station_name": "Parmentier",
+    "station_name_kana": "",
+    "station_name_en": "Parmentier",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8632,
+    "lon": 2.3775,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Parmentier"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_064",
+    "station_slug": "menilmontant",
+    "station_name": "Ménilmontant",
+    "station_name_kana": "",
+    "station_name_en": "Ménilmontant",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8668,
+    "lon": 2.3842,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M2"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Ménilmontant"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_065",
+    "station_slug": "gambetta",
+    "station_name": "Gambetta",
+    "station_name_kana": "",
+    "station_name_en": "Gambetta",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8655,
+    "lon": 2.3979,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Gambetta"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_066",
+    "station_slug": "porte_de_bagnolet",
+    "station_name": "Porte de Bagnolet",
+    "station_name_kana": "",
+    "station_name_en": "Porte de Bagnolet",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8626,
+    "lon": 2.4133,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte de Bagnolet"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_067",
+    "station_slug": "gallieni",
+    "station_name": "Gallieni",
+    "station_name_kana": "",
+    "station_name_en": "Gallieni",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8595,
+    "lon": 2.4198,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Gallieni"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_068",
+    "station_slug": "porte_de_clignancourt",
+    "station_name": "Porte de Clignancourt",
+    "station_name_kana": "",
+    "station_name_en": "Porte de Clignancourt",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8975,
+    "lon": 2.3447,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte de Clignancourt"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_069",
+    "station_slug": "simplon",
+    "station_name": "Simplon",
+    "station_name_kana": "",
+    "station_name_en": "Simplon",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.894,
+    "lon": 2.3476,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Simplon"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_070",
+    "station_slug": "marcadet_poissonniers",
+    "station_name": "Marcadet–Poissonniers",
+    "station_name_kana": "",
+    "station_name_en": "Marcadet–Poissonniers",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8906,
+    "lon": 2.3491,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12",
+      "M4"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Marcadet–Poissonniers"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_071",
+    "station_slug": "chateau_rouge",
+    "station_name": "Château Rouge",
+    "station_name_kana": "",
+    "station_name_en": "Château Rouge",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8866,
+    "lon": 2.3496,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Château Rouge"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_072",
+    "station_slug": "gare_du_nord",
+    "station_name": "Gare du Nord",
+    "station_name_kana": "",
+    "station_name_en": "Gare du Nord",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8809,
+    "lon": 2.3553,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4",
+      "M5"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Gare du Nord"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_073",
+    "station_slug": "gare_de_lest",
+    "station_name": "Gare de l'Est",
+    "station_name_kana": "",
+    "station_name_en": "Gare de l'Est",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8768,
+    "lon": 2.3591,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4",
+      "M5",
+      "M7"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Gare de l'Est"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_074",
+    "station_slug": "strasbourg_saint_denis",
+    "station_name": "Strasbourg–Saint-Denis",
+    "station_name_kana": "",
+    "station_name_en": "Strasbourg–Saint-Denis",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8694,
+    "lon": 2.3548,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4",
+      "M8",
+      "M9"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Strasbourg–Saint-Denis"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_075",
+    "station_slug": "etienne_marcel",
+    "station_name": "Étienne Marcel",
+    "station_name_kana": "",
+    "station_name_en": "Étienne Marcel",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8626,
+    "lon": 2.3487,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Étienne Marcel"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_076",
+    "station_slug": "les_halles",
+    "station_name": "Les Halles",
+    "station_name_kana": "",
+    "station_name_en": "Les Halles",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8619,
+    "lon": 2.3468,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Les Halles"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_077",
+    "station_slug": "saint_michel",
+    "station_name": "Saint-Michel",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Michel",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8529,
+    "lon": 2.3451,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Michel"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_078",
+    "station_slug": "odeon",
+    "station_name": "Odéon",
+    "station_name_kana": "",
+    "station_name_en": "Odéon",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8519,
+    "lon": 2.3417,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M4"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Odéon"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_079",
+    "station_slug": "saint_germain_des_pres",
+    "station_name": "Saint-Germain-des-Prés",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Germain-des-Prés",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8536,
+    "lon": 2.3332,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Germain-des-Prés"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_080",
+    "station_slug": "saint_sulpice",
+    "station_name": "Saint-Sulpice",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Sulpice",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8511,
+    "lon": 2.3301,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Sulpice"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_081",
+    "station_slug": "saint_placide",
+    "station_name": "Saint-Placide",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Placide",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8476,
+    "lon": 2.3262,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Placide"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_082",
+    "station_slug": "montparnasse_bienvenue",
+    "station_name": "Montparnasse–Bienvenüe",
+    "station_name_kana": "",
+    "station_name_en": "Montparnasse–Bienvenüe",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8424,
+    "lon": 2.3208,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12",
+      "M13",
+      "M4",
+      "M6"
+    ],
+    "line_count": 4,
+    "hub_degree_global": 4,
+    "source_names": [
+      "Montparnasse–Bienvenüe"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_083",
+    "station_slug": "alesia",
+    "station_name": "Alésia",
+    "station_name_kana": "",
+    "station_name_en": "Alésia",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8289,
+    "lon": 2.3264,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Alésia"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_084",
+    "station_slug": "mouton_duvernet",
+    "station_name": "Mouton-Duvernet",
+    "station_name_kana": "",
+    "station_name_en": "Mouton-Duvernet",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8319,
+    "lon": 2.3249,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Mouton-Duvernet"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_085",
+    "station_slug": "denfert_rochereau",
+    "station_name": "Denfert-Rochereau",
+    "station_name_kana": "",
+    "station_name_en": "Denfert-Rochereau",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8343,
+    "lon": 2.3327,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4",
+      "M6"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Denfert-Rochereau"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_086",
+    "station_slug": "montrouge",
+    "station_name": "Montrouge",
+    "station_name_kana": "",
+    "station_name_en": "Montrouge",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8188,
+    "lon": 2.321,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Montrouge"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_087",
+    "station_slug": "bobigny_pablo_picasso",
+    "station_name": "Bobigny–Pablo Picasso",
+    "station_name_kana": "",
+    "station_name_en": "Bobigny–Pablo Picasso",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9099,
+    "lon": 2.4498,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bobigny–Pablo Picasso"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_088",
+    "station_slug": "bobigny_pantin_raymond_queneau",
+    "station_name": "Bobigny–Pantin–Raymond Queneau",
+    "station_name_kana": "",
+    "station_name_en": "Bobigny–Pantin–Raymond Queneau",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9019,
+    "lon": 2.4244,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bobigny–Pantin–Raymond Queneau"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_089",
+    "station_slug": "eglise_de_pantin",
+    "station_name": "Église de Pantin",
+    "station_name_kana": "",
+    "station_name_en": "Église de Pantin",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8967,
+    "lon": 2.4105,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Église de Pantin"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_090",
+    "station_slug": "hoche",
+    "station_name": "Hoche",
+    "station_name_kana": "",
+    "station_name_en": "Hoche",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.892,
+    "lon": 2.3996,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Hoche"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_091",
+    "station_slug": "porte_de_pantin",
+    "station_name": "Porte de Pantin",
+    "station_name_kana": "",
+    "station_name_en": "Porte de Pantin",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8875,
+    "lon": 2.3895,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte de Pantin"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_092",
+    "station_slug": "ourcq",
+    "station_name": "Ourcq",
+    "station_name_kana": "",
+    "station_name_en": "Ourcq",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8867,
+    "lon": 2.3818,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Ourcq"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_093",
+    "station_slug": "laumiere",
+    "station_name": "Laumière",
+    "station_name_kana": "",
+    "station_name_en": "Laumière",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8852,
+    "lon": 2.3773,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Laumière"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_094",
+    "station_slug": "quai_de_la_loire",
+    "station_name": "Quai de la Loire",
+    "station_name_kana": "",
+    "station_name_en": "Quai de la Loire",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8843,
+    "lon": 2.3741,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Quai de la Loire"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_095",
+    "station_slug": "quai_de_loise",
+    "station_name": "Quai de l'Oise",
+    "station_name_kana": "",
+    "station_name_en": "Quai de l'Oise",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.885,
+    "lon": 2.3693,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Quai de l'Oise"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_096",
+    "station_slug": "corentin_cariou",
+    "station_name": "Corentin Cariou",
+    "station_name_kana": "",
+    "station_name_en": "Corentin Cariou",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8853,
+    "lon": 2.3645,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Corentin Cariou"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_097",
+    "station_slug": "crimee",
+    "station_name": "Crimée",
+    "station_name_kana": "",
+    "station_name_en": "Crimée",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8851,
+    "lon": 2.3611,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Crimée"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_098",
+    "station_slug": "riquet",
+    "station_name": "Riquet",
+    "station_name_kana": "",
+    "station_name_en": "Riquet",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8836,
+    "lon": 2.3567,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Riquet"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_099",
+    "station_slug": "louis_blanc",
+    "station_name": "Louis Blanc",
+    "station_name_kana": "",
+    "station_name_en": "Louis Blanc",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8816,
+    "lon": 2.3617,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Louis Blanc"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_100",
+    "station_slug": "jacques_bonsergent",
+    "station_name": "Jacques Bonsergent",
+    "station_name_kana": "",
+    "station_name_en": "Jacques Bonsergent",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8699,
+    "lon": 2.3619,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Jacques Bonsergent"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_101",
+    "station_slug": "oberkampf",
+    "station_name": "Oberkampf",
+    "station_name_kana": "",
+    "station_name_en": "Oberkampf",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8643,
+    "lon": 2.3684,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Oberkampf"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_102",
+    "station_slug": "richard_lenoir",
+    "station_name": "Richard-Lenoir",
+    "station_name_kana": "",
+    "station_name_en": "Richard-Lenoir",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8585,
+    "lon": 2.37,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Richard-Lenoir"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_103",
+    "station_slug": "breguet_sabin",
+    "station_name": "Bréguet–Sabin",
+    "station_name_kana": "",
+    "station_name_en": "Bréguet–Sabin",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8558,
+    "lon": 2.3706,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bréguet–Sabin"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_104",
+    "station_slug": "quai_de_la_rapee",
+    "station_name": "Quai de la Rapée",
+    "station_name_kana": "",
+    "station_name_en": "Quai de la Rapée",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.848,
+    "lon": 2.366,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Quai de la Rapée"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_105",
+    "station_slug": "gare_dausterlitz",
+    "station_name": "Gare d'Austerlitz",
+    "station_name_kana": "",
+    "station_name_en": "Gare d'Austerlitz",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8441,
+    "lon": 2.3656,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M5"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Gare d'Austerlitz"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_106",
+    "station_slug": "campo_formio",
+    "station_name": "Campo-Formio",
+    "station_name_kana": "",
+    "station_name_en": "Campo-Formio",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.84,
+    "lon": 2.362,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Campo-Formio"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_107",
+    "station_slug": "place_ditalie",
+    "station_name": "Place d'Italie",
+    "station_name_kana": "",
+    "station_name_en": "Place d'Italie",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.831,
+    "lon": 2.3558,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5",
+      "M6",
+      "M7"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Place d'Italie"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_108",
+    "station_slug": "kleber",
+    "station_name": "Kléber",
+    "station_name_kana": "",
+    "station_name_en": "Kléber",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8734,
+    "lon": 2.2906,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Kléber"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_109",
+    "station_slug": "boissiere",
+    "station_name": "Boissière",
+    "station_name_kana": "",
+    "station_name_en": "Boissière",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8671,
+    "lon": 2.2966,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Boissière"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_110",
+    "station_slug": "passy",
+    "station_name": "Passy",
+    "station_name_kana": "",
+    "station_name_en": "Passy",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8581,
+    "lon": 2.2896,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Passy"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_111",
+    "station_slug": "bir_hakeim",
+    "station_name": "Bir-Hakeim",
+    "station_name_kana": "",
+    "station_name_en": "Bir-Hakeim",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8543,
+    "lon": 2.2898,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bir-Hakeim"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_112",
+    "station_slug": "dupleix",
+    "station_name": "Dupleix",
+    "station_name_kana": "",
+    "station_name_en": "Dupleix",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8501,
+    "lon": 2.2961,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Dupleix"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_113",
+    "station_slug": "la_motte_picquet_grenelle",
+    "station_name": "La Motte-Picquet–Grenelle",
+    "station_name_kana": "",
+    "station_name_en": "La Motte-Picquet–Grenelle",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8488,
+    "lon": 2.2993,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M6",
+      "M8"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "La Motte-Picquet–Grenelle"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_114",
+    "station_slug": "cambronne",
+    "station_name": "Cambronne",
+    "station_name_kana": "",
+    "station_name_en": "Cambronne",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8481,
+    "lon": 2.3076,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Cambronne"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_115",
+    "station_slug": "sevres_lecourbe",
+    "station_name": "Sèvres–Lecourbe",
+    "station_name_kana": "",
+    "station_name_en": "Sèvres–Lecourbe",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8456,
+    "lon": 2.3125,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Sèvres–Lecourbe"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_116",
+    "station_slug": "pasteur",
+    "station_name": "Pasteur",
+    "station_name_kana": "",
+    "station_name_en": "Pasteur",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8427,
+    "lon": 2.3126,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12",
+      "M6"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Pasteur"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_117",
+    "station_slug": "edgar_quinet",
+    "station_name": "Edgar Quinet",
+    "station_name_kana": "",
+    "station_name_en": "Edgar Quinet",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8418,
+    "lon": 2.3241,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Edgar Quinet"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_118",
+    "station_slug": "raspail",
+    "station_name": "Raspail",
+    "station_name_kana": "",
+    "station_name_en": "Raspail",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8393,
+    "lon": 2.3288,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4",
+      "M6"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Raspail"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_119",
+    "station_slug": "glaciere",
+    "station_name": "Glacière",
+    "station_name_kana": "",
+    "station_name_en": "Glacière",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8325,
+    "lon": 2.3411,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Glacière"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_120",
+    "station_slug": "corvisart",
+    "station_name": "Corvisart",
+    "station_name_kana": "",
+    "station_name_en": "Corvisart",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8297,
+    "lon": 2.3497,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M6"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Corvisart"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_121",
+    "station_slug": "la_courneuve_8_mai_1945",
+    "station_name": "La Courneuve–8 Mai 1945",
+    "station_name_kana": "",
+    "station_name_en": "La Courneuve–8 Mai 1945",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9218,
+    "lon": 2.3948,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "La Courneuve–8 Mai 1945"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_122",
+    "station_slug": "fort_daubervilliers",
+    "station_name": "Fort d'Aubervilliers",
+    "station_name_kana": "",
+    "station_name_en": "Fort d'Aubervilliers",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9138,
+    "lon": 2.3879,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Fort d'Aubervilliers"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_123",
+    "station_slug": "aubervilliers_pantin_quatre_chemins",
+    "station_name": "Aubervilliers–Pantin–Quatre Chemins",
+    "station_name_kana": "",
+    "station_name_en": "Aubervilliers–Pantin–Quatre Chemins",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9065,
+    "lon": 2.3837,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Aubervilliers–Pantin–Quatre Chemins"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_124",
+    "station_slug": "porte_de_la_villette",
+    "station_name": "Porte de la Villette",
+    "station_name_kana": "",
+    "station_name_en": "Porte de la Villette",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8969,
+    "lon": 2.384,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte de la Villette"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_125",
+    "station_slug": "corentin_cariou",
+    "station_name": "Corentin Cariou",
+    "station_name_kana": "",
+    "station_name_en": "Corentin Cariou",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8853,
+    "lon": 2.3645,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Corentin Cariou"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_126",
+    "station_slug": "pont_de_levallois",
+    "station_name": "Pont de Levallois",
+    "station_name_kana": "",
+    "station_name_en": "Pont de Levallois",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8977,
+    "lon": 2.2836,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pont de Levallois"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_127",
+    "station_slug": "pont_de_flandre",
+    "station_name": "Pont de Flandre",
+    "station_name_kana": "",
+    "station_name_en": "Pont de Flandre",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.894,
+    "lon": 2.3793,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pont de Flandre"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_128",
+    "station_slug": "cadet",
+    "station_name": "Cadet",
+    "station_name_kana": "",
+    "station_name_en": "Cadet",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8769,
+    "lon": 2.3458,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Cadet"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_129",
+    "station_slug": "le_peletier",
+    "station_name": "Le Peletier",
+    "station_name_kana": "",
+    "station_name_en": "Le Peletier",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8752,
+    "lon": 2.3424,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Le Peletier"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_130",
+    "station_slug": "chaussee_dantin_la_fayette",
+    "station_name": "Chaussée d'Antin–La Fayette",
+    "station_name_kana": "",
+    "station_name_en": "Chaussée d'Antin–La Fayette",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.873,
+    "lon": 2.3359,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Chaussée d'Antin–La Fayette"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_131",
+    "station_slug": "pyramides",
+    "station_name": "Pyramides",
+    "station_name_kana": "",
+    "station_name_en": "Pyramides",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8641,
+    "lon": 2.3354,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M14",
+      "M7"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Pyramides"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_132",
+    "station_slug": "pont_marie",
+    "station_name": "Pont Marie",
+    "station_name_kana": "",
+    "station_name_en": "Pont Marie",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8528,
+    "lon": 2.3548,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pont Marie"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_133",
+    "station_slug": "sully_morland",
+    "station_name": "Sully–Morland",
+    "station_name_kana": "",
+    "station_name_en": "Sully–Morland",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8509,
+    "lon": 2.3571,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Sully–Morland"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_134",
+    "station_slug": "jussieu",
+    "station_name": "Jussieu",
+    "station_name_kana": "",
+    "station_name_en": "Jussieu",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8455,
+    "lon": 2.3545,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M7"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Jussieu"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_135",
+    "station_slug": "place_monge",
+    "station_name": "Place Monge",
+    "station_name_kana": "",
+    "station_name_en": "Place Monge",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8441,
+    "lon": 2.3519,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Place Monge"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_136",
+    "station_slug": "censier_daubenton",
+    "station_name": "Censier–Daubenton",
+    "station_name_kana": "",
+    "station_name_en": "Censier–Daubenton",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8408,
+    "lon": 2.3524,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Censier–Daubenton"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_137",
+    "station_slug": "les_gobelins",
+    "station_name": "Les Gobelins",
+    "station_name_kana": "",
+    "station_name_en": "Les Gobelins",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8363,
+    "lon": 2.3535,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Les Gobelins"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_138",
+    "station_slug": "tolbiac",
+    "station_name": "Tolbiac",
+    "station_name_kana": "",
+    "station_name_en": "Tolbiac",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8286,
+    "lon": 2.3565,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Tolbiac"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_139",
+    "station_slug": "kremlin_bicetre",
+    "station_name": "Kremlin-Bicêtre",
+    "station_name_kana": "",
+    "station_name_en": "Kremlin-Bicêtre",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8137,
+    "lon": 2.3612,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Kremlin-Bicêtre"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_140",
+    "station_slug": "villejuif_louis_aragon",
+    "station_name": "Villejuif–Louis Aragon",
+    "station_name_kana": "",
+    "station_name_en": "Villejuif–Louis Aragon",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.7927,
+    "lon": 2.3657,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M7"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Villejuif–Louis Aragon"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_141",
+    "station_slug": "balard",
+    "station_name": "Balard",
+    "station_name_kana": "",
+    "station_name_en": "Balard",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8382,
+    "lon": 2.2783,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Balard"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_142",
+    "station_slug": "lourmel",
+    "station_name": "Lourmel",
+    "station_name_kana": "",
+    "station_name_en": "Lourmel",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8393,
+    "lon": 2.2869,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Lourmel"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_143",
+    "station_slug": "boucicaut",
+    "station_name": "Boucicaut",
+    "station_name_kana": "",
+    "station_name_en": "Boucicaut",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8404,
+    "lon": 2.295,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Boucicaut"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_144",
+    "station_slug": "felix_faure",
+    "station_name": "Félix Faure",
+    "station_name_kana": "",
+    "station_name_en": "Félix Faure",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8416,
+    "lon": 2.3028,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Félix Faure"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_145",
+    "station_slug": "commerce",
+    "station_name": "Commerce",
+    "station_name_kana": "",
+    "station_name_en": "Commerce",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8427,
+    "lon": 2.3072,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Commerce"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_146",
+    "station_slug": "ecole_militaire",
+    "station_name": "École Militaire",
+    "station_name_kana": "",
+    "station_name_en": "École Militaire",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8557,
+    "lon": 2.3055,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "École Militaire"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_147",
+    "station_slug": "la_tour_maubourg",
+    "station_name": "La Tour-Maubourg",
+    "station_name_kana": "",
+    "station_name_en": "La Tour-Maubourg",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8572,
+    "lon": 2.3092,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "La Tour-Maubourg"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_148",
+    "station_slug": "invalides",
+    "station_name": "Invalides",
+    "station_name_kana": "",
+    "station_name_en": "Invalides",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8617,
+    "lon": 2.3137,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13",
+      "M8"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Invalides"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_149",
+    "station_slug": "madeleine",
+    "station_name": "Madeleine",
+    "station_name_kana": "",
+    "station_name_en": "Madeleine",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8697,
+    "lon": 2.3253,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12",
+      "M14",
+      "M8"
+    ],
+    "line_count": 3,
+    "hub_degree_global": 3,
+    "source_names": [
+      "Madeleine"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_150",
+    "station_slug": "grands_boulevards",
+    "station_name": "Grands Boulevards",
+    "station_name_kana": "",
+    "station_name_en": "Grands Boulevards",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8716,
+    "lon": 2.3455,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Grands Boulevards"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_151",
+    "station_slug": "bonne_nouvelle",
+    "station_name": "Bonne Nouvelle",
+    "station_name_kana": "",
+    "station_name_en": "Bonne Nouvelle",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8706,
+    "lon": 2.3503,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Bonne Nouvelle"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_152",
+    "station_slug": "oberkampf",
+    "station_name": "Oberkampf",
+    "station_name_kana": "",
+    "station_name_en": "Oberkampf",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8643,
+    "lon": 2.3684,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Oberkampf"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_153",
+    "station_slug": "faidherbe_chaligny",
+    "station_name": "Faidherbe–Chaligny",
+    "station_name_kana": "",
+    "station_name_en": "Faidherbe–Chaligny",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8509,
+    "lon": 2.3782,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Faidherbe–Chaligny"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_154",
+    "station_slug": "charenton_ecoles",
+    "station_name": "Charenton–Écoles",
+    "station_name_kana": "",
+    "station_name_en": "Charenton–Écoles",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.838,
+    "lon": 2.4047,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Charenton–Écoles"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_155",
+    "station_slug": "liberte",
+    "station_name": "Liberté",
+    "station_name_kana": "",
+    "station_name_en": "Liberté",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.828,
+    "lon": 2.4131,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Liberté"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_156",
+    "station_slug": "creteil_prefecture",
+    "station_name": "Créteil–Préfecture",
+    "station_name_kana": "",
+    "station_name_en": "Créteil–Préfecture",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.7939,
+    "lon": 2.4562,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Créteil–Préfecture"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_157",
+    "station_slug": "pont_de_sevres",
+    "station_name": "Pont de Sèvres",
+    "station_name_kana": "",
+    "station_name_en": "Pont de Sèvres",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8277,
+    "lon": 2.2346,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pont de Sèvres"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_158",
+    "station_slug": "billancourt",
+    "station_name": "Billancourt",
+    "station_name_kana": "",
+    "station_name_en": "Billancourt",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8303,
+    "lon": 2.2455,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Billancourt"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_159",
+    "station_slug": "marcel_sembat",
+    "station_name": "Marcel Sembat",
+    "station_name_kana": "",
+    "station_name_en": "Marcel Sembat",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8335,
+    "lon": 2.2534,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Marcel Sembat"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_160",
+    "station_slug": "boulogne_jean_jaures",
+    "station_name": "Boulogne–Jean Jaurès",
+    "station_name_kana": "",
+    "station_name_en": "Boulogne–Jean Jaurès",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8374,
+    "lon": 2.259,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Boulogne–Jean Jaurès"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_161",
+    "station_slug": "boulogne_pont_de_saint_cloud",
+    "station_name": "Boulogne–Pont de Saint-Cloud",
+    "station_name_kana": "",
+    "station_name_en": "Boulogne–Pont de Saint-Cloud",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8406,
+    "lon": 2.2631,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Boulogne–Pont de Saint-Cloud"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_162",
+    "station_slug": "exelmans",
+    "station_name": "Exelmans",
+    "station_name_kana": "",
+    "station_name_en": "Exelmans",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8428,
+    "lon": 2.2733,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Exelmans"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_163",
+    "station_slug": "michel_ange_molitor",
+    "station_name": "Michel-Ange–Molitor",
+    "station_name_kana": "",
+    "station_name_en": "Michel-Ange–Molitor",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8445,
+    "lon": 2.2799,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Michel-Ange–Molitor"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_164",
+    "station_slug": "michel_ange_auteuil",
+    "station_name": "Michel-Ange–Auteuil",
+    "station_name_kana": "",
+    "station_name_en": "Michel-Ange–Auteuil",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8476,
+    "lon": 2.2808,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Michel-Ange–Auteuil"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_165",
+    "station_slug": "jasmin",
+    "station_name": "Jasmin",
+    "station_name_kana": "",
+    "station_name_en": "Jasmin",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8513,
+    "lon": 2.2815,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Jasmin"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_166",
+    "station_slug": "ranelagh",
+    "station_name": "Ranelagh",
+    "station_name_kana": "",
+    "station_name_en": "Ranelagh",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8558,
+    "lon": 2.2817,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Ranelagh"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_167",
+    "station_slug": "la_muette",
+    "station_name": "La Muette",
+    "station_name_kana": "",
+    "station_name_en": "La Muette",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8601,
+    "lon": 2.2779,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "La Muette"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_168",
+    "station_slug": "rue_de_la_pompe",
+    "station_name": "Rue de la Pompe",
+    "station_name_kana": "",
+    "station_name_en": "Rue de la Pompe",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8641,
+    "lon": 2.2773,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Rue de la Pompe"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_169",
+    "station_slug": "pompe",
+    "station_name": "Pompe",
+    "station_name_kana": "",
+    "station_name_en": "Pompe",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.868,
+    "lon": 2.276,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pompe"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_170",
+    "station_slug": "miromesnil",
+    "station_name": "Miromesnil",
+    "station_name_kana": "",
+    "station_name_en": "Miromesnil",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8763,
+    "lon": 2.3126,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Miromesnil"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_171",
+    "station_slug": "saint_augustin",
+    "station_name": "Saint-Augustin",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Augustin",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8762,
+    "lon": 2.3182,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Augustin"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_172",
+    "station_slug": "richelieu_drouot",
+    "station_name": "Richelieu–Drouot",
+    "station_name_kana": "",
+    "station_name_en": "Richelieu–Drouot",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8726,
+    "lon": 2.3405,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8",
+      "M9"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Richelieu–Drouot"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_173",
+    "station_slug": "mairie_de_montreuil",
+    "station_name": "Mairie de Montreuil",
+    "station_name_kana": "",
+    "station_name_en": "Mairie de Montreuil",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8625,
+    "lon": 2.4444,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Mairie de Montreuil"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_174",
+    "station_slug": "gare_dausterlitz",
+    "station_name": "Gare d'Austerlitz",
+    "station_name_kana": "",
+    "station_name_en": "Gare d'Austerlitz",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8441,
+    "lon": 2.3656,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M5"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Gare d'Austerlitz"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_175",
+    "station_slug": "cardinal_lemoine",
+    "station_name": "Cardinal Lemoine",
+    "station_name_kana": "",
+    "station_name_en": "Cardinal Lemoine",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8481,
+    "lon": 2.3519,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Cardinal Lemoine"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_176",
+    "station_slug": "maubert_mutualite",
+    "station_name": "Maubert–Mutualité",
+    "station_name_kana": "",
+    "station_name_en": "Maubert–Mutualité",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8498,
+    "lon": 2.3488,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Maubert–Mutualité"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_177",
+    "station_slug": "cluny_la_sorbonne",
+    "station_name": "Cluny–La Sorbonne",
+    "station_name_kana": "",
+    "station_name_en": "Cluny–La Sorbonne",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8509,
+    "lon": 2.3451,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Cluny–La Sorbonne"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_178",
+    "station_slug": "duroc",
+    "station_name": "Duroc",
+    "station_name_kana": "",
+    "station_name_en": "Duroc",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8454,
+    "lon": 2.3145,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M13"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Duroc"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_179",
+    "station_slug": "vaneau",
+    "station_name": "Vaneau",
+    "station_name_kana": "",
+    "station_name_en": "Vaneau",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8461,
+    "lon": 2.3194,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Vaneau"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_180",
+    "station_slug": "sevres_babylone",
+    "station_name": "Sèvres–Babylone",
+    "station_name_kana": "",
+    "station_name_en": "Sèvres–Babylone",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8507,
+    "lon": 2.3226,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10",
+      "M12"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Sèvres–Babylone"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_181",
+    "station_slug": "mabillon",
+    "station_name": "Mabillon",
+    "station_name_kana": "",
+    "station_name_en": "Mabillon",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8529,
+    "lon": 2.334,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M10"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Mabillon"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_182",
+    "station_slug": "cite_universitaire",
+    "station_name": "Cité Universitaire",
+    "station_name_kana": "",
+    "station_name_en": "Cité Universitaire",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8195,
+    "lon": 2.3368,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M4"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Cité Universitaire"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_183",
+    "station_slug": "rambuteau",
+    "station_name": "Rambuteau",
+    "station_name_kana": "",
+    "station_name_en": "Rambuteau",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8619,
+    "lon": 2.3519,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Rambuteau"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_184",
+    "station_slug": "filles_du_calvaire",
+    "station_name": "Filles du Calvaire",
+    "station_name_kana": "",
+    "station_name_en": "Filles du Calvaire",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8631,
+    "lon": 2.3668,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Filles du Calvaire"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_185",
+    "station_slug": "saint_sebastien_froissart",
+    "station_name": "Saint-Sébastien–Froissart",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Sébastien–Froissart",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8601,
+    "lon": 2.3693,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Sébastien–Froissart"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_186",
+    "station_slug": "goncourt",
+    "station_name": "Goncourt",
+    "station_name_kana": "",
+    "station_name_en": "Goncourt",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.87,
+    "lon": 2.3731,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Goncourt"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_187",
+    "station_slug": "pyrenees",
+    "station_name": "Pyrénées",
+    "station_name_kana": "",
+    "station_name_en": "Pyrénées",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8743,
+    "lon": 2.3853,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pyrénées"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_188",
+    "station_slug": "jourdain",
+    "station_name": "Jourdain",
+    "station_name_kana": "",
+    "station_name_en": "Jourdain",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8759,
+    "lon": 2.3912,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Jourdain"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_189",
+    "station_slug": "place_des_fetes",
+    "station_name": "Place des Fêtes",
+    "station_name_kana": "",
+    "station_name_en": "Place des Fêtes",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8784,
+    "lon": 2.3942,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Place des Fêtes"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_190",
+    "station_slug": "telegraphe",
+    "station_name": "Télégraphe",
+    "station_name_kana": "",
+    "station_name_en": "Télégraphe",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.879,
+    "lon": 2.3983,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Télégraphe"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_191",
+    "station_slug": "porte_des_lilas",
+    "station_name": "Porte des Lilas",
+    "station_name_kana": "",
+    "station_name_en": "Porte des Lilas",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8797,
+    "lon": 2.4021,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte des Lilas"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_192",
+    "station_slug": "mairie_des_lilas",
+    "station_name": "Mairie des Lilas",
+    "station_name_kana": "",
+    "station_name_en": "Mairie des Lilas",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8804,
+    "lon": 2.4154,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M11"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Mairie des Lilas"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_193",
+    "station_slug": "aubervilliers_front_populaire",
+    "station_name": "Aubervilliers–Front Populaire",
+    "station_name_kana": "",
+    "station_name_en": "Aubervilliers–Front Populaire",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9175,
+    "lon": 2.369,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Aubervilliers–Front Populaire"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_194",
+    "station_slug": "porte_de_la_chapelle",
+    "station_name": "Porte de la Chapelle",
+    "station_name_kana": "",
+    "station_name_en": "Porte de la Chapelle",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8987,
+    "lon": 2.3594,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte de la Chapelle"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_195",
+    "station_slug": "marx_dormoy",
+    "station_name": "Marx Dormoy",
+    "station_name_kana": "",
+    "station_name_en": "Marx Dormoy",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8932,
+    "lon": 2.3548,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Marx Dormoy"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_196",
+    "station_slug": "lamarck_caulaincourt",
+    "station_name": "Lamarck–Caulaincourt",
+    "station_name_kana": "",
+    "station_name_en": "Lamarck–Caulaincourt",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8875,
+    "lon": 2.3395,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Lamarck–Caulaincourt"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_197",
+    "station_slug": "jules_joffrin",
+    "station_name": "Jules Joffrin",
+    "station_name_kana": "",
+    "station_name_en": "Jules Joffrin",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8868,
+    "lon": 2.3452,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Jules Joffrin"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_198",
+    "station_slug": "abbesses",
+    "station_name": "Abbesses",
+    "station_name_kana": "",
+    "station_name_en": "Abbesses",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8843,
+    "lon": 2.3381,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Abbesses"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_199",
+    "station_slug": "pigalle",
+    "station_name": "Pigalle",
+    "station_name_kana": "",
+    "station_name_en": "Pigalle",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8829,
+    "lon": 2.3327,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12",
+      "M2"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Pigalle"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_200",
+    "station_slug": "notre_dame_de_lorette",
+    "station_name": "Notre-Dame-de-Lorette",
+    "station_name_kana": "",
+    "station_name_en": "Notre-Dame-de-Lorette",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8783,
+    "lon": 2.3358,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Notre-Dame-de-Lorette"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_201",
+    "station_slug": "saint_georges",
+    "station_name": "Saint-Georges",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Georges",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8771,
+    "lon": 2.3341,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Georges"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_202",
+    "station_slug": "trinite_destienne_dorves",
+    "station_name": "Trinité–d'Estienne d'Orves",
+    "station_name_kana": "",
+    "station_name_en": "Trinité–d'Estienne d'Orves",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8764,
+    "lon": 2.3305,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Trinité–d'Estienne d'Orves"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_203",
+    "station_slug": "rennes",
+    "station_name": "Rennes",
+    "station_name_kana": "",
+    "station_name_en": "Rennes",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8484,
+    "lon": 2.3295,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Rennes"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_204",
+    "station_slug": "notre_dame_des_champs",
+    "station_name": "Notre-Dame-des-Champs",
+    "station_name_kana": "",
+    "station_name_en": "Notre-Dame-des-Champs",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8449,
+    "lon": 2.3289,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Notre-Dame-des-Champs"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_205",
+    "station_slug": "falguiere",
+    "station_name": "Falguière",
+    "station_name_kana": "",
+    "station_name_en": "Falguière",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8437,
+    "lon": 2.3173,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Falguière"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_206",
+    "station_slug": "volontaires",
+    "station_name": "Volontaires",
+    "station_name_kana": "",
+    "station_name_en": "Volontaires",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8418,
+    "lon": 2.3115,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Volontaires"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_207",
+    "station_slug": "vaugirard",
+    "station_name": "Vaugirard",
+    "station_name_kana": "",
+    "station_name_en": "Vaugirard",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8406,
+    "lon": 2.3059,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Vaugirard"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_208",
+    "station_slug": "convention",
+    "station_name": "Convention",
+    "station_name_kana": "",
+    "station_name_en": "Convention",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8393,
+    "lon": 2.2997,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Convention"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_209",
+    "station_slug": "boucicaut",
+    "station_name": "Boucicaut",
+    "station_name_kana": "",
+    "station_name_en": "Boucicaut",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8404,
+    "lon": 2.295,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M8"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Boucicaut"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_210",
+    "station_slug": "corentin_celton",
+    "station_name": "Corentin Celton",
+    "station_name_kana": "",
+    "station_name_en": "Corentin Celton",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8328,
+    "lon": 2.2753,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Corentin Celton"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_211",
+    "station_slug": "mairie_dissy",
+    "station_name": "Mairie d'Issy",
+    "station_name_kana": "",
+    "station_name_en": "Mairie d'Issy",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8234,
+    "lon": 2.2711,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M12"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Mairie d'Issy"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_212",
+    "station_slug": "saint_denis_universite",
+    "station_name": "Saint-Denis–Université",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Denis–Université",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9395,
+    "lon": 2.3582,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Denis–Université"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_213",
+    "station_slug": "basilique_de_saint_denis",
+    "station_name": "Basilique de Saint-Denis",
+    "station_name_kana": "",
+    "station_name_en": "Basilique de Saint-Denis",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9355,
+    "lon": 2.3596,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Basilique de Saint-Denis"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_214",
+    "station_slug": "saint_denis_porte_de_paris",
+    "station_name": "Saint-Denis–Porte de Paris",
+    "station_name_kana": "",
+    "station_name_en": "Saint-Denis–Porte de Paris",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9248,
+    "lon": 2.3599,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-Denis–Porte de Paris"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_215",
+    "station_slug": "carrefour_pleyel",
+    "station_name": "Carrefour Pleyel",
+    "station_name_kana": "",
+    "station_name_en": "Carrefour Pleyel",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9167,
+    "lon": 2.3451,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Carrefour Pleyel"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_216",
+    "station_slug": "mairie_de_saint_ouen",
+    "station_name": "Mairie de Saint-Ouen",
+    "station_name_kana": "",
+    "station_name_en": "Mairie de Saint-Ouen",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.912,
+    "lon": 2.3378,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Mairie de Saint-Ouen"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_217",
+    "station_slug": "garibaldi",
+    "station_name": "Garibaldi",
+    "station_name_kana": "",
+    "station_name_en": "Garibaldi",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.9059,
+    "lon": 2.3348,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Garibaldi"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_218",
+    "station_slug": "porte_de_saint_ouen",
+    "station_name": "Porte de Saint-Ouen",
+    "station_name_kana": "",
+    "station_name_en": "Porte de Saint-Ouen",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8988,
+    "lon": 2.332,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Porte de Saint-Ouen"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_219",
+    "station_slug": "guy_moquet",
+    "station_name": "Guy Môquet",
+    "station_name_kana": "",
+    "station_name_en": "Guy Môquet",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8944,
+    "lon": 2.3318,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Guy Môquet"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_220",
+    "station_slug": "la_fourche",
+    "station_name": "La Fourche",
+    "station_name_kana": "",
+    "station_name_en": "La Fourche",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8895,
+    "lon": 2.3299,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "La Fourche"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_221",
+    "station_slug": "brochant",
+    "station_name": "Brochant",
+    "station_name_kana": "",
+    "station_name_en": "Brochant",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8913,
+    "lon": 2.3271,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Brochant"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_222",
+    "station_slug": "liege",
+    "station_name": "Liège",
+    "station_name_kana": "",
+    "station_name_en": "Liège",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8793,
+    "lon": 2.3271,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M3"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Liège"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_223",
+    "station_slug": "varenne",
+    "station_name": "Varenne",
+    "station_name_kana": "",
+    "station_name_en": "Varenne",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8581,
+    "lon": 2.3145,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Varenne"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_224",
+    "station_slug": "saint_françois_xavier",
+    "station_name": "Saint-François-Xavier",
+    "station_name_kana": "",
+    "station_name_en": "Saint-François-Xavier",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8508,
+    "lon": 2.312,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Saint-François-Xavier"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_225",
+    "station_slug": "chatillon_montrouge",
+    "station_name": "Châtillon–Montrouge",
+    "station_name_kana": "",
+    "station_name_en": "Châtillon–Montrouge",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8014,
+    "lon": 2.3015,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M13"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Châtillon–Montrouge"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_226",
+    "station_slug": "olympiades",
+    "station_name": "Olympiades",
+    "station_name_kana": "",
+    "station_name_en": "Olympiades",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8268,
+    "lon": 2.3641,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M14"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Olympiades"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_227",
+    "station_slug": "bibliotheque_françois_mitterrand",
+    "station_name": "Bibliothèque François Mitterrand",
+    "station_name_kana": "",
+    "station_name_en": "Bibliothèque François Mitterrand",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8295,
+    "lon": 2.3766,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M14"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Bibliothèque François Mitterrand"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_228",
+    "station_slug": "cour_saint_emilion",
+    "station_name": "Cour Saint-Émilion",
+    "station_name_kana": "",
+    "station_name_en": "Cour Saint-Émilion",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8334,
+    "lon": 2.3888,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M14"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Cour Saint-Émilion"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_229",
+    "station_slug": "bercy",
+    "station_name": "Bercy",
+    "station_name_kana": "",
+    "station_name_en": "Bercy",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8399,
+    "lon": 2.3793,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M14",
+      "M6"
+    ],
+    "line_count": 2,
+    "hub_degree_global": 2,
+    "source_names": [
+      "Bercy"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_230",
+    "station_slug": "quai_de_la_rapee",
+    "station_name": "Quai de la Rapée",
+    "station_name_kana": "",
+    "station_name_en": "Quai de la Rapée",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.848,
+    "lon": 2.366,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M5"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Quai de la Rapée"
+    ],
+    "aliases": [],
+    "status": "active"
+  },
+  {
+    "station_global_id": "ST_PAR_231",
+    "station_slug": "pont_de_sevres",
+    "station_name": "Pont de Sèvres",
+    "station_name_kana": "",
+    "station_name_en": "Pont de Sèvres",
+    "prefecture_code": "IDF",
+    "prefecture_name": "Île-de-France",
+    "lat": 48.8277,
+    "lon": 2.2346,
+    "operators": [
+      "RATP"
+    ],
+    "line_ids": [
+      "M9"
+    ],
+    "line_count": 1,
+    "hub_degree_global": 1,
+    "source_names": [
+      "Pont de Sèvres"
+    ],
+    "aliases": [],
+    "status": "active"
+  }
+]

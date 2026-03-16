@@ -1,0 +1,29 @@
+card_id,station_global_id,station_name,station_name_en,line_id,collection_id,order,rarity,composite_score,score_total
+PAR001,ST_PAR_059,République,République,M9,M9,1,legendary,5.0,17.5
+PAR002,ST_PAR_014,Châtelet,Châtelet,M1,M1,1,epic,4.5556,15.9446
+PAR003,ST_PAR_050,Saint-Lazare,Saint-Lazare,M9,M9,2,epic,4.5556,15.9446
+PAR004,ST_PAR_082,Montparnasse–Bienvenüe,Montparnasse–Bienvenüe,M4,M4,2,epic,3.8056,13.3196
+PAR005,ST_PAR_020,Nation,Nation,M1,M1,2,epic,3.5833,12.5415
+PAR006,ST_PAR_017,Bastille,Bastille,M1,M1,3,epic,3.2778,11.4723
+PAR007,ST_PAR_074,Strasbourg–Saint-Denis,Strasbourg–Saint-Denis,M4,M4,3,epic,2.8333,9.9165
+PAR008,ST_PAR_007,Charles de Gaulle–Étoile,Charles de Gaulle–Étoile,M1,M1,4,rare,2.6111,9.1388
+PAR009,ST_PAR_011,Concorde,Concorde,M1,M1,5,rare,2.6111,9.1388
+PAR010,ST_PAR_073,Gare de l'Est,Gare de l'Est,M4,M4,4,rare,2.6111,9.1388
+PAR011,ST_PAR_149,Madeleine,Madeleine,M13,M13,3,rare,2.6111,9.1388
+PAR012,ST_PAR_085,Denfert-Rochereau,Denfert-Rochereau,M4,M4,5,rare,2.0833,7.2915
+PAR013,ST_PAR_005,Porte Maillot,Porte Maillot,M1,M1,6,rare,1.6389,5.7362
+PAR014,ST_PAR_009,Franklin D. Roosevelt,Franklin D. Roosevelt,M1,M1,7,rare,1.6389,5.7362
+PAR015,ST_PAR_010,Champs-Élysées–Clemenceau,Champs-Élysées–Clemenceau,M1,M1,8,rare,1.6389,5.7362
+PAR016,ST_PAR_070,Marcadet–Poissonniers,Marcadet–Poissonniers,M4,M4,6,common,1.6389,5.7362
+PAR017,ST_PAR_056,Réaumur–Sébastopol,Réaumur–Sébastopol,M4,M4,7,common,1.6389,5.7362
+PAR018,ST_PAR_078,Odéon,Odéon,M4,M4,8,common,1.6389,5.7362
+PAR019,ST_PAR_025,Trocadéro,Trocadéro,M9,M9,5,common,1.6389,5.7362
+PAR020,ST_PAR_170,Miromesnil,Miromesnil,M9,M9,7,common,1.6389,5.7362
+PAR021,ST_PAR_130,Chaussée d'Antin–La Fayette,Chaussée d'Antin–La Fayette,M9,M9,8,common,1.6389,5.7362
+PAR022,ST_PAR_048,Place de Clichy,Place de Clichy,M13,M13,5,common,1.6389,5.7362
+PAR023,ST_PAR_148,Invalides,Invalides,M13,M13,8,common,1.6389,5.7362
+PAR024,ST_PAR_229,Bercy,Bercy,M14,M14,4,common,1.6389,5.7362
+PAR025,ST_PAR_018,Gare de Lyon,Gare de Lyon,M14,M14,5,common,1.6389,5.7362
+PAR026,ST_PAR_131,Pyramides,Pyramides,M14,M14,6,common,1.6389,5.7362
+PAR027,ST_PAR_227,Bibliothèque François Mitterrand,Bibliothèque François Mitterrand,M14,M14,7,common,0.4444,1.5554
+PAR028,ST_PAR_228,Cour Saint-Émilion,Cour Saint-Émilion,M14,M14,8,common,0.4444,1.5554

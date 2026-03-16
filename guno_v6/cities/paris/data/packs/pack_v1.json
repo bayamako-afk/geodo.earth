@@ -1,0 +1,657 @@
+{
+  "pack_meta": {
+    "pack_version": "1.0",
+    "pack_id": "paris_v1",
+    "name": "Paris RATP Métro Pack v1",
+    "description": "5-line Paris Métro pack: M1/M4/M9/M13/M14",
+    "generated_by": "generate_paris_deck.py",
+    "generated_at": "2026-03-16"
+  },
+  "layouts": {
+    "default": {
+      "slots": [
+        {
+          "collection_id": "M1",
+          "line_id": "M1",
+          "line_name": "Line 1",
+          "color": "#FFBE00",
+          "size": 8
+        },
+        {
+          "collection_id": "M4",
+          "line_id": "M4",
+          "line_name": "Line 4",
+          "color": "#CF009E",
+          "size": 8
+        },
+        {
+          "collection_id": "M9",
+          "line_id": "M9",
+          "line_name": "Line 9",
+          "color": "#B6BD00",
+          "size": 8
+        },
+        {
+          "collection_id": "M13",
+          "line_id": "M13",
+          "line_name": "Line 13",
+          "color": "#6EC4E8",
+          "size": 8
+        },
+        {
+          "collection_id": "M14",
+          "line_id": "M14",
+          "line_name": "Line 14",
+          "color": "#62259D",
+          "size": 8
+        }
+      ]
+    }
+  },
+  "collections": {
+    "M1": {
+      "kind": "line",
+      "lc": "M1",
+      "name_ja": "Ligne 1",
+      "name_en": "Line 1",
+      "color": "#FFBE00",
+      "size": 8,
+      "members": [
+        "M1-ST_PAR_014",
+        "M1-ST_PAR_020",
+        "M1-ST_PAR_017",
+        "M1-ST_PAR_007",
+        "M1-ST_PAR_011",
+        "M1-ST_PAR_005",
+        "M1-ST_PAR_009",
+        "M1-ST_PAR_010"
+      ]
+    },
+    "M4": {
+      "kind": "line",
+      "lc": "M4",
+      "name_ja": "Ligne 4",
+      "name_en": "Line 4",
+      "color": "#CF009E",
+      "size": 8,
+      "members": [
+        "M4-ST_PAR_014",
+        "M4-ST_PAR_082",
+        "M4-ST_PAR_074",
+        "M4-ST_PAR_073",
+        "M4-ST_PAR_085",
+        "M4-ST_PAR_070",
+        "M4-ST_PAR_056",
+        "M4-ST_PAR_078"
+      ]
+    },
+    "M9": {
+      "kind": "line",
+      "lc": "M9",
+      "name_ja": "Ligne 9",
+      "name_en": "Line 9",
+      "color": "#B6BD00",
+      "size": 8,
+      "members": [
+        "M9-ST_PAR_059",
+        "M9-ST_PAR_050",
+        "M9-ST_PAR_020",
+        "M9-ST_PAR_074",
+        "M9-ST_PAR_025",
+        "M9-ST_PAR_009",
+        "M9-ST_PAR_170",
+        "M9-ST_PAR_130"
+      ]
+    },
+    "M13": {
+      "kind": "line",
+      "lc": "M13",
+      "name_ja": "Ligne 13",
+      "name_en": "Line 13",
+      "color": "#6EC4E8",
+      "size": 8,
+      "members": [
+        "M13-ST_PAR_050",
+        "M13-ST_PAR_082",
+        "M13-ST_PAR_149",
+        "M13-ST_PAR_085",
+        "M13-ST_PAR_048",
+        "M13-ST_PAR_170",
+        "M13-ST_PAR_010",
+        "M13-ST_PAR_148"
+      ]
+    },
+    "M14": {
+      "kind": "line",
+      "lc": "M14",
+      "name_ja": "Ligne 14",
+      "name_en": "Line 14",
+      "color": "#62259D",
+      "size": 8,
+      "members": [
+        "M14-ST_PAR_014",
+        "M14-ST_PAR_050",
+        "M14-ST_PAR_149",
+        "M14-ST_PAR_229",
+        "M14-ST_PAR_018",
+        "M14-ST_PAR_131",
+        "M14-ST_PAR_227",
+        "M14-ST_PAR_228"
+      ]
+    }
+  },
+  "entities": {
+    "M1-ST_PAR_014": {
+      "entity_id": "M1-ST_PAR_014",
+      "station_global_id": "ST_PAR_014",
+      "name_ja": "Châtelet",
+      "name_en": "Châtelet",
+      "composite_score": 4.5556,
+      "score_total": 15.9446,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M1",
+        "M4",
+        "M14"
+      ]
+    },
+    "M1-ST_PAR_020": {
+      "entity_id": "M1-ST_PAR_020",
+      "station_global_id": "ST_PAR_020",
+      "name_ja": "Nation",
+      "name_en": "Nation",
+      "composite_score": 3.5833,
+      "score_total": 12.5415,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M1",
+        "M9"
+      ]
+    },
+    "M1-ST_PAR_017": {
+      "entity_id": "M1-ST_PAR_017",
+      "station_global_id": "ST_PAR_017",
+      "name_ja": "Bastille",
+      "name_en": "Bastille",
+      "composite_score": 3.2778,
+      "score_total": 11.4723,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M1"
+      ]
+    },
+    "M1-ST_PAR_007": {
+      "entity_id": "M1-ST_PAR_007",
+      "station_global_id": "ST_PAR_007",
+      "name_ja": "Charles de Gaulle–Étoile",
+      "name_en": "Charles de Gaulle–Étoile",
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M1"
+      ]
+    },
+    "M1-ST_PAR_011": {
+      "entity_id": "M1-ST_PAR_011",
+      "station_global_id": "ST_PAR_011",
+      "name_ja": "Concorde",
+      "name_en": "Concorde",
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M1"
+      ]
+    },
+    "M1-ST_PAR_005": {
+      "entity_id": "M1-ST_PAR_005",
+      "station_global_id": "ST_PAR_005",
+      "name_ja": "Porte Maillot",
+      "name_en": "Porte Maillot",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M1"
+      ]
+    },
+    "M1-ST_PAR_009": {
+      "entity_id": "M1-ST_PAR_009",
+      "station_global_id": "ST_PAR_009",
+      "name_ja": "Franklin D. Roosevelt",
+      "name_en": "Franklin D. Roosevelt",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M1",
+        "M9"
+      ]
+    },
+    "M1-ST_PAR_010": {
+      "entity_id": "M1-ST_PAR_010",
+      "station_global_id": "ST_PAR_010",
+      "name_ja": "Champs-Élysées–Clemenceau",
+      "name_en": "Champs-Élysées–Clemenceau",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M1",
+        "M13"
+      ]
+    },
+    "M4-ST_PAR_014": {
+      "entity_id": "M4-ST_PAR_014",
+      "station_global_id": "ST_PAR_014",
+      "name_ja": "Châtelet",
+      "name_en": "Châtelet",
+      "composite_score": 4.5556,
+      "score_total": 15.9446,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M1",
+        "M4",
+        "M14"
+      ]
+    },
+    "M4-ST_PAR_082": {
+      "entity_id": "M4-ST_PAR_082",
+      "station_global_id": "ST_PAR_082",
+      "name_ja": "Montparnasse–Bienvenüe",
+      "name_en": "Montparnasse–Bienvenüe",
+      "composite_score": 3.8056,
+      "score_total": 13.3196,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M4",
+        "M13"
+      ]
+    },
+    "M4-ST_PAR_074": {
+      "entity_id": "M4-ST_PAR_074",
+      "station_global_id": "ST_PAR_074",
+      "name_ja": "Strasbourg–Saint-Denis",
+      "name_en": "Strasbourg–Saint-Denis",
+      "composite_score": 2.8333,
+      "score_total": 9.9165,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M4",
+        "M9"
+      ]
+    },
+    "M4-ST_PAR_073": {
+      "entity_id": "M4-ST_PAR_073",
+      "station_global_id": "ST_PAR_073",
+      "name_ja": "Gare de l'Est",
+      "name_en": "Gare de l'Est",
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M4"
+      ]
+    },
+    "M4-ST_PAR_085": {
+      "entity_id": "M4-ST_PAR_085",
+      "station_global_id": "ST_PAR_085",
+      "name_ja": "Denfert-Rochereau",
+      "name_en": "Denfert-Rochereau",
+      "composite_score": 2.0833,
+      "score_total": 7.2915,
+      "rarity": "epic",
+      "cross_lines": [
+        "M4",
+        "M13"
+      ]
+    },
+    "M4-ST_PAR_070": {
+      "entity_id": "M4-ST_PAR_070",
+      "station_global_id": "ST_PAR_070",
+      "name_ja": "Marcadet–Poissonniers",
+      "name_en": "Marcadet–Poissonniers",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M4"
+      ]
+    },
+    "M4-ST_PAR_056": {
+      "entity_id": "M4-ST_PAR_056",
+      "station_global_id": "ST_PAR_056",
+      "name_ja": "Réaumur–Sébastopol",
+      "name_en": "Réaumur–Sébastopol",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M4"
+      ]
+    },
+    "M4-ST_PAR_078": {
+      "entity_id": "M4-ST_PAR_078",
+      "station_global_id": "ST_PAR_078",
+      "name_ja": "Odéon",
+      "name_en": "Odéon",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M4"
+      ]
+    },
+    "M9-ST_PAR_059": {
+      "entity_id": "M9-ST_PAR_059",
+      "station_global_id": "ST_PAR_059",
+      "name_ja": "République",
+      "name_en": "République",
+      "composite_score": 5.0,
+      "score_total": 17.5,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M9"
+      ]
+    },
+    "M9-ST_PAR_050": {
+      "entity_id": "M9-ST_PAR_050",
+      "station_global_id": "ST_PAR_050",
+      "name_ja": "Saint-Lazare",
+      "name_en": "Saint-Lazare",
+      "composite_score": 4.5556,
+      "score_total": 15.9446,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M9",
+        "M13",
+        "M14"
+      ]
+    },
+    "M9-ST_PAR_020": {
+      "entity_id": "M9-ST_PAR_020",
+      "station_global_id": "ST_PAR_020",
+      "name_ja": "Nation",
+      "name_en": "Nation",
+      "composite_score": 3.5833,
+      "score_total": 12.5415,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M1",
+        "M9"
+      ]
+    },
+    "M9-ST_PAR_074": {
+      "entity_id": "M9-ST_PAR_074",
+      "station_global_id": "ST_PAR_074",
+      "name_ja": "Strasbourg–Saint-Denis",
+      "name_en": "Strasbourg–Saint-Denis",
+      "composite_score": 2.8333,
+      "score_total": 9.9165,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M4",
+        "M9"
+      ]
+    },
+    "M9-ST_PAR_025": {
+      "entity_id": "M9-ST_PAR_025",
+      "station_global_id": "ST_PAR_025",
+      "name_ja": "Trocadéro",
+      "name_en": "Trocadéro",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M9"
+      ]
+    },
+    "M9-ST_PAR_009": {
+      "entity_id": "M9-ST_PAR_009",
+      "station_global_id": "ST_PAR_009",
+      "name_ja": "Franklin D. Roosevelt",
+      "name_en": "Franklin D. Roosevelt",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M1",
+        "M9"
+      ]
+    },
+    "M9-ST_PAR_170": {
+      "entity_id": "M9-ST_PAR_170",
+      "station_global_id": "ST_PAR_170",
+      "name_ja": "Miromesnil",
+      "name_en": "Miromesnil",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M9",
+        "M13"
+      ]
+    },
+    "M9-ST_PAR_130": {
+      "entity_id": "M9-ST_PAR_130",
+      "station_global_id": "ST_PAR_130",
+      "name_ja": "Chaussée d'Antin–La Fayette",
+      "name_en": "Chaussée d'Antin–La Fayette",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M9"
+      ]
+    },
+    "M13-ST_PAR_050": {
+      "entity_id": "M13-ST_PAR_050",
+      "station_global_id": "ST_PAR_050",
+      "name_ja": "Saint-Lazare",
+      "name_en": "Saint-Lazare",
+      "composite_score": 4.5556,
+      "score_total": 15.9446,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M9",
+        "M13",
+        "M14"
+      ]
+    },
+    "M13-ST_PAR_082": {
+      "entity_id": "M13-ST_PAR_082",
+      "station_global_id": "ST_PAR_082",
+      "name_ja": "Montparnasse–Bienvenüe",
+      "name_en": "Montparnasse–Bienvenüe",
+      "composite_score": 3.8056,
+      "score_total": 13.3196,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M4",
+        "M13"
+      ]
+    },
+    "M13-ST_PAR_149": {
+      "entity_id": "M13-ST_PAR_149",
+      "station_global_id": "ST_PAR_149",
+      "name_ja": "Madeleine",
+      "name_en": "Madeleine",
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M13",
+        "M14"
+      ]
+    },
+    "M13-ST_PAR_085": {
+      "entity_id": "M13-ST_PAR_085",
+      "station_global_id": "ST_PAR_085",
+      "name_ja": "Denfert-Rochereau",
+      "name_en": "Denfert-Rochereau",
+      "composite_score": 2.0833,
+      "score_total": 7.2915,
+      "rarity": "epic",
+      "cross_lines": [
+        "M4",
+        "M13"
+      ]
+    },
+    "M13-ST_PAR_048": {
+      "entity_id": "M13-ST_PAR_048",
+      "station_global_id": "ST_PAR_048",
+      "name_ja": "Place de Clichy",
+      "name_en": "Place de Clichy",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M13"
+      ]
+    },
+    "M13-ST_PAR_170": {
+      "entity_id": "M13-ST_PAR_170",
+      "station_global_id": "ST_PAR_170",
+      "name_ja": "Miromesnil",
+      "name_en": "Miromesnil",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M9",
+        "M13"
+      ]
+    },
+    "M13-ST_PAR_010": {
+      "entity_id": "M13-ST_PAR_010",
+      "station_global_id": "ST_PAR_010",
+      "name_ja": "Champs-Élysées–Clemenceau",
+      "name_en": "Champs-Élysées–Clemenceau",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M1",
+        "M13"
+      ]
+    },
+    "M13-ST_PAR_148": {
+      "entity_id": "M13-ST_PAR_148",
+      "station_global_id": "ST_PAR_148",
+      "name_ja": "Invalides",
+      "name_en": "Invalides",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M13"
+      ]
+    },
+    "M14-ST_PAR_014": {
+      "entity_id": "M14-ST_PAR_014",
+      "station_global_id": "ST_PAR_014",
+      "name_ja": "Châtelet",
+      "name_en": "Châtelet",
+      "composite_score": 4.5556,
+      "score_total": 15.9446,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M1",
+        "M4",
+        "M14"
+      ]
+    },
+    "M14-ST_PAR_050": {
+      "entity_id": "M14-ST_PAR_050",
+      "station_global_id": "ST_PAR_050",
+      "name_ja": "Saint-Lazare",
+      "name_en": "Saint-Lazare",
+      "composite_score": 4.5556,
+      "score_total": 15.9446,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M9",
+        "M13",
+        "M14"
+      ]
+    },
+    "M14-ST_PAR_149": {
+      "entity_id": "M14-ST_PAR_149",
+      "station_global_id": "ST_PAR_149",
+      "name_ja": "Madeleine",
+      "name_en": "Madeleine",
+      "composite_score": 2.6111,
+      "score_total": 9.1388,
+      "rarity": "legendary",
+      "cross_lines": [
+        "M13",
+        "M14"
+      ]
+    },
+    "M14-ST_PAR_229": {
+      "entity_id": "M14-ST_PAR_229",
+      "station_global_id": "ST_PAR_229",
+      "name_ja": "Bercy",
+      "name_en": "Bercy",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M14"
+      ]
+    },
+    "M14-ST_PAR_018": {
+      "entity_id": "M14-ST_PAR_018",
+      "station_global_id": "ST_PAR_018",
+      "name_ja": "Gare de Lyon",
+      "name_en": "Gare de Lyon",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M14"
+      ]
+    },
+    "M14-ST_PAR_131": {
+      "entity_id": "M14-ST_PAR_131",
+      "station_global_id": "ST_PAR_131",
+      "name_ja": "Pyramides",
+      "name_en": "Pyramides",
+      "composite_score": 1.6389,
+      "score_total": 5.7362,
+      "rarity": "epic",
+      "cross_lines": [
+        "M14"
+      ]
+    },
+    "M14-ST_PAR_227": {
+      "entity_id": "M14-ST_PAR_227",
+      "station_global_id": "ST_PAR_227",
+      "name_ja": "Bibliothèque François Mitterrand",
+      "name_en": "Bibliothèque François Mitterrand",
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "cross_lines": [
+        "M14"
+      ]
+    },
+    "M14-ST_PAR_228": {
+      "entity_id": "M14-ST_PAR_228",
+      "station_global_id": "ST_PAR_228",
+      "name_ja": "Cour Saint-Émilion",
+      "name_en": "Cour Saint-Émilion",
+      "composite_score": 0.4444,
+      "score_total": 1.5554,
+      "rarity": "rare",
+      "cross_lines": [
+        "M14"
+      ]
+    }
+  },
+  "rules": {
+    "route_size": 8,
+    "allow_transfer_bonus": true
+  }
+}

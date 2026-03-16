@@ -20,6 +20,11 @@
       "city_id": "nyc",
       "display_name": "New York City",
       "profile": "cities/nyc/city_profile.json"
+    },
+    {
+      "city_id": "paris",
+      "display_name": "Paris",
+      "profile": "cities/paris/city_profile.json"
     }
   ]
 }

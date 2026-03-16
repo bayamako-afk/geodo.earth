@@ -1,0 +1,232 @@
+station_global_id,station_name,station_name_en,station_slug,line_ids,line_count,hub_score,centrality_score,composite_score,score_total,rarity,degree,rank
+ST_PAR_059,République,République,republique,M11|M3|M5|M8|M9,5,5.0,5.0,5.0,17.5,legendary,9,1
+ST_PAR_014,Châtelet,Châtelet,chatelet,M1|M11|M14|M4|M7,5,5.0,3.8889,4.5556,15.9446,legendary,7,2
+ST_PAR_050,Saint-Lazare,Saint-Lazare,saint_lazare,M12|M13|M14|M3|M9,5,5.0,3.8889,4.5556,15.9446,legendary,7,3
+ST_PAR_082,Montparnasse–Bienvenüe,Montparnasse–Bienvenüe,montparnasse_bienvenue,M12|M13|M4|M6,4,3.75,3.8889,3.8056,13.3196,legendary,7,4
+ST_PAR_020,Nation,Nation,nation,M1|M2|M6|M9,4,3.75,3.3333,3.5833,12.5415,legendary,6,5
+ST_PAR_017,Bastille,Bastille,bastille,M1|M5|M8,3,2.5,4.4444,3.2778,11.4723,legendary,8,6
+ST_PAR_052,Opéra,Opéra,opera,M3|M7|M8,3,2.5,3.3333,2.8333,9.9165,legendary,6,7
+ST_PAR_074,Strasbourg–Saint-Denis,Strasbourg–Saint-Denis,strasbourg_saint_denis,M4|M8|M9,3,2.5,3.3333,2.8333,9.9165,legendary,6,8
+ST_PAR_113,La Motte-Picquet–Grenelle,La Motte-Picquet–Grenelle,la_motte_picquet_grenelle,M10|M6|M8,3,2.5,3.3333,2.8333,9.9165,legendary,6,9
+ST_PAR_007,Charles de Gaulle–Étoile,Charles de Gaulle–Étoile,charles_de_gaulle_etoile,M1|M2|M6,3,2.5,2.7778,2.6111,9.1388,legendary,5,10
+ST_PAR_011,Concorde,Concorde,concorde,M1|M12|M8,3,2.5,2.7778,2.6111,9.1388,legendary,5,11
+ST_PAR_031,Stalingrad,Stalingrad,stalingrad,M2|M5|M7,3,2.5,2.7778,2.6111,9.1388,legendary,5,12
+ST_PAR_073,Gare de l'Est,Gare de l'Est,gare_de_lest,M4|M5|M7,3,2.5,2.7778,2.6111,9.1388,legendary,5,13
+ST_PAR_107,Place d'Italie,Place d'Italie,place_ditalie,M5|M6|M7,3,2.5,2.7778,2.6111,9.1388,legendary,5,14
+ST_PAR_149,Madeleine,Madeleine,madeleine,M12|M14|M8,3,2.5,2.7778,2.6111,9.1388,legendary,5,15
+ST_PAR_032,Jaurès,Jaurès,jaures,M2|M5|M7bis,3,2.5,1.6667,2.1667,7.5835,epic,3,16
+ST_PAR_085,Denfert-Rochereau,Denfert-Rochereau,denfert_rochereau,M4|M6,2,1.25,3.3333,2.0833,7.2915,epic,6,17
+ST_PAR_005,Porte Maillot,Porte Maillot,porte_maillot,M1|M2,2,1.25,2.2222,1.6389,5.7362,epic,4,18
+ST_PAR_009,Franklin D. Roosevelt,Franklin D. Roosevelt,franklin_d_roosevelt,M1|M9,2,1.25,2.2222,1.6389,5.7362,epic,4,19
+ST_PAR_010,Champs-Élysées–Clemenceau,Champs-Élysées–Clemenceau,champs_elysees_clemenceau,M1|M13,2,1.25,2.2222,1.6389,5.7362,epic,4,20
+ST_PAR_013,Palais Royal–Musée du Louvre,Palais Royal–Musée du Louvre,palais_royal_musee_du_louvre,M1|M7,2,1.25,2.2222,1.6389,5.7362,epic,4,21
+ST_PAR_015,Hôtel de Ville,Hôtel de Ville,hotel_de_ville,M1|M11,2,1.25,2.2222,1.6389,5.7362,epic,4,22
+ST_PAR_018,Gare de Lyon,Gare de Lyon,gare_de_lyon,M1|M14,2,1.25,2.2222,1.6389,5.7362,epic,4,23
+ST_PAR_019,Reuilly–Diderot,Reuilly–Diderot,reuilly_diderot,M1|M8,2,1.25,2.2222,1.6389,5.7362,epic,4,24
+ST_PAR_025,Trocadéro,Trocadéro,trocadero,M6|M9,2,1.25,2.2222,1.6389,5.7362,epic,4,25
+ST_PAR_034,Belleville,Belleville,belleville,M11|M2,2,1.25,2.2222,1.6389,5.7362,epic,4,26
+ST_PAR_035,Père Lachaise,Père Lachaise,pere_lachaise,M2|M3,2,1.25,2.2222,1.6389,5.7362,epic,4,27
+ST_PAR_046,Villiers,Villiers,villiers,M2|M3,2,1.25,2.2222,1.6389,5.7362,epic,4,28
+ST_PAR_048,Place de Clichy,Place de Clichy,place_de_clichy,M13|M2,2,1.25,2.2222,1.6389,5.7362,epic,4,29
+ST_PAR_056,Réaumur–Sébastopol,Réaumur–Sébastopol,reaumur_sebastopol,M3|M4,2,1.25,2.2222,1.6389,5.7362,epic,4,30
+ST_PAR_057,Arts et Métiers,Arts et Métiers,arts_et_metiers,M11|M3,2,1.25,2.2222,1.6389,5.7362,epic,4,31
+ST_PAR_070,Marcadet–Poissonniers,Marcadet–Poissonniers,marcadet_poissonniers,M12|M4,2,1.25,2.2222,1.6389,5.7362,epic,4,32
+ST_PAR_078,Odéon,Odéon,odeon,M10|M4,2,1.25,2.2222,1.6389,5.7362,epic,4,33
+ST_PAR_130,Chaussée d'Antin–La Fayette,Chaussée d'Antin–La Fayette,chaussee_dantin_la_fayette,M7|M9,2,1.25,2.2222,1.6389,5.7362,epic,4,34
+ST_PAR_131,Pyramides,Pyramides,pyramides,M14|M7,2,1.25,2.2222,1.6389,5.7362,epic,4,35
+ST_PAR_134,Jussieu,Jussieu,jussieu,M10|M7,2,1.25,2.2222,1.6389,5.7362,epic,4,36
+ST_PAR_148,Invalides,Invalides,invalides,M13|M8,2,1.25,2.2222,1.6389,5.7362,epic,4,37
+ST_PAR_170,Miromesnil,Miromesnil,miromesnil,M13|M9,2,1.25,2.2222,1.6389,5.7362,epic,4,38
+ST_PAR_178,Duroc,Duroc,duroc,M10|M13,2,1.25,2.2222,1.6389,5.7362,epic,4,39
+ST_PAR_199,Pigalle,Pigalle,pigalle,M12|M2,2,1.25,2.2222,1.6389,5.7362,epic,4,40
+ST_PAR_229,Bercy,Bercy,bercy,M14|M6,2,1.25,2.2222,1.6389,5.7362,epic,4,41
+ST_PAR_060,Oberkampf,Oberkampf,oberkampf,M5|M9,2,1.25,1.6667,1.4167,4.9585,epic,3,42
+ST_PAR_072,Gare du Nord,Gare du Nord,gare_du_nord,M4|M5,2,1.25,1.6667,1.4167,4.9585,epic,3,43
+ST_PAR_105,Gare d'Austerlitz,Gare d'Austerlitz,gare_dausterlitz,M10|M5,2,1.25,1.6667,1.4167,4.9585,epic,3,44
+ST_PAR_116,Pasteur,Pasteur,pasteur,M12|M6,2,1.25,1.6667,1.4167,4.9585,epic,3,45
+ST_PAR_150,Grands Boulevards,Grands Boulevards,grands_boulevards,M8|M9,2,1.25,1.6667,1.4167,4.9585,epic,3,46
+ST_PAR_151,Bonne Nouvelle,Bonne Nouvelle,bonne_nouvelle,M8|M9,2,1.25,1.6667,1.4167,4.9585,epic,3,47
+ST_PAR_163,Michel-Ange–Molitor,Michel-Ange–Molitor,michel_ange_molitor,M10|M9,2,1.25,1.6667,1.4167,4.9585,epic,3,48
+ST_PAR_164,Michel-Ange–Auteuil,Michel-Ange–Auteuil,michel_ange_auteuil,M10|M9,2,1.25,1.6667,1.4167,4.9585,epic,3,49
+ST_PAR_029,Barbès–Rochechouart,Barbès–Rochechouart,barbes_rochechouart,M2|M4,2,1.25,1.1111,1.1944,4.1804,rare,2,50
+ST_PAR_051,Havre–Caumartin,Havre–Caumartin,havre_caumartin,M3|M9,2,1.25,1.1111,1.1944,4.1804,rare,2,51
+ST_PAR_118,Raspail,Raspail,raspail,M4|M6,2,1.25,1.1111,1.1944,4.1804,rare,2,52
+ST_PAR_172,Richelieu–Drouot,Richelieu–Drouot,richelieu_drouot,M8|M9,2,1.25,1.1111,1.1944,4.1804,rare,2,53
+ST_PAR_180,Sèvres–Babylone,Sèvres–Babylone,sevres_babylone,M10|M12,2,1.25,1.1111,1.1944,4.1804,rare,2,54
+ST_PAR_099,Louis Blanc,Louis Blanc,louis_blanc,M7,1,0.0,2.2222,0.8889,3.1112,rare,4,55
+ST_PAR_101,Oberkampf,Oberkampf,oberkampf,M5|M9,2,1.25,0.0,0.75,2.625,rare,0,56
+ST_PAR_152,Oberkampf,Oberkampf,oberkampf,M5|M9,2,1.25,0.0,0.75,2.625,rare,0,57
+ST_PAR_174,Gare d'Austerlitz,Gare d'Austerlitz,gare_dausterlitz,M10|M5,2,1.25,0.0,0.75,2.625,rare,0,58
+ST_PAR_002,Esplanade de La Défense,Esplanade de La Défense,esplanade_de_la_defense,M1,1,0.0,1.1111,0.4444,1.5554,rare,2,59
+ST_PAR_003,Pont de Neuilly,Pont de Neuilly,pont_de_neuilly,M1,1,0.0,1.1111,0.4444,1.5554,rare,2,60
+ST_PAR_004,Les Sablons,Les Sablons,les_sablons,M1,1,0.0,1.1111,0.4444,1.5554,rare,2,61
+ST_PAR_006,Argentine,Argentine,argentine,M1,1,0.0,1.1111,0.4444,1.5554,rare,2,62
+ST_PAR_008,George V,George V,george_v,M1,1,0.0,1.1111,0.4444,1.5554,rare,2,63
+ST_PAR_012,Tuileries,Tuileries,tuileries,M1,1,0.0,1.1111,0.4444,1.5554,rare,2,64
+ST_PAR_016,Saint-Paul,Saint-Paul,saint_paul,M1,1,0.0,1.1111,0.4444,1.5554,rare,2,65
+ST_PAR_023,Victor Hugo,Victor Hugo,victor_hugo,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,66
+ST_PAR_024,Kleber,Kleber,kleber,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,67
+ST_PAR_026,Iéna,Iéna,iena,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,68
+ST_PAR_027,Alma–Marceau,Alma–Marceau,alma_marceau,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,69
+ST_PAR_028,Anvers,Anvers,anvers,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,70
+ST_PAR_030,La Chapelle,La Chapelle,la_chapelle,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,71
+ST_PAR_033,Colonel Fabien,Colonel Fabien,colonel_fabien,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,72
+ST_PAR_036,Philippe Auguste,Philippe Auguste,philippe_auguste,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,73
+ST_PAR_037,Alexandre Dumas,Alexandre Dumas,alexandre_dumas,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,74
+ST_PAR_038,Avron,Avron,avron,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,75
+ST_PAR_040,Anatole France,Anatole France,anatole_france,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,76
+ST_PAR_041,Louise Michel,Louise Michel,louise_michel,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,77
+ST_PAR_042,Porte de Champerret,Porte de Champerret,porte_de_champerret,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,78
+ST_PAR_043,Pereire,Pereire,pereire,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,79
+ST_PAR_044,Wagram,Wagram,wagram,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,80
+ST_PAR_045,Malesherbes,Malesherbes,malesherbes,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,81
+ST_PAR_047,Rome,Rome,rome,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,82
+ST_PAR_049,Liège,Liège,liege,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,83
+ST_PAR_053,Quatre-Septembre,Quatre-Septembre,quatre_septembre,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,84
+ST_PAR_054,Bourse,Bourse,bourse,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,85
+ST_PAR_055,Sentier,Sentier,sentier,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,86
+ST_PAR_058,Temple,Temple,temple,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,87
+ST_PAR_061,Saint-Maur,Saint-Maur,saint_maur,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,88
+ST_PAR_062,Rue Saint-Maur,Rue Saint-Maur,rue_saint_maur,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,89
+ST_PAR_063,Parmentier,Parmentier,parmentier,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,90
+ST_PAR_064,Ménilmontant,Ménilmontant,menilmontant,M2,1,0.0,1.1111,0.4444,1.5554,rare,2,91
+ST_PAR_065,Gambetta,Gambetta,gambetta,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,92
+ST_PAR_066,Porte de Bagnolet,Porte de Bagnolet,porte_de_bagnolet,M3,1,0.0,1.1111,0.4444,1.5554,rare,2,93
+ST_PAR_069,Simplon,Simplon,simplon,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,94
+ST_PAR_071,Château Rouge,Château Rouge,chateau_rouge,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,95
+ST_PAR_075,Étienne Marcel,Étienne Marcel,etienne_marcel,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,96
+ST_PAR_076,Les Halles,Les Halles,les_halles,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,97
+ST_PAR_077,Saint-Michel,Saint-Michel,saint_michel,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,98
+ST_PAR_079,Saint-Germain-des-Prés,Saint-Germain-des-Prés,saint_germain_des_pres,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,99
+ST_PAR_080,Saint-Sulpice,Saint-Sulpice,saint_sulpice,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,100
+ST_PAR_081,Saint-Placide,Saint-Placide,saint_placide,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,101
+ST_PAR_083,Alésia,Alésia,alesia,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,102
+ST_PAR_084,Mouton-Duvernet,Mouton-Duvernet,mouton_duvernet,M4,1,0.0,1.1111,0.4444,1.5554,rare,2,103
+ST_PAR_088,Bobigny–Pantin–Raymond Queneau,Bobigny–Pantin–Raymond Queneau,bobigny_pantin_raymond_queneau,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,104
+ST_PAR_089,Église de Pantin,Église de Pantin,eglise_de_pantin,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,105
+ST_PAR_090,Hoche,Hoche,hoche,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,106
+ST_PAR_091,Porte de Pantin,Porte de Pantin,porte_de_pantin,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,107
+ST_PAR_092,Ourcq,Ourcq,ourcq,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,108
+ST_PAR_093,Laumière,Laumière,laumiere,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,109
+ST_PAR_094,Quai de la Loire,Quai de la Loire,quai_de_la_loire,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,110
+ST_PAR_095,Quai de l'Oise,Quai de l'Oise,quai_de_loise,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,111
+ST_PAR_096,Corentin Cariou,Corentin Cariou,corentin_cariou,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,112
+ST_PAR_097,Crimée,Crimée,crimee,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,113
+ST_PAR_098,Riquet,Riquet,riquet,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,114
+ST_PAR_100,Jacques Bonsergent,Jacques Bonsergent,jacques_bonsergent,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,115
+ST_PAR_102,Richard-Lenoir,Richard-Lenoir,richard_lenoir,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,116
+ST_PAR_103,Bréguet–Sabin,Bréguet–Sabin,breguet_sabin,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,117
+ST_PAR_104,Quai de la Rapée,Quai de la Rapée,quai_de_la_rapee,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,118
+ST_PAR_106,Campo-Formio,Campo-Formio,campo_formio,M5,1,0.0,1.1111,0.4444,1.5554,rare,2,119
+ST_PAR_108,Kléber,Kléber,kleber,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,120
+ST_PAR_109,Boissière,Boissière,boissiere,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,121
+ST_PAR_110,Passy,Passy,passy,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,122
+ST_PAR_111,Bir-Hakeim,Bir-Hakeim,bir_hakeim,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,123
+ST_PAR_112,Dupleix,Dupleix,dupleix,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,124
+ST_PAR_114,Cambronne,Cambronne,cambronne,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,125
+ST_PAR_115,Sèvres–Lecourbe,Sèvres–Lecourbe,sevres_lecourbe,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,126
+ST_PAR_117,Edgar Quinet,Edgar Quinet,edgar_quinet,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,127
+ST_PAR_119,Glacière,Glacière,glaciere,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,128
+ST_PAR_120,Corvisart,Corvisart,corvisart,M6,1,0.0,1.1111,0.4444,1.5554,rare,2,129
+ST_PAR_122,Fort d'Aubervilliers,Fort d'Aubervilliers,fort_daubervilliers,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,130
+ST_PAR_123,Aubervilliers–Pantin–Quatre Chemins,Aubervilliers–Pantin–Quatre Chemins,aubervilliers_pantin_quatre_chemins,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,131
+ST_PAR_124,Porte de la Villette,Porte de la Villette,porte_de_la_villette,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,132
+ST_PAR_125,Corentin Cariou,Corentin Cariou,corentin_cariou,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,133
+ST_PAR_128,Cadet,Cadet,cadet,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,134
+ST_PAR_129,Le Peletier,Le Peletier,le_peletier,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,135
+ST_PAR_132,Pont Marie,Pont Marie,pont_marie,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,136
+ST_PAR_133,Sully–Morland,Sully–Morland,sully_morland,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,137
+ST_PAR_135,Place Monge,Place Monge,place_monge,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,138
+ST_PAR_136,Censier–Daubenton,Censier–Daubenton,censier_daubenton,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,139
+ST_PAR_137,Les Gobelins,Les Gobelins,les_gobelins,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,140
+ST_PAR_138,Tolbiac,Tolbiac,tolbiac,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,141
+ST_PAR_139,Kremlin-Bicêtre,Kremlin-Bicêtre,kremlin_bicetre,M7,1,0.0,1.1111,0.4444,1.5554,rare,2,142
+ST_PAR_142,Lourmel,Lourmel,lourmel,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,143
+ST_PAR_143,Boucicaut,Boucicaut,boucicaut,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,144
+ST_PAR_144,Félix Faure,Félix Faure,felix_faure,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,145
+ST_PAR_145,Commerce,Commerce,commerce,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,146
+ST_PAR_146,École Militaire,École Militaire,ecole_militaire,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,147
+ST_PAR_147,La Tour-Maubourg,La Tour-Maubourg,la_tour_maubourg,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,148
+ST_PAR_153,Faidherbe–Chaligny,Faidherbe–Chaligny,faidherbe_chaligny,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,149
+ST_PAR_154,Charenton–Écoles,Charenton–Écoles,charenton_ecoles,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,150
+ST_PAR_155,Liberté,Liberté,liberte,M8,1,0.0,1.1111,0.4444,1.5554,rare,2,151
+ST_PAR_157,Pont de Sèvres,Pont de Sèvres,pont_de_sevres,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,152
+ST_PAR_158,Billancourt,Billancourt,billancourt,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,153
+ST_PAR_159,Marcel Sembat,Marcel Sembat,marcel_sembat,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,154
+ST_PAR_160,Boulogne–Jean Jaurès,Boulogne–Jean Jaurès,boulogne_jean_jaures,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,155
+ST_PAR_161,Boulogne–Pont de Saint-Cloud,Boulogne–Pont de Saint-Cloud,boulogne_pont_de_saint_cloud,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,156
+ST_PAR_162,Exelmans,Exelmans,exelmans,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,157
+ST_PAR_165,Jasmin,Jasmin,jasmin,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,158
+ST_PAR_166,Ranelagh,Ranelagh,ranelagh,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,159
+ST_PAR_167,La Muette,La Muette,la_muette,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,160
+ST_PAR_168,Rue de la Pompe,Rue de la Pompe,rue_de_la_pompe,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,161
+ST_PAR_169,Pompe,Pompe,pompe,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,162
+ST_PAR_171,Saint-Augustin,Saint-Augustin,saint_augustin,M9,1,0.0,1.1111,0.4444,1.5554,rare,2,163
+ST_PAR_175,Cardinal Lemoine,Cardinal Lemoine,cardinal_lemoine,M10,1,0.0,1.1111,0.4444,1.5554,rare,2,164
+ST_PAR_176,Maubert–Mutualité,Maubert–Mutualité,maubert_mutualite,M10,1,0.0,1.1111,0.4444,1.5554,rare,2,165
+ST_PAR_177,Cluny–La Sorbonne,Cluny–La Sorbonne,cluny_la_sorbonne,M10,1,0.0,1.1111,0.4444,1.5554,rare,2,166
+ST_PAR_179,Vaneau,Vaneau,vaneau,M10,1,0.0,1.1111,0.4444,1.5554,rare,2,167
+ST_PAR_181,Mabillon,Mabillon,mabillon,M10,1,0.0,1.1111,0.4444,1.5554,rare,2,168
+ST_PAR_183,Rambuteau,Rambuteau,rambuteau,M11,1,0.0,1.1111,0.4444,1.5554,rare,2,169
+ST_PAR_186,Goncourt,Goncourt,goncourt,M11,1,0.0,1.1111,0.4444,1.5554,rare,2,170
+ST_PAR_187,Pyrénées,Pyrénées,pyrenees,M11,1,0.0,1.1111,0.4444,1.5554,rare,2,171
+ST_PAR_188,Jourdain,Jourdain,jourdain,M11,1,0.0,1.1111,0.4444,1.5554,rare,2,172
+ST_PAR_189,Place des Fêtes,Place des Fêtes,place_des_fetes,M11,1,0.0,1.1111,0.4444,1.5554,rare,2,173
+ST_PAR_190,Télégraphe,Télégraphe,telegraphe,M11,1,0.0,1.1111,0.4444,1.5554,rare,2,174
+ST_PAR_191,Porte des Lilas,Porte des Lilas,porte_des_lilas,M11,1,0.0,1.1111,0.4444,1.5554,rare,2,175
+ST_PAR_194,Porte de la Chapelle,Porte de la Chapelle,porte_de_la_chapelle,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,176
+ST_PAR_195,Marx Dormoy,Marx Dormoy,marx_dormoy,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,177
+ST_PAR_196,Lamarck–Caulaincourt,Lamarck–Caulaincourt,lamarck_caulaincourt,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,178
+ST_PAR_197,Jules Joffrin,Jules Joffrin,jules_joffrin,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,179
+ST_PAR_198,Abbesses,Abbesses,abbesses,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,180
+ST_PAR_200,Notre-Dame-de-Lorette,Notre-Dame-de-Lorette,notre_dame_de_lorette,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,181
+ST_PAR_201,Saint-Georges,Saint-Georges,saint_georges,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,182
+ST_PAR_202,Trinité–d'Estienne d'Orves,Trinité–d'Estienne d'Orves,trinite_destienne_dorves,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,183
+ST_PAR_203,Rennes,Rennes,rennes,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,184
+ST_PAR_204,Notre-Dame-des-Champs,Notre-Dame-des-Champs,notre_dame_des_champs,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,185
+ST_PAR_205,Falguière,Falguière,falguiere,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,186
+ST_PAR_206,Volontaires,Volontaires,volontaires,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,187
+ST_PAR_207,Vaugirard,Vaugirard,vaugirard,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,188
+ST_PAR_208,Convention,Convention,convention,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,189
+ST_PAR_210,Corentin Celton,Corentin Celton,corentin_celton,M12,1,0.0,1.1111,0.4444,1.5554,rare,2,190
+ST_PAR_213,Basilique de Saint-Denis,Basilique de Saint-Denis,basilique_de_saint_denis,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,191
+ST_PAR_214,Saint-Denis–Porte de Paris,Saint-Denis–Porte de Paris,saint_denis_porte_de_paris,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,192
+ST_PAR_215,Carrefour Pleyel,Carrefour Pleyel,carrefour_pleyel,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,193
+ST_PAR_216,Mairie de Saint-Ouen,Mairie de Saint-Ouen,mairie_de_saint_ouen,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,194
+ST_PAR_217,Garibaldi,Garibaldi,garibaldi,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,195
+ST_PAR_218,Porte de Saint-Ouen,Porte de Saint-Ouen,porte_de_saint_ouen,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,196
+ST_PAR_219,Guy Môquet,Guy Môquet,guy_moquet,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,197
+ST_PAR_220,La Fourche,La Fourche,la_fourche,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,198
+ST_PAR_221,Brochant,Brochant,brochant,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,199
+ST_PAR_223,Varenne,Varenne,varenne,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,200
+ST_PAR_224,Saint-François-Xavier,Saint-François-Xavier,saint_françois_xavier,M13,1,0.0,1.1111,0.4444,1.5554,rare,2,201
+ST_PAR_227,Bibliothèque François Mitterrand,Bibliothèque François Mitterrand,bibliotheque_françois_mitterrand,M14,1,0.0,1.1111,0.4444,1.5554,rare,2,202
+ST_PAR_228,Cour Saint-Émilion,Cour Saint-Émilion,cour_saint_emilion,M14,1,0.0,1.1111,0.4444,1.5554,rare,2,203
+ST_PAR_001,La Défense,La Défense,la_defense,M1,1,0.0,0.5556,0.2222,0.7777,common,1,204
+ST_PAR_021,Château de Vincennes,Château de Vincennes,chateau_de_vincennes,M1,1,0.0,0.5556,0.2222,0.7777,common,1,205
+ST_PAR_022,Porte Dauphine,Porte Dauphine,porte_dauphine,M2,1,0.0,0.5556,0.2222,0.7777,common,1,206
+ST_PAR_039,Pont de Levallois–Bécon,Pont de Levallois–Bécon,pont_de_levallois_becon,M3,1,0.0,0.5556,0.2222,0.7777,common,1,207
+ST_PAR_067,Gallieni,Gallieni,gallieni,M3,1,0.0,0.5556,0.2222,0.7777,common,1,208
+ST_PAR_068,Porte de Clignancourt,Porte de Clignancourt,porte_de_clignancourt,M4,1,0.0,0.5556,0.2222,0.7777,common,1,209
+ST_PAR_086,Montrouge,Montrouge,montrouge,M4,1,0.0,0.5556,0.2222,0.7777,common,1,210
+ST_PAR_087,Bobigny–Pablo Picasso,Bobigny–Pablo Picasso,bobigny_pablo_picasso,M5,1,0.0,0.5556,0.2222,0.7777,common,1,211
+ST_PAR_121,La Courneuve–8 Mai 1945,La Courneuve–8 Mai 1945,la_courneuve_8_mai_1945,M7,1,0.0,0.5556,0.2222,0.7777,common,1,212
+ST_PAR_140,Villejuif–Louis Aragon,Villejuif–Louis Aragon,villejuif_louis_aragon,M7,1,0.0,0.5556,0.2222,0.7777,common,1,213
+ST_PAR_141,Balard,Balard,balard,M8,1,0.0,0.5556,0.2222,0.7777,common,1,214
+ST_PAR_156,Créteil–Préfecture,Créteil–Préfecture,creteil_prefecture,M8,1,0.0,0.5556,0.2222,0.7777,common,1,215
+ST_PAR_173,Mairie de Montreuil,Mairie de Montreuil,mairie_de_montreuil,M9,1,0.0,0.5556,0.2222,0.7777,common,1,216
+ST_PAR_192,Mairie des Lilas,Mairie des Lilas,mairie_des_lilas,M11,1,0.0,0.5556,0.2222,0.7777,common,1,217
+ST_PAR_193,Aubervilliers–Front Populaire,Aubervilliers–Front Populaire,aubervilliers_front_populaire,M12,1,0.0,0.5556,0.2222,0.7777,common,1,218
+ST_PAR_211,Mairie d'Issy,Mairie d'Issy,mairie_dissy,M12,1,0.0,0.5556,0.2222,0.7777,common,1,219
+ST_PAR_212,Saint-Denis–Université,Saint-Denis–Université,saint_denis_universite,M13,1,0.0,0.5556,0.2222,0.7777,common,1,220
+ST_PAR_225,Châtillon–Montrouge,Châtillon–Montrouge,chatillon_montrouge,M13,1,0.0,0.5556,0.2222,0.7777,common,1,221
+ST_PAR_226,Olympiades,Olympiades,olympiades,M14,1,0.0,0.5556,0.2222,0.7777,common,1,222
+ST_PAR_126,Pont de Levallois,Pont de Levallois,pont_de_levallois,M3,1,0.0,0.0,0.0,0.0,common,0,223
+ST_PAR_127,Pont de Flandre,Pont de Flandre,pont_de_flandre,M7,1,0.0,0.0,0.0,0.0,common,0,224
+ST_PAR_182,Cité Universitaire,Cité Universitaire,cite_universitaire,M4,1,0.0,0.0,0.0,0.0,common,0,225
+ST_PAR_184,Filles du Calvaire,Filles du Calvaire,filles_du_calvaire,M8,1,0.0,0.0,0.0,0.0,common,0,226
+ST_PAR_185,Saint-Sébastien–Froissart,Saint-Sébastien–Froissart,saint_sebastien_froissart,M8,1,0.0,0.0,0.0,0.0,common,0,227
+ST_PAR_209,Boucicaut,Boucicaut,boucicaut,M8,1,0.0,0.0,0.0,0.0,common,0,228
+ST_PAR_222,Liège,Liège,liege,M3,1,0.0,0.0,0.0,0.0,common,0,229
+ST_PAR_230,Quai de la Rapée,Quai de la Rapée,quai_de_la_rapee,M5,1,0.0,0.0,0.0,0.0,common,0,230
+ST_PAR_231,Pont de Sèvres,Pont de Sèvres,pont_de_sevres,M9,1,0.0,0.0,0.0,0.0,common,0,231

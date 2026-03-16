@@ -16,7 +16,7 @@
  */
 
 import { renderHeaderBar, setHeaderStatus } from './header_bar.js?v=5';
-import { renderMapPanel }   from './map_panel.js?v=14';
+import { renderMapPanel }   from './map_panel.js?v=15';
 import { renderHandPanel }  from './hand_panel.js?v=5';
 import { renderScorePanel } from './score_panel.js?v=14';
 import { renderCityComparePanel, initCityCompareData } from './city_compare_panel.js?v=2';

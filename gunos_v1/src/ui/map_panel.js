@@ -169,6 +169,10 @@ function _lineColor(lc) {
     Y: '#40b0a0',  HK: '#c08040', OC: '#e06060',
     CEN: '#e05020', NOR: '#404040', PIC: '#2040a0', DIS: '#408040', CIR: '#c0c020',
     L1: '#c04040',  L4: '#408040', LA: '#4060c0', LN: '#c0c040', L7: '#8040c0',
+    // Paris RATP Métro (V1.2 Task 06)
+    M1: '#FFBE00', M2: '#003CA6', M3: '#6E6E00', M4: '#CF009E', M5: '#FF7E2E',
+    M6: '#6ECA97', M7: '#FA9ABA', M8: '#E19BDF', M9: '#B6BD00', M10: '#C9910A',
+    M11: '#704B1C', M12: '#007852', M13: '#6EC4E8', M14: '#62259D',
   };
   return palette[lc] ?? '#6e7681';
 }
