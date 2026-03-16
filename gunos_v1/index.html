@@ -45,15 +45,29 @@
       font-family: var(--font-sans);
       font-size: 13px;
       line-height: 1.5;
-      overflow: hidden;
+      /* Mobile: allow page scroll so P2 and lower panels are reachable */
+      overflow-y: auto;
     }
 
     /* ── App Shell ─────────────────────────────────────────────────────────── */
     #app {
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
+      /* Mobile-first: grow to content height, page scrolls to reach all panels */
+      height: auto;
+      min-height: 100dvh;
+      overflow: visible;
+    }
+
+    /* ── Desktop override: restore fixed viewport layout ──────────────────── */
+    @media (min-width: 681px) {
+      html, body {
+        overflow: hidden;
+      }
+      #app {
+        height: 100vh;
+        overflow: hidden;
+      }
     }
 
     /* ════════════════════════════════════════════════════════════════════════
@@ -232,17 +246,42 @@
 
     /* ── Map area (dominant center) ────────────────────────────────────────── */
     #map-area {
-      flex: 1;
-      min-height: 0;
+      /* Mobile: fixed viewport-relative height so map stays usable */
+      height: 45vh;
+      flex: none;
+      min-height: 200px;
       overflow: hidden;
     }
 
     /* ── Bottom split panels ───────────────────────────────────────────────── */
     #bottom-area {
       display: flex;
-      height: var(--bottom-h);
+      /* Mobile: stack vertically, grow to full content height */
+      height: auto;
+      flex-direction: column;
       flex-shrink: 0;
       gap: var(--panel-gap);
+    }
+
+    /* ── Desktop override: restore original layout ─────────────────────────── */
+    @media (min-width: 681px) {
+      #app-body {
+        overflow: hidden;
+        height: auto;  /* flex:1 handles sizing */
+        flex: 1;
+      }
+      #map-area {
+        flex: 1;
+        height: auto;
+        min-height: 0;
+        overflow: hidden;
+      }
+      #bottom-area {
+        height: var(--bottom-h);
+        flex-direction: row;
+      }
+      #panel-hand  { width: auto; }
+      #panel-score { width: auto; flex-shrink: 1; }
     }
 
     /* ════════════════════════════════════════════════════════════════════════
