@@ -20,7 +20,8 @@
  *   via relative paths in city_registry.json. Do NOT move or modify guno_v6 data.
  */
 
-const REGISTRY_PATH = 'config/city_registry.json';
+const REGISTRY_PATH    = 'config/city_registry.json';
+const REGISTRY_VERSION = '2'; // Bump when city_registry.json is updated
 
 /**
  * Load the GUNOS V1 city registry.
@@ -29,7 +30,8 @@ const REGISTRY_PATH = 'config/city_registry.json';
  */
 export async function loadCityRegistry(baseUrl) {
   const base = _resolveBase(baseUrl);
-  const url  = base + REGISTRY_PATH;
+  // Add cache-busting param so CDN always serves the latest registry
+  const url  = base + REGISTRY_PATH + '?_cb=' + REGISTRY_VERSION;
   const res  = await fetch(url);
   if (!res.ok) throw new Error(`[GUNOS V1] city_loader: failed to load registry from ${url} (${res.status})`);
   return res.json();

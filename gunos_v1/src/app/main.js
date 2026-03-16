@@ -11,7 +11,7 @@
  *   - All module imports bumped to ?v=8
  */
 
-import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=9';
+import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=10';
 import { resolveActiveCityId } from '../city/city_ui.js?v=8';
 import { renderLayout } from '../ui/layout.js?v=13';
 import { setHeaderStatus, setStartButtonState, updateHeaderGameState } from '../ui/header_bar.js?v=8';

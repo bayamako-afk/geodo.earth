@@ -15,7 +15,7 @@ import {
   loadCityRegistry,
   getDefaultCityId,
   listAvailableCities,
-} from './city_loader.js';
+} from './city_loader.js?v=10';
 
 // ── URL helpers ───────────────────────────────────────────────────────────────
 
