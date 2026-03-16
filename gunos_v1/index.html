@@ -62,12 +62,13 @@
     #app-header {
       display: flex;
       align-items: center;
-      height: var(--header-h);
+      flex-wrap: wrap;          /* MOBILE FIX: allows row 2 for action buttons */
+      min-height: var(--header-h);
       padding: 0 12px;
       background: var(--c-surface);
       border-bottom: 1px solid var(--c-border);
       flex-shrink: 0;
-      gap: 10px;
+      gap: 6px;
       position: relative;  /* REQUIRED: makes z-index effective */
       z-index: 100;
     }
@@ -140,7 +141,11 @@
     }
 
     /* Spacer */
-    .hdr-spacer { flex: 1; }
+    .hdr-spacer { flex: 1; order: 5; }
+
+    /* Game badge and turn counter: after spacer, before actions */
+    #hdr-game-badge { order: 6; }
+    #hdr-turn-counter { order: 7; }
 
     /* Action buttons */
     .hdr-actions {
@@ -148,6 +153,7 @@
       align-items: center;
       gap: 6px;
       flex-shrink: 0;
+      order: 8;  /* After spacer/badge/counter; wraps to row 2 on narrow screens */
     }
 
     .hdr-action-btn {
