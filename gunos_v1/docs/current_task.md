@@ -1,93 +1,61 @@
-# GUNOS V1.3 Task 01 — Map-first HUD Layout Foundation
+# Task
+GUNOS V1.3 Task 01 — DOM Structure Inversion & Base HUD Layout
 
-## Objective
-GUNOS V1.2 までに実装された Route+, Hub+, Live Score, result panel などの機能を活かしつつ、UI の基本構造を「地図主役」のレイアウトへ移行する。
+## Goal
+- 現行の「分割パネル方式（Split Panels）」から「地図全画面 + HUDオーバーレイ方式」へ移行するステップ1を実施する
+- `#map-area` を `position: absolute; inset: 0` で全画面化し、最背面に配置する
+- `#hud-layer`（`pointer-events: none`）を作成し、既存のパネルをそこに格納する
+- 各パネルに `pointer-events: auto` を付与し、操作性を確保する
+- この時点ではパネルのデザイン（背景色や枠）はそのまま維持する
+- 既存の5都市・全ゲームロジックへの影響ゼロを確認する
 
-本タスクでは、完成形の演出実装までは求めない。  
-まずは **地図コンテナを親にした HUD オーバーレイ基盤** を作り、既存 UI を段階移行できる状態にすることを目的とする。
+## Current State
+- プロジェクト: `geodo.earth/gunos_v1`
+- フェーズ:
+  - V1 milestone 完了
+  - V1.1 完了
+  - V1.2 完了
+  - V1.3 進行中
+- 完了済み:
+  - V1.2 Task 01 — Mobile-First Interaction Polish
+  - V1.2 Task 02 — Gameplay Balance Tuning
+  - V1.2 Task 03 — Onboarding / Tutorial Layer
+  - V1.2 Task 04 — Result Drama & Feedback Enhancement
+  - V1.2 Task 05 — City Pack Extensibility Prep
+  - V1.2 Task 06 — 5th City Pack Implementation Validation (Paris)
+- 対応都市:
+  - Tokyo, Osaka, London, NYC, Paris
+- 対象URL:
+  - `https://geodo.earth/gunos_v1/`
 
----
+## V1.3 設計方針（レイアウト刷新レポートより）
+- 推奨案: **レイアウト案B（統合HUD案）**
+- 段階的移行ステップ:
+  1. **ステップ1（本タスク）**: DOM構造の反転とベースHUD化
+  2. ステップ2: パネルの解体とエッジ配置（CSS改修）
+  3. ステップ3: スマホ縦向き向けのトグル化（レスポンシブ対応）
 
-## Background
-現状の GUNOS は、機能面では V1.2 でかなり整理されてきた一方、今後さらに情報量が増えることを考えると、従来の別窓・分離レイアウトでは拡張性とスマホ適性に限界がある。
+## Main Objective (V1.3 Task 01)
+- `index.html` の DOM 構造を改修:
+  - `#app-body` を `position: relative` にする
+  - `#map-area` を `position: absolute; inset: 0` で全画面化（最背面）
+  - `#hud-layer` を新設（`position: absolute; inset: 0; pointer-events: none`）
+  - 既存の `#bottom-area` と `#app-header` を HUD レイヤー上に配置
+  - 各パネルに `pointer-events: auto` を付与
+- CSS 調整:
+  - `#app-body` の `flex` レイアウトから `position: relative` ベースへ移行
+  - `#map-area` の `height: 45vh` 制限を撤廃し、全画面化
+  - `#bottom-area` を HUD レイヤー内の下部に固定配置
+  - モバイルでのスクロール問題を HUD 方式で根本解決
+- 既存機能の保持:
+  - マップのパン・ズーム操作（`touch-action: none` 維持）
+  - 手札パネル、スコアパネル、都市比較パネルの操作性
+  - HELP モーダル、GAME OVER 演出
+  - 5都市すべての動作
 
-今後の方向性としては以下を重視する。
-
-- 地図をゲーム盤の中心として見せる
-- 情報表示を HUD 的にオーバーレイ配置する
-- PC / スマホ横 / スマホ縦 の3パターンに耐える
-- 既存機能をできるだけ壊さず段階移行する
-- 将来の演出追加（通知、駅到達演出、結果オーバーレイ統合など）に備える
-
-事前調査では、全面改修よりも **統合HUD案（段階移行）** が最適と判断された。  
-そのため V1.3 Task 01 では、まず土台だけを安全に作る。
-
----
-
-## Scope
-今回のタスクで行うのは以下。
-
-1. 地図コンテナを UI 全体の親ステージに再編する
-2. HUD 用オーバーレイレイヤを追加する
-3. 主要 UI を HUD として四隅・下辺に再配置できる構造へ変更する
-4. PC / スマホ横 / スマホ縦で破綻しにくい基本レスポンシブを入れる
-5. 現行機能が壊れていないことを確認する
-
----
-
-## Out of Scope
-今回まだやらないもの。
-
-- 大規模な演出追加
-- result overlay の最終デザイン完成
-- 通知アニメーションの作り込み
-- 手札 UI の完全リニューアル
-- スコアパネルの情報最適化完成
-- スマホ縦の完成版 UX 詰め
-- 新ルール追加
-
-今回はあくまで **レイアウト基盤の整備** が目的。
-
----
-
-## Required Layout Direction
-以下の思想で進めること。
-
-### Core concept
-- 地図 = 主役
-- 各情報パネル = HUD
-- 情報は「地図を隠さず、必要箇所に薄く置く」
-- Leaflet との干渉を避ける
-- 今後の追加要素を HUD に積めるようにする
-
-### Target HUD zones
-最低限、以下の配置枠を作る。
-
-- top-left: ゲーム状態
-- top-right: スコア / 順位
-- bottom-left: ログ / イベント
-- bottom-center: 現在情報または手札関連の受け皿
-- bottom-right: 操作ボタン
-
-※ この段階では中身を完璧に整えなくてよい。  
-まずは「そこに置ける構造」を成立させることを優先する。
-
----
-
-## Required Implementation Tasks
-
-### 1. DOM / layout foundation refactor
-現行レイアウトを確認し、地図周辺の DOM 構造を以下の思想に寄せること。
-
-想定イメージ:
-
-```html
-<div id="map-stage">
-  <div id="map"></div>
-
-  <div id="hud-top-left" class="hud-panel"></div>
-  <div id="hud-top-right" class="hud-panel"></div>
-  <div id="hud-bottom-left" class="hud-panel"></div>
-  <div id="hud-bottom-center" class="hud-panel"></div>
-  <div id="hud-bottom-right" class="hud-panel"></div>
-</div>
+## Next Suggested Task
+**V1.3 Task 02**: Panel Design Refinement — HUD化後のパネルデザイン刷新
+- パネルの背景色・ボーダーを半透明化（`backdrop-filter: blur`）
+- ヘッダーを画面上部にオーバーレイ
+- 手札を画面下部中央にドック化
+- スコアパネルを右エッジに配置
