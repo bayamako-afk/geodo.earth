@@ -51,6 +51,7 @@ Follow these steps to add a new city to the GUNOS V1 platform.
 
 ## 5. Deployment
 
-- [ ] Bump cache buster versions in `index.html` and relevant JS files if any core code was modified.
+- [ ] **Crucial for CDN**: Open `gunos_v1/src/city/city_loader.js` and increment `REGISTRY_VERSION` (e.g., from `'2'` to `'3'`) to force the CDN to serve the new registry.
+- [ ] Bump cache buster versions in `index.html` and relevant JS files (like `city_loader.js` in `main.js`) to ensure users get the new code.
 - [ ] Commit all new files and changes.
 - [ ] Push to GitHub.
