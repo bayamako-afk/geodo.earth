@@ -1,10 +1,10 @@
 # Task
-GUNOS V1.2 Task 03 — Onboarding / Tutorial Layer
+GUNOS V1.2 Task 04 — Result Drama & Feedback Enhancement
 
 ## Goal
-- 初見プレイヤーが GUNOS の基本構造を短時間で理解できるようにする
-- Route / Hub / Station score の意味を、プレイ前またはプレイ中に自然に学べる導線を作る
-- 現在のゲーム体験を壊さず、軽量で分かりやすい onboarding / tutorial layer を追加する
+- GAME OVER 時の結果表示を、より分かりやすく、気持ちよく、記憶に残るものにする
+- プレイヤーが「なぜ勝った / 負けたか」を直感的に理解できるようにする
+- 現在の result panel を土台に、演出・比較・要点整理を強化する
 
 ## Current State
 - プロジェクト: `geodo.earth/gunos_v1`
@@ -15,102 +15,103 @@ GUNOS V1.2 Task 03 — Onboarding / Tutorial Layer
 - 完了済み:
   - V1.2 Task 01 — Mobile-First Interaction Polish
   - V1.2 Task 02 — Gameplay Balance Tuning
+  - V1.2 Task 03 — Onboarding / Tutorial Layer
 - 現在の特徴:
   - Route / Network visibility は強化済み
   - Route+ / Hub+ live score は4都市で稼働済み
-  - result panel / readability / responsive は改善済み
-  - mobile-first interaction の基礎も改善済み
-  - gameplay balance の調整も進行済み
+  - result panel の基本整理は済んでいる
+  - onboarding により初見理解も改善済み
 - 現在の課題:
-  - 初見では「何をすると強いのか」がまだ直感的に伝わりにくい
-  - Route+ / Hub+ / station score の役割分担を UI だけで理解するのは少し難しい
-  - ルール説明がなくても触れる状態に近づけたい
+  - GAME OVER 時の印象がまだ機能説明寄りで、ドラマ性や達成感はこれから
+  - 勝因 / 敗因は読めるが、もう少し一目で伝わる余地がある
+  - 「今回の勝負の特徴」が短く印象づく形にはまだなっていない
 - 対象URL:
   - `https://geodo.earth/gunos_v1/`
 - 想定対象ファイル:
-  - `index.html`
-  - `src/ui/layout.js`
-  - `src/ui/score_panel.js`
   - `src/ui/result_panel.js`
-  - 必要に応じて onboarding / tutorial 用の新規 JS
+  - `src/ui/score_panel.js`（必要なら）
+  - `index.html`
+  - 必要に応じて `src/ui/layout.js`
   - 必要に応じて `src/app/main.js`
 
 ## Problem Statement
-- 現在の GUNOS は、すでに playable で見た目もかなり整理されている
-- ただし、初見プレイヤーにとっては以下がまだ分かりにくい可能性がある
-  - 何を目指せばよいか
-  - Route+ が何を意味するか
-  - Hub+ が何を意味するか
-  - station score と bonus の違い
-  - map / score / result がどうつながっているか
+- 現在の結果表示は情報としては読めるが、ゲーム体験としての締めはまだ強化余地がある
+- 特に以下を改善したい
+  - 勝者がすぐ分かる
+  - 勝因 / 敗因が短く伝わる
+  - Route+ / Hub+ / Station score のどれが効いたかが印象に残る
+  - もう一度遊びたくなる終わり方になる
 - 今回の主題は、
-  **説明書を読む前提ではなく、画面体験の中で自然に理解できる入口を作ること**
+  **結果を “表示する” から “体験として締める” へ進めること**
 
 ## Constraints
 - 既存ゲームロジックは壊さない
-- V1.1 および V1.2 Task 01 / 02 の成果を維持する
-- 今回は onboarding / tutorial 導線の追加が主目的
-- 重すぎるフルチュートリアルや長文説明は避ける
-- 初回導入に適した軽量な UI を優先する
+- V1.1 および V1.2 Task 01〜03 の成果を維持する
+- 今回の中心は result panel / end-of-game feedback の強化
+- 過剰に重いアニメーションや大規模演出は避ける
 - PC / mobile の両方で破綻しないこと
-- 既存の score panel / result panel / city comparison と競合しすぎないこと
+- 読みやすさを損なわずに演出を足すこと
+- 勝因説明は短く、説明過多にしないこと
 - キャッシュバスター更新が必要なら更新箇所を明示する
 
 ## Preferred Direction
-- 「最初に全部説明する」より、
-  **短いガイドを段階的に見せる方式** を優先する
-- 例えば以下のような軽量導線が望ましい
-  1. Start前の short tip
-  2. プレイ中の contextual hint
-  3. 終了時の result explanation
-- 特に、以下の3点が伝われば成功
-  - 駅を集めるだけでなく、路線とハブが大事
-  - score panel を見れば進捗が分かる
-  - result panel を見れば勝因が分かる
+- 結果画面を「情報の羅列」ではなく「勝負の要約」として見せる
+- 例えば以下の強化が望ましい
+  1. winner headline の強化
+  2. score difference の見せ方改善
+  3. 勝因の short summary
+  4. best route / top hub / key station などのハイライト
+  5. rematch を押したくなる見せ方
+- 特に、以下が短く伝わるとよい
+  - 誰が勝ったか
+  - 何で勝ったか
+  - どれくらい差がついたか
+  - 今回の対戦の特徴は何だったか
 
 ## Work Items
-1. 現在の UI を見て、初見で分かりにくい要素を整理する
-   - START前
-   - プレイ中
-   - GAME OVER後
-   の3段階で、理解の詰まりやすい箇所を洗い出す
+1. 現在の result panel を確認する
+   - どの情報がすでにあるか
+   - どこが説明的すぎるか
+   - どこが印象に残りにくいか整理する
 
-2. 軽量な onboarding の導入方式を決める
-   - 例:
-     - welcome tip
-     - help toggle
-     - first-play overlay
-     - small tutorial card
-     - score panel hint
-   - できるだけ軽く、邪魔になりすぎない方式を優先する
+2. winner 表示を強化する
+   - 勝者名 / プレイヤー名 / 勝利見出しを分かりやすくする
+   - 必要なら “close win” など短いラベルも検討してよい
 
-3. Start前の導線を追加する
-   - 初見向けに
-     - 何を目指すゲームか
-     - Route / Hub / Score の基本
-     を短く伝える
+3. score difference の見せ方を改善する
+   - 総得点差
+   - 主要スコア差
+   - 接戦 / 圧勝の印象
+   が直感的に分かるようにする
 
-4. プレイ中の contextual hint を追加する
-   - score panel や route progress の意味が分かる短い補足
-   - 必要なら hover / tap / small badge / info icon などを活用してよい
+4. 勝因 / 敗因の short summary を追加する
+   - Route+ が効いた
+   - Hub+ が効いた
+   - Station score が積み上がった
+   など、結果の特徴を短文で表現する
+   - 長すぎる説明は避ける
 
-5. 結果画面で「なぜ勝った / 負けたか」を補足する
-   - Route+ / Hub+ / station score のどれが効いたか
-   - Best route や主要スコアの意味が自然に伝わるよう補助する
+5. result panel のハイライト要素を強化する
+   - Best route
+   - top hub contribution
+   - key station influence
+   - city trait との関係
+   など、印象に残る情報を1〜2個強調する
 
 6. mobile でも読みやすいことを確認する
-   - テキスト量が多すぎない
-   - overlay が重すぎない
-   - 画面を塞ぎすぎない
+   - 見出しが大きすぎないか
+   - 情報量が多すぎないか
+   - ボタンや再プレイ導線が押しやすいか
 
-7. Tokyo / Osaka / London / NYC の4都市で確認する
-   - 都市差があっても onboarding の説明が破綻しないこと
+7. 4都市で確認する
+   - Tokyo / Osaka / London / NYC
+   - 都市差があっても result drama が破綻しないこと
    - コンソールエラー 0
 
 ## Expected Output
 - 変更ファイル一覧
-- 追加した onboarding / tutorial 要素の要約
-- Start前 / プレイ中 / 結果画面で何を追加したか
+- 追加した result drama / feedback 要素の要約
+- 勝因 / 敗因をどう見せるようにしたか
 - mobile への配慮内容
 - 4都市確認結果
 - コンソールエラー件数
@@ -118,18 +119,18 @@ GUNOS V1.2 Task 03 — Onboarding / Tutorial Layer
 - 次タスク候補
 
 ## Completion Report に必ず書いてほしいこと
-- どの方式の onboarding を採用したか
-- なぜその方式にしたか
-- 初見プレイヤーに何を最優先で伝える設計にしたか
-- Route+ / Hub+ / station score をどう説明したか
+- result panel のどこをどう強化したか
+- winner / score gap / victory reason をどう整理したか
+- Route+ / Hub+ / Station score の勝因表現をどう作ったか
 - mobile での見やすさにどう配慮したか
-- 重すぎる説明を避けるために何を削ったか
-- 次に強化するなら tutorial / result drama / city expansion のどれが自然か
+- 演出を強くしすぎず軽量に保つために何を制限したか
+- 4都市でどのような勝負の見え方になったか
+- 次に強化するなら city extensibility / polish / online 準備のどれが自然か
 
 ## Success Criteria
-- 初見プレイヤーが GUNOS の目的を把握しやすくなる
-- Route / Hub / Score の関係が前より伝わる
-- score panel / result panel の意味が理解しやすくなる
-- 既存 UI や mobile 改善を壊していない
-- 4都市で説明が破綻しない
+- GAME OVER 時に勝者と勝因が一目で分かる
+- 結果表示が前より印象に残る
+- Route+ / Hub+ / Station score の意味が結果画面で伝わる
+- mobile でも読みやすい
+- 既存 UI / onboarding / balance を壊していない
 - コンソールエラー 0
