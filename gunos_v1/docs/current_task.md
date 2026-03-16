@@ -1,22 +1,10 @@
 # Task
-GUNOS V1.2 Task 05 — City Pack Extensibility Prep
-
-**STATUS: COMPLETE** — See `current_result_v1_2_task05.md` for the full report.
-
----
-
-## Next: V1.2 Task 06 — Add 5th City Pack (Validation)
-
-Add a 5th city to validate the extensibility workflow end-to-end using the new `add_city_checklist.md` and `city_pack_spec.md` documentation.
-
----
-
-## Original Task Definition (archived)
+GUNOS V1.2 Task 06 — 5th City Pack Implementation Validation
 
 ## Goal
-- 新しい都市パックを今後追加しやすくするため、都市依存部分の構造を整理する
-- Tokyo / Osaka / London / NYC の既存対応を壊さず、city pack の拡張性を高める
-- 「新都市を追加する時に何を揃えればよいか」が明確な状態に近づける
+- 5つ目の city pack を実際に追加し、V1.2 Task 05 で整えた拡張構造が実運用で機能するか検証する
+- 新都市追加が「個別対応の職人作業」ではなく、「定義済みの city pack 手順」で進められることを確認する
+- 既存4都市を壊さず、5都市目を最小追加コストで統合する
 
 ## Current State
 - プロジェクト: `geodo.earth/gunos_v1`
@@ -29,130 +17,139 @@ Add a 5th city to validate the extensibility workflow end-to-end using the new `
   - V1.2 Task 02 — Gameplay Balance Tuning
   - V1.2 Task 03 — Onboarding / Tutorial Layer
   - V1.2 Task 04 — Result Drama & Feedback Enhancement
-- 現在の特徴:
-  - 4都市（Tokyo / Osaka / London / NYC）で動作
-  - Route / Hub / Station score / result / onboarding / mobile / result drama まで一通り整備済み
+  - V1.2 Task 05 — City Pack Extensibility Prep
+- Task 05 の成果:
+  - `city_registry.json` 中心の city metadata 整理
+  - city-specific ハードコード削減
+  - `docs/city_pack_spec.md`
+  - `docs/add_city_checklist.md`
+- 現在の対応都市:
+  - Tokyo
+  - Osaka
+  - London
+  - NYC
 - 現在の課題:
-  - 都市追加時に必要なデータ・設定・表示条件がどこに分散しているか分かりにくい可能性がある
-  - city-specific な条件分岐や暗黙の前提が残っている可能性がある
-  - 新都市追加の手順がまだ明文化されていない
+  - 拡張構造は整ったが、まだ 5th city pack を実際に追加して検証していない
+  - city registry / loader / UI / scoring / map / onboarding / result が、本当に新都市でつながるかは未実証
 - 対象URL:
   - `https://geodo.earth/gunos_v1/`
-- 想定対象ファイル:
-  - city config / lines master / station metrics / station lines / map rendering 関連ファイル
-  - `src/app/main.js`
-  - `src/ui/map_canvas.js`
-  - `src/ui/score_panel.js`
-  - `src/ui/result_panel.js`
-  - `src/ui/city_compare_panel.js`
-  - `src/game/game_session.js`
-  - 必要に応じて data loading / config 関連 JS
-  - 必要に応じて docs
 
-## Problem Statement
-- 現在は4都市対応できているが、今後さらに都市を増やすときに
-  - どのファイルを用意すればよいか
-  - どこを書き換えればよいか
-  - どこに都市依存の前提があるか
-  が見えにくい可能性がある
-- つまり今回の主題は、
-  **「新都市追加をしやすくするための構造整理と明文化」**
-- 今回は新都市を実際に1つ追加することより、
-  **追加しやすい形に整える準備**
-  を優先する
+## Main Objective
+- 新しい都市を1つ実際に追加する
+- その追加作業を通じて、
+  - 必要データ
+  - 必要設定
+  - UI 連携
+  - score / result / city compare 連携
+  - map 表示
+  が既存構造だけでどこまで対応できるかを検証する
+
+## City Selection
+- まずは **追加しやすい都市を1つ選ぶ**
+- 候補は、以下のような比較的わかりやすい鉄道ネットワーク都市が望ましい
+  - Paris
+  - Berlin
+  - Madrid
+  - Seoul
+  - Taipei
+  - Singapore
+- 選定基準:
+  - 路線構造が理解しやすい
+  - データが比較的整理しやすい
+  - GUNOS の既存4都市と並べて違和感が少ない
+- もし候補選定で迷う場合は、
+  **既存 city pack 構造に最も乗せやすい都市を優先すること**
+- 追加都市を選んだ理由を結果報告に明記すること
 
 ## Constraints
 - 既存4都市の動作を壊さない
-- V1.1 および V1.2 Task 01〜04 の成果を維持する
-- 今回は city pack extensibility の準備が主目的
+- V1.1 および V1.2 Task 01〜05 の成果を維持する
+- 今回は「5th city pack 実地検証」が目的
+- 追加都市の完成度は MVP レベルでよいが、最低限ゲームとして成立すること
 - 大規模リライトは避ける
-- 既存ロジックを全面抽象化しすぎない
-- 「今後の追加が楽になる」範囲で整理する
-- 新規ドキュメント追加は歓迎
+- city-specific 分岐を増やしすぎない
+- できるだけ Task 05 の city pack 構造に沿って追加する
 - キャッシュバスター更新が必要なら更新箇所を明示する
 
 ## Preferred Direction
-- まず「都市追加に必要な要素」を洗い出して整理する
-- 可能なら city-specific 前提を config / data 側へ寄せる
-- コード内のハードコードや個別分岐を減らす
-- 最低限、次のどれかを成果として残したい
-  1. city pack 構成要件の明文化
-  2. data/config loading の整理
-  3. city-specific 分岐の削減
-  4. 新都市追加チェックリストの作成
+- 追加都市は、まず「動く最小構成」を目指す
+- 完璧な都市再現より、
+  **既存 city pack 追加手順で統合できること**
+  を重視する
+- 次の要素が最低限揃うことが望ましい
+  1. city registry 登録
+  2. map 表示
+  3. station / line データ読込
+  4. Route+ / Hub+ / station score の最低限動作
+  5. city compare / onboarding / result への自然な統合
 
 ## Work Items
-1. 現在の city pack 依存箇所を洗い出す
-   - Tokyo / Osaka / London / NYC 対応のためにどのデータ・設定・分岐が必要か整理する
-   - map
-   - scoring
-   - UI
-   - onboarding/result/city compare
-   の各観点で確認する
+1. 追加都市を1つ選定する
+   - 候補比較を簡単に行い、採用理由を決める
+   - 「なぜその都市が 5th city として適切か」を短く整理する
 
-2. 新都市追加に必要な最小構成を定義する
-   - 例:
-     - lines master
-     - station metrics
-     - station-line mapping
-     - map geometry / rendering data
-     - city metadata
-     - labels / traits / UI text
-   - 実際の現行構造に合わせて整理する
+2. 必要データを揃える
+   - lines master
+   - station metrics
+   - station-line mapping
+   - map geometry / rendering data
+   - city metadata
+   - trait / display text
+   など、Task 05 で定義した city pack 要件に沿って準備する
 
-3. city-specific なハードコードや暗黙依存を点検する
-   - ファイル名直書き
-   - city name による条件分岐
-   - score normalization や label threshold の都市別特殊処理
-   - UI 上の city 固有文言
-   を確認する
+3. city registry に新都市を追加する
+   - `city_registry.json` または現行 city metadata 管理箇所に登録する
+   - City Compare / map descriptor / UI trait 連携が自然につながるようにする
 
-4. 可能なら構造整理を行う
-   - config オブジェクト化
-   - city metadata の集中管理
-   - data loading の整理
-   - UI 側の都市参照の統一
-   など、過剰でない範囲で改善する
+4. map / score / UI 統合を確認する
+   - map render
+   - Route+ / Hub+
+   - station score
+   - result panel
+   - onboarding / help
+   - city comparison panel
+   が壊れずに表示されるか確認する
 
-5. 新都市追加のためのドキュメントを作る
-   - 例:
-     - `docs/city_pack_spec.md`
-     - `docs/add_city_checklist.md`
-     - `docs/city_pack_notes.md`
-   - 少なくとも
-     - 必要ファイル
-     - 必要設定
-     - テスト観点
-     が分かるようにする
+5. city-specific な追加修正が必要なら最小限で実施する
+   - どこで構造が足りなかったかを明記する
+   - 必要なら city pack spec / checklist を更新する
 
-6. 既存4都市で再確認する
-   - Tokyo / Osaka / London / NYC が従来どおり動くこと
-   - city compare / onboarding / result / score panel が壊れていないこと
+6. 既存4都市との共存確認を行う
+   - Tokyo / Osaka / London / NYC が壊れていないか確認する
+   - 5都市切替が自然か確認する
+
+7. 最低限の実ゲーム検証を行う
+   - 新都市でゲーム開始できる
+   - 数ターン以上進行する
+   - GAME OVER まで到達できる
+   - result 表示が成立する
    - コンソールエラー 0
 
 ## Expected Output
+- 採用した 5th city 名
+- 選定理由
 - 変更ファイル一覧
-- city pack extensibility 上の問題点整理
-- 何を構造化 / 明文化したか
-- 新都市追加時に必要なものの一覧
-- 追加したドキュメント一覧
-- 4都市確認結果
+- 追加した city pack 構成要素一覧
+- 既存構造で足りた点 / 足りなかった点
+- city pack spec / checklist の更新有無
+- 5都市確認結果
 - コンソールエラー件数
 - 残課題
 - 次タスク候補
 
 ## Completion Report に必ず書いてほしいこと
-- 現在の city pack が何で構成されていると整理したか
-- どの city-specific 依存を見つけたか
-- 今回どこまで整理できたか
-- 新都市追加時の最小要件をどう定義したか
-- ドキュメントを何作ったか
+- なぜその都市を 5th city として選んだか
+- 実際に追加するのに何が必要だったか
+- Task 05 の extensibility prep がどこまで有効だったか
+- どこで追加対応が必要になったか
+- map / scoring / result / onboarding / city compare のどこがそのまま使えたか
 - 既存4都市に副作用がなかったか
-- 次に本当に新都市を追加するなら何が必要か
+- 6th city 追加時にさらに改善すべき点は何か
 
 ## Success Criteria
-- 新都市追加に必要な構成が以前より明確になる
-- city-specific な依存が整理される
-- 少なくとも1つ以上、将来の都市追加に役立つドキュメントが残る
-- 既存4都市の動作を壊していない
+- 5つ目の city pack が最低限動作する
+- 既存4都市が壊れていない
+- 新都市が city registry ベースで統合されている
+- Route+ / Hub+ / result / city compare に自然につながる
+- city pack spec / checklist が実運用目線で検証される
 - コンソールエラー 0
