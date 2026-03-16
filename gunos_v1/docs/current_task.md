@@ -1,6 +1,18 @@
 # Task
 GUNOS V1.2 Task 05 — City Pack Extensibility Prep
 
+**STATUS: COMPLETE** — See `current_result_v1_2_task05.md` for the full report.
+
+---
+
+## Next: V1.2 Task 06 — Add 5th City Pack (Validation)
+
+Add a 5th city to validate the extensibility workflow end-to-end using the new `add_city_checklist.md` and `city_pack_spec.md` documentation.
+
+---
+
+## Original Task Definition (archived)
+
 ## Goal
 - 新しい都市パックを今後追加しやすくするため、都市依存部分の構造を整理する
 - Tokyo / Osaka / London / NYC の既存対応を壊さず、city pack の拡張性を高める
