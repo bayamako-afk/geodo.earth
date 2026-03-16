@@ -1,31 +1,59 @@
 {
   "platform": "GUNOS V1",
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "default_city": "tokyo",
   "cities": [
     {
       "city_id": "tokyo",
       "display_name": "Tokyo",
       "display_label": "TOKYO",
-      "profile": "../guno_v6/cities/tokyo/city_profile.json"
+      "profile": "../guno_v6/cities/tokyo/city_profile.json",
+      "ui_trait": "dense baseline network",
+      "stats": {
+        "node_count": 86,
+        "avg_score": 6.8,
+        "max_score": 18.4,
+        "hub_pct": 94
+      }
     },
     {
       "city_id": "osaka",
       "display_name": "Osaka",
       "display_label": "OSAKA",
-      "profile": "../guno_v6/cities/osaka/city_profile.json"
+      "profile": "../guno_v6/cities/osaka/city_profile.json",
+      "ui_trait": "compact balanced network",
+      "stats": {
+        "node_count": 85,
+        "avg_score": 6.8,
+        "max_score": 22.3,
+        "hub_pct": 92
+      }
     },
     {
       "city_id": "london",
       "display_name": "London",
       "display_label": "LONDON",
-      "profile": "../guno_v6/cities/london/city_profile.json"
+      "profile": "../guno_v6/cities/london/city_profile.json",
+      "ui_trait": "transfer-heavy metro core",
+      "stats": {
+        "node_count": 162,
+        "avg_score": 1.4,
+        "max_score": 5.0,
+        "hub_pct": 95
+      }
     },
     {
       "city_id": "nyc",
       "display_name": "New York City",
       "display_label": "NYC",
-      "profile": "../guno_v6/cities/nyc/city_profile.json"
+      "profile": "../guno_v6/cities/nyc/city_profile.json",
+      "ui_trait": "long-distance Manhattan hub system",
+      "stats": {
+        "node_count": 152,
+        "avg_score": 1.1,
+        "max_score": 5.0,
+        "hub_pct": 94
+      }
     }
   ]
 }

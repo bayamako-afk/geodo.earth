@@ -62,8 +62,10 @@ export async function loadCityProfile(cityId, baseUrl) {
   if (!res.ok) throw new Error(`[GUNOS V1] city_loader: failed to load profile from ${profileUrl} (${res.status})`);
 
   const profile = await res.json();
-  // Attach display_label from registry entry for UI use
+  // Attach display_label and ui_trait from registry entry for UI use
+  // V1.2 Task 05: _ui_trait sourced from registry so map_panel.js needs no hardcoded city list
   profile._display_label = entry.display_label || cityId.toUpperCase();
+  profile._ui_trait      = entry.ui_trait || '';
   return profile;
 }
 

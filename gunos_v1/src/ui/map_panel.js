@@ -13,13 +13,8 @@
 
 import { renderMapCanvas } from './map_canvas.js?v=13';
 
-// City descriptor map — "same engine, different city behavior"
-const CITY_DESCRIPTORS = {
-  tokyo:  'dense baseline network',
-  osaka:  'compact balanced network',
-  london: 'transfer-heavy metro core',
-  nyc:    'long-distance Manhattan hub system',
-};
+// City descriptor: sourced from profile._ui_trait (injected from city_registry.json)
+// No hardcoded city list needed — new cities just need ui_trait in city_registry.json
 
 // Module-level graph cache (set once per city boot)
 let _stationGraph  = null;
@@ -39,7 +34,8 @@ export function renderMapPanel({ profile, stationGraph }) {
   const cityName      = profile.display_name || profile.city_id;
   const featuredLines = profile.routes?.featured_lines ?? [];
   const dataReady     = profile.status?.data_ready ?? false;
-  const descriptor    = CITY_DESCRIPTORS[profile.city_id] ?? '';
+  // V1.2 Task 05: Use _ui_trait injected from registry (no hardcoded city list)
+  const descriptor    = profile._ui_trait ?? '';
 
   // Station / route count summary
   const stationCount = profile.routes?.total_stations ?? profile.stats?.station_count ?? null;
