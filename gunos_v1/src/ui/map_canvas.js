@@ -246,8 +246,9 @@ function _buildSVG(
         isLeader    ? 'map-node--leader'     : '',
         isConnected ? 'map-node--connected'  : (isOwned ? 'map-node--isolated' : ''),
       ].filter(Boolean).join(' '),
-      'data-id':   nodeId,
-      'data-name': node.station_name,
+      'data-id':    nodeId,
+      'data-name':  node.station_name,
+      'data-owner': isOwned ? owner : '',
     });
 
     // V1.1: component size ring for connected owned nodes (shows network scale)

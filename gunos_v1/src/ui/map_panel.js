@@ -11,7 +11,7 @@
  *   - Cleaner header layout with city identity + descriptor
  */
 
-import { renderMapCanvas } from './map_canvas.js?v=12';
+import { renderMapCanvas } from './map_canvas.js?v=13';
 
 // City descriptor map — "same engine, different city behavior"
 const CITY_DESCRIPTORS = {

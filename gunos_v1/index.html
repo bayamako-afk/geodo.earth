@@ -2150,6 +2150,120 @@
       line-height: 1.4;
     }
     .result-score-explain strong { color: var(--c-text-muted); }
+
+    /* ════════════════════════════════════════════════════════════════════════
+       V1.2 Task 04 — RESULT DRAMA & FEEDBACK ENHANCEMENT
+    ════════════════════════════════════════════════════════════════════════ */
+
+    /* GAME OVER flash animation on #app */
+    @keyframes game-over-flash {
+      0%   { box-shadow: inset 0 0 0 0 transparent; }
+      25%  { box-shadow: inset 0 0 0 3px rgba(240,192,64,0.45); }
+      60%  { box-shadow: inset 0 0 0 3px rgba(240,192,64,0.25); }
+      100% { box-shadow: inset 0 0 0 0 transparent; }
+    }
+    #app.game-over-flash {
+      animation: game-over-flash 1.2s ease-out forwards;
+    }
+
+    /* Score comparison bar (P1 vs P2) */
+    .result-score-bar-wrap {
+      display: flex;
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+      background: var(--c-surface-3);
+      margin: 6px 0 4px;
+      gap: 1px;
+    }
+    .result-score-bar-p1 {
+      background: #4fc3f7;
+      border-radius: 3px 0 0 3px;
+      transition: width 0.6s ease;
+    }
+    .result-score-bar-p2 {
+      background: #ef9a9a;
+      border-radius: 0 3px 3px 0;
+      flex: 1;
+      transition: width 0.6s ease;
+    }
+    .result-score-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      font-family: var(--font-mono);
+      color: var(--c-text-muted);
+      margin-bottom: 6px;
+    }
+    .result-score-bar-labels span:first-child { color: #4fc3f7; }
+    .result-score-bar-labels span:last-child  { color: #ef9a9a; }
+
+    /* Match verdict chip */
+    .result-verdict {
+      display: inline-block;
+      font-size: 9px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .result-verdict--close    { background: rgba(63,185,80,0.12); color: #3fb950; border: 1px solid rgba(63,185,80,0.3); }
+    .result-verdict--dominant { background: rgba(240,192,64,0.12); color: var(--c-accent); border: 1px solid var(--c-accent-dim); }
+    .result-verdict--draw     { background: rgba(110,118,129,0.12); color: var(--c-text-muted); border: 1px solid var(--c-border); }
+
+    /* Score gap in winner announce */
+    .result-score-gap {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: var(--c-text-muted);
+      margin-left: 4px;
+    }
+
+    /* Why won — enhanced multi-line */
+    .result-why-block {
+      margin-top: 5px;
+      padding: 5px 7px;
+      background: rgba(240,192,64,0.06);
+      border-left: 2px solid var(--c-accent-dim);
+      border-radius: 0 4px 4px 0;
+    }
+    .result-why-line {
+      font-size: 9px;
+      color: var(--c-text-muted);
+      line-height: 1.5;
+    }
+    .result-why-line strong { color: var(--c-accent); }
+
+    /* Rematch button */
+    .result-rematch-btn {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      padding: 8px;
+      background: var(--c-surface-2);
+      border: 1px solid var(--c-border);
+      border-radius: 5px;
+      color: var(--c-text-muted);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .result-rematch-btn:hover {
+      background: var(--c-surface-3);
+      border-color: var(--c-accent-dim);
+      color: var(--c-accent);
+    }
+    .result-rematch-btn:active { opacity: 0.8; transform: scale(0.98); }
+
+    /* Map: winner highlight — dim loser nodes */
+    .map-node--loser circle { opacity: 0.35; }
+    .map-node--loser text   { opacity: 0.25; }
   </style>
 </head>
 <body>

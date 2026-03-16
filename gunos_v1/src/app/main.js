@@ -26,8 +26,8 @@ import {
 } from '../ui/score_panel.js?v=14';
 import { renderCityComparePanel } from '../ui/city_compare_panel.js?v=1';
 import { initHelpModal, openHelpModal } from '../ui/help_modal.js?v=1';
-import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=14';
-import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=12';
+import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=15';
+import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=13';
 import {
   initSession,
   playOneTurn,
