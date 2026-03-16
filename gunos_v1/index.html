@@ -1844,15 +1844,46 @@
 
     /* Bottom area: allow taller on mobile to reduce scroll */
     @media (max-width: 680px) {
-      :root {
-        --bottom-h: auto;
-      }
-
-      #bottom-area {
-        height: auto;
-        max-height: 55vh;
+      /* ── MOBILE SCROLL LAYOUT ──────────────────────────────────────────────
+         On mobile the full content (map + hand + score with P1 & P2) is taller
+         than the viewport.  We let #app grow beyond 100vh and allow body to
+         scroll so every panel is reachable.  The map canvas keeps touch-action:
+         none so map panning does NOT trigger page scroll.
+      ──────────────────────────────────────────────────────────────────────── */
+      body {
         overflow-y: auto;
       }
+
+      #app {
+        height: auto;
+        min-height: 100dvh;
+        overflow: visible;
+      }
+
+      #app-body {
+        overflow: visible;
+        height: auto;
+        flex: none;
+      }
+
+      /* Map: fixed viewport-relative height so it stays usable */
+      #map-area {
+        height: 45vh;
+        flex: none;
+        min-height: 200px;
+        overflow: hidden;
+      }
+
+      /* Bottom panels: stack vertically, grow to full content height */
+      #bottom-area {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        flex-direction: column;
+      }
+
+      #panel-hand  { width: 100%; }
+      #panel-score { width: 100%; flex-shrink: 0; }
 
       /* Larger touch targets on mobile */
       .hdr-action-btn {
@@ -1901,17 +1932,6 @@
       .hand-cards-row {
         gap: 8px;
         padding-bottom: 4px;
-      }
-
-      /* Score panel: full width on mobile */
-      #panel-score {
-        width: 100%;
-        flex-shrink: 1;
-      }
-
-      /* Map area: ensure it doesn't get squeezed too much */
-      #map-area {
-        min-height: 200px;
       }
     }
 
