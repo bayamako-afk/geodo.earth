@@ -55,10 +55,11 @@
       flex-direction: column;
       height: 100dvh;            /* full viewport, no scroll */
       overflow: hidden;
+      position: relative;        /* V1.3 Task 02: stacking context for absolute header */
     }
 
     /* ════════════════════════════════════════════════════════════════════════
-       HEADER BAR
+       HEADER BAR — V1.3 Task 02: floating HUD header
     ════════════════════════════════════════════════════════════════════════ */
     #app-header {
       display: flex;
@@ -66,12 +67,18 @@
       flex-wrap: wrap;          /* MOBILE FIX: allows row 2 for action buttons */
       min-height: var(--header-h);
       padding: 0 12px;
-      background: var(--c-surface);
-      border-bottom: 1px solid var(--c-border);
+      /* V1.3 Task 02: semi-transparent HUD header */
+      background: rgba(22, 27, 34, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(48, 54, 61, 0.6);
       flex-shrink: 0;
       gap: 6px;
-      position: relative;  /* REQUIRED: makes z-index effective */
-      z-index: 200;        /* above HUD layer (z-index:10) and map (z-index:1) */
+      position: absolute;       /* float over the map */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;             /* above HUD layer (z-index:10) and map (z-index:1) */
     }
 
     /* Brand */
@@ -219,19 +226,20 @@
     .hdr-status--error   { color: var(--c-red); }
 
     /* ════════════════════════════════════════════════════════════════════════
-       V1.3 TASK 01 — FULLSCREEN MAP + HUD OVERLAY LAYOUT
+       V1.3 TASK 02 — FULLSCREEN MAP + FLOATING HUD PANELS
        DOM structure:
-         #app-body (position:relative, flex:1)
-           #map-area  (position:absolute, inset:0)  ← fullscreen map base
-           #hud-layer (position:absolute, inset:0, pointer-events:none)
-             #bottom-area (position:absolute, bottom:0, pointer-events:auto)
+         #app (position:relative)
+           #app-header (position:absolute, top:0)  ← floating HUD header
+           #app-body   (position:absolute, inset:0) ← full viewport
+             #map-area  (position:absolute, inset:0)  ← fullscreen map base
+             #hud-layer (position:absolute, inset:0, pointer-events:none)
+               #bottom-area (position:absolute, bottom:0, pointer-events:auto)
     ════════════════════════════════════════════════════════════════════════ */
     #app-body {
-      flex: 1;
-      position: relative;    /* establishes stacking context for absolute children */
+      position: absolute;    /* V1.3 Task 02: full viewport, header floats above */
+      inset: 0;
       overflow: hidden;
       background: var(--c-bg);
-      min-height: 0;
     }
 
     /* ── Map area: fullscreen base layer ──────────────────────────────────── */
@@ -253,13 +261,14 @@
       justify-content: flex-end; /* panels anchor to bottom */
     }
 
-    /* ── Bottom split panels (inside HUD layer) ───────────────────────────── */
+    /* ── Bottom split panels (inside HUD layer) — V1.3 Task 02: floating dock ── */
     #bottom-area {
       display: flex;
       flex-direction: row;
       height: var(--bottom-h);
       flex-shrink: 0;
-      gap: var(--panel-gap);
+      gap: 6px;
+      padding: 0 6px 6px;    /* edge gap so panels float above the map edge */
       pointer-events: auto;  /* re-enable interaction for panels */
     }
 
@@ -267,11 +276,14 @@
     #panel-score { flex: 1; min-width: 0; pointer-events: auto; flex-shrink: 1; }
 
     /* ════════════════════════════════════════════════════════════════════════
-       PANEL BASE
+       PANEL BASE — V1.3 Task 02: semi-transparent HUD glass panels
     ════════════════════════════════════════════════════════════════════════ */
     .gs-panel {
-      background: var(--c-surface);
-      border: 1px solid var(--c-border-soft);
+      background: rgba(22, 27, 34, 0.80);   /* semi-transparent dark surface */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(48, 54, 61, 0.55);
+      border-radius: 6px;                   /* rounded corners for floating feel */
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -283,9 +295,10 @@
       align-items: center;
       justify-content: space-between;
       padding: 5px 10px;
-      background: var(--c-surface-2);
-      border-bottom: 1px solid var(--c-border-soft);
+      background: rgba(33, 38, 45, 0.70);   /* slightly darker header tint */
+      border-bottom: 1px solid rgba(48, 54, 61, 0.45);
       flex-shrink: 0;
+      border-radius: 6px 6px 0 0;           /* match panel corner radius */
     }
 
     .gs-panel__title {
@@ -308,10 +321,18 @@
     }
 
     /* ════════════════════════════════════════════════════════════════════════
-       MAP PANEL
+       MAP PANEL — V1.3 Task 02: fullscreen, no panel chrome
     ════════════════════════════════════════════════════════════════════════ */
     #panel-map {
       height: 100%;
+      background: transparent !important;  /* map fills the space, no panel bg needed */
+      border: none !important;             /* no border on the fullscreen map panel */
+      border-radius: 0 !important;
+    }
+
+    /* Hide the legacy gs-panel__header inside #panel-map (redundant in HUD layout) */
+    #panel-map > .gs-panel__header {
+      display: none;
     }
 
     #map-panel-body {
@@ -890,15 +911,17 @@
       gap: 0 !important;
     }
 
-    /* Header row inside map panel */
+    /* Header row inside map panel — V1.3 Task 02: transparent (map shows through) */
     .map-header {
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 5px 12px;
       flex-shrink: 0;
-      border-bottom: 1px solid var(--c-border-soft);
-      background: var(--c-surface-2);
+      border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+      background: rgba(33, 38, 45, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .map-header__left {
@@ -1358,14 +1381,16 @@
     }
     .hdr-city-btn--active .hdr-city-btn__count { color: var(--c-city); opacity: 0.7; }
 
-    /* Map header (Phase 6 redesign) */
+    /* Map header (Phase 6 redesign) — V1.3 Task 02: transparent overlay */
     .map-header {
       display: flex;
       align-items: center;
       gap: 10px;
       padding: 6px 12px;
-      background: var(--c-surface-2);
-      border-bottom: 1px solid var(--c-border-soft);
+      background: rgba(33, 38, 45, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(48, 54, 61, 0.4);
       flex-shrink: 0;
     }
 
@@ -1620,6 +1645,7 @@
       #bottom-area {
         flex-direction: column;
         height: auto;
+        padding: 0 4px 4px;   /* tighter edge gap on mobile */
       }
 
       #panel-score {
@@ -2447,7 +2473,7 @@
 <div id="boot-error"></div>
 
 <!-- App entry point -->
-<script type="module" src="src/app/main.js?v=18"></script>
+<script type="module" src="src/app/main.js?v=19"></script>
 
 </body>
 </html>
