@@ -2440,6 +2440,155 @@
       }
     }
 
+    /* ════════════════════════════════════════════════════════════════════════
+       V1.3 TASK 04 — SMARTPHONE LANDSCAPE LAYOUT OPTIMIZATION
+       Target: max-height 500px + orientation landscape (smartphone held sideways)
+       Goal: maximize map vertical space while keeping HUD operable
+    ════════════════════════════════════════════════════════════════════════ */
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      /* Shrink layout variables for landscape thin mode */
+      :root {
+        --header-h: 36px;
+        --bottom-h: 110px;
+      }
+
+      /* Header: ultra-compact for landscape */
+      #app-header {
+        padding: 1px 8px;
+        gap: 4px;
+        min-height: var(--header-h);
+        /* Prevent 2-row wrapping in landscape — keep single row */
+        flex-wrap: nowrap;
+        overflow: hidden;
+      }
+
+      /* Brand: smaller in landscape */
+      .hdr-brand__platform {
+        font-size: 11px;
+      }
+
+      /* Hide city label in header (shown on map) */
+      .hdr-brand__city,
+      .hdr-brand__sep {
+        display: none;
+      }
+
+      /* City selector: compact */
+      #hdr-city-selector {
+        gap: 2px;
+        flex-shrink: 1;
+        overflow: hidden;
+      }
+
+      /* City buttons: minimal */
+      .hdr-city-btn {
+        padding: 2px 5px;
+        font-size: 9px;
+        min-height: 26px;
+      }
+
+      /* Hide station count in city buttons */
+      .hdr-city-btn__count {
+        display: none;
+      }
+
+      /* Action buttons: compact */
+      .hdr-action-btn {
+        min-height: 30px;
+        padding: 4px 8px;
+        font-size: 10px;
+      }
+
+      /* Hide status text in header */
+      #hdr-status {
+        display: none;
+      }
+
+      /* Game badge: smaller */
+      .hdr-game-badge {
+        font-size: 9px;
+        padding: 1px 5px;
+      }
+
+      /* Turn counter: smaller */
+      #hdr-turn-counter {
+        font-size: 9px;
+      }
+
+      /* HELP button: hide in landscape to save space */
+      #btn-help {
+        display: none;
+      }
+
+      /* Hand panel: ultra-thin for landscape */
+      .hand-panel-inner {
+        padding: 3px 6px;
+        gap: 3px;
+      }
+
+      /* Hand cards: smallest size for landscape */
+      .hand-card-slot {
+        width: 42px;
+        height: 56px;
+      }
+
+      /* Card row: tightest gap */
+      .hand-cards-row {
+        gap: 4px;
+        padding-bottom: 1px;
+      }
+
+      /* Hand meta row: minimal */
+      .hand-panel-meta {
+        gap: 4px;
+        font-size: 9px;
+      }
+
+      /* Panel header: compact */
+      .gs-panel__header {
+        padding: 3px 8px;
+        min-height: 22px;
+      }
+
+      /* Status panel: ultra-compact */
+      #panel-score {
+        max-height: 110px;
+        overflow: hidden;
+      }
+
+      /* Hide log section in landscape */
+      .score-section--log {
+        display: none;
+      }
+
+      /* Hide city compare in landscape */
+      .city-compare-panel {
+        display: none;
+      }
+
+      /* Score section: minimal padding */
+      .score-section {
+        padding: 3px 6px;
+      }
+
+      /* Score player block: minimal */
+      .score-player-block {
+        padding: 2px 5px;
+        margin-bottom: 1px;
+      }
+
+      /* Hub names: hide in landscape */
+      .score-hub-names {
+        display: none;
+      }
+
+      /* Bottom area: ensure thin mode */
+      #bottom-area {
+        padding: 0 4px 4px;
+      }
+    }
+
     /* Extra narrow: 430px — tighter header to free more vertical space */
     @media (max-width: 430px) {
       /* Header 2-row layout: reduce padding further */
@@ -2566,7 +2715,7 @@
 <div id="boot-error"></div>
 
 <!-- App entry point -->
-<script type="module" src="src/app/main.js?v=20"></script>
+<script type="module" src="src/app/main.js?v=21"></script>
 
 </body>
 </html>
