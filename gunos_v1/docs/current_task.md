@@ -1,14 +1,14 @@
-# GUNOS V1.3 Task 03 — Mobile Portrait Layout Toggle
+# GUNOS V1.3 Task 04 — Mobile Landscape Optimization
 
 ## Objective
-V1.3 Task 01〜02 で整備した **Map-first / HUD overlay** レイアウトを前提に、  
-**スマホ縦表示（mobile portrait）での視認性・操作性を改善**する。
+V1.3 Task 03 で整備した **Mobile Portrait Layout Toggle** に続き、  
+**スマホ横表示（mobile landscape）での視認性・操作性を最適化**する。
 
-本タスクでは、通常のPC表示や既存のAUTOプレイ挙動を壊さず、  
-スマホ縦時のみ HUD の見せ方を最適化する。
+本タスクでは、スマホを横に持った際（高さが極端に低い状態）でも、  
+HUD が地図を完全に覆い隠さないようレイアウトを調整する。
 
 狙いは、  
-**「狭い縦画面でも、地図が主役のまま遊べること」**  
+**「高さが狭い横画面でも、地図が主役のまま遊べること」**  
 である。
 
 ---
@@ -59,12 +59,12 @@ GUNOSらしい “地図上に浮かぶ情報UI” の質感を整えた。
 
 ## Layout Requirements
 
-### 1. Mobile Portrait Detection
+### 1. Mobile Landscape Detection
 以下の条件を主対象とする。
 
-- スマホ縦表示
-- 目安幅: `max-width: 680px`
-- 必要なら height 条件も併用可
+- スマホ横表示
+- 目安: `(max-height: 500px) and (orientation: landscape)`
+- 必要なら width 条件も併用可
 
 この条件下のみ、専用レイアウトを適用する。
 
@@ -173,12 +173,11 @@ GUNOSらしい “地図上に浮かぶ情報UI” の質感を整えた。
 ## Preferred Implementation Direction
 以下の優先順で進めること。
 
-1. スマホ縦専用の header 圧縮
-2. bottom hand area の薄型化
-3. status/score のコンパクト化
-4. secondary info の最小化 or toggle化
-5. 390px幅前後で微調整
-6. プレイ動作確認
+1. スマホ横専用のメディアクエリ追加
+2. パネルの左右配置（flex-direction: row）の最適化
+3. 高さが足りない場合のスクロールや圧縮処理
+4. スマホ横表示（例: 800x390px）での微調整
+5. プレイ動作確認
 
 ---
 
