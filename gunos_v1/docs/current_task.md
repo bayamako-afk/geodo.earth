@@ -1,61 +1,183 @@
-# Task
-GUNOS V1.3 Task 01 — DOM Structure Inversion & Base HUD Layout
+# GUNOS V1.3 Task 02 — HUD Overlay Layout Refinement
 
-## Goal
-- 現行の「分割パネル方式（Split Panels）」から「地図全画面 + HUDオーバーレイ方式」へ移行するステップ1を実施する
-- `#map-area` を `position: absolute; inset: 0` で全画面化し、最背面に配置する
-- `#hud-layer`（`pointer-events: none`）を作成し、既存のパネルをそこに格納する
-- 各パネルに `pointer-events: auto` を付与し、操作性を確保する
-- この時点ではパネルのデザイン（背景色や枠）はそのまま維持する
-- 既存の5都市・全ゲームロジックへの影響ゼロを確認する
+## Objective
+V1.3 Task 01 で実現した「Map-first / HUD overlay」構造を前提に、  
+HUD各パネルの配置・透明度・視認性を調整し、  
+**“地図が主役で、情報はその上に自然に浮かぶ”** レイアウトへ進化させる。
 
-## Current State
-- プロジェクト: `geodo.earth/gunos_v1`
-- フェーズ:
-  - V1 milestone 完了
-  - V1.1 完了
-  - V1.2 完了
-  - V1.3 進行中
-- 完了済み:
-  - V1.2 Task 01 — Mobile-First Interaction Polish
-  - V1.2 Task 02 — Gameplay Balance Tuning
-  - V1.2 Task 03 — Onboarding / Tutorial Layer
-  - V1.2 Task 04 — Result Drama & Feedback Enhancement
-  - V1.2 Task 05 — City Pack Extensibility Prep
-  - V1.2 Task 06 — 5th City Pack Implementation Validation (Paris)
-- 対応都市:
-  - Tokyo, Osaka, London, NYC, Paris
-- 対象URL:
-  - `https://geodo.earth/gunos_v1/`
+本タスクでは、ゲームロジックの変更は行わず、**UIレイアウトとCSS中心の改善**に集中する。
 
-## V1.3 設計方針（レイアウト刷新レポートより）
-- 推奨案: **レイアウト案B（統合HUD案）**
-- 段階的移行ステップ:
-  1. **ステップ1（本タスク）**: DOM構造の反転とベースHUD化
-  2. ステップ2: パネルの解体とエッジ配置（CSS改修）
-  3. ステップ3: スマホ縦向き向けのトグル化（レスポンシブ対応）
+---
 
-## Main Objective (V1.3 Task 01)
-- `index.html` の DOM 構造を改修:
-  - `#app-body` を `position: relative` にする
-  - `#map-area` を `position: absolute; inset: 0` で全画面化（最背面）
-  - `#hud-layer` を新設（`position: absolute; inset: 0; pointer-events: none`）
-  - 既存の `#bottom-area` と `#app-header` を HUD レイヤー上に配置
-  - 各パネルに `pointer-events: auto` を付与
-- CSS 調整:
-  - `#app-body` の `flex` レイアウトから `position: relative` ベースへ移行
-  - `#map-area` の `height: 45vh` 制限を撤廃し、全画面化
-  - `#bottom-area` を HUD レイヤー内の下部に固定配置
-  - モバイルでのスクロール問題を HUD 方式で根本解決
-- 既存機能の保持:
-  - マップのパン・ズーム操作（`touch-action: none` 維持）
-  - 手札パネル、スコアパネル、都市比較パネルの操作性
-  - HELP モーダル、GAME OVER 演出
-  - 5都市すべての動作
+## Background
+Task 01 により、従来の分割パネル型レイアウトから、
 
-## Next Suggested Task
-**V1.3 Task 02**: Panel Design Refinement — HUD化後のパネルデザイン刷新
-- パネルの背景色・ボーダーを半透明化（`backdrop-filter: blur`）
-- ヘッダーを画面上部にオーバーレイ
-- 手札を画面下部中央にドック化
-- スコアパネルを右エッジに配置
+- 地図を全画面ベースに置く
+- HUDをオーバーレイ表示する
+- 地図操作とUI操作を両立する
+
+という構造への移行が完了した。
+
+次の段階として、HUDパーツを「どこに置くと一番自然か」を整理し、
+GUNOSらしい画面構成にブラッシュアップしたい。
+
+---
+
+## Design Goal
+目指す画面は以下の通り。
+
+- 地図が常に最も大きく、最も目立つ
+- HUDは必要情報を邪魔せず表示する
+- プレイヤーが「地図上で遊んでいる」と直感できる
+- スマホでも破綻しにくい
+- 従来の情報量は保ちつつ、視線誘導が整理されている
+
+---
+
+## Layout Requirements
+
+### 1. Header
+- `#app-header` は現状通り最上部固定でよい
+- ただし高さ・余白を見直し、圧迫感を減らす
+- 地図の視認領域をできるだけ確保する
+- 半透明または軽い背景色を検討してよい
+- 完全不透明すぎる重い帯状UIは避ける
+
+---
+
+### 2. Bottom Hand Area
+- 手札エリア（`#bottom-area` もしくは相当要素）は**画面下中央**に配置する
+- 幅は中央寄せ
+- 画面全幅ベタ置きではなく、**浮いているHUDカード群**のように見せる
+- 背景は半透明 dark glass 風でよい
+- `backdrop-filter: blur(...)` を使える場合は軽く適用してよい
+- 角丸・余白を使い、「操作UI」として明確にする
+
+#### Important
+- 地図の下部を完全に潰さないこと
+- モバイル時でも手札が横スクロールや極端な圧縮で破綻しないこと
+- プレイヤーが「ここを触る場所」とすぐ分かること
+
+---
+
+### 3. Score / Status Panel
+- スコアやターン情報などの情報パネルは**右上または右側上部**に寄せる
+- 地図の主領域を塞がない小型HUDとして整理する
+- 情報量が多い場合は縦積みでもよい
+- 背景は半透明
+- 文字はしっかり読めるコントラストを保つ
+
+#### Preferred direction
+- まずは **右上寄せのコンパクトパネル** を第一候補とする
+- header と重ならないよう余白を確保する
+
+---
+
+### 4. Log / Secondary Info
+- ログや補助情報は主役にしない
+- 常時大きく表示しない
+- 必要なら小さめのサブHUD、または折りたたみ寄りの見せ方にする
+- 地図の視認を阻害する場合は表示優先度を下げる
+
+---
+
+### 5. Center Area / Result Overlay
+- 勝敗結果や一時的なメッセージは中央オーバーレイでよい
+- ただし通常プレイ中は中央を極力空ける
+- 中央は「地図を見る場所」として確保する
+
+---
+
+## Visual Style Requirements
+
+### HUD style
+全HUDパネルは以下の方向性で統一すること。
+
+- 半透明背景
+- 軽いぼかし（可能なら）
+- 細い境界線または淡い影
+- 角丸
+- 地図を殺さない軽さ
+
+### Avoid
+- 完全不透明の大きい黒箱
+- PC向け管理画面のような重いパネル感
+- 地図よりHUDが目立つ配色
+
+---
+
+## Responsive Requirements
+
+### Smartphone portrait
+- 最重要対応
+- 手札は下中央
+- 情報パネルは右上か左上にコンパクト配置
+- 地図の中心が見えること
+- Start / Auto / 操作ボタン類が隠れないこと
+
+### Smartphone landscape
+- 可能な範囲で破綻を抑える
+- 横幅は増えるが縦が厳しいため、header / hand area の厚みを抑える
+- 下部パネルが厚すぎて地図が見えなくならないこと
+
+### Desktop
+- HUDが広がりすぎず、適度に浮いたレイアウト
+- 大画面でも「左右に情報を広げすぎる管理画面」にならないこと
+
+---
+
+## Technical Constraints
+- ゲームロジック変更は原則不要
+- DOMの大規模再構成は避け、**既存構造を活かしたCSS中心の改善**を優先
+- 必要に応じて最小限のclass/id追加は可
+- `pointer-events` 制御を維持し、地図操作を壊さないこと
+- Leaflet map の操作感を最優先で守ること
+
+---
+
+## Expected Deliverables
+以下を提出すること。
+
+1. レイアウト調整後の実装
+2. 変更ファイル一覧
+3. 主要変更点の要約
+4. PC表示スクリーンショット
+5. スマホ幅（例: 390px）スクリーンショット
+6. 確認結果
+   - 地図操作可能
+   - 手札操作可能
+   - AUTOプレイ継続可能
+   - 勝敗表示に問題なし
+   - コンソールエラーなし
+
+---
+
+## Acceptance Criteria
+以下を満たせば完了とする。
+
+- 地図が最も主役に見える
+- 手札位置が下中央で自然
+- スコア/状態表示が右上系に整理されている
+- HUD全体が半透明系で統一されている
+- モバイル幅でも破綻しない
+- 操作不能箇所が増えていない
+- Task 01 の overlay 構造を壊していない
+
+---
+
+## Suggested Implementation Order
+1. hand area の下中央配置
+2. score/status の右上整理
+3. HUD背景の半透明化
+4. blur / border / shadow の軽い調整
+5. スマホ幅で微修正
+6. 動作確認
+
+---
+
+## Notes
+このタスクの本質は「見た目を派手にすること」ではなく、  
+**GUNOSらしい “Map-first HUD” の定着**である。
+
+地図の上に情報を置くが、情報が主役になってはいけない。  
+常に「地図の中で遊ぶ感覚」が優先されるように調整すること。
