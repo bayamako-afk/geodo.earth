@@ -1,229 +1,301 @@
 # GUNOS V1.3 Task 05 — Map Overlay Info Panel
 
 ## Objective
-V1.3 Task 01〜04 で整備した **Map-first / HUD overlay** レイアウトにおいて、  
-**マップ上に直接浮かぶ情報パネル（Map Overlay Info Panel）の実装**を行う。
+スマホ横向き最適化で削減した情報を、地図の主役性を損なわない範囲で再整理し、  
+**「今なにが起きているか」「このゲームで何を競っているか」** がより伝わる  
+**Map Overlay Info Panel** を実装する。
 
-本タスクでは、都市名や簡易ステータスなどの情報を、  
-ヘッダーや下部パネルから切り離し、地図の空きスペースに直接浮かべることで、  
-**「より地図と一体化したHUD体験」** を実現する。
+本タスクでは、ログ常設や大型パネル復帰は行わず、  
+**地図上に軽量な情報オーバーレイを追加する** ことで、  
+プレイ中の状況理解を補強することを目的とする。
 
 ---
 
 ## Background
-Task 01〜04 を通じて、HUD のレイアウト整理（PC、スマホ縦、スマホ横）が完了した。  
-しかし現在、都市名やゲームの進行状況（ターン数など）は、  
-依然としてヘッダーやステータスパネルの中に押し込まれている。
+V1.3 Task 04 では、スマホ横向きで地図を主役に戻すために、  
+HUD の情報量を思い切って削減し、下部領域や補助パネルを圧縮した。
 
-地図が全画面化したことで、地図上の「四隅」や「空きスペース」を活用できるようになった。
+その結果、
+- 地図視認性
+- 操作性
+- モバイル横向きの成立性
 
-そこで Task 05 では、**マップ上に直接浮かぶフローティングパネル** を新設し、  
-より没入感のある「地図ゲーム」らしいUIへと進化させる。
+は大きく改善したが、一方で
+- 今なにが起きたのか
+- なぜスコアが動いたのか
+- 何を狙うゲームなのか
 
----
+がやや伝わりにくくなる余地がある。
 
-## Design Goal
-目指す状態は以下。
-
-- スマホ横向きでも地図が主役
-- 上下HUDが厚すぎない
-- 手札が操作できる
-- 情報はコンパクトに整理される
-- 横向きで「遊びやすくなった」と感じられる
-- PC / スマホ縦の完成度を壊さない
+そのため次段階として、  
+地図の上に **小さく・邪魔にならず・状況理解に効く情報パネル** を追加し、  
+GUNOS を「地図が動くUI」から「意味の見えるゲームUI」へ一段進める。
 
 ---
 
-## Core Idea
-スマホ横向きでは、**縦方向スペースが最重要資源**である。
+## Scope
+今回のタスクで行うこと。
 
-そのため、
-- ヘッダーはさらに薄く
-- 下部手札エリアも薄く
-- ステータスは小型化
-- 補助情報は極小化 or 非表示
-- 地図中央の横長視認領域を最大化
-
-という方針で調整する。
+1. 地図上に軽量な overlay info panel を追加する
+2. 現在の局面や直近イベントが分かる表示を追加する
+3. スコアや進行状況の意味が少し伝わるようにする
+4. PC / スマホ横 / スマホ縦で破綻しにくい表示にする
+5. Task 04 で実現した map-first 方針を維持する
 
 ---
 
-## Target Condition
-主対象は以下。
+## Out of Scope
+今回まだやらないもの。
 
-- スマホ横向き表示
-- 目安条件:
-  - `max-height: 500px` 前後
-  - 必要に応じて `orientation: landscape` を併用可
-  - 幅条件も必要なら補助的に利用可
+- 大型ログパネルの復活
+- 派手なアニメーション演出
+- result overlay の最終仕上げ
+- 完全なチュートリアルUI
+- ルール変更や採点ロジック変更
+- 手札UIのフル刷新
+- すべての詳細情報の常設表示
 
-この条件下のみ、専用調整を適用する。
+今回はあくまで  
+**「状況が伝わる軽量オーバーレイ」** の追加に留める。
 
 ---
 
-## Layout Requirements
+## Required Design Direction
 
-### 1. Header Slim Mode
-スマホ横向きでは `#app-header` を縦よりさらに薄くする。
+### Core concept
+- 地図を隠さない
+- 情報は少なく、意味は強く
+- 常設情報は最小限
+- 「何が起きたか」「何を競うか」が伝わる
+- スマホ横向きでも圧迫感が出ない
+
+### UX intention
+ユーザーが画面を見たときに、少なくとも以下が読み取れる状態を目指す。
+
+- 今のターンやプレイヤー
+- 直近で何が起きたか
+- スコアや順位が動く理由のヒント
+- 駅・Route+・Hub+ の意味づけの入口
+
+---
+
+## Required Overlay Elements
+最低限、以下のいずれか、または複合で成立させること。
+
+### A. Current Situation Panel
+地図上の小型パネルとして、現在状況を表示する。
+
+候補:
+- current turn
+- current player
+- current city / mode
+- simple score delta or status
+- current target / current route context（可能なら）
+
+### B. Recent Event Panel
+直近イベントを 1〜3 件程度だけ見せる軽量表示。
+
+候補:
+- reached station
+- Route+ activated
+- Hub connected
+- score +X
+- player takes lead
+
+※ 長いログ一覧ではなく、短く要点だけ出す。
+
+### C. Game Meaning Hint
+GUNOS が何を狙うゲームかを少し伝える情報。
+
+候補:
+- stations captured
+- current leader
+- score gap
+- route bonus active
+- hub bonus active
+
+※ 情報は少なくてよいが、  
+「ただの地図表示ではなく競っている」と分かることが重要。
+
+---
+
+## Placement Guidance
+地図主役を維持しながら、以下のいずれかの配置で実装すること。
+
+### Preferred options
+- top-center に細い status bar
+- upper-middle に小型 toast / info box
+- bottom-center に current info を薄く重ねる
+- top-right existing HUD の補助として小型追加表示
+
+### Avoid
+- 大きすぎる常設パネル
+- 地図中心を長時間塞ぐ表示
+- スマホ横で横幅を大きく使いすぎる配置
+- 既存 bottom area を再び重くすること
+
+---
+
+## Implementation Tasks
+
+### 1. Add overlay info container
+現行の map-stage / HUD 構造に自然に乗る形で、  
+overlay info panel 用のコンテナを追加すること。
+
+例:
+- `#map-overlay-info`
+- `#event-toast`
+- `#current-situation-panel`
+
+命名は既存構造に合わせてよいが、  
+役割が分かる形にすること。
+
+---
+
+### 2. Show current situation summary
+常設または準常設で、現在の局面を短く表示すること。
+
+最低限候補:
+- Turn number
+- Current player
+- Current leader or ranking summary
+- Active status (Route+ / Hub+ / Live if available)
+
+表示は 1〜3 行程度の簡潔さを優先する。
+
+---
+
+### 3. Show recent event / action feedback
+プレイ中の直近イベントが分かる軽量な表示を追加すること。
 
 要件:
-- ヘッダー高さを最小限まで圧縮
-- padding / gap / font-size を landscape 向けに再調整
-- Start / Auto / 必須操作は残す
-- ただし横向きで押しにくくならない範囲にする
-- タイトルや補助要素は必要に応じて簡略表示してよい
+- 常時大きく出し続けない
+- 直近 1〜3 件程度でよい
+- ログ全件表示ではなく要約型
+- スマホ横でも邪魔にならない
 
-目的:
-- 上端の占有高さを削減する
-- 地図の縦方向可視領域を増やす
+可能なら簡易 toast 的な挙動でもよいが、  
+凝ったアニメーションは不要。
 
 ---
 
-### 2. Bottom Hand Area Thin Mode
-手札エリアは横向きでも主操作HUDとして残すが、  
-**縦よりさらに薄い “landscape thin mode”** を検討する。
+### 4. Reinforce game meaning
+スコアや制覇の意味が少し伝わるようにすること。
 
-要件:
-- 下中央配置を維持
-- 高さをできるだけ抑える
-- padding / margin / gap を横向き向けに縮小
-- カードサイズは必要なら微縮小してよい
-- タップ可能性は維持
-- 地図下部を過度に隠さない
+最低限、以下のいずれかを入れること。
+- leader / rank summary
+- stations captured summary
+- score delta
+- route / hub bonus indicator
+- short explanation-like labels
 
-重要:
-- 薄くしすぎて押しづらくならないこと
-- 地図を守ることと操作性のバランスを取ること
+目的は、初見でも  
+「駅や路線の取り方に意味がある」と感じられること。
 
 ---
 
-### 3. Status / Score Compact Mode
-ステータスやスコア情報は横向きでは常時大型表示しない。
+### 5. Responsive handling
+レスポンシブ必須。  
+以下を意識すること。
 
-推奨:
-- 右上の小型HUD化
-- 1〜2行程度の簡易表示
-- 必要ならアイコン化 / 略記化
-- 詳細は省略または最小限
+#### PC
+- 情報量は少し多めでも可
+- 地図主役維持
+- 既存 HUD と競合しない
 
-表示候補:
-- 現在ターン
-- 山札枚数
-- 簡易ステータス
-- 都市名（必要なら短く）
+#### Smartphone landscape
+- 最重要ターゲット
+- 情報量は最小〜中程度
+- 視界を塞がない
+- 常設は細く軽く
 
-目的:
-- 情報を残しつつ、画面の縦スペースを消費しない
-
----
-
-### 4. Secondary Info Minimization
-ログや補助パネルなど、主役でない情報は  
-**スマホ横向きでは極力非表示 or 最小化** を優先する。
-
-方針:
-- 常時表示の大型ログは避ける
-- 比較パネル・補助説明は landscape では抑制してよい
-- 主役は地図＋手札＋最小限ステータスとする
+#### Smartphone portrait
+- 常設をさらに減らしてよい
+- 必要なら短い表示のみ
+- 操作系と干渉しないこと
 
 ---
 
-### 5. Preserve Map Center
-横向きで一番重要なのは、  
-**中央の横長マップ領域がプレイ可能な状態で見えること** である。
+## Constraints
+以下を守ること。
 
-要件:
-- ヘッダーと下部HUDに挟まれても地図中心が残る
-- プレイ中に地図を見ながら判断できる
-- 中央を大きく塞ぐ常設HUDは置かない
-
----
-
-### 6. Avoid Desktop-like Dashboard Feel
-横向きは横幅が広いため、つい情報を並べたくなるが、  
-本タスクでは **管理ダッシュボード化を避ける**。
-
-避けること:
-- 左右に大型パネルを並べる
-- 地図よりHUDの存在感が強い
-- “地図ゲーム”より“管理画面”に見える構成
-
----
-
-## Visual Style Requirements
-Task 02 までのHUD方針を維持する。
-
-- 半透明背景
-- 軽い blur
-- 角丸
-- 細いボーダー
-- 軽量な浮遊感
-
-横向き専用調整でも、別アプリのような見た目にしないこと。
-
----
-
-## Technical Constraints
-- ゲームロジックは変更しない
-- 既存の Map-first overlay 構造を維持する
-- CSS中心の対応を優先する
-- 必要に応じて最小限のclass追加は可
-- pointer-events 制御を壊さないこと
-- Leaflet map の操作感を最優先すること
-
----
-
-## Preferred Implementation Order
-以下の順で進めること。
-
-1. landscape 条件の切り分け
-2. header の薄型化
-3. bottom hand area の薄型化
-4. status/score の compact 化
-5. secondary info の最小化
-6. 実機想定サイズで微調整
-7. AUTOプレイ動作確認
-
----
-
-## Expected Deliverables
-以下を提出すること。
-
-1. 実装結果
-2. 変更ファイル一覧
-3. landscape 専用で何を変えたかの要約
-4. スクリーンショット
-   - PC表示
-   - スマホ縦表示
-   - スマホ横表示
-5. 確認結果
-   - 地図操作可能
-   - 手札操作可能
-   - Start / Auto 操作可能
-   - AUTOプレイ継続可能
-   - 勝敗表示に問題なし
-   - コンソールエラーなし
+- Task 04 のスマホ横向き最適化を壊さない
+- 地図面積を再び圧迫しない
+- Leaflet操作を妨げない
+- 既存スコア・Route+・Hub+ ロジックを壊さない
+- 情報量を増やしすぎない
+- 「見た目を足す」より「意味を伝える」を優先する
 
 ---
 
 ## Acceptance Criteria
-以下を満たせば完了とする。
+以下を満たすこと。
 
-- スマホ横向きで地図中心がしっかり見える
-- ヘッダーが薄く整理されている
-- 手札が横向きでも操作できる
-- ステータスがコンパクトに整理されている
-- 補助情報が主張しすぎない
-- PC / スマホ縦表示を壊していない
-- V1.3 の Map-first HUD 方針を維持している
+1. 地図上に軽量な info overlay が追加されている
+2. 今の局面が以前より分かりやすい
+3. 直近イベントやスコア変動の意味が少し伝わる
+4. GUNOS が「何を競うゲームか」が少し見えやすくなる
+5. スマホ横で地図主役が維持されている
+6. PC / スマホ横 / スマホ縦で致命的に崩れない
+7. Task 04 の改善を後退させていない
+8. 既存機能が正常に動く
 
 ---
 
-## Notes
-このタスクの本質は、横向きで情報を増やすことではない。
+## Verification Checklist
+以下を確認すること。
 
-**「限られた縦スペースの中で、地図を主役に保つ」**
-ことが目的である。
+- overlay info panel が map-stage 上で自然に見える
+- HUD と競合していない
+- 地図中心が塞がれすぎていない
+- recent event が読みやすい
+- current situation が短く分かりやすい
+- score / leader / route / hub の意味が少し伝わる
+- スマホ横で操作しにくくなっていない
+- GAME START から GAME OVER まで基本動作が問題ない
 
-GUNOSはダッシュボードではなく、  
-あくまで **地図ベースのネットワークゲーム** として見えることを重視する。
+---
+
+## Deliverables
+以下を提出すること。
+
+1. 実装内容の要約
+2. 変更ファイル一覧
+3. 追加した overlay info 要素の説明
+4. PC / スマホ横 / スマホ縦 の表示確認結果
+5. 既知の制約
+6. 必要ならスクリーンショット
+7. commit hash
+
+---
+
+## Expected Result
+このタスク完了時点で、GUNOS はまだ最終UIでなくてよい。  
+ただし少なくとも、
+
+- 地図主役を維持したまま
+- 何が起きているかが少し分かりやすくなり
+- スコアや駅選定の意味が少し伝わり
+- 「何をするゲームか」が前より見えやすい
+
+状態になっていることを期待する。
+
+---
+
+## Suggested next tasks
+次候補としては以下が想定される。
+
+- Task 06: Station / route meaning reinforcement panel
+- Task 07: Hand dock refinement
+- Task 08: Result overlay polish
+- Task 09: Event toast animation / highlight polish
+- Task 10: Beginner readability / onboarding hints
+
+---
+
+## Instruction to Manus
+現行コードを確認し、Task 04 のスマホ横向き最適化を維持したまま、  
+**small, readable, meaningful overlay info** を追加してください。
+
+大きな情報パネルを戻すのではなく、  
+**地図を主役にしたままゲームの意味が伝わるUI補強** を優先してください。
