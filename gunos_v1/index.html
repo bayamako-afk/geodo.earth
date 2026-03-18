@@ -2617,6 +2617,278 @@
         height: 60px;
       }
     }
+
+    /* ── V1.3 Task 05: Map Overlay Info Panel ──────────────────────────────── */
+
+    /* Overlay container — sits inside #hud-layer, above the map, below bottom-area */
+    #map-overlay-info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: var(--bottom-h);
+      pointer-events: none;          /* map interaction unaffected */
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ── Situation panel (top-left) ─────────────────────────────────────── */
+    #map-overlay-situation {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .moi-panel {
+      background: rgba(13, 17, 23, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(48, 54, 61, 0.7);
+      border-radius: 5px;
+      padding: 5px 8px;
+      min-width: 80px;
+    }
+
+    .moi-situation-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .moi-label {
+      color: var(--c-text-muted);
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      min-width: 30px;
+    }
+
+    .moi-value {
+      color: var(--c-text);
+      font-weight: 600;
+      font-size: 10px;
+    }
+
+    .moi-value--dim {
+      color: var(--c-text-dim);
+      font-weight: 400;
+    }
+
+    .moi-value--p1 {
+      color: #58a6ff;
+    }
+
+    .moi-value--p2 {
+      color: #f78166;
+    }
+
+    .moi-sep {
+      color: var(--c-text-dim);
+      font-size: 9px;
+    }
+
+    /* Mode chip */
+    .moi-chip {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(48, 54, 61, 0.8);
+      color: var(--c-text-muted);
+    }
+
+    .moi-chip--running {
+      background: rgba(63, 185, 80, 0.2);
+      color: var(--c-green);
+      border: 1px solid rgba(63, 185, 80, 0.4);
+    }
+
+    .moi-chip--finished {
+      background: rgba(240, 192, 64, 0.2);
+      color: var(--c-accent);
+      border: 1px solid rgba(240, 192, 64, 0.4);
+    }
+
+    .moi-chip--loading {
+      background: rgba(88, 166, 255, 0.15);
+      color: var(--c-city);
+    }
+
+    .moi-chip--idle {
+      background: rgba(48, 54, 61, 0.6);
+      color: var(--c-text-muted);
+    }
+
+    /* Leader value colors */
+    .moi-value--leader.moi-value--p1 { color: #58a6ff; }
+    .moi-value--leader.moi-value--p2 { color: #f78166; }
+
+    /* ── Score summary panel (top-right) ────────────────────────────────── */
+    #map-overlay-scores {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .moi-panel--scores {
+      min-width: 64px;
+    }
+
+    .moi-score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 10px;
+      line-height: 1.5;
+      padding: 1px 0;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+
+    .moi-score-row--lead {
+      background: rgba(240, 192, 64, 0.08);
+    }
+
+    .moi-score-id {
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 0.06em;
+    }
+
+    .moi-score-id--p1 { color: #58a6ff; }
+    .moi-score-id--p2 { color: #f78166; }
+
+    .moi-score-val {
+      color: var(--c-text);
+      font-weight: 600;
+      font-size: 11px;
+      min-width: 24px;
+      text-align: right;
+    }
+
+    /* ── Toast (bottom-center) ──────────────────────────────────────────── */
+    #map-overlay-toast {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(13, 17, 23, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(48, 54, 61, 0.8);
+      border-radius: 20px;
+      padding: 4px 14px 4px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--c-text);
+      white-space: nowrap;
+      max-width: 80vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: opacity 0.4s ease;
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    #map-overlay-toast.moi-toast--hidden {
+      opacity: 0;
+    }
+
+    .moi-toast-icon {
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .moi-toast-text {
+      font-size: 11px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Toast type colors */
+    .moi-toast--bonus  { border-color: rgba(240, 192, 64, 0.6); }
+    .moi-toast--bonus .moi-toast-icon { color: var(--c-accent); }
+    .moi-toast--hub    { border-color: rgba(188, 140, 255, 0.6); }
+    .moi-toast--hub .moi-toast-icon   { color: var(--c-purple); }
+    .moi-toast--route  { border-color: rgba(63, 185, 80, 0.6); }
+    .moi-toast--route .moi-toast-icon { color: var(--c-green); }
+    .moi-toast--win    { border-color: rgba(240, 192, 64, 0.8); }
+    .moi-toast--win .moi-toast-icon   { color: var(--c-accent); }
+
+    /* ── Responsive: landscape (max-height 500px) ───────────────────────── */
+    @media (max-height: 500px) and (orientation: landscape) {
+      #map-overlay-situation {
+        top: 4px;
+        left: 4px;
+      }
+
+      #map-overlay-scores {
+        top: 4px;
+        right: 4px;
+      }
+
+      .moi-panel {
+        padding: 3px 6px;
+      }
+
+      .moi-situation-row,
+      .moi-score-row {
+        font-size: 9px;
+        gap: 3px;
+      }
+
+      .moi-label { font-size: 8px; }
+      .moi-value { font-size: 9px; }
+      .moi-chip  { font-size: 8px; padding: 1px 4px; }
+      .moi-score-val { font-size: 10px; }
+
+      /* Hide leader row on landscape to save space */
+      #moi-leader-row { display: none !important; }
+
+      #map-overlay-toast {
+        font-size: 10px;
+        padding: 3px 10px 3px 8px;
+        bottom: 4px;
+      }
+    }
+
+    /* ── Responsive: portrait mobile (max-width 680px) ─────────────────── */
+    @media (max-width: 680px) {
+      .moi-panel {
+        padding: 4px 6px;
+      }
+
+      .moi-situation-row,
+      .moi-score-row {
+        font-size: 9px;
+      }
+
+      .moi-label { font-size: 8px; min-width: 24px; }
+      .moi-value { font-size: 9px; }
+      .moi-chip  { font-size: 8px; }
+
+      /* Hide leader on portrait mobile */
+      #moi-leader-row { display: none !important; }
+
+      #map-overlay-toast {
+        font-size: 10px;
+        padding: 3px 10px 3px 8px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2715,7 +2987,7 @@
 <div id="boot-error"></div>
 
 <!-- App entry point -->
-<script type="module" src="src/app/main.js?v=21"></script>
+<script type="module" src="src/app/main.js?v=22"></script>
 
 </body>
 </html>

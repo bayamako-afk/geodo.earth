@@ -27,6 +27,13 @@ import {
 import { renderCityComparePanel, initCityCompareData } from '../ui/city_compare_panel.js?v=2';
 import { initHelpModal, openHelpModal } from '../ui/help_modal.js?v=1';
 import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=15';
+import {
+  initMapOverlay,
+  updateMapOverlaySituation,
+  updateMapOverlayScores,
+  showMapOverlayToast,
+  resetMapOverlay,
+} from '../ui/map_overlay.js?v=1';
 import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=15';
 import {
   initSession,
@@ -114,6 +121,7 @@ async function boot() {
   });
 
   _injectTurnControls();
+  initMapOverlay();
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
   updateHeaderGameState('idle', null, null);
@@ -160,6 +168,7 @@ async function _handleStart() {
 
     _updateAllPanels(gameState);
     setLogEntries(getLog());
+    showMapOverlayToast(`Game started — ${_cityId?.toUpperCase() ?? ''}`, 'normal', 2500);
 
   } catch (err) {
     console.error('[GUNOS V1] Session init failed:', err);
@@ -192,6 +201,7 @@ function _handleReset() {
   updateStatusFromState(null, 'idle');
   updateLiveScores([]);
   updateMapFromState(null, 'idle', _datasets?.station_graph ?? null);
+  resetMapOverlay();
   clearLog();
   appendLogEntry('Session reset.', 'muted');
 }
@@ -252,6 +262,14 @@ function _handleGameOver() {
       updateHeaderGameState('finished', results.turnCount, results.winner ?? null);
       showResultPanel(results);
       renderCityComparePanel(_cityId);
+
+      // V1.3 Task 05: Show winner toast and update overlay
+      const scores = results.players || [];
+      updateMapOverlaySituation(getGameState(), 'finished', scores);
+      updateMapOverlayScores(scores);
+      if (results.winner) {
+        showMapOverlayToast(`${results.winner} WINS — ${results.turnCount} turns`, 'win', 5000);
+      }
     }
   } catch (err) {
     console.warn('[GUNOS V1] Result panel error:', err.message);
@@ -272,12 +290,57 @@ function _updateAllPanels(gameState) {
     updateHeaderGameState('running', gameState.turnCount, null);
   }
 
+  let scores = [];
   try {
-    const scores = computeAllLiveScores();
+    scores = computeAllLiveScores();
     updateLiveScores(scores);
   } catch (err) {
     console.warn('[GUNOS V1] Live score update error:', err.message);
   }
+
+  // V1.3 Task 05: Update map overlay
+  updateMapOverlaySituation(gameState, _uiMode, scores);
+  updateMapOverlayScores(scores);
+
+  // Toast for notable events during play
+  if (_uiMode === 'running' && gameState && scores.length > 0) {
+    _checkAndShowEventToast(gameState, scores);
+  }
+}
+
+// ── Toast event detection ─────────────────────────────────────────────────────
+
+// Track previous scores to detect changes
+let _prevScores = {};
+
+function _checkAndShowEventToast(gameState, scores) {
+  if (!scores || !scores.length) return;
+
+  // Check for route or hub bonus activation
+  scores.forEach(ps => {
+    const prev = _prevScores[ps.playerId] || {};
+    const prevRoute = prev.route_bonus || 0;
+    const prevHub   = prev.hub_bonus   || 0;
+
+    if (ps.route_bonus > prevRoute && ps.route_bonus > 0) {
+      showMapOverlayToast(
+        `${ps.playerId} Route+ — +${(ps.route_bonus - prevRoute).toFixed(0)} pts`,
+        'route',
+        3000
+      );
+    } else if (ps.hub_bonus > prevHub && ps.hub_bonus > 0) {
+      showMapOverlayToast(
+        `${ps.playerId} Hub+ — +${(ps.hub_bonus - prevHub).toFixed(0)} pts`,
+        'hub',
+        3000
+      );
+    }
+
+    _prevScores[ps.playerId] = {
+      route_bonus: ps.route_bonus || 0,
+      hub_bonus:   ps.hub_bonus   || 0,
+    };
+  });
 }
 
 function _syncLog() {
