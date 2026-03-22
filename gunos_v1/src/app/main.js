@@ -34,6 +34,11 @@ import {
   showMapOverlayToast,
   resetMapOverlay,
 } from '../ui/map_overlay.js?v=1';
+import {
+  initStationHint,
+  updateStationHint,
+  resetStationHint,
+} from '../ui/station_hint.js?v=8';
 import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=15';
 import {
   initSession,
@@ -122,6 +127,7 @@ async function boot() {
 
   _injectTurnControls();
   initMapOverlay();
+  initStationHint();
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
   updateHeaderGameState('idle', null, null);
@@ -202,6 +208,7 @@ function _handleReset() {
   updateLiveScores([]);
   updateMapFromState(null, 'idle', _datasets?.station_graph ?? null);
   resetMapOverlay();
+  resetStationHint();
   clearLog();
   appendLogEntry('Session reset.', 'muted');
 }
@@ -301,6 +308,9 @@ function _updateAllPanels(gameState) {
   // V1.3 Task 05: Update map overlay
   updateMapOverlaySituation(gameState, _uiMode, scores);
   updateMapOverlayScores(scores);
+
+  // V1.4 Task 01: Update station value hint
+  updateStationHint(gameState, scores, _uiMode);
 
   // Toast for notable events during play
   if (_uiMode === 'running' && gameState && scores.length > 0) {

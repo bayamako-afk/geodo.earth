@@ -2889,6 +2889,113 @@
         padding: 3px 10px 3px 8px;
       }
     }
+
+    /* ── V1.4 Task 01: Station Value Hint Panel ──────────────────────────────── */
+
+    #station-hint-panel {
+      position: absolute;
+      left: 6px;
+      bottom: calc(var(--bottom-h) + 8px);
+      max-width: 220px;
+      background: rgba(10, 14, 20, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      padding: 6px 10px 7px;
+      pointer-events: none;
+      z-index: 30;
+      opacity: 0;
+    }
+
+    #station-hint-panel.sh-panel--hidden {
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+    }
+
+    #station-hint-panel.sh-panel--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #station-hint-panel.sh-panel--fading {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    .sh-station-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    .sh-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-bottom: 4px;
+    }
+
+    .sh-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 1px 5px 2px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .sh-tag--hub-top  { background: rgba(255, 200, 50, 0.85);  color: #1a1000; }
+    .sh-tag--hub-major { background: rgba(255, 170, 30, 0.80); color: #1a1000; }
+    .sh-tag--hub      { background: rgba(220, 150, 20, 0.70);  color: #1a1000; }
+    .sh-tag--route    { background: rgba(60, 180, 120, 0.85);  color: #001a0a; }
+    .sh-tag--capture  { background: rgba(80, 200, 255, 0.90);  color: #001020; }
+    .sh-tag--chain    { background: rgba(40, 160, 220, 0.80);  color: #001020; }
+    .sh-tag--lead     { background: rgba(200, 80, 255, 0.80);  color: #100020; }
+    .sh-tag--score    { background: rgba(100, 200, 100, 0.75); color: #001a00; }
+    .sh-tag--value    { background: rgba(120, 130, 150, 0.65);  color: rgba(255,255,255,0.85); }
+
+    .sh-reason {
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    /* Landscape: compact station hint */
+    @media (max-height: 500px) and (orientation: landscape) {
+      #station-hint-panel {
+        bottom: calc(var(--bottom-h) + 4px);
+        max-width: 180px;
+        padding: 4px 8px 5px;
+      }
+      .sh-station-name { font-size: 10px; margin-bottom: 3px; }
+      .sh-tag           { font-size: 8px; padding: 1px 4px; }
+      .sh-reason        { display: none; }
+    }
+
+    /* Mobile portrait: even more compact */
+    @media (max-width: 680px) {
+      #station-hint-panel {
+        bottom: calc(var(--bottom-h) + 4px);
+        max-width: 160px;
+        padding: 4px 8px 5px;
+      }
+      .sh-station-name { font-size: 10px; }
+      .sh-reason        { display: none; }
+    }
+
   </style>
 </head>
 <body>
@@ -2987,7 +3094,7 @@
 <div id="boot-error"></div>
 
 <!-- App entry point -->
-<script type="module" src="src/app/main.js?v=22"></script>
+<script type="module" src="src/app/main.js?v=30"></script>
 
 </body>
 </html>
