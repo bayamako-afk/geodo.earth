@@ -3252,6 +3252,85 @@
       .moi-mbadge { font-size: 7px; padding: 1px 4px; }
     }
 
+
+    /* ── V1.4 Task 04: Score Reason Breakdown ───────────────────────────────────────── */
+
+    /* Panel is appended inside #map-overlay-scores (right-aligned) */
+    #score-reason-panel {
+      margin-top: 5px;
+      padding-top: 5px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    #score-reason-panel.sr-panel--hidden {
+      opacity: 0;
+      transform: translateY(4px);
+      pointer-events: none;
+    }
+
+    #score-reason-panel.sr-panel--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sr-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-bottom: 3px;
+    }
+
+    .sr-tag {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 1px 5px 2px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    /* Tag color variants — aligned with Task 01–03 palette */
+    .sr-tag--hub-top   { background: rgba(255, 210, 60, 0.90);  color: #1a0e00; border: 1px solid rgba(255, 230, 100, 0.70); box-shadow: 0 0 4px rgba(255,200,50,0.35); }
+    .sr-tag--hub-major { background: rgba(255, 175, 35, 0.82);  color: #1a0e00; border: 1px solid rgba(255, 200, 80, 0.55); }
+    .sr-tag--hub       { background: rgba(225, 155, 25, 0.72);  color: #1a0e00; border: 1px solid rgba(220, 160, 40, 0.38); }
+    .sr-tag--route     { background: rgba(55, 190, 120, 0.88);  color: #001a0a; border: 1px solid rgba(80, 220, 140, 0.60); box-shadow: 0 0 4px rgba(60,200,120,0.30); }
+    .sr-tag--capture   { background: rgba(80, 210, 255, 0.88);  color: #001020; border: 1px solid rgba(120, 230, 255, 0.65); }
+    .sr-tag--chain     { background: rgba(40, 165, 225, 0.80);  color: #001020; border: 1px solid rgba(80, 190, 240, 0.48); }
+    .sr-tag--lead      { background: rgba(205, 85, 255, 0.80);  color: #100020; border: 1px solid rgba(220, 120, 255, 0.48); }
+    .sr-tag--lead-ext  { background: rgba(160, 60, 220, 0.70);  color: #100020; border: 1px solid rgba(190, 100, 240, 0.40); }
+    .sr-tag--score     { background: rgba(100, 200, 100, 0.72); color: #001a00; border: 1px solid rgba(120, 220, 120, 0.45); }
+    .sr-tag--value     { background: rgba(120, 130, 150, 0.60); color: rgba(255,255,255,0.80); }
+
+    .sr-reason {
+      font-size: 8px;
+      color: rgba(255, 255, 255, 0.42);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+    }
+
+    /* Landscape: hide reason text, keep tags */
+    @media (max-height: 500px) and (orientation: landscape) {
+      #score-reason-panel { margin-top: 3px; padding-top: 3px; }
+      .sr-reason          { display: none; }
+      .sr-tag             { font-size: 7px; padding: 1px 3px; }
+      /* Show max 2 tags in landscape */
+      .sr-tag:nth-child(n+3) { display: none; }
+    }
+
+    /* Mobile portrait: compact */
+    @media (max-width: 680px) {
+      .sr-reason { display: none; }
+      .sr-tag    { font-size: 7px; padding: 1px 4px; }
+      /* Show max 2 tags on portrait */
+      .sr-tag:nth-child(n+3) { display: none; }
+    }
+
   </style>
 </head>
 <body>

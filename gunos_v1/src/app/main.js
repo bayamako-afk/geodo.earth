@@ -44,6 +44,11 @@ import {
   updateCandidateIndicator,
   resetCandidateIndicator,
 } from '../ui/candidate_indicator.js?v=1';
+import {
+  initScoreReason,
+  updateScoreReason,
+  resetScoreReason,
+} from '../ui/score_reason.js?v=1';
 import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=15';
 import {
   initSession,
@@ -139,6 +144,8 @@ async function boot() {
     stationLines:   datasets.station_lines   ?? null,
     linesMaster:    datasets.lines_master    ?? null,
   });
+  // V1.4 Task 04: init score reason breakdown
+  initScoreReason();
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
   updateHeaderGameState('idle', null, null);
@@ -221,6 +228,8 @@ function _handleReset() {
   resetMapOverlay();
   resetStationHint();
   resetCandidateIndicator();
+  // V1.4 Task 04: reset score reason breakdown
+  resetScoreReason();
   clearLog();
   appendLogEntry('Session reset.', 'muted');
 }
@@ -326,6 +335,9 @@ function _updateAllPanels(gameState) {
 
   // V1.4 Task 02: Update next candidate indicators
   updateCandidateIndicator(gameState, scores, _uiMode);
+
+  // V1.4 Task 04: Update score reason breakdown
+  updateScoreReason(gameState, scores, _uiMode);
 
   // Toast for notable events during play
   if (_uiMode === 'running' && gameState && scores.length > 0) {
