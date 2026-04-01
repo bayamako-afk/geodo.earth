@@ -39,6 +39,11 @@ import {
   updateStationHint,
   resetStationHint,
 } from '../ui/station_hint.js?v=8';
+import {
+  initCandidateIndicator,
+  updateCandidateIndicator,
+  resetCandidateIndicator,
+} from '../ui/candidate_indicator.js?v=1';
 import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=15';
 import {
   initSession,
@@ -128,6 +133,12 @@ async function boot() {
   _injectTurnControls();
   initMapOverlay();
   initStationHint();
+  // V1.4 Task 02: init candidate indicator with scoring data
+  initCandidateIndicator({
+    stationMetrics: datasets.station_metrics ?? null,
+    stationLines:   datasets.station_lines   ?? null,
+    linesMaster:    datasets.lines_master    ?? null,
+  });
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
   updateHeaderGameState('idle', null, null);
@@ -209,6 +220,7 @@ function _handleReset() {
   updateMapFromState(null, 'idle', _datasets?.station_graph ?? null);
   resetMapOverlay();
   resetStationHint();
+  resetCandidateIndicator();
   clearLog();
   appendLogEntry('Session reset.', 'muted');
 }
@@ -311,6 +323,9 @@ function _updateAllPanels(gameState) {
 
   // V1.4 Task 01: Update station value hint
   updateStationHint(gameState, scores, _uiMode);
+
+  // V1.4 Task 02: Update next candidate indicators
+  updateCandidateIndicator(gameState, scores, _uiMode);
 
   // Toast for notable events during play
   if (_uiMode === 'running' && gameState && scores.length > 0) {

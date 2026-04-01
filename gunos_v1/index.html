@@ -2996,6 +2996,139 @@
       .sh-reason        { display: none; }
     }
 
+    /* ── V1.4 Task 02: Next Candidate Indicators Panel ────────────────────────── */
+
+    #candidate-panel {
+      position: absolute;
+      left: 6px;
+      bottom: calc(var(--bottom-h) + 72px);  /* above station-hint-panel */
+      max-width: 220px;
+      background: rgba(10, 14, 20, 0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 6px;
+      padding: 5px 9px 6px;
+      pointer-events: none;
+      z-index: 29;   /* just below station-hint-panel (z-index:30) */
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    #candidate-panel.ci-panel--hidden {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    #candidate-panel.ci-panel--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ci-header {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.35);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .ci-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ci-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .ci-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .ci-name {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.88);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    .ci-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+
+    .ci-tag {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 1px 4px 1px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Tag color variants — match station_hint.js palette */
+    .ci-tag--hub-top   { background: rgba(255, 200, 50, 0.80);  color: #1a1000; }
+    .ci-tag--hub-major { background: rgba(255, 170, 30, 0.75);  color: #1a1000; }
+    .ci-tag--hub       { background: rgba(220, 150, 20, 0.65);  color: #1a1000; }
+    .ci-tag--route     { background: rgba(60, 180, 120, 0.80);  color: #001a0a; }
+    .ci-tag--chain     { background: rgba(40, 160, 220, 0.75);  color: #001020; }
+    .ci-tag--connect   { background: rgba(60, 140, 200, 0.65);  color: #001020; }
+    .ci-tag--lead      { background: rgba(200, 80, 255, 0.75);  color: #100020; }
+    .ci-tag--score     { background: rgba(100, 200, 100, 0.70); color: #001a00; }
+    .ci-tag--value     { background: rgba(120, 130, 150, 0.55); color: rgba(255,255,255,0.80); }
+
+    .ci-reason {
+      font-size: 8px;
+      color: rgba(255, 255, 255, 0.42);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    /* Landscape: compact candidate panel */
+    @media (max-height: 500px) and (orientation: landscape) {
+      #candidate-panel {
+        bottom: calc(var(--bottom-h) + 56px);
+        max-width: 170px;
+        padding: 3px 7px 4px;
+      }
+      .ci-header    { font-size: 7px; margin-bottom: 3px; }
+      .ci-name      { font-size: 9px; }
+      .ci-tag       { font-size: 7px; padding: 1px 3px; }
+      .ci-reason    { display: none; }
+      /* Show max 2 candidates in landscape */
+      .ci-item:nth-child(n+3) { display: none; }
+    }
+
+    /* Mobile portrait: compact */
+    @media (max-width: 680px) {
+      #candidate-panel {
+        bottom: calc(var(--bottom-h) + 60px);
+        max-width: 160px;
+        padding: 3px 7px 4px;
+      }
+      .ci-header  { font-size: 7px; margin-bottom: 2px; }
+      .ci-name    { font-size: 9px; }
+      .ci-reason  { display: none; }
+      /* Show max 2 candidates on portrait */
+      .ci-item:nth-child(n+3) { display: none; }
+    }
+
   </style>
 </head>
 <body>
