@@ -63,6 +63,8 @@ export function initMapOverlay() {
         <span class="moi-score-id moi-score-id--p2">P2</span>
         <span class="moi-score-val" id="moi-score-val-p2">—</span>
       </div>
+      <!-- V1.4 Task 03: Global meaning badges (Hub+ / Route+ active state) -->
+      <div id="moi-meaning-badges"></div>
     </div>
 
     <!-- Bottom-center: Recent event toast -->
@@ -179,6 +181,7 @@ export function updateMapOverlayScores(playerScores) {
     _setScoreVal('moi-score-val-p2', '—');
     _clearLeadClass('moi-score-p1');
     _clearLeadClass('moi-score-p2');
+    _updateMeaningBadges([]);
     return;
   }
 
@@ -197,6 +200,46 @@ export function updateMapOverlayScores(playerScores) {
       rowEl.classList.toggle('moi-score-row--lead', isLead);
     }
   });
+
+  // V1.4 Task 03: Update global meaning badges
+  _updateMeaningBadges(playerScores);
+}
+
+// ── V1.4 Task 03: Global meaning badges ─────────────────────────────────────
+
+/**
+ * Update the global meaning badge bar in the score summary panel.
+ * Shows Hub+ / Route+ badges when any player has active bonuses.
+ * @param {Array} playerScores — from computeAllLiveScores()
+ */
+function _updateMeaningBadges(playerScores) {
+  const badgesEl = document.getElementById('moi-meaning-badges');
+  if (!badgesEl) return;
+
+  if (!playerScores || !playerScores.length) {
+    badgesEl.innerHTML = '';
+    return;
+  }
+
+  const badges = [];
+
+  // Check if any player has Hub+ bonus active
+  const anyHubBonus = playerScores.some(ps => (ps.hub_bonus ?? 0) > 0);
+  if (anyHubBonus) {
+    // Find the player with the highest hub bonus
+    const topHub = [...playerScores].sort((a, b) => (b.hub_bonus ?? 0) - (a.hub_bonus ?? 0))[0];
+    const hubVal = topHub?.hub_bonus ?? 0;
+    const hubLabel = hubVal >= 10 ? '◆ Hub★' : '◆ Hub+';
+    badges.push(`<span class="moi-mbadge moi-mbadge--hub">${hubLabel}</span>`);
+  }
+
+  // Check if any player has Route+ bonus active
+  const anyRouteBonus = playerScores.some(ps => (ps.route_bonus ?? 0) > 0);
+  if (anyRouteBonus) {
+    badges.push(`<span class="moi-mbadge moi-mbadge--route">▶ Route+</span>`);
+  }
+
+  badgesEl.innerHTML = badges.join('');
 }
 
 // ── Toast: Recent event ───────────────────────────────────────────────────────

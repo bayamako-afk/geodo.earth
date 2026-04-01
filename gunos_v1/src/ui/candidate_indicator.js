@@ -216,19 +216,17 @@ function _rankCandidates(hand, currentScore, allScores, allOwned, playerId) {
     const tags = [];
     let candidateScore = 0;
 
-    // ── Hub value ────────────────────────────────────────────────────────────
+    // ── Hub value ──────────────────────────────────────────────────────────────────
     if (relScore >= 0.70) {
-      tags.push({ type: 'hub-top', label: 'Hub★', priority: 10 });
+      tags.push({ type: 'hub-top', label: '◆ Hub★', priority: 10 });
       candidateScore += 10;
     } else if (relScore >= 0.45) {
-      tags.push({ type: 'hub-major', label: 'Hub+', priority: 9 });
+      tags.push({ type: 'hub-major', label: '◆ Hub+', priority: 9 });
       candidateScore += 7;
     } else if (relScore >= 0.25) {
-      tags.push({ type: 'hub', label: 'Hub', priority: 6 });
+      tags.push({ type: 'hub', label: '◆ Hub', priority: 6 });
       candidateScore += 4;
-    }
-
-    // ── Route chain / connect value ───────────────────────────────────────────
+    }// ── Route chain / connect value ───────────────────────────────────────────
     const cardLines = stationToLines.get(stationId) || [];
     let bestRouteScore = 0;
     let bestRouteName  = null;
@@ -255,14 +253,14 @@ function _rankCandidates(hand, currentScore, allScores, allOwned, playerId) {
     }
 
     if (isChain) {
-      tags.push({ type: 'chain', label: 'Chain', priority: 8 });
+      tags.push({ type: 'chain', label: '▶ Chain', priority: 8 });
       candidateScore += 6;
     } else if (isConnect) {
-      tags.push({ type: 'connect', label: 'Connect', priority: 5 });
+      tags.push({ type: 'connect', label: '▶ Connect', priority: 5 });
       candidateScore += 3;
     }
 
-    // ── Route+ bonus potential ────────────────────────────────────────────────
+    // ── Route+ bonus potential ─────────────────────────────────────────────────────────────────
     // If current player already has route bonus, adding to that line helps
     if (currentScore?.route_bonus > 0 && cardLines.length > 0) {
       const hasRouteBonus = cardLines.some(lid => {
@@ -270,7 +268,7 @@ function _rankCandidates(hand, currentScore, allScores, allOwned, playerId) {
         return prog && prog.pct >= 50;
       });
       if (hasRouteBonus && !tags.find(t => t.type === 'chain')) {
-        tags.push({ type: 'route', label: 'Route+', priority: 7 });
+        tags.push({ type: 'route', label: '▶ Route+', priority: 7 });
         candidateScore += 5;
       }
     }

@@ -167,11 +167,11 @@ function _computeValueTags(currentCard, playerScore, allScores, cardScore) {
   );
   if (hubEntry) {
     if (hubEntry.bonus >= 4) {
-      tags.push({ type: 'hub-top', label: 'Hub★', priority: 10 });
+      tags.push({ type: 'hub-top', label: '◆ Hub★', priority: 10 });
     } else if (hubEntry.bonus >= 2) {
-      tags.push({ type: 'hub-major', label: 'Hub+', priority: 9 });
+      tags.push({ type: 'hub-major', label: '◆ Hub+', priority: 9 });
     } else {
-      tags.push({ type: 'hub', label: 'Hub', priority: 8 });
+      tags.push({ type: 'hub', label: '◆ Hub', priority: 8 });
     }
   }
 
@@ -181,14 +181,14 @@ function _computeValueTags(currentCard, playerScore, allScores, cardScore) {
   const nearComplete  = routeProgress.find(r => r.pct >= 50 && r.status !== 'complete');
 
   if (justComplete) {
-    tags.push({ type: 'capture', label: 'Capture!', priority: 11 });
+    tags.push({ type: 'capture', label: '▶ Capture!', priority: 11 });
   } else if (nearComplete) {
-    tags.push({ type: 'chain', label: 'Chain', priority: 6 });
+    tags.push({ type: 'chain', label: '▶ Chain', priority: 6 });
   }
 
   // ── Route+ bonus tag ──────────────────────────────────────────────────────
   if (playerScore.route_bonus > 0) {
-    tags.push({ type: 'route', label: 'Route+', priority: 7 });
+    tags.push({ type: 'route', label: '▶ Route+', priority: 7 });
   }
 
   // ── Lead swing tag ────────────────────────────────────────────────────────

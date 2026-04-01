@@ -3129,6 +3129,129 @@
       .ci-item:nth-child(n+3) { display: none; }
     }
 
+
+    /* ── V1.4 Task 03: Hub / Route+ Meaning Badges ─────────────────────────────── */
+
+    /* ─ Shared badge visual upgrades for Hub★ / Hub+ / Route+ ─ */
+
+    /* Hub★ — gold border + glow to signal top-tier hub */
+    .sh-tag--hub-top,
+    .ci-tag--hub-top {
+      background: rgba(255, 210, 60, 0.92);
+      color: #1a0e00;
+      border: 1px solid rgba(255, 230, 100, 0.80);
+      box-shadow: 0 0 5px rgba(255, 200, 50, 0.45);
+      font-size: 9px;
+    }
+
+    /* Hub+ — amber border to distinguish from plain Hub */
+    .sh-tag--hub-major,
+    .ci-tag--hub-major {
+      background: rgba(255, 175, 35, 0.85);
+      color: #1a0e00;
+      border: 1px solid rgba(255, 200, 80, 0.60);
+    }
+
+    /* Hub — warm tint, slightly elevated */
+    .sh-tag--hub,
+    .ci-tag--hub {
+      background: rgba(225, 155, 25, 0.75);
+      color: #1a0e00;
+      border: 1px solid rgba(220, 160, 40, 0.40);
+    }
+
+    /* Route+ — green border + glow to signal active route bonus */
+    .sh-tag--route,
+    .ci-tag--route {
+      background: rgba(55, 190, 120, 0.90);
+      color: #001a0a;
+      border: 1px solid rgba(80, 220, 140, 0.65);
+      box-shadow: 0 0 5px rgba(60, 200, 120, 0.35);
+    }
+
+    /* Chain — blue, slightly elevated */
+    .sh-tag--chain,
+    .ci-tag--chain {
+      background: rgba(40, 165, 225, 0.82);
+      color: #001020;
+      border: 1px solid rgba(80, 190, 240, 0.50);
+    }
+
+    /* Connect — lighter blue */
+    .ci-tag--connect {
+      background: rgba(60, 145, 205, 0.70);
+      color: #001020;
+      border: 1px solid rgba(80, 170, 220, 0.40);
+    }
+
+    /* Capture! — cyan, high contrast */
+    .sh-tag--capture {
+      background: rgba(80, 210, 255, 0.92);
+      color: #001020;
+      border: 1px solid rgba(120, 230, 255, 0.70);
+      box-shadow: 0 0 5px rgba(80, 210, 255, 0.35);
+    }
+
+    /* Lead+ — purple */
+    .sh-tag--lead,
+    .ci-tag--lead {
+      background: rgba(205, 85, 255, 0.82);
+      color: #100020;
+      border: 1px solid rgba(220, 120, 255, 0.50);
+    }
+
+    /* ─ Global meaning badge bar (inside score summary) ─ */
+
+    /* Small badge row shown below P1/P2 score rows when Hub+ or Route+ is active */
+    #moi-meaning-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    #moi-meaning-badges:empty {
+      display: none;
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .moi-mbadge {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 1px 5px 2px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .moi-mbadge--hub {
+      background: rgba(255, 195, 50, 0.85);
+      color: #1a0e00;
+      border: 1px solid rgba(255, 215, 80, 0.60);
+    }
+
+    .moi-mbadge--route {
+      background: rgba(55, 190, 120, 0.85);
+      color: #001a0a;
+      border: 1px solid rgba(80, 215, 140, 0.55);
+    }
+
+    /* Landscape: hide meaning badge bar to save space */
+    @media (max-height: 500px) and (orientation: landscape) {
+      #moi-meaning-badges { display: none !important; }
+    }
+
+    /* Mobile portrait: allow meaning badges but keep tiny */
+    @media (max-width: 680px) {
+      .moi-mbadge { font-size: 7px; padding: 1px 4px; }
+    }
+
   </style>
 </head>
 <body>
