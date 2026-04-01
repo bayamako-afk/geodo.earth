@@ -1,60 +1,58 @@
-# GUNOS V1.4 Task 01 — Station Value Hint Panel
+# GUNOS V1.4 Task 02 — Next Candidate Indicators
 
 ## Objective
-GUNOS を「地図が動くUI」から一段進め、  
-**駅選定に意味があるゲーム** であることが伝わる UI を追加する。
+GUNOS のゲーム性をさらに分かりやすくするため、  
+**次に狙う候補駅の価値** を軽く可視化する  
+**Next Candidate Indicators** を実装する。
 
-本タスクでは、現在のターンやイベント通知だけでなく、  
-**今の駅選択・路線接続・Hub / Route+ の価値** が少し分かる  
-**Station Value Hint Panel** を実装する。
+本タスクでは、すべての駅に詳細情報を出すのではなく、  
+現在の局面に対して **有力そうな候補駅** に短い指標や理由を付けることで、  
+「次に何を狙うゲームか」が伝わる UI を追加する。
 
 ---
 
 ## Background
-V1.3 までで、以下はかなり改善された。
+V1.4 Task 01 では、直近に取得した駅に対して  
+Hub / Route+ / Chain / Lead+ / Score などの短い価値タグと理由文を表示し、  
+**取った駅に意味がある** ことが見え始めた。
 
-- 地図主役の map-first HUD 基盤
-- smartphone landscape 最適化
-- lightweight overlay info による状況把握
-- Route+ / Hub+ / score / recent event の見えやすさ向上
+一方で、プレイ中にはまだ以下が十分には伝わらない。
 
-一方で、初見ユーザーにはまだ以下が十分には伝わらない。
+- 次にどの駅が有力候補なのか
+- なぜその駅を狙う価値があるのか
+- Route+ / Hub+ / 接続 / リード差 との関係
+- プレイヤーが何を考えて駅を選ぶゲームなのか
 
-- どの駅を取ると有利なのか
-- なぜその駅が重要なのか
-- Hub や Route+ がどのように勝負に効くのか
-- 何を狙うゲームなのか
-
-そのため V1.4 では、まず  
-**駅選定の意味を軽く可視化する UI** を追加し、  
-ゲーム性の理解を前進させる。
+そのため V1.4 Task 02 では、  
+地図上または近接HUD上に **Next Candidate Indicators** を追加し、  
+GUNOS をさらに「駅選定の意味を読むゲーム」に近づける。
 
 ---
 
 ## Scope
 今回のタスクで行うこと。
 
-1. 地図上または HUD 内に station value hint 表示を追加する
-2. 現在注目されている駅や直近に取得した駅の意味を簡潔に示す
-3. Route+ / Hub+ / 接続 / 制覇 / 得点などとの関係が少し分かるようにする
-4. PC / スマホ横 / スマホ縦で破綻しにくい軽量UIにする
-5. 既存 gameplay や map-first 方針を壊さない
+1. 次候補駅を示す軽量 indicator UI を追加する
+2. 候補駅に短い価値タグや簡易理由を付ける
+3. 現在の局面に対して有力候補が少し分かるようにする
+4. PC / スマホ横 / スマホ縦で破綻しにくい軽量表示にする
+5. map-first 方針を維持する
 
 ---
 
 ## Out of Scope
 今回まだやらないもの。
 
-- 採点ロジックの全面見直し
-- AI 対戦や戦略推薦
-- チュートリアル全文表示
-- 大型の説明パネル
-- 派手なアニメーション
-- result overlay の全面再設計
-- 駅データベースの全面刷新
+- 完全な最適戦略AI
+- 全駅のリアルタイム評価一覧
+- 重いヒートマップ演出
+- ルールやスコアロジックの全面変更
+- チュートリアル全文説明
+- 大型サイドパネルの追加
+- result screen の全面刷新
 
 今回はあくまで  
-**「駅の意味を見せる軽量ヒントUI」** を実装する。
+**「候補駅に軽い意味付けを与えるUI」** に留める。
 
 ---
 
@@ -62,19 +60,32 @@ V1.3 までで、以下はかなり改善された。
 
 ### Core concept
 - 地図を隠さない
+- 候補を出しすぎない
 - 情報は短く、意味は強く
-- ルール全文ではなく「ヒント」を見せる
-- 初見でも「この駅は強そう」「ここを取る意味がある」と感じられる
-- スマホ横でも圧迫感を出さない
+- 初見でも「次はここが良さそう」が伝わる
+- スマホ横向きでも邪魔にならない
 
 ### UX intention
 ユーザーが画面を見たときに、少なくとも次のどれかが伝わること。
 
-- この駅は Hub に関係する
-- この駅は Route+ に関係する
-- この駅を取ると接続や制覇が進む
-- この駅取得がスコアやリードに効いている
-- 駅選定に理由がある
+- この駅は次の有力候補
+- この駅は Hub / Route+ / 接続に効く
+- この駅を取るとリード差やスコアに影響しそう
+- GUNOS は候補の価値を読んで選ぶゲーム
+
+---
+
+## Candidate Selection Direction
+完全な最適解でなくてよい。  
+まずは既存 state / score / route / station_details から拾える範囲で  
+**候補駅を 1〜3 件程度** 出すことを目標にする。
+
+候補の例:
+- 現在の route chain を伸ばせる駅
+- Hub 関連ボーナスに寄与しそうな駅
+- score gain が期待できる駅
+- leader gap を縮めそうな駅
+- capture / connection の意味が強い駅
 
 ---
 
@@ -82,135 +93,145 @@ V1.3 までで、以下はかなり改善された。
 
 以下のいずれか、または複合で成立させること。
 
-### A. Station Hint Panel
-現在注目中または直近取得駅について、短い説明を出す。
+### A. Candidate Markers on Map
+候補駅の近くに小さな indicator を出す。
+
+候補:
+- 小型バッジ
+- ドットやリング
+- 短いタグ（Hub / Route+ / Score など）
+- 過度に派手でないハイライト
+
+### B. Candidate Summary Panel
+地図上または HUD 内に、候補駅を短く一覧表示する。
 
 候補:
 - station name
-- line / route context
-- hub relevance
-- route bonus relevance
-- capture / chain / connection value
-- short tag labels
+- short value tag
+- short reason line
 
 例:
-- Hub candidate
-- Route+ chain
-- Connection gain
-- Score chance
-- Lead swing point
+- Shinjuku — Hub+
+- Otemachi — Route+
+- Ikebukuro — Lead+
 
-### B. Short Reason Labels
-駅やイベントに対して、短い理由ラベルを出す。
+### C. Compact Reason Labels
+各候補に短い理由ラベルを付ける。
 
 例:
 - `Hub`
+- `Hub+`
 - `Route+`
+- `Chain`
 - `Connect`
-- `Capture`
 - `Lead+`
-- `Bonus`
-
-### C. Compact Explanation Text
-必要なら 1 行だけ説明を出す。
-
-例:
-- “This station extends the current route.”
-- “This hub can improve bonus potential.”
-- “Capturing this station increases area control.”
-- “This move can reduce the leader gap.”
-
-※ 英語・日本語は現行UIに合わせてよい。  
-重要なのは短く意味が伝わること。
+- `Score`
+- `Value`
 
 ---
 
 ## Placement Guidance
 
-推奨配置:
-- bottom-center current info 付近
-- map overlay info の下または近接位置
-- top-right score summary の補助領域
-- selected / recent station に近い位置
+推奨:
+- 地図上の候補駅近くに軽い indicator
+- top-right score summary の補助表示
+- bottom-center current info 周辺に候補要約
+- station hint panel と競合しない位置
 
 避けること:
 - 地図中央を大きく塞ぐ
-- 長文説明を常設する
-- スマホ横で横幅を使いすぎる
-- Task 04 で削った情報量をまた戻すこと
+- 候補を大量表示する
+- スマホ横で視界を圧迫する
+- Task 04/05 の map-first を後退させること
 
 ---
 
 ## Implementation Tasks
 
-### 1. Add station hint container
-現行 HUD / overlay 構造に自然に乗る形で、  
-station value hint 用のコンテナを追加すること。
+### 1. Add next candidate indicator layer
+現行の map / HUD 構造に自然に乗る形で、  
+候補駅 indicator 用の表示レイヤを追加すること。
 
 例:
-- `#station-hint-panel`
-- `#station-value-overlay`
-- `#current-station-hint`
+- `candidate_indicator.js`
+- `#candidate-indicators`
+- `#next-candidate-layer`
 
 命名は既存構造に合わせてよいが、  
-役割が明確であること。
+役割が分かること。
 
 ---
 
-### 2. Select a station context to describe
-以下のいずれかを対象に、意味ヒントを表示すること。
+### 2. Select and rank a small set of candidates
+現在局面に応じて、候補駅を少数抽出すること。
 
-優先候補:
-- 現在処理中の駅
-- 直近に取得した駅
-- スコア変動を起こした駅
-- Route+ / Hub+ に関係した駅
-
-完全な戦略AIは不要。  
-まずは既存 state / event / score 情報から拾える範囲でよい。
+要件:
+- 1〜3件程度で十分
+- 完全最適でなくてよい
+- 既存データから説明可能な理由を付けられること
+- 候補がゼロでも壊れないこと
 
 ---
 
-### 3. Show short value hints
-駅の価値を短く表示すること。
+### 3. Show short candidate value tags
+候補駅に短いタグを付けること。
 
 最低限候補:
-- short tags
-- short reason line
-- bonus relation
-- leader gap relation
-- capture / route / hub relation
+- Hub
+- Hub+
+- Route+
+- Chain
+- Connect
+- Lead+
+- Score
+- Value
 
-表示は短く、読みやすさ優先。
-
----
-
-### 4. Connect hint to gameplay meaning
-ヒントが単なる飾りにならないよう、  
-score / event / route / hub のどれかと結びつけること。
-
-目的:
-- なぜその駅が重要かが少し分かる
-- GUNOS が「駅選定の意味を読むゲーム」だと感じられる
-- 直近イベントと駅価値がつながる
+タグは短く、視認性優先。  
+長文は不要。
 
 ---
 
-### 5. Responsive handling
+### 4. Show short candidate reason
+候補駅について、短い理由を示すこと。
+
+例:
+- “extends current route”
+- “improves hub potential”
+- “helps reduce leader gap”
+- “strong score chance”
+- “supports connection growth”
+
+英語・日本語は現行UIに合わせてよい。  
+重要なのは短く意味が伝わること。
+
+---
+
+### 5. Keep station hint and candidate hint compatible
+Task 01 の station value hint と競合しないようにすること。
+
+期待する状態:
+- 直近取得駅の意味は Task 01 側で見える
+- 次候補駅の意味は Task 02 側で見える
+- 両方合わせて「取った意味」と「次の狙い」がつながる
+
+---
+
+### 6. Responsive handling
 レスポンシブ必須。
 
 #### PC
-- 少し情報多めでも可
-- HUDや地図と競合しないこと
+- 1〜3件の候補表示で可
+- HUD と地図が両立すること
 
 #### Smartphone landscape
 - 最重要ターゲット
-- 1〜2行＋短いタグ程度で十分
+- 地図上 indicator は小さく
+- 要約テキストは短く
 - map-first を壊さないこと
 
 #### Smartphone portrait
-- さらに簡略化してよい
-- 常設しすぎない
+- 候補数を減らしてよい
+- 要約だけでもよい
 - 操作系を邪魔しないこと
 
 ---
@@ -218,37 +239,39 @@ score / event / route / hub のどれかと結びつけること。
 ## Constraints
 以下を守ること。
 
-- Task 04 / Task 05 の map-first 成果を壊さない
+- Task 04 / Task 05 / V1.4 Task 01 の成果を壊さない
 - 地図面積を圧迫しない
-- Leaflet / map 操作を妨げない
-- 既存 scoring / Route+ / Hub+ ロジックを壊さない
-- 長文説明にしない
-- 完成された戦略評価ではなく、まずは「意味の見える化」を優先する
+- Leaflet 操作を妨げない
+- 既存 scoring / Route+ / Hub+ / station hint ロジックを壊さない
+- 候補を出しすぎない
+- 完璧な推薦より「意味の見える化」を優先する
 
 ---
 
 ## Acceptance Criteria
 以下を満たすこと。
 
-1. station value hint UI が追加されている
-2. 駅選定に意味があることが以前より伝わる
-3. Route+ / Hub+ / 接続 / capture / score のどれかとの関係が見える
-4. 初見でも「何を狙うゲームか」が少し分かりやすくなる
-5. スマホ横で地図主役が維持されている
-6. PC / スマホ横 / スマホ縦で致命的に崩れない
-7. 既存 gameplay が正常に動く
+1. next candidate indicator UI が追加されている
+2. 次に狙う候補駅が以前より分かりやすい
+3. 候補駅に短い価値タグまたは理由が付いている
+4. Route+ / Hub+ / 接続 / score / lead gap のどれかとの関係が見える
+5. 初見でも「次を読むゲーム」に近づいたと感じられる
+6. スマホ横で地図主役が維持されている
+7. PC / スマホ横 / スマホ縦で致命的に崩れない
+8. 既存 gameplay が正常に動く
 
 ---
 
 ## Verification Checklist
 以下を確認すること。
 
-- station hint panel が自然に見える
-- map overlay / score summary / event toast と競合しない
-- ヒントが短く読みやすい
-- 単なる駅名表示でなく、価値や理由が少し伝わる
+- candidate indicator が自然に見える
+- station hint panel / score summary / event toast と競合しない
+- 候補数が多すぎない
+- 候補理由が短く読みやすい
+- map-first を壊していない
 - スマホ横で邪魔にならない
-- START から GAME OVER まで基本動作に問題ない
+- START から GAME OVER まで問題ない
 - console error が出ない
 
 ---
@@ -258,7 +281,7 @@ score / event / route / hub のどれかと結びつけること。
 
 1. 実装内容の要約
 2. 変更ファイル一覧
-3. station hint UI の説明
+3. candidate selection / indicator UI の説明
 4. PC / スマホ横 / スマホ縦 の表示確認結果
 5. 既知の制約
 6. 必要ならスクリーンショット
@@ -270,9 +293,9 @@ score / event / route / hub のどれかと結びつけること。
 このタスク完了時点で、GUNOS はまだ最終UIでなくてよい。  
 ただし少なくとも、
 
-- 駅選定に意味があることが見え始め
-- Route+ / Hub+ / score との関係が少し伝わり
-- GUNOS が「駅と路線の価値を読むゲーム」へ近づく
+- 直近取得駅の意味だけでなく
+- 次に狙う候補駅の意味も少し見え
+- プレイヤーが何を考えて選ぶゲームかが前より伝わる
 
 状態になることを期待する。
 
@@ -281,17 +304,18 @@ score / event / route / hub のどれかと結びつけること。
 ## Suggested next tasks
 次候補としては以下が想定される。
 
-- Task 02: Score reason breakdown
-- Task 03: Hub / Route+ meaning badges
-- Task 04: Selected station detail card
-- Task 05: Beginner onboarding hints
-- Task 06: Result screen game meaning polish
+- Task 03: Score reason breakdown
+- Task 04: Route+ / Hub+ meaning badges
+- Task 05: Selected station detail card
+- Task 06: Beginner onboarding hint flow
+- Task 07: Result screen strategy summary
 
 ---
 
 ## Instruction to Manus
-現行コードを確認し、V1.3 で整備した map-first HUD と smartphone landscape 最適化を維持したまま、  
-**station choice meaning** が少し伝わる軽量 UI を追加してください。
+現行コードを確認し、V1.3 と V1.4 Task 01 で整備した  
+map-first HUD / station hint の流れを維持したまま、  
+**next candidate meaning** が伝わる軽量 indicator UI を追加してください。
 
-情報を増やすことより、  
-**「この駅を取る意味がある」ことを短く伝えること** を優先してください。
+情報を増やしすぎず、  
+**「次はここを狙う価値がある」** と感じられることを優先してください。
