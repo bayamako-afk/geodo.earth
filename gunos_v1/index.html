@@ -3331,6 +3331,160 @@
       .sr-tag:nth-child(n+3) { display: none; }
     }
 
+
+    /* ── V1.4 Task 05: Selected Station Detail Card ───────────────────────────────── */
+
+    /* Card sits inside #map-overlay-info (bottom-left overlay) */
+    #station-detail-card {
+      position: absolute;
+      left: 6px;
+      /* sits above #candidate-panel (bottom + 72px) which is above #station-hint-panel (bottom + 8px) */
+      /* candidate-panel is ~130px tall, so we stack above it */
+      bottom: calc(var(--bottom-h) + 210px);
+      max-width: 180px;
+      min-width: 120px;
+      background: rgba(10, 14, 22, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 5px;
+      padding: 6px 8px 5px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      z-index: 28;  /* below candidate-panel (z-index:29) */
+    }
+
+    #station-detail-card.sdc-card--hidden {
+      opacity: 0;
+      transform: translateY(4px);
+      pointer-events: none;
+    }
+
+    #station-detail-card.sdc-card--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Header row: label + station name */
+    .sdc-header {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      margin-bottom: 3px;
+    }
+
+    .sdc-label {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.38);
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .sdc-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 130px;
+    }
+
+    /* Line chips */
+    .sdc-lines {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-bottom: 4px;
+    }
+
+    .sdc-line-chip {
+      font-size: 7px;
+      color: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 2px;
+      padding: 0px 4px 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+    }
+
+    /* Meaning badges */
+    .sdc-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-bottom: 4px;
+    }
+
+    .sdc-badge {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 1px 5px 2px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    /* Badge color variants — aligned with Task 01–04 palette */
+    .sdc-badge--hub-top   { background: rgba(255, 210, 60, 0.90);  color: #1a0e00; border: 1px solid rgba(255, 230, 100, 0.70); box-shadow: 0 0 4px rgba(255,200,50,0.35); }
+    .sdc-badge--hub-major { background: rgba(255, 175, 35, 0.82);  color: #1a0e00; border: 1px solid rgba(255, 200, 80, 0.55); }
+    .sdc-badge--hub       { background: rgba(225, 155, 25, 0.72);  color: #1a0e00; border: 1px solid rgba(220, 160, 40, 0.38); }
+    .sdc-badge--route     { background: rgba(55, 190, 120, 0.88);  color: #001a0a; border: 1px solid rgba(80, 220, 140, 0.60); box-shadow: 0 0 4px rgba(60,200,120,0.30); }
+    .sdc-badge--capture   { background: rgba(80, 210, 255, 0.88);  color: #001020; border: 1px solid rgba(120, 230, 255, 0.65); }
+    .sdc-badge--chain     { background: rgba(40, 165, 225, 0.80);  color: #001020; border: 1px solid rgba(80, 190, 240, 0.48); }
+    .sdc-badge--connect   { background: rgba(30, 130, 200, 0.72);  color: #001020; border: 1px solid rgba(60, 160, 220, 0.40); }
+    .sdc-badge--lead      { background: rgba(205, 85, 255, 0.80);  color: #100020; border: 1px solid rgba(220, 120, 255, 0.48); }
+    .sdc-badge--lead-ext  { background: rgba(160, 60, 220, 0.70);  color: #100020; border: 1px solid rgba(190, 100, 240, 0.40); }
+    .sdc-badge--score     { background: rgba(100, 200, 100, 0.72); color: #001a00; border: 1px solid rgba(120, 220, 120, 0.45); }
+    .sdc-badge--value     { background: rgba(120, 130, 150, 0.60); color: rgba(255,255,255,0.80); }
+
+    /* Summary line */
+    .sdc-summary {
+      font-size: 8px;
+      color: rgba(255, 255, 255, 0.40);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 170px;
+    }
+
+    /* Landscape: compact card */
+    @media (max-height: 500px) and (orientation: landscape) {
+      #station-detail-card {
+        padding: 4px 6px 3px;
+        max-width: 150px;
+      }
+      .sdc-name    { font-size: 10px; max-width: 110px; }
+      .sdc-lines   { display: none; }
+      .sdc-summary { display: none; }
+      .sdc-badge   { font-size: 7px; padding: 1px 3px; }
+      /* Show max 2 badges in landscape */
+      .sdc-badge:nth-child(n+3) { display: none; }
+    }
+
+    /* Mobile portrait: minimal card */
+    @media (max-width: 680px) {
+      #station-detail-card {
+        padding: 4px 6px 3px;
+        max-width: 145px;
+      }
+      .sdc-name    { font-size: 10px; max-width: 105px; }
+      .sdc-lines   { display: none; }
+      .sdc-summary { display: none; }
+      .sdc-badge   { font-size: 7px; padding: 1px 3px; }
+      /* Show max 2 badges on portrait */
+      .sdc-badge:nth-child(n+3) { display: none; }
+    }
+
   </style>
 </head>
 <body>
