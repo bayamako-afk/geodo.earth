@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/config.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "device-manager-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/deviceManager/DeviceManagerWebPart.js",
+          "manifest": "./src/webparts/deviceManager/DeviceManagerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {}
+}
