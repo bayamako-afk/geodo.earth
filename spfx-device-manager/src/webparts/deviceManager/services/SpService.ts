@@ -159,30 +159,39 @@ export class SpService {
 
   public async saveEmployee(item: IEmployee): Promise<void> {
     const headers = await this._getHeaders();
-    const body = {
-      Title: item.Title,
-      EmployeeName: item.EmployeeName,
-      Department: item.Department,
+    const body: any = {
+      Title: item.Title || '',
+      EmployeeName: item.EmployeeName || '',
       JobTitle: item.JobTitle || '',
       MobileNumber: item.MobileNumber || '',
       TeamsPhone: item.TeamsPhone || '',
       Email: item.Email || '',
       HibinoEmployeeNo: item.HibinoEmployeeNo || '',
-      Status: item.Status,
-      JoinDate: item.JoinDate ? `${item.JoinDate}T00:00:00Z` : null,
-      LeaveDate: item.LeaveDate ? `${item.LeaveDate}T00:00:00Z` : null,
       Remarks: item.Remarks || '',
     };
+    // Choiceフィールドは値がある場合のみセット（空文字だとエラーになる場合がある）
+    if (item.Department) body.Department = item.Department;
+    if (item.Status) body.Status = item.Status; else body.Status = '在籍';
+    if (item.JoinDate) body.JoinDate = item.JoinDate.length === 10 ? `${item.JoinDate}T00:00:00Z` : item.JoinDate;
+    if (item.LeaveDate) body.LeaveDate = item.LeaveDate.length === 10 ? `${item.LeaveDate}T00:00:00Z` : item.LeaveDate;
     if (item.Id) {
-      await fetch(
+      const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items(${item.Id})`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
       );
+      if (!res.ok && res.status !== 204) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 200)}`);
+      }
     } else {
-      await fetch(
+      const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
       );
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 200)}`);
+      }
     }
   }
 

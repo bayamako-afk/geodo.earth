@@ -58,7 +58,7 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
     super(props);
     this.state = {
       employees: [], sims: [], devices: [], phoneNumbers: [],
-      loading: true, searchText: '', filterDept: '', filterStatus: '在籍',
+      loading: true, searchText: '', filterDept: '', filterStatus: '',
       isPanelOpen: false, isAllocPanelOpen: false, isImportPanelOpen: false,
       editEmployee: null, editAllocation: null, selectedEmployee: null,
       error: '', saving: false,
