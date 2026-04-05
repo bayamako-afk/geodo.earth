@@ -3,7 +3,8 @@ import { IEmployee, IPhoneNumber, ISim, IDevice, IAllocation } from '../models/I
 
 // ============================================================
 // SharePoint REST API サービス
-// リスト名はすべて英数字（URLエンコード問題を回避）
+// ポイント: フィールド作成時のDisplayNameも英語にして内部名を確実に英数字で生成し、
+//           作成後にDisplayNameを日本語に更新する
 // ============================================================
 
 const LISTS = {
@@ -27,62 +28,62 @@ export class SpService {
   // リスト初期化
   // ============================================================
   public async initializeLists(): Promise<void> {
+    // name: 内部名(英数字), englishTitle: フィールド作成時の英語DisplayName, title: 最終的な日本語DisplayName
     await this._ensureList(LISTS.EMPLOYEE, '従業員マスタ（社員台帳）', [
-      { name: 'EmployeeName', type: 'Text', title: '氏名' },
-      { name: 'Department', type: 'Choice', title: '部署', choices: ['代表取締役社長', '取締役', '管理部', '開発部', 'BSI事業部', 'VS事業部', 'その他'] },
-      { name: 'JobTitle', type: 'Text', title: '役職' },
-      { name: 'MobileNumber', type: 'Text', title: '携帯番号' },
-      { name: 'TeamsPhone', type: 'Text', title: 'Teams外線番号' },
-      { name: 'Email', type: 'Text', title: 'メールアドレス' },
-      { name: 'HibinoEmployeeNo', type: 'Text', title: 'HIBINO社員番号' },
-      { name: 'Status', type: 'Choice', title: '在籍状況', choices: ['在籍', '休職', '退職'] },
-      { name: 'JoinDate', type: 'DateTime', title: '入社日' },
-      { name: 'LeaveDate', type: 'DateTime', title: '退社日' },
-      { name: 'Remarks', type: 'Note', title: '備考' },
+      { name: 'EmployeeName', type: 'Text', englishTitle: 'EmployeeName', title: '氏名' },
+      { name: 'Department', type: 'Choice', englishTitle: 'Department', title: '部署', choices: ['代表取締役社長', '取締役', '管理部', '開発部', 'BSI事業部', 'VS事業部', 'その他'] },
+      { name: 'JobTitle', type: 'Text', englishTitle: 'JobTitle', title: '役職' },
+      { name: 'MobileNumber', type: 'Text', englishTitle: 'MobileNumber', title: '携帯番号' },
+      { name: 'TeamsPhone', type: 'Text', englishTitle: 'TeamsPhone', title: 'Teams外線番号' },
+      { name: 'Email', type: 'Text', englishTitle: 'Email', title: 'メールアドレス' },
+      { name: 'HibinoEmployeeNo', type: 'Text', englishTitle: 'HibinoEmployeeNo', title: 'HIBINO社員番号' },
+      { name: 'Status', type: 'Choice', englishTitle: 'Status', title: '在籍状況', choices: ['在籍', '休職', '退職'] },
+      { name: 'JoinDate', type: 'DateTime', englishTitle: 'JoinDate', title: '入社日' },
+      { name: 'LeaveDate', type: 'DateTime', englishTitle: 'LeaveDate', title: '退社日' },
+      { name: 'Remarks', type: 'Note', englishTitle: 'Remarks', title: '備考' },
     ]);
 
     await this._ensureList(LISTS.PHONE_NUMBER, '電話番号マスタ', [
-      { name: 'NumberType', type: 'Choice', title: '番号種別', choices: ['スマホ(SIM紐付)', 'Teams外線', '固定電話', 'その他'] },
-      { name: 'Carrier', type: 'Choice', title: 'キャリア/プロバイダ', choices: ['docomo', 'au', 'SoftBank', 'Microsoft', 'その他'] },
-      { name: 'Status', type: 'Choice', title: '状態', choices: ['利用中', '空き(未割当)', '解約済'] },
-      { name: 'Remarks', type: 'Note', title: '備考' },
+      { name: 'NumberType', type: 'Choice', englishTitle: 'NumberType', title: '番号種別', choices: ['スマホ(SIM紐付)', 'Teams外線', '固定電話', 'その他'] },
+      { name: 'Carrier', type: 'Choice', englishTitle: 'Carrier', title: 'キャリア/プロバイダ', choices: ['docomo', 'au', 'SoftBank', 'Microsoft', 'その他'] },
+      { name: 'Status', type: 'Choice', englishTitle: 'Status', title: '状態', choices: ['利用中', '空き(未割当)', '解約済'] },
+      { name: 'Remarks', type: 'Note', englishTitle: 'Remarks', title: '備考' },
     ]);
 
     await this._ensureList(LISTS.SIM, 'SIMマスタ', [
-      { name: 'PhoneNumberId', type: 'Number', title: '電話番号参照ID' },
-      { name: 'Carrier', type: 'Choice', title: '通信キャリア', choices: ['docomo', 'au', 'SoftBank', 'その他'] },
-      { name: 'PlanName', type: 'Text', title: '契約プラン名' },
-      { name: 'SimType', type: 'Choice', title: 'SIM種別', choices: ['データSIM', '音声通話SIM(携帯)'] },
-      { name: 'Status', type: 'Choice', title: '状態', choices: ['利用中', '在庫(未割当)', '解約済', '紛失'] },
-      { name: 'MonthlyCost', type: 'Number', title: '月額費用' },
-      { name: 'Remarks', type: 'Note', title: '備考' },
+      { name: 'PhoneNumberId', type: 'Number', englishTitle: 'PhoneNumberId', title: '電話番号参照ID' },
+      { name: 'Carrier', type: 'Choice', englishTitle: 'Carrier', title: '通信キャリア', choices: ['docomo', 'au', 'SoftBank', 'その他'] },
+      { name: 'PlanName', type: 'Text', englishTitle: 'PlanName', title: '契約プラン名' },
+      { name: 'SimType', type: 'Choice', englishTitle: 'SimType', title: 'SIM種別', choices: ['データSIM', '音声通話SIM(携帯)'] },
+      { name: 'Status', type: 'Choice', englishTitle: 'Status', title: '状態', choices: ['利用中', '在庫(未割当)', '解約済', '紛失'] },
+      { name: 'MonthlyCost', type: 'Number', englishTitle: 'MonthlyCost', title: '月額費用' },
+      { name: 'Remarks', type: 'Note', englishTitle: 'Remarks', title: '備考' },
     ]);
 
     await this._ensureList(LISTS.DEVICE, '端末マスタ', [
-      { name: 'SerialNumber', type: 'Text', title: 'シリアル番号(S/N)' },
-      { name: 'DeviceModel', type: 'Text', title: '機種名' },
-      { name: 'DeviceType', type: 'Choice', title: '端末種別', choices: ['スマートフォン', 'タブレット', 'ルーター', 'その他'] },
-      { name: 'Status', type: 'Choice', title: '状態', choices: ['利用中', '在庫', '故障', '廃棄'] },
-      { name: 'PurchaseDate', type: 'DateTime', title: '購入日' },
-      { name: 'Remarks', type: 'Note', title: '備考' },
+      { name: 'SerialNumber', type: 'Text', englishTitle: 'SerialNumber', title: 'シリアル番号(S/N)' },
+      { name: 'DeviceModel', type: 'Text', englishTitle: 'DeviceModel', title: '機種名' },
+      { name: 'DeviceType', type: 'Choice', englishTitle: 'DeviceType', title: '端末種別', choices: ['スマートフォン', 'タブレット', 'ルーター', 'その他'] },
+      { name: 'Status', type: 'Choice', englishTitle: 'Status', title: '状態', choices: ['利用中', '在庫', '故障', '廃棄'] },
+      { name: 'PurchaseDate', type: 'DateTime', englishTitle: 'PurchaseDate', title: '購入日' },
+      { name: 'Remarks', type: 'Note', englishTitle: 'Remarks', title: '備考' },
     ]);
 
     await this._ensureList(LISTS.ALLOCATION, '貸与・割当管理', [
-      { name: 'EmployeeId', type: 'Number', title: '従業員参照ID' },
-      { name: 'AllocationType', type: 'Choice', title: '割当対象種別', choices: ['SIM+端末セット', '端末のみ', 'SIMのみ', 'Teams外線のみ'] },
-      { name: 'SimId', type: 'Number', title: 'SIM参照ID' },
-      { name: 'DeviceId', type: 'Number', title: '端末参照ID' },
-      { name: 'PhoneNumberId', type: 'Number', title: '電話番号参照ID' },
-      { name: 'StartDate', type: 'DateTime', title: '貸与開始日' },
-      { name: 'EndDate', type: 'DateTime', title: '貸与終了日' },
-      { name: 'IsCurrent', type: 'Boolean', title: '現在利用中' },
-      { name: 'Notes', type: 'Note', title: '特記事項' },
+      { name: 'EmployeeId', type: 'Number', englishTitle: 'EmployeeId', title: '従業員参照ID' },
+      { name: 'AllocationType', type: 'Choice', englishTitle: 'AllocationType', title: '割当対象種別', choices: ['SIM+端末セット', '端末のみ', 'SIMのみ', 'Teams外線のみ'] },
+      { name: 'SimId', type: 'Number', englishTitle: 'SimId', title: 'SIM参照ID' },
+      { name: 'DeviceId', type: 'Number', englishTitle: 'DeviceId', title: '端末参照ID' },
+      { name: 'PhoneNumberId', type: 'Number', englishTitle: 'PhoneNumberId', title: '電話番号参照ID' },
+      { name: 'StartDate', type: 'DateTime', englishTitle: 'StartDate', title: '貸与開始日' },
+      { name: 'EndDate', type: 'DateTime', englishTitle: 'EndDate', title: '貸与終了日' },
+      { name: 'IsCurrent', type: 'Boolean', englishTitle: 'IsCurrent', title: '現在利用中' },
+      { name: 'Notes', type: 'Note', englishTitle: 'Notes', title: '特記事項' },
     ]);
   }
 
   private async _ensureList(listName: string, listTitle: string, fields: any[]): Promise<void> {
     const headers = await this._getHeaders();
-    // リスト存在確認（英数字リスト名をそのまま使用）
     const checkRes = await fetch(
       `${this.siteUrl}/_api/web/lists/getbytitle('${listName}')?$select=Id`,
       { headers: { ...headers, Accept: 'application/json;odata=nometadata' } }
@@ -104,7 +105,7 @@ export class SpService {
       return;
     }
 
-    // リスト作成（英数字名で作成し、表示タイトルは後で更新）
+    // リスト作成
     const createRes = await fetch(`${this.siteUrl}/_api/web/lists`, {
       method: 'POST',
       headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' },
@@ -121,23 +122,23 @@ export class SpService {
     }
   }
 
-  private async _addField(listName: string, field: { name: string; type: string; title: string; choices?: string[] }): Promise<void> {
+  private async _addField(listName: string, field: { name: string; type: string; englishTitle: string; title: string; choices?: string[] }): Promise<void> {
     const headers = await this._getHeaders();
-    // SchemaXml形式で英数字の内部名を確実に指定する
+    // ★重要: DisplayNameを英語にして内部名を英数字で確実に生成する
     let schemaXml = '';
     if (field.type === 'Choice') {
       const choicesXml = (field.choices || []).map(c => `<CHOICE>${c}</CHOICE>`).join('');
-      schemaXml = `<Field Type="Choice" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}"><CHOICES>${choicesXml}</CHOICES></Field>`;
+      schemaXml = `<Field Type="Choice" DisplayName="${field.englishTitle}" Name="${field.name}" StaticName="${field.name}"><CHOICES>${choicesXml}</CHOICES></Field>`;
     } else if (field.type === 'Note') {
-      schemaXml = `<Field Type="Note" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" NumLines="6" RichText="FALSE" />`;
+      schemaXml = `<Field Type="Note" DisplayName="${field.englishTitle}" Name="${field.name}" StaticName="${field.name}" NumLines="6" RichText="FALSE" />`;
     } else if (field.type === 'DateTime') {
-      schemaXml = `<Field Type="DateTime" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" Format="DateOnly" />`;
+      schemaXml = `<Field Type="DateTime" DisplayName="${field.englishTitle}" Name="${field.name}" StaticName="${field.name}" Format="DateOnly" />`;
     } else if (field.type === 'Number') {
-      schemaXml = `<Field Type="Number" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" />`;
+      schemaXml = `<Field Type="Number" DisplayName="${field.englishTitle}" Name="${field.name}" StaticName="${field.name}" />`;
     } else if (field.type === 'Boolean') {
-      schemaXml = `<Field Type="Boolean" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}"><Default>0</Default></Field>`;
+      schemaXml = `<Field Type="Boolean" DisplayName="${field.englishTitle}" Name="${field.name}" StaticName="${field.name}"><Default>0</Default></Field>`;
     } else {
-      schemaXml = `<Field Type="Text" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" MaxLength="255" />`;
+      schemaXml = `<Field Type="Text" DisplayName="${field.englishTitle}" Name="${field.name}" StaticName="${field.name}" MaxLength="255" />`;
     }
 
     const res = await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('${listName}')/fields/createfieldasxml`, {
@@ -148,6 +149,22 @@ export class SpService {
     if (!res.ok) {
       const errText = await res.text();
       console.warn(`フィールド追加失敗 (${field.name}): ${errText.substring(0, 200)}`);
+      return;
+    }
+
+    // ★作成後にDisplayNameを日本語に更新する
+    const created = await res.json();
+    const fieldId = created.Id;
+    if (fieldId && field.title !== field.englishTitle) {
+      const updateHeaders = await this._getHeaders();
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${listName}')/fields/getbyinternalnameorid('${field.name}')`,
+        {
+          method: 'POST',
+          headers: { ...updateHeaders, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' },
+          body: JSON.stringify({ Title: field.title }),
+        }
+      );
     }
   }
 
@@ -211,7 +228,7 @@ export class SpService {
       );
       if (!res.ok && res.status !== 204) {
         const errText = await res.text();
-        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 200)}`);
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 300)}`);
       }
     } else {
       const res = await fetch(
@@ -220,7 +237,7 @@ export class SpService {
       );
       if (!res.ok) {
         const errText = await res.text();
-        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 200)}`);
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 300)}`);
       }
     }
   }
@@ -372,6 +389,28 @@ export class SpService {
   // ============================================================
   // CRUD: 貸与・割当管理
   // ============================================================
+  public async getAllocations(currentOnly?: boolean): Promise<IAllocation[]> {
+    const filter = currentOnly ? '&$filter=IsCurrent eq 1' : '';
+    const res = await fetch(
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items?$select=Id,Title,EmployeeId,AllocationType,SimId,DeviceId,PhoneNumberId,StartDate,EndDate,IsCurrent,Notes&$top=5000${filter}`,
+      { headers: { Accept: 'application/json;odata=nometadata' } }
+    );
+    const data = await res.json();
+    return (data.value || []).map((item: any) => ({
+      Id: item.Id,
+      Title: item.Title || '',
+      EmployeeId: item.EmployeeId || 0,
+      AllocationType: item.AllocationType || '',
+      SimId: item.SimId || 0,
+      DeviceId: item.DeviceId || 0,
+      PhoneNumberId: item.PhoneNumberId || 0,
+      StartDate: item.StartDate ? item.StartDate.substring(0, 10) : '',
+      EndDate: item.EndDate ? item.EndDate.substring(0, 10) : '',
+      IsCurrent: item.IsCurrent || false,
+      Notes: item.Notes || '',
+    }));
+  }
+
   public async saveAllocation(item: IAllocation): Promise<void> {
     const headers = await this._getHeaders();
     const body: any = {
@@ -401,30 +440,8 @@ export class SpService {
   }
 
   // ============================================================
-  // 追加メソッド: currentOnlyフィルタ付きgetAllocations
+  // ステータス更新メソッド
   // ============================================================
-  public async getAllocations(currentOnly?: boolean): Promise<IAllocation[]> {
-    const filter = currentOnly ? '&$filter=IsCurrent eq 1' : '';
-    const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items?$select=Id,Title,EmployeeId,AllocationType,SimId,DeviceId,PhoneNumberId,StartDate,EndDate,IsCurrent,Notes&$top=5000${filter}`,
-      { headers: { Accept: 'application/json;odata=nometadata' } }
-    );
-    const data = await res.json();
-    return (data.value || []).map((item: any) => ({
-      Id: item.Id,
-      Title: item.Title || '',
-      EmployeeId: item.EmployeeId || 0,
-      AllocationType: item.AllocationType || '',
-      SimId: item.SimId || 0,
-      DeviceId: item.DeviceId || 0,
-      PhoneNumberId: item.PhoneNumberId || 0,
-      StartDate: item.StartDate ? item.StartDate.substring(0, 10) : '',
-      EndDate: item.EndDate ? item.EndDate.substring(0, 10) : '',
-      IsCurrent: item.IsCurrent || false,
-      Notes: item.Notes || '',
-    }));
-  }
-
   public async updateSimStatus(simId: number, status: string): Promise<void> {
     const headers = await this._getHeaders();
     await fetch(
