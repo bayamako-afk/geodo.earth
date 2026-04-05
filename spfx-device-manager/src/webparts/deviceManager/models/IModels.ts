@@ -4,13 +4,17 @@
 
 export interface IEmployee {
   Id?: number;
-  Title: string;           // 従業員番号
-  EmployeeName: string;    // 氏名
-  Department: string;      // 部署
-  JobTitle: string;        // 役職
+  Title: string;              // 社員番号 (A0012形式)
+  EmployeeName: string;       // 氏名
+  Department: string;         // 部署
+  JobTitle?: string;          // 役職
+  MobileNumber?: string;      // 携帯番号
+  TeamsPhone?: string;        // Teams外線番号
+  Email?: string;             // メールアドレス
+  HibinoEmployeeNo?: string;  // HIBINO社員番号
   Status: '在籍' | '休職' | '退職';
-  JoinDate?: string;       // 入社日
-  LeaveDate?: string;      // 退社日
+  JoinDate?: string;          // 入社日
+  LeaveDate?: string;         // 退社日
   Remarks?: string;
 }
 

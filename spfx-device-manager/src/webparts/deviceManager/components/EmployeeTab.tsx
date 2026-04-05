@@ -35,10 +35,12 @@ interface IEmployeeTabState {
 
 const DEPT_OPTIONS: IDropdownOption[] = [
   { key: '', text: '全部署' },
-  { key: '営業部', text: '営業部' },
-  { key: '開発部', text: '開発部' },
+  { key: '代表取締役社長', text: '代表取締役社長' },
+  { key: '取締役', text: '取締役' },
   { key: '管理部', text: '管理部' },
-  { key: '総務部', text: '総務部' },
+  { key: '開発部', text: '開発部' },
+  { key: 'BSI事業部', text: 'BSI事業部' },
+  { key: 'VS事業部', text: 'VS事業部' },
   { key: 'その他', text: 'その他' },
 ];
 
@@ -118,8 +120,20 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
           <Persona text={item.EmployeeName} size={PersonaSize.size24} hidePersonaDetails={false} />
         )
       },
-      { key: 'dept', name: '部署', fieldName: 'Department', minWidth: 70, maxWidth: 100, isResizable: true },
+      { key: 'empno', name: '社員番号', fieldName: 'Title', minWidth: 60, maxWidth: 80, isResizable: true,
+        onRender: (item: IEmployeeView) => <span style={{ fontSize: 11, color: '#605e5c' }}>{item.Title}</span>
+      },
+      { key: 'dept', name: '部署', fieldName: 'Department', minWidth: 80, maxWidth: 110, isResizable: true },
       { key: 'jobtitle', name: '役職', fieldName: 'JobTitle', minWidth: 60, maxWidth: 90, isResizable: true },
+      { key: 'mobile', name: '携帯番号', fieldName: 'MobileNumber', minWidth: 100, maxWidth: 130, isResizable: true,
+        onRender: (item: IEmployeeView) => <span style={{ fontSize: 11 }}>{item.MobileNumber || ''}</span>
+      },
+      { key: 'email', name: 'メール', fieldName: 'Email', minWidth: 140, maxWidth: 200, isResizable: true,
+        onRender: (item: IEmployeeView) => <span style={{ fontSize: 11 }}>{item.Email || ''}</span>
+      },
+      { key: 'hibino', name: 'HIBINO番号', fieldName: 'HibinoEmployeeNo', minWidth: 70, maxWidth: 90, isResizable: true,
+        onRender: (item: IEmployeeView) => <span style={{ fontSize: 11, color: '#605e5c' }}>{item.HibinoEmployeeNo || ''}</span>
+      },
       { key: 'status', name: '在籍', fieldName: 'Status', minWidth: 50, maxWidth: 70, isResizable: true,
         onRender: (item: IEmployeeView) => {
           const color = item.Status === '在籍' ? '#107c10' : item.Status === '休職' ? '#797775' : '#a4262c';
@@ -178,7 +192,10 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
 
   private _openEditEmployee(emp?: IEmployeeView): void {
     this.setState({
-      editEmployee: emp ? { ...emp } : { Title: '', EmployeeName: '', Department: '', JobTitle: '', Status: '在籍' },
+      editEmployee: emp ? { ...emp } : {
+        Title: '', EmployeeName: '', Department: '', JobTitle: '',
+        MobileNumber: '', TeamsPhone: '', Email: '', HibinoEmployeeNo: '', Status: '在籍'
+      },
       isPanelOpen: true,
     });
   }
@@ -270,17 +287,35 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
             </Stack>
           )} isFooterAtBottom>
           {editEmployee && (
-            <Stack tokens={{ childrenGap: 12 }} style={{ padding: '16px 0' }}>
-              <TextField label="従業員番号" value={editEmployee.Title} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, Title: v || '' } })} required />
-              <TextField label="氏名" value={editEmployee.EmployeeName} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, EmployeeName: v || '' } })} required />
-              <TextField label="部署" value={editEmployee.Department} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, Department: v || '' } })} required />
-              <TextField label="役職" value={editEmployee.JobTitle} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, JobTitle: v || '' } })} />
-              <Dropdown label="在籍状況" selectedKey={editEmployee.Status}
-                options={[{ key: '在籍', text: '在籍' }, { key: '休職', text: '休職' }, { key: '退職', text: '退職' }]}
-                onChange={(_, o) => this.setState({ editEmployee: { ...editEmployee, Status: o?.key as any } })} />
-              <TextField label="入社日" type="date" value={editEmployee.JoinDate?.substring(0, 10) || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, JoinDate: v || '' } })} />
-              <TextField label="退社日" type="date" value={editEmployee.LeaveDate?.substring(0, 10) || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, LeaveDate: v || '' } })} />
-              <TextField label="備考" multiline rows={3} value={editEmployee.Remarks || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, Remarks: v || '' } })} />
+            <Stack tokens={{ childrenGap: 10 }} style={{ padding: '16px 0' }}>
+              <Stack horizontal tokens={{ childrenGap: 8 }}>
+                <TextField label="社員番号" value={editEmployee.Title} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, Title: v || '' } })} required styles={{ root: { width: 120 } }} />
+                <TextField label="氏名" value={editEmployee.EmployeeName} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, EmployeeName: v || '' } })} required styles={{ root: { flex: 1 } }} />
+              </Stack>
+              <Stack horizontal tokens={{ childrenGap: 8 }}>
+                <Dropdown label="部署" selectedKey={editEmployee.Department}
+                  options={DEPT_OPTIONS.filter(o => o.key !== '').map(o => ({ key: o.key as string, text: o.text }))}
+                  onChange={(_, o) => this.setState({ editEmployee: { ...editEmployee, Department: o?.key as string || '' } })}
+                  styles={{ root: { flex: 1 } }} />
+                <TextField label="役職" value={editEmployee.JobTitle || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, JobTitle: v || '' } })} styles={{ root: { flex: 1 } }} />
+              </Stack>
+              <Stack horizontal tokens={{ childrenGap: 8 }}>
+                <TextField label="携帯番号" value={editEmployee.MobileNumber || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, MobileNumber: v || '' } })} styles={{ root: { flex: 1 } }} />
+                <TextField label="Teams外線番号" value={editEmployee.TeamsPhone || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, TeamsPhone: v || '' } })} styles={{ root: { flex: 1 } }} />
+              </Stack>
+              <TextField label="メールアドレス" value={editEmployee.Email || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, Email: v || '' } })} />
+              <Stack horizontal tokens={{ childrenGap: 8 }}>
+                <TextField label="HIBINO社員番号" value={editEmployee.HibinoEmployeeNo || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, HibinoEmployeeNo: v || '' } })} styles={{ root: { width: 140 } }} />
+                <Dropdown label="在籍状況" selectedKey={editEmployee.Status}
+                  options={[{ key: '在籍', text: '在籍' }, { key: '休職', text: '休職' }, { key: '退職', text: '退職' }]}
+                  onChange={(_, o) => this.setState({ editEmployee: { ...editEmployee, Status: o?.key as any } })}
+                  styles={{ root: { flex: 1 } }} />
+              </Stack>
+              <Stack horizontal tokens={{ childrenGap: 8 }}>
+                <TextField label="入社日" type="date" value={editEmployee.JoinDate?.substring(0, 10) || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, JoinDate: v || '' } })} styles={{ root: { flex: 1 } }} />
+                <TextField label="退社日" type="date" value={editEmployee.LeaveDate?.substring(0, 10) || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, LeaveDate: v || '' } })} styles={{ root: { flex: 1 } }} />
+              </Stack>
+              <TextField label="備考" multiline rows={2} value={editEmployee.Remarks || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, Remarks: v || '' } })} />
             </Stack>
           )}
         </Panel>

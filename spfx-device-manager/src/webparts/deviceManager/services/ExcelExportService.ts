@@ -11,14 +11,21 @@ export class ExcelExportService {
   public static exportEmployeeList(employees: IEmployeeView[]): void {
     const rows: any[] = [];
     for (const emp of employees) {
+      const baseRow = {
+        '社員番号': emp.Title,
+        '氏名': emp.EmployeeName,
+        '部署': emp.Department,
+        '役職': emp.JobTitle || '',
+        '携帯番号': emp.MobileNumber || '',
+        'Teams外線番号': emp.TeamsPhone || '',
+        'メールアドレス': emp.Email || '',
+        'HIBINO社員番号': emp.HibinoEmployeeNo || '',
+        '在籍状況': emp.Status,
+        '入社日': emp.JoinDate ? emp.JoinDate.substring(0, 10) : '',
+      };
       if (emp.allocations.length === 0) {
         rows.push({
-          '従業員番号': emp.Title,
-          '氏名': emp.EmployeeName,
-          '部署': emp.Department,
-          '役職': emp.JobTitle,
-          '在籍状況': emp.Status,
-          '入社日': emp.JoinDate ? emp.JoinDate.substring(0, 10) : '',
+          ...baseRow,
           '割当種別': '',
           '電話番号': '',
           'SIM識別番号': '',
@@ -32,12 +39,7 @@ export class ExcelExportService {
       } else {
         for (const alloc of emp.allocations) {
           rows.push({
-            '従業員番号': emp.Title,
-            '氏名': emp.EmployeeName,
-            '部署': emp.Department,
-            '役職': emp.JobTitle,
-            '在籍状況': emp.Status,
-            '入社日': emp.JoinDate ? emp.JoinDate.substring(0, 10) : '',
+            ...baseRow,
             '割当種別': alloc.AllocationType,
             '電話番号': alloc.phoneNumberInfo?.Title || '',
             'SIM識別番号': alloc.simInfo?.Title || '',

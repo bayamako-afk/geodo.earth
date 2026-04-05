@@ -28,8 +28,12 @@ export class SpService {
   public async initializeLists(): Promise<void> {
     await this._ensureList(LISTS.EMPLOYEE, '従業員マスタ（社員台帳）', [
       { name: 'EmployeeName', type: 'Text', title: '氏名' },
-      { name: 'Department', type: 'Text', title: '部署' },
+      { name: 'Department', type: 'Choice', title: '部署', choices: ['代表取締役社長', '取締役', '管理部', '開発部', 'BSI事業部', 'VS事業部', 'その他'] },
       { name: 'JobTitle', type: 'Text', title: '役職' },
+      { name: 'MobileNumber', type: 'Text', title: '携帯番号' },
+      { name: 'TeamsPhone', type: 'Text', title: 'Teams外線番号' },
+      { name: 'Email', type: 'Text', title: 'メールアドレス' },
+      { name: 'HibinoEmployeeNo', type: 'Text', title: 'HIBINO社員番号' },
       { name: 'Status', type: 'Choice', title: '在籍状況', choices: ['在籍', '休職', '退職'] },
       { name: 'JoinDate', type: 'DateTime', title: '入社日' },
       { name: 'LeaveDate', type: 'DateTime', title: '退社日' },
@@ -146,7 +150,7 @@ export class SpService {
   // ============================================================
   public async getEmployees(): Promise<IEmployee[]> {
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items?$select=Id,Title,EmployeeName,Department,JobTitle,Status,JoinDate,LeaveDate,Remarks&$orderby=Department,EmployeeName&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items?$select=Id,Title,EmployeeName,Department,JobTitle,MobileNumber,TeamsPhone,Email,HibinoEmployeeNo,Status,JoinDate,LeaveDate,Remarks&$orderby=Department,EmployeeName&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
@@ -159,7 +163,11 @@ export class SpService {
       Title: item.Title,
       EmployeeName: item.EmployeeName,
       Department: item.Department,
-      JobTitle: item.JobTitle,
+      JobTitle: item.JobTitle || '',
+      MobileNumber: item.MobileNumber || '',
+      TeamsPhone: item.TeamsPhone || '',
+      Email: item.Email || '',
+      HibinoEmployeeNo: item.HibinoEmployeeNo || '',
       Status: item.Status,
       JoinDate: item.JoinDate ? `${item.JoinDate}T00:00:00Z` : null,
       LeaveDate: item.LeaveDate ? `${item.LeaveDate}T00:00:00Z` : null,
