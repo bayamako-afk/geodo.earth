@@ -1,15 +1,13 @@
 import { WebPartContext } from '@microsoft/sp-webpart-base';
-import { IEmployee, IPhoneNumber, ISim, IDevice, IAllocation } from '../models/IModels';
+import { IEmployee, ISim, IDevice, IAllocation } from '../models/IModels';
 
 // ============================================================
 // SharePoint REST API サービス
-// ポイント: フィールド作成時のDisplayNameも英語にして内部名を確実に英数字で生成し、
-//           作成後にDisplayNameを日本語に更新する
+// フィールド作成: 英語DisplayNameで作成 → 日本語DisplayNameに更新（内部名を英数字で確実に生成）
 // ============================================================
 
 const LISTS = {
   EMPLOYEE: 'EmployeeMaster',
-  PHONE_NUMBER: 'PhoneNumberMaster',
   SIM: 'SIMMaster',
   DEVICE: 'DeviceMaster',
   ALLOCATION: 'AssetAllocation',
@@ -28,7 +26,6 @@ export class SpService {
   // リスト初期化
   // ============================================================
   public async initializeLists(): Promise<void> {
-    // name: 内部名(英数字), englishTitle: フィールド作成時の英語DisplayName, title: 最終的な日本語DisplayName
     await this._ensureList(LISTS.EMPLOYEE, '従業員マスタ（社員台帳）', [
       { name: 'EmployeeName', type: 'Text', englishTitle: 'EmployeeName', title: '氏名' },
       { name: 'Department', type: 'Choice', englishTitle: 'Department', title: '部署', choices: ['代表取締役社長', '取締役', '管理部', '開発部', 'BSI事業部', 'VS事業部', 'その他'] },
@@ -43,20 +40,15 @@ export class SpService {
       { name: 'Remarks', type: 'Note', englishTitle: 'Remarks', title: '備考' },
     ]);
 
-    await this._ensureList(LISTS.PHONE_NUMBER, '電話番号マスタ', [
-      { name: 'NumberType', type: 'Choice', englishTitle: 'NumberType', title: '番号種別', choices: ['スマホ(SIM紐付)', 'Teams外線', '固定電話', 'その他'] },
-      { name: 'Carrier', type: 'Choice', englishTitle: 'Carrier', title: 'キャリア/プロバイダ', choices: ['docomo', 'au', 'SoftBank', 'Microsoft', 'その他'] },
-      { name: 'Status', type: 'Choice', englishTitle: 'Status', title: '状態', choices: ['利用中', '空き(未割当)', '解約済'] },
-      { name: 'Remarks', type: 'Note', englishTitle: 'Remarks', title: '備考' },
-    ]);
-
     await this._ensureList(LISTS.SIM, 'SIMマスタ', [
-      { name: 'PhoneNumberId', type: 'Number', englishTitle: 'PhoneNumberId', title: '電話番号参照ID' },
-      { name: 'Carrier', type: 'Choice', englishTitle: 'Carrier', title: '通信キャリア', choices: ['docomo', 'au', 'SoftBank', 'その他'] },
+      { name: 'ICCID', type: 'Text', englishTitle: 'ICCID', title: 'ICCID' },
+      { name: 'PhoneNo', type: 'Text', englishTitle: 'PhoneNo', title: '電話番号' },
+      { name: 'Carrier', type: 'Choice', englishTitle: 'Carrier', title: '通信キャリア', choices: ['KDDI', 'HISモバイル', 'docomo', 'SoftBank', 'その他'] },
+      { name: 'SimType', type: 'Choice', englishTitle: 'SimType', title: 'SIM種別', choices: ['音声SIM', 'SMS付きデータSIM', 'データSIM'] },
       { name: 'PlanName', type: 'Text', englishTitle: 'PlanName', title: '契約プラン名' },
-      { name: 'SimType', type: 'Choice', englishTitle: 'SimType', title: 'SIM種別', choices: ['データSIM', '音声通話SIM(携帯)'] },
-      { name: 'Status', type: 'Choice', englishTitle: 'Status', title: '状態', choices: ['利用中', '在庫(未割当)', '解約済', '紛失'] },
       { name: 'MonthlyCost', type: 'Number', englishTitle: 'MonthlyCost', title: '月額費用' },
+      { name: 'ContractDate', type: 'DateTime', englishTitle: 'ContractDate', title: '契約開始日' },
+      { name: 'Status', type: 'Choice', englishTitle: 'Status', title: '状態', choices: ['利用中', '在庫(未割当)', '解約済', '紛失'] },
       { name: 'Remarks', type: 'Note', englishTitle: 'Remarks', title: '備考' },
     ]);
 
@@ -71,10 +63,9 @@ export class SpService {
 
     await this._ensureList(LISTS.ALLOCATION, '貸与・割当管理', [
       { name: 'EmployeeId', type: 'Number', englishTitle: 'EmployeeId', title: '従業員参照ID' },
-      { name: 'AllocationType', type: 'Choice', englishTitle: 'AllocationType', title: '割当対象種別', choices: ['SIM+端末セット', '端末のみ', 'SIMのみ', 'Teams外線のみ'] },
+      { name: 'AllocationType', type: 'Choice', englishTitle: 'AllocationType', title: '割当対象種別', choices: ['SIM+端末セット', '端末のみ', 'SIMのみ'] },
       { name: 'SimId', type: 'Number', englishTitle: 'SimId', title: 'SIM参照ID' },
       { name: 'DeviceId', type: 'Number', englishTitle: 'DeviceId', title: '端末参照ID' },
-      { name: 'PhoneNumberId', type: 'Number', englishTitle: 'PhoneNumberId', title: '電話番号参照ID' },
       { name: 'StartDate', type: 'DateTime', englishTitle: 'StartDate', title: '貸与開始日' },
       { name: 'EndDate', type: 'DateTime', englishTitle: 'EndDate', title: '貸与終了日' },
       { name: 'IsCurrent', type: 'Boolean', englishTitle: 'IsCurrent', title: '現在利用中' },
@@ -90,7 +81,6 @@ export class SpService {
     );
 
     if (checkRes.ok) {
-      // リストが既存の場合、不足フィールドを追加
       const existingFieldsRes = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('${listName}')/fields?$select=InternalName&$filter=Hidden eq false`,
         { headers: { ...headers, Accept: 'application/json;odata=nometadata' } }
@@ -105,7 +95,6 @@ export class SpService {
       return;
     }
 
-    // リスト作成
     const createRes = await fetch(`${this.siteUrl}/_api/web/lists`, {
       method: 'POST',
       headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' },
@@ -116,7 +105,6 @@ export class SpService {
       throw new Error(`リスト作成失敗 (${listName}): ${errText.substring(0, 200)}`);
     }
 
-    // フィールド追加
     for (const field of fields) {
       await this._addField(listName, field);
     }
@@ -124,7 +112,6 @@ export class SpService {
 
   private async _addField(listName: string, field: { name: string; type: string; englishTitle: string; title: string; choices?: string[] }): Promise<void> {
     const headers = await this._getHeaders();
-    // ★重要: DisplayNameを英語にして内部名を英数字で確実に生成する
     let schemaXml = '';
     if (field.type === 'Choice') {
       const choicesXml = (field.choices || []).map(c => `<CHOICE>${c}</CHOICE>`).join('');
@@ -152,11 +139,9 @@ export class SpService {
       return;
     }
 
-    // ★作成後にDisplayNameを日本語に更新する
-    // createfieldasxml後はInternalName(=field.name)でフィールドを取得して更新する
+    // 作成後にDisplayNameを日本語に更新
     if (field.title !== field.englishTitle) {
       const updateHeaders = await this._getHeaders();
-      // 少し待機してSharePointがフィールドを確定させる
       await new Promise(resolve => setTimeout(resolve, 500));
       await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('${listName}')/fields/getbyinternalnameortitle('${field.name}')`,
@@ -198,7 +183,7 @@ export class SpService {
       TeamsPhone: item.TeamsPhone || '',
       Email: item.Email || '',
       HibinoEmployeeNo: item.HibinoEmployeeNo || '',
-      Status: item.Status || '',
+      Status: item.Status || '在籍',
       JoinDate: item.JoinDate ? item.JoinDate.substring(0, 10) : '',
       LeaveDate: item.LeaveDate ? item.LeaveDate.substring(0, 10) : '',
       Remarks: item.Remarks || '',
@@ -252,65 +237,25 @@ export class SpService {
   }
 
   // ============================================================
-  // CRUD: 電話番号マスタ
-  // ============================================================
-  public async getPhoneNumbers(): Promise<IPhoneNumber[]> {
-    const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.PHONE_NUMBER}')/items?$select=Id,Title,NumberType,Carrier,Status,Remarks&$top=5000`,
-      { headers: { Accept: 'application/json;odata=nometadata' } }
-    );
-    const data = await res.json();
-    return (data.value || []).map((item: any) => ({
-      Id: item.Id,
-      Title: item.Title || '',
-      NumberType: item.NumberType || '',
-      Carrier: item.Carrier || '',
-      Status: item.Status || '',
-      Remarks: item.Remarks || '',
-    }));
-  }
-
-  public async savePhoneNumber(item: IPhoneNumber): Promise<void> {
-    const headers = await this._getHeaders();
-    const body: any = {
-      Title: item.Title || '',
-      Carrier: item.Carrier || '',
-      Remarks: item.Remarks || '',
-    };
-    if (item.NumberType) body.NumberType = item.NumberType;
-    if (item.Status) body.Status = item.Status; else body.Status = '空き(未割当)';
-
-    if (item.Id) {
-      await fetch(
-        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.PHONE_NUMBER}')/items(${item.Id})`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
-      );
-    } else {
-      await fetch(
-        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.PHONE_NUMBER}')/items`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
-      );
-    }
-  }
-
-  // ============================================================
   // CRUD: SIMマスタ
   // ============================================================
   public async getSims(): Promise<ISim[]> {
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items?$select=Id,Title,PhoneNumberId,Carrier,PlanName,SimType,Status,MonthlyCost,Remarks&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items?$select=Id,Title,ICCID,PhoneNo,Carrier,SimType,PlanName,MonthlyCost,ContractDate,Status,Remarks&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
     return (data.value || []).map((item: any) => ({
       Id: item.Id,
       Title: item.Title || '',
-      PhoneNumberId: item.PhoneNumberId || 0,
+      ICCID: item.ICCID || '',
+      PhoneNo: item.PhoneNo || '',
       Carrier: item.Carrier || '',
-      PlanName: item.PlanName || '',
       SimType: item.SimType || '',
-      Status: item.Status || '',
+      PlanName: item.PlanName || '',
       MonthlyCost: item.MonthlyCost || 0,
+      ContractDate: item.ContractDate ? item.ContractDate.substring(0, 10) : '',
+      Status: item.Status || '在庫(未割当)',
       Remarks: item.Remarks || '',
     }));
   }
@@ -319,7 +264,8 @@ export class SpService {
     const headers = await this._getHeaders();
     const body: any = {
       Title: item.Title || '',
-      PhoneNumberId: item.PhoneNumberId || null,
+      ICCID: item.ICCID || '',
+      PhoneNo: item.PhoneNo || '',
       PlanName: item.PlanName || '',
       MonthlyCost: item.MonthlyCost || null,
       Remarks: item.Remarks || '',
@@ -327,18 +273,35 @@ export class SpService {
     if (item.Carrier) body.Carrier = item.Carrier;
     if (item.SimType) body.SimType = item.SimType;
     if (item.Status) body.Status = item.Status; else body.Status = '在庫(未割当)';
+    if (item.ContractDate) body.ContractDate = item.ContractDate.length === 10 ? `${item.ContractDate}T00:00:00Z` : item.ContractDate;
 
     if (item.Id) {
-      await fetch(
+      const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items(${item.Id})`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
       );
+      if (!res.ok && res.status !== 204) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 300)}`);
+      }
     } else {
-      await fetch(
+      const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
       );
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 300)}`);
+      }
     }
+  }
+
+  public async deleteSim(id: number): Promise<void> {
+    const headers = await this._getHeaders();
+    await fetch(
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items(${id})`,
+      { method: 'POST', headers: { ...headers, 'X-HTTP-Method': 'DELETE', 'IF-MATCH': '*' } }
+    );
   }
 
   // ============================================================
@@ -356,7 +319,7 @@ export class SpService {
       SerialNumber: item.SerialNumber || '',
       DeviceModel: item.DeviceModel || '',
       DeviceType: item.DeviceType || '',
-      Status: item.Status || '',
+      Status: item.Status || '在庫',
       PurchaseDate: item.PurchaseDate ? item.PurchaseDate.substring(0, 10) : '',
       Remarks: item.Remarks || '',
     }));
@@ -375,16 +338,32 @@ export class SpService {
     if (item.PurchaseDate) body.PurchaseDate = item.PurchaseDate.length === 10 ? `${item.PurchaseDate}T00:00:00Z` : item.PurchaseDate;
 
     if (item.Id) {
-      await fetch(
+      const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.DEVICE}')/items(${item.Id})`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
       );
+      if (!res.ok && res.status !== 204) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 300)}`);
+      }
     } else {
-      await fetch(
+      const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.DEVICE}')/items`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
       );
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 300)}`);
+      }
     }
+  }
+
+  public async deleteDevice(id: number): Promise<void> {
+    const headers = await this._getHeaders();
+    await fetch(
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.DEVICE}')/items(${id})`,
+      { method: 'POST', headers: { ...headers, 'X-HTTP-Method': 'DELETE', 'IF-MATCH': '*' } }
+    );
   }
 
   // ============================================================
@@ -393,7 +372,7 @@ export class SpService {
   public async getAllocations(currentOnly?: boolean): Promise<IAllocation[]> {
     const filter = currentOnly ? '&$filter=IsCurrent eq 1' : '';
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items?$select=Id,Title,EmployeeId,AllocationType,SimId,DeviceId,PhoneNumberId,StartDate,EndDate,IsCurrent,Notes&$top=5000${filter}`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items?$select=Id,Title,EmployeeId,AllocationType,SimId,DeviceId,StartDate,EndDate,IsCurrent,Notes&$top=5000${filter}`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
@@ -401,10 +380,9 @@ export class SpService {
       Id: item.Id,
       Title: item.Title || '',
       EmployeeId: item.EmployeeId || 0,
-      AllocationType: item.AllocationType || '',
+      AllocationType: item.AllocationType || 'SIM+端末セット',
       SimId: item.SimId || 0,
       DeviceId: item.DeviceId || 0,
-      PhoneNumberId: item.PhoneNumberId || 0,
       StartDate: item.StartDate ? item.StartDate.substring(0, 10) : '',
       EndDate: item.EndDate ? item.EndDate.substring(0, 10) : '',
       IsCurrent: item.IsCurrent || false,
@@ -419,7 +397,6 @@ export class SpService {
       EmployeeId: item.EmployeeId || null,
       SimId: item.SimId || null,
       DeviceId: item.DeviceId || null,
-      PhoneNumberId: item.PhoneNumberId || null,
       IsCurrent: item.IsCurrent !== undefined ? item.IsCurrent : true,
       Notes: item.Notes || '',
     };
@@ -428,15 +405,23 @@ export class SpService {
     if (item.EndDate) body.EndDate = item.EndDate.length === 10 ? `${item.EndDate}T00:00:00Z` : item.EndDate;
 
     if (item.Id) {
-      await fetch(
+      const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items(${item.Id})`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
       );
+      if (!res.ok && res.status !== 204) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 300)}`);
+      }
     } else {
-      await fetch(
+      const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
       );
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errText.substring(0, 300)}`);
+      }
     }
   }
 
@@ -455,14 +440,6 @@ export class SpService {
     const headers = await this._getHeaders();
     await fetch(
       `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.DEVICE}')/items(${deviceId})`,
-      { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify({ Status: status }) }
-    );
-  }
-
-  public async updatePhoneNumberStatus(phoneId: number, status: string): Promise<void> {
-    const headers = await this._getHeaders();
-    await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.PHONE_NUMBER}')/items(${phoneId})`,
       { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify({ Status: status }) }
     );
   }

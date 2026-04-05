@@ -1,5 +1,5 @@
 // ============================================================
-// 従業員・通信機器・電話番号 統合管理システム - データモデル定義
+// 従業員・通信機器 統合管理システム - データモデル定義
 // ============================================================
 
 export interface IEmployee {
@@ -18,25 +18,17 @@ export interface IEmployee {
   Remarks?: string;
 }
 
-export interface IPhoneNumber {
-  Id?: number;
-  Title: string;           // 電話番号
-  NumberType: 'スマホ(SIM紐付)' | 'Teams外線' | '固定電話' | 'その他';
-  Carrier: string;         // キャリア/プロバイダ
-  Status: '利用中' | '空き(未割当)' | '解約済';
-  Remarks?: string;
-}
-
 export interface ISim {
   Id?: number;
-  Title: string;           // SIM識別番号 (ICCID等)
-  PhoneNumberId?: number;  // 電話番号参照
-  PhoneNumberTitle?: string; // 表示用
-  Carrier: string;
-  PlanName?: string;
-  SimType: 'データSIM' | '音声通話SIM(携帯)';
+  Title: string;           // SIM識別名（例: KDDI-001, HIS-001）
+  ICCID?: string;          // SIM識別番号（ICCIDまたはIMSI）
+  PhoneNo?: string;        // 電話番号（音声SIM/SMS付きSIMのみ。データSIMは空欄）
+  Carrier: 'KDDI' | 'HISモバイル' | 'docomo' | 'SoftBank' | 'その他';
+  SimType: '音声SIM' | 'SMS付きデータSIM' | 'データSIM';
+  PlanName?: string;       // 契約プラン名
+  MonthlyCost?: number;    // 月額費用（円）
+  ContractDate?: string;   // 契約開始日
   Status: '利用中' | '在庫(未割当)' | '解約済' | '紛失';
-  MonthlyCost?: number;
   Remarks?: string;
 }
 
@@ -57,13 +49,11 @@ export interface IAllocation {
   EmployeeId: number;
   EmployeeName?: string;   // 表示用
   Department?: string;     // 表示用
-  AllocationType: 'SIM+端末セット' | '端末のみ' | 'SIMのみ' | 'Teams外線のみ';
+  AllocationType: 'SIM+端末セット' | '端末のみ' | 'SIMのみ';
   SimId?: number;
   SimTitle?: string;       // 表示用
   DeviceId?: number;
   DeviceModel?: string;    // 表示用
-  PhoneNumberId?: number;
-  PhoneNumber?: string;    // 表示用
   StartDate: string;
   EndDate?: string;
   IsCurrent: boolean;
@@ -78,8 +68,7 @@ export interface IEmployeeView extends IEmployee {
 export interface IAllocationView extends IAllocation {
   simInfo?: ISim;
   deviceInfo?: IDevice;
-  phoneNumberInfo?: IPhoneNumber;
 }
 
 export type TabKey = 'employees' | 'assets' | 'dashboard' | 'history';
-export type AssetTabKey = 'devices' | 'sims' | 'phoneNumbers';
+export type AssetTabKey = 'devices' | 'sims';
