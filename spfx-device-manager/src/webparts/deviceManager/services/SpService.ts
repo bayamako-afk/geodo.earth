@@ -3,14 +3,15 @@ import { IEmployee, IPhoneNumber, ISim, IDevice, IAllocation } from '../models/I
 
 // ============================================================
 // SharePoint REST API サービス
+// リスト名はすべて英数字（URLエンコード問題を回避）
 // ============================================================
 
 const LISTS = {
-  EMPLOYEE: 'Employee_Master',
-  PHONE_NUMBER: 'PhoneNumber_Master',
-  SIM: 'SIM_Master',
-  DEVICE: 'Device_Master',
-  ALLOCATION: 'Asset_Allocation',
+  EMPLOYEE: 'EmployeeMaster',
+  PHONE_NUMBER: 'PhoneNumberMaster',
+  SIM: 'SIMMaster',
+  DEVICE: 'DeviceMaster',
+  ALLOCATION: 'AssetAllocation',
 };
 
 export class SpService {
@@ -81,44 +82,46 @@ export class SpService {
 
   private async _ensureList(listName: string, listTitle: string, fields: any[]): Promise<void> {
     const headers = await this._getHeaders();
-    // リスト存在確認
+    // リスト存在確認（英数字リスト名をそのまま使用）
     const checkRes = await fetch(
-      `${this.siteUrl}/_api/web/lists?$filter=Title eq '${encodeURIComponent(listTitle)}'&$select=Id`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${listName}')?$select=Id`,
       { headers: { ...headers, Accept: 'application/json;odata=nometadata' } }
     );
-    const checkData = await checkRes.json();
 
-    if (checkData.value && checkData.value.length > 0) {
+    if (checkRes.ok) {
       // リストが既存の場合、不足フィールドを追加
       const existingFieldsRes = await fetch(
-        `${this.siteUrl}/_api/web/lists/getbytitle('${encodeURIComponent(listTitle)}')/fields?$select=InternalName&$filter=Hidden eq false`,
+        `${this.siteUrl}/_api/web/lists/getbytitle('${listName}')/fields?$select=InternalName&$filter=Hidden eq false`,
         { headers: { ...headers, Accept: 'application/json;odata=nometadata' } }
       );
       const existingFieldsData = await existingFieldsRes.json();
       const existingNames = new Set((existingFieldsData.value || []).map((f: any) => f.InternalName));
       for (const field of fields) {
         if (!existingNames.has(field.name)) {
-          await this._addField(listTitle, field);
+          await this._addField(listName, field);
         }
       }
       return;
     }
 
-    // リスト作成
+    // リスト作成（英数字名で作成し、表示タイトルは後で更新）
     const createRes = await fetch(`${this.siteUrl}/_api/web/lists`, {
       method: 'POST',
       headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' },
-      body: JSON.stringify({ Title: listTitle, BaseTemplate: 100, Description: listName }),
+      body: JSON.stringify({ Title: listName, BaseTemplate: 100, Description: listTitle }),
     });
-    if (!createRes.ok) throw new Error(`リスト作成失敗: ${listTitle}`);
+    if (!createRes.ok) {
+      const errText = await createRes.text();
+      throw new Error(`リスト作成失敗 (${listName}): ${errText.substring(0, 200)}`);
+    }
 
     // フィールド追加
     for (const field of fields) {
-      await this._addField(listTitle, field);
+      await this._addField(listName, field);
     }
   }
 
-  private async _addField(listTitle: string, field: { name: string; type: string; title: string; choices?: string[] }): Promise<void> {
+  private async _addField(listName: string, field: { name: string; type: string; title: string; choices?: string[] }): Promise<void> {
     const headers = await this._getHeaders();
     // SchemaXml形式で英数字の内部名を確実に指定する
     let schemaXml = '';
@@ -137,14 +140,14 @@ export class SpService {
       schemaXml = `<Field Type="Text" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" MaxLength="255" />`;
     }
 
-    const res = await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('${encodeURIComponent(listTitle)}')/fields/createfieldasxml`, {
+    const res = await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('${listName}')/fields/createfieldasxml`, {
       method: 'POST',
       headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' },
       body: JSON.stringify({ parameters: { SchemaXml: schemaXml } }),
     });
     if (!res.ok) {
       const errText = await res.text();
-      console.warn(`フィールド追加失敗 (${field.name}): ${errText.substring(0, 100)}`);
+      console.warn(`フィールド追加失敗 (${field.name}): ${errText.substring(0, 200)}`);
     }
   }
 
@@ -162,51 +165,48 @@ export class SpService {
   // CRUD: 従業員マスタ
   // ============================================================
   public async getEmployees(): Promise<IEmployee[]> {
-    // 実際のSharePoint内部フィールド名で取得（日本語フィールドはUnicodeエンコード名、英数字フィールドはそのまま）
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items?$select=Id,Title,_x6c0f__x540d_,_x90e8__x7f72_,_x5f79__x8077_,MobileNumber,TeamsPhone,Email,HibinoEmployeeNo,_x5728__x7c4d__x72b6__x6cc1_,_x5165__x793e__x65e5_,_x9000__x793e__x65e5_,_x5099__x8003_&$orderby=_x90e8__x7f72_,_x6c0f__x540d_&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.EMPLOYEE}')/items?$select=Id,Title,EmployeeName,Department,JobTitle,MobileNumber,TeamsPhone,Email,HibinoEmployeeNo,Status,JoinDate,LeaveDate,Remarks&$orderby=Department,EmployeeName&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
-    // 内部名をモデルのプロパティ名にマッピング
     return (data.value || []).map((item: any) => ({
       Id: item.Id,
       Title: item.Title || '',
-      EmployeeName: item['_x6c0f__x540d_'] || '',
-      Department: item['_x90e8__x7f72_'] || '',
-      JobTitle: item['_x5f79__x8077_'] || '',
+      EmployeeName: item.EmployeeName || '',
+      Department: item.Department || '',
+      JobTitle: item.JobTitle || '',
       MobileNumber: item.MobileNumber || '',
       TeamsPhone: item.TeamsPhone || '',
       Email: item.Email || '',
       HibinoEmployeeNo: item.HibinoEmployeeNo || '',
-      Status: item['_x5728__x7c4d__x72b6__x6cc1_'] || '',
-      JoinDate: item['_x5165__x793e__x65e5_'] ? item['_x5165__x793e__x65e5_'].substring(0, 10) : '',
-      LeaveDate: item['_x9000__x793e__x65e5_'] ? item['_x9000__x793e__x65e5_'].substring(0, 10) : '',
-      Remarks: item['_x5099__x8003_'] || '',
+      Status: item.Status || '',
+      JoinDate: item.JoinDate ? item.JoinDate.substring(0, 10) : '',
+      LeaveDate: item.LeaveDate ? item.LeaveDate.substring(0, 10) : '',
+      Remarks: item.Remarks || '',
     }));
   }
 
   public async saveEmployee(item: IEmployee): Promise<void> {
     const headers = await this._getHeaders();
-    // 日本語フィールドはUnicodeエンコード内部名、英数字フィールドはそのまま使用
     const body: any = {
       Title: item.Title || '',
-      '_x6c0f__x540d_': item.EmployeeName || '',
-      '_x5f79__x8077_': item.JobTitle || '',
+      EmployeeName: item.EmployeeName || '',
+      JobTitle: item.JobTitle || '',
       MobileNumber: item.MobileNumber || '',
       TeamsPhone: item.TeamsPhone || '',
       Email: item.Email || '',
       HibinoEmployeeNo: item.HibinoEmployeeNo || '',
-      '_x5099__x8003_': item.Remarks || '',
+      Remarks: item.Remarks || '',
+      Status: item.Status || '在籍',
     };
-    // Choiceフィールドは値がある場合のみセット（空文字だとエラーになる場合がある）
-    if (item.Department) body['_x90e8__x7f72_'] = item.Department;
-    body['_x5728__x7c4d__x72b6__x6cc1_'] = item.Status || '在籍';
-    if (item.JoinDate) body['_x5165__x793e__x65e5_'] = item.JoinDate.length === 10 ? `${item.JoinDate}T00:00:00Z` : item.JoinDate;
-    if (item.LeaveDate) body['_x9000__x793e__x65e5_'] = item.LeaveDate.length === 10 ? `${item.LeaveDate}T00:00:00Z` : item.LeaveDate;
+    if (item.Department) body.Department = item.Department;
+    if (item.JoinDate) body.JoinDate = item.JoinDate.length === 10 ? `${item.JoinDate}T00:00:00Z` : item.JoinDate;
+    if (item.LeaveDate) body.LeaveDate = item.LeaveDate.length === 10 ? `${item.LeaveDate}T00:00:00Z` : item.LeaveDate;
+
     if (item.Id) {
       const res = await fetch(
-        `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items(${item.Id})`,
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.EMPLOYEE}')/items(${item.Id})`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
       );
       if (!res.ok && res.status !== 204) {
@@ -215,7 +215,7 @@ export class SpService {
       }
     } else {
       const res = await fetch(
-        `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items`,
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.EMPLOYEE}')/items`,
         { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
       );
       if (!res.ok) {
@@ -225,27 +225,53 @@ export class SpService {
     }
   }
 
+  public async deleteEmployee(id: number): Promise<void> {
+    const headers = await this._getHeaders();
+    await fetch(
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.EMPLOYEE}')/items(${id})`,
+      { method: 'POST', headers: { ...headers, 'X-HTTP-Method': 'DELETE', 'IF-MATCH': '*' } }
+    );
+  }
+
   // ============================================================
   // CRUD: 電話番号マスタ
   // ============================================================
   public async getPhoneNumbers(): Promise<IPhoneNumber[]> {
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('電話番号マスタ')/items?$select=Id,Title,NumberType,Carrier,Status,Remarks&$orderby=NumberType,Title&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.PHONE_NUMBER}')/items?$select=Id,Title,NumberType,Carrier,Status,Remarks&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
-    return data.value || [];
+    return (data.value || []).map((item: any) => ({
+      Id: item.Id,
+      Title: item.Title || '',
+      NumberType: item.NumberType || '',
+      Carrier: item.Carrier || '',
+      Status: item.Status || '',
+      Remarks: item.Remarks || '',
+    }));
   }
 
   public async savePhoneNumber(item: IPhoneNumber): Promise<void> {
     const headers = await this._getHeaders();
-    const body = { Title: item.Title, NumberType: item.NumberType, Carrier: item.Carrier, Status: item.Status, Remarks: item.Remarks || '' };
+    const body: any = {
+      Title: item.Title || '',
+      Carrier: item.Carrier || '',
+      Remarks: item.Remarks || '',
+    };
+    if (item.NumberType) body.NumberType = item.NumberType;
+    if (item.Status) body.Status = item.Status; else body.Status = '空き(未割当)';
+
     if (item.Id) {
-      await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('電話番号マスタ')/items(${item.Id})`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) });
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.PHONE_NUMBER}')/items(${item.Id})`,
+        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
+      );
     } else {
-      await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('電話番号マスタ')/items`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) });
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.PHONE_NUMBER}')/items`,
+        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
+      );
     }
   }
 
@@ -254,26 +280,46 @@ export class SpService {
   // ============================================================
   public async getSims(): Promise<ISim[]> {
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('SIMマスタ')/items?$select=Id,Title,PhoneNumberId,Carrier,PlanName,SimType,Status,MonthlyCost,Remarks&$orderby=Status,Carrier&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items?$select=Id,Title,PhoneNumberId,Carrier,PlanName,SimType,Status,MonthlyCost,Remarks&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
-    return data.value || [];
+    return (data.value || []).map((item: any) => ({
+      Id: item.Id,
+      Title: item.Title || '',
+      PhoneNumberId: item.PhoneNumberId || 0,
+      Carrier: item.Carrier || '',
+      PlanName: item.PlanName || '',
+      SimType: item.SimType || '',
+      Status: item.Status || '',
+      MonthlyCost: item.MonthlyCost || 0,
+      Remarks: item.Remarks || '',
+    }));
   }
 
   public async saveSim(item: ISim): Promise<void> {
     const headers = await this._getHeaders();
-    const body = {
-      Title: item.Title, PhoneNumberId: item.PhoneNumberId || null, Carrier: item.Carrier,
-      PlanName: item.PlanName || '', SimType: item.SimType, Status: item.Status,
-      MonthlyCost: item.MonthlyCost || null, Remarks: item.Remarks || '',
+    const body: any = {
+      Title: item.Title || '',
+      PhoneNumberId: item.PhoneNumberId || null,
+      PlanName: item.PlanName || '',
+      MonthlyCost: item.MonthlyCost || null,
+      Remarks: item.Remarks || '',
     };
+    if (item.Carrier) body.Carrier = item.Carrier;
+    if (item.SimType) body.SimType = item.SimType;
+    if (item.Status) body.Status = item.Status; else body.Status = '在庫(未割当)';
+
     if (item.Id) {
-      await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('SIMマスタ')/items(${item.Id})`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) });
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items(${item.Id})`,
+        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
+      );
     } else {
-      await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('SIMマスタ')/items`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) });
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items`,
+        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
+      );
     }
   }
 
@@ -282,77 +328,124 @@ export class SpService {
   // ============================================================
   public async getDevices(): Promise<IDevice[]> {
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('端末マスタ')/items?$select=Id,Title,SerialNumber,DeviceModel,DeviceType,Status,PurchaseDate,Remarks&$orderby=Status,DeviceType&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.DEVICE}')/items?$select=Id,Title,SerialNumber,DeviceModel,DeviceType,Status,PurchaseDate,Remarks&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
-    return data.value || [];
+    return (data.value || []).map((item: any) => ({
+      Id: item.Id,
+      Title: item.Title || '',
+      SerialNumber: item.SerialNumber || '',
+      DeviceModel: item.DeviceModel || '',
+      DeviceType: item.DeviceType || '',
+      Status: item.Status || '',
+      PurchaseDate: item.PurchaseDate ? item.PurchaseDate.substring(0, 10) : '',
+      Remarks: item.Remarks || '',
+    }));
   }
 
   public async saveDevice(item: IDevice): Promise<void> {
     const headers = await this._getHeaders();
-    const body = {
-      Title: item.Title, SerialNumber: item.SerialNumber || '', DeviceModel: item.DeviceModel,
-      DeviceType: item.DeviceType, Status: item.Status,
-      PurchaseDate: item.PurchaseDate ? `${item.PurchaseDate}T00:00:00Z` : null,
+    const body: any = {
+      Title: item.Title || '',
+      SerialNumber: item.SerialNumber || '',
+      DeviceModel: item.DeviceModel || '',
       Remarks: item.Remarks || '',
     };
+    if (item.DeviceType) body.DeviceType = item.DeviceType;
+    if (item.Status) body.Status = item.Status; else body.Status = '在庫';
+    if (item.PurchaseDate) body.PurchaseDate = item.PurchaseDate.length === 10 ? `${item.PurchaseDate}T00:00:00Z` : item.PurchaseDate;
+
     if (item.Id) {
-      await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('端末マスタ')/items(${item.Id})`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) });
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.DEVICE}')/items(${item.Id})`,
+        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
+      );
     } else {
-      await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('端末マスタ')/items`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) });
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.DEVICE}')/items`,
+        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
+      );
     }
   }
 
   // ============================================================
-  // CRUD: 割当管理
+  // CRUD: 貸与・割当管理
   // ============================================================
-  public async getAllocations(currentOnly: boolean = true): Promise<IAllocation[]> {
+  public async saveAllocation(item: IAllocation): Promise<void> {
+    const headers = await this._getHeaders();
+    const body: any = {
+      Title: item.Title || '',
+      EmployeeId: item.EmployeeId || null,
+      SimId: item.SimId || null,
+      DeviceId: item.DeviceId || null,
+      PhoneNumberId: item.PhoneNumberId || null,
+      IsCurrent: item.IsCurrent !== undefined ? item.IsCurrent : true,
+      Notes: item.Notes || '',
+    };
+    if (item.AllocationType) body.AllocationType = item.AllocationType;
+    if (item.StartDate) body.StartDate = item.StartDate.length === 10 ? `${item.StartDate}T00:00:00Z` : item.StartDate;
+    if (item.EndDate) body.EndDate = item.EndDate.length === 10 ? `${item.EndDate}T00:00:00Z` : item.EndDate;
+
+    if (item.Id) {
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items(${item.Id})`,
+        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) }
+      );
+    } else {
+      await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items`,
+        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) }
+      );
+    }
+  }
+
+  // ============================================================
+  // 追加メソッド: currentOnlyフィルタ付きgetAllocations
+  // ============================================================
+  public async getAllocations(currentOnly?: boolean): Promise<IAllocation[]> {
     const filter = currentOnly ? '&$filter=IsCurrent eq 1' : '';
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('貸与・割当管理')/items?$select=Id,Title,EmployeeId,AllocationType,SimId,DeviceId,PhoneNumberId,StartDate,EndDate,IsCurrent,Notes${filter}&$orderby=EmployeeId,StartDate desc&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.ALLOCATION}')/items?$select=Id,Title,EmployeeId,AllocationType,SimId,DeviceId,PhoneNumberId,StartDate,EndDate,IsCurrent,Notes&$top=5000${filter}`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
-    return data.value || [];
+    return (data.value || []).map((item: any) => ({
+      Id: item.Id,
+      Title: item.Title || '',
+      EmployeeId: item.EmployeeId || 0,
+      AllocationType: item.AllocationType || '',
+      SimId: item.SimId || 0,
+      DeviceId: item.DeviceId || 0,
+      PhoneNumberId: item.PhoneNumberId || 0,
+      StartDate: item.StartDate ? item.StartDate.substring(0, 10) : '',
+      EndDate: item.EndDate ? item.EndDate.substring(0, 10) : '',
+      IsCurrent: item.IsCurrent || false,
+      Notes: item.Notes || '',
+    }));
   }
 
-  public async saveAllocation(item: IAllocation): Promise<void> {
+  public async updateSimStatus(simId: number, status: string): Promise<void> {
     const headers = await this._getHeaders();
-    const body = {
-      Title: item.Title, EmployeeId: item.EmployeeId, AllocationType: item.AllocationType,
-      SimId: item.SimId || null, DeviceId: item.DeviceId || null, PhoneNumberId: item.PhoneNumberId || null,
-      StartDate: item.StartDate ? `${item.StartDate}T00:00:00Z` : null,
-      EndDate: item.EndDate ? `${item.EndDate}T00:00:00Z` : null,
-      IsCurrent: item.IsCurrent, Notes: item.Notes || '',
-    };
-    if (item.Id) {
-      await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('貸与・割当管理')/items(${item.Id})`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify(body) });
-    } else {
-      await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('貸与・割当管理')/items`,
-        { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' }, body: JSON.stringify(body) });
-    }
+    await fetch(
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items(${simId})`,
+      { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify({ Status: status }) }
+    );
   }
 
-  // 資産のステータスを更新（割当/返却時）
-  public async updateSimStatus(simId: number, status: ISim['Status']): Promise<void> {
+  public async updateDeviceStatus(deviceId: number, status: string): Promise<void> {
     const headers = await this._getHeaders();
-    await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('SIMマスタ')/items(${simId})`,
-      { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify({ Status: status }) });
+    await fetch(
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.DEVICE}')/items(${deviceId})`,
+      { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify({ Status: status }) }
+    );
   }
 
-  public async updateDeviceStatus(deviceId: number, status: IDevice['Status']): Promise<void> {
+  public async updatePhoneNumberStatus(phoneId: number, status: string): Promise<void> {
     const headers = await this._getHeaders();
-    await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('端末マスタ')/items(${deviceId})`,
-      { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify({ Status: status }) });
-  }
-
-  public async updatePhoneNumberStatus(phoneNumberId: number, status: IPhoneNumber['Status']): Promise<void> {
-    const headers = await this._getHeaders();
-    await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('電話番号マスタ')/items(${phoneNumberId})`,
-      { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify({ Status: status }) });
+    await fetch(
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.PHONE_NUMBER}')/items(${phoneId})`,
+      { method: 'POST', headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' }, body: JSON.stringify({ Status: status }) }
+    );
   }
 }

@@ -4,7 +4,7 @@ import {
   SearchBox, PrimaryButton, DefaultButton, Panel, PanelType,
   TextField, Dropdown, IDropdownOption, Stack, Label, Text,
   MessageBar, MessageBarType, Spinner, SpinnerSize, IconButton,
-  TooltipHost, Badge, Persona, PersonaSize,
+  TooltipHost, Persona, PersonaSize,
 } from '@fluentui/react';
 import { IEmployee, IEmployeeView, IAllocationView, ISim, IDevice, IPhoneNumber, IAllocation } from '../models/IModels';
 import { SpService } from '../services/SpService';

@@ -41,7 +41,7 @@ const SYSTEM_FIELDS: IDropdownOption[] = [
   { key: 'EmployeeName', text: '氏名 *' },
   { key: 'Department', text: '部署' },
   { key: 'JobTitle', text: '役職' },
-  { key: 'MobileNumber', text: 'Teamsphone（携帯番号）' },
+  { key: 'MobileNumber', text: '携帯番号 (Teamsphone)' },
   { key: 'TeamsPhone', text: 'Teams外線番号' },
   { key: 'Email', text: 'メールアドレス' },
   { key: 'HibinoEmployeeNo', text: 'HIBINO社員番号' },
@@ -310,7 +310,8 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
                   { key: 'no', name: '社員番号', fieldName: 'Title', minWidth: 70, maxWidth: 90 },
                   { key: 'name', name: '氏名', fieldName: 'EmployeeName', minWidth: 80, maxWidth: 120 },
                   { key: 'dept', name: '部署', fieldName: 'Department', minWidth: 80, maxWidth: 110 },
-                  { key: 'mobile', name: 'Teamsphone', fieldName: 'MobileNumber', minWidth: 100, maxWidth: 130 },
+                  { key: 'mobile', name: '携帯番号', fieldName: 'MobileNumber', minWidth: 100, maxWidth: 130 },
+                  { key: 'teams', name: 'Teams外線', fieldName: 'TeamsPhone', minWidth: 100, maxWidth: 130 },
                   { key: 'email', name: 'メール', fieldName: 'Email', minWidth: 140, maxWidth: 200 },
                   { key: 'hibino', name: 'HIBINO番号', fieldName: 'HibinoEmployeeNo', minWidth: 70, maxWidth: 90 },
                 ] as IColumn[]}
