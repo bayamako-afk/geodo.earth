@@ -153,12 +153,13 @@ export class SpService {
     }
 
     // ★作成後にDisplayNameを日本語に更新する
-    const created = await res.json();
-    const fieldId = created.Id;
-    if (fieldId && field.title !== field.englishTitle) {
+    // createfieldasxml後はInternalName(=field.name)でフィールドを取得して更新する
+    if (field.title !== field.englishTitle) {
       const updateHeaders = await this._getHeaders();
+      // 少し待機してSharePointがフィールドを確定させる
+      await new Promise(resolve => setTimeout(resolve, 500));
       await fetch(
-        `${this.siteUrl}/_api/web/lists/getbytitle('${listName}')/fields/getbyinternalnameorid('${field.name}')`,
+        `${this.siteUrl}/_api/web/lists/getbytitle('${listName}')/fields/getbyinternalnameortitle('${field.name}')`,
         {
           method: 'POST',
           headers: { ...updateHeaders, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata', 'X-HTTP-Method': 'MERGE', 'IF-MATCH': '*' },
