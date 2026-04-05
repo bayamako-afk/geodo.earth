@@ -9,6 +9,7 @@ import {
 import { IEmployee, IEmployeeView, IAllocationView, ISim, IDevice, IPhoneNumber, IAllocation } from '../models/IModels';
 import { SpService } from '../services/SpService';
 import { ExcelExportService } from '../services/ExcelExportService';
+import { ImportPanel } from './ImportPanel';
 
 interface IEmployeeTabProps {
   spService: SpService;
@@ -26,6 +27,7 @@ interface IEmployeeTabState {
   filterStatus: string;
   isPanelOpen: boolean;
   isAllocPanelOpen: boolean;
+  isImportPanelOpen: boolean;
   editEmployee: IEmployee | null;
   editAllocation: IAllocation | null;
   selectedEmployee: IEmployeeView | null;
@@ -57,7 +59,7 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
     this.state = {
       employees: [], sims: [], devices: [], phoneNumbers: [],
       loading: true, searchText: '', filterDept: '', filterStatus: '在籍',
-      isPanelOpen: false, isAllocPanelOpen: false,
+      isPanelOpen: false, isAllocPanelOpen: false, isImportPanelOpen: false,
       editEmployee: null, editAllocation: null, selectedEmployee: null,
       error: '', saving: false,
     };
@@ -124,21 +126,17 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
         onRender: (item: IEmployeeView) => <span style={{ fontSize: 11, color: '#605e5c' }}>{item.Title}</span>
       },
       { key: 'dept', name: '部署', fieldName: 'Department', minWidth: 80, maxWidth: 110, isResizable: true },
-      { key: 'jobtitle', name: '役職', fieldName: 'JobTitle', minWidth: 60, maxWidth: 90, isResizable: true },
-      { key: 'mobile', name: '携帯番号', fieldName: 'MobileNumber', minWidth: 100, maxWidth: 130, isResizable: true,
+      { key: 'mobile', name: 'Teamsphone', fieldName: 'MobileNumber', minWidth: 110, maxWidth: 140, isResizable: true,
         onRender: (item: IEmployeeView) => <span style={{ fontSize: 11 }}>{item.MobileNumber || ''}</span>
       },
-      { key: 'email', name: 'メール', fieldName: 'Email', minWidth: 140, maxWidth: 200, isResizable: true,
+      { key: 'teamsp', name: 'Teams外線', fieldName: 'TeamsPhone', minWidth: 110, maxWidth: 140, isResizable: true,
+        onRender: (item: IEmployeeView) => <span style={{ fontSize: 11 }}>{item.TeamsPhone || ''}</span>
+      },
+      { key: 'email', name: 'メール', fieldName: 'Email', minWidth: 150, maxWidth: 210, isResizable: true,
         onRender: (item: IEmployeeView) => <span style={{ fontSize: 11 }}>{item.Email || ''}</span>
       },
       { key: 'hibino', name: 'HIBINO番号', fieldName: 'HibinoEmployeeNo', minWidth: 70, maxWidth: 90, isResizable: true,
         onRender: (item: IEmployeeView) => <span style={{ fontSize: 11, color: '#605e5c' }}>{item.HibinoEmployeeNo || ''}</span>
-      },
-      { key: 'status', name: '在籍', fieldName: 'Status', minWidth: 50, maxWidth: 70, isResizable: true,
-        onRender: (item: IEmployeeView) => {
-          const color = item.Status === '在籍' ? '#107c10' : item.Status === '休職' ? '#797775' : '#a4262c';
-          return <span style={{ color, fontWeight: 600, fontSize: 12 }}>{item.Status}</span>;
-        }
       },
       { key: 'phone', name: '電話番号', minWidth: 110, maxWidth: 140, isResizable: true,
         onRender: (item: IEmployeeView) => {
@@ -242,7 +240,7 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
   }
 
   public render(): React.ReactElement {
-    const { loading, error, searchText, filterDept, filterStatus, isPanelOpen, isAllocPanelOpen,
+    const { loading, error, searchText, filterDept, filterStatus, isPanelOpen, isAllocPanelOpen, isImportPanelOpen,
       editEmployee, editAllocation, selectedEmployee, sims, devices, phoneNumbers, saving } = this.state;
     const filtered = this._getFilteredEmployees();
     const { isAdmin } = this.props;
@@ -266,6 +264,10 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
           <span style={{ color: '#605e5c', fontSize: 12 }}>{filtered.length}件</span>
           {isAdmin && (
             <PrimaryButton text="新規社員登録" iconProps={{ iconName: 'AddFriend' }} onClick={() => this._openEditEmployee()} styles={{ root: { height: 28, fontSize: 12 } }} />
+          )}
+          {isAdmin && (
+            <DefaultButton text="Excelインポート" iconProps={{ iconName: 'Import' }}
+              onClick={() => this.setState({ isImportPanelOpen: true })} styles={{ root: { height: 28, fontSize: 12 } }} />
           )}
           <DefaultButton text="Excelエクスポート" iconProps={{ iconName: 'ExcelDocument' }}
             onClick={() => ExcelExportService.exportEmployeeList(filtered)} styles={{ root: { height: 28, fontSize: 12 } }} />
@@ -300,7 +302,7 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
                 <TextField label="役職" value={editEmployee.JobTitle || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, JobTitle: v || '' } })} styles={{ root: { flex: 1 } }} />
               </Stack>
               <Stack horizontal tokens={{ childrenGap: 8 }}>
-                <TextField label="携帯番号" value={editEmployee.MobileNumber || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, MobileNumber: v || '' } })} styles={{ root: { flex: 1 } }} />
+                <TextField label="Teamsphone（携帯番号）" value={editEmployee.MobileNumber || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, MobileNumber: v || '' } })} styles={{ root: { flex: 1 } }} />
                 <TextField label="Teams外線番号" value={editEmployee.TeamsPhone || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, TeamsPhone: v || '' } })} styles={{ root: { flex: 1 } }} />
               </Stack>
               <TextField label="メールアドレス" value={editEmployee.Email || ''} onChange={(_, v) => this.setState({ editEmployee: { ...editEmployee, Email: v || '' } })} />
@@ -319,6 +321,14 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
             </Stack>
           )}
         </Panel>
+
+        {/* Excelインポートパネル */}
+        <ImportPanel
+          isOpen={isImportPanelOpen}
+          spService={this.props.spService}
+          onDismiss={() => this.setState({ isImportPanelOpen: false })}
+          onImported={() => { this.setState({ isImportPanelOpen: false }); this._loadData(); }}
+        />
 
         {/* 割当パネル */}
         <Panel isOpen={isAllocPanelOpen} type={PanelType.medium}

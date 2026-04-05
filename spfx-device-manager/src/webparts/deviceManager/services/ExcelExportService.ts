@@ -16,7 +16,7 @@ export class ExcelExportService {
         '氏名': emp.EmployeeName,
         '部署': emp.Department,
         '役職': emp.JobTitle || '',
-        '携帯番号': emp.MobileNumber || '',
+        'Teamsphone': emp.MobileNumber || '',
         'Teams外線番号': emp.TeamsPhone || '',
         'メールアドレス': emp.Email || '',
         'HIBINO社員番号': emp.HibinoEmployeeNo || '',
