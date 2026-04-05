@@ -83,11 +83,26 @@ export class SpService {
     const headers = await this._getHeaders();
     // リスト存在確認
     const checkRes = await fetch(
-      `${this.siteUrl}/_api/web/lists?$filter=Title eq '${listTitle}'&$select=Id`,
+      `${this.siteUrl}/_api/web/lists?$filter=Title eq '${encodeURIComponent(listTitle)}'&$select=Id`,
       { headers: { ...headers, Accept: 'application/json;odata=nometadata' } }
     );
     const checkData = await checkRes.json();
-    if (checkData.value && checkData.value.length > 0) return;
+
+    if (checkData.value && checkData.value.length > 0) {
+      // リストが既存の場合、不足フィールドを追加
+      const existingFieldsRes = await fetch(
+        `${this.siteUrl}/_api/web/lists/getbytitle('${encodeURIComponent(listTitle)}')/fields?$select=InternalName&$filter=Hidden eq false`,
+        { headers: { ...headers, Accept: 'application/json;odata=nometadata' } }
+      );
+      const existingFieldsData = await existingFieldsRes.json();
+      const existingNames = new Set((existingFieldsData.value || []).map((f: any) => f.InternalName));
+      for (const field of fields) {
+        if (!existingNames.has(field.name)) {
+          await this._addField(listTitle, field);
+        }
+      }
+      return;
+    }
 
     // リスト作成
     const createRes = await fetch(`${this.siteUrl}/_api/web/lists`, {
@@ -105,34 +120,32 @@ export class SpService {
 
   private async _addField(listTitle: string, field: { name: string; type: string; title: string; choices?: string[] }): Promise<void> {
     const headers = await this._getHeaders();
-    let fieldDef: any = { Title: field.title, StaticName: field.name, InternalName: field.name };
-
+    // SchemaXml形式で英数字の内部名を確実に指定する
+    let schemaXml = '';
     if (field.type === 'Choice') {
-      fieldDef['__metadata'] = { type: 'SP.FieldChoice' };
-      fieldDef.FieldTypeKind = 6;
-      fieldDef.Choices = { results: field.choices || [] };
+      const choicesXml = (field.choices || []).map(c => `<CHOICE>${c}</CHOICE>`).join('');
+      schemaXml = `<Field Type="Choice" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}"><CHOICES>${choicesXml}</CHOICES></Field>`;
     } else if (field.type === 'Note') {
-      fieldDef['__metadata'] = { type: 'SP.Field' };
-      fieldDef.FieldTypeKind = 3;
+      schemaXml = `<Field Type="Note" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" NumLines="6" RichText="FALSE" />`;
     } else if (field.type === 'DateTime') {
-      fieldDef['__metadata'] = { type: 'SP.Field' };
-      fieldDef.FieldTypeKind = 4;
+      schemaXml = `<Field Type="DateTime" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" Format="DateOnly" />`;
     } else if (field.type === 'Number') {
-      fieldDef['__metadata'] = { type: 'SP.Field' };
-      fieldDef.FieldTypeKind = 9;
+      schemaXml = `<Field Type="Number" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" />`;
     } else if (field.type === 'Boolean') {
-      fieldDef['__metadata'] = { type: 'SP.Field' };
-      fieldDef.FieldTypeKind = 8;
+      schemaXml = `<Field Type="Boolean" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}"><Default>0</Default></Field>`;
     } else {
-      fieldDef['__metadata'] = { type: 'SP.Field' };
-      fieldDef.FieldTypeKind = 2;
+      schemaXml = `<Field Type="Text" DisplayName="${field.title}" Name="${field.name}" StaticName="${field.name}" MaxLength="255" />`;
     }
 
-    await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('${encodeURIComponent(listTitle)}')/fields`, {
+    const res = await fetch(`${this.siteUrl}/_api/web/lists/getbytitle('${encodeURIComponent(listTitle)}')/fields/createfieldasxml`, {
       method: 'POST',
-      headers: { ...headers, Accept: 'application/json;odata=verbose', 'Content-Type': 'application/json;odata=verbose' },
-      body: JSON.stringify(fieldDef),
+      headers: { ...headers, Accept: 'application/json;odata=nometadata', 'Content-Type': 'application/json;odata=nometadata' },
+      body: JSON.stringify({ parameters: { SchemaXml: schemaXml } }),
     });
+    if (!res.ok) {
+      const errText = await res.text();
+      console.warn(`フィールド追加失敗 (${field.name}): ${errText.substring(0, 100)}`);
+    }
   }
 
   private async _getHeaders(): Promise<Record<string, string>> {
@@ -149,31 +162,48 @@ export class SpService {
   // CRUD: 従業員マスタ
   // ============================================================
   public async getEmployees(): Promise<IEmployee[]> {
+    // 実際のSharePoint内部フィールド名で取得（日本語フィールドはUnicodeエンコード名、英数字フィールドはそのまま）
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items?$select=Id,Title,EmployeeName,Department,JobTitle,MobileNumber,TeamsPhone,Email,HibinoEmployeeNo,Status,JoinDate,LeaveDate,Remarks&$orderby=Department,EmployeeName&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items?$select=Id,Title,_x6c0f__x540d_,_x90e8__x7f72_,_x5f79__x8077_,MobileNumber,TeamsPhone,Email,HibinoEmployeeNo,_x5728__x7c4d__x72b6__x6cc1_,_x5165__x793e__x65e5_,_x9000__x793e__x65e5_,_x5099__x8003_&$orderby=_x90e8__x7f72_,_x6c0f__x540d_&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
-    return data.value || [];
-  }
-
-  public async saveEmployee(item: IEmployee): Promise<void> {
-    const headers = await this._getHeaders();
-    const body: any = {
+    // 内部名をモデルのプロパティ名にマッピング
+    return (data.value || []).map((item: any) => ({
+      Id: item.Id,
       Title: item.Title || '',
-      EmployeeName: item.EmployeeName || '',
-      JobTitle: item.JobTitle || '',
+      EmployeeName: item['_x6c0f__x540d_'] || '',
+      Department: item['_x90e8__x7f72_'] || '',
+      JobTitle: item['_x5f79__x8077_'] || '',
       MobileNumber: item.MobileNumber || '',
       TeamsPhone: item.TeamsPhone || '',
       Email: item.Email || '',
       HibinoEmployeeNo: item.HibinoEmployeeNo || '',
-      Remarks: item.Remarks || '',
+      Status: item['_x5728__x7c4d__x72b6__x6cc1_'] || '',
+      JoinDate: item['_x5165__x793e__x65e5_'] ? item['_x5165__x793e__x65e5_'].substring(0, 10) : '',
+      LeaveDate: item['_x9000__x793e__x65e5_'] ? item['_x9000__x793e__x65e5_'].substring(0, 10) : '',
+      Remarks: item['_x5099__x8003_'] || '',
+    }));
+  }
+
+  public async saveEmployee(item: IEmployee): Promise<void> {
+    const headers = await this._getHeaders();
+    // 日本語フィールドはUnicodeエンコード内部名、英数字フィールドはそのまま使用
+    const body: any = {
+      Title: item.Title || '',
+      '_x6c0f__x540d_': item.EmployeeName || '',
+      '_x5f79__x8077_': item.JobTitle || '',
+      MobileNumber: item.MobileNumber || '',
+      TeamsPhone: item.TeamsPhone || '',
+      Email: item.Email || '',
+      HibinoEmployeeNo: item.HibinoEmployeeNo || '',
+      '_x5099__x8003_': item.Remarks || '',
     };
     // Choiceフィールドは値がある場合のみセット（空文字だとエラーになる場合がある）
-    if (item.Department) body.Department = item.Department;
-    if (item.Status) body.Status = item.Status; else body.Status = '在籍';
-    if (item.JoinDate) body.JoinDate = item.JoinDate.length === 10 ? `${item.JoinDate}T00:00:00Z` : item.JoinDate;
-    if (item.LeaveDate) body.LeaveDate = item.LeaveDate.length === 10 ? `${item.LeaveDate}T00:00:00Z` : item.LeaveDate;
+    if (item.Department) body['_x90e8__x7f72_'] = item.Department;
+    body['_x5728__x7c4d__x72b6__x6cc1_'] = item.Status || '在籍';
+    if (item.JoinDate) body['_x5165__x793e__x65e5_'] = item.JoinDate.length === 10 ? `${item.JoinDate}T00:00:00Z` : item.JoinDate;
+    if (item.LeaveDate) body['_x9000__x793e__x65e5_'] = item.LeaveDate.length === 10 ? `${item.LeaveDate}T00:00:00Z` : item.LeaveDate;
     if (item.Id) {
       const res = await fetch(
         `${this.siteUrl}/_api/web/lists/getbytitle('従業員マスタ（社員台帳）')/items(${item.Id})`,
