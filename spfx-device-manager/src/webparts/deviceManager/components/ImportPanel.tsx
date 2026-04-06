@@ -262,9 +262,9 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
     reader.onload = (ev) => {
       try {
         const data = new Uint8Array(ev.target!.result as ArrayBuffer);
-        const wb = XLSX.read(data, { type: 'array' });
+        const wb = XLSX.read(data, { type: 'array', cellDates: true });
         const ws = wb.Sheets[wb.SheetNames[0]];
-        const json: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+        const json: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '', raw: false });
         if (json.length < 2) {
           this.setState({ message: 'Excelファイルにデータが見つかりません。' });
           return;
@@ -316,13 +316,28 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
         : { Carrier: 'KDDI', SimType: 'データ', Status: '在庫(未割当)' };
 
       columnMappings.forEach((m, i) => {
-        if (m.systemField && row[i] !== undefined && row[i] !== '') {
-          const val = String(row[i]).trim();
-          if (m.systemField === 'MonthlyCost') {
-            const n = parseFloat(val.replace(/[,¥]/g, ''));
+        const raw = row[i];
+        if (m.systemField && raw !== undefined && raw !== '') {
+          // 日付型の変換
+          if (m.systemField === 'JoinDate' || m.systemField === 'LeaveDate' ||
+              m.systemField === 'PurchaseDate' || m.systemField === 'ContractDate') {
+            if (raw instanceof Date) {
+              const y = raw.getFullYear();
+              const mo = ('0' + (raw.getMonth() + 1)).slice(-2);
+              const d = ('0' + raw.getDate()).slice(-2);
+              item[m.systemField] = `${y}-${mo}-${d}`;
+            } else {
+              const s = String(raw).trim();
+              // YYYY/MM/DD → YYYY-MM-DD
+              item[m.systemField] = s.replace(/\//g, '-');
+            }
+          } else if (m.systemField === 'MonthlyCost' || m.systemField === 'DataSize') {
+            // 数値型の変換
+            const n = parseFloat(String(raw).replace(/[,¥]/g, ''));
             item[m.systemField] = isNaN(n) ? undefined : n;
           } else {
-            item[m.systemField] = val;
+            // 文字列（数値も文字列に変換）
+            item[m.systemField] = String(raw).trim();
           }
         }
       });
