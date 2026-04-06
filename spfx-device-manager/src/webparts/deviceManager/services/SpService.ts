@@ -44,8 +44,9 @@ export class SpService {
       { name: 'ICCID', type: 'Text', englishTitle: 'ICCID', title: 'ICCID' },
       { name: 'PhoneNo', type: 'Text', englishTitle: 'PhoneNo', title: '電話番号' },
       { name: 'Carrier', type: 'Choice', englishTitle: 'Carrier', title: '通信キャリア', choices: ['KDDI', 'HISモバイル', 'docomo', 'SoftBank', 'その他'] },
-      { name: 'SimType', type: 'Choice', englishTitle: 'SimType', title: 'SIM種別', choices: ['音声SIM', 'SMS付きデータSIM', 'データSIM'] },
+      { name: 'SimType', type: 'Choice', englishTitle: 'SimType', title: 'SIM種別', choices: ['音声', 'SMS付データ', 'データ'] },
       { name: 'PlanName', type: 'Text', englishTitle: 'PlanName', title: '契約プラン名' },
+      { name: 'DataSize', type: 'Number', englishTitle: 'DataSize', title: 'データ容量(GB)' },
       { name: 'MonthlyCost', type: 'Number', englishTitle: 'MonthlyCost', title: '月額費用' },
       { name: 'ContractDate', type: 'DateTime', englishTitle: 'ContractDate', title: '契約開始日' },
       { name: 'Status', type: 'Choice', englishTitle: 'Status', title: '状態', choices: ['利用中', '在庫(未割当)', '解約済', '紛失'] },
@@ -241,7 +242,7 @@ export class SpService {
   // ============================================================
   public async getSims(): Promise<ISim[]> {
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items?$select=Id,Title,ICCID,PhoneNo,Carrier,SimType,PlanName,MonthlyCost,ContractDate,Status,Remarks&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items?$select=Id,Title,ICCID,PhoneNo,Carrier,SimType,PlanName,DataSize,MonthlyCost,ContractDate,Status,Remarks&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
@@ -253,6 +254,7 @@ export class SpService {
       Carrier: item.Carrier || '',
       SimType: item.SimType || '',
       PlanName: item.PlanName || '',
+      DataSize: item.DataSize || undefined,
       MonthlyCost: item.MonthlyCost || 0,
       ContractDate: item.ContractDate ? item.ContractDate.substring(0, 10) : '',
       Status: item.Status || '在庫(未割当)',
@@ -267,6 +269,7 @@ export class SpService {
       ICCID: item.ICCID || '',
       PhoneNo: item.PhoneNo || '',
       PlanName: item.PlanName || '',
+      DataSize: item.DataSize != null ? item.DataSize : null,
       MonthlyCost: item.MonthlyCost || null,
       Remarks: item.Remarks || '',
     };

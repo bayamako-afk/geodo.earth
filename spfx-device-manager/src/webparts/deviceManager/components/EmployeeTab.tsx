@@ -67,9 +67,9 @@ const CARRIER_OPTIONS: IDropdownOption[] = [
 ];
 
 const SIM_TYPE_OPTIONS: IDropdownOption[] = [
-  { key: '音声SIM', text: '音声SIM' },
-  { key: 'SMS付きデータSIM', text: 'SMS付きデータSIM' },
-  { key: 'データSIM', text: 'データSIM' },
+  { key: '音声', text: '音声' },
+  { key: 'SMS付データ', text: 'SMS付データ' },
+  { key: 'データ', text: 'データ' },
 ];
 
 const SIM_STATUS_OPTIONS: IDropdownOption[] = [
@@ -177,7 +177,7 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
             <div key={a.Id} style={{ fontSize: 11 }}>
               <span style={{ fontWeight: 600, color: a.simInfo!.Carrier === 'KDDI' ? '#d83b01' : '#107c10' }}>{a.simInfo!.Carrier}</span>
               <span style={{ color: '#797775', marginLeft: 4 }}>
-                {a.simInfo!.SimType === 'データSIM' ? '[D]' : a.simInfo!.SimType === 'SMS付きデータSIM' ? '[S]' : '[V]'}
+                {a.simInfo!.SimType === 'データ' ? '[D]' : a.simInfo!.SimType === 'SMS付データ' ? '[S]' : '[V]'}
               </span>
               {a.simInfo!.PhoneNo && <span style={{ color: '#0078d4', marginLeft: 4 }}>{a.simInfo!.PhoneNo}</span>}
               <span style={{ color: '#605e5c', marginLeft: 4, fontSize: 10 }}>{a.simInfo!.PlanName || ''}</span>
@@ -458,9 +458,12 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
                   <TextField label="プラン名" value={editSimInPanel.PlanName || ''}
                     onChange={(_, v) => this.setState({ editSimInPanel: { ...editSimInPanel, PlanName: v || '' } })}
                     styles={{ root: { flex: 1 } }} />
+                  <TextField label="容量(GB)" type="number" value={editSimInPanel.DataSize?.toString() || ''}
+                    onChange={(_, v) => this.setState({ editSimInPanel: { ...editSimInPanel, DataSize: v ? parseFloat(v) : undefined } })}
+                    styles={{ root: { width: 80 } }} />
                   <TextField label="月額費用（円）" type="number" value={editSimInPanel.MonthlyCost?.toString() || ''}
                     onChange={(_, v) => this.setState({ editSimInPanel: { ...editSimInPanel, MonthlyCost: v ? parseInt(v) : undefined } })}
-                    styles={{ root: { width: 120 } }} />
+                    styles={{ root: { width: 100 } }} />
                 </Stack>
                 <Stack horizontal tokens={{ childrenGap: 8 }}>
                   <TextField label="契約開始日" type="date" value={editSimInPanel.ContractDate?.substring(0, 10) || ''}
@@ -498,6 +501,7 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
                   { label: 'キャリア', value: editSimInPanel.Carrier },
                   { label: 'SIM種別', value: editSimInPanel.SimType },
                   { label: 'プラン', value: editSimInPanel.PlanName || '未登録' },
+                  { label: '容量', value: editSimInPanel.DataSize != null ? `${editSimInPanel.DataSize}GB` : '未登録' },
                   { label: '月額費用', value: editSimInPanel.MonthlyCost ? `¥${editSimInPanel.MonthlyCost.toLocaleString()}` : '未登録' },
                   { label: '契約開始日', value: editSimInPanel.ContractDate?.substring(0, 10) || '未登録' },
                   { label: '状態', value: editSimInPanel.Status },

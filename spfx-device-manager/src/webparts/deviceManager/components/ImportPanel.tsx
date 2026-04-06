@@ -129,6 +129,7 @@ const SIM_FIELDS: IDropdownOption[] = [
   { key: 'Carrier', text: 'キャリア' },
   { key: 'SimType', text: 'SIM種別' },
   { key: 'PlanName', text: 'プラン名' },
+  { key: 'DataSize', text: 'データ容量(GB)' },
   { key: 'MonthlyCost', text: '月額費用(円)' },
   { key: 'ContractDate', text: '契約開始日' },
   { key: 'Status', text: '状態' },
@@ -151,6 +152,10 @@ const SIM_AUTO_MAPPING: Record<string, string> = {
   '契約プラン': 'PlanName',
   '月額': 'MonthlyCost',
   '月額費用': 'MonthlyCost',
+  'データ容量': 'DataSize',
+  '容量': 'DataSize',
+  '容量(GB)': 'DataSize',
+  'GB': 'DataSize',
   '契約開始日': 'ContractDate',
   '契約日': 'ContractDate',
   '状態': 'Status',
@@ -184,8 +189,9 @@ const SIM_PREVIEW_COLS: IColumn[] = [
   { key: 'iccid', name: 'ICCID', fieldName: 'ICCID', minWidth: 130, maxWidth: 160 },
   { key: 'phoneno', name: '電話番号', fieldName: 'PhoneNo', minWidth: 100, maxWidth: 130 },
   { key: 'carrier', name: 'キャリア', fieldName: 'Carrier', minWidth: 70, maxWidth: 90 },
-  { key: 'type', name: 'SIM種別', fieldName: 'SimType', minWidth: 100, maxWidth: 130 },
-  { key: 'plan', name: 'プラン', fieldName: 'PlanName', minWidth: 100, maxWidth: 140 },
+  { key: 'type', name: 'SIM種別', fieldName: 'SimType', minWidth: 80, maxWidth: 100 },
+  { key: 'plan', name: 'プラン', fieldName: 'PlanName', minWidth: 90, maxWidth: 120 },
+  { key: 'datasize', name: '容量(GB)', fieldName: 'DataSize', minWidth: 60, maxWidth: 80 },
 ];
 
 export class ImportPanel extends React.Component<IImportPanelProps, IImportPanelState> {
@@ -284,7 +290,7 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
     for (const row of excelRows.slice(0, 5)) {
       const item: any = importType === 'employee' ? { Status: '在籍' }
         : importType === 'device' ? { DeviceType: 'スマートフォン', Status: '在庫' }
-        : { Carrier: 'KDDI', SimType: 'データSIM', Status: '在庫(未割当)' };
+        : { Carrier: 'KDDI', SimType: 'データ', Status: '在庫(未割当)' };
       columnMappings.forEach((m, i) => {
         if (m.systemField && row[i] !== undefined && row[i] !== '') {
           item[m.systemField] = String(row[i]).trim();
@@ -307,7 +313,7 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
       const row = excelRows[rowIdx];
       const item: any = importType === 'employee' ? { Status: '在籍' }
         : importType === 'device' ? { DeviceType: 'スマートフォン', Status: '在庫' }
-        : { Carrier: 'KDDI', SimType: 'データSIM', Status: '在庫(未割当)' };
+        : { Carrier: 'KDDI', SimType: 'データ', Status: '在庫(未割当)' };
 
       columnMappings.forEach((m, i) => {
         if (m.systemField && row[i] !== undefined && row[i] !== '') {

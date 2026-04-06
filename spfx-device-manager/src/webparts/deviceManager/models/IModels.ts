@@ -24,8 +24,9 @@ export interface ISim {
   ICCID?: string;          // SIM識別番号（ICCIDまたはIMSI）
   PhoneNo?: string;        // 電話番号（音声SIM/SMS付きSIMのみ。データSIMは空欄）
   Carrier: 'KDDI' | 'HISモバイル' | 'docomo' | 'SoftBank' | 'その他';
-  SimType: '音声SIM' | 'SMS付きデータSIM' | 'データSIM';
+  SimType: '音声' | 'SMS付データ' | 'データ';
   PlanName?: string;       // 契約プラン名
+  DataSize?: number;       // データ容量（GB）
   MonthlyCost?: number;    // 月額費用（円）
   ContractDate?: string;   // 契約開始日
   Status: '利用中' | '在庫(未割当)' | '解約済' | '紛失';

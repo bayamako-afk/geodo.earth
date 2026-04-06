@@ -96,10 +96,12 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
         onRender: (item: ISim) => <span style={{ fontWeight: 600, color: item.Carrier === 'KDDI' ? '#d83b01' : item.Carrier === 'HISモバイル' ? '#107c10' : '#605e5c', fontSize: 12 }}>{item.Carrier}</span> },
       { key: 'type', name: 'SIM種別', fieldName: 'SimType', minWidth: 110, maxWidth: 140, isResizable: true,
         onRender: (item: ISim) => {
-          const color = item.SimType === '音声SIM' ? '#107c10' : item.SimType === 'SMS付きデータSIM' ? '#5c2d91' : '#0078d4';
+          const color = item.SimType === '音声' ? '#107c10' : item.SimType === 'SMS付データ' ? '#5c2d91' : '#0078d4';
           return <span style={{ color, fontSize: 12 }}>{item.SimType}</span>;
         } },
       { key: 'plan', name: 'プラン', fieldName: 'PlanName', minWidth: 100, maxWidth: 140, isResizable: true },
+      { key: 'datasize', name: '容量(GB)', minWidth: 60, maxWidth: 80, isResizable: true,
+        onRender: (item: ISim) => <span style={{ fontSize: 11 }}>{item.DataSize != null ? `${item.DataSize}GB` : '-'}</span> },
       { key: 'cost', name: '月額', minWidth: 60, maxWidth: 80, isResizable: true,
         onRender: (item: ISim) => <span style={{ fontSize: 11 }}>{item.MonthlyCost ? `¥${item.MonthlyCost.toLocaleString()}` : '-'}</span> },
       { key: 'contract', name: '契約開始', minWidth: 80, maxWidth: 100, isResizable: true,
@@ -160,7 +162,7 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
     if (activeAssetTab === 'devices') {
       this.setState({ editDevice: { Title: '', DeviceModel: '', DeviceType: 'スマートフォン', Status: '在庫' }, isPanelOpen: true });
     } else {
-      this.setState({ editSim: { Title: '', Carrier: 'KDDI', SimType: '音声SIM', Status: '在庫(未割当)' }, isPanelOpen: true });
+      this.setState({ editSim: { Title: '', Carrier: 'KDDI', SimType: '音声', Status: '在庫(未割当)' }, isPanelOpen: true });
     }
   }
 
@@ -270,9 +272,10 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
                 options={[{ key: 'KDDI', text: 'KDDI' }, { key: 'HISモバイル', text: 'HISモバイル' }, { key: 'docomo', text: 'docomo' }, { key: 'SoftBank', text: 'SoftBank' }, { key: 'その他', text: 'その他' }]}
                 onChange={(_, o) => this.setState({ editSim: { ...editSim, Carrier: o?.key as any } })} />
               <Dropdown label="SIM種別" selectedKey={editSim.SimType}
-                options={[{ key: '音声SIM', text: '音声SIM' }, { key: 'SMS付きデータSIM', text: 'SMS付きデータSIM' }, { key: 'データSIM', text: 'データSIM' }]}
+                options={[{ key: '音声', text: '音声' }, { key: 'SMS付データ', text: 'SMS付データ' }, { key: 'データ', text: 'データ' }]}
                 onChange={(_, o) => this.setState({ editSim: { ...editSim, SimType: o?.key as any } })} />
               <TextField label="契約プラン名" value={editSim.PlanName || ''} onChange={(_, v) => this.setState({ editSim: { ...editSim, PlanName: v || '' } })} />
+              <TextField label="データ容量 (GB)" type="number" value={editSim.DataSize?.toString() || ''} onChange={(_, v) => this.setState({ editSim: { ...editSim, DataSize: v ? parseFloat(v) : undefined } })} />
               <TextField label="月額費用 (円)" type="number" value={editSim.MonthlyCost?.toString() || ''} onChange={(_, v) => this.setState({ editSim: { ...editSim, MonthlyCost: v ? parseInt(v) : undefined } })} />
               <TextField label="契約開始日" type="date" value={editSim.ContractDate?.substring(0, 10) || ''} onChange={(_, v) => this.setState({ editSim: { ...editSim, ContractDate: v || '' } })} />
               <Dropdown label="状態" selectedKey={editSim.Status}

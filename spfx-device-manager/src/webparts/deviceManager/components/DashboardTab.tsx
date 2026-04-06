@@ -98,9 +98,9 @@ export class DashboardTab extends React.Component<IDashboardTabProps, IDashboard
     const inUseDevices = devices.filter(d => d.Status === '利用中').length;
     const inStockSims = sims.filter(s => s.Status === '在庫(未割当)').length;
     const inUseSims = sims.filter(s => s.Status === '利用中').length;
-    const voiceSims = sims.filter(s => s.SimType === '音声SIM').length;
-    const smsSims = sims.filter(s => s.SimType === 'SMS付きデータSIM').length;
-    const dataSims = sims.filter(s => s.SimType === 'データSIM').length;
+    const voiceSims = sims.filter(s => s.SimType === '音声').length;
+    const smsSims = sims.filter(s => s.SimType === 'SMS付データ').length;
+    const dataSims = sims.filter(s => s.SimType === 'データ').length;
     const kddiSims = sims.filter(s => s.Carrier === 'KDDI').length;
     const hisSims = sims.filter(s => s.Carrier === 'HISモバイル').length;
     const activeSims = sims.filter(s => s.Status === '利用中' && s.MonthlyCost);
@@ -137,9 +137,9 @@ export class DashboardTab extends React.Component<IDashboardTabProps, IDashboard
           {/* SIM種別・キャリア内訳 */}
           <div style={{ flex: 1, minWidth: 220 }}>
             <Text variant="mediumPlus" style={{ fontWeight: 600, display: 'block', marginBottom: 10 }}>SIM種別内訳</Text>
-            {this._renderBar('音声SIM', voiceSims, sims.length || 1, '#107c10')}
-            {this._renderBar('SMS付きデータ', smsSims, sims.length || 1, '#5c2d91')}
-            {this._renderBar('データSIM', dataSims, sims.length || 1, '#0078d4')}
+            {this._renderBar('音声', voiceSims, sims.length || 1, '#107c10')}
+            {this._renderBar('SMS付データ', smsSims, sims.length || 1, '#5c2d91')}
+            {this._renderBar('データ', dataSims, sims.length || 1, '#0078d4')}
             <Text variant="mediumPlus" style={{ fontWeight: 600, display: 'block', marginTop: 16, marginBottom: 10 }}>キャリア別SIM数</Text>
             {this._renderBar('KDDI', kddiSims, sims.length || 1, '#d83b01')}
             {this._renderBar('HISモバイル', hisSims, sims.length || 1, '#107c10')}
