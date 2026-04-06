@@ -264,7 +264,7 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
         const data = new Uint8Array(ev.target!.result as ArrayBuffer);
         const wb = XLSX.read(data, { type: 'array', cellDates: true });
         const ws = wb.Sheets[wb.SheetNames[0]];
-        const json: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '', raw: false });
+        const json: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '', raw: true });
         if (json.length < 2) {
           this.setState({ message: 'Excelファイルにデータが見つかりません。' });
           return;
@@ -336,11 +336,24 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
             const n = parseFloat(String(raw).replace(/[,¥]/g, ''));
             item[m.systemField] = isNaN(n) ? undefined : n;
           } else {
-            // 文字列（数値も文字列に変換）
-            item[m.systemField] = String(raw).trim();
+            // 文字列（数値も文字列に変換、先頭シングルクォートを除去）
+            let s = String(raw).trim();
+            if (s.startsWith("'")) s = s.slice(1);
+            item[m.systemField] = s;
           }
         }
       });
+
+      // SIM種別の値を正規化（表記ユレ対応）
+      if (importType === 'sim' && item.SimType) {
+        const simTypeMap: Record<string, string> = {
+          '音声SIM': '音声', '音声sim': '音声', 'voice': '音声',
+          'SMS付きデータSIM': 'SMS付データ', 'SMS付きデータ': 'SMS付データ',
+          'SMS付データSIM': 'SMS付データ', 'SMS': 'SMS付データ',
+          'データSIM': 'データ', 'data': 'データ',
+        };
+        item.SimType = simTypeMap[item.SimType] || item.SimType;
+      }
 
       try {
         if (importType === 'employee') {
