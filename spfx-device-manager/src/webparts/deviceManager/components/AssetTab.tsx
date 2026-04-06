@@ -92,8 +92,13 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
         onRender: (item: ISim) => <span style={{ fontFamily: 'monospace', fontSize: 10, color: '#605e5c' }}>{item.ICCID || '-'}</span> },
       { key: 'phoneno', name: '電話番号', fieldName: 'PhoneNo', minWidth: 110, maxWidth: 140, isResizable: true,
         onRender: (item: ISim) => <span style={{ fontSize: 11, color: '#0078d4' }}>{item.PhoneNo || '-'}</span> },
-      { key: 'carrier', name: 'キャリア', fieldName: 'Carrier', minWidth: 80, maxWidth: 100, isResizable: true,
-        onRender: (item: ISim) => <span style={{ fontWeight: 600, color: item.Carrier === 'KDDI' ? '#d83b01' : item.Carrier === 'HISモバイル' ? '#107c10' : '#605e5c', fontSize: 12 }}>{item.Carrier}</span> },
+      { key: 'carrier', name: 'キャリア', fieldName: 'Carrier', minWidth: 80, maxWidth: 110, isResizable: true,
+        onRender: (item: ISim) => {
+          const color = item.Carrier === 'KDDI' ? '#d83b01' : item.Carrier === 'HISモバイル' ? '#107c10' : '#605e5c';
+          return <span style={{ fontWeight: 600, color, fontSize: 12 }}>
+            {item.Carrier}{item.Network ? <span style={{ fontWeight: 400, color: '#605e5c', fontSize: 10 }}> ({item.Network})</span> : null}
+          </span>;
+        } },
       { key: 'type', name: 'SIM種別', fieldName: 'SimType', minWidth: 110, maxWidth: 140, isResizable: true,
         onRender: (item: ISim) => {
           const color = item.SimType === '音声' ? '#107c10' : item.SimType === 'SMS付データ' ? '#5c2d91' : '#0078d4';
@@ -271,6 +276,9 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
               <Dropdown label="通信キャリア" selectedKey={editSim.Carrier}
                 options={[{ key: 'KDDI', text: 'KDDI' }, { key: 'HISモバイル', text: 'HISモバイル' }, { key: 'docomo', text: 'docomo' }, { key: 'SoftBank', text: 'SoftBank' }, { key: 'その他', text: 'その他' }]}
                 onChange={(_, o) => this.setState({ editSim: { ...editSim, Carrier: o?.key as any } })} />
+              <Dropdown label="回線網（MVNOの場合の実回線）" selectedKey={editSim.Network || ''}
+                options={[{ key: '', text: '---' }, { key: 'docomo', text: 'docomo' }, { key: 'au', text: 'au' }, { key: 'SoftBank', text: 'SoftBank' }, { key: 'その他', text: 'その他' }]}
+                onChange={(_, o) => this.setState({ editSim: { ...editSim, Network: (o?.key as any) || undefined } })} />
               <Dropdown label="SIM種別" selectedKey={editSim.SimType}
                 options={[{ key: '音声', text: '音声' }, { key: 'SMS付データ', text: 'SMS付データ' }, { key: 'データ', text: 'データ' }]}
                 onChange={(_, o) => this.setState({ editSim: { ...editSim, SimType: o?.key as any } })} />

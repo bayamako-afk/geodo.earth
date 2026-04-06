@@ -449,6 +449,10 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
                     options={CARRIER_OPTIONS}
                     onChange={(_, o) => this.setState({ editSimInPanel: { ...editSimInPanel, Carrier: o?.key as any } })}
                     styles={{ root: { flex: 1 } }} />
+                  <Dropdown label="回線網" selectedKey={editSimInPanel.Network || ''}
+                    options={[{ key: '', text: '---' }, { key: 'docomo', text: 'docomo' }, { key: 'au', text: 'au' }, { key: 'SoftBank', text: 'SoftBank' }, { key: 'その他', text: 'その他' }]}
+                    onChange={(_, o) => this.setState({ editSimInPanel: { ...editSimInPanel, Network: (o?.key as any) || undefined } })}
+                    styles={{ root: { flex: 1 } }} />
                   <Dropdown label="SIM種別" selectedKey={editSimInPanel.SimType}
                     options={SIM_TYPE_OPTIONS}
                     onChange={(_, o) => this.setState({ editSimInPanel: { ...editSimInPanel, SimType: o?.key as any } })}
@@ -498,7 +502,7 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
                   { label: 'SIM識別名', value: editSimInPanel.Title },
                   { label: 'ICCID', value: editSimInPanel.ICCID || '未登録' },
                   { label: '電話番号', value: editSimInPanel.PhoneNo || '（なし）' },
-                  { label: 'キャリア', value: editSimInPanel.Carrier },
+                  { label: 'キャリア', value: editSimInPanel.Carrier + (editSimInPanel.Network ? ` (${editSimInPanel.Network}回線)` : '') },
                   { label: 'SIM種別', value: editSimInPanel.SimType },
                   { label: 'プラン', value: editSimInPanel.PlanName || '未登録' },
                   { label: '容量', value: editSimInPanel.DataSize != null ? `${editSimInPanel.DataSize}GB` : '未登録' },

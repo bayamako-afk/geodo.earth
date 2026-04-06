@@ -44,6 +44,7 @@ export class SpService {
       { name: 'ICCID', type: 'Text', englishTitle: 'ICCID', title: 'ICCID' },
       { name: 'PhoneNo', type: 'Text', englishTitle: 'PhoneNo', title: '電話番号' },
       { name: 'Carrier', type: 'Choice', englishTitle: 'Carrier', title: '通信キャリア', choices: ['KDDI', 'HISモバイル', 'docomo', 'SoftBank', 'その他'] },
+      { name: 'Network', type: 'Choice', englishTitle: 'Network', title: '回線網', choices: ['docomo', 'au', 'SoftBank', 'その他'] },
       { name: 'SimType', type: 'Choice', englishTitle: 'SimType', title: 'SIM種別', choices: ['音声', 'SMS付データ', 'データ'] },
       { name: 'PlanName', type: 'Text', englishTitle: 'PlanName', title: '契約プラン名' },
       { name: 'DataSize', type: 'Number', englishTitle: 'DataSize', title: 'データ容量(GB)' },
@@ -242,7 +243,7 @@ export class SpService {
   // ============================================================
   public async getSims(): Promise<ISim[]> {
     const res = await fetch(
-      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items?$select=Id,Title,ICCID,PhoneNo,Carrier,SimType,PlanName,DataSize,MonthlyCost,ContractDate,Status,Remarks&$top=5000`,
+      `${this.siteUrl}/_api/web/lists/getbytitle('${LISTS.SIM}')/items?$select=Id,Title,ICCID,PhoneNo,Carrier,Network,SimType,PlanName,DataSize,MonthlyCost,ContractDate,Status,Remarks&$top=5000`,
       { headers: { Accept: 'application/json;odata=nometadata' } }
     );
     const data = await res.json();
@@ -252,6 +253,7 @@ export class SpService {
       ICCID: item.ICCID || '',
       PhoneNo: item.PhoneNo || '',
       Carrier: item.Carrier || '',
+      Network: item.Network || '',
       SimType: item.SimType || '',
       PlanName: item.PlanName || '',
       DataSize: item.DataSize || undefined,
@@ -274,6 +276,7 @@ export class SpService {
       Remarks: item.Remarks || '',
     };
     if (item.Carrier) body.Carrier = item.Carrier;
+    if (item.Network) body.Network = item.Network;
     if (item.SimType) body.SimType = item.SimType;
     if (item.Status) body.Status = item.Status; else body.Status = '在庫(未割当)';
     if (item.ContractDate) body.ContractDate = item.ContractDate.length === 10 ? `${item.ContractDate}T00:00:00Z` : item.ContractDate;
