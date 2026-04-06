@@ -294,7 +294,7 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
     for (const row of excelRows.slice(0, 5)) {
       const item: any = importType === 'employee' ? { Status: '在籍' }
         : importType === 'device' ? { DeviceType: 'スマートフォン', Status: '在庫' }
-        : { Carrier: 'KDDI', SimType: 'データ', Status: '在庫(未割当)' };
+        : { SimType: 'データ', Status: '在庫(未割当)' };
       columnMappings.forEach((m, i) => {
         if (m.systemField && row[i] !== undefined && row[i] !== '') {
           item[m.systemField] = String(row[i]).trim();
@@ -317,7 +317,7 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
       const row = excelRows[rowIdx];
       const item: any = importType === 'employee' ? { Status: '在籍' }
         : importType === 'device' ? { DeviceType: 'スマートフォン', Status: '在庫' }
-        : { Carrier: 'KDDI', SimType: 'データ', Status: '在庫(未割当)' };
+        : { SimType: 'データ', Status: '在庫(未割当)' };
 
       columnMappings.forEach((m, i) => {
         const raw = row[i];
