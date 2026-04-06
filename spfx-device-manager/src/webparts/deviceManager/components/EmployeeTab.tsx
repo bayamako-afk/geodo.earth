@@ -121,6 +121,13 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
           } as IAllocationView)),
       }));
 
+      // HIBINO番号順にソート（番号なしは末尾）
+      employeeViews.sort((a, b) => {
+        const na = a.HibinoEmployeeNo ? parseInt(a.HibinoEmployeeNo.replace(/\D/g, ''), 10) : Infinity;
+        const nb = b.HibinoEmployeeNo ? parseInt(b.HibinoEmployeeNo.replace(/\D/g, ''), 10) : Infinity;
+        if (isFinite(na) && isFinite(nb) && na !== nb) return na - nb;
+        return (a.HibinoEmployeeNo || '').localeCompare(b.HibinoEmployeeNo || '', 'ja');
+      });
       this.setState({ employees: employeeViews, sims, devices, loading: false });
     } catch (e: any) {
       this.setState({ loading: false, error: `データ読み込みエラー: ${e.message}` });

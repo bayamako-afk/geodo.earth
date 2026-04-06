@@ -8,6 +8,7 @@ import {
 import { ISim, IDevice, AssetTabKey } from '../models/IModels';
 import { SpService } from '../services/SpService';
 import { ExcelExportService } from '../services/ExcelExportService';
+import { ImportPanel, ImportType } from './ImportPanel';
 
 interface IAssetTabProps {
   spService: SpService;
@@ -25,6 +26,7 @@ interface IAssetTabState {
   editDevice: IDevice | null;
   error: string;
   saving: boolean;
+  isImportOpen: boolean;
 }
 
 export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
@@ -34,7 +36,7 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
       sims: [], devices: [],
       loading: true, searchText: '', activeAssetTab: 'devices',
       isPanelOpen: false, editSim: null, editDevice: null,
-      error: '', saving: false,
+      error: '', saving: false, isImportOpen: false,
     };
   }
 
@@ -174,8 +176,12 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
     else this._saveSim();
   }
 
+  private _getImportType(): ImportType {
+    return this.state.activeAssetTab === 'devices' ? 'device' : 'sim';
+  }
+
   public render(): React.ReactElement {
-    const { loading, error, searchText, activeAssetTab, isPanelOpen, editDevice, editSim, saving } = this.state;
+    const { loading, error, searchText, activeAssetTab, isPanelOpen, editDevice, editSim, saving, isImportOpen } = this.state;
     const filtered = this._getFilteredItems();
     const { isAdmin } = this.props;
 
@@ -195,6 +201,14 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
           {isAdmin && (
             <PrimaryButton text="新規登録" iconProps={{ iconName: 'Add' }} onClick={() => this._openNewPanel()} styles={{ root: { height: 28, fontSize: 12 } }} />
           )}
+          {isAdmin && (
+            <DefaultButton
+              text={`Excelインポート`}
+              iconProps={{ iconName: 'Upload' }}
+              onClick={() => this.setState({ isImportOpen: true })}
+              styles={{ root: { height: 28, fontSize: 12 } }}
+            />
+          )}
           <DefaultButton text="Excelエクスポート" iconProps={{ iconName: 'ExcelDocument' }}
             onClick={() => ExcelExportService.exportAssetList(filtered, activeAssetTab, activeAssetTab)} styles={{ root: { height: 28, fontSize: 12 } }} />
           <DefaultButton text="更新" iconProps={{ iconName: 'Refresh' }} onClick={() => this._loadData()} styles={{ root: { height: 28, fontSize: 12 } }} />
@@ -209,6 +223,15 @@ export class AssetTab extends React.Component<IAssetTabProps, IAssetTabState> {
             compact={true}
           />
         )}
+
+        {/* Excelインポートパネル */}
+        <ImportPanel
+          isOpen={isImportOpen}
+          spService={this.props.spService}
+          defaultImportType={this._getImportType()}
+          onDismiss={() => this.setState({ isImportOpen: false })}
+          onImported={() => { this.setState({ isImportOpen: false }); this._loadData(); }}
+        />
 
         {/* 編集パネル */}
         <Panel isOpen={isPanelOpen} type={PanelType.medium} headerText={this._getPanelTitle()}

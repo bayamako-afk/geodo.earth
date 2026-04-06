@@ -4,16 +4,22 @@ import {
   Panel, PanelType, PrimaryButton, DefaultButton, Stack, Text,
   MessageBar, MessageBarType, Spinner, SpinnerSize, Label,
   DetailsList, DetailsListLayoutMode, SelectionMode, IColumn,
-  Dropdown, IDropdownOption,
+  Dropdown, IDropdownOption, ChoiceGroup, IChoiceGroupOption,
 } from '@fluentui/react';
 import { SpService } from '../services/SpService';
-import { IEmployee } from '../models/IModels';
+import { IEmployee, ISim, IDevice } from '../models/IModels';
+
+// ============================================================
+// インポート種別
+// ============================================================
+export type ImportType = 'employee' | 'device' | 'sim';
 
 interface IImportPanelProps {
   isOpen: boolean;
   spService: SpService;
   onDismiss: () => void;
   onImported: () => void;
+  defaultImportType?: ImportType;
 }
 
 interface IColumnMapping {
@@ -22,11 +28,12 @@ interface IColumnMapping {
 }
 
 interface IImportPanelState {
-  step: 'upload' | 'mapping' | 'preview' | 'importing' | 'done';
+  importType: ImportType;
+  step: 'selectType' | 'upload' | 'mapping' | 'preview' | 'importing' | 'done';
   excelHeaders: string[];
   excelRows: any[][];
   columnMappings: IColumnMapping[];
-  previewData: IEmployee[];
+  previewData: any[];
   importing: boolean;
   importedCount: number;
   errorCount: number;
@@ -34,14 +41,16 @@ interface IImportPanelState {
   message: string;
 }
 
-// システムフィールドの定義
-const SYSTEM_FIELDS: IDropdownOption[] = [
+// ============================================================
+// 社員台帳フィールド定義
+// ============================================================
+const EMPLOYEE_FIELDS: IDropdownOption[] = [
   { key: '', text: '（マッピングしない）' },
   { key: 'Title', text: '社員番号 *' },
   { key: 'EmployeeName', text: '氏名 *' },
   { key: 'Department', text: '部署' },
   { key: 'JobTitle', text: '役職' },
-  { key: 'MobileNumber', text: '携帯番号 (Teamsphone)' },
+  { key: 'MobileNumber', text: '携帯番号' },
   { key: 'TeamsPhone', text: 'Teams外線番号' },
   { key: 'Email', text: 'メールアドレス' },
   { key: 'HibinoEmployeeNo', text: 'HIBINO社員番号' },
@@ -51,8 +60,7 @@ const SYSTEM_FIELDS: IDropdownOption[] = [
   { key: 'Remarks', text: '備考' },
 ];
 
-// Excelヘッダーからシステムフィールドへの自動マッピング
-const AUTO_MAPPING: Record<string, string> = {
+const EMPLOYEE_AUTO_MAPPING: Record<string, string> = {
   '社員番号': 'Title',
   '通番': '',
   '氏名': 'EmployeeName',
@@ -79,13 +87,116 @@ const AUTO_MAPPING: Record<string, string> = {
   '備考': 'Remarks',
 };
 
+// ============================================================
+// 端末フィールド定義
+// ============================================================
+const DEVICE_FIELDS: IDropdownOption[] = [
+  { key: '', text: '（マッピングしない）' },
+  { key: 'Title', text: 'IMEI *' },
+  { key: 'SerialNumber', text: 'シリアル番号(S/N)' },
+  { key: 'DeviceModel', text: '機種名 *' },
+  { key: 'DeviceType', text: '端末種別' },
+  { key: 'Status', text: '状態' },
+  { key: 'PurchaseDate', text: '購入日' },
+  { key: 'Remarks', text: '備考' },
+];
+
+const DEVICE_AUTO_MAPPING: Record<string, string> = {
+  'IMEI': 'Title',
+  'imei': 'Title',
+  'シリアル番号': 'SerialNumber',
+  'S/N': 'SerialNumber',
+  's/n': 'SerialNumber',
+  'SN': 'SerialNumber',
+  '機種名': 'DeviceModel',
+  '機種': 'DeviceModel',
+  'モデル': 'DeviceModel',
+  '端末種別': 'DeviceType',
+  '種別': 'DeviceType',
+  '状態': 'Status',
+  '購入日': 'PurchaseDate',
+  '備考': 'Remarks',
+};
+
+// ============================================================
+// SIMフィールド定義
+// ============================================================
+const SIM_FIELDS: IDropdownOption[] = [
+  { key: '', text: '（マッピングしない）' },
+  { key: 'Title', text: 'SIM識別名 *' },
+  { key: 'ICCID', text: 'ICCID' },
+  { key: 'PhoneNo', text: '電話番号' },
+  { key: 'Carrier', text: 'キャリア' },
+  { key: 'SimType', text: 'SIM種別' },
+  { key: 'PlanName', text: 'プラン名' },
+  { key: 'MonthlyCost', text: '月額費用(円)' },
+  { key: 'ContractDate', text: '契約開始日' },
+  { key: 'Status', text: '状態' },
+  { key: 'Remarks', text: '備考' },
+];
+
+const SIM_AUTO_MAPPING: Record<string, string> = {
+  'SIM識別名': 'Title',
+  'SIM名': 'Title',
+  'ICCID': 'ICCID',
+  'iccid': 'ICCID',
+  '電話番号': 'PhoneNo',
+  '携帯番号': 'PhoneNo',
+  'キャリア': 'Carrier',
+  '通信キャリア': 'Carrier',
+  'SIM種別': 'SimType',
+  '種別': 'SimType',
+  'プラン': 'PlanName',
+  'プラン名': 'PlanName',
+  '契約プラン': 'PlanName',
+  '月額': 'MonthlyCost',
+  '月額費用': 'MonthlyCost',
+  '契約開始日': 'ContractDate',
+  '契約日': 'ContractDate',
+  '状態': 'Status',
+  '備考': 'Remarks',
+};
+
+// ============================================================
+// プレビュー列定義
+// ============================================================
+const EMPLOYEE_PREVIEW_COLS: IColumn[] = [
+  { key: 'no', name: '社員番号', fieldName: 'Title', minWidth: 70, maxWidth: 90 },
+  { key: 'name', name: '氏名', fieldName: 'EmployeeName', minWidth: 80, maxWidth: 120 },
+  { key: 'dept', name: '部署', fieldName: 'Department', minWidth: 80, maxWidth: 110 },
+  { key: 'mobile', name: '携帯番号', fieldName: 'MobileNumber', minWidth: 100, maxWidth: 130 },
+  { key: 'teams', name: 'Teams外線', fieldName: 'TeamsPhone', minWidth: 100, maxWidth: 130 },
+  { key: 'email', name: 'メール', fieldName: 'Email', minWidth: 140, maxWidth: 200 },
+  { key: 'hibino', name: 'HIBINO番号', fieldName: 'HibinoEmployeeNo', minWidth: 70, maxWidth: 90 },
+];
+
+const DEVICE_PREVIEW_COLS: IColumn[] = [
+  { key: 'imei', name: 'IMEI', fieldName: 'Title', minWidth: 130, maxWidth: 160 },
+  { key: 'sn', name: 'S/N', fieldName: 'SerialNumber', minWidth: 100, maxWidth: 130 },
+  { key: 'model', name: '機種名', fieldName: 'DeviceModel', minWidth: 120, maxWidth: 160 },
+  { key: 'type', name: '種別', fieldName: 'DeviceType', minWidth: 80, maxWidth: 100 },
+  { key: 'status', name: '状態', fieldName: 'Status', minWidth: 60, maxWidth: 80 },
+  { key: 'purchase', name: '購入日', fieldName: 'PurchaseDate', minWidth: 80, maxWidth: 100 },
+];
+
+const SIM_PREVIEW_COLS: IColumn[] = [
+  { key: 'title', name: 'SIM識別名', fieldName: 'Title', minWidth: 90, maxWidth: 120 },
+  { key: 'iccid', name: 'ICCID', fieldName: 'ICCID', minWidth: 130, maxWidth: 160 },
+  { key: 'phoneno', name: '電話番号', fieldName: 'PhoneNo', minWidth: 100, maxWidth: 130 },
+  { key: 'carrier', name: 'キャリア', fieldName: 'Carrier', minWidth: 70, maxWidth: 90 },
+  { key: 'type', name: 'SIM種別', fieldName: 'SimType', minWidth: 100, maxWidth: 130 },
+  { key: 'plan', name: 'プラン', fieldName: 'PlanName', minWidth: 100, maxWidth: 140 },
+];
+
 export class ImportPanel extends React.Component<IImportPanelProps, IImportPanelState> {
   private _fileInputRef = React.createRef<HTMLInputElement>();
 
   constructor(props: IImportPanelProps) {
     super(props);
+    const t = props.defaultImportType || 'employee';
     this.state = {
-      step: 'upload',
+      importType: t,
+      step: props.defaultImportType ? 'upload' : 'selectType',
       excelHeaders: [],
       excelRows: [],
       columnMappings: [],
@@ -98,10 +209,49 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
     };
   }
 
+  public componentDidUpdate(prevProps: IImportPanelProps): void {
+    if (!prevProps.isOpen && this.props.isOpen) {
+      const t = this.props.defaultImportType || 'employee';
+      this.setState({
+        importType: t,
+        step: this.props.defaultImportType ? 'upload' : 'selectType',
+        excelHeaders: [], excelRows: [], columnMappings: [], previewData: [],
+        importing: false, importedCount: 0, errorCount: 0, errors: [], message: '',
+      });
+    }
+  }
+
+  private _getSystemFields(): IDropdownOption[] {
+    const { importType } = this.state;
+    if (importType === 'device') return DEVICE_FIELDS;
+    if (importType === 'sim') return SIM_FIELDS;
+    return EMPLOYEE_FIELDS;
+  }
+
+  private _getAutoMapping(): Record<string, string> {
+    const { importType } = this.state;
+    if (importType === 'device') return DEVICE_AUTO_MAPPING;
+    if (importType === 'sim') return SIM_AUTO_MAPPING;
+    return EMPLOYEE_AUTO_MAPPING;
+  }
+
+  private _getPreviewCols(): IColumn[] {
+    const { importType } = this.state;
+    if (importType === 'device') return DEVICE_PREVIEW_COLS;
+    if (importType === 'sim') return SIM_PREVIEW_COLS;
+    return EMPLOYEE_PREVIEW_COLS;
+  }
+
+  private _getImportTypeLabel(): string {
+    const { importType } = this.state;
+    if (importType === 'device') return '端末台帳';
+    if (importType === 'sim') return 'SIM台帳';
+    return '社員台帳';
+  }
+
   private _handleFileChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const file = e.target.files?.[0];
     if (!file) return;
-
     const reader = new FileReader();
     reader.onload = (ev) => {
       try {
@@ -109,28 +259,18 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
         const wb = XLSX.read(data, { type: 'array' });
         const ws = wb.Sheets[wb.SheetNames[0]];
         const json: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
-
         if (json.length < 2) {
           this.setState({ message: 'Excelファイルにデータが見つかりません。' });
           return;
         }
-
         const headers = (json[0] as any[]).map(h => String(h).trim());
         const rows = json.slice(1).filter(r => r.some(c => c !== ''));
-
-        // 自動マッピング
+        const autoMap = this._getAutoMapping();
         const mappings: IColumnMapping[] = headers.map(h => ({
           excelCol: h,
-          systemField: AUTO_MAPPING[h] || AUTO_MAPPING[h.toLowerCase()] || '',
+          systemField: autoMap[h] || autoMap[h.toLowerCase()] || '',
         }));
-
-        this.setState({
-          step: 'mapping',
-          excelHeaders: headers,
-          excelRows: rows,
-          columnMappings: mappings,
-          message: '',
-        });
+        this.setState({ step: 'mapping', excelHeaders: headers, excelRows: rows, columnMappings: mappings, message: '' });
       } catch (err: any) {
         this.setState({ message: `ファイル読み込みエラー: ${err.message}` });
       }
@@ -139,88 +279,120 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
   }
 
   private _buildPreview(): void {
-    const { excelRows, columnMappings } = this.state;
-    const preview: IEmployee[] = [];
-
+    const { excelRows, columnMappings, importType } = this.state;
+    const preview: any[] = [];
     for (const row of excelRows.slice(0, 5)) {
-      const emp: any = { Status: '在籍' };
+      const item: any = importType === 'employee' ? { Status: '在籍' }
+        : importType === 'device' ? { DeviceType: 'スマートフォン', Status: '在庫' }
+        : { Carrier: 'KDDI', SimType: 'データSIM', Status: '在庫(未割当)' };
       columnMappings.forEach((m, i) => {
         if (m.systemField && row[i] !== undefined && row[i] !== '') {
-          emp[m.systemField] = String(row[i]).trim();
+          item[m.systemField] = String(row[i]).trim();
         }
       });
-      if (emp.Title || emp.EmployeeName) {
-        preview.push(emp as IEmployee);
-      }
+      preview.push(item);
     }
-
     this.setState({ step: 'preview', previewData: preview });
   }
 
   private async _startImport(): Promise<void> {
-    const { excelRows, columnMappings } = this.state;
+    const { excelRows, columnMappings, importType } = this.state;
+    const { spService } = this.props;
     this.setState({ step: 'importing', importing: true, importedCount: 0, errorCount: 0, errors: [] });
-
     let imported = 0;
     let errCount = 0;
     const errs: string[] = [];
 
-    for (const row of excelRows) {
-      const emp: any = { Status: '在籍' };
+    for (let rowIdx = 0; rowIdx < excelRows.length; rowIdx++) {
+      const row = excelRows[rowIdx];
+      const item: any = importType === 'employee' ? { Status: '在籍' }
+        : importType === 'device' ? { DeviceType: 'スマートフォン', Status: '在庫' }
+        : { Carrier: 'KDDI', SimType: 'データSIM', Status: '在庫(未割当)' };
+
       columnMappings.forEach((m, i) => {
         if (m.systemField && row[i] !== undefined && row[i] !== '') {
-          emp[m.systemField] = String(row[i]).trim();
+          const val = String(row[i]).trim();
+          if (m.systemField === 'MonthlyCost') {
+            const n = parseFloat(val.replace(/[,¥]/g, ''));
+            item[m.systemField] = isNaN(n) ? undefined : n;
+          } else {
+            item[m.systemField] = val;
+          }
         }
       });
 
-      if (!emp.Title && !emp.EmployeeName) continue;
-      if (!emp.Title) emp.Title = '';
-      if (!emp.EmployeeName) emp.EmployeeName = emp.Title;
-
       try {
-        await this.props.spService.saveEmployee(emp as IEmployee);
+        if (importType === 'employee') {
+          const emp = item as IEmployee;
+          if (!emp.Title && !emp.EmployeeName) continue;
+          if (!emp.Title) emp.Title = '';
+          if (!emp.EmployeeName) emp.EmployeeName = emp.Title;
+          await spService.saveEmployee(emp);
+        } else if (importType === 'device') {
+          const dev = item as IDevice;
+          if (!dev.Title && !dev.DeviceModel) continue;
+          if (!dev.Title) dev.Title = '';
+          if (!dev.DeviceModel) dev.DeviceModel = dev.Title;
+          await spService.saveDevice(dev);
+        } else {
+          const sim = item as ISim;
+          if (!sim.Title) continue;
+          await spService.saveSim(sim);
+        }
         imported++;
+        this.setState({ importedCount: imported });
       } catch (e: any) {
         errCount++;
-        errs.push(`行 ${excelRows.indexOf(row) + 2}: ${e.message}`);
+        errs.push(`行 ${rowIdx + 2}: ${e.message?.substring(0, 200) || e}`);
       }
     }
 
-    this.setState({
-      step: 'done',
-      importing: false,
-      importedCount: imported,
-      errorCount: errCount,
-      errors: errs,
-    });
+    this.setState({ step: 'done', importing: false, importedCount: imported, errorCount: errCount, errors: errs });
   }
 
   private _reset(): void {
+    const t = this.props.defaultImportType || 'employee';
     this.setState({
-      step: 'upload',
-      excelHeaders: [],
-      excelRows: [],
-      columnMappings: [],
-      previewData: [],
-      importing: false,
-      importedCount: 0,
-      errorCount: 0,
-      errors: [],
-      message: '',
+      importType: t,
+      step: this.props.defaultImportType ? 'upload' : 'selectType',
+      excelHeaders: [], excelRows: [], columnMappings: [], previewData: [],
+      importing: false, importedCount: 0, errorCount: 0, errors: [], message: '',
     });
     if (this._fileInputRef.current) this._fileInputRef.current.value = '';
   }
 
   public render(): React.ReactElement {
     const { isOpen, onDismiss, onImported } = this.props;
-    const { step, excelHeaders, excelRows, columnMappings, previewData,
-      importing, importedCount, errorCount, errors, message } = this.state;
+    const { step, importType, excelRows, columnMappings, previewData,
+      importedCount, errorCount, errors, message } = this.state;
+    const typeLabel = this._getImportTypeLabel();
+
+    const typeChoices: IChoiceGroupOption[] = [
+      { key: 'employee', text: '社員台帳', iconProps: { iconName: 'People' } },
+      { key: 'device', text: '端末台帳', iconProps: { iconName: 'CellPhone' } },
+      { key: 'sim', text: 'SIM台帳', iconProps: { iconName: 'Sim' } },
+    ];
 
     return (
-      <Panel isOpen={isOpen} type={PanelType.large} headerText="社員台帳 Excelインポート"
+      <Panel
+        isOpen={isOpen}
+        type={PanelType.large}
+        headerText={`Excelインポート${step !== 'selectType' ? ` - ${typeLabel}` : ''}`}
         onDismiss={() => { this._reset(); onDismiss(); }}
         onRenderFooterContent={() => (
           <Stack horizontal tokens={{ childrenGap: 8 }}>
+            {step === 'selectType' && (
+              <>
+                <PrimaryButton text="次へ" onClick={() => this.setState({ step: 'upload' })} />
+                <DefaultButton text="キャンセル" onClick={() => { this._reset(); onDismiss(); }} />
+              </>
+            )}
+            {step === 'upload' && (
+              <>
+                {!this.props.defaultImportType && <DefaultButton text="戻る" onClick={() => this.setState({ step: 'selectType' })} />}
+                <DefaultButton text="キャンセル" onClick={() => { this._reset(); onDismiss(); }} />
+              </>
+            )}
             {step === 'mapping' && (
               <>
                 <PrimaryButton text="プレビューを確認" iconProps={{ iconName: 'Preview' }} onClick={() => this._buildPreview()} />
@@ -240,21 +412,40 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
                 <DefaultButton text="再度インポート" onClick={() => this._reset()} />
               </>
             )}
-            {(step === 'upload' || step === 'mapping') && (
-              <DefaultButton text="キャンセル" onClick={() => { this._reset(); onDismiss(); }} />
-            )}
           </Stack>
-        )} isFooterAtBottom>
-
+        )}
+        isFooterAtBottom
+      >
         <Stack tokens={{ childrenGap: 16 }} style={{ padding: '16px 0' }}>
+
+          {/* ステップ0: インポート種別選択 */}
+          {step === 'selectType' && (
+            <Stack tokens={{ childrenGap: 12 }}>
+              <Text variant="mediumPlus" style={{ fontWeight: 600 }}>インポートするデータを選択してください</Text>
+              <ChoiceGroup
+                options={typeChoices}
+                selectedKey={importType}
+                onChange={(_, o) => this.setState({ importType: o?.key as ImportType || 'employee' })}
+              />
+            </Stack>
+          )}
 
           {/* ステップ1: ファイル選択 */}
           {step === 'upload' && (
             <Stack tokens={{ childrenGap: 12 }}>
               <MessageBar messageBarType={MessageBarType.info}>
-                社員台帳のExcelファイル（.xlsx / .xls）を選択してください。
-                1行目がヘッダー行として認識されます。
+                {typeLabel}のExcelファイル（.xlsx / .xls）を選択してください。1行目がヘッダー行として認識されます。
               </MessageBar>
+              {importType === 'device' && (
+                <MessageBar messageBarType={MessageBarType.info}>
+                  推奨列: IMEI、シリアル番号(S/N)、機種名、端末種別、状態、購入日、備考
+                </MessageBar>
+              )}
+              {importType === 'sim' && (
+                <MessageBar messageBarType={MessageBarType.info}>
+                  推奨列: SIM識別名、ICCID、電話番号、キャリア、SIM種別、プラン名、月額費用、契約開始日、状態、備考
+                </MessageBar>
+              )}
               <Stack horizontal tokens={{ childrenGap: 8 }} verticalAlign="end">
                 <input ref={this._fileInputRef} type="file" accept=".xlsx,.xls"
                   onChange={(e) => this._handleFileChange(e)}
@@ -271,7 +462,7 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
             <Stack tokens={{ childrenGap: 12 }}>
               <Text variant="mediumPlus" style={{ fontWeight: 600 }}>列マッピングの確認</Text>
               <Text variant="small" style={{ color: '#605e5c' }}>
-                Excelの列と社員台帳のフィールドの対応を確認・修正してください。
+                Excelの列と{typeLabel}のフィールドの対応を確認・修正してください。
                 自動認識された列は緑色で表示されます。（全{excelRows.length}行）
               </Text>
               <Stack tokens={{ childrenGap: 6 }}>
@@ -282,7 +473,7 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
                     </Label>
                     <span style={{ color: '#797775' }}>→</span>
                     <Dropdown
-                      options={SYSTEM_FIELDS}
+                      options={this._getSystemFields()}
                       selectedKey={m.systemField}
                       onChange={(_, o) => {
                         const updated = [...columnMappings];
@@ -306,15 +497,7 @@ export class ImportPanel extends React.Component<IImportPanelProps, IImportPanel
               </Text>
               <DetailsList
                 items={previewData}
-                columns={[
-                  { key: 'no', name: '社員番号', fieldName: 'Title', minWidth: 70, maxWidth: 90 },
-                  { key: 'name', name: '氏名', fieldName: 'EmployeeName', minWidth: 80, maxWidth: 120 },
-                  { key: 'dept', name: '部署', fieldName: 'Department', minWidth: 80, maxWidth: 110 },
-                  { key: 'mobile', name: '携帯番号', fieldName: 'MobileNumber', minWidth: 100, maxWidth: 130 },
-                  { key: 'teams', name: 'Teams外線', fieldName: 'TeamsPhone', minWidth: 100, maxWidth: 130 },
-                  { key: 'email', name: 'メール', fieldName: 'Email', minWidth: 140, maxWidth: 200 },
-                  { key: 'hibino', name: 'HIBINO番号', fieldName: 'HibinoEmployeeNo', minWidth: 70, maxWidth: 90 },
-                ] as IColumn[]}
+                columns={this._getPreviewCols()}
                 layoutMode={DetailsListLayoutMode.justified}
                 selectionMode={SelectionMode.none}
                 compact={true}
