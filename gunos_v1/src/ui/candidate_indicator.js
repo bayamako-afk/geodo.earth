@@ -18,6 +18,12 @@
 let _lastTurnCount = -1;
 let _session = null;   // { stationMetrics, stationLines, linesMaster } — injected once
 
+// Drag state
+let _dragging = false;
+let _dragOffsetX = 0;
+let _dragOffsetY = 0;
+let _userPos = null;   // { left, top } in px when user has moved the panel
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 
 /**
@@ -45,6 +51,107 @@ export function initCandidateIndicator(scoringData) {
   `;
 
   overlayInfo.appendChild(panel);
+
+  // Attach drag behaviour
+  _attachDrag(panel);
+}
+
+// ── Drag ─────────────────────────────────────────────────────────────────────
+
+/**
+ * Make the panel draggable via mouse and touch.
+ * The panel switches to position:fixed while dragging so it can move freely.
+ */
+function _attachDrag(panel) {
+  // Use the header as the drag handle
+  const handle = panel.querySelector('.ci-header') || panel;
+
+  function onMouseDown(e) {
+    // Only primary button
+    if (e.button !== 0) return;
+    e.preventDefault();
+
+    const rect = panel.getBoundingClientRect();
+    _dragOffsetX = e.clientX - rect.left;
+    _dragOffsetY = e.clientY - rect.top;
+    _dragging = true;
+
+    // Switch to fixed positioning so the panel escapes any overflow clipping
+    panel.style.position = 'fixed';
+    panel.style.left = rect.left + 'px';
+    panel.style.top  = rect.top  + 'px';
+    panel.style.bottom = 'auto';
+    panel.style.cursor = 'grabbing';
+    panel.style.transition = 'none';
+    panel.style.zIndex = '9999';
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup',   onMouseUp);
+  }
+
+  function onMouseMove(e) {
+    if (!_dragging) return;
+    const x = e.clientX - _dragOffsetX;
+    const y = e.clientY - _dragOffsetY;
+    // Clamp inside viewport
+    const maxX = window.innerWidth  - panel.offsetWidth;
+    const maxY = window.innerHeight - panel.offsetHeight;
+    const clampedX = Math.max(0, Math.min(x, maxX));
+    const clampedY = Math.max(0, Math.min(y, maxY));
+    panel.style.left = clampedX + 'px';
+    panel.style.top  = clampedY + 'px';
+    _userPos = { left: clampedX, top: clampedY };
+  }
+
+  function onMouseUp() {
+    if (!_dragging) return;
+    _dragging = false;
+    panel.style.cursor = 'grab';
+    panel.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup',   onMouseUp);
+  }
+
+  // Touch support
+  function onTouchStart(e) {
+    const touch = e.touches[0];
+    const rect = panel.getBoundingClientRect();
+    _dragOffsetX = touch.clientX - rect.left;
+    _dragOffsetY = touch.clientY - rect.top;
+    _dragging = true;
+
+    panel.style.position = 'fixed';
+    panel.style.left = rect.left + 'px';
+    panel.style.top  = rect.top  + 'px';
+    panel.style.bottom = 'auto';
+    panel.style.transition = 'none';
+    panel.style.zIndex = '9999';
+  }
+
+  function onTouchMove(e) {
+    if (!_dragging) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    const x = touch.clientX - _dragOffsetX;
+    const y = touch.clientY - _dragOffsetY;
+    const maxX = window.innerWidth  - panel.offsetWidth;
+    const maxY = window.innerHeight - panel.offsetHeight;
+    const clampedX = Math.max(0, Math.min(x, maxX));
+    const clampedY = Math.max(0, Math.min(y, maxY));
+    panel.style.left = clampedX + 'px';
+    panel.style.top  = clampedY + 'px';
+    _userPos = { left: clampedX, top: clampedY };
+  }
+
+  function onTouchEnd() {
+    _dragging = false;
+    panel.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+  }
+
+  handle.addEventListener('mousedown',  onMouseDown);
+  handle.addEventListener('touchstart', onTouchStart, { passive: true });
+  handle.addEventListener('touchmove',  onTouchMove,  { passive: false });
+  handle.addEventListener('touchend',   onTouchEnd);
 }
 
 // ── Update ────────────────────────────────────────────────────────────────────
@@ -120,7 +227,13 @@ export function updateCandidateIndicator(gameState, playerScores, uiMode) {
     </div>
   `).join('');
 
-  // Show panel
+  // Show panel — restore user-dragged position if set
+  if (_userPos) {
+    panel.style.position = 'fixed';
+    panel.style.left   = _userPos.left + 'px';
+    panel.style.top    = _userPos.top  + 'px';
+    panel.style.bottom = 'auto';
+  }
   panel.classList.remove('ci-panel--hidden');
   panel.classList.add('ci-panel--visible');
 
@@ -137,8 +250,18 @@ export function updateCandidateIndicator(gameState, playerScores, uiMode) {
  */
 export function resetCandidateIndicator() {
   const panel = document.getElementById('candidate-panel');
-  if (panel) _hidePanel(panel);
+  if (panel) {
+    _hidePanel(panel);
+    // Restore default CSS positioning
+    panel.style.position = '';
+    panel.style.left     = '';
+    panel.style.top      = '';
+    panel.style.bottom   = '';
+    panel.style.zIndex   = '';
+    panel.style.cursor   = '';
+  }
   _lastTurnCount = -1;
+  _userPos = null;
 }
 
 // ── Internal: Candidate ranking ───────────────────────────────────────────────

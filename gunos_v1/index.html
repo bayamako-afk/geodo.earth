@@ -3009,11 +3009,21 @@
       border: 1px solid rgba(255, 255, 255, 0.10);
       border-radius: 6px;
       padding: 5px 9px 6px;
-      pointer-events: none;
+      pointer-events: auto;
       z-index: 29;   /* just below station-hint-panel (z-index:30) */
       opacity: 0;
       transform: translateY(6px);
       transition: opacity 0.35s ease, transform 0.35s ease;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #candidate-panel .ci-header {
+      cursor: grab;
+    }
+
+    #candidate-panel .ci-header:active {
+      cursor: grabbing;
     }
 
     #candidate-panel.ci-panel--hidden {
@@ -3483,6 +3493,115 @@
       .sdc-badge   { font-size: 7px; padding: 1px 3px; }
       /* Show max 2 badges on portrait */
       .sdc-badge:nth-child(n+3) { display: none; }
+    }
+
+
+    /* ── V1.5 Task 01: Beginner Onboarding Hints ─────────────────────────────── */
+
+    #onboarding-hint {
+      position: absolute;
+      top: 44px;          /* just below the floating header */
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 340px;
+      min-width: 180px;
+      background: rgba(10, 14, 22, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      padding: 6px 14px 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.88);
+      white-space: nowrap;
+      pointer-events: auto;
+      cursor: pointer;
+      z-index: 50;
+      opacity: 0;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      /* start slightly above */
+      transform: translateX(-50%) translateY(-6px);
+    }
+
+    #onboarding-hint.ob-hint--visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    #onboarding-hint.ob-hint--fading {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    #onboarding-hint.ob-hint--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .ob-hint__icon {
+      font-size: 11px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    /* Theme icon colors */
+    .ob-hint__icon--map      { color: rgba(255, 255, 255, 0.55); }
+    .ob-hint__icon--candidate { color: var(--c-accent, #f0c040); }
+    .ob-hint__icon--hub      { color: #bc8cff; }
+    .ob-hint__icon--score    { color: #3fb950; }
+    .ob-hint__icon--detail   { color: rgba(255, 255, 255, 0.55); }
+
+    /* Theme border accent */
+    #onboarding-hint.ob-hint--map      { border-color: rgba(255, 255, 255, 0.18); }
+    #onboarding-hint.ob-hint--candidate { border-color: rgba(240, 192, 64, 0.45); }
+    #onboarding-hint.ob-hint--hub      { border-color: rgba(188, 140, 255, 0.45); }
+    #onboarding-hint.ob-hint--score    { border-color: rgba(63, 185, 80, 0.45); }
+    #onboarding-hint.ob-hint--detail   { border-color: rgba(255, 255, 255, 0.18); }
+
+    .ob-hint__text {
+      font-size: 11px;
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+
+    .ob-hint__close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 9px;
+      cursor: pointer;
+      padding: 0 0 0 4px;
+      flex-shrink: 0;
+      line-height: 1;
+      pointer-events: auto;
+    }
+
+    .ob-hint__close:hover {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Smartphone landscape: keep it very compact */
+    @media (max-height: 500px) {
+      #onboarding-hint {
+        top: 36px;
+        font-size: 10px;
+        padding: 4px 10px 4px 8px;
+        max-width: 260px;
+      }
+      .ob-hint__text { font-size: 10px; }
+    }
+
+    /* Smartphone portrait: slightly wider */
+    @media (max-width: 680px) and (min-height: 501px) {
+      #onboarding-hint {
+        max-width: 80vw;
+        font-size: 11px;
+      }
     }
 
   </style>
