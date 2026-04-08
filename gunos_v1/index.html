@@ -3001,7 +3001,7 @@
     #candidate-panel {
       position: absolute;
       left: 6px;
-      bottom: calc(var(--bottom-h) + 72px);  /* above station-hint-panel */
+      bottom: calc(var(--bottom-h) + 96px);  /* above station-hint-panel (max ~88px tall) */
       max-width: 220px;
       background: rgba(10, 14, 20, 0.72);
       backdrop-filter: blur(10px);
@@ -3113,7 +3113,7 @@
     /* Landscape: compact candidate panel */
     @media (max-height: 500px) and (orientation: landscape) {
       #candidate-panel {
-        bottom: calc(var(--bottom-h) + 56px);
+        bottom: calc(var(--bottom-h) + 76px);
         max-width: 170px;
         padding: 3px 7px 4px;
       }
@@ -3128,7 +3128,7 @@
     /* Mobile portrait: compact */
     @media (max-width: 680px) {
       #candidate-panel {
-        bottom: calc(var(--bottom-h) + 60px);
+        bottom: calc(var(--bottom-h) + 80px);
         max-width: 160px;
         padding: 3px 7px 4px;
       }
@@ -3348,9 +3348,9 @@
     #station-detail-card {
       position: absolute;
       left: 6px;
-      /* sits above #candidate-panel (bottom + 72px) which is above #station-hint-panel (bottom + 8px) */
-      /* candidate-panel is ~130px tall, so we stack above it */
-      bottom: calc(var(--bottom-h) + 210px);
+      /* sits above #candidate-panel (bottom + 96px) which is above #station-hint-panel (bottom + 8px) */
+      /* candidate-panel is ~190px tall, so we stack above it */
+      bottom: calc(var(--bottom-h) + 300px);
       max-width: 180px;
       min-width: 120px;
       background: rgba(10, 14, 22, 0.82);
