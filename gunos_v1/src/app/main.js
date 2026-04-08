@@ -56,6 +56,11 @@ import {
 } from '../ui/station_detail_card.js?v=1';
 import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=15';
 import {
+  initOnboardingHints,
+  updateOnboardingHints,
+  resetOnboardingHints,
+} from '../ui/onboarding_hints.js';
+import {
   initSession,
   playOneTurn,
   autoPlay,
@@ -157,6 +162,8 @@ async function boot() {
     stationLines:   datasets.station_lines   ?? null,
     linesMaster:    datasets.lines_master    ?? null,
   });
+  // V1.5 Task 01: init beginner onboarding hints
+  initOnboardingHints();
   _setUiMode('idle');
   setHeaderStatus('Ready', 'idle');
   updateHeaderGameState('idle', null, null);
@@ -195,6 +202,9 @@ async function _handleStart() {
       datasets: _datasets,
       guno6Base,
     });
+
+    // V1.5 Task 01: reset onboarding hints for each new game session
+    resetOnboardingHints();
 
     _setUiMode('running');
     setHeaderStatus('Running', 'playing');
@@ -243,6 +253,8 @@ function _handleReset() {
   resetScoreReason();
   // V1.4 Task 05: reset selected station detail card
   resetStationDetailCard();
+  // V1.5 Task 01: reset onboarding hints
+  resetOnboardingHints();
   clearLog();
   appendLogEntry('Session reset.', 'muted');
 }
@@ -354,6 +366,9 @@ function _updateAllPanels(gameState) {
 
   // V1.4 Task 05: Update selected station detail card
   updateStationDetailCard(gameState, scores, _uiMode);
+
+  // V1.5 Task 01: Update beginner onboarding hints
+  updateOnboardingHints(gameState, scores, _uiMode);
 
   // Toast for notable events during play
   if (_uiMode === 'running' && gameState && scores.length > 0) {
