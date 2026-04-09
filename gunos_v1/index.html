@@ -3684,6 +3684,147 @@
       }
     }
 
+    /* ════════════════════════════════════════════════════════════════════════
+       V1.5 TASK 05 — RESULT SCREEN VISUAL POLISH
+    ════════════════════════════════════════════════════════════════════════ */
+
+    /* GAME OVER header: more prominent */
+    .result-header__title {
+      font-size: 16px;
+      letter-spacing: 0.14em;
+    }
+
+    /* Winner announce: 2-row layout for clearer hierarchy */
+    .result-winner-announce {
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px 12px;
+    }
+
+    .result-winner-announce__row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .result-winner-announce__sub {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-left: 2px;
+    }
+
+    /* Winner name: larger and more prominent */
+    .result-winner-announce__name {
+      font-size: 22px;
+      letter-spacing: 0.12em;
+    }
+
+    /* Winner score: aligned to right of name row */
+    .result-winner-announce__score {
+      margin-left: auto;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    /* Score gap: slightly more visible */
+    .result-score-gap {
+      font-size: 11px;
+      color: var(--c-text-muted);
+    }
+
+    /* Score bar: taller and more readable */
+    .result-score-bar-wrap {
+      height: 8px;
+      margin: 4px 0 6px;
+    }
+
+    /* Score bar labels: larger and bolder */
+    .result-score-bar-labels {
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+    .result-score-bar-labels strong {
+      font-size: 12px;
+    }
+    .result-score-bar-label--p1 { color: #4fc3f7; }
+    .result-score-bar-label--p2 { color: #ef9a9a; }
+
+    /* Strategy summary: slightly more breathing room */
+    .result-strategy-summary {
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .ss-header {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      margin-bottom: 5px;
+      color: var(--c-text-muted);
+    }
+
+    .ss-line {
+      font-size: 10px;
+      line-height: 1.45;
+    }
+
+    /* Player block: winner gets a subtle left accent */
+    .result-player-block--winner {
+      border-left: 3px solid var(--c-accent-dim);
+    }
+
+    /* Player header: slightly more space */
+    .result-player-header {
+      margin-bottom: 6px;
+    }
+
+    /* Player ID: slightly larger */
+    .result-player-id {
+      font-size: 14px;
+    }
+
+    /* Total score: larger */
+    .result-total-score {
+      font-size: 15px;
+    }
+
+    /* Why-won block: tighter but readable */
+    .result-why-block {
+      margin-top: 4px;
+      padding: 4px 6px;
+    }
+
+    /* Landscape: compact result panel adjustments */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .result-panel { gap: 5px; padding: 5px 7px; }
+      .result-header__title { font-size: 13px; }
+      .result-header { padding-bottom: 4px; }
+      .result-winner-announce { padding: 6px 9px; gap: 2px; }
+      .result-winner-announce__name { font-size: 17px; }
+      .result-winner-announce__score { font-size: 12px; }
+      .result-score-bar-wrap { height: 5px; margin: 2px 0 3px; }
+      .result-score-bar-labels { font-size: 9px; margin-bottom: 2px; }
+      .result-score-bar-labels strong { font-size: 10px; }
+      .result-player-block { padding: 4px 7px; }
+      .result-player-id { font-size: 12px; }
+      .result-total-score { font-size: 12px; }
+      .result-breakdown-grid { font-size: 10px; gap: 1px 6px; }
+      /* Hide why-block in landscape to save space */
+      .result-why-block { display: none; }
+      /* Hide score explain in landscape */
+      .result-score-explain { display: none; }
+    }
+
+    /* Mobile portrait: compact result */
+    @media (max-width: 680px) and (min-height: 501px) {
+      .result-winner-announce__name { font-size: 18px; }
+      .result-winner-announce__score { font-size: 13px; }
+      .result-score-bar-labels { font-size: 10px; }
+      .result-score-bar-labels strong { font-size: 11px; }
+      .ss-line { font-size: 9px; }
+    }
+
   </style>
 </head>
 <body>

@@ -73,8 +73,8 @@ export function showResultPanel(result) {
   const p2Id  = players[1]?.playerId ?? 'P2';
   const scoreBarHtml = players.length >= 2 ? `
     <div class="result-score-bar-labels">
-      <span>${p1Id} ${_fmt(topScore)}</span>
-      <span>${p2Id} ${_fmt(p2Score)}</span>
+      <span class="result-score-bar-label--p1">${p1Id} <strong>${_fmt(topScore)}</strong></span>
+      <span class="result-score-bar-label--p2">${p2Id} <strong>${_fmt(p2Score)}</strong></span>
     </div>
     <div class="result-score-bar-wrap">
       <div class="result-score-bar-p1" style="width:${p1Pct}%"></div>
@@ -153,13 +153,19 @@ export function showResultPanel(result) {
 
       <div class="result-winner-announce">
         ${isDraw
-          ? `<span class="result-winner-announce__draw">DRAW</span>
-             <span class="result-verdict ${verdictClass}">${verdictLabel}</span>`
-          : `<span class="result-winner-announce__label">WINNER</span>
-             <span class="result-winner-announce__name" style="color:${winnerColor}">${winner}</span>
-             <span class="result-score-gap">${gapStr}</span>
-             <span class="result-verdict ${verdictClass}">${verdictLabel}</span>
-             <span class="result-winner-announce__score" style="color:${winnerColor};margin-left:auto">${_fmt(topScore)} pts</span>`
+          ? `<div class="result-winner-announce__row">
+               <span class="result-winner-announce__draw">DRAW</span>
+               <span class="result-verdict ${verdictClass}">${verdictLabel}</span>
+             </div>`
+          : `<div class="result-winner-announce__row">
+               <span class="result-winner-announce__label">WINNER</span>
+               <span class="result-winner-announce__name" style="color:${winnerColor}">${winner}</span>
+               <span class="result-winner-announce__score" style="color:${winnerColor}">${_fmt(topScore)} pts</span>
+             </div>
+             <div class="result-winner-announce__sub">
+               <span class="result-score-gap">${gapStr}</span>
+               <span class="result-verdict ${verdictClass}">${verdictLabel}</span>
+             </div>`
         }
       </div>
 
