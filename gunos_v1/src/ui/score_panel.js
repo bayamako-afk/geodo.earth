@@ -30,7 +30,7 @@ export function renderScorePanel({ profile }) {
       <!-- Game status (compact) -->
       <div class="score-section score-section--status">
         <div class="score-status-inline" id="score-status-inline">
-          <span class="score-status-chip" id="status-mode-chip">IDLE</span>
+          <span class="score-status-chip" id="status-mode-chip">READY</span>
           <span class="score-status-item"><span class="score-status-label">P</span><span id="status-player">—</span></span>
           <span class="score-status-item"><span class="score-status-label">T</span><span id="status-turn">—</span></span>
           <span class="score-status-item"><span class="score-status-label">Deck</span><span id="status-deck">—</span></span>
@@ -90,7 +90,8 @@ export function updateStatusFromState(gameState, uiMode) {
   const mode = uiMode || (gameState.gameOver ? 'finished' : 'running');
   const chip = document.getElementById('status-mode-chip');
   if (chip) {
-    chip.textContent = mode.toUpperCase();
+    const modeLabel = { idle: 'READY', loading: 'LOADING', running: 'RUNNING', finished: 'DONE', error: 'ERROR' };
+    chip.textContent = modeLabel[mode] ?? mode.toUpperCase();
     chip.className   = `score-status-chip score-status-chip--${mode}`;
   }
   _setText('status-player', currentPlayer?.id ?? '—');
@@ -218,7 +219,8 @@ function _resetStatus(mode) {
 
   const chip = document.getElementById('status-mode-chip');
   if (chip) {
-    chip.textContent = mode.toUpperCase();
+    const modeLabel = { idle: 'READY', loading: 'LOADING', running: 'RUNNING', finished: 'DONE', error: 'ERROR' };
+    chip.textContent = modeLabel[mode] ?? mode.toUpperCase();
     chip.className   = `score-status-chip score-status-chip--${mode}`;
   }
   _setText('status-player', '—');

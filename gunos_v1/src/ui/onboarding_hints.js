@@ -21,7 +21,7 @@ const HINT_SEQUENCE = [
     id:      'hint-map',
     trigger: 'start',
     icon:    '◉',
-    text:    'The map is your game board. Stations are your pieces.',
+    text:    'Tap a station on the map to see its value. Stations are your pieces.',
     theme:   'map',
   },
   {
@@ -29,7 +29,7 @@ const HINT_SEQUENCE = [
     trigger: 'turn',
     turnMin: 1,
     icon:    '◆',
-    text:    'Bottom-left shows your next best targets — check the value tags.',
+    text:    'Bottom-left: your top targets. Check the tags to pick the best one.',
     theme:   'candidate',
   },
   {
@@ -37,7 +37,7 @@ const HINT_SEQUENCE = [
     trigger: 'capture',
     turnMin: 1,
     icon:    '◆',
-    text:    'Hub stations give bonus points. Route+ grows your network.',
+    text:    'HUB = big bonus. Route+ = line bonus. Both beat plain stations.',
     theme:   'hub',
   },
   {
@@ -45,7 +45,7 @@ const HINT_SEQUENCE = [
     trigger: 'score_change',
     turnMin: 3,
     icon:    '▶',
-    text:    'Top-right shows why your score moved — Hub, Route+, or captures.',
+    text:    'Top-right: why your score just changed. Hub / Route+ / capture.',
     theme:   'score',
   },
   {
@@ -53,7 +53,7 @@ const HINT_SEQUENCE = [
     trigger: 'turn',
     turnMin: 5,
     icon:    '●',
-    text:    'Each station has a value card. Read it to plan your next move.',
+    text:    'Click any station to see its value card and plan ahead.',
     theme:   'detail',
   },
 ];

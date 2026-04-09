@@ -14,7 +14,7 @@
 import { loadCityProfile, loadCityRegistry, listAvailableCities, resolveDatasetUrl } from '../city/city_loader.js?v=10';
 import { resolveActiveCityId } from '../city/city_ui.js?v=9';
 import { renderLayout } from '../ui/layout.js?v=13';
-import { setHeaderStatus, setStartButtonState, updateHeaderGameState } from '../ui/header_bar.js?v=8';
+import { setHeaderStatus, setStartButtonState, updateHeaderGameState } from '../ui/header_bar.js?v=9';
 import { updateHandFromState, resetHandDisplay } from '../ui/hand_panel.js?v=8';
 import {
   renderScorePanel,
@@ -23,10 +23,10 @@ import {
   appendLogEntry,
   setLogEntries,
   clearLog,
-} from '../ui/score_panel.js?v=14';
+} from '../ui/score_panel.js?v=15';
 import { renderCityComparePanel, initCityCompareData } from '../ui/city_compare_panel.js?v=2';
 import { initHelpModal, openHelpModal } from '../ui/help_modal.js?v=1';
-import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=16';
+import { showResultPanel, hideResultPanel } from '../ui/result_panel.js?v=17';
 import {
   initMapOverlay,
   updateMapOverlaySituation,
@@ -43,17 +43,17 @@ import {
   initCandidateIndicator,
   updateCandidateIndicator,
   resetCandidateIndicator,
-} from '../ui/candidate_indicator.js?v=1';
+} from '../ui/candidate_indicator.js?v=3';
 import {
   initScoreReason,
   updateScoreReason,
   resetScoreReason,
-} from '../ui/score_reason.js?v=1';
+} from '../ui/score_reason.js?v=2';
 import {
   initStationDetailCard,
   updateStationDetailCard,
   resetStationDetailCard,
-} from '../ui/station_detail_card.js?v=1';
+} from '../ui/station_detail_card.js?v=2';
 import { updateMapFromState, setStationGraph } from '../ui/map_panel.js?v=15';
 import {
   initOnboardingHints,

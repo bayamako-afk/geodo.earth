@@ -59,7 +59,7 @@ export function showResultPanel(result) {
   if (!isDraw) {
     if (gapPct >= 0.15) {
       verdictClass = 'result-verdict--dominant';
-      verdictLabel = 'DOMINANT WIN';
+      verdictLabel = 'CLEAR WIN';
     } else {
       verdictClass = 'result-verdict--close';
       verdictLabel = 'CLOSE WIN';

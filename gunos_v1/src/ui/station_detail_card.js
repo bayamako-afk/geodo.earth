@@ -274,8 +274,8 @@ function _buildCardContent(target, gameState, scores) {
 
   // ── Label ─────────────────────────────────────────────────────────────────────
   const label = source === 'acquired'
-    ? (playerId ? `${playerId} GOT` : 'GOT')
-    : (playerId ? `${playerId} NEXT` : 'NEXT');
+    ? 'GOT'
+    : 'NEXT';
 
   // ── Line context ──────────────────────────────────────────────────────────────
   const lineIds = stationToLines.get(stationId) || [];

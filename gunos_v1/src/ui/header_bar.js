@@ -73,7 +73,7 @@ export function updateHeaderGameState(mode, turnCount = null, winnerId = null) {
   if (badge) {
     badge.className = `hdr-game-badge hdr-game-badge--${mode}`;
     const labels = {
-      idle:     'IDLE',
+      idle:     'READY',
       loading:  'LOADING',
       running:  'RUNNING',
       finished: winnerId ? `${winnerId} WINS` : 'GAME OVER',

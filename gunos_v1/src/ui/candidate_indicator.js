@@ -216,7 +216,7 @@ export function updateCandidateIndicator(gameState, playerScores, uiMode) {
   if (!listEl) return;
 
   if (headerEl) {
-    headerEl.textContent = `NEXT — ${currentPlayerId}`;
+    headerEl.textContent = 'NEXT';
   }
 
   listEl.innerHTML = candidates.slice(0, 3).map(c => `
