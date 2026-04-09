@@ -9,6 +9,12 @@
  *   - Enhanced _whyWon() with multi-line reason block
  *   - REMATCH button (replaces plain text footer)
  *   - Map loser dimming via CSS class on SVG nodes
+ *
+ * V1.5 Task 02: Result Screen Strategy Summary
+ *   - _buildStrategySummary(): detect winning factors from score data
+ *   - Compact reason tags (Hub★ / Route+ / Chain / Capture / Lead+)
+ *   - 1–3 short explanation lines
+ *   - Responsive: PC / landscape / portrait
  */
 
 const PLAYER_COLORS = {
@@ -134,6 +140,9 @@ export function showResultPanel(result) {
   // ── Winner color ─────────────────────────────────────────────────────────
   const winnerColor = isDraw ? '#8b949e' : (PLAYER_COLORS[winner] || '#ffffff');
 
+  // ── V1.5 Task 02: Strategy Summary ──────────────────────────────────────
+  const strategySummaryHtml = _buildStrategySummary(result, isDraw, gap, gapPct);
+
   container.innerHTML = `
     <div class="result-panel">
 
@@ -155,6 +164,8 @@ export function showResultPanel(result) {
       </div>
 
       ${scoreBarHtml}
+
+      ${strategySummaryHtml}
 
       <div class="result-players">
         ${playerRows}
@@ -185,6 +196,138 @@ export function hideResultPanel() {
   document.querySelectorAll('.map-node--loser').forEach(el => {
     el.classList.remove('map-node--loser');
   });
+}
+
+// ── V1.5 Task 02: Strategy Summary builder ────────────────────────────────────
+
+/**
+ * Build a compact strategy summary block for the result screen.
+ * Detects the top 1–3 winning factors and generates:
+ *   - Reason tags (Hub★ / Route+ / Chain / Capture / Score)
+ *   - 1–3 short explanation lines
+ *   - Optional comparison line (winner vs runner-up)
+ */
+function _buildStrategySummary(result, isDraw, gap, gapPct) {
+  const { winner, players } = result;
+  if (!players || players.length < 1) return '';
+
+  const winnerPs  = isDraw ? null : players.find(p => p.playerId === winner);
+  const runnerPs  = players.find(p => p.playerId !== winner) ?? players[1];
+
+  // ── Detect winning factors ───────────────────────────────────────────────
+  const factors = [];
+
+  if (!isDraw && winnerPs) {
+    const total = winnerPs.final_score || 1;
+
+    // Hub dominance
+    const hubPct = (winnerPs.hub_bonus ?? 0) / total;
+    if (hubPct >= 0.25) {
+      factors.push({ tag: 'Hub★', label: 'Hub control', weight: hubPct, color: 'ss-tag--hub' });
+    } else if (hubPct >= 0.10) {
+      factors.push({ tag: 'Hub+', label: 'Hub bonus', weight: hubPct, color: 'ss-tag--hub' });
+    }
+
+    // Route+ bonus
+    const routePct = (winnerPs.route_bonus ?? 0) / total;
+    if (routePct >= 0.20) {
+      factors.push({ tag: 'Route+', label: 'Route bonus', weight: routePct, color: 'ss-tag--route' });
+    }
+
+    // Station capture dominance
+    const stationPct = (winnerPs.station_score ?? 0) / total;
+    if (stationPct >= 0.70 && (winnerPs.hub_bonus ?? 0) < 2) {
+      factors.push({ tag: 'Capture', label: 'Station value', weight: stationPct, color: 'ss-tag--capture' });
+    }
+
+    // Chain: multiple completed routes
+    const completedRoutes = (winnerPs.routes ?? []).length;
+    if (completedRoutes >= 2) {
+      factors.push({ tag: 'Chain', label: 'Route chain', weight: completedRoutes * 0.1, color: 'ss-tag--chain' });
+    }
+
+    // Lead: dominant win
+    if (gapPct >= 0.15) {
+      factors.push({ tag: 'Lead+', label: 'Score lead', weight: gapPct, color: 'ss-tag--lead' });
+    }
+
+    // Score: fallback if no other factor
+    if (factors.length === 0) {
+      factors.push({ tag: 'Score', label: 'Station score', weight: stationPct, color: 'ss-tag--score' });
+    }
+  }
+
+  // Sort by weight descending, keep top 3
+  factors.sort((a, b) => b.weight - a.weight);
+  const topFactors = factors.slice(0, 3);
+
+  // ── Build explanation lines ──────────────────────────────────────────────
+  const lines = [];
+
+  if (isDraw) {
+    lines.push('Both players finished with equal scores.');
+    lines.push('No clear advantage in Hub, Route+, or station value.');
+  } else if (winnerPs) {
+    const winnerColor = PLAYER_COLORS[winner] || '#fff';
+    const runnerColor = runnerPs ? (PLAYER_COLORS[runnerPs.playerId] || '#aaa') : '#aaa';
+
+    // Primary line: winner's main factor
+    const primary = topFactors[0];
+    if (primary) {
+      if (primary.tag === 'Hub★' || primary.tag === 'Hub+') {
+        const hubCount = winnerPs.hub_stations?.length ?? 0;
+        lines.push(`<strong style="color:${winnerColor}">${winner}</strong> controlled ${hubCount} hub station${hubCount !== 1 ? 's' : ''}, building a strong bonus lead.`);
+      } else if (primary.tag === 'Route+') {
+        const completedRoutes = winnerPs.routes?.length ?? 0;
+        lines.push(`<strong style="color:${winnerColor}">${winner}</strong> completed ${completedRoutes} route${completedRoutes !== 1 ? 's' : ''}, earning significant Route+ bonus.`);
+      } else if (primary.tag === 'Chain') {
+        lines.push(`<strong style="color:${winnerColor}">${winner}</strong> chained multiple route completions to extend the lead.`);
+      } else if (primary.tag === 'Capture') {
+        lines.push(`<strong style="color:${winnerColor}">${winner}</strong> captured high-value stations to build the score advantage.`);
+      } else if (primary.tag === 'Lead+') {
+        lines.push(`<strong style="color:${winnerColor}">${winner}</strong> established an early lead and held it throughout the game.`);
+      } else {
+        lines.push(`<strong style="color:${winnerColor}">${winner}</strong> outscored on station value to secure the win.`);
+      }
+    }
+
+    // Secondary line: comparison with runner-up
+    if (runnerPs && players.length >= 2) {
+      const runnerHub   = runnerPs.hub_bonus   ?? 0;
+      const runnerRoute = runnerPs.route_bonus ?? 0;
+      const winnerHub   = winnerPs.hub_bonus   ?? 0;
+      const winnerRoute = winnerPs.route_bonus ?? 0;
+
+      if (runnerHub > winnerHub && runnerRoute < winnerRoute) {
+        lines.push(`<strong style="color:${runnerColor}">${runnerPs.playerId}</strong> had stronger hub control, but fell short on Route+ bonus.`);
+      } else if (runnerRoute > winnerRoute) {
+        lines.push(`<strong style="color:${runnerColor}">${runnerPs.playerId}</strong> kept pace with Route+, but could not close the gap.`);
+      } else if (gapPct < 0.08) {
+        lines.push(`<strong style="color:${runnerColor}">${runnerPs.playerId}</strong> stayed close — a single hub or route could have changed the result.`);
+      } else {
+        lines.push(`<strong style="color:${runnerColor}">${runnerPs.playerId}</strong> could not match the station value advantage.`);
+      }
+    }
+  }
+
+  // ── Render tags ──────────────────────────────────────────────────────────
+  const tagsHtml = topFactors.length > 0
+    ? `<div class="ss-tags">${topFactors.map(f => `<span class="ss-tag ${f.color}">${f.tag}</span>`).join('')}</div>`
+    : '';
+
+  const linesHtml = lines.length > 0
+    ? `<div class="ss-lines">${lines.map(l => `<div class="ss-line">${l}</div>`).join('')}</div>`
+    : '';
+
+  if (!tagsHtml && !linesHtml) return '';
+
+  return `
+    <div class="result-strategy-summary">
+      <div class="ss-header">STRATEGY SUMMARY</div>
+      ${tagsHtml}
+      ${linesHtml}
+    </div>
+  `;
 }
 
 // ── Internal helpers ──────────────────────────────────────────────────────────

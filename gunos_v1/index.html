@@ -2348,6 +2348,79 @@
     }
     .result-why-line strong { color: var(--c-accent); }
 
+    /* ── V1.5 Task 02: Strategy Summary ─────────────────────────────────── */
+    .result-strategy-summary {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 5px;
+      padding: 7px 10px;
+    }
+
+    .ss-header {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      color: var(--c-text-dim);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .ss-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .ss-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Tag color variants — reuse V1.4 meaning vocabulary */
+    .ss-tag--hub     { background: rgba(255, 190, 40, 0.85);  color: #1a0e00; }
+    .ss-tag--route   { background: rgba(60,  180, 120, 0.85); color: #001a0a; }
+    .ss-tag--chain   { background: rgba(40,  160, 220, 0.80); color: #001020; }
+    .ss-tag--capture { background: rgba(80,  200, 255, 0.90); color: #001020; }
+    .ss-tag--lead    { background: rgba(200, 80,  255, 0.80); color: #100020; }
+    .ss-tag--score   { background: rgba(100, 200, 100, 0.75); color: #001a00; }
+
+    .ss-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .ss-line {
+      font-size: 10px;
+      color: var(--c-text-muted);
+      line-height: 1.45;
+    }
+
+    /* Landscape: compact summary */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .result-strategy-summary { padding: 4px 7px; }
+      .ss-header  { font-size: 7px; margin-bottom: 3px; }
+      .ss-tag     { font-size: 8px; padding: 1px 4px; }
+      .ss-line    { font-size: 9px; }
+      /* Show only first explanation line on landscape */
+      .ss-lines .ss-line:nth-child(n+2) { display: none; }
+    }
+
+    /* Mobile portrait: minimal summary */
+    @media (max-width: 680px) {
+      .result-strategy-summary { padding: 5px 8px; }
+      .ss-header  { font-size: 7px; }
+      .ss-tag     { font-size: 8px; padding: 1px 4px; }
+      .ss-line    { font-size: 9px; }
+    }
+
     /* Rematch button */
     .result-rematch-btn {
       display: block;
