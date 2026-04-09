@@ -216,9 +216,9 @@ function _computeValueTags(currentCard, playerScore, allScores, cardScore) {
     tags.push({ type: 'value', label: scoreLabel, priority: 1 });
   }
 
-  // Sort by priority descending, take top 3
+  // Sort by priority descending, take top 2
   tags.sort((a, b) => b.priority - a.priority);
-  return tags.slice(0, 3);
+  return tags.slice(0, 2);
 }
 
 /**
@@ -231,26 +231,16 @@ function _buildReasonLine(tags, playerId) {
   const playerLabel = playerId || 'P?';
 
   switch (topTag.type) {
-    case 'capture':
-      return `${playerLabel} captured a full route`;
-    case 'hub-top':
-      return `${playerLabel} secured a top interchange`;
-    case 'hub-major':
-      return `${playerLabel} gained a major hub`;
-    case 'hub':
-      return `${playerLabel} connected a hub station`;
-    case 'route':
-      return `${playerLabel} extended route bonus`;
-    case 'chain':
-      return `${playerLabel} building route chain`;
-    case 'lead':
-      return `${playerLabel} extending the lead`;
-    case 'score':
-      return `${playerLabel} high-value station`;
-    case 'value':
-      return `${playerLabel} acquired station`;
-    default:
-      return '';
+    case 'capture':   return 'Route captured';
+    case 'hub-top':   return 'Top interchange';
+    case 'hub-major': return 'Major hub';
+    case 'hub':       return 'Hub connection';
+    case 'route':     return 'Route bonus extended';
+    case 'chain':     return 'Route chain built';
+    case 'lead':      return 'Lead extended';
+    case 'score':     return 'High-value station';
+    case 'value':     return 'Station acquired';
+    default:          return '';
   }
 }
 

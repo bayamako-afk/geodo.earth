@@ -38,7 +38,7 @@ import {
   initStationHint,
   updateStationHint,
   resetStationHint,
-} from '../ui/station_hint.js?v=8';
+} from '../ui/station_hint.js?v=9';
 import {
   initCandidateIndicator,
   updateCandidateIndicator,

@@ -420,9 +420,9 @@ function _rankCandidates(hand, currentScore, allScores, allOwned, playerId) {
       candidateScore += 1;
     }
 
-    // Sort tags by priority, take top 2
+    // Sort tags by priority, take top 1
     tags.sort((a, b) => b.priority - a.priority);
-    const topTags = tags.slice(0, 2);
+    const topTags = tags.slice(0, 1);
 
     // Build reason
     const reason = _buildCandidateReason(topTags, bestRouteName);
@@ -502,15 +502,15 @@ function _buildCandidateReason(tags, routeName) {
   const top = tags[0];
 
   switch (top.type) {
-    case 'hub-top':   return 'major interchange hub';
-    case 'hub-major': return 'strong hub station';
-    case 'hub':       return 'hub connection';
-    case 'chain':     return routeName ? `extends ${routeName}` : 'extends route chain';
-    case 'connect':   return routeName ? `connects to ${routeName}` : 'route connection';
-    case 'route':     return 'boosts route bonus';
-    case 'lead':      return 'helps close the gap';
-    case 'score':     return 'high value station';
-    case 'value':     return 'adds station score';
+    case 'hub-top':   return 'top hub';
+    case 'hub-major': return 'major hub';
+    case 'hub':       return 'hub';
+    case 'chain':     return routeName ? routeName : 'route chain';
+    case 'connect':   return routeName ? routeName : 'route';
+    case 'route':     return 'route bonus';
+    case 'lead':      return 'closes gap';
+    case 'score':     return 'high value';
+    case 'value':     return 'station';
     default:          return '';
   }
 }

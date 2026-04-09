@@ -84,7 +84,7 @@ export function updateScoreReason(gameState, scores, uiMode) {
 
   // Render tags
   tagsEl.innerHTML = reasons.tags
-    .slice(0, 3)
+    .slice(0, 2)
     .map(t => `<span class="sr-tag sr-tag--${t.type}">${_escapeHtml(t.label)}</span>`)
     .join('');
 
@@ -166,14 +166,14 @@ function _buildReasons(gameState, scores) {
     } else {
       tags.push({ type: 'hub', label: `◆ +${hubDelta.toFixed(0)} Hub`, priority: 8 });
     }
-    if (!topReason) topReason = 'Hub bonus increased this turn.';
+    if (!topReason) topReason = 'Hub bonus gained.';
   }
 
   // ── Route+ bonus delta ───────────────────────────────────────────────────────
   const routeDelta = (focusScore.route_bonus ?? 0) - (prev.route_bonus ?? 0);
   if (routeDelta > 0) {
     tags.push({ type: 'route', label: `▶ +${routeDelta.toFixed(0)} Route+`, priority: 7 });
-    if (!topReason) topReason = 'Route chain extended.';
+    if (!topReason) topReason = 'Route extended.';
   }
 
   // ── Station capture / score delta ────────────────────────────────────────────
@@ -184,10 +184,10 @@ function _buildReasons(gameState, scores) {
     const justComplete  = routeProgress.find(r => r.status === 'complete');
     if (justComplete) {
       tags.push({ type: 'capture', label: `▶ +${stationDelta.toFixed(0)} Capture`, priority: 11 });
-      if (!topReason) topReason = 'Route capture scored.';
+      if (!topReason) topReason = 'Route captured.';
     } else {
       tags.push({ type: 'score', label: `+${stationDelta.toFixed(0)} Score`, priority: 5 });
-      if (!topReason) topReason = 'Station score added.';
+      if (!topReason) topReason = 'Station scored.';
     }
   }
 
@@ -202,7 +202,7 @@ function _buildReasons(gameState, scores) {
     const isLeading = focusScore.playerId === sorted[0].playerId;
     if (!isLeading && gapDelta < -2) {
       tags.push({ type: 'lead', label: `Lead+`, priority: 4 });
-      if (!topReason) topReason = 'Leader gap narrowed.';
+      if (!topReason) topReason = 'Gap narrowed.';
     } else if (isLeading && gapDelta > 2) {
       tags.push({ type: 'lead-ext', label: `Lead↑`, priority: 3 });
       if (!topReason) topReason = 'Lead extended.';
