@@ -38,6 +38,8 @@ interface IEmployeeTabState {
   simPanelMode: 'view' | 'editNumbers' | 'editSim' | 'replaceSim';
   error: string;
   saving: boolean;
+  isDeleteConfirmOpen: boolean;
+  deleteTargetEmployee: IEmployeeView | null;
 }
 
 const DEPT_OPTIONS: IDropdownOption[] = [
@@ -88,7 +90,7 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
       isPanelOpen: false, isAllocPanelOpen: false, isImportPanelOpen: false, isSimPanelOpen: false,
       editEmployee: null, editAllocation: null, selectedEmployee: null,
       simPanelEmployee: null, editSimInPanel: null, editEmployeeNumbers: null, simPanelMode: 'view',
-      error: '', saving: false,
+      error: '', saving: false, isDeleteConfirmOpen: false, deleteTargetEmployee: null,
     };
   }
 
@@ -258,6 +260,19 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
       await this._loadData();
     } catch (e: any) {
       this.setState({ error: `保存エラー: ${e.message}`, saving: false });
+    }
+  }
+
+  private async _deleteEmployee(): Promise<void> {
+    const { deleteTargetEmployee } = this.state;
+    if (!deleteTargetEmployee?.Id) return;
+    this.setState({ saving: true });
+    try {
+      await this.props.spService.deleteEmployee(deleteTargetEmployee.Id);
+      this.setState({ isDeleteConfirmOpen: false, deleteTargetEmployee: null, isPanelOpen: false, saving: false });
+      await this._loadData();
+    } catch (e: any) {
+      this.setState({ error: `削除エラー: ${e.message}`, saving: false, isDeleteConfirmOpen: false });
     }
   }
 
@@ -530,7 +545,8 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
 
   public render(): React.ReactElement {
     const { loading, error, searchText, filterDept, filterStatus, isPanelOpen, isAllocPanelOpen, isImportPanelOpen,
-      editEmployee, editAllocation, selectedEmployee, sims, devices, saving } = this.state;
+      editEmployee, editAllocation, selectedEmployee, sims, devices, saving,
+      isDeleteConfirmOpen, deleteTargetEmployee } = this.state;
     const filtered = this._getFilteredEmployees();
     const { isAdmin } = this.props;
 
@@ -571,9 +587,17 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
         <Panel isOpen={isPanelOpen} type={PanelType.medium} headerText={editEmployee?.Id ? '社員情報を編集' : '新規社員登録'}
           onDismiss={() => this.setState({ isPanelOpen: false })}
           onRenderFooterContent={() => (
-            <Stack horizontal tokens={{ childrenGap: 8 }}>
-              <PrimaryButton text="保存" onClick={() => this._saveEmployee()} disabled={saving} />
-              <DefaultButton text="キャンセル" onClick={() => this.setState({ isPanelOpen: false })} />
+            <Stack horizontal tokens={{ childrenGap: 8 }} horizontalAlign="space-between">
+              <Stack horizontal tokens={{ childrenGap: 8 }}>
+                <PrimaryButton text="保存" onClick={() => this._saveEmployee()} disabled={saving} />
+                <DefaultButton text="キャンセル" onClick={() => this.setState({ isPanelOpen: false })} />
+              </Stack>
+              {editEmployee?.Id && (
+                <DefaultButton text="削除" iconProps={{ iconName: 'Delete' }}
+                  styles={{ root: { color: '#a4262c', borderColor: '#a4262c' } }}
+                  onClick={() => this.setState({ isDeleteConfirmOpen: true, deleteTargetEmployee: this.state.employees.find(e => e.Id === editEmployee.Id) || null })}
+                  disabled={saving} />
+              )}
             </Stack>
           )} isFooterAtBottom>
           {editEmployee && (
@@ -617,6 +641,27 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
           onDismiss={() => this.setState({ isImportPanelOpen: false })}
           onImported={() => { this.setState({ isImportPanelOpen: false }); this._loadData(); }}
         />
+
+        {/* 削除確認ダイアログ */}
+        {isDeleteConfirmOpen && (
+          <div style={{
+            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.4)', zIndex: 1000,
+            display: 'flex', alignItems: 'center', justifyContent: 'center'
+          }}>
+            <div style={{ background: '#fff', borderRadius: 4, padding: 24, minWidth: 320, boxShadow: '0 4px 16px rgba(0,0,0,0.2)' }}>
+              <Text variant="mediumPlus" style={{ fontWeight: 600, display: 'block', marginBottom: 8 }}>社員を削除しますか？</Text>
+              <Text style={{ display: 'block', marginBottom: 16, color: '#605e5c' }}>
+                {deleteTargetEmployee?.EmployeeName}（{deleteTargetEmployee?.Title}）を削除します。この操作は元に戻せません。
+              </Text>
+              <Stack horizontal tokens={{ childrenGap: 8 }} horizontalAlign="end">
+                <DefaultButton text="キャンセル" onClick={() => this.setState({ isDeleteConfirmOpen: false, deleteTargetEmployee: null })} />
+                <PrimaryButton text="削除する" onClick={() => this._deleteEmployee()} disabled={saving}
+                  styles={{ root: { backgroundColor: '#a4262c', borderColor: '#a4262c' } }} />
+              </Stack>
+            </div>
+          </div>
+        )}
 
         {/* 割当パネル */}
         <Panel isOpen={isAllocPanelOpen} type={PanelType.medium}
