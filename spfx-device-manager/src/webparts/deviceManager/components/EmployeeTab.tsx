@@ -172,17 +172,12 @@ export class EmployeeTab extends React.Component<IEmployeeTabProps, IEmployeeTab
       { key: 'hibino', name: 'HIBINO番号', fieldName: 'HibinoEmployeeNo', minWidth: 70, maxWidth: 90, isResizable: true,
         onRender: (item: IEmployeeView) => <span style={{ fontSize: 11, color: '#605e5c' }}>{item.HibinoEmployeeNo || ''}</span>
       },
-      { key: 'sim', name: 'SIM', minWidth: 150, maxWidth: 200, isResizable: true,
+      { key: 'sim', name: 'SIM', minWidth: 100, maxWidth: 140, isResizable: true,
         onRender: (item: IEmployeeView) => {
           const simAllocs = item.allocations.filter(a => a.simInfo);
           return <>{simAllocs.map(a => (
             <div key={a.Id} style={{ fontSize: 11 }}>
-              <span style={{ fontWeight: 600, color: a.simInfo!.Carrier === 'KDDI' ? '#d83b01' : '#107c10' }}>{a.simInfo!.Carrier}</span>
-              <span style={{ color: '#797775', marginLeft: 4 }}>
-                {a.simInfo!.SimType === 'データ' ? '[D]' : a.simInfo!.SimType === 'SMS付データ' ? '[S]' : '[V]'}
-              </span>
-              {a.simInfo!.PhoneNo && <span style={{ color: '#0078d4', marginLeft: 4 }}>{a.simInfo!.PhoneNo}</span>}
-              <span style={{ color: '#605e5c', marginLeft: 4, fontSize: 10 }}>{a.simInfo!.PlanName || ''}</span>
+              <span>{a.simInfo!.Title}</span>
             </div>
           ))}</>;
         }
